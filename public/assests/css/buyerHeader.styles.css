@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;;
+}
+
+header {
+    background-color: #fff;
+    color: #62646A;
+}
+
+header .upperHeader{
+    height: 80px;
+    width: 100%;
+    padding: 32px;
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+}
+
+
+@media only screen and (max-width: 767px) {
+    header .upperHeader  {
+        height: 116px;
+        border-bottom: 2px solid #62646A;
+    }
+}
+
+/*logo*/
+
+.logo a {
+    padding-top: 14px;
+    font-size: 24px;
+    color: #62646A;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*search bar*/
+
+.upperHeader .searchBar{
+    flex-basis: 200%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.upperHeader .searchBar form{
+    display: flex;
+    width: 100%;
+}
+
+.upperHeader .searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+}
+
+.upperHeader .searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 14px;
+    cursor: pointer;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+}
+
+.upperHeader .searchBar button:hover {
+    background: #c5c6c9;
+}
+
+@media screen and (max-width: 767px) {
+
+    .upperHeader .navbar{
+        display: none;
+    }
+
+    .upperHeader{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .upperHeader .searchBar{
+      width: 100%;
+    }
+
+    .upperHeader .searchBar form{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .upperHeader .logo {
+        margin-bottom: 10px;
+        margin: 0 auto;
+    }
+
+    .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .navbar .wordLink  {
+        display: none;
+    }
+}
+
+/*navbar and navigation links*/
+
+.navbar{
+    width: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    color: #62646A;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.upperHeader svg {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: #62646A;
+    margin-right: 10px;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1500px) {
+    .upperHeader .searchBar{
+        flex-basis: 500%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+
+      .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .navbar  {
+        display: none;
+    }
+}
+
+/*header categories*/
+
+.headerCategories nav .nav-links {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #62646A;
+    border-bottom: 2px solid #62646A;
+    padding: 10px 32px 10px 32px;
+}
+
+@media only screen and (max-width: 767px) {
+    .headerCategories  {
+        display: none;
+    }
+}
+
+
+/*home content*/
+
+@media only screen and (min-width: 600px) {
+    .personalized-header {
+        margin-top: 8px;
+        padding: 0;
+    }
+}
+
+.homeContent .personalizedHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+.boxView{
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
