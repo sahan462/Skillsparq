@@ -1,40 +1,24 @@
-/*home content*/
 
-@media only screen and (min-width: 600px) {
-    .personalized-header {
-        margin-top: 8px;
-        padding: 0;
-    }
+.image-slider{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
-
-
-.homeContent .personalizedHeader{
-    min-height: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    font-size: 32px;
-    font-weight: 700;
-    color: #222325;
-    line-height: 140%;
-    padding: 0 32px;
+.image-slider .slides{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
 }
-
-
-.homeContent .userHistoryContent{
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 24px;
-    border: 1px solid #e4e5e7;
-    overflow: auto;
-    padding: 16px 32px 32px;
-    box-sizing: border-box;
-    border-radius: 8px;
+.slides input{
+    display: none;
 }
-
-
-.historyHeader{
-    font-size: 20px;
-    color: #404145;
+.slide{
+    width: 20%;
+    transition: 2s;
 }
-
-
+.slide img{
+    width: 100%;
+    height: 100%;
+}
