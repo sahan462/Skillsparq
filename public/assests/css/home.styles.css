@@ -180,27 +180,27 @@ background: #31d65a;
     margin: 0;
     padding: 20px;
     background-color: #f7f7f7; /* Background color for the container */
+    margin-top: 16px;
   }
   
   /* Style the heading */
   .category-container h1 {
     font-size: 24px;
-    color: #333; /* Text color */
+    color: #333; 
   }
   
   /* Style the category list */
   .categories {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center-align the list items horizontally */
-    gap: 20px; /* Spacing between list items */
-    margin-top: 20px; /* Add some top margin */
+    flex-wrap: wrap; 
+    gap: 16px;
   }
   
   /* Style individual list items */
   .li {
-    flex: 1;
-    max-width: calc(50% - 20px); /* Two items per row with gap */
+    flex: 1 1 15%;
+    width: 10%;
+    margin-top: 32px;
     padding: 10px;
     text-align: center;
     background-color: #fff; /* Background color for each item */
@@ -220,7 +220,8 @@ background: #31d65a;
   
   /* Style the images within list items */
   .li img {
-    max-width: 100%;
+    width: 48px;
+    height: 48px;
     align-items: center;
     height: auto;
     margin-bottom: 10px; /* Add some space below the image */
@@ -228,6 +229,16 @@ background: #31d65a;
   
   /* Media query for smaller screens */
   @media (max-width: 600px) {
+
+    .categories {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 16px;
+      }
+      
+    .li{
+        flex: 1 1 50%;
+    }
     .categories {
       flex-direction: column; /* Stack list items vertically on smaller screens */
     }
@@ -243,18 +254,21 @@ background: #31d65a;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 320px;
+    height: auto;
     display: flex;
     justify-content: space-around;
+    margin-top: 32px;
 }
 
 .WhoAreWe-container .desc{
     width: 70%;
-    max-height: 320px;
+    height: 320px;
     border-right: 1px solid #162b1d;
     background-color: #162b1d;
     padding-left: 32px;
     padding-right: 32px;
+    font-size: 32px;
+    box-sizing: border-box;
 }
 
 .WhoAreWe-container .WhoAreWe-header{
@@ -272,7 +286,7 @@ background: #31d65a;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 320px;
+    padding-bottom: 32px;
 }
 
 .WhoAreWe-container p{
@@ -286,12 +300,11 @@ background: #31d65a;
     width: 150px;
     height: auto;
     float: right;
-    align-items:flex-end;
 }
 
 .WhoAreWe-container .image{
     width: 30%;
-    height: auto;
+    height: 320px;
 }
 
 .WhoAreWe-container .image img{
@@ -300,26 +313,54 @@ background: #31d65a;
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
+
+    .WhoAreWe-container .desc{
+        width: 100%;
+        height: auto;
+        font-size: 22px;
+    }
+
     .WhoAreWe-container .image{
         display: none;
     }
 
-    .WhoAreWe-container .desc{
+    .WhoAreWe-container .desc .WhoAreWe-header{
         width: 100%;
-        font-size: 32px;
+        display: flex;
+        flex-direction: column;
+        font-size: 40px;
+        padding-top: 32px;
     }
 
 }
 
 
-@media ((min-width: 800px) and (max-width: 1000px)) {
+@media ((min-width: 600px) and (max-width: 900px)) {
     .WhoAreWe-container .image{
-        width: 45%;
+        display: none;
+        height: auto;
     }
 
     .WhoAreWe-container .desc{
-        width: 55%;
+        width: 100%;
+        font-size: 22px;
+    }
+
+}
+
+
+@media ((min-width: 900px) and (max-width: 1200px)) {
+    .WhoAreWe-container .image{
+        width: 40%;
+    }
+
+    .WhoAreWe-container .desc{
+        width: 60%;
+    }
+
+    .WhoAreWe-container .desc-content{
+        font-size: 28px;
     }
   
 }

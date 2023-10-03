@@ -98,19 +98,6 @@
                         </a>
                     </div>
                     <div class="li">
-                        <a href="/categories/lifestyle?source=hplo_cat_sec&amp;pos=8">
-                            <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/data.855fe95.svg" alt="Lifestyle" loading="lazy">Lifestyle
-                        </a>
-                    </div>
-                    <div class="li">
-                        <a href="/categories/lifestyle?source=hplo_cat_sec&amp;pos=8">
-                            <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lifestyle.112b348.svg" alt="Lifestyle" loading="lazy">Lifestyle
-                        </a>
-                    </div>
-
-
-
-                    <div class="li">
                         <a href="/categories/data?source=hplo_cat_sec&amp;pos=9">
                             <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/data.855fe95.svg" alt="Data" loading="lazy">Data
                         </a>
