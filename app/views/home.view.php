@@ -132,6 +132,12 @@
                 </div>
             </div>
 
+            <div class="topgig-container">
+                <div class="topgig-header">
+                    <h1>Trending gigs at the moment...</h1>
+                </div>
+            </div>
+
         </div>
         <script type="text/javascript">
         var counter = 1;
