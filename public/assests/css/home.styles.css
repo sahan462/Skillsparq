@@ -178,7 +178,7 @@ background: #31d65a;
 .category-container {
     text-align: center; /* Center-align the content */
     margin: 0;
-    padding: 20px;
+    padding: 16px 32px 16px 32px;
     background-color: #f7f7f7; /* Background color for the container */
     margin-top: 16px;
   }
@@ -230,14 +230,11 @@ background: #31d65a;
   /* Media query for smaller screens */
   @media (max-width: 600px) {
 
-    .categories {
-        display: flex;
-        flex-wrap: wrap; 
-        gap: 16px;
-      }
-      
     .li{
-        flex: 1 1 50%;
+        width: 100%;
+        margin-top: 8px;
+        margin-right: 32px;
+        padding: 8px 0 8px 0;
     }
     .categories {
       flex-direction: column; /* Stack list items vertically on smaller screens */
