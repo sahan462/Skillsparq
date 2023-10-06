@@ -13,7 +13,7 @@ $errors =   array();
 <body>
     <form method="post" action="">
         <div class="container">
-            <div class="header"><span style="color:#007BFF">Login</span> </div>
+            <div class="header"><span>Login</span> </div>
             <div class="fieldset">
                 <label for="lastname" class="label">User Name</label>
                 <input type="text" placeholder="Enter User Name" name="userName" id="userName" autocomplete="off">

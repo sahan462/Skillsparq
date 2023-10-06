@@ -1,21 +1,25 @@
 body {
-    background-color: #007bff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /*for normal zooming */
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
   }
+
   .container {
-    background-color: white;
-    border-radius: 2px;
-    display: block;
-    margin: auto;
-    padding-top: 30px;
-    padding-left: 60px;
-    padding-right: 100px;
-    padding-bottom: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  border-radius: 10px;
+  border-color: #f7f7f7;
+  display: block;
+  margin: auto;
+  padding-top: 30px;
+  padding-left: 60px;
+  padding-right: 100px;
+  padding-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+
   input[type="text"],
   input[type="password"],
   input[type="email"],
@@ -30,12 +34,14 @@ body {
     background: #f6f6f6;
     transition: ease-in-out 0.2s;
   }
+
   input[type="text"]:hover,
   input[type="password"]:hover,
   input[type="email"]:hover,
   input[type="date"]:hover {
     background-color: #e9e8e8;
   }
+
   input[type="text"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus,
@@ -60,43 +66,40 @@ body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     transition: ease-in-out 0.3s;
     font-weight: 500;
-    font-size: 14px;
-    background-color: #007bff;
+    font-size: 16px;
+    background-color: #31d65a;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
   }
+
   .registerbtn:hover {
-    color: #007bff;
+    color: #31d65a;
     background-color: rgb(255, 255, 255);
     font-weight: 500;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
     
   }
-  .agreement-condition {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
   
-  label {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
   .header {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    align-content: center;
     font-size: xx-large;
     margin-bottom: 30px;
     font-weight: 500;
   }
+
   .error {
     display: block;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
     color: red;
   }
+
   .fieldset {
     margin: 0 0 15px 0;
   }
+
   .normal-blue-font
   {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: #007bff;
+    color: #333;
     font-size: small;
     padding-bottom: 20px;
     text-decoration: none;
