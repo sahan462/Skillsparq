@@ -11,6 +11,26 @@ class AddJob extends Controller
         $this->view('addJob', $data);
     }
 
+
+    private function getJob(){
+        
+    }
+
+    private function addJob(){
+
+    }
+
+    private function updateJob(){
+        
+    }
+
+    private function deleteJob(){
+        
+    }
+
+
+
+
 }
 
 ?>

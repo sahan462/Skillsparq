@@ -4,6 +4,63 @@ body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
+hr{
+    margin: 96px 32px 32px 32px;
+}
+
 .addjob-container{
     display: flex;
+    height: 100%;
+    margin: 32px;
+    padding: 32px 16px 32px 16px;
+}
+
+.img{
+    justify-content: center;
+}
+
+.addjob-container .form{
+    width: 100%;
+    margin-left: 32px;
+    padding: 32px 16px 32px 16px;
+    border: 2px solid black;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.addjob-container .type-1:before{
+    
+}
+
+.addjob-container .type-1:before{
+    
+}
+
+.addjob-container input, .addjob-container textarea{
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.addjob-container textarea{
+    width: 100%;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    }
+    
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+    
+::-webkit-scrollbar-thumb {
+background: yellowgreen;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;  
 }
