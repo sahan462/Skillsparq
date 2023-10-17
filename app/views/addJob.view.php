@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="./assests/css/addJob.styles.css">
     </head>
     <body>
-        <hr>
         <div class="addjob-container">
             <div class="img">
                 <img src="https://hrcdn.net/fcore/assets/svgs/skills_test_failed-6f44b0392a.svg"/>
@@ -21,7 +20,7 @@
                         <input type="text" placeholder="Example: Create a WordPress website for my company"/>
 
                         <span class="type-1">What are you looking to get done?</span>
-                        <span class="type-2">This will help get your brief to the right talent. Specifics help here.</span><br>
+                        <span class="type-2">This will help get your brief to the right talent. Specifics help here.</span>
                         <textarea placeholder="I need.." rows="8" ></textarea>
 
                         <span class="type-1">Attachements</span>
