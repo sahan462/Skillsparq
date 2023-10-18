@@ -54,6 +54,7 @@
                         <span for="flexible-amount" >My budget is flexible</span>
 
                         <span class="type-1" style="margin-top:32px">Let’s talk timing</span>
+                        <span class="type-2">Ideal delivery date</span>
                         <input type="date"  name="deadline" >
                     </div>
 
