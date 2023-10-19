@@ -139,7 +139,6 @@ button:hover span:after {
         margin: 0;
         overflow: auto;
     }
-
     .addjob-container{
         margin-top: 0;
         margin-left: 0;
@@ -147,17 +146,14 @@ button:hover span:after {
         margin-bottom: 32px;
         flex-direction: column;
     }
-
     .addjob-container .img img{
         display: none;
     }
-
     .addjob-container .form{
         margin: 0;
         padding: 0;
         border: none;
     }
-
     .addjob-container .form .page{
         height: auto;
         margin-top: 16px;
@@ -165,7 +161,6 @@ button:hover span:after {
         border-top: 3px solid #c5c6c9;
         overflow: hidden;
     }
-
     button{
         margin-bottom: 32px;
     }

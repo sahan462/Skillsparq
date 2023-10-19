@@ -14,7 +14,7 @@
                 <img src="https://hrcdn.net/fcore/assets/svgs/skills_test_failed-6f44b0392a.svg"/>
             </div>
             <div class="form">
-                <form method="get" action="#">
+                <form method="get" action="<?php echo BASEURL.'Job/publishJob';?>" >
                     <div class="page">
 
                         <span class="type-1">Give your project brief a title</span>
@@ -49,7 +49,7 @@
                         </select>
 
                         <span class="type-1">I'm looking to spend...</span>
-                        <input type="text" placeholder="Up to" style="margin-bottom:0" />
+                        <input type="text" name="amount" placeholder="Up to" style="margin-bottom:0" />
                         <input type="checkbox" name="flexible-amount" >
                         <span for="flexible-amount" >My budget is flexible</span>
 
@@ -58,7 +58,7 @@
                         <input type="date"  name="deadline" >
                     </div>
 
-                    <button type="submit" class="next" name="next" value="next"><span>Publish</span></button>
+                    <button type="submit" class="next" name="submit"><span>Publish</span></button>
 
                 </form>
             </div>
