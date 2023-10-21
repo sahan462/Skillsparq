@@ -28,7 +28,7 @@
 .card-slider .carousel{
   display: grid;
   grid-auto-flow: column;  
-  grid-auto-columns: calc((100%/4) - 16px);
+  grid-auto-columns: calc((100%/5) - 16px);
   gap: 20px;
   overflow: hidden;
 }
@@ -69,9 +69,21 @@
 .checked {
   color: orange;
 }
-@media screen and (max-width: 900px) {
+
+@media screen and (max-width: 1200px) {
   .card-slider .carousel{
     grid-auto-columns: calc((100%/3) - 16px);
+  }
+  .card-slider ul{
+    padding-left: 0;
+    margin-left: 4px;
+    margin-right: -6px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card-slider .carousel{
+    grid-auto-columns: calc((100%/2) - 16px);
   }
   .card-slider ul{
     padding-left: 0;

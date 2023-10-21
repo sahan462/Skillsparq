@@ -193,11 +193,19 @@ header .upperHeader{
     padding: 10px 32px 10px 32px;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
     .headerCategories  {
-        display: none;
+        overflow: scroll;
+        overflow-y: hidden;
     }
 }
 
+@media only screen and (max-width: 1400px) {
+    .headerCategories  {
+        width: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+}
 
 
