@@ -1,16 +1,16 @@
 body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
+    padding: 0;
 }
 
 /*header*/
 .upperHeader{
     display: flex;
     align-items: center;
-    padding-left: 32px;
-    padding-right: 32px;
     justify-content: space-between;
     height: 60px;
+    width: 100%;
     background-color: #0b3a23;
     position: -webkit-sticky; 
     position: sticky;
@@ -19,8 +19,6 @@ body{
 .upperHeader.scrolled{
     display: flex;
     align-items: center;
-    padding-left: 32px;
-    padding-right: 32px;
     justify-content: space-between;
     height: 60px;
     background-color: #0b3a23;
@@ -31,6 +29,7 @@ body{
 }
 .upperHeader .logo a {
     padding-top: 14px;
+    padding-left: 16px;
     font-size: 24px;
     color: #fff;
     text-decoration: none;
@@ -44,6 +43,7 @@ body{
     font-weight: bold;
 }
 .nav-links {
+    padding-right: 16px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -89,23 +89,7 @@ body{
 }
 
 @media only screen and (max-width: 600px) {
-    .slider-out-container{
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 0;
-        height: auto;
-    }
-
-    .slider-out-container .header{
-        width: 100%;
-    }
-
-    .slider-out-container .slider-container{
-        display: none;
-    }
-    
-    .nav-links .wordLink{
+    .nav-links #wordLink-1{
         display: none;
     }
 }
@@ -118,6 +102,7 @@ body{
     width: 100%;
     height: 648px;
     margin-bottom: 64px;
+    box-sizing: border-box;
 }
 .slider-out-container {
     display: flex;
@@ -129,8 +114,10 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    box-sizing: border-box;
     padding-left: 32px;
+    padding-right: 32px;
+    width: 60%;
 }
 .slider-out-container .header span {
     font-weight: bold; 
@@ -139,9 +126,8 @@ body{
 }
 
 .searchBar{
-    flex-basis: 200%;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 100%;
+    padding-top: 16px;
 }
 
 .searchBar form{
@@ -166,6 +152,7 @@ body{
     margin: 0;
     padding: 14px;
     cursor: pointer;
+    background-color: #31d65a;
     border: 1px solid #c5c6c9;
     border-radius: 0 4px 4px 0;
 }
@@ -228,6 +215,23 @@ body{
         height: 450px;
     }
 
+    .slider-out-container{
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+        padding:0 16px 32px 16px;
+    }
+
+    .slider-out-container .header {
+        padding-top: 32px;
+        border-top: 4px solid #fff;
+        width: 100%;
+    }
+
+    .slider-container{
+        display: none;
+    }
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -246,6 +250,25 @@ body{
         width: 100%;
         height: 300px;
     }
+
+
+    .slider-out-container{
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+        padding:0 16px 32px 16px;
+    }
+
+    .slider-out-container .header {
+        padding-top: 32px;
+        border-top: 4px solid #fff;
+        width: 100%;
+    }
+
+    .slider-container{
+        display: none;
+    }
+
 }
 
 

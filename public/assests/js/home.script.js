@@ -15,7 +15,7 @@ window.addEventListener('scroll', () => {
 
     const upperHeaders = document.getElementsByClassName('upperHeader');
     const logoLink = document.querySelector('.upperHeader .logo a');
-    const liLink = document.querySelector('.nav-links a');
+    const liLinks = document.querySelectorAll('.nav-links a');
     const buttonLink = document.querySelector('.upperHeader button');
     const hrline = document.querySelector('.upperHeader');
 
@@ -25,16 +25,24 @@ window.addEventListener('scroll', () => {
             upperHeader.style.backgroundColor = '#0b3a23';
             hrline.classList.remove('scrolled'); 
             logoLink.classList.remove('scrolled'); 
-            liLink.classList.remove('scrolled'); 
             buttonLink.classList.remove('scrolled'); 
         }else {
             upperHeader.style.backgroundColor = 'white';
             hrline.classList.add('scrolled'); 
             logoLink.classList.add('scrolled'); 
-            liLink.classList.add('scrolled'); 
             buttonLink.classList.add('scrolled'); 
         }
     }
+
+    for (let i = 0; i < liLinks.length; i++) {
+        const liLink = liLinks[i];
+        if(verticalScrollPx === 0){
+            liLink.classList.remove('scrolled'); 
+        }else {
+            liLink.classList.add('scrolled'); 
+        }
+    }
+
 });
 
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="./assests/css/home.styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
     </style>
@@ -20,8 +21,8 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav-links">
-                            <li class="wordLink" ><a href="register">Become a Seller</a></li>
-                            <li class="wordLink"><a href="login">Sign In</a></li>
+                            <li class="wordLink" id="wordLink-1"><a href="register">Become a Seller</a></li>
+                            <li class="wordLink" id="wordLink-2"><a href="login">LogIn</a></li>
                             <li>
                                 <a href="register"><button>Join</button></a>
                             </li>
@@ -36,7 +37,7 @@
                     <span>Find the best freelance service, right away</span>
                     <div class = "searchBar">
                         <form action="">
-                            <input type="text" placeholder="Search.." name="search">
+                            <input type="text" placeholder="Search for any service" name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
