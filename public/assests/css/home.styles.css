@@ -3,48 +3,217 @@ body{
     margin: 0;
 }
 
+/*header*/
+.upperHeader{
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-right: 32px;
+    justify-content: space-between;
+    height: 60px;
+    background-color: #0b3a23;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+}
+.upperHeader.scrolled{
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-right: 32px;
+    justify-content: space-between;
+    height: 60px;
+    background-color: #0b3a23;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    border-bottom: 4px solid #62646A;
+}
+.upperHeader .logo a {
+    padding-top: 14px;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.upperHeader .logo a.scrolled {
+    padding-top: 14px;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.nav-links li {
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+.nav-links a.scrolled {
+    color: #333;
+    text-decoration: none;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+}
+.upperHeader button{
+    width: 75px;
+    padding: 8px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    background-color:transparent;
+}
+.upperHeader button.scrolled{
+    width: 75px;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #333;
+    font-weight: 700;
+    cursor: pointer;
+    background-color:transparent;
+}
+.upperHeader button:hover {
+    background-color: #31d65a;
+}
+
+@media only screen and (max-width: 600px) {
+    .slider-out-container{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        height: auto;
+    }
+
+    .slider-out-container .header{
+        width: 100%;
+    }
+
+    .slider-out-container .slider-container{
+        display: none;
+    }
+    
+    .nav-links .wordLink{
+        display: none;
+    }
+}
+
+
+/*image slider*/
+.slider-out-container{
+    display: flex;
+    background-color: #0b3a23;
+    width: 100%;
+    height: 648px;
+    margin-bottom: 64px;
+}
+.slider-out-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.slider-out-container .header {
+    color: #fff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding-left: 32px;
+}
+.slider-out-container .header span {
+    font-weight: bold; 
+    font-size: 48px;
+    line-height: 56px;
+}
+
+.searchBar{
+    flex-basis: 200%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.searchBar form{
+    display: flex;
+    width: 100%;
+}
+
+.searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+}
+
+.searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 14px;
+    cursor: pointer;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+}
+.searchBar button:hover {
+    background: #c5c6c9;
+}
+
+
 .slider-container{
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    width: 60%;
+    height: auto;
 }
-
 .slider{
     width: 100%;
-    height: 750px;
-    margin-bottom: 48px;
-    border-radius: 10px;
+    height: auto;
     overflow: hidden;
-  }
-  
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
 .slides{
     width: 500%;
-    height: 500px;
+    height: 600px;
     display: flex;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
 }
-
 .slides input{
     display: none;
-  }
-
-  
+}
 .slide{
     width: 20%;
     transition: 2s;
 }
-
 .slide img{
     width: 100%;
-    height: 750px;
+    height: 680px;
 }
 
 @media only screen and (max-width: 900px) {
     .slider{
         width: 100%;
         height: 450px;
-        border-radius: 10px;
         margin-bottom: 48px;
         overflow: hidden;
       }
@@ -59,17 +228,12 @@ body{
         height: 450px;
     }
 
-    .slides .navigation-auto{
-        margin-top: 470px;
-    }
-
 }
 
 @media only screen and (max-width: 600px) {
     .slider{
         width: 100%;
         height: 300px;
-        border-radius: 10px;
         overflow: hidden;
       }
     .slides{
@@ -82,11 +246,6 @@ body{
         width: 100%;
         height: 300px;
     }
-
-    .slides .navigation-auto{
-        margin-top: 320px;
-    }
-
 }
 
 
@@ -95,9 +254,8 @@ body{
 
 .navigation-manual{
     position: absolute;
-    width: 100%;
     margin-top: -40px;
-    display: flex;
+    display: none;
     justify-content: center;
 }
 
@@ -134,12 +292,11 @@ body{
 }
   
 
-  /*css for automatic navigation*/
+/*css for automatic navigation*/
 
 .navigation-auto{
     position: absolute;
-    display: flex;
-    width: 98%;
+    display: none;
     overflow: hidden;
     justify-content: center;
     margin-top: 770px;
@@ -175,13 +332,13 @@ background: #31d65a;
 
 /*category-container*/
 
-/* Style the category container */
 .category-container {
     text-align: center; /* Center-align the content */
     margin: 0;
     padding: 32px;
     background-color: #f7f7f7; /* Background color for the container */
-    margin-top: 16px;
+    margin-top: 32px;
+    margin-bottom: 64px;
   }
   
   /* Style the heading */
@@ -266,13 +423,14 @@ background: #31d65a;
     display: flex;
     justify-content: space-around;
     margin-top: 32px;
+    margin-bottom: 64px;
 }
 
 .WhoAreWe-container .desc{
     width: 70%;
     height: 320px;
     border-right: 1px solid #162b1d;
-    background-color: #162b1d;
+    background-color: #126f43;
     padding-left: 32px;
     padding-right: 32px;
     font-size: 32px;
@@ -374,13 +532,15 @@ background: #31d65a;
   
 }
 
+/*top gig container*/
 
 .topgig-container{
-    text-align: center; /* Center-align the content */
+    text-align: center; 
     margin: 0;
     padding: 32px;
-    background-color: #f7f7f7; /* Background color for the container */
+    background-color: #f7f7f7; 
     margin-top: 32px;
+    margin-bottom: 64px;
 }
 
 .topgig-header h1{
@@ -389,3 +549,107 @@ background: #31d65a;
     margin: 0;
     color: #333; 
 }
+
+.card-slider{
+    margin-bottom: 0;
+    padding: 32px 16px 32px 16px;
+    position: relative;
+  }
+  .card-slider svg{
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 32px;
+    border: 2px solid #ddd; 
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .card-slider svg:first-child{
+    left: 0px;
+  }
+  .card-slider svg:last-child{
+    right: 0px;
+  }
+  .card-slider .carousel{
+    display: grid;
+    grid-auto-flow: column;  
+    grid-auto-columns: calc((100%/5) - 16px);
+    gap: 20px;
+    overflow: hidden;
+  }
+  .card-slider .carousel.dragging.card{
+    cursor: grab;
+    user-select: none;
+  }
+  .card-slider ul{
+    padding-left: 0;
+    margin-left: 7px;
+  }
+  .card-slider .carousel .card{
+    list-style: none;
+    border: 1px solid #ddd; 
+    cursor: pointer;
+  }
+  .card-slider .carousel .card .img img{
+    width: 100%;
+    min-height: 150px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .card-slider .carousel .card .user-details{
+    display: flex;
+    align-items: center;
+  }
+  .card-slider .carousel .card .user-details .profile-pic{
+    margin-right: 2px;
+  }
+  
+  .card-slider .carousel .card .user-details .profile-pic img{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .checked {
+    color: orange;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .card-slider .carousel{
+      grid-auto-columns: calc((100%/3) - 16px);
+    }
+    .card-slider ul{
+      padding-left: 0;
+      margin-left: 4px;
+      margin-right: -6px;
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    .card-slider .carousel{
+      grid-auto-columns: calc((100%/2) - 16px);
+    }
+    .card-slider ul{
+      padding-left: 0;
+      margin-left: 4px;
+      margin-right: -6px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .card-slider .carousel{
+      grid-auto-columns: calc((100%));
+    }
+    .card-slider ul{
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+
+
+/*why us container*/

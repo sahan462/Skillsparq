@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider</title>
+    <title>Home</title>
     <link rel="stylesheet" href="./assests/css/home.styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
@@ -12,44 +12,73 @@
     <body>
         <div class="home-container">
 
+            <!--header-->
+            <div class = "upperHeader">
+                <div class="logo">
+                    <a href="#">SKILLSPARQ</a>
+                </div>
+                <div class="navbar">
+                    <nav>
+                        <ul class="nav-links">
+                            <li class="wordLink" ><a href="register">Become a Seller</a></li>
+                            <li class="wordLink"><a href="login">Sign In</a></li>
+                            <li>
+                                <a href="register"><button>Join</button></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
             <!--image slider-->
-            <div class="slider-container">
-                <div class="slider">
-                    <div class="slides">
-                        <!--radio buttons-->
-                        <input type="radio" name="radio-btn" id="radio1">
-                        <input type="radio" name="radio-btn" id="radio2">
-                        <input type="radio" name="radio-btn" id="radio3">
-                        <input type="radio" name="radio-btn" id="radio4">
-                        <!--slide images-->
-                        <div class="slide first">
-                            <img src="./assests/images/silder image 1.jpeg" alt="image1">
-                        </div>
-                        <div class="slide">
-                            <img src="./assests/images/silder image 2.jpg" alt="image2">
-                        </div>
-                        <div class="slide">
-                            <img src="./assests/images/silder image 3.jpeg" alt="image3">
-                        </div>
-                        <div class="slide">
-                            <img src="./assests/images/silder image 4.webp" alt="image4">
-                        </div>
-                        <!--automatic navigation-->
-                        <div class="navigation-auto">
-                            <div class="auto-btn1"></div>
-                            <div class="auto-btn2"></div>
-                            <div class="auto-btn3"></div>
-                            <div class="auto-btn4"></div>
-                        </div>
+            <div class="slider-out-container">
+                <div class="header">
+                    <span>Find the best freelance service, right away</span>
+                    <div class = "searchBar">
+                        <form action="">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slides">
+                            <!--radio buttons-->
+                            <input type="radio" name="radio-btn" id="radio1">
+                            <input type="radio" name="radio-btn" id="radio2">
+                            <input type="radio" name="radio-btn" id="radio3">
+                            <input type="radio" name="radio-btn" id="radio4">
+                            <!--slide images-->
+                            <div class="slide first">
+                                <img src="./assests/images/silder image 1.jpeg" alt="image1">
+                            </div>
+                            <div class="slide">
+                                <img src="./assests/images/silder image 2.jpg" alt="image2">
+                            </div>
+                            <div class="slide">
+                                <img src="./assests/images/silder image 3.jpeg" alt="image3">
+                            </div>
+                            <div class="slide">
+                                <img src="./assests/images/silder image 4.webp" alt="image4">
+                            </div>
+                            <!--automatic navigation-->
+                            <div class="navigation-auto">
+                                <div class="auto-btn1"></div>
+                                <div class="auto-btn2"></div>
+                                <div class="auto-btn3"></div>
+                                <div class="auto-btn4"></div>
+                            </div>
 
-                        <!--manual navigation-->
-                        <div class="navigation-manual">
-                            <label for="radio1" class="manual-btn"></label>
-                            <label for="radio2" class="manual-btn"></label>
-                            <label for="radio3" class="manual-btn"></label>
-                            <label for="radio4" class="manual-btn"></label>
-                        </div>
+                            <!--manual navigation-->
+                            <div class="navigation-manual">
+                                <label for="radio1" class="manual-btn"></label>
+                                <label for="radio2" class="manual-btn"></label>
+                                <label for="radio3" class="manual-btn"></label>
+                                <label for="radio4" class="manual-btn"></label>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,6 +140,9 @@
             </div>
 
             <div class="WhoAreWe-container">
+                <div class="image">
+                    <img src="./assests/images/whoarewe.jpeg" alt="WhoAreWe" loading="lazy">
+                </div>
                 <div class="desc">
                     <div class="WhoAreWe-header">
                         Who Are We?
@@ -127,27 +159,265 @@
                         </p>
                     </div>
                 </div>
-                <div class="image">
-                    <img src="./assests/images/whoarewe.jpeg" alt="WhoAreWe" loading="lazy">
-                </div>
             </div>
 
             <div class="topgig-container">
                 <div class="topgig-header">
-                    <h1>Trending gigs at the moment...</h1>
+                    <h1>Trending Gigs</h1>
+                </div>
+                <div class="card-slider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                    </svg>
+                    <ul class="carousel">
+                        <li class="card">
+                            <div class="img">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
+                            </div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="./assests/images/avishka.jpg" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Avishka Idunil</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                                <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <h3>
+                                        I will design and develop a professional business website html/css/js
+                                    </h3>
+                                </div>
+                                <div class="price">
+                                    <span>From 5$<span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Chamal Fernando</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                                <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                    I will be online math tutor in algebra geometry and pre calculus
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
+                            </div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Avishka Idunil</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                                <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                        I will design and develop a professional business website html/css/js
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Chamal Fernando</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                            <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                    I will be online math tutor in algebra geometry and pre calculus
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
+                            </div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Avishka Idunil</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                            <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                        I will design and develop a professional business website html/css/js
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Chamal Fernando</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                            <div class="rating">
+                                <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                    I will be online math tutor in algebra geometry and pre calculus
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
+                            </div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Avishka Idunil</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                                <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                        I will design and develop a professional business website html/css/js
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
+                            <div class="user-details">
+                                <div class="profile-pic">
+                                    <img src="" alt="propic-1">
+                                </div>
+                                <div class="username">
+                                    <span>Chamal Fernando</span>
+                                </div>
+                            </div>
+                            <div class="gig-details">
+                                <div class="rating">
+                                    <div class="star-rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <div class="numeric-rating">4.3</div>
+                                </div>
+                                <div class="gig-topic">
+                                    <p>
+                                    I will be online math tutor in algebra geometry and pre calculus
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                    </svg>
                 </div>
             </div>
 
+
+            <div class="whyus-container">
+
+            </div>
+
         </div>
-        <script type="text/javascript">
-        var counter = 1;
-        setInterval(function(){
-        document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if(counter > 4){
-            counter = 1;
-        }
-        }, 5000);
-    </script>
+    <script src="./assests/js/home.script.js"></script>
     </body>
 </html>
