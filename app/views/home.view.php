@@ -146,17 +146,18 @@
                 </div>
                 <div class="desc">
                     <div class="WhoAreWe-header">
-                        Who Are We?
+                        "Embracing Sri Lankan Excellence, Shaping Global Success"
                         <a href="https://g.co/kgs/CJ2uob"><img src="./assests/images/sl flag.png"></a>
                     </div>
                     <div class="desc-content">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore 
-                            magna aliqua. Ultricies lacus sed turpis tincidunt id 
-                            aliquet risus. Pellentesque adipiscing commodo elit at
-                            imperdiet dui accumsan. Proin fermentum leo vel orci 
-                            porta non pulvinar neque. 
+                        Welcome to our world of talent and opportunity. 
+                        We're a platform that celebrates the ingenuity 
+                        and dedication of Sri Lankans. Our mission is 
+                        to empower local experts to shine on the global 
+                        stage. Join us and be part of a vibrant community 
+                        where Sri Lankan talent transforms into global impact. 
+                        Together, we're rewriting the story of success.
                         </p>
                     </div>
                 </div>
