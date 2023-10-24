@@ -43,7 +43,6 @@ body{
     font-weight: bold;
 }
 .nav-links {
-    padding-right: 16px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -469,6 +468,7 @@ background: #31d65a;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 48px;
     color: #ddd;
+    line-height: 120%;
 }
 
 .WhoAreWe-container .desc-content{
@@ -476,6 +476,7 @@ background: #31d65a;
     justify-content: center;
     align-items: center;
     padding-bottom: 32px;
+    font-size: 22px;
 }
 
 .WhoAreWe-container p{
@@ -527,6 +528,7 @@ background: #31d65a;
 
 
 @media ((min-width: 600px) and (max-width: 900px)) {
+
     .WhoAreWe-container .image{
         display: none;
         height: auto;
@@ -534,6 +536,7 @@ background: #31d65a;
 
     .WhoAreWe-container .desc{
         width: 100%;
+        height: auto;
         font-size: 22px;
     }
 
@@ -550,7 +553,7 @@ background: #31d65a;
     }
 
     .WhoAreWe-container .desc-content{
-        font-size: 28px;
+        font-size: 22px;
     }
   
 }
