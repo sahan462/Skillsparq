@@ -1,11 +1,11 @@
 body {
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; 
-  }
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
 
   .container {
   background-color: white;
