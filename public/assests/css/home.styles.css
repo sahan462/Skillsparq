@@ -116,7 +116,7 @@ body{
     box-sizing: border-box;
     padding-left: 32px;
     padding-right: 32px;
-    width: 60%;
+    width: 50%;
 }
 .slider-out-container .header span {
     font-weight: bold; 
