@@ -1,0 +1,168 @@
+body{
+    margin: 0;
+    padding: 0;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #62646a;
+    overflow: hidden;
+}
+.addjob-container{
+    display: flex;
+    height: 600px;
+    margin: 32px;
+    padding: 32px 16px 32px 16px;
+}
+.addjob-container .img .header{
+    font-size: 40px;
+    line-height: 120%;
+    font-weight: 700;
+    color: #404145;;
+}
+.addjob-container .form{
+    width: 100%;
+    margin-top: 0;
+    margin-left: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: center;
+    border-left: #c5c6c9 10px solid;
+}
+.addjob-container .form form{
+    height: 600px;
+}
+.addjob-container .page {
+    height: 520px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 8px;
+    padding-bottom: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+}
+.type-1, .type-2 {
+    display: block;
+}
+.addjob-container .type-1{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.addjob-container input[type="text"]{
+    height: 40px;
+    font-size: 16px;
+}
+.addjob-container textarea{
+    font-size: 16px;
+    width: 100%;
+}
+.addjob-container input[type="text"], .addjob-container textarea{
+    margin-bottom: 32px;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
+}
+.addjob-container .custom-file-upload{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px;
+    margin-bottom: 32px;
+}
+.addjob-container .custom-file-upload svg{
+    height: auto;
+    width: 20px;
+    color: #404145;
+}
+.addjob-container input[type="file"]{
+    display: none;
+}
+.addjob-container select{
+    margin-bottom: 32px;
+    height: 40px;
+    width: 200px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.addjob-container .categories, .addjob-container input[type="date"]{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #404145;
+    cursor: pointer;
+}
+button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #1dbf73;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    width: 200px;
+    height: 38px;
+    width: 114px;
+    transition: all 0.5s;
+    cursor: pointer;
+    justify-content: end;
+}
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+} 
+button:hover span {
+    padding-right: 25px;
+}
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    body{
+        margin: 0;
+        overflow: auto;
+    }
+    .addjob-container{
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 32px;
+        flex-direction: column;
+    }
+    .addjob-container .img img{
+        display: none;
+    }
+    .addjob-container .form{
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    .addjob-container .form .page{
+        height: auto;
+        margin-top: 16px;
+        padding-right: 32px 16px 32px 16px;
+        border-top: 3px solid #c5c6c9;
+        overflow: hidden;
+    }
+    button{
+        margin-bottom: 32px;
+    }
+
+}
