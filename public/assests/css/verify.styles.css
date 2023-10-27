@@ -1,0 +1,107 @@
+/* common parts */
+body {
+    background-color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /*for normal zooming */
+  }
+  .container {
+    background-color: white;
+    border-radius: 2px;
+    display: block;
+    margin: auto;
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  input[type="text"],input[type="email"]{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 0 0;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: #f6f6f6;
+    transition: ease-in-out 0.2s;
+  }
+  input[type="text"]:hover ,input[type="email"]:hover{
+    background-color: #e9e8e8;
+  }
+  input[type="text"]:focus,input[type="email"]:focus{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 0px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: #f8f8f8;
+  }
+  
+  .registerbtn {
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    border-radius: 5px;
+    border: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: ease-in-out 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #007bff;
+  }
+  .registerbtn:hover {
+    color: #007bff;
+    background-color: rgb(241, 241, 241);
+    font-weight: 500;
+  }
+  .agreement-condition {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  label {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+  }
+  .header {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+  .error {
+    display: block;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: red;
+  }
+  .fieldset {
+    margin: 0 0 15px 0;
+  }
+  /* custom code */
+  
+  .resendbtn {
+    background-color: #686868;
+    color: white;
+    width: 40%;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    border-radius: 5px;
+    border: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: ease-in-out 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .resendbtn:hover {
+    color:#3d3d3d;
+    background-color: #f5f0f0;
+    font-weight: 500;
+  }
