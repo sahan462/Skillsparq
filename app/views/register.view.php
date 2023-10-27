@@ -7,19 +7,30 @@
     <title>Register</title>
 </head>
 <body>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header"><span style="color:#31d65a">Are you</span> a seller?</div>
-        <p>Are you an proud Sri Lankan who is looking for an opportunity to sell your skills?</p>
+        <p>Are you a talented Sri Lankan who is looking for an opportunity to sell your skills?</p>
         <div class="fieldset">
-            <a href="<?php echo BASEURL.'/registerSeller' ?>" class="registerbtn">Get Registered Now.!</a>
+            <a href="<?php echo BASEURL.'registerSeller' ?>" class="registerbtn">Get Registered Now.!</a>
         </div>
     </div>
     <div class="container">
         <div class="header"><span style="color:#31d65a">Are you</span> a buyer?</div>
         <p>Are you an individual who is looking for the best online platform to buy a service?</p>
         <div class="fieldset">
-            <a href="<?php echo BASEURL.'/registerBuyer' ?>" class="registerbtn">Get Registered Now.!</a>
+            <a href="<?php echo BASEURL.'registerBuyer' ?>" class="registerbtn">Get Registered Now.!</a>
         </div>
     </div>
+    
 </body>
 </html>
