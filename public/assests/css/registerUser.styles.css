@@ -1,0 +1,133 @@
+body {
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 100vh;
+}
+.container {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.header {
+    font-size: xx-large;
+    margin-bottom: 48px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+.header span{
+    color: #31d65a;
+    margin-right: 7px;
+}
+.name {
+    display: flex;
+    justify-content: space-between;
+}
+.name .fieldset{
+    width: 50%;
+}
+.name #firstName{
+    width: 90%;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background: #f6f6f6;
+    transition: ease-in-out 0.2s;
+}
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="date"]:hover {
+  background-color: #e9e8e8;
+}
+.registerbtn {
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    margin-top: 32px;
+    border-radius: 5px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #31d65a;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+}
+.registerbtn:hover {
+    color: #333;
+    background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+
+}
+.error {
+    font-size: 12px;
+    color: red;
+}
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+.fieldset p{
+    margin: 0;
+}
+.agreement-condition{
+    display: flex;
+}
+.normal-blue-font
+{
+    color: #333;
+    font-size: small;
+    text-decoration: none;
+}
+@media only screen and (max-width: 300px) {
+    .container {
+        width: 200px;
+    }
+    .header{
+        display: flex;
+        flex-direction: column;
+        line-height: 120%;
+        align-items: center;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 300px;
+    }
+    .header{
+        display: flex;
+        flex-direction: column;
+        line-height: 120%;
+        align-items: center;
+    }
+    .name .fieldset{
+        width: 48%;
+    }
+    .name #firstName{
+        width: 90%;
+    }
+}
