@@ -2,23 +2,20 @@
 
 class RegisterBuyer extends Controller
 {
+    private $buyerHandlerModel;
+    private $profileHandlerModel;
 
     public function __construct()
     {
-        $this->BuyerHandlerModel = $this->model('BuyerHandler');
-    }
-
-    public function index(){
-
-        $data['var'] = "Register Buyer Page";
-        $data['title'] = "SkillSparq";
-
-        $this->view('registerBuyer', $data);
+        // Initialize models
+        $this->buyerHandlerModel = $this->model('buyerHandler');
+        $this->profileHandlerModel = $this->model('profileHandler');
     }
 
     public function initiate()
     {
-        $errors = array(); 
+        // Initialize error array
+        $errors = array();
         $errors["password"] = "";
         $errors["email"] = "";
         $errors["agreement"] = "";
@@ -26,35 +23,71 @@ class RegisterBuyer extends Controller
         return $errors;
     }
 
-    public function register(){
+    public function index()
+    {
+        $data['errors'] = $this->initiate();
+        $data['var'] = "Register Buyer Page";
+        $data['title'] = "SkillSparq";
 
-        $data['errors']=$errors=$this->initiate();
+        // Load the 'registerBuyer' view with data
+        $this->view('registerBuyer', $data);
+    }
 
+    public function register()
+    {
+        $data['errors'] = $errors = $this->initiate();
         if (isset($_POST['register'])) {
-
-            $jobId = 123;
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
             $userName = $_POST['userName'];
             $email = $_POST['email'];
             $password = $_POST['password'];
             $password_confirmation = $_POST['passwordRepeat'];
-            $agreement = $_POST['agreement'];
 
-            /*Form Validation*/
+            if(isset($_POST['agreement'])){
+                $agreement = 1;
+            }else{
+                $errors["agreement"] = "Please check the box to agree to our Terms & Privacy Policy.";
+            }
 
-            $registerd_email = $this->BuyerHandlerModel->getBuyer($email);
-
-            if ($password != $password_confirmation) {$errors["password"]= "The two passwords are not matched";}
-            if ($this->registerModel->userNameCheck($userName)) {$errors["userName"]= "userName already exists";}
-            if ($this->registerModel->emailCheck($email)) {$errors["email"]= "email already exists";}
+            /* Form Validation */
+            if ($password != $password_confirmation) {
+                $errors["password"] = "Password confirmation does not match the original password. Please make sure both passwords are the same.";
+            }
+            if ($this->profileHandlerModel->userNameCheck($userName)) {
+                $errors["userName"] = "Username already exists";
+            }
+            if ($this->buyerHandlerModel->emailCheck($email)) {
+                $errors["email"] = "Email already exists";
+            }
         }
-    
-        $data['errors']=$errors=$this->initiate();
 
+        /* Number of validation failures */
+        $numberOfErrors = 0;
+        foreach ($errors as $key => $value) {
+            if (!empty($value)) {
+                $numberOfErrors++;
+            }
+        }
 
+        /* Query in seller/user tables */
+        if ($numberOfErrors == 0) {
+            // Set session data
+            $this->setSession('firstName', $firstName);
+            $this->setSession('lastName', $lastName);
+            $this->setSession('userName', $userName);
+            $this->setSession('email', $email);
+            $this->setSession('agreement', $agreement);
+            $this->setSession('user_password', password_hash($password . "skillsparq", PASSWORD_DEFAULT));
+            $this->setSession('user_type', "Buyer");
 
-
+            // Redirect to 'verify' page
+            $this->redirect('verify');
+        } else {
+            /* Regenerate registration Page With Errors */
+            $data['errors'] = $errors;
+            $this->view('registerBuyer', $data);
+        }
     }
 }
 ?>
