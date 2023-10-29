@@ -58,7 +58,7 @@ class RegisterBuyer extends Controller
                 $errors["userName"] = "Username already exists";
             }
             if ($this->buyerHandlerModel->emailCheck($email)) {
-                $errors["email"] = "Email already exists";
+                $errors["email"] = "Email is already in use";
             }
         }
 
@@ -79,8 +79,8 @@ class RegisterBuyer extends Controller
             $this->setSession('email', $email);
             $this->setSession('agreement', $agreement);
             $this->setSession('user_password', password_hash($password . "skillsparq", PASSWORD_DEFAULT));
-            $this->setSession('user_type', "Buyer");
-
+            $this->setSession('role', "Buyer");
+            
             // Redirect to 'verify' page
             $this->redirect('verify');
         } else {
