@@ -18,6 +18,7 @@ body {
     padding-bottom: 16px;
     padding-left: 32px;
     padding-right: 32px;
+    box-sizing: border-box;
     width: 500px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -46,6 +47,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="date"] {
+    box-sizing: border-box;
     width: 100%;
     padding: 8px;
     border: none;
@@ -65,7 +67,7 @@ input[type="date"]:hover {
     padding-right: 40px;
     padding-bottom: 12px;
     padding-top: 12px;
-    margin-top: 32px;
+    margin-top: 16px;
     border-radius: 5px;
     border: none;
     transition: ease-in-out 0.3s;
@@ -93,6 +95,9 @@ input[type="date"]:hover {
 }
 .fieldset p{
     margin: 0;
+}
+.fieldset a{
+    margin-left: 5px;
 }
 .agreement-condition{
     display: flex;

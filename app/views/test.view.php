@@ -256,5 +256,87 @@
             </svg>
         </div>
         <script src="./assests/js/test.script.js"></script>
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                .container {
+                    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+                    background-color: #ffffff;
+                    padding: 32px 16px 32px 16px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .header {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 32px;
+                }
+                .content {
+                    font-size: 16px;
+                    color: #333;
+                }
+                .methods{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 32px;
+                    margin-bottom: 32px;
+                }
+                p{
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+                .btn {
+                    display: inline-block;
+                    width: 200px;
+                    text-align: center;
+                    margin-bottom: 16px;
+                    padding: 10px 20px;
+                    background-color: #4CAF50;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                .otp {
+                    background-color: #4CAF50;
+                    text-align: center;
+                    width: 200px;
+                    color: #fff;
+                    font-size: 20px;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    display: inline-block;
+                    padding: 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header' style='text-align: center; font-size: 24px; font-weight: bold;'>Welcome to SKILLSPARQ</div>
+                <div class='content' style='font-size: 16px; color: #333;'>
+                    <p>Hello $fisrtName $lastName,</p>
+                    <p>Please confirm that you want to use this email address as your SKILLSPARQ $role account email address. You can do it in one of two ways:</p>
+                    <div class="methods">
+                        <p>Click the button below to verify your email address:</p>
+                        <a href='$link' class='btn' style='padding: 10px 20px; background-color: #31d65a; color: #fff; border: none; border-radius: 5px; font-size: 16px; text-decoration: none; cursor: pointer;'>Verify My Email Address</a>
+                        <p>Enter the following OTP to complete the verification:</p>
+                        <p class='otp' style='background-color: #31d65a; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; display: inline-block; padding: 10px;'>$otp</p>
+                    </div>
+                    <p>Thank you for joining SKILLSPARQ.</p>
+                </div>
+            </div>
+        </body>
+        </html>
+
+
     </body>
 </html>

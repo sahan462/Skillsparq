@@ -13,16 +13,16 @@ $errors =   array();
 <body>
     <form method="post" action="">
         <div class="container">
-            <div class="header"><span>Login</span> </div>
+            <div class="header"><span>Login</span></div>
             <div class="fieldset">
-                <label for="lastname" class="label">User Name</label>
-                <input type="text" placeholder="Enter User Name" name="userName" id="userName" autocomplete="off">
+                <label for="lastname" class="label">UserName / E-Mail</label>
+                <input type="email" placeholder="Enter your Email" name="userName" id="userName" autocomplete="off" required>
             </div>
             <div class="fieldset">
                 <label for="password" class="label">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" id="password" autocomplete="off">
+                <input type="password" placeholder="Enter Password" name="password" id="password" autocomplete="off" required>
             </div>
-            <a href="" style="text-decoration:none"><div  class="normal-blue-font">Forgotten Your Username/Password?</div></a>
+            <a href="" style="text-decoration:none"><div  class="normal-blue-font">Forgotten Your <a href="#">Username/Password?</a></div></a>
              <div style="padding-bottom:20px"> <input type="submit" class="registerbtn" value="Login" name="register"></div>
         </div>
     </form>
