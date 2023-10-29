@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
 
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("myForm");
     const phoneNumberInput = document.getElementById("phoneNumber");
   
@@ -16,6 +16,5 @@ document.addEventListener("DOMContentLoaded", function () {
       const sriLankanPhonePattern = /^(?:\+94|0)([1-9]\d{1,2})\d{6,7}$/;
       return sriLankanPhonePattern.test(phoneNumber);
     }
-    
   });
   

@@ -8,7 +8,6 @@ var btn3 = document.getElementById("model-btn-3");
 // When the user clicks on button close,it will close the modal
 btn1.onclick = function () {
   modal1.style.display = "none";
-  window.location.replace("http://localhost/skillsparq/public/verification");
 };
 btn2.onclick = function () {
   modal2.style.display = "none";
@@ -18,6 +17,8 @@ btn3.onclick = function () {
   modal3.style.display = "none";
   window.location.replace("http://localhost/skillsparq/public/login");
 };
+
+
 var timeleft = 60;
 var downloadTimer = setInterval(function () {
   if (timeleft <= 0) {

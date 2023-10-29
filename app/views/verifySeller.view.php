@@ -10,7 +10,7 @@
         $stateInvalid = $data['stateInvalid'];
         $stateAlready = $data['stateAlready'];
         $stateSuccess = $data['stateSuccess'];
-        $email=$data['email'];
+        $phoneNumber=$data['phoneNumber'];
         $error=$data['error'];
     ?>
 </head>
@@ -36,7 +36,7 @@
             <button id="model-btn-3" class="model-button"> Go To Dashboard</button>
         </div>
     </div>
-    <form method="get" action="<?php echo BASEURL.'verify/submit';?>">  
+    <form method="get" action="<?php echo BASEURL.'verifySeller/submit';?>">  
         <div class="container">
             <div class="header"><span style="color:#31d65a;font-size:20px">Check Your Messages </span></div>
             <div class="fieldset_1">

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="./assests/css/registerUser.styles.css">
+    <link rel="stylesheet" href="/skillsparq/public/assests/css/registerUser.styles.css">
 </head>
 <body>
-    <form method="post" action="<?php echo BASEURL.'registerBuyer/submit';?>">
+    <form id="myForm" method="post" action="<?php echo BASEURL.'registerSeller/register';?>">
     <div class="container">
             <div class="header"><span>Create</span> A Seller Account</div>
             <div class="name">
@@ -23,6 +23,7 @@
             <div class="fieldset">
                 <label for="lastname" class="label">User Name</label>
                 <input type="text" placeholder="Pick a User Name" name="userName" id="userName" autocomplete="off" required>
+                <span class="error" ><?php echo $errors["userName"];?></span>
             </div>
             <div class="fieldset">
                 <label for="phoneNumber" class="label">Contact Number</label>

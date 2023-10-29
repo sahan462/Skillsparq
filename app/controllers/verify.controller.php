@@ -4,7 +4,8 @@ class Verify extends Controller
 {
 
 
-    private function initializeData() {
+    private function initializeData() 
+    {
         // Initialize data with common values
         $data = [
             'var' => "OTP Verifcation",
@@ -17,6 +18,7 @@ class Verify extends Controller
             // Add other data fields here
         ];
 
+
         // Retrieve session data
         $data['userName'] = $this->getSession('userName');
         $data['role'] = $this->getSession('role');
@@ -26,7 +28,8 @@ class Verify extends Controller
         return $data;
     }
 
-    public function index(){
+    public function index()
+    {
 
         $data = $this->initializeData();
 
@@ -129,21 +132,23 @@ class Verify extends Controller
         // SEND Verification E-Mail
         if((!isset($_GET['userName']) and !isset($_GET['token']) and !isset($_GET['submit'])) or (isset($_GET['resend']) ))
         {
-
-                if($this->sendMail($email,$fisrtName." ".$lastName,$subject,$Body,$AltBody)){
-                    echo "
-                        <script>
-                            alert('Email is Sent');
-                        </script>
-                    ";
-                }
-                else{
-                    $this->unsetSession('otpcode');
-                    $this->view("505");
-                }
+            if($this->sendVerificationMail($email,$fisrtName." ".$lastName,$subject,$Body,$AltBody)){
+                echo "
+                    <script>
+                        alert('Email is Sent');
+                    </script>
+                ";
+                $this->view('verify', $data);
+            }
+            else{
+                $this->unsetSession('otpcode');
+                $this->view("505");
+            }
+    
+        }else{
+            $this->view("505");
         }
 
-        $this->view('verify', $data);
     }
     
     //OTP Submit
@@ -190,6 +195,10 @@ class Verify extends Controller
                 $this->buyerHandlerModel->addNewBuyer($user_id, $email);
                 $this->profileHandlerModel->addNewProfile($userName, $user_id);
 
+                $otp_confirmation = false;
+
+                $this->unsetSession('email');
+
                 $data["stateSuccess"] = "";
                 $this->view("verify",$data); 
 
@@ -203,7 +212,7 @@ class Verify extends Controller
 
             $data["stateInvalid"] = "";
             $this->view("verify",$data); 
-            
+
         }
     }
 }

@@ -1,0 +1,50 @@
+.backg1
+{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; 
+
+}
+.error-container
+{
+    display: block;
+    justify-content: center;
+    align-content: center;
+    
+}
+.errornum
+{
+    color: black;
+    font-size: 300px;
+    text-align: center;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+.head
+{
+    margin:  0 0 0;
+    color: black;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 300;
+}
+.head2
+{
+    margin:  0 0 0;
+    color: black;
+    font-size: 70px;
+    text-align: center;
+    font-weight: 300;
+}
+.text
+{
+    margin:  0 0 0;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+}

@@ -19,6 +19,7 @@ class RegisterSeller extends Controller
         $errors["password"] = "";
         $errors["phoneNumber"] = "";
         $errors["agreement"] = "";
+        $errors["userName"] = "";
 
         return $errors;
     }
@@ -79,10 +80,10 @@ class RegisterSeller extends Controller
             $this->setSession('phoneNumber', $phoneNumber);
             $this->setSession('agreement', $agreement);
             $this->setSession('user_password', password_hash($password . "skillsparq", PASSWORD_DEFAULT));
-            $this->setSession('role', "Buyer");
+            $this->setSession('role', "Seller");
             
-            // Redirect to 'verify' page
-            $this->redirect('verify');
+            // Redirect to 'verifySeller' page
+            $this->redirect('verifySeller');
         } else {
             /* Regenerate registration Page With Errors */
             $data['errors'] = $errors;
