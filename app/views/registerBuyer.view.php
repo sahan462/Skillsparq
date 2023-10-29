@@ -48,6 +48,7 @@
                         <input type="checkbox" name="agreement" id="agreement" value="1">I agree to company <a href="#">Terms & Privacy</a>.
                     </span>
                     <span class="error"><?php echo $errors["agreement"];?></span>
+
                     <span class="agreement-condition" style="margin-top:8px">
                         already have an account?
                         <a href="<?php echo BASEURL.'login';?>">login</a>

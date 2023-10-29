@@ -10,6 +10,7 @@ class ProfileHandler extends database
         return mysqli_fetch_assoc($result);
 
     }
+
     public function addNewProfile($userName, $user_id)
     {
         // Create a prepared statement

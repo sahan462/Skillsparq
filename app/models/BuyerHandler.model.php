@@ -37,5 +37,4 @@ class BuyerHandler extends database
     }
     
 
-
 }
