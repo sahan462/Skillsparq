@@ -1,15 +1,14 @@
 <?php
 
-class Verify extends Controller
+class VerifySeller extends Controller
 {
-
 
     private function initializeData() {
         // Initialize data with common values
         $data = [
             'var' => "OTP Verifcation",
             'title' => "SkillSparq",
-            'email' => $this->getSession('email'),
+            'phoneNumber' => $this->getSession('phoneNumber'),
             'error' => "",
             'stateInvalid' => "display:none",
             'stateAlready' => "display:none",
@@ -35,7 +34,7 @@ class Verify extends Controller
         $role = $this->getSession('role');
         $fisrtName = $this->getSession('firstName');
         $lastName = $this->getSession('lastName');
-        $data['email'] = $email = $this->getSession('email');
+        $data['phoneNumber'] = $email = $this->getSession('phoneNumber');
         
 
         // Create OTP Code
