@@ -59,7 +59,13 @@ class Controller
     public function getSession($sessionName)
     {
         if (!empty($sessionName)) {
-            return $_SESSION[$sessionName];
+
+            if(isset($_SESSION[$sessionName])) {
+
+                return $_SESSION[$sessionName];
+
+            }
+
         }
     }
 
@@ -84,7 +90,7 @@ class Controller
     }
 
     //send mail
-    public function sendMail($receiver_email, $receiver_name, $subject, $body, $AltBody){
+    public function sendVerificationMail($receiver_email, $receiver_name, $subject, $body, $AltBody){
         
         $mail = new PHPMailer(true);
 
@@ -128,12 +134,35 @@ class Controller
             return true;
         } catch (Exception $e) {
             // Email could not be sent
-            echo 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo;
             return false;
         }
 
     }
 
+    public function sendVerificationMessage($receiverPhoneNumber, $receiverFirstName, $receiverLastName, $body){
+
+        require_once('../app/vendor/nofity/autoload.php');
+
+        $api_instance = new NotifyLk\Api\SmsApi();
+        $user_id = "25927"; 
+        $api_key = "x3wmckBRcglZBwtzamHm";
+        $message = $body; 
+        $to = $receiverPhoneNumber; 
+        $sender_id = "NotifyDEMO"; 
+        $contact_fname = $receiverFirstName; 
+        $contact_lname = $receiverLastName; 
+        $contact_email = ""; 
+        $contact_address = ""; 
+        $contact_group = 0; 
+        $type = null; 
+        
+        try {
+            $api_instance->sendSMS($user_id, $api_key, $message, $to, $sender_id, $contact_fname, $contact_lname, $contact_email, $contact_address, $contact_group, $type);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 }
 
 ?>
