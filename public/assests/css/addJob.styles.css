@@ -84,7 +84,11 @@ body{
 .addjob-container input[type="file"]{
     display: none;
 }
-.addjob-container select{
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.addjob-container select,input[type="date"]{
     margin-bottom: 32px;
     height: 40px;
     width: 200px;
@@ -95,6 +99,9 @@ body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #404145;
     cursor: pointer;
+}
+#auction{
+    display: none;
 }
 button {
     display: inline-block;
