@@ -35,6 +35,18 @@ class Controller
         }
     }
 
+    // Loads a Controller and returns an instance
+    public function controller($controllerName)
+    {
+        if (file_exists("../app/controllers/" . $controllerName . ".controller.php")) {
+            require_once "../app/controllers/$controllerName.controller.php";
+            $controllerName = ucfirst($controllerName);
+            return new $controllerName;
+        } else {
+            echo "<div style='margin:0;padding:10px;background-color:silver;'> $controllerName.model.php file not found </div>";
+        }
+    }
+
     // Retrieves input data from POST or GET requests
     public function input($inputName)
     {

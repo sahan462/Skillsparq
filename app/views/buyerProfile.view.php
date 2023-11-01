@@ -107,7 +107,7 @@
                 <div class="user-content">
                     <div class="header">
                         <span>Active Jobs</span>
-                        <a href="Job"><button>Create New Job</button></a>
+                        <a href="addJob"><button>Create New Job</button></a>
                     </div>
                     <div class="content">
                         <div class="job-card" job-url="home">
