@@ -5,10 +5,16 @@ class BuyerDashboard extends Controller
 
     public function index(){
 
-        $data['var'] = "Home Page";
-        $data['title'] = "SkillSparq";
+        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+            header("location: loginUser");
+        }else{
 
-        $this->view('buyerdashboard', $data);
+            $data['var'] = "Home Page";
+            $data['title'] = "SkillSparq";
+    
+            $this->view('buyerdashboard', $data);
+        }
+
     }
 
 }

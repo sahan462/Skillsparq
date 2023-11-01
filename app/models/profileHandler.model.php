@@ -10,18 +10,19 @@ class ProfileHandler extends database
         return mysqli_fetch_assoc($result);
 
     }
-    public function addNewProfile($userName, $user_id)
+    public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
         // Create a prepared statement
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, user_id) VALUES (?, ?)");
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, profile_pic, first_name, last_name,joined_date,user_id) VALUES (?, ? , ?, ?, ?, ?)");
     
         if ($stmt === false) {
             // Handle the error
             throw new Exception("Failed to create prepared statement.");
         }
-    
+        $joinedDate = date('Y-m-d');
+        $profilePic = 'dummyprofile.jpg';
         // Bind parameters to the prepared statement
-        mysqli_stmt_bind_param($stmt, "si", $userName, $user_id);
+        mysqli_stmt_bind_param($stmt, "sssssi", $userName, $firstName, $lastName, $profilePic, $joinedDate, $user_id);
     
         // Execute the prepared statement
         if (!mysqli_stmt_execute($stmt)) {
