@@ -10,7 +10,7 @@
         $stateInvalid = $data['stateInvalid'];
         $stateAlready = $data['stateAlready'];
         $stateSuccess = $data['stateSuccess'];
-        $email=$data['email'];
+        $phoneNumber=$data['phoneNumber'];
         $error=$data['error'];
     ?>
 </head>
@@ -36,13 +36,13 @@
             <button id="model-btn-3" class="model-button"> Go To Dashboard</button>
         </div>
     </div>
-    <form method="get" action="<?php echo BASEURL.'verify/submit';?>">  
+    <form method="get" action="<?php echo BASEURL.'verifySeller/submit';?>">  
         <div class="container">
-            <div class="header"><span style="color:#31d65a;font-size:20px">Check Your Email </span></div>
+            <div class="header"><span style="color:#31d65a;font-size:20px">Check Your Messages </span></div>
             <div class="fieldset_1">
                 <div class="outer-label">
                     <label for="pin" class="label">Verification OTP is sent to</label>
-                    <label><?php echo $email ?></label>
+                    <label><?php echo $phoneNumber ?></label>
                 </div>
                 <label for="pin" class="label" style="margin-bottom: 16px">Enter the OTP code to verify the account</label>
                 <input type="text" placeholder="OTP Code" name="pin" id="pin">
@@ -54,6 +54,6 @@
             </div>
         </div>
     </form>
-    <script src="/skillsparq/public/assests/js/verifyUser.script.js"></script>
+    <script src="/skillsparq/public/assests/js/verify.script.js"></script>
 </body>
 </html>

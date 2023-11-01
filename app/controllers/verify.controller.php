@@ -3,15 +3,35 @@
 class Verify extends Controller
 {
 
-    public function index(){
 
-        $data['var'] = "Register Buyer Page";
-        $data['title'] = "SkillSparq";
-        $data['email'] = $this->getSession('email');
-        $data['error'] = "";
-        $data['stateInvalid'] = "display:none";
-        $data['stateAlready'] = "display:none";
-        $data['stateSuccess'] = "display:none";
+    private function initializeData() 
+    {
+        // Initialize data with common values
+        $data = [
+            'var' => "OTP Verifcation",
+            'title' => "SkillSparq",
+            'email' => $this->getSession('email'),
+            'error' => "",
+            'stateInvalid' => "display:none",
+            'stateAlready' => "display:none",
+            'stateSuccess' => "display:none",
+            // Add other data fields here
+        ];
+
+
+        // Retrieve session data
+        $data['userName'] = $this->getSession('userName');
+        $data['role'] = $this->getSession('role');
+        $data['firstName'] = $this->getSession('firstName');
+        $data['lastName'] = $this->getSession('lastName');
+
+        return $data;
+    }
+
+    public function index()
+    {
+
+        $data = $this->initializeData();
 
         // Get Session DATA //
         $userName = $this->getSession('userName');
@@ -20,7 +40,6 @@ class Verify extends Controller
         $lastName = $this->getSession('lastName');
         $data['email'] = $email = $this->getSession('email');
         
-        $data['error'] = $error = "";
 
         // Create OTP Code
         $otp=rand ( 100000 , 999999 );
@@ -113,32 +132,29 @@ class Verify extends Controller
         // SEND Verification E-Mail
         if((!isset($_GET['userName']) and !isset($_GET['token']) and !isset($_GET['submit'])) or (isset($_GET['resend']) ))
         {
-
-                if($this->sendMail($email,$fisrtName." ".$lastName,$subject,$Body,$AltBody)){
-                    echo "
-                        <script>
-                            alert('Email is Sent');
-                        </script>
-                    ";
-                }
-                else{
-                    $this->unsetSession('otpcode');
-                    $this->view("505");
-                }
+            if($this->sendVerificationMail($email,$fisrtName." ".$lastName,$subject,$Body,$AltBody)){
+                echo "
+                    <script>
+                        alert('Email is Sent');
+                    </script>
+                ";
+                $this->view('verify', $data);
+            }
+            else{
+                $this->unsetSession('otpcode');
+                $this->view("505");
+            }
+    
+        }else{
+            $this->view("505");
         }
 
-        $this->view('verify', $data);
     }
     
     //OTP Submit
     public function submit(){
         
-        $data['stateInvalid'] = "display:none";
-        $data['stateAlready'] = "display:none";
-        $data['stateSuccess'] = "display:none";
-        $data['email'] = $this->getSession('email');
-        $data['error'] = "";
-
+        $data = $this->initializeData();
         $otp_confirmation = false;
 
         if((isset($_GET['userName']) and isset($_GET['token']))){
@@ -170,14 +186,20 @@ class Verify extends Controller
                 $role = $this->getSession('role');
                 $email = $this->getSession('email');
                 $userName = $this->getSession('userName');
+                $firstName = $this->getSession('firstName');
+                $lastName = $this->getSession('lastName');
             
                 $this->userHandlerModel = $this->model('userHandler');
                 $this->buyerHandlerModel = $this->model('buyerHandler');
                 $this->profileHandlerModel = $this->model('profileHandler');
             
-                $user_id = $this->userHandlerModel->addNewUser($password, $role, $agreement);
-                $this->buyerHandlerModel->addNewBuyer($user_id, $email);
-                $this->profileHandlerModel->addNewProfile($userName, $user_id);
+                $user_id = $this->userHandlerModel->addNewUser($email, $password,$role, $agreement);
+                $this->buyerHandlerModel->addNewBuyer($user_id);
+                $this->profileHandlerModel->addNewProfile($userName, $firstName, $lastName, $user_id);
+
+                $otp_confirmation = false;
+
+                $this->unsetSession('email');
 
                 $data["stateSuccess"] = "";
                 $this->view("verify",$data); 
@@ -194,11 +216,8 @@ class Verify extends Controller
             $this->view("verify",$data); 
 
         }
-
-
     }
-
-
 }
+
 
 ?>

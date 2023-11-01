@@ -19,6 +19,7 @@ class RegisterBuyer extends Controller
         $errors["password"] = "";
         $errors["email"] = "";
         $errors["agreement"] = "";
+        $errors["userName"] = "";
 
         return $errors;
     }

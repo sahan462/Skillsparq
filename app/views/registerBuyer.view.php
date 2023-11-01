@@ -28,6 +28,7 @@
                 <div class="fieldset">
                     <label for="lastname" class="label">User Name</label>
                     <input type="text" placeholder="Pick a User Name" name="userName" id="userName" autocomplete="off" required>
+                    <span class="error" ><?php echo $errors["userName"];?></span>
                 </div>
                 <div class="fieldset">
                     <label for="email" class="label">Email</label>

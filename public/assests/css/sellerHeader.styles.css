@@ -10,16 +10,18 @@ body{
 
 header {
     background-color: #fff;
-    color: #62646A;
+    color: #333;
 }
 
 header .upperHeader{
     height: 80px;
     width: 100%;
-    padding: 32px;
+    padding: 32px 64px;
     align-items: center;
     display: flex;
-    flex-grow: 1;
+    justify-content: space-between;
+    border-bottom: 2px solid #62646A;
+    box-sizing: border-box;
 }
 
 
@@ -33,9 +35,8 @@ header .upperHeader{
 /*logo*/
 
 .logo a {
-    padding-top: 14px;
     font-size: 24px;
-    color: #62646A;
+    color: #333;
     text-decoration: none;
     font-weight: bold;
 }
@@ -152,6 +153,9 @@ header .upperHeader{
 
 .navbar{
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 64px;
 }
 
 .nav-links {
@@ -164,21 +168,21 @@ header .upperHeader{
     display: flex;
     justify-content: flex-end;
 }
-
-.nav-links a {
-    color: #62646A;
+.nav-links .wordLink:hover {
+    text-decoration: underline;
+    border-bottom: 4px solid #1dbf73;
+    padding-bottom: 2px;
     text-decoration: none;
 }
-
-.nav-links a:hover {
-    text-decoration: underline;
+.nav-links a {
+    color: #333;
+    text-decoration: none;
 }
-
 .upperHeader svg {
     width: 24px;
     height: 24px;
     font-size: 14px;
-    color: #62646A;
+    color: #333;
     margin-right: 10px;
     align-items: center;
 }
@@ -211,6 +215,7 @@ header .upperHeader{
 }
 
 /*header categories*/
+
 .headerCategories nav .nav-links {
     display: flex;
     justify-content: space-between;
