@@ -11,6 +11,6 @@
             Continue browsing
         </div>
         <div class="historyContent">
-        
+
+        </div>
     </div>
-</div>

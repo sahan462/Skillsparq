@@ -1,0 +1,208 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+div {
+    display: block;
+}
+
+body {
+    font: 400 16px/24px "Macan","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #62646a;
+    width: 100%;
+}
+
+:root {
+    --gmp-error-color: #ab2d2d;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+}
+
+::selection {
+    background: #d5d4d2;
+    color: #fff;
+    text-shadow: none;
+}
+
+.fiverr-header {
+    width: 100%;
+    background-color: #fff;
+    -webkit-transition: background-color .5s ease;
+    transition: background-color .5s ease;
+}
+
+.fiverr-header .header-row-wrapper {
+    width: 100%;
+    border-bottom: 1px solid #e4e5e7;
+    transition: border .5s ease;
+}
+
+article, aside, figure, footer, header, hgroup, nav, section, main {
+    display: block;
+}
+
+.max-width-container {
+    margin: 0;
+    padding: 24px 24px 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.fiverr-header .header-row-wrapper .row-main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
+    width: 100%;
+}
+
+button {
+    appearance: auto;
+    /* font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ; */
+    font-family: macan, helvatica neue, Arial, Helvetica, sans-serif ;
+    /* font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ; */
+    text-rendering: auto;
+    /* color: buttontext; */
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    /* background-color: buttonface; */
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+    width: auto;
+    overflow: visible;
+}
+
+.clickable, input[type=button], input[type=submit], button {
+    cursor: pointer;
+}
+
+.fiverr-header .btn-navicon {
+    background: none;
+    border: 0;
+    outline: none;
+    margin-right: 15px;
+}
+
+.seller-layout .nav-opener-height-align {
+    height: 19px;
+}
+
+user agent stylesheet
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+user agent stylesheet
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+
+
+a {
+    color: #1dbf73;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.fiverr-header .site-logo {
+    width: 89px;
+    height: 27px;
+    display: block;
+    margin: -5px auto;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+g{
+    fill: rgb(64, 65, 69);
+}
+
+.fiverr-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+article, aside, figure, footer, header, hgroup, nav, section, main {
+    display: block;
+}
+
+.fiverr-nav>ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: -24px;
+}
+
+ul, ol, nav ul, nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}

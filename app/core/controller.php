@@ -72,8 +72,6 @@ class Controller
     // Redirection method
     public function redirect($path)
     {
-        header("location:" . BASEURL . $path);
+        // header("location:" . BASEURL . $path);
     }
 }
-
-?>

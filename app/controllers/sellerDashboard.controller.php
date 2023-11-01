@@ -1,14 +1,12 @@
 <?php
 
-class BuyerDashboard extends Controller
+class SellerDashboard extends Controller
 {
-
     public function index()
     {
-
         $data['var'] = "Home Page";
         $data['title'] = "SkillSparq";
 
-        $this->view('buyerdashboard', $data);
+        $this->view('sellerdashboard', $data);
     }
 }

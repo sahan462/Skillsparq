@@ -8,19 +8,20 @@ class Job extends Controller
         $this->JobHandlerModel = $this->model('jobHandler');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $data['var'] = "AddJob";
         $data['title'] = "SkillSparq";
         $this->view('Job', $data);
-
     }
 
-    public function getJob(){
-        
+    public function getJob()
+    {
     }
 
-    public function publishJob(){
+    public function publishJob()
+    {
 
         if (isset($_GET['submit'])) {
 
@@ -31,24 +32,23 @@ class Job extends Controller
             $category = $_GET['category'];
             $amount = $_GET['amount'];
             $deadline = $_GET['deadline'];
-            if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
-            $currentDateTime = date('Y-m-d H:i:s'); 
+            if (isset($_GET['flexible-amount'])) {
+                $flexible_amount = 1;
+            } else {
+                $flexible_amount = 0;
+            };
+            $currentDateTime = date('Y-m-d H:i:s');
             $clientId = "sahan";
 
             $this->JobHandlerModel->addNewJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $flexible_amount, $currentDateTime, $clientId);
         }
     }
 
-    public function updateJob(){
+    public function updateJob()
+    {
     }
 
-    public function deleteJob(){
-        
+    public function deleteJob()
+    {
     }
-
-
-
-
 }
-
-?>

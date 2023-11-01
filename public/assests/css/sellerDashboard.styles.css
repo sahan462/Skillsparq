@@ -1,0 +1,67 @@
+/*home content*/
+
+@media only screen and (min-width: 600px) {
+    .personalized-header {
+        margin-top: 8px;
+        padding: 0;
+    }
+}
+
+
+.sellerDashboard-main-content .personalizedHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+
+.sellerDashboard-main-content .userHistoryContent{
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 24px;
+    border: 1px solid #e4e5e7;
+    overflow: auto;
+    padding: 16px 32px 32px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+
+.sellerDashboard-main-content .historyHeader{
+    font-size: 20px;
+    color: #404145;
+}
+
+.sidebar-wrapper {
+    display: block!important;
+}
+
+abbr, address, article, aside, audio, b, blockquote, body, body div, caption, cite, code, dd, del, dfn, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+    border: 0;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+body {
+    background-color: #fff;
+    color: #62646a;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    position: relative;
+    width: 100%;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+}
