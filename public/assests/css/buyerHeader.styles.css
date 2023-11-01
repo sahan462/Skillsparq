@@ -211,7 +211,6 @@ header .upperHeader{
 }
 
 /*header categories*/
-
 .headerCategories nav .nav-links {
     display: flex;
     justify-content: space-between;

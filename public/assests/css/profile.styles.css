@@ -40,9 +40,49 @@ body{
 }
 /*Profile Pic upload*/
 .profile-container .profile .profile-picture{
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.profile-container .profile .profile-picture img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.profile-container .profile .profile-picture .full-name{
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #222325;
+    cursor: default;
+    background: none;
+    border: 0;
+}
+.profile-container .profile .profile-picture .user-name{
+    margin-bottom: 16px;
 }
 /**/
+/*preview-profile*/
+.preview-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 8px;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.preview-profile button:hover{
+    color: #fff;
+    background: #1dbf73;
+    border: 2px solid #fff;
+}
 /*edit-profile*/
 .edit-profile button{
     width: 100%;
@@ -143,6 +183,8 @@ body{
     width: calc(50% - 10px);
     height: 150px;
     border: 1px solid black;
+    position: relative;
+    cursor: pointer;
 }
 /*reviews*/
 .container .sub-container .user-contribution .reviews{
@@ -150,13 +192,20 @@ body{
     position: relative;
     background-color: #fff;
     border: 1px solid #dadbdd;
-    padding: 32px;
+    padding: 32px 16px;
     font-size: 14px;
 }
 
 /*reviews-header*/
 .container .sub-container .user-contribution .reviews .header{
-    
+    width: 100%;
+    color: #0e0e0f;
+    background-color: #fff;
+    margin-bottom: 16px;
+    font-size: 19px;
+    font-weight: 600;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #dadbdd;
 }
 /*reviews-review-content*/
 
@@ -164,7 +213,27 @@ body{
 
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
+    .container{
+        height: 100%;
+        width: 100%;
+        padding: 32px 16px;
+    }
+    .container .sub-container{
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+    .sub-container .profile-container{
+        width: 100%;
+    }
+    .container .sub-container .user-contribution{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 900px) {
     .container{
         height: 100%;
         width: 100%;

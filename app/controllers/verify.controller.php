@@ -186,14 +186,16 @@ class Verify extends Controller
                 $role = $this->getSession('role');
                 $email = $this->getSession('email');
                 $userName = $this->getSession('userName');
+                $firstName = $this->getSession('firstName');
+                $lastName = $this->getSession('lastName');
             
                 $this->userHandlerModel = $this->model('userHandler');
                 $this->buyerHandlerModel = $this->model('buyerHandler');
                 $this->profileHandlerModel = $this->model('profileHandler');
             
-                $user_id = $this->userHandlerModel->addNewUser($password, $role, $agreement);
-                $this->buyerHandlerModel->addNewBuyer($user_id, $email);
-                $this->profileHandlerModel->addNewProfile($userName, $user_id);
+                $user_id = $this->userHandlerModel->addNewUser($email, $password,$role, $agreement);
+                $this->buyerHandlerModel->addNewBuyer($user_id);
+                $this->profileHandlerModel->addNewProfile($userName, $firstName, $lastName, $user_id);
 
                 $otp_confirmation = false;
 

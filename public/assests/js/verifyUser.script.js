@@ -11,11 +11,11 @@ btn1.onclick = function () {
 };
 btn2.onclick = function () {
   modal2.style.display = "none";
-  window.location.replace("http://localhost/skillsparq/public/login");
+  window.location.replace("http://localhost/skillsparq/public/loginUser");
 };
 btn3.onclick = function () {
   modal3.style.display = "none";
-  window.location.replace("http://localhost/skillsparq/public/login");
+  window.location.replace("http://localhost/skillsparq/public/loginUser");
 };
 
 
