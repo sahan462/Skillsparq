@@ -10,6 +10,7 @@ class ProfileHandler extends database
         return mysqli_fetch_assoc($result);
 
     }
+
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, profile_pic, first_name, last_name,joined_date,user_id) VALUES (?, ? , ?, ?, ?, ?)");
