@@ -59,7 +59,6 @@ class Job extends Controller
                 $job = $this->JobHandlerModel->createAuction($starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
 
             }else{
-            } else {
                 echo "
                 <script>alert('Invalid Publish Mode')</script>
                 ";
@@ -75,12 +74,11 @@ class Job extends Controller
                 </script>
             ";
             }else{
-            } else {
                 echo "<script>alert('Error');</script>";
+                }
             }
         }
     }
-
     public function updateJob(){
 
         if(isset($_GET["update"])){
@@ -139,9 +137,6 @@ class Job extends Controller
                 ";
             }
         }
-
-    public function updateJob($parameter)
-    {
     }
 
     public function deleteJob(){
@@ -162,8 +157,6 @@ class Job extends Controller
             <script>alert('Invalid Publish Mode!')</script>
             ";
         }
-
-    public function deleteJob()
-    {
     }
+
 }
