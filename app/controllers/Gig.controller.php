@@ -75,7 +75,7 @@ class Gig extends Controller
                 echo "
                 <script>
                     alert('Gig Created Successfully');
-                    window.location.href = '" . BASEURL . "buyerProfile';
+                    window.location.href = '" . BASEURL . "sellerDashboard';
                 </script>
             ";
             } else {

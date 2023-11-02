@@ -70,10 +70,6 @@ $errors = $data["errors"];
                         </div>
                     </div>
                     <div class="bar1">
-                        <!-- <div class="innerbar1">
-                <div class="bigrow1">revision</div>
-                <div class="bigrow2">price</div>
-              </div> -->
                         <div class="innerbar1">
                             <div class="row1">BASIC</div>
                             <div class="row2">
@@ -243,16 +239,6 @@ $errors = $data["errors"];
                     </div>
                 </div>
 
-                <!-- <div class="tab">
-                    Login Info:
-                    <p>
-                        <input placeholder="Username..." oninput="this.className = ''" />
-                    </p>
-                    <p>
-                        <input placeholder="Password..." oninput="this.className = ''" />
-                    </p>
-                </div> -->
-
                 <div style="overflow: auto">
                     <div style="float: right">
                         <button type="button" class="btn" id="prevBtn" onclick="nextPrev(-1)">
@@ -269,7 +255,6 @@ $errors = $data["errors"];
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
-                    <!-- <span class="step"></span> -->
                 </div>
             </form>
 
@@ -280,7 +265,3 @@ $errors = $data["errors"];
 </body>
 
 </html>
-<?php
-
-// $this->redirect("./GigSuccess.view.php"); 
-?>
