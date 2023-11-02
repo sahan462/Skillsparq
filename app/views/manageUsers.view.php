@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Responsiive Admin Dashboard</title>
-    <link rel="stylesheet" href="../public/assests/css/adminDashboard.styles.css" />
+    <link rel="stylesheet" href="../public/assests/css/manageUsers.styles.css" />
     <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,15 @@
 
       <ul class="nav-links">
         <li>
-          <a href="#" class="active">
+          <a href="AdminDashboard" >
             <i class="bx bx-grid-alt"></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="manageUsers">
+          <a href="#" class="active">
             <i class="bx bx-box"></i>
-            <span class="links_name">Manage Users</span>
+            <span class="links_name" id="manage-users">Manage Users</span>
           </a>
         </li>
         <li>
@@ -114,100 +114,46 @@
         <div class="overview-boxes">
 
           <div class="box">
+            <a href="manageCustomers">
             <div class="right-side">
-              <div class="box-topic">Total Order</div>
-              <div class="number">40,876</div>
+              <div class="box-topic"><a href="manageCustomers" >Manage Customers</a></div>
+           
               <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+                
+             
               </div>
             </div>
-            <i class="bx bx-cart-alt cart"></i>
+
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUlJREFUSEvt1M0qBlEcB+CHC/AVWShkIykLWxauRJJYKZG9shUpO7FwHxa+s3YBWLgCKxt0NDS95sy87zh6F8z6zP/p9zsfHdr0dbTJlRoe5mPmY1WglPAAbtGJGTyV4angPlxiIsNC4lI8FXyExYaED5iNJU8F9+AU0w34BnaLKv8J3ItVbOMNjfg+1mL7XBcO6AUmcYKFDO/CGe4wn/pw9We1TuUGH2Mpw7vxjNeUcEDD6R0vGJpPXnWNW3pAytAA/Qo8mO1dUdKW0fBDM4croNcYi/R3iJVsfysr/lxQBQ/hvAJdblrLLSyDA3qFkcjgg+we13GjVf8qWrbH9xiNRNnDeq2YTVQdnsCibwebP0XLEhfBydBW4KRoGTyXq/MFNynqzc+ousepva95//BnFbHrVLf6b83Gqm4bvFU3WuS/b/P+3uF6B/GZOB9oFIc0AAAAAElFTkSuQmCC"/>
           </div>
 
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
+              <div class="box-topic">Manage Sellers </div>
+           
               <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+             
+                
               </div>
             </div>
-            <i class="bx bxs-cart-add cart two"></i>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUlJREFUSEvt1M0qBlEcB+CHC/AVWShkIykLWxauRJJYKZG9shUpO7FwHxa+s3YBWLgCKxt0NDS95sy87zh6F8z6zP/p9zsfHdr0dbTJlRoe5mPmY1WglPAAbtGJGTyV4angPlxiIsNC4lI8FXyExYaED5iNJU8F9+AU0w34BnaLKv8J3ItVbOMNjfg+1mL7XBcO6AUmcYKFDO/CGe4wn/pw9We1TuUGH2Mpw7vxjNeUcEDD6R0vGJpPXnWNW3pAytAA/Qo8mO1dUdKW0fBDM4croNcYi/R3iJVsfysr/lxQBQ/hvAJdblrLLSyDA3qFkcjgg+we13GjVf8qWrbH9xiNRNnDeq2YTVQdnsCibwebP0XLEhfBydBW4KRoGTyXq/MFNynqzc+ousepva95//BnFbHrVLf6b83Gqm4bvFU3WuS/b/P+3uF6B/GZOB9oFIc0AAAAAElFTkSuQmCC"/>
           </div>
 
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
+              <div class="box-topic">Manage Customer Support</div>
+         
               <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+            
               </div>
             </div>
-            <i class="bx bx-cart cart three"></i>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUlJREFUSEvt1M0qBlEcB+CHC/AVWShkIykLWxauRJJYKZG9shUpO7FwHxa+s3YBWLgCKxt0NDS95sy87zh6F8z6zP/p9zsfHdr0dbTJlRoe5mPmY1WglPAAbtGJGTyV4angPlxiIsNC4lI8FXyExYaED5iNJU8F9+AU0w34BnaLKv8J3ItVbOMNjfg+1mL7XBcO6AUmcYKFDO/CGe4wn/pw9We1TuUGH2Mpw7vxjNeUcEDD6R0vGJpPXnWNW3pAytAA/Qo8mO1dUdKW0fBDM4croNcYi/R3iJVsfysr/lxQBQ/hvAJdblrLLSyDA3qFkcjgg+we13GjVf8qWrbH9xiNRNnDeq2YTVQdnsCibwebP0XLEhfBydBW4KRoGTyXq/MFNynqzc+ousepva95//BnFbHrVLf6b83Gqm4bvFU3WuS/b/P+3uF6B/GZOB9oFIc0AAAAAElFTkSuQmCC"/>
           </div>
 
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
+          
+         
 
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
-
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
-
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
-
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
+          
 
         </div>
       </div>
