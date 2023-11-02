@@ -1,3 +1,8 @@
+<?php 
+    $basicDetails = $data["Basic-Details"];
+    $auctionDetails = $data["Auction-Details"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,25 +10,28 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>addNewJob</title>
-        <link rel="stylesheet" href="./assests/css/addJob.styles.css">
+        <link rel="stylesheet" href="/skillsparq/public/assests/css/addJob.styles.css">
     </head>
     <body>
         <div class="addjob-container">
             <div class="img">
-                <div class="header">Let the matching begin...</div>
-                <img src="https://hrcdn.net/fcore/assets/svgs/skills_test_failed-6f44b0392a.svg"/>
+                <div class="header">Do the Necessary Changes...</div>
+                <script  src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                <dotlottie-player style="display:flex;" src="https://lottie.host/47f01f7c-caa8-46fd-9772-810f482eeeda/7tsoBoHMIW.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
             </div>
             <div class="form">
-                <form method="get" action="<?php echo BASEURL.'Job/publishJob';?>" >
+                <form method="get" action="<?php echo BASEURL.'Job/updateJob';?>" >
                     <div class="page">
 
                         <span class="type-1">Give your project brief a title</span>
                         <span class="type-2">Keep it short and simple - this will help us match you to the right category.</span>
-                        <input type="text" name="title" placeholder="Example: Create a WordPress website for my company" required/>
+                        <input type="text" value="<?php echo $basicDetails['title']?>" name="title" placeholder="Example: Create a WordPress website for my company" required/>
 
                         <span class="type-1">What are you looking to get done?</span>
                         <span class="type-2">This will help get your brief to the right talent. Specifics help here.</span>
-                        <textarea name="description" placeholder="I need.." rows="8" required></textarea>
+                        <textarea  name="description" placeholder="I need.." rows="8" required>
+                            <?php echo $basicDetails['description']?>
+                        </textarea>
 
                         <div class="custom-file-upload">
                             <input type="file" name="fileToUpload" class="fileToUpload" >
@@ -39,29 +47,29 @@
                                 <span class="type-1">Which category best fits your project?</span>
                                 <span class="type-2">Choose from list</span>
                                 <select name="category" class="categories" required>
-                                    <option value="Graphics & Design">Graphics & Design</option>
-                                    <option value="Programming & Tech">Programming & Tech</option>
-                                    <option value="Digital Marketing">Digital Marketing</option>
-                                    <option value="Video & Animation">Video & Animation</option>
-                                    <option value="Writing & Translation">Writing & Translation</option>
-                                    <option value="Music & Audio">Music & Audio</option>
-                                    <option value="Business">Business</option>
-                                    <option value="Data">Data</option>
-                                    <option value="Photography">Photography</option>
-                                    <option value="AI Services">AI Services</option>
+                                    <option value="Graphics & Design" <?php echo ($basicDetails['category'] === 'Graphics & Design') ? 'selected' : ''; ?>>Graphics & Design</option>
+                                    <option value="Programming & Tech" <?php echo ($basicDetails['category'] === 'Programming & Tech') ? 'selected' : ''; ?>>Programming & Tech</option>
+                                    <option value="Digital Marketing" <?php echo ($basicDetails['category'] === 'Digital Marketing') ? 'selected' : ''; ?>>Digital Marketing</option>
+                                    <option value="Video & Animation" <?php echo ($basicDetails['category'] === 'Video & Animation') ? 'selected' : ''; ?>>Video & Animation</option>
+                                    <option value="Writing & Translation" <?php echo ($basicDetails['category'] === 'Writing & Translation') ? 'selected' : ''; ?>>Writing & Translation</option>
+                                    <option value="Music & Audio" <?php echo ($basicDetails['category'] === 'Music & Audio') ? 'selected' : ''; ?>>Music & Audio</option>
+                                    <option value="Business" <?php echo ($basicDetails['category'] === 'Business') ? 'selected' : ''; ?>>Business</option>
+                                    <option value="Data" <?php echo ($basicDetails['category'] === 'Data') ? 'selected' : ''; ?>>Data</option>
+                                    <option value="Photography" <?php echo ($basicDetails['category'] === 'Photography') ? 'selected' : ''; ?>>Photography</option>
+                                    <option value="AI Services" <?php echo ($basicDetails['category'] === 'AI Services') ? 'selected' : ''; ?>>AI Services</option>
                                 </select>
                             </div>
                             <div class="deadline">
                                 <span class="type-1" >Let’s talk timing</span>
                                 <span class="type-2">Ideal delivery date</span>
-                                <input type="date"  name="deadline_1" required>
+                                <input type="date" name="deadline_1" required value="<?php echo date("Y-m-d", strtotime($basicDetails['deadline'])); ?>">
                             </div>
                             <div class="mode">
                                 <span class="type-1" >Preferable Publish Mode</span>
                                 <span class="type-2">Standard Mode / Auction Mode</span>
                                 <select name="publishMode" id="publish" class="categories" required>
-                                    <option value="Standard Mode">Standard Mode</option>
-                                    <option value="Auction Mode">Auction Mode</option>
+                                    <option value="Standard Mode" <?php echo ($basicDetails['publish_mode'] === 'Standard Mode') ? 'selected' : ''; ?>>Standard Mode</option>
+                                    <option value="Auction Mode" <?php echo ($basicDetails['publish_mode'] === 'Auction Mode') ? 'selected' : ''; ?>>Auction Mode</option>
                                 </select>
                             </div>
                         </div>
@@ -86,14 +94,14 @@
                         </div>
                         <div id="fixed-price">
                             <span class="type-1">I'm looking to spend...</span>
-                            <input type="text" value="$" name="amount_3" placeholder="Up to" style="margin-bottom:0" oninput="updateBudget()"/>
+                            <input type="text" value="<?php echo $basicDetails['amount']?>" name="amount_3" placeholder="Up to" style="margin-bottom:0" oninput="updateBudget()"/>
                             <input type="checkbox" name="flexible-amount" >
                             <span for="flexible-amount" >My budget is flexible</span>
                         </div>
 
                     </div>
 
-                    <button type="submit" class="next" name="submit"><span>Publish</span></button>
+                    <button type="submit" class="next" name="submit"><span>Update</span></button>
 
                 </form>
             </div>

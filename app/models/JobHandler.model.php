@@ -2,7 +2,8 @@
 class JobHandler extends database
 {
 
-public function addNewJob($jobId,$title,$description,$file,$category,$amount,$deadline,$flexible_amount,$currentDateTime,$clientId)
+    //add new job
+    public function addNewJob($title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Jobs 
         (
@@ -10,22 +11,23 @@ public function addNewJob($jobId,$title,$description,$file,$category,$amount,$de
             description, 
             file, 
             category, 
+            deadline,
+            publish_mode, 
             amount, 
-            deadline, 
             flexible_amount, 
             created_at, 
-            client_id
+            buyer_id
         ) 
         VALUES 
         (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
         )");
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
         
-        mysqli_stmt_bind_param($stmt, "ssssdsssi", $title, $description, $file, $category, $amount, $deadline, $flexible_amount, $currentDateTime, $clientId);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $description, $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
         
         if (mysqli_stmt_execute($stmt)) {
             $jobId = mysqli_insert_id($GLOBALS['db']);
@@ -35,4 +37,100 @@ public function addNewJob($jobId,$title,$description,$file,$category,$amount,$de
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
     }
+
+    //add auction details
+    public function createAuction($starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $userId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Auctions 
+        (
+            start_time,
+            end_time,
+            starting_bid,
+            min_bid_amount,
+            current_highest_bid,
+            job_id,
+            buyer_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?, ?, ?
+        )");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "sssssii", $starting_time, $end_time, $starting_bid, $min_bid_amount, $min_bid_amount, $jobId, $userId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            $jobId = mysqli_insert_id($GLOBALS['db']);
+            mysqli_stmt_close($stmt);
+            return $jobId;
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get available jobs
+    public function getAllJobs($userId)
+    {
+        $query = "SELECT * FROM Jobs WHERE buyer_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get single job
+    public function getJob($jobId)
+    {
+        $query = "SELECT * FROM Jobs WHERE job_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get auction details
+    public function getAuction($jobId,$userId){
+
+        $query = "SELECT * FROM Auctions WHERE job_id = ? and buyer_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "ii", $jobId, $userId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    
+
+
 }

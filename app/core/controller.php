@@ -8,6 +8,7 @@ require '../app/vendor/phpmailer/src/Exception.php';
 require '../app/vendor/phpmailer/src/PHPmailer.php';
 require '../app/vendor/phpmailer/src/SMTP.php';
 
+
 class Controller
 {
     // Loads a view with optional data

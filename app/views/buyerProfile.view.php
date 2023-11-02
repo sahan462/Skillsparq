@@ -1,4 +1,8 @@
-<?php include "components/sellerHeader.component.php"; ?>
+<?php 
+    include "components/sellerHeader.component.php"; 
+    $jobs = $data['jobs'];
+    //$profile = $data['profile'];
+?>
 <?php 
     $data["activeStatus"] = "display: none;";
     $data["profilePicture"] = "assests/images/dummyprofile.jpg";
@@ -106,18 +110,16 @@
 
                 <div class="user-content">
                     <div class="header">
-                        <span>Active Jobs</span>
+                        <span>Active Jobs(<?php echo sizeof($jobs)?>)</span>
                         <a href="addJob"><button>Create New Job</button></a>
                     </div>
                     <div class="content">
-                        <div class="job-card" job-url="home">
-                        </div>
-                        <div class="job-card" job-url="job-details.html">
-                        </div>
-                        <div class="job-card" job-url="job-details.html">
-                        </div>
-                        <div class="job-card" job-url="job-details.html">
-                        </div>
+                        <?php
+                            if(!empty($jobs)){ 
+                                foreach($jobs as $job){
+                                    include "components/jobCard.component.php";
+                        ?>
+                        <?php }} ?>
                     </div>
                 </div>
 
@@ -126,14 +128,15 @@
                         <span>Feedbacks and ratings</span>
                     </div>
                     <div class="review-content">
-                        hghjg
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>No feedbacks available</span>
                     </div>
                 </div>
 
             </div>
-
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
