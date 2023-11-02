@@ -8,15 +8,6 @@
 </head>
 <body>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
-        </div>
-    </div>
-
     <div class="container">
         <div class="header"><span style="color:#31d65a">Are you</span> a seller?</div>
         <p>Are you a talented Sri Lankan who is looking for an opportunity to sell your skills?</p>

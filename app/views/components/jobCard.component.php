@@ -3,7 +3,7 @@
         <?php echo $job['title']?>
         <div class="links">
             <a href="updateJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>&publishMode=<?php echo $job['publish_mode']?>">edit</a>
-            <a href="deleteJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>">delete</a>
+            <a href="deleteJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>&publishMode=<?php echo $job['publish_mode']?>">delete</a>
         </div>
     </div>
     <div class="description">

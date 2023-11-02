@@ -1,6 +1,7 @@
 <?php 
     $basicDetails = $data["Basic-Details"];
     $auctionDetails = $data["Auction-Details"];
+    $jobId = $data["jobId"];
 ?>
 
 <!DOCTYPE html>
@@ -73,35 +74,38 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="auction custom-auction" id="auction">
-                            <div class="duration" id="duration">
-                                <span class="type-1">Start Date & Time</span>
-                                <input type="datetime-local"  name="deadline_2" >
-                                <span class="type-1">End Date & Time</span>
-                                <input type="datetime-local"  name="deadline_3" >
-                            </div>
-                            <div class="price" id="price">
-                                <div class="base-bid">
-                                    <span class="type-1">Starting Bid</span>
-                                    <input type="text" value="$" name="amount_1" placeholder="Up to" style="margin-bottom:0" />
+                        
+                        <?php if ($basicDetails['publish_mode'] == 'Auction Mode') { ?>
+                            <div class="auction custom-auction">
+                                <div class="duration" id="duration">
+                                    <span class="type-1">Start Date & Time</span>
+                                    <input type="datetime-local"  name="deadline_2" required value = "<?php echo $auctionDetails['start_time']?>">
+                                    <span class="type-1">End Date & Time</span>
+                                    <input type="datetime-local"  name="deadline_3" required value = "<?php echo $auctionDetails['end_time']?>">
                                 </div>
-                                <div class="min-bid">
-                                    <span class="type-1">Min. bid amount</span>
-                                    <input type="text" value="$" name="amount_2" placeholder="Up to" style="margin-bottom:0" />
+                                <div class="price" id="price">
+                                    <div class="base-bid">
+                                        <span class="type-1">Starting Bid</span>
+                                        <input type="text" value="<?php echo $auctionDetails['starting_bid']?>" name="amount_1" placeholder="Up to" style="margin-bottom:0" />
+                                    </div>
+                                    <div class="min-bid">
+                                        <span class="type-1">Min. bid amount</span>
+                                        <input type="text" value="<?php echo $auctionDetails['min_bid_amount']?>" name="amount_2" placeholder="Up to" style="margin-bottom:0" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="fixed-price">
-                            <span class="type-1">I'm looking to spend...</span>
-                            <input type="text" value="<?php echo $basicDetails['amount']?>" name="amount_3" placeholder="Up to" style="margin-bottom:0" oninput="updateBudget()"/>
-                            <input type="checkbox" name="flexible-amount" >
-                            <span for="flexible-amount" >My budget is flexible</span>
-                        </div>
-
+                        <?php } 
+                        else if ($basicDetails['publish_mode'] == 'Standard Mode'){ ?>
+                            <div id="fixed-price">
+                                <span class="type-1">I'm looking to spend...</span>
+                                <input type="text" value="<?php echo $basicDetails['amount']?>" name="amount_3" placeholder="Up to" style="margin-bottom:0" oninput="updateBudget()"/>
+                                <input type="checkbox" name="flexible-amount" >
+                                <span for="flexible-amount" >My budget is flexible</span>
+                            </div>
+                        <?php } ?>
                     </div>
-
-                    <button type="submit" class="next" name="submit"><span>Update</span></button>
+                    <input type="hidden" name="jobId" value="<?php echo $jobId?>" />
+                    <button type="submit" class="next" name="update"><span>Update</span></button>
 
                 </form>
             </div>

@@ -9,7 +9,8 @@ class UpdateJob extends Controller
         $this->JobController = $this->controller('job');
     }
 
-    public function index(){
+    public function index()
+    {
 
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
             
@@ -23,28 +24,35 @@ class UpdateJob extends Controller
             $jobId = $_GET['jobId'];
             $userId = $_GET['userId'];
             $publishMode = $_GET['publishMode'];
+            $data['jobId'] = $jobId;
+
+            $data['Auction-Details'] = [];
 
             if($_GET['userId'] == $_SESSION['userId']){
 
-                $data['Basic-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getJob($jobId));
-                $data['Auction-Details'] = [];
                 if($publishMode == 'Auction Mode'){
-                    $data['Auction-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getAuction($jobId, $userId));
-                }
 
+                    $data['Basic-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getJob($jobId));
+                    $data['Auction-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getAuction($jobId, $userId));
+
+                }else if($publishMode == 'Standard Mode'){
+
+                    $data['Basic-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getJob($jobId));
+
+                }else{
+                    echo 
+                    "
+                    <script>alert('Can not perform update!')</script>
+                    ";
+                }
             }else{
                 echo 
                 "
                 <script>alert('Unauthorized User!')</script>
                 ";
             }
-
-            $this->view('UpdateJob', $data);
-            
+            $this->view('UpdateJob', $data);   
         }
-
-
-
     }
 
 }
