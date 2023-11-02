@@ -3,9 +3,8 @@
 class Job extends Controller
 {
 
-    public function index(){
-
-
+    public function index()
+    {
     }
 
     public function __construct()
@@ -13,11 +12,12 @@ class Job extends Controller
         $this->JobHandlerModel = $this->model('jobHandler');
     }
 
-    public function getJob(){
-        
+    public function getJob()
+    {
     }
 
-    public function publishJob(){
+    public function publishJob()
+    {
 
         if (isset($_GET['submit'])) {
 
@@ -27,21 +27,27 @@ class Job extends Controller
             $category = $_GET['category'];
             $deadline = $_GET['deadline_1'];
             $publishMode = $_GET['publishMode'];
-            $currentDateTime = date('Y-m-d H:i:s'); 
+            $currentDateTime = date('Y-m-d H:i:s');
             $buyerId = $_SESSION['userId'];
 
-            if($publishMode == 'Standard Mode'){
+            if ($publishMode == 'Standard Mode') {
 
                 $amount = $_GET['amount_3'];
-                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+                if (isset($_GET['flexible-amount'])) {
+                    $flexible_amount = 1;
+                } else {
+                    $flexible_amount = 0;
+                };
 
                 $job = $this->JobHandlerModel->addNewJob($title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
-
-
-            }else if($publishMode == 'Auction Mode'){
+            } else if ($publishMode == 'Auction Mode') {
 
                 $amount = $_GET['amount_1'];
-                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+                if (isset($_GET['flexible-amount'])) {
+                    $flexible_amount = 1;
+                } else {
+                    $flexible_amount = 0;
+                };
 
                 $jobId = $this->JobHandlerModel->addNewJob($title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
 
@@ -53,11 +59,15 @@ class Job extends Controller
                 $job = $this->JobHandlerModel->createAuction($starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
 
             }else{
+            } else {
                 echo "
                 <script>alert('Invalid Publish Mode')</script>
                 ";
             }
             if($job){
+
+            if ($job) {
+
                 echo "
                 <script>
                     alert('Job is Published Successfully');
@@ -65,6 +75,7 @@ class Job extends Controller
                 </script>
             ";
             }else{
+            } else {
                 echo "<script>alert('Error');</script>";
             }
         }
@@ -129,6 +140,8 @@ class Job extends Controller
             }
         }
 
+    public function updateJob($parameter)
+    {
     }
 
     public function deleteJob(){
@@ -150,9 +163,7 @@ class Job extends Controller
             ";
         }
 
+    public function deleteJob()
+    {
     }
-
-
-
-
 }
