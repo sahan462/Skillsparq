@@ -20,6 +20,25 @@ class UserHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function addNewSeller($user_password,$role, $agreement)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO User (user_password,  role, agreement) VALUES (?, ?, ?)");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "ssi", $user_password, $role, $agreement);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $user_id = mysqli_insert_id($GLOBALS['db']);
+            mysqli_stmt_close($stmt);
+            return $user_id;
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
     
 
 
