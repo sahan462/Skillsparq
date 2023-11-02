@@ -54,10 +54,12 @@ class Gig extends Controller
             $PremiumDelDays = $_POST['PremiumDelDays'];
             $PremiumRevNum = $_POST['PremiumRevNum'];
             $PremiumPrice = $_POST['PremiumPrice'];
+
+            $GigDescription = $_POST['GigDescription'];
             $sellerId = $_SESSION['userId'];
 
             $errors = false;
-            if (empty($title) || empty($category) || empty($BasicPkgName) || empty($BasicOffDets) || empty($BasicDelDays) || empty($BasicRevNum) || empty($BasicPrice) || empty($StandardPkgName) || empty($StandardOffDets) || empty($StandardDelDays) || empty($StandardRevNum) || empty($StandardPrice) || empty($PremiumPkgName) || empty($PremiumOffDets) || empty($PremiumDelDays) || empty($PremiumRevNum) || empty($PremiumPrice)) {
+            if (empty($title) || empty($category) || empty($BasicPkgName) || empty($BasicOffDets) || empty($BasicDelDays) || empty($BasicRevNum) || empty($BasicPrice) || empty($StandardPkgName) || empty($StandardOffDets) || empty($StandardDelDays) || empty($StandardRevNum) || empty($StandardPrice) || empty($PremiumPkgName) || empty($PremiumOffDets) || empty($PremiumDelDays) || empty($PremiumRevNum) || empty($PremiumPrice) || empty($GigDescription)) {
                 echo "<p class='calc-error'>Fill in all Fields!</p>";
                 $errors = true;
             }
@@ -66,7 +68,7 @@ class Gig extends Controller
                 echo "<p class='calc-error'>Fill with numerical values!</p>";
                 $errors = true;
             }
-            $Gig = $this->GigHandlerModel->addNewGig($title, $category, $BasicPkgName, $BasicOffDets, $BasicDelDays, $BasicRevNum, $BasicPrice, $StandardPkgName, $StandardOffDets, $StandardDelDays, $StandardRevNum, $StandardPrice, $PremiumPkgName, $PremiumOffDets, $PremiumDelDays, $PremiumRevNum, $PremiumPrice, $currentDateTime, $sellerId);
+            $Gig = $this->GigHandlerModel->addNewGig($title, $category, $BasicPkgName, $BasicOffDets, $BasicDelDays, $BasicRevNum, $BasicPrice, $StandardPkgName, $StandardOffDets, $StandardDelDays, $StandardRevNum, $StandardPrice, $PremiumPkgName, $PremiumOffDets, $PremiumDelDays, $PremiumRevNum, $PremiumPrice, $currentDateTime, $GigDescription, $sellerId);
 
             if ($Gig) {
 

@@ -227,7 +227,7 @@ $errors = $data["errors"];
                             <h2>Description</h2>
                             <p>Briefly Describe you Gig</p>
                         </header>
-                        <div class="description-editor">
+                        <!-- <div class="description-editor">
                             <div class="toolbar">
                                 <button class="bold" type="button">B</button>
                                 <button class="italic" type="button">I</button>
@@ -235,7 +235,7 @@ $errors = $data["errors"];
                                 <button class="list" value="ordered">O</button>
                                 <button class="list" value="bullet">0</button>
                             </div>
-                        </div>
+                        </div> -->
                         <p>
                             <input placeholder="Description" name="GigDescription" oninput="this.className = ''" />
                         </p>
