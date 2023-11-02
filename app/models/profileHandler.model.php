@@ -13,7 +13,7 @@ class ProfileHandler extends database
 
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, profile_pic, first_name, last_name,joined_date,user_id) VALUES (?, ? , ?, ?, ?, ?)");
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, first_name, last_name, , profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)");
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -27,6 +27,26 @@ class ProfileHandler extends database
         }
     
         mysqli_stmt_close($stmt);
+    }
+
+    //get profile
+    public function getUserProfile($userId)
+    {
+        $query = "SELECT * FROM profile WHERE user_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
     
 

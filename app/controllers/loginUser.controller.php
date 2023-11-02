@@ -88,6 +88,19 @@ class LoginUser extends Controller
 
     }
 
+
+    public function logout(){
+        session_destroy();
+        echo "
+        <script>
+            alert('Logged Out Successfully');
+            window.location.href = '" . BASEURL . "home';
+        </script>
+    ";
+        
+    }
+
+
 }
 
 ?>

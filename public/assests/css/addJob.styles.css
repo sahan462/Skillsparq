@@ -88,12 +88,13 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.addjob-container select,input[type="date"]{
+.addjob-container select,input[type="date"],input[type="datetime-local"]{
     margin-bottom: 32px;
     height: 40px;
     width: 200px;
     border-radius: 4px;
     cursor: pointer;
+    border: 1px solid #c5c6c9;
 }
 .addjob-container .categories, .addjob-container input[type="date"]{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -102,6 +103,40 @@ body{
 }
 #auction{
     display: none;
+}
+.custom-auction{
+    border: 2px solid #c5c6c9;
+    border-radius: 5px;
+    padding: 16px;
+}
+.duration input{
+    margin-bottom: 0;
+}
+.duration{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.price{
+    width: 100%;
+    display: flex;
+}
+.price input[type="text"]{
+    width: 60%;
+}
+.price .base-bid{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 60px;
+}
+.price .min-bid{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 button {
     display: inline-block;
@@ -116,7 +151,6 @@ button {
     width: 114px;
     transition: all 0.5s;
     cursor: pointer;
-    justify-content: end;
 }
 button span {
     cursor: pointer;

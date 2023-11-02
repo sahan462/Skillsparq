@@ -3,7 +3,7 @@
 <div class="buyerDashboard-content">
 
     <div class="personalizedHeader">
-        Hey there, Damitha
+        Hey there, <?php echo $_SESSION['firstName']?>
     </div>
 
     <div class="userHistoryContent">
