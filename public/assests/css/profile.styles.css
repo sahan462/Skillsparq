@@ -179,13 +179,9 @@ body{
     gap: 20px;
     margin-bottom: 16px;
 }
-.container .sub-container .user-contribution .content .job-card{
-    width: calc(50% - 10px);
-    height: 150px;
-    border: 1px solid black;
-    position: relative;
-    cursor: pointer;
-}
+
+
+
 /*reviews*/
 .container .sub-container .user-contribution .reviews{
     width: 100%;
@@ -208,7 +204,17 @@ body{
     border-bottom: 2px solid #dadbdd;
 }
 /*reviews-review-content*/
-
+.review-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.review-content svg{
+    color: #dadbdd;
+    height: 100px;
+    width: 100px;
+}
 
 
 
@@ -231,6 +237,12 @@ body{
     }
     .container .sub-container .user-contribution{
         width: 100%;
+    }
+    .job-card .job-data-basic{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 @media only screen and (max-width: 900px) {
