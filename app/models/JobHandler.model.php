@@ -188,6 +188,27 @@ class JobHandler extends database
         }
     }
 
+    //delete job
+    public function deleteJob($jobId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM jobs 
+            WHERE job_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
     //delete auction
     public function deleteAuction($jobId, $buyerId)
     {
@@ -202,7 +223,7 @@ class JobHandler extends database
         
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            return true; // Return true to indicate the deletion was successful
+            return true; 
         } else {
             throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }

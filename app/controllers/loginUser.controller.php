@@ -6,6 +6,7 @@ class LoginUser extends Controller
     public function __construct()
     {
         $this->loginHandler = $this->model('LoginHandler');
+        $this->profileHandler = $this->model('ProfileHandler');
     }
 
     public function index(){
@@ -43,7 +44,13 @@ class LoginUser extends Controller
                     $_SESSION["email"] = $row['user_email'];
                     $_SESSION['password'] = $row['user_password'];
                     $_SESSION['role'] = $role =$row['role'];
-
+                    
+                    $profile = mysqli_fetch_assoc($this->profileHandler->getUserProfile($row['user_id']));
+                    $_SESSION['firstName'] = $profile['first_name'];
+                    $_SESSION['lastName'] = $profile['last_name'];
+                    $_SESSION['userName'] = $profile['user_name'];
+                    $data['profile'] = $profile;
+                    
                     if($role == 'Buyer'){
                         header("location: /skillsparq/public/buyerdashboard");
                     }else if($role == "Admin"){

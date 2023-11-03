@@ -147,10 +147,47 @@ class Job extends Controller
 
         if($publishMode == 'Auction Mode'){
             
-            $job = $this->JobHandlerModel->deleteAuction($jobId, $userId);
+            if($this->JobHandlerModel->deleteAuction($jobId, $userId)){
+                if($this->JobHandlerModel->deleteJob($jobId)){
+                    echo 
+                    "
+                    <script>alert('Job deleted Successfully')
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                    ";
+                }else{
+                    echo 
+                    "
+                    <script>alert('Job deletion failed')
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                    ";
+                }
+            }else{
+                echo 
+                "
+                <script>alert('Auction deletion failed')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }
 
         }else if($publishMode == 'Standard Mode'){
-
+            if($this->JobHandlerModel->deleteJob($jobId)){
+                echo 
+                "
+                <script>alert('Job deleted Successfully')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }else{
+                echo 
+                "
+                <script>alert('Job deletion failed')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }
         }else{
             echo 
             "

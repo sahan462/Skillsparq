@@ -46,7 +46,7 @@ class VerifySeller extends Controller
         if(!isset($_GET['submit']) or (isset($_GET['resend']) ))
         {
 
-            if(true/*$this->sendVerificationMessage(trim($phoneNumber,'+'), $fisrtName, $lastName, $body)*/){
+            if($this->sendVerificationMessage(trim($phoneNumber,'+'), $fisrtName, $lastName, $body)){
 
                 echo "
                     <script>
