@@ -16,7 +16,7 @@
             <div class="header"><span>Login</span></div>
             <div class="fieldset">
                 <label for="lastname" class="label">Phone Number</label>
-                <input type="email" value = "+94" placeholder="Enter your " name="phoneNumber" id="userName" autocomplete="off" required>
+                <input type="text" value = "+94" placeholder="Enter your " name="phoneNumber" id="userName" autocomplete="off" required>
                 <span class="error" ><?php echo $errors["phoneNumber"];?></span>
             </div>
             <div class="fieldset">

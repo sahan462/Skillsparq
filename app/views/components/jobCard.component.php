@@ -1,9 +1,9 @@
-<div class="job-card" job-url="jobView/jobId=<?php echo $job['job_id']?>">
+<div class="job-card" job-url="displayJob&jobId=<?php echo $job['job_id']?>">
     <div class="title">
         <?php echo $job['title']?>
         <div class="links">
             <a href="updateJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>&publishMode=<?php echo $job['publish_mode']?>">edit</a>
-            <a href="deleteJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>&publishMode=<?php echo $job['publish_mode']?>">delete</a>
+            <a href="job/deleteJob&userId=<?php echo $job['buyer_id']?>&jobId=<?php echo $job['job_id']?>&publishMode=<?php echo $job['publish_mode']?>">delete</a>
         </div>
     </div>
     <div class="description">

@@ -1,7 +1,41 @@
 <?php
-$errors = $data["errors"];
+include "config.php";
+
+if (isset($_POST['submit'])) {
+
+    $title = $_POST["title"];
+    $category = $_POST["category"];
+
+    $BasicPkgName = $_POST["BasicPkgName"];
+    $BasicOffDets = $_POST["BasicOffDets"];
+    $BasicDelDays = $_POST["BasicDelDays"];
+    $BasicRevNum = $_POST["BasicRevNum"];
+    $BasicPrice = $_POST["BasicPrice"];
+
+    $StandardPkgName = $_POST["StandardPkgName"];
+    $StandardOffDets = $_POST["StandardOffDets"];
+    $StandardDelDays = $_POST["StandardDelDays"];
+    $StandardRevNum = $_POST["StandardRevNum"];
+    $StandardPrice = $_POST["StandardPrice"];
+
+    $PremiumPkgName = $_POST["PremiumPkgName"];
+    $PremiumOffDets = $_POST["PremiumOffDets"];
+    $PremiumDelDays = $_POST["PremiumDelDays"];
+    $PremiumRevNum = $_POST["PremiumRevNum"];
+    $PremiumPrice = $_POST["PremiumPrice"];
+}
+
+$sql = "INSERT INTO 'gig' ('title','category','BasicPkgName','BasicOffDets','BasicDelDays','BasicRevNum','BasicPrice','StandardPkgName','StandardOffDets','StandardDelDays','StandardRevNum','StandardPrice','PremiumPkgName','PremiumOffDets','PremiumDelDays','PremiumRevNum','PremiumPrice') VALUES ('$title','$category','$BasicPkgName','$BasicOffDets','$BasicDelDays','$BasicRevNum','$BasicPrice','$StandardPkgName','$StandardOffDets','$StandardDelDays','$StandardRevNum','$StandardPrice','$PremiumPkgName','$PremiumOffDets','$PremiumDelDays','$PremiumRevNum','$PremiumPrice')";
+
+$result = $conn->query($sql);
+
+if ($result == TRUE) {
+    echo "New Gig created successfully";
+} else {
+    echo "Error" . $sql . "<br>" . $conn->error;
+}
+$conn->close();
 ?>
-<?php include "components/sellerHeader.component.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +45,7 @@ $errors = $data["errors"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GigPage</title>
-    <link rel="stylesheet" href="./assests/css/addGig.styles.css">
+    <link rel="stylesheet" href="/public/assests/css/addGig.styles.css">
 </head>
 
 <body>
@@ -70,6 +104,10 @@ $errors = $data["errors"];
                         </div>
                     </div>
                     <div class="bar1">
+                        <!-- <div class="innerbar1">
+                <div class="bigrow1">revision</div>
+                <div class="bigrow2">price</div>
+              </div> -->
                         <div class="innerbar1">
                             <div class="row1">BASIC</div>
                             <div class="row2">
@@ -223,7 +261,7 @@ $errors = $data["errors"];
                             <h2>Description</h2>
                             <p>Briefly Describe you Gig</p>
                         </header>
-                        <!-- <div class="description-editor">
+                        <div class="description-editor">
                             <div class="toolbar">
                                 <button class="bold" type="button">B</button>
                                 <button class="italic" type="button">I</button>
@@ -231,13 +269,23 @@ $errors = $data["errors"];
                                 <button class="list" value="ordered">O</button>
                                 <button class="list" value="bullet">0</button>
                             </div>
-                        </div> -->
+                        </div>
                         <p>
                             <input placeholder="Description" name="GigDescription" oninput="this.className = ''" />
                         </p>
                         <div class="description-count">0/1200 Characters</div>
                     </div>
                 </div>
+
+                <!-- <div class="tab">
+                    Login Info:
+                    <p>
+                        <input placeholder="Username..." oninput="this.className = ''" />
+                    </p>
+                    <p>
+                        <input placeholder="Password..." oninput="this.className = ''" />
+                    </p>
+                </div> -->
 
                 <div style="overflow: auto">
                     <div style="float: right">
@@ -255,13 +303,15 @@ $errors = $data["errors"];
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
+                    <!-- <span class="step"></span> -->
                 </div>
+                <input type="submit" name="submit" value="submit">
             </form>
 
 
         </div>
     </div>
-    <script src="./assests/js/addGig.script.js"></script>
+    <script src="/public/assests/js/addGig.script.js"></script>
 </body>
 
 </html>

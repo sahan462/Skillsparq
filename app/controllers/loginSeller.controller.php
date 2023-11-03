@@ -35,7 +35,7 @@ class LoginSeller extends Controller
 
             if($Seller = $this->loginHandler->phoneNumberCheck($phoneNumber)){
                 $SellerId = $Seller['seller_id'];
-                $row = $this->loginHandler->sellerCheck($phoneNumber, $password);
+                $row = $this->loginHandler->sellerCheck($SellerId, $password);
 
                 if($row){
 
@@ -60,7 +60,7 @@ class LoginSeller extends Controller
 
                     $errors["password"] = "Incorrect password";
                     $data["errors"] = $errors;
-                    $this->view("loginUser", $data);
+                    $this->view("loginSeller", $data);
 
                 }
 
@@ -70,7 +70,7 @@ class LoginSeller extends Controller
 
                 $errors["email"]="Email is not found";
                 $data["errors"] = $errors;
-                $this->view("loginUser", $data);
+                $this->view("loginSeller", $data);
 
             }
 

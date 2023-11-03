@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assests/css/profile.styles.css">
-    <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="./assests/css/sellerDashboard.css">
 
 </head>
 
@@ -20,16 +20,16 @@
 
 
             <div class="logo">
-                <a href="#">SKILLSPARQ</a>
+                <a href="home">SKILLSPARQ</a>
             </div>
 
             <div class="navbar">
                 <nav>
                     <ul class="nav-links">
-                        <li class="wordLink"><a href="buyerDashboard">Dashboard</a></li>
+                        <li class="wordLink"><a href="sellerDashboard">Dashboard</a></li>
                         <li class="wordLink"><a href="#">Orders</a></li>
-                        <li class="wordLink"><a href="#">Earnings</a></li>
-                        <li class="wordLink"><a href="#">Switch to Selling</a></li>
+                        <li class="wordLink"><a href="#">Analytics</a></li>
+                        <!-- <li class="wordLink"><a href="#">Switch to Selling</a></li> -->
                         <li>
                             <div class="submenu">
                                 <ul>
