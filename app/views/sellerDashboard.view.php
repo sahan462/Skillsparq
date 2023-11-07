@@ -180,7 +180,6 @@ $data["feedbacks"] = array();
                     <span>Feedbacks and ratings</span>
                 </div>
                 <div class="review-content">
-                    hghjg
                 </div>
             </div>
         </div>
