@@ -41,7 +41,7 @@ class VerifySeller extends Controller
 
         //message body
         $body = "your skillsparq verification OTP is $otp";
-        show($_GET);
+
         // SEND Verification E-Mail
         if(!isset($_GET['submit']) or (isset($_GET['resend']) ))
         {
@@ -73,7 +73,6 @@ class VerifySeller extends Controller
         $otp_confirmation = false;
 
         if(isset($_GET['submit'])){
-            $this->setSession('otpCode', '1111');
             if($_GET['pin'] == $this->getSession('otpCode')){
                 $otp_confirmation = true;            
             }

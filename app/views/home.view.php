@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="./assests/css/home.styles.css">
+    <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
@@ -165,251 +166,84 @@
 
             <div class="topgig-container">
                 <div class="topgig-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <svg id = "left" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
                     <h1>Trending Gigs</h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <svg id = "right" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
                 </div>
                 <div class="card-slider">
                     <ul class="carousel">
-                        <li class="card">
-                            <div class="img">
-                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
-                            </div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="./assests/images/avishka.jpg" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Avishka Idunil</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                                <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                        <?php 
+                            $i = 0;
+                            while ($i < 10) { ?>
+                                <li class="card">
+                                    <div class="img">
+                                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
                                     </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <h3>
-                                        I will design and develop a professional business website html/css/js
-                                    </h3>
-                                </div>
-                                <div class="price">
-                                    <span>From 5$<span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Chamal Fernando</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                                <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="user-details">
+                                        <div class="profile-pic">
+                                            <img src="./assests/images/avishka.jpg" alt="propic-1">
+                                        </div>
+                                        <div class="username">
+                                            <span>Avishka Idunil</span>
+                                        </div>
                                     </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                    I will be online math tutor in algebra geometry and pre calculus
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img">
-                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
-                            </div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Avishka Idunil</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                                <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="gig-details">
+                                        <div class="rating">
+                                            <div class="star-rating">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            <div class="numeric-rating">4.3</div>
+                                        </div>
+                                        <div class="gig-topic">
+                                            <p>
+                                                I will design and develop a professional business website html/css/js
+                                            </p>
+                                        </div>
+                                        <div class="price">
+                                            <span>From 5$<span>
+                                        </div>
                                     </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                        I will design and develop a professional business website html/css/js
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Chamal Fernando</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                            <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                </li>
+                                <li class="card">
+                                    <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
+                                    <div class="user-details">
+                                        <div class="profile-pic">
+                                            <img src="./assests/images/chamal.jpg" alt="propic-1">
+                                        </div>
+                                        <div class="username">
+                                            <span>Chamal Fernando</span>
+                                        </div>
                                     </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                    I will be online math tutor in algebra geometry and pre calculus
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img">
-                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
-                            </div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Avishka Idunil</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                            <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="gig-details">
+                                        <div class="rating">
+                                            <div class="star-rating">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            <div class="numeric-rating">4.3</div>
+                                        </div>
+                                        <div class="gig-topic">
+                                            <p>
+                                            I will be online math tutor in algebra geometry and pre calculus
+                                            </p>
+                                        </div>
+                                        <div class="price">
+                                            <span>From 10$<span>
+                                        </div>
                                     </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                        I will design and develop a professional business website html/css/js
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Chamal Fernando</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                            <div class="rating">
-                                <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                    I will be online math tutor in algebra geometry and pre calculus
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img">
-                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
-                            </div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Avishka Idunil</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                                <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                        I will design and develop a professional business website html/css/js
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <div class="img"><img src="https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="card-2"></div>
-                            <div class="user-details">
-                                <div class="profile-pic">
-                                    <img src="" alt="propic-1">
-                                </div>
-                                <div class="username">
-                                    <span>Chamal Fernando</span>
-                                </div>
-                            </div>
-                            <div class="gig-details">
-                                <div class="rating">
-                                    <div class="star-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <div class="numeric-rating">4.3</div>
-                                </div>
-                                <div class="gig-topic">
-                                    <p>
-                                    I will be online math tutor in algebra geometry and pre calculus
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
+                                </li>
+                            <?php $i = $i + 1;} ?>
                     </ul>
                 </div>
             </div>
@@ -464,5 +298,6 @@
 
         </div>
     <script src="./assests/js/home.script.js"></script>
+    <?php include "components/footer.component.php"?>;
     </body>
 </html>
