@@ -11,6 +11,14 @@
             Continue browsing
         </div>
         <div class="historyContent">
-        
+            <?php include "components/cardSlider.component.php"?>
+        </div>
+    </div>
+    <div class="main-content">
+        <?php include "components/cardSlider.component.php"?>
+        <?php include "components/cardSlider.component.php"?>
+        <?php include "components/cardSlider.component.php"?>
+        <?php include "components/cardSlider.component.php"?>
     </div>
 </div>
+<?php include "components/footer.component.php"?>

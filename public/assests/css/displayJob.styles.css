@@ -1,0 +1,38 @@
+body {
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: Arial, sans-serif;
+    color: #62646a;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dadbdd;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+}
+.job-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.job-details {
+    font-size: 16px;
+}
+
+.job-description {
+    margin-top: 20px;
+}

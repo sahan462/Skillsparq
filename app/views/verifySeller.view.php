@@ -54,6 +54,6 @@
             </div>
         </div>
     </form>
-    <script src="/skillsparq/public/assests/js/verify.script.js"></script>
+    <script src="/skillsparq/public/assests/js/verifySeller.script.js"></script>
 </body>
 </html>

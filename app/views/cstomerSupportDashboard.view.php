@@ -23,7 +23,7 @@
           </a>
         </li>
         <li>
-          <a href="manageUsers">
+          <a href="#">
             <i class="bx bx-box"></i>
             <span class="links_name">Manage Users</span>
           </a>
@@ -77,7 +77,7 @@
           </a>
         </li>
         <li class="log_out">
-          <a href="loginUser/logout">
+          <a href="#">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Log out</span>
           </a>
@@ -99,7 +99,7 @@
         </div>
         <div class="profile-details">
           <img src="images/profile.jpg" alt="" />
-          <span class="admin_name">Admin</span>
+          <span class="admin_name">Prem Shahi</span>
           <i class="bx bx-chevron-down"></i>
         </div>
       </nav>
@@ -108,7 +108,7 @@
 
         
         <div class="personalizedHeader">
-          Welcome Admin
+          Welcome Admin, Damitha
         </div>
 
         <div class="overview-boxes">
@@ -151,7 +151,55 @@
 
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Refunds</div>
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
               <div class="number">11,086</div>
               <div class="indicator">
                 <i class="bx bx-down-arrow-alt down"></i>

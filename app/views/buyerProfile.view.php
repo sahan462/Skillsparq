@@ -6,8 +6,8 @@
 <?php 
     $data["activeStatus"] = "display: none;";
     $data["profilePicture"] = "assests/images/dummyprofile.jpg";
-    $data["fullName"] = "Damitha Sahan";
-    $data["userName"] = "@Dsahan";
+    $data["fullName"] = $_SESSION['firstName']." ".$_SESSION['lastName'];
+    $data["userName"] = "@".$_SESSION['userName'];
     $data["country"] = "Sri Lanka";
     $data["expertise"] = "Programming and Tech";
     $data["joinedDate"] = "July 2023";
@@ -86,21 +86,28 @@
                             <span><b>July 2023</b></span>
                         </div>
                     </div>
-                    <div class="description"></div>
                 </div>
 
                 <div class="profile">
-                    <div class="education">
-                        <form method="get" action=""></form>
-                    </div>
-                    <div class="skills">
-                        <form method="get" action=""></form>
-                    </div>
-                    <div class="certificates">
-                        <form method="get" action=""></form>
-                    </div>
-                    <div class="languages">
-                        <form method="get" action=""></form>
+                    <div class="description">
+                        <div class="topic">
+                            <span>Description</span>
+                            <div class="link">
+                                <a href="#">edit</a>
+                                <a href="">remove</a>
+                            </div>
+                        </div>
+                        <div class="description-content">
+                            Lorem ipsum dolor sit amet, consectetur 
+                            adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua.
+                            Lorem ipsum dolor sit amet, consectetur 
+                            adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua.
+                            Lorem ipsum dolor sit amet, consectetur 
+                            adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua.
+                        </div>
                     </div>
                 </div>
 

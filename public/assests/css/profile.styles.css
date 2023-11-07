@@ -125,8 +125,16 @@ body{
 /*education-skills-certificates-languages*/
 .profile .education ,.profile .skills, .profile .certificates, .profile .languages{
     border-bottom: 2px solid #dadbdd;
+    text-align: justify;
 }
-
+.profile .topic{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.profile .description .description-content{
+    text-align: justify;
+}
 /*user contribution*/
 .container .sub-container .user-contribution{
     margin-bottom: 32px;

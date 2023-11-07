@@ -130,7 +130,104 @@ class JobHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    
+
+    //update job
+    //$title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId
+    public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 
+            SET 
+            title = ?, 
+            description = ?, 
+            file = ?, 
+            category = ?, 
+            amount = ?, 
+            deadline = ?, 
+            publish_mode = ?, 
+            flexible_amount = ? 
+            WHERE job_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $jobId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //upate auction
+    public function updateAuction($jobId, $buyerId, $starting_time, $end_time, $startingBid, $minBidAmount, $currentHighestBid)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Auctions 
+            SET 
+            start_time = ?,
+            end_time = ?,
+            starting_bid = ?, 
+            min_bid_amount = ?, 
+            current_highest_bid = ? 
+            WHERE job_id = ?
+            and buyer_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ddsssii", $starting_time, $end_time, $startingBid, $minBidAmount, $currentHighestBid, $jobId, $buyerId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //delete job
+    public function deleteJob($jobId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM jobs 
+            WHERE job_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
+    //delete auction
+    public function deleteAuction($jobId, $buyerId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM Auctions 
+            WHERE job_id = ? AND buyer_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ii", $jobId, $buyerId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
 
 
 }

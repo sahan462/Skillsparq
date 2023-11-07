@@ -48,6 +48,14 @@ window.addEventListener('scroll', () => {
 
 //Card Slider
 const carousel = document.querySelector(".carousel");
+const arrowbtns = document.querySelectorAll(".topgig-header svg");
+const firstClassWidth = document.querySelector(".card").offsetWidth;
+
+arrowbtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        carousel.scrollLeft += btn.id === "left" ? -firstClassWidth : firstClassWidth;
+    })
+});
 
 let isDragging = false;
 let startX, startScrollLeft;

@@ -21,8 +21,6 @@ class Job extends Controller
 
         if (isset($_GET['submit'])) {
 
-            show($_GET);
-
             $title = $_GET['title'];
             $description = $_GET['description'];
             $file = $_GET['fileToUpload'];
@@ -59,11 +57,13 @@ class Job extends Controller
                 $min_bid_amount = $_GET['amount_2'];
 
                 $job = $this->JobHandlerModel->createAuction($starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
-            } else {
+
+            }else{
                 echo "
                 <script>alert('Invalid Publish Mode')</script>
                 ";
             }
+            if($job){
 
             if ($job) {
 
@@ -73,17 +73,127 @@ class Job extends Controller
                     window.location.href = '" . BASEURL . "buyerProfile';
                 </script>
             ";
-            } else {
+            }else{
                 echo "<script>alert('Error');</script>";
+                }
+            }
+        }
+    }
+    public function updateJob(){
+
+        if(isset($_GET["update"])){
+
+            $jobId = $_GET["jobId"];
+            $title = $_GET['title'];
+            $description = $_GET['description'];
+            $file = $_GET['fileToUpload'];
+            $category = $_GET['category'];
+            $deadline = $_GET['deadline_1'];
+            $publishMode = $_GET['publishMode'];
+            $currentDateTime = date('Y-m-d H:i:s'); 
+            $buyerId = $_SESSION['userId'];
+
+            if($publishMode == 'Standard Mode'){
+
+                $amount = $_GET['amount_3'];
+                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+
+                $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+                if($job){
+                    echo "
+                    <script>
+                        alert('Standard Job is Updated Successfully');
+                        window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                ";
+                }
+
+            }else if($publishMode == 'Auction Mode'){
+
+                $amount = $_GET['amount_1'];
+                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+
+                $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+
+                $starting_time = $_GET['deadline_2'];
+                $end_time = $_GET['deadline_3'];
+                $starting_bid = $_GET['amount_1'];
+                $min_bid_amount = $_GET['amount_2'];
+
+                $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
+
+                if($job and $auction){
+                    echo "
+                    <script>
+                        alert('Auction Job is Updated Successfully');
+                        window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                ";
+                }
+
+            }else{
+                echo "
+                <script>alert('Invalid Publish Mode')</script>
+                ";
             }
         }
     }
 
-    public function updateJob($parameter)
-    {
+    public function deleteJob(){
+
+        $jobId = $_GET['jobId'];
+        $userId = $_GET['userId'];
+        $publishMode = $_GET['publishMode'];
+
+        if($publishMode == 'Auction Mode'){
+            
+            if($this->JobHandlerModel->deleteAuction($jobId, $userId)){
+                if($this->JobHandlerModel->deleteJob($jobId)){
+                    echo 
+                    "
+                    <script>alert('Job deleted Successfully')
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                    ";
+                }else{
+                    echo 
+                    "
+                    <script>alert('Job deletion failed')
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                    </script>
+                    ";
+                }
+            }else{
+                echo 
+                "
+                <script>alert('Auction deletion failed')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }
+
+        }else if($publishMode == 'Standard Mode'){
+            if($this->JobHandlerModel->deleteJob($jobId)){
+                echo 
+                "
+                <script>alert('Job deleted Successfully')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }else{
+                echo 
+                "
+                <script>alert('Job deletion failed')
+                window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+            }
+        }else{
+            echo 
+            "
+            <script>alert('Invalid Publish Mode!')</script>
+            ";
+        }
     }
 
-    public function deleteJob()
-    {
-    }
 }

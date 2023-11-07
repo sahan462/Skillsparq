@@ -1,12 +1,11 @@
 <?php
-//login controller for buyer, 
-class LoginUser extends Controller
+//login controller for Seller
+class LoginSeller extends Controller
 {
 
     public function __construct()
     {
         $this->loginHandler = $this->model('LoginHandler');
-        $this->profileHandler = $this->model('ProfileHandler');
     }
 
     public function index(){
@@ -15,44 +14,40 @@ class LoginUser extends Controller
         $data['title'] = "SkillSparq";
 
         $errors = array();         
-        $errors["email"] = "";
+        $errors["phoneNumber"] = "";
         $errors["password"] = "";
         $data['errors'] = $errors;
 
-        $this->view('loginUser', $data);
+        $this->view('loginSeller', $data);
 
     }
 
     public function validate(){
 
-        $errors["email"] = "";
+        $errors["phoneNumber"] = "";
         $errors["password"] = "";
 
 
         if(isset($_POST["login"]) ){
 
-            $email = $_POST["email"];
+            $phoneNumber = $_POST["phoneNumber"];
             $password = $_POST["password"];
 
-            if($this->loginHandler->emailCheck($email)){
-
-                $row = $this->loginHandler->userCheck($email, $password);
+            if($Seller = $this->loginHandler->phoneNumberCheck($phoneNumber)){
+                $SellerId = $Seller['seller_id'];
+                $row = $this->loginHandler->sellerCheck($SellerId, $password);
 
                 if($row){
 
                     $_SESSION["userId"] = $row['user_id'];
-                    $_SESSION["email"] = $row['user_email'];
+                    $_SESSION["phoneNumber"] = $Seller['phone_number'];
                     $_SESSION['password'] = $row['user_password'];
                     $_SESSION['role'] = $role =$row['role'];
-                    
-                    $profile = mysqli_fetch_assoc($this->profileHandler->getUserProfile($row['user_id']));
-                    $_SESSION['firstName'] = $profile['first_name'];
-                    $_SESSION['lastName'] = $profile['last_name'];
-                    $_SESSION['userName'] = $profile['user_name'];
-                    $data['profile'] = $profile;
-                    
+
                     if($role == 'Buyer'){
                         header("location: /skillsparq/public/buyerdashboard");
+                    }else if($role == "Seller"){
+                        header("location: /skillsparq/public/sellerdashboard");
                     }else if($role == "Admin"){
                         header("location: /skillsparq/public/adminDashboard");
                     }else if($role == "Customer Support Assistant"){
@@ -65,7 +60,7 @@ class LoginUser extends Controller
 
                     $errors["password"] = "Incorrect password";
                     $data["errors"] = $errors;
-                    $this->view("loginUser", $data);
+                    $this->view("loginSeller", $data);
 
                 }
 
@@ -75,7 +70,7 @@ class LoginUser extends Controller
 
                 $errors["email"]="Email is not found";
                 $data["errors"] = $errors;
-                $this->view("loginUser", $data);
+                $this->view("loginSeller", $data);
 
             }
 
