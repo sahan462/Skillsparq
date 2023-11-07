@@ -558,7 +558,8 @@ body{
 }
 .card-slider .carousel .card{
     list-style: none;
-    border: 1px solid #ddd; 
+    border: 1px solid #ddd;
+    border-radius: 10px; 
     cursor: pointer;
 }
 .card-slider .carousel .card .img img{
@@ -568,8 +569,7 @@ body{
     border-radius: 8px;
 }
 .card-slider .carousel .card .user-details{
-    display: flex;
-    align-items: center;
+
 }
 .card-slider .carousel .card .user-details .profile-pic{
     margin-right: 2px;

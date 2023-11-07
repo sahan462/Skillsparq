@@ -16,7 +16,7 @@
     <body>
         <div class="addjob-container">
             <div class="img">
-                <div class="header">Do the Necessary Changes...</div>
+                <div class="header">Make the Necessary Changes...</div>
                 <script  src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
                 <dotlottie-player style="display:flex;" src="https://lottie.host/47f01f7c-caa8-46fd-9772-810f482eeeda/7tsoBoHMIW.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
             </div>
