@@ -1,4 +1,4 @@
-<?php include "components/sellerDashboardHeader.component.php"; ?>
+<?php include "components/sellerHeader.component.php"; ?>
 
 <?php
 $data["activeStatus"] = "display: none;";
@@ -185,54 +185,7 @@ $data["feedbacks"] = array();
             </div>
         </div>
     </div>
-    <div class="slider-out-container">
-        <div class="slider-container">
-            <div class="slider">
-                <div class="slides">
-                    <!--radio buttons-->
-                    <input type="radio" name="radio-btn" id="radio1">
-                    <input type="radio" name="radio-btn" id="radio2">
-                    <input type="radio" name="radio-btn" id="radio3">
-                    <input type="radio" name="radio-btn" id="radio4">
-                    <!--slide images-->
-                    <div class="slide first">
-                        <img src="./assests/images/silder image 1.jpeg" alt="image1">
-                    </div>
-                    <div class="slide">
-                        <img src="./assests/images/silder image 2.jpg" alt="image2">
-                    </div>
-                    <div class="slide">
-                        <img src="./assests/images/silder image 3.jpeg" alt="image3">
-                    </div>
-                    <div class="slide">
-                        <img src="./assests/images/silder image 4.webp" alt="image4">
-                    </div>
-                    <!--automatic navigation-->
-                    <div class="navigation-auto">
-                        <div class="auto-btn1"></div>
-                        <div class="auto-btn2"></div>
-                        <div class="auto-btn3"></div>
-                        <div class="auto-btn4"></div>
-                    </div>
-
-                    <!--manual navigation-->
-                    <div class="navigation-manual">
-                        <label for="radio1" class="manual-btn"></label>
-                        <label for="radio2" class="manual-btn"></label>
-                        <label for="radio3" class="manual-btn"></label>
-                        <label for="radio4" class="manual-btn"></label>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/skillsparq/public/assests/js/profile.script.js"></script>
-<script src="./assests/js/home.script.js"></script>
-</body>
-
-</html>
