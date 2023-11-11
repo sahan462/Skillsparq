@@ -10,13 +10,13 @@ body{
 
 header {
     background-color: #fff;
-    color: #333;
+    color: #62646A;
 }
 
 header .upperHeader{
-    height: 80px;
+    height: 60px;
     width: 100%;
-    padding: 32px 64px;
+    padding: 32px 32px;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -36,47 +36,9 @@ header .upperHeader{
 
 .logo a {
     font-size: 24px;
-    color: #333;
+    color: #1dbf73;
     text-decoration: none;
     font-weight: bold;
-}
-
-/*search bar*/
-
-.upperHeader .searchBar{
-    flex-basis: 200%;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.upperHeader .searchBar form{
-    display: flex;
-    width: 100%;
-}
-
-.upperHeader .searchBar input[type=text] {
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-    border: 1px solid #c5c6c9;
-    border-radius: 4px 0 0 4px;
-    border-right: 0;
-}
-
-.upperHeader .searchBar button {
-    display: block;
-    text-align: left;
-    margin: 0;
-    padding: 14px;
-    cursor: pointer;
-    border: 1px solid #c5c6c9;
-    border-radius: 0 4px 4px 0;
-}
-
-.upperHeader .searchBar button:hover {
-    background: #c5c6c9;
 }
 
 .submenu {
@@ -175,14 +137,14 @@ header .upperHeader{
     text-decoration: none;
 }
 .nav-links a {
-    color: #333;
+    color: #62646A;
     text-decoration: none;
 }
 .upperHeader svg {
     width: 24px;
     height: 24px;
     font-size: 14px;
-    color: #333;
+    color: #62646A;
     margin-right: 10px;
     align-items: center;
 }
@@ -211,31 +173,6 @@ header .upperHeader{
 @media only screen and (max-width: 767px) {
     .navbar  {
         display: none;
-    }
-}
-
-/*header categories*/
-
-.headerCategories nav .nav-links {
-    display: flex;
-    justify-content: space-between;
-    border-top: 2px solid #62646A;
-    border-bottom: 2px solid #62646A;
-    padding: 10px 32px 10px 32px;
-}
-
-@media only screen and (max-width: 600px) {
-    .headerCategories  {
-        overflow: scroll;
-        overflow-y: hidden;
-    }
-}
-
-@media only screen and (max-width: 1400px) {
-    .headerCategories  {
-        width: auto;
-        overflow-x: scroll;
-        overflow-y: hidden;
     }
 }
 
