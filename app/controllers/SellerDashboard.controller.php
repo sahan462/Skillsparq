@@ -3,27 +3,20 @@
 class SellerDashboard extends Controller
 {
 
-    public function __construct()
-    {
-    }
-
     public function index()
     {
 
-        // if (!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
-        //     header("location: loginUser");
-        // } else {
+        if (!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+            header("location: loginSeller");
+        } else {
 
-        //     $data['var'] = "Home Page";
-        //     $data['title'] = "SkillSparq";
+            $data['errors'] = $this->initiate();
+            $data['var'] = "SellerDashboard";
+            $data['title'] = "SkillSparq";
+            $this->view('SellerDashboard', $data);
+        }
 
-        //     $this->view('sellerDashboard', $data);
-        // }
 
-        $data['errors'] = $this->initiate();
-        $data['var'] = "SellerDashboard";
-        $data['title'] = "SkillSparq";
-        $this->view('SellerDashboard', $data);
     }
 
     public function initiate()

@@ -21,38 +21,177 @@
 }
 
 
-.sellerDashboard-content .userHistoryContent{
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 24px;
-    border: 1px solid #e4e5e7;
-    overflow: auto;
-    padding: 16px 32px 32px;
-    box-sizing: border-box;
-    border-radius: 8px;
-}
-
-
-.sellerDashboard-content .historyHeader{
-    font-size: 20px;
-    color: #404145;
-}
-
 /*dashboard-content*/
 
 .dashboard-container{
     display: flex;
+    justify-content: space-around;
+    margin: 0px 32px;
+}
+
+/*free space*/
+.free-space{
+    display: flex;
+    justify-content: center;
 }
 
 /*job-feed*/
 
 .dashboard-container .job-feed{
-    width: 75%;
+    width: 70%;
     border-right: 1px solid #dadbdd;
+    padding: 0px 32px;
+}
+
+.searchBar{
+    width: 100%;
+}
+.searchBar form{
+    display: flex;
+    width: 100%;
+}
+.searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+}
+.searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 14px;
+    cursor: pointer;
+    background-color: #31d65a;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+}
+.searchBar button:hover {
+    background: #c5c6c9;
+}
+
+.jobs{
+    width: 100%;
+    height: auto;
+    border: 1px solid #c5c6c9;
+    margin-top: 32px;
+    border-radius: 10px;
+}
+
+.job-header{
+    border-bottom: 1px solid #c5c6c9;
+    padding: 16px;
+    color: #333;
 }
 
 /*seller-details*/
 
 .dashboard-container .seller-details{
     width: 25%;
+}
+
+.dashboard-container .profile{
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #dadbdd;
+    padding: 32px;
+    font-size: 14px;
+    line-height: 130%;
+    margin-bottom: 32px;
+    box-sizing: border-box;
+}
+
+/*Active Status*/
+.dashboard-container .profile .active-status{
+    position: absolute; 
+    right: 0px; 
+    height: 20px; 
+    left: 0px;
+}
+/*Profile Pic upload*/
+.dashboard-container .profile .profile-picture{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.dashboard-container .profile .profile-picture img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.dashboard-container .profile .profile-picture .full-name{
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #222325;
+    cursor: default;
+    background: none;
+    border: 0;
+}
+.dashboard-container .profile .profile-picture .user-name{
+    margin-bottom: 16px;
+}
+/**/
+/*preview-profile*/
+.preview-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 8px;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.preview-profile button:hover{
+    color: #fff;
+    background: #1dbf73;
+    border: 2px solid #fff;
+}
+
+.edit-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.edit-profile button:hover{
+    color: #fff;
+    background: #62646a;
+}
+
+.dashboard-container .profile .user-info{
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 2px solid #dadbdd;
+    border-bottom: 2px solid #dadbdd;
+}
+.dashboard-container .profile .user-info svg{
+    width: 16px;
+    height: 16px;
+    color: #333;
+    margin-right: 8px;
+}
+.dashboard-container .profile .user-info .info{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.dashboard-container .profile .user-info span{
+    display: flex;
+    align-items: center;
 }
