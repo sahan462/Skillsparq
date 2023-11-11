@@ -132,7 +132,6 @@ class JobHandler extends database
     }
 
     //update job
-    //$title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId
     public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 

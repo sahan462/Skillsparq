@@ -1,11 +1,7 @@
-* {
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;;
 }
 
 header {
@@ -39,44 +35,6 @@ header .upperHeader{
     color: #1dbf73;
     text-decoration: none;
     font-weight: bold;
-}
-
-/*search bar*/
-
-.upperHeader .searchBar{
-    flex-basis: 200%;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.upperHeader .searchBar form{
-    display: flex;
-    width: 100%;
-}
-
-.upperHeader .searchBar input[type=text] {
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-    border: 1px solid #c5c6c9;
-    border-radius: 4px 0 0 4px;
-    border-right: 0;
-}
-
-.upperHeader .searchBar button {
-    display: block;
-    text-align: left;
-    margin: 0;
-    padding: 14px;
-    cursor: pointer;
-    border: 1px solid #c5c6c9;
-    border-radius: 0 4px 4px 0;
-}
-
-.upperHeader .searchBar button:hover {
-    background: #c5c6c9;
 }
 
 .submenu {
