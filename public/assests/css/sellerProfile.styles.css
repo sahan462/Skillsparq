@@ -1,0 +1,13 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*profile-container*/
+.profile-container{
+    margin: 32px;
+    box-sizing: border-box;
+    border: 1px solid #c5c6c9;
+    border-radius: 10px;
+}

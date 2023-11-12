@@ -4,13 +4,14 @@ body{
     padding: 0;
 }
 
-/*header*/
-@media only screen and (min-width: 600px) {
-    .personalized-header {
-        margin-top: 8px;
-        padding: 0;
-    }
+/*sellerDashboard-content*/
+.sellerDashboard-content{
+    background-color: #f7f7f7;
+    border: 1px solid #c5c6c9;
+    padding-bottom: 32px;
+    height: 100%;
 }
+/*header*/
 .sellerDashboard-content .personalizedHeader{
     min-height: 24px;
     margin-top: 24px;
@@ -21,7 +22,12 @@ body{
     line-height: 140%;
     padding: 0 32px;
 }
-
+@media only screen and (min-width: 600px) {
+    .personalized-header {
+        margin-top: 8px;
+        padding: 0;
+    }
+}
 /*dashboard-content*/
 .dashboard-container{
     display: flex;
@@ -31,7 +37,7 @@ body{
 
 /*job-feed*/
 .dashboard-container .job-feed{
-    width: 70%;
+    width: 75%;
     padding: 0px 32px;
 }
 .searchBar{
