@@ -5,7 +5,6 @@ body{
 }
 
 header {
-    background-color: #fff;
     color: #62646A;
 }
 
@@ -16,7 +15,7 @@ header .upperHeader{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid #62646A;
+    border-bottom: 0px solid #62646A;
     box-sizing: border-box;
 }
 
@@ -122,7 +121,7 @@ header .upperHeader{
 }
 
 .nav-links li {
-    margin-right: 20px;
+    margin-left: 20px;
     display: flex;
     justify-content: flex-end;
 }
