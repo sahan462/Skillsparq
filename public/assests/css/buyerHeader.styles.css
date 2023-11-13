@@ -1,11 +1,10 @@
-* {
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
-
 body{
-    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 header {
@@ -35,7 +34,7 @@ header .upperHeader{
 .logo a {
     padding-top: 14px;
     font-size: 24px;
-    color: #62646A;
+    color: #1dbf73;
     text-decoration: none;
     font-weight: bold;
 }
@@ -72,10 +71,13 @@ header .upperHeader{
     cursor: pointer;
     border: 1px solid #c5c6c9;
     border-radius: 0 4px 4px 0;
+    background-color: #1dbf73;
+    transition: ease-in-out 0.3s;
 }
 
 .upperHeader .searchBar button:hover {
-    background: #c5c6c9;
+    color: #333;
+    background: #fff;
 }
 
 .submenu {
@@ -172,6 +174,9 @@ header .upperHeader{
 
 .nav-links a:hover {
     text-decoration: underline;
+    border-bottom: 4px solid #1dbf73;
+    padding-bottom: 2px;
+    text-decoration: none;
 }
 
 .upperHeader svg {

@@ -18,7 +18,6 @@
         <?php include "components/cardSlider.component.php"?>
         <?php include "components/cardSlider.component.php"?>
         <?php include "components/cardSlider.component.php"?>
-        <?php include "components/cardSlider.component.php"?>
     </div>
 </div>
 <?php include "components/footer.component.php"?>
