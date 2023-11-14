@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
+    <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 
 </head>

@@ -94,6 +94,8 @@ body{
     border-bottom: 1px solid #c5c6c9;
     padding: 16px;
     color: #333;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
 }
 .jobs .content{
     width: 100%;
@@ -102,6 +104,7 @@ body{
 /*seller-details*/
 .dashboard-container .seller-details{
     width: 25%;
+    padding: 0px 16px;
 }
 .dashboard-container .profile{
     position: relative;
