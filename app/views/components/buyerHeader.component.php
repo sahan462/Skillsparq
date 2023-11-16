@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/buyerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
-    <link rel="stylesheet" href="./assests/css/profile.styles.css">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
-    <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="./assests/css/profile.styles.css">
+    <link rel="stylesheet" href="./assests/css/footer.styles.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header>

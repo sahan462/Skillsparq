@@ -148,5 +148,5 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/skillsparq/public/assests/js/profile.script.js"></script>
-</body>
-</html>
+    
+<?php include "components/footer.component.php"; ?>

@@ -13,23 +13,8 @@
     <div class="section-one-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
-            </svg>
-            <h1 class="section-one-left-h1">Programming & Tech</h1>
-    </div>
-    <div class="section-one-right">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-        <svg class="heart" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-            </svg>
-        <h1>503</h1>
-        <svg class="share" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
-            <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-            </svg>
-            <svg class="three-dots" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
+        </svg>
+        <h4 class="section-one-left-h1">Programming & Tech</h4>
     </div>
 </section>
 
@@ -42,26 +27,16 @@
             </div>
             <div class="section-two-left-right">
                 <div class="section-two-left-right-one">
-                    <h2 class="section-two-left-right-h-one">Avishka</h2>
-                    <h2 class="section-two-left-right-h-two">@avishkaindunil</h2>
-                    <h2 class="section-two-left-right-h-three"> | </h2>
-                    <div class="section-two-left-right-color">
-                        <h2 class="section-two-left-right-h-four">Top Rated</h2>
-                    </div>
+                    <h3 class="section-two-left-right-h-one">Avishka Indunil</h3>
                 </div>
-                
                 <div class="section-two-left-right-two">
-                    <div class="section-two-left-right-two-one">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                        </svg>
-                    </div>
-                    <div class="section-two-left-right-two-two">
-                        <h2>5</h2>
-                        <h2 class="section-two-left-right-two-two-h-one">(191)</h2>
-                        <h2 class="section-two-left-right-two-two-h-two"> | </h2>
-                        <h2 class="section-two-left-right-two-two-h-three">22 Orders in Queue  </h2>
-                    </div>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <h4>5</h4>
+                    <h4 class="section-two-left-right-two-two-h-one">(191)</h4>
                 </div>
             </div>
         </div>
@@ -99,8 +74,8 @@
                 <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
             </div>
                 
-                <!-- Tab content -->
-                <div id="London" class="tabcontent" style="display: block;">
+            <!-- Tab content -->
+            <div id="London" class="tabcontent" style="display: block;">
                 <div class="columns">
                     <ul class="price">
                         <li><b>USD 120 </b></li>
@@ -162,13 +137,12 @@
                             </div>
                         </li>
                         </div>
-                        <li class="grey"><a href="#" class="button">Request to Order</a></li>
-                        <li class="black"><a href="#" class="button-black">Compare Packages</a></li>
+                        <a href="#"><button>Request to Order</button></a>
                     </ul>
-                    </div>
                 </div>
+            </div>
                 
-                <div id="Paris" class="tabcontent">
+            <div id="Paris" class="tabcontent">
                 <div class="columns">
                     <ul class="price">
                         <li class="package-cost"><b>USD 220 </b></li>
@@ -230,13 +204,12 @@
                                 </div>
                             </li>
                         </div>
-                        <li class="grey"><a href="#" class="button">Request to Order</a></li>
-                        <li class="black"><a href="#" class="button-black">Compare Packages</a></li>
+                        <a href="#"><button>Request to Order</button></a>
                     </ul>
-                    </div>
                 </div>
+            </div>
                 
-                <div id="Tokyo" class="tabcontent">
+            <div id="Tokyo" class="tabcontent">
                 <div class="columns">
                     <ul class="price">
                         <li><b>USD 320 </b></li>
@@ -298,13 +271,42 @@
                                 </div>
                             </li>
                         </div>
-                        <li class="grey"><a href="#" class="button">Request to Order</a></li>
-                        <li class="black"><a href="#" class="button-black">Compare Packages</a></li>
+                        <a href="#"><button>Request to Order</button></a>
                     </ul>
-                    </div>
                 </div>
+            </div>
         </div>
     </div>
+</section>
+
+<section class="section-four">
+    <h1 class="heading-one">About this gig</h1>
+    <h4 class="heading-two">Greetings!
+        We are passionate, hardworking and professional bunch of people 
+        working together side by side to provide our clients the absolute 
+        best. Our products are always CLEAN HIGH-QUALITY RESPONSIVE DESIGN.
+    </h4>
+    <h4 class="heading-three">Our Premium Services</h4>
+        <ul>
+            <li>100% Clean Responsive Design</li>
+            <li>Ecommerce site Design (Standard and Premium Plans Only)</li>
+            <li>Multiple Payment Methods (PayPal, Stripe, Bank, Credit Card, etc.)</li>
+            <li>Wholesale site</li>
+            <li>Website Revamp</li>
+            <li>Blog</li>
+            <li>Figma to WordPress</li>
+            <li>Elementor / Fix Elementor Issue</li>
+            <li>Social media integration</li>
+            <li>SEO friendly site</li>
+        </ul>
+    <h4 class="heading-four">We don't just deliver a WordPress site, we make sure that 
+        you can easily manage your website by yourself, which results 
+        in you managing it on your own without any help. We also 
+        provide small video tutorials on demand explaining the complete 
+        know-hows of your website.</h4>
+    <h4>Please contact us with your requirements before placing the 
+        order to avoid cancellation. If you are clear about your 
+        requirement, Place your order now. </h4>
 </section>
 
 <section class="section-three">
@@ -370,44 +372,8 @@
             </div>
         </div>
     </div>
-
-
-    <div class="section-three-right">
-
-    </div>
 </section>
 
-<section class="section-four">
-    <h1 class="heading-one">About this gig</h1>
-    <h4 class="heading-two">Greetings!
-        We are passionate, hardworking and professional bunch of people 
-        working together side by side to provide our clients the absolute 
-        best. Our products are always CLEAN HIGH-QUALITY RESPONSIVE DESIGN.
-    </h4>
-    <h4 class="heading-three">Our Premium Services</h4>
-        <ul>
-            <li>100% Clean Responsive Design</li>
-            <li>Ecommerce site Design (Standard and Premium Plans Only)</li>
-            <li>Multiple Payment Methods (PayPal, Stripe, Bank, Credit Card, etc.)</li>
-            <li>Wholesale site</li>
-            <li>Website Revamp</li>
-            <li>Blog</li>
-            <li>Figma to WordPress</li>
-            <li>Elementor / Fix Elementor Issue</li>
-            <li>Social media integration</li>
-            <li>SEO friendly site</li>
-        </ul>
-    <h4 class="heading-four">We don't just deliver a WordPress site, we make sure that 
-        you can easily manage your website by yourself, which results 
-        in you managing it on your own without any help. We also 
-        provide small video tutorials on demand explaining the complete 
-        know-hows of your website.</h4>
-    <h4>Please contact us with your requirements before placing the 
-        order to avoid cancellation. If you are clear about your 
-        requirement, Place your order now. </h4>
-    <h4>*ᴅɪsᴄʟᴀɪᴍᴇʀ: ᴘʟᴇᴀsᴇ ɴᴏᴛᴇ ᴛʜᴀᴛ ᴛʜᴇ ᴘᴇʀsᴏɴ ɪɴ ɢɪɢ ɪᴍᴀɢᴇ ɪs ᴀ 
-        ᴍᴏᴅᴇʟ ᴀɴᴅ ɴᴏᴛ ᴛʜᴇ sᴇʟʟᴇʀ.</h4>
-</section>
 <script src="./assests/js/displayGig.script.js"></script>
 
 <?php include "components/footer.component.php"?>

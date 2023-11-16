@@ -27,7 +27,7 @@
                         <li class="wordLink"><a href="buyerDashboard">Dashboard</a></li>
                         <li class="wordLink"><a href="#">Orders</a></li>
                         <li class="wordLink"><a href="#">Earnings</a></li>
-                        <li class="wordLink"><a href="#">Switch to Selling</a></li>
+                        <li class="wordLink"><a href="#">Switch to Buying</a></li>
                         <li>
                             <div class="submenu">
                                 <ul>

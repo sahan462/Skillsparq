@@ -7,7 +7,6 @@ body{
 header {
     color: #62646A;
 }
-
 header .upperHeader{
     height: 60px;
     width: 100%;
@@ -15,15 +14,16 @@ header .upperHeader{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    border-bottom: 0px solid #62646A;
+    border-bottom: 1px solid #c5c6c9;
     box-sizing: border-box;
+
 }
 
 
 @media only screen and (max-width: 767px) {
     header .upperHeader  {
         height: 116px;
-        border-bottom: 2px solid #62646A;
+        border-bottom: 1px solid #c5c6c9;
     }
 }
 
@@ -35,11 +35,9 @@ header .upperHeader{
     text-decoration: none;
     font-weight: bold;
 }
-
 .submenu {
     position: absolute;
 }
-
 .submenu ul{
     flex-direction: column;
     position: absolute;
@@ -56,13 +54,11 @@ header .upperHeader{
     box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
     display: none;
 }
-
 .submenu ul li {
     list-style-type: none;
     position: relative;
     padding: 0.625rem 0 0.5rem;
 }
-
 @media screen and (max-width: 767px) {
 
     .upperHeader .navbar{
@@ -114,12 +110,10 @@ header .upperHeader{
     justify-content: space-between;
     margin-left: 64px;
 }
-
 .nav-links {
     list-style: none;
     display: flex;
 }
-
 .nav-links li {
     margin-left: 20px;
     display: flex;

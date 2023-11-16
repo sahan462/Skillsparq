@@ -172,7 +172,7 @@ header .upperHeader{
     text-decoration: none;
 }
 
-.nav-links a:hover {
+.wordLink a:hover {
     text-decoration: underline;
     border-bottom: 4px solid #1dbf73;
     padding-bottom: 2px;
