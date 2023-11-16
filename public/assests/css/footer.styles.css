@@ -1,9 +1,9 @@
 .footer {
     width: 100%;
-    background: #fff;
-    border-radius: 6px;
+    background: #f7f7f7;
     font-weight: 600;
     border-top: 1px solid #c5c6c9;
+    margin-top: 32px;
   }
   .footer .footer-row {
     display: flex;

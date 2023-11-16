@@ -50,7 +50,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.job-card .category,.price,.flexibility,.flexibility, .start, .end, .base-bid, .min-bid, .current-highest{
+.job-card .category,.job-card .price,.job-card .flexibility,.job-card .start,.job-card .end, .job-card .base-bid, .job-card .min-bid, .job-card .current-highest{
     display: flex;
     align-items: center;
 }
