@@ -23,7 +23,7 @@ header .upperHeader{
 
 /*logo*/
 .logo{
-    width: 10%;
+    width: auto;
 }
 .logo a {
     font-size: 24px;
@@ -31,11 +31,13 @@ header .upperHeader{
     text-decoration: none;
     font-weight: bold;
 }
-
+.logo a span {
+    width: 10%;
+}
 /*search bar*/
 
 .upperHeader .searchBar{
-    width: 40%;
+    width: 54%;
     justify-content: space-between;
 }
 .upperHeader .searchBar form{
@@ -96,7 +98,6 @@ header .upperHeader{
 /*navbar and navigation links*/
 
 .upperHeader .navbar{
-    border: 1px solid black;
     display: flex;
     align-items: center;
     width: 32%;
@@ -107,27 +108,52 @@ header .upperHeader{
 .nav-links {
     list-style: none;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
-    border: 3px solid black;
-
+}
+.nav-links .svgLinks{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+}
+.nav-links .wordLinks{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+.nav-links .imgLinks{
+    display: flex;
+    width: auto; 
 }
 .navbar .nav-links li {
-    width: calc(100% / 6);
-    border: 1px solid black;
     box-sizing: border-box;
     display: flex;
     justify-content: end;
+    align-items: center;
 }
 .nav-links a {
     color: #62646A;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items:end;
+    box-sizing: border-box;
 }
-.wordLink a:hover {
-    text-decoration: underline;
-    border-bottom: 4px solid #1dbf73;
-    padding-bottom: 2px;
+.nav-links .wordLink{
+    padding-bottom: 4px;
+    padding-right: 4px;
+}
+.nav-links .wordLink:hover {
     text-decoration: none;
+    border-bottom: 4px solid #1dbf73;
+    padding-bottom: 0; 
+    box-sizing: border-box;
+}
+.nav-links .imgLink{
+    padding: 2px;
+    border: 4px solid #1dbf73;
+    border-radius: 100%;
 }
 .upperHeader svg {
     width: 24px;
@@ -136,20 +162,9 @@ header .upperHeader{
     font-size: 14px;
     color: #62646A;
     align-items: center;
+    margin: 3px;
 }
-.upperHeader .svgLink{
 
-}
-.upperHeader .svgLink:hover{
-    overflow: hidden;
-    width: 28px;
-    height: 28px;
-    box-sizing: border-box;
-    color: #62646A;
-    background-color: #dadbdd;
-    border-radius: 100%;
-    object-fit: cover;
-}
 .upperHeader .notificationSign{
     width: 8px;
     height: 8px;
@@ -157,6 +172,15 @@ header .upperHeader{
     position: absolute;
     background-color: crimson;
 }
+
+/*profile pic*/
+.upperHeader img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
 /*header categories*/
 .headerCategories{
     width: 100%;
@@ -170,7 +194,41 @@ header .upperHeader{
 }
 
 
-/*media queries 600px
+
+/*media queries 900px
+@media only screen and (max-width: 900px) {
+    .upperHeader .searchBar{
+        width: 60%;
+        justify-content: space-between;
+        margin-left: 32px;
+    }
+
+    .upperHeader .searchBar{
+        flex-basis: 500%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+
+    .headerCategories nav .nav-links {
+        width: calc(100% - 40px);
+    }    
+
+    .headerCategories  {
+        overflow-x: scroll;
+    }
+}
+
+
 @media screen and (max-width: 600px) {
 
     .navbar  {
@@ -224,36 +282,5 @@ header .upperHeader{
     }
 }
 
-/*media queries 900px
-@media only screen and (max-width: 900px) {
-    .upperHeader .searchBar{
-        width: 60%;
-        justify-content: space-between;
-        margin-left: 32px;
-    }
 
-    .upperHeader .searchBar{
-        flex-basis: 500%;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .upperHeader .searchBar input[type=text] {
-        border: 1px solid #c5c6c9;
-    }
-
-    .headerCategories nav .nav-links {
-        width: calc(100% - 40px);
-    }    
-
-    .headerCategories  {
-        overflow-x: scroll;
-    }
-}
 */
