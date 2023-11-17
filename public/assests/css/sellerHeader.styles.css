@@ -3,7 +3,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 header {
     color: #62646A;
 }
@@ -16,49 +15,158 @@ header .upperHeader{
     justify-content: space-between;
     border-bottom: 1px solid #c5c6c9;
     box-sizing: border-box;
-
-}
-
-
-@media only screen and (max-width: 767px) {
-    header .upperHeader  {
-        height: 116px;
-        border-bottom: 1px solid #c5c6c9;
-    }
 }
 
 /*logo*/
-
+.logo{
+    width: auto;
+}
 .logo a {
     font-size: 24px;
     color: #1dbf73;
     text-decoration: none;
     font-weight: bold;
 }
-.submenu {
-    position: absolute;
+.logo a span {
+    width: 10%;
 }
-.submenu ul{
+
+/*navbar and navigation links*/
+.upperHeader .navbar{
+    display: flex;
+    align-items: center;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-links .svgLinks{
+    display: flex;
+    justify-content: space-around;
+}
+.nav-links .wordLinks{
+    display: flex;
+    justify-content: space-around;
+}
+.nav-links .imgLinks{
+    display: flex;
+    width: auto; 
+}
+.navbar .nav-links li {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.nav-links a {
+    color: #62646A;
+    text-decoration: none;
+    display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-items:end;
+    box-sizing: border-box;
+}
+.nav-links .wordLink{
+    padding-bottom: 4px;
+    padding-right: 4px;
+}
+.nav-links .wordLink:hover {
+    text-decoration: none;
+    border-bottom: 4px solid #1dbf73;
+    padding-bottom: 0; 
+    box-sizing: border-box;
+}
+.nav-links .imgLink{
+    padding: 2px;
+    border: 4px solid #1dbf73;
+    border-radius: 100%;
+}
+.upperHeader svg {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #62646A;
+    align-items: center;
+    margin: 3px;
+}
+
+.upperHeader .notificationSign{
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
     position: absolute;
-    background-color: white;
-    align-items: flex-start;
-    transition: all 0.5s ease;
-    width: 20rem;
-    right: -3rem;
-    top: 4.5rem;
-    border-radius: 0.325rem;
-    gap: 0;
-    padding: 1rem 0rem;
-    opacity: 0;
-    box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
-    display: none;
+    background-color: crimson;
 }
-.submenu ul li {
-    list-style-type: none;
-    position: relative;
-    padding: 0.625rem 0 0.5rem;
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+.nav-links li {
+    margin-left: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.upperHeader svg {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: #62646A;
+    margin-right: 10px;
+    align-items: center;
+}
+
+/*profile pic*/
+.upperHeader img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1500px) {
+    .navbar .wordLink  {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .upperHeader .searchBar{
+        flex-basis: 500%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+
+      .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .navbar  {
+        display: none;
+    }
+}
+
+
 @media screen and (max-width: 767px) {
 
     .upperHeader .navbar{
@@ -96,73 +204,11 @@ header .upperHeader{
     }
 }
 
-@media only screen and (max-width: 1500px) {
-    .navbar .wordLink  {
-        display: none;
-    }
-}
-
-/*navbar and navigation links*/
-
-.navbar{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 64px;
-}
-.nav-links {
-    list-style: none;
-    display: flex;
-}
-.nav-links li {
-    margin-left: 20px;
-    display: flex;
-    justify-content: flex-end;
-}
-.nav-links .wordLink:hover {
-    text-decoration: underline;
-    border-bottom: 4px solid #1dbf73;
-    padding-bottom: 2px;
-    text-decoration: none;
-}
-.nav-links a {
-    color: #62646A;
-    text-decoration: none;
-}
-.upperHeader svg {
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-    color: #62646A;
-    margin-right: 10px;
-    align-items: center;
-}
-
-@media only screen and (max-width: 1500px) {
-    .upperHeader .searchBar{
-        flex-basis: 500%;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    
-
-      .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .upperHeader .searchBar input[type=text] {
-        border: 1px solid #c5c6c9;
-    }
-}
 
 
 @media only screen and (max-width: 767px) {
-    .navbar  {
-        display: none;
+    header .upperHeader  {
+        height: 116px;
+        border-bottom: 1px solid #c5c6c9;
     }
 }
-
-

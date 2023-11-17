@@ -1,3 +1,7 @@
+<?php 
+    $data['profilePicture'] = "avishka.jpg";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,57 +32,40 @@
                         <li class="wordLink"><a href="#">Orders</a></li>
                         <li class="wordLink"><a href="#">Earnings</a></li>
                         <li class="wordLink"><a href="#">Switch to Buying</a></li>
-                        <li>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a></li>
-                                    <li><a href="#">Link 3</a></li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </nav>
                 <nav>
-                    <ul class="nav-links">
+                <ul class="nav-links">
+                    <div class="svgLinks">
                         <li>
                             <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
                                 </svg>
+                                <div class="notificationSign"></div>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <a href="chat">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                 </svg>
+                                <div class="notificationSign"></div>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="wordLink" ><a href="loginUser/logout">Sign Out</a></li>
-                        <li>
-                            <a href="sellerProfile">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a></li>
-                                    <li><a href="#">Link 3</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                    </div>
+                    <div class="wordLinks">
+                        <li><a href="loginUser/logout" class="wordLink">Sign Out</a></li>
+                    </div>
+
+                    <li class="imgLinks">
+                        <a href="sellerProfile" class="imgLink">
+                            <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                            <div class="loginSign"></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             </div>
         </div>
 

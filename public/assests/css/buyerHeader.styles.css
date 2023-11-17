@@ -6,12 +6,10 @@
 body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 header {
     background-color: #fff;
     color: #62646A;
 }
-
 header .upperHeader{
     display: flex;
     align-items: center;
