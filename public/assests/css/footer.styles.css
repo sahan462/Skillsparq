@@ -1,9 +1,9 @@
 .footer {
     width: 100%;
-    background: #fff;
-    border-radius: 6px;
+    background: #f7f7f7;
     font-weight: 600;
     border-top: 1px solid #c5c6c9;
+    margin-top: 32px;
   }
   .footer .footer-row {
     display: flex;
@@ -14,8 +14,6 @@
   }
   .footer-row .footer-col h4 {
     color: #000000;
-    font-size: 1.2rem;
-    font-weight:600;
     padding-left: 38px;
   }
   .footer-col .links {

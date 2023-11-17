@@ -262,6 +262,5 @@ $errors = $data["errors"];
         </div>
     </div>
     <script src="./assests/js/addGig.script.js"></script>
-</body>
-
-</html>
+    
+<?php include "components/footer.component.php"?>

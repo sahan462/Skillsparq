@@ -4,10 +4,28 @@ body{
     padding: 0;
 }
 
+.container{
+    background-color: #f7f7f7;
+    border: 1px solid #c5c6c9;
+    padding-bottom: 32px;
+    height: 100%;
+}
+
 /*profile-container*/
 .profile-container{
+    background-color: #fff;
     margin: 32px;
     box-sizing: border-box;
     border: 1px solid #c5c6c9;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+/*profile-header*/
+.profile-header img{
+    border-radius: 100%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
 }

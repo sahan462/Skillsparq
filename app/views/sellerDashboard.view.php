@@ -44,7 +44,7 @@
                     Online
                 </div>
                 <div class="profile-picture">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                    <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
                         <?php echo $data["fullName"] ?>
                     </div>
@@ -136,6 +136,5 @@
     </div>
 
 </div>
-<?php
-    include "components/footer.component.php";
-?>
+
+<?php include "components/footer.component.php"; ?>
