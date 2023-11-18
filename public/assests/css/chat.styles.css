@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-color: #f7f7f7;
+}
+.wrapper{
+    display: flex;
+    gap: 16px;
+    margin: 32px 16px;
+    height: calc(100vh - 124px);
+}
+
+/*Main container*/
+
+/*Right Container*/
+.userList{
+    border: 2px solid #c5c6c9;
+    width: 25%;
+    overflow-y: scroll;
+}
+.userList p{
+    color: #222325;
+    font-size: 16px;
+
+}
+.userList .contactCard .contactProfilePicture{
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 2px;
+    margin-right: 6px;
+}
+
+
+/*Middle Container */
+.chat{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 50%;
+    border: 2px solid #c5c6c9;
+    border-radius: 10px;
+}
+
+/*chat header*/
+.chat .header{
+    height: 5%;
+    border-bottom: 2px solid #c5c6c9;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+.chat .receiver{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.chat .receiver .dot{
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    margin-right: 6px;
+}
+.chat .receiver img{
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 2px;
+    margin-right: 6px;
+}
+.receiver .receiverActive{
+    background-color: #1dbf73;
+}
+.receiver .receiverOffline{
+    background-color: crimson;
+}
+.receiver .upperSection{
+    display: flex;
+    align-items: center;
+}
+.receiver .rightSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.receiver h1{
+    font-size: 18px;
+    line-height: 100%;
+
+} 
+.receiver a{
+    color: #404145;
+    text-decoration: underline;
+}
+
+/*Messages*/
+
+.chat .container{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    overflow-y: scroll;
+    padding: 16px 16px 32px 16px;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.container::-webkit-scrollbar { 
+    display: none;  
+}
+.messageContainer {
+    width: fit-content;
+    max-width: 70%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.darker {
+    float: right;
+    border-color: #ccc;
+    background-color: #ddd;
+}
+P{
+    display: flex;
+    flex-direction: column;
+}
+.container .senderContent{
+    display: flex;
+    align-items: center;
+}
+.container .senderContent img{
+    margin-right: 16px;
+
+}
+.container .receiverContent{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.container .receiverContent img{
+    margin-left: 16px;
+}
+.messageContainer::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.messageContainer img {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.time-right {
+    color: #aaa;
+}
+.time-left {
+    display: flex;
+    justify-content: end;
+    color: #999;
+}
+
+
+/*footer*/
+.chat .footer{
+    height: 5%;
+    border-top: 2px solid #c5c6c9;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+/*Left Container*/
+.receiverInfo{
+    box-sizing: border-box;
+    padding: 16px 16px 0 16px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #c5c6c9;
+    width: 25%;
+}
+.receiverInfo .info{
+    height: 50%;
+}
+.info .header a{
+    color: #222325;
+}
+.info .header p{
+    display: inline-block;
+    margin-bottom: 16px;
+}
+.info .content{
+    display: flex;
+    flex-direction: column;
+}
+.info .content .row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.info .content .row p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+}
+.info .content .row .leftSide{
+    color: #74767e;
+}
+.info .content .row .rightSide{
+    color: #404145;
+}
+.receiverInfo .animation{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
