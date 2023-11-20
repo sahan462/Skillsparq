@@ -1,7 +1,7 @@
 <?php
-    if($_SESSION['role'] == 'buyer'){
+    if($_SESSION['role'] == 'Buyer'){
         include "components/buyerSimpleHeader.component.php";
-    }else{
+    }else if($_SESSION['role'] == 'Seller'){
         include "components/sellerHeader.component.php";
     }
 ?>
@@ -10,7 +10,7 @@
     $data["receiverProfilePicture"] = "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     $data["senderProfilePicture"] = "https://images.unsplash.com/photo-1489980869433-d1f7c7ac0fcf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     $data["lastSeen"] = "online";
-    $data["receiverName"] = "Chamalka Chandrasena";
+    $data["receiverName"] = "Chamal Fernando";
 
     $data["receiverCountry"] = "Switzerland";
     $data["memberSince"] = "July 2022";
@@ -27,7 +27,7 @@
     <div class="userList">
         <p>All Messages</p>
         <div class="contactCard">
-            <img class="contactProfilePicture active" src="<?php echo $data["receiverProfilePicture"]?>" loading="lazy">
+            <img class="contactProfilePicture receiverActive" src="<?php echo $data["receiverProfilePicture"]?>" loading="lazy">
         </div>
     </div>
 
@@ -60,7 +60,7 @@
         </div>
 
         <!-- Messages -->
-        <div class="container">
+        <div class="innerContainer">
 
             <div class="receiver-container">
                 <div class="messageContainer">
@@ -113,7 +113,7 @@
         </div>
 
         <!-- chat footer  -->
-        <div class="footer">
+        <div class="chatFooter">
             <div class="attachement"></div>
             <div class="inputMessage"></div>
             <div class="sendButton"></div>
