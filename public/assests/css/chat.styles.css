@@ -102,8 +102,7 @@ body{
 }
 
 /*Messages*/
-
-.chat .container{
+.chat .innerContainer{
     display: flex;
     flex-direction: column;
     height: 90%;
@@ -112,7 +111,7 @@ body{
     -ms-overflow-style: none;  
     scrollbar-width: none; 
 }
-.container::-webkit-scrollbar { 
+.innerContainer::-webkit-scrollbar { 
     display: none;  
 }
 .messageContainer {
@@ -136,20 +135,20 @@ P{
     display: flex;
     flex-direction: column;
 }
-.container .senderContent{
+.innerContainer .senderContent{
     display: flex;
     align-items: center;
 }
-.container .senderContent img{
+.innerContainer .senderContent img{
     margin-right: 16px;
 
 }
-.container .receiverContent{
+.innerContainer .receiverContent{
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
 }
-.container .receiverContent img{
+.innerContainer .receiverContent img{
     margin-left: 16px;
 }
 .messageContainer::after {
@@ -174,7 +173,7 @@ P{
 
 
 /*footer*/
-.chat .footer{
+.chat .chatFooter{
     height: 5%;
     border-top: 2px solid #c5c6c9;
     padding: 16px;
