@@ -12,20 +12,18 @@ body{
   width: 100;
   height: calc(100vh - 60px);
   display: flex;
-  border: 1px solid black;
   box-sizing: border-box;
 }
 
 /*left side*/
 
 .leftContainer{
-  width: 50%;
-  border: 1px solid black;
+  width: 40%;
 }
 
 .leftContainer .addGigHeader{
   height: 20%;
-  width: 60%;
+  width: 75%;
   font-size: 40px;
   line-height: 120%;
   font-weight: 700;
@@ -43,16 +41,19 @@ body{
 /*right side*/
 
 .rightContainer{
-  width: 50%;
-  border: 1px solid black;
+  width: 60%;
 }
 
-#regForm {
+.rightContainer #regForm {
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 100%;
   width: 100%;
   background-color: #ffffff;
 }
 
-input {
+.rightContainer input[type="text"], textarea {
   margin: 0;
   padding: 0;
   height: 40px;
@@ -64,6 +65,7 @@ input {
   -ms-flex-pack: justify;
   justify-content: space-between;
   border: 1px solid #c5c6c9;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 input.invalid {
@@ -80,15 +82,83 @@ input.invalid {
   margin: 0 2px;
   background-color: #bbbbbb;
   border: none;
-  border-radius: 50%;
+  border-radius: 100%;
   display: inline-block;
-  opacity: 0.5;
 }
 
-.step.active {
-  opacity: 1;
+.step.tabActive {
+  background-color: #1dbf73;
 }
 
 .step.finish {
-  background-color: #04AA6D;
+  background-color: #bbbbbb;
+}
+
+.tab .sideImages{
+  display: flex;
+}
+
+.type-1{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #404145;
+  font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.type-2{
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+  color: #62646a;
+}
+.type-1, .type-2{
+  display: block;
+}
+
+.rightContainer select{
+  margin-bottom: 32px;
+  height: 40px;
+  width: 200px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #c5c6c9;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.rightContainer button{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #1dbf73;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    width: 200px;
+    height: 38px;
+    width: 114px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.rightContainer button span{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.rightContainer button span::after{
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.rightContainer button .next::after{
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
 }
