@@ -30,7 +30,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
             <div class="personal-information">
                 Web Developer, Undergraduate at University of Colombo School of Computing.
             </div>
-            <div class="seller-professionalPulse">
+            <div class="se-professionalPulse">
             </div>
         </div>
     </div>
@@ -67,9 +67,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
         </div>
         <hr>
         <div class="">
-
         </div>
-
     </div>
     <div class="other-category-container">
         <div class="other-category-header">
@@ -79,10 +77,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
             </div>
         </div>
         <hr>
-
-
     </div>
-
     <div class="other-category-container">
         <div class="other-category-header">
             <div class="Topics">Employment History</div>
@@ -92,25 +87,17 @@ $data["profilePicture"] = "dummyprofile.jpg";
             </div>
         </div>
         <hr>
-
-
     </div>
-
     <div class="other-category-container">
         <div class="other-category-header">
             <div class="Topics">Other Experiences</div>
             <div class="buttons">
                 <button id="button"> Add</button>
             </div>
-
         </div>
         <hr>
         <div>content</div>
-
     </div>
-
-
-
 </div>
 
 
