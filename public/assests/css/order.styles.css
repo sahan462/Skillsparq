@@ -1,0 +1,85 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+header{
+    background-color: #fff !important;
+}
+.footer{
+    background-color: #fff !important;
+}
+
+/*order container header*/
+
+.orderContainer{
+    margin: 16px 32px;
+    padding: 16px 32px;
+}
+.orderContainerHeader{
+    border-bottom: 2px solid #c5c6c9;
+}
+.orderContainerHeader button {
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 20px;
+    border: none;
+    margin-right: 16px;
+    padding-bottom: 4px;
+    border-bottom: 4px solid transparent; 
+}
+.orderContainerHeader button:hover {
+    color: #1dbf73;
+    border-bottom-color: #1dbf73; 
+}
+.active{
+    color: #1dbf73;
+    border-bottom: 4px solid #1dbf73;
+}
+
+
+/*order container content*/
+
+.orderContent{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+.userActivity{
+    width: 60%;
+    background-color: #fff;
+    margin-top: 16px;
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+}
+.orderContent .orderDetails{
+    width: 40%;
+    background-color: #fff;
+    margin-top: 16px;
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+}
+
+/*userActivity*/
+
+.userActivity .tabContent{
+    padding: 16px 32px;
+}
+.userActivity p{
+    text-align: justify;
+}
+
+/*userActivity - details*/
+
+.userActivity #details .buyer{
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+    width: 50%;
+}
+.userActivity #details img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}

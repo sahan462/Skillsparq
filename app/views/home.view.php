@@ -85,6 +85,7 @@
                 </div>
             </div>
 
+            <!-- categories -->
             <div class="category-container">
                 <h1>You need it, We've got it</h1>
                 <div class="categories">
@@ -141,6 +142,7 @@
                 </div>
             </div>
 
+            <!-- about us -->
             <div class="WhoAreWe-container">
                 <div class="image">
                     <img src="./assests/images/whoarewe.jpeg" alt="WhoAreWe" loading="lazy">
@@ -164,6 +166,7 @@
                 </div>
             </div>
 
+            <!-- Trending Gigs -->
             <div class="topgig-container">
                 <div class="topgig-header">
                     <svg id = "left" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -248,7 +251,7 @@
                 </div>
             </div>
 
-
+            <!-- why us -->
             <div class="whyus-container">
                 <div class="whyus-description">
                     <h2>The best part? Everything.</h2>
@@ -297,7 +300,6 @@
             </div>
 
         </div>
-    <script src="./assests/js/home.script.js"></script>
-    <?php include "components/footer.component.php"?>;
-    </body>
-</html>
+
+<script src="./assests/js/home.script.js"></script>
+<?php include "components/footer.component.php"?>;
