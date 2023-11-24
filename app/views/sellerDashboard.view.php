@@ -1,21 +1,21 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
-<?php 
+<?php
 
-    $data["fullName"] = "Damitha Sahan";
-    $data["activeStatus"] = "display: none";
-    $data['ongoingOrders'] = 0;
-    $data["earningsThisMonth"] = "$0";
-    $data["completedOrders"] = 0;
-    $data["lastDelivery"] = "July 2023";
-    $data["expertise"] = "Tec";
-    $data["userName"] = "@DSahan";
-    $data["profilePicture"] = "dummyprofile.jpg";
+$data["fullName"] = "Damitha Sahan";
+$data["activeStatus"] = "display: none";
+$data['ongoingOrders'] = 0;
+$data["earningsThisMonth"] = "$0";
+$data["completedOrders"] = 0;
+$data["lastDelivery"] = "July 2023";
+$data["expertise"] = "Tec";
+$data["userName"] = "@DSahan";
+$data["profilePicture"] = "dummyprofile.jpg";
 
-    $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
-    $job['job_id'] = "125";
-    $job['publish_mode'] = "StandardMode";
-    $job["description"] = "Use of Chat GPT to create course materials for an IELTS course.
+$job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
+$job['job_id'] = "125";
+$job['publish_mode'] = "StandardMode";
+$job["description"] = "Use of Chat GPT to create course materials for an IELTS course.
 
     Chat GPT prompts will be given to the freelancer. The freelancer doesn't need to check the exercises they just need to create them and save them to a google drive folder.
     
@@ -23,17 +23,17 @@
     
     A) Choose 12 words at random from a list that will be given to the freelancer and then use chat GPT to create exercises for this list.  
     B) 20 units of materials need to be created (3 exercises per unit)";
-    $job["category"] = "programming and tech";
-    $job["amount"] = "$200";
-    $job["flexible_amount"] = 0;
-    $job["deadline"] = 0;
-    $job["buyer_id"] = 0;
+$job["category"] = "programming and tech";
+$job["amount"] = "$200";
+$job["flexible_amount"] = 0;
+$job["deadline"] = 0;
+$job["buyer_id"] = 0;
 ?>
 
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $_SESSION['firstName']?>
+        Howdy, <?php echo $_SESSION['firstName'] ?>
     </div>
 
     <div class="dashboard-container">
@@ -44,7 +44,7 @@
                     Online
                 </div>
                 <div class="profile-picture">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic" loading="lazy">
+                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
                         <?php echo $data["fullName"] ?>
                     </div>
@@ -105,11 +105,11 @@
                     </div>
                 </div>
             </div>
-            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
             <dotlottie-player src="https://lottie.host/f7447497-2858-429b-b8c5-111d24de9b54/FQJOFIwVkX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
         <div class="job-feed">
-            <div class = "searchBar">
+            <div class="searchBar">
                 <form action="">
                     <input type="text" placeholder="Search for Job" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
@@ -120,16 +120,17 @@
                     <h3>Most Recent Jobs You Might Like</h3>
                 </div>
                 <div class="content">
-                        <?php
-                            $i = 0;
-                            while($i < 5){
-                           // if(!empty($jobs)){ 
-                             //   foreach($jobs as $job){
-                                    include "components/jobCard.component.php";
-                                    $i = $i + 1;
-                             }
-                        ?>
-                        <?php //}} ?>
+                    <?php
+                    $i = 0;
+                    while ($i < 5) {
+                        // if(!empty($jobs)){ 
+                        //   foreach($jobs as $job){
+                        include "components/jobCard.component.php";
+                        $i = $i + 1;
+                    }
+                    ?>
+                    <?php //}} 
+                    ?>
                 </div>
             </div>
         </div>
