@@ -61,9 +61,12 @@ $data["profilePicture"] = "dummyprofile.jpg";
     </div>
     <div class="other-category-container">
         <div class="other-category-header">
-            <div class="Topics">Gigs</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
+            <div class="Topics">My Gigs</div>
+            <!-- <div class="buttons">
+                <button id="button">&plus;</button>
+            </div> -->
+            <div class="plus">
+                <a href="addGig"><button id="plus">Add New Gig</button></a>
             </div>
         </div>
         <hr>
