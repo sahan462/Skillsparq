@@ -34,6 +34,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
             </div>
         </div>
     </div>
+
     <div class="other-category-container">
         <div class="other-category-header">
             <div class="Topics">Full Stack Web Developer</div>
@@ -57,6 +58,62 @@ $data["profilePicture"] = "dummyprofile.jpg";
         <div class="other-category-header">
             <div class="Topics">Full Stack Web Developer</div>
         </div> -->
+    </div>
+    <div class="other-category-container">
+        <div class="other-category-header">
+            <div class="Topics">Gigs</div>
+            <div class="buttons">
+                <button id="button"> Add</button>
+            </div>
+        </div>
+        <hr>
+        <div class="card-container">
+            <div class="card">
+                <img src="../public/assests/images/gigcard3.jpg">
+                <div class="card-content">
+                    <h2>Gig Card</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
+                    <a href="">Read more</a>
+                </div>
+
+            </div>
+            <div class="card">
+                <img src="../public/assests/images/gigcard2.jpg">
+                <div class="card-content">
+                    <h2>Gig Card</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
+                    <a href="">Read more</a>
+                </div>
+
+            </div>
+            <div class="card">
+                <img src="../public/assests/images/gigcard3.jpg">
+                <div class="card-content">
+                    <h2>Gig Card</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
+                    <a href="">Read more</a>
+                </div>
+
+            </div>
+            <div class="card">
+                <img src="../public/assests/images/gigcard4.jpg">
+                <div class="card-content">
+                    <h2>Gig Card</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
+                    <a href="">Read more</a>
+                </div>
+
+            </div>
+            <div class="card">
+                <img src="../public/assests/images/gigcard4.jpg">
+                <div class="card-content">
+                    <h2>Gig Card</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
+                    <a href="">Read more</a>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div class="other-category-container">
         <div class="other-category-header">
@@ -98,22 +155,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
         <hr>
         <div>content</div>
     </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Gigs</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
-            </div>
-        </div>
-        <hr>
-        <div class="card-container">
-            <div class="card">
-                <img src="../../public/assests/images/chamal.jpg" alt="">
-                <div class="card-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</div>
-                <a href="">Read more</a>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 
