@@ -11,7 +11,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
                 <div class="img"><img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic"></div>
                 <div class="buttons">
                     <a href="#"><button id="button">See Public View</button></a>
-                    <a href="#"><button id="button">Profile Settings</button></a>
+                    <a href="sellerProfileSettings.view.php"><button id="button">Profile Settings</button></a>
                 </div>
             </div>
             <hr>
@@ -37,7 +37,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
 
     <div class="other-category-container">
         <div class="other-category-header">
-            <div class="Topics">Full Stack Web Developer</div>
+            <div class="intro-Topic">Full Stack Web Developer</div>
         </div>
         <div class="">
             $20.00/hr
@@ -53,6 +53,21 @@ $data["profilePicture"] = "dummyprofile.jpg";
         <hr>
         <div class="other-category-header">
             <div class="Topics">Skills</div>
+            <!-- <div class="input-container">
+                <div class="Topics">
+                    <a href="" class="add">&plus;</a>
+                </div>
+                <div class="inp-grp"></div>
+            </div> -->
+        </div>
+        <div class="other-category-content">
+            <div class="content">
+                <div class="wrap">
+                    <h4>Add your skills</h4>
+                    <a href="#" class="add">&plus;</a>
+                </div>
+                <div class="inp-grp"></div>
+            </div>
         </div>
         <!-- <hr>
         <div class="other-category-header">
@@ -114,52 +129,49 @@ $data["profilePicture"] = "dummyprofile.jpg";
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
                     <a href="">Read more</a>
                 </div>
-
             </div>
         </div>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Testimonials</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
+        <div class="other-category-container">
+            <div class="other-category-header">
+                <div class="Topics">Testimonials</div>
+                <div class="buttons">
+                    <button id="button"> Add</button>
+                </div>
+            </div>
+            <hr>
+            <div class="">
             </div>
         </div>
-        <hr>
-        <div class="">
-        </div>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Certifications</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
+        <div class="other-category-container">
+            <div class="other-category-header">
+                <div class="Topics">Certifications</div>
+                <div class="buttons">
+                    <button id="button">Add</button>
+                </div>
             </div>
+            <hr>
         </div>
-        <hr>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Employment History</div>
-
-            <div class="buttons">
-                <button id="button"> Add</button>
+        <div class="other-category-container">
+            <div class="other-category-header">
+                <div class="Topics">Employment History</div>
+                <div class="buttons">
+                    <button id="button"> Add</button>
+                </div>
             </div>
+            <hr>
         </div>
-        <hr>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Other Experiences</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
+        <div class="other-category-container">
+            <div class="other-category-header">
+                <div class="Topics">Other Experiences</div>
+                <div class="buttons">
+                    <button id="button"> Add</button>
+                </div>
             </div>
+            <hr>
+            <div>content</div>
         </div>
-        <hr>
-        <div>content</div>
+
     </div>
 
-</div>
 
-
-<?php include "components/footer.component.php"; ?>
+    <?php include "components/footer.component.php"; ?>
