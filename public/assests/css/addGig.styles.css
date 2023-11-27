@@ -53,21 +53,6 @@ body{
   background-color: #ffffff;
 }
 
-.rightContainer input[type="text"], textarea {
-  margin: 0;
-  padding: 0;
-  height: 40px;
-  font-size: 16px;
-  margin-bottom: 32px;
-  border-radius: 4px;
-  width: 100%;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  border: 1px solid #c5c6c9;
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
-
 input.invalid {
   background-color: #ffdddd;
 }
@@ -161,4 +146,71 @@ input.invalid {
   top: 0;
   right: -20px;
   transition: 0.5s;
+}
+
+/*tab 1*/
+
+.rightContainer input[type="text"], textarea {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  font-size: 16px;
+  margin-bottom: 32px;
+  border-radius: 4px;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 1px solid #c5c6c9;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+/*tab 2*/
+
+table{
+  margin-top: 32px;
+}
+
+table, th, td {
+  border: 1px solid #c5c6c9;
+  border-collapse: collapse;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+th{
+  width: 25%;
+}
+
+table input, textarea{
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  font-size: 16px;
+  margin-bottom: 0;
+  border-radius: 4px;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 1px solid black;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+/*tab 3*/
+
+.images input{
+  display: none;
+}
+
+.images label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  width: 200px;
+  border: 1px solid #c5c6c9;
+  border-radius: 4px;
+  margin-bottom: 32px;
 }
