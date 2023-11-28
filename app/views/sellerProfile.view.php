@@ -59,11 +59,11 @@ $data["profilePicture"] = "dummyprofile.jpg";
             <div class="Topics">Full Stack Web Developer</div>
         </div> -->
     </div>
-    <div class="other-category-container">
+    <div class="other-category-container" id="gigs">
         <div class="other-category-header">
             <div class="Topics">Gigs</div>
             <div class="buttons">
-                <button id="button"> Add</button>
+                <a href="addgig"><button id="button"> Add</button></a>
             </div>
         </div>
         <hr>
