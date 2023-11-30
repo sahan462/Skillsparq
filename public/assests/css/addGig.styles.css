@@ -45,12 +45,18 @@ body{
 }
 
 .rightContainer #regForm {
+  display: flex;
+  flex-direction: column;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 5px;
   height: 100%;
   width: 100%;
   background-color: #ffffff;
+}
+
+.rightContainer #regForm .content{
+  height: 80%;
 }
 
 input.invalid {

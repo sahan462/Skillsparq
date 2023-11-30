@@ -24,7 +24,7 @@ body{
 .card{
     width: 325px;
     background-color:#32bd6e;
-    margin: 10px;
+    margin: 7px;
     transition: transform 0.5s ease, background-color 0.4s ease;
 }
 
@@ -41,11 +41,11 @@ body{
 }
 .card-container{
     font-family: sans-serif;
-    box-sizing: border-box;
+    box-sizing:inherit;
     display: flex;
     flex-wrap: wrap;
     justify-content:center; 
-    margin: 50px;
+    margin: 10px;
 }
 
 .card-content{
@@ -126,6 +126,23 @@ body{
     object-fit: cover;
     width: 100px;
     height: 100px;
+}
+
+#plus{
+    justify-content:end;
+    align-items: end;
+    background-color:#32bd6e;
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 15px;
+}
+
+#plus:hover{
+    cursor: pointer;
+    background-color: rgb(25, 125, 92);
 }
 
 .seller{
