@@ -156,7 +156,7 @@ input.invalid {
 
 /*tab 1*/
 
-.rightContainer input[type="text"], textarea {
+.rightContainer input[type="text"], .rightContainer textarea {
   margin: 0;
   padding: 0;
   height: 40px;
@@ -173,10 +173,6 @@ input.invalid {
 
 /*tab 2*/
 
-table{
-  margin-top: 32px;
-}
-
 table, th, td {
   border: 1px solid #c5c6c9;
   border-collapse: collapse;
@@ -188,18 +184,36 @@ th{
   width: 25%;
 }
 
-table input, textarea{
-  margin: 0;
+table input{
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  width: 50% !important;
+  border: none !important;
+  border-bottom: 1px solid black !important;
+}
+
+table textarea{
+  margin: 16px;
   padding: 0;
   height: 40px;
   font-size: 16px;
-  margin-bottom: 0;
-  border-radius: 4px;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
   width: 100%;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  border: 1px solid black;
+  border: none !important;
+  border-bottom: 1px solid black !important;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+table select{
+  margin-bottom: 0 !important;
+  height: 40px;
+  width: 200px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #c5c6c9;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
