@@ -11,7 +11,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
                 <div class="img"><img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic"></div>
                 <div class="buttons">
                     <a href="#"><button id="button">See Public View</button></a>
-                    <a href="sellerProfileSettings.view.php"><button id="button">Profile Settings</button></a>
+                    <a href="#"><button id="button">Profile Settings</button></a>
                 </div>
             </div>
             <hr>
