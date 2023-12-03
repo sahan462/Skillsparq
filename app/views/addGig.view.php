@@ -66,7 +66,7 @@
                     <div class="packages">
                         <table>
                             <tr>
-                                <th></th>
+                                <th style="width: 20%;"></th>
                                 <th>Basic</th>
                                 <th>Standard</th>
                                 <th>Premium</th>
@@ -102,7 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="noOfDeliveryDays">
+                                    <div class="noOfDeliveryDays" style="display: flex;">
                                         <input type="text"  oninput="this.className = ''">
                                         <select name="timePeriod3" class="categories" required="">
                                             <option value="Days">Day(s)</option>
