@@ -9,8 +9,8 @@ body{
 .addGigContainer{
   margin: 16px 32px;
   padding: 16px;
-  width: 100;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
+  height: auto;
   display: flex;
   box-sizing: border-box;
 }
@@ -59,11 +59,15 @@ body{
   height: 80%;
 }
 
+.rightContainer #regForm .navigation{
+  height: 20%;
+}
+
 input.invalid {
   background-color: #ffdddd;
 }
 
-.tab {
+.addGigContainer .tab {
   display: none;
 }
 
@@ -173,23 +177,117 @@ input.invalid {
 
 /*tab 2*/
 
+.outerTab{
+  min-height: 300px;
+  height: auto ;
+}
+
+.row{
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+* {box-sizing: border-box}
+
+/* Style the tab */
+.Tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 25%;
+  height: 100% !important;
+}
+
+/* Style the buttons that are used to open the tab content */
+.Tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.Tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.Tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 75%;
+  border-left: none;
+  height: 100% !important;
+}
+
+.tabcontent input{
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  width: auto;
+  height: auto !important;
+}
+
+.tabcontent textarea{
+  padding: 0;
+  font-size: 16px;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  height: auto !important;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.tabcontent select{
+  margin-bottom: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  border-radius: 4px;
+  cursor: pointer;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+/*
+table{
+  width: 100%;
+  height: 100%;
+}
+
 table, th, td {
   border: 1px solid #c5c6c9;
   border-collapse: collapse;
   border-radius: 5px;
-  padding: 2px;
 }
 
-th{
-  width: 25%;
+.customName, .noOfDeliveryDays, .noOfRevisions{
+  padding: 0 8px 0 8px;
+}
+
+.customName, .noOfDeliveryDays{
+  display: flex;
+  justify-content: center;
 }
 
 table input{
   margin-bottom: 0 !important;
   border-radius: 0 !important;
-  width: 50% !important;
+  width: auto;
   border: none !important;
-  border-bottom: 1px solid black !important;
+  border-bottom: 2px dotted black !important;
 }
 
 table textarea{
@@ -204,19 +302,20 @@ table textarea{
   -ms-flex-pack: justify;
   justify-content: space-between;
   border: none !important;
-  border-bottom: 1px solid black !important;
+  border-bottom: 2px dotted black !important;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 table select{
   margin-bottom: 0 !important;
   height: 40px;
-  width: 200px;
+  width: 100%;
+  width: auto !important;
   border-radius: 4px;
   cursor: pointer;
-  border: 1px solid #c5c6c9;
+  border: none !important;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
+*/
 /*tab 3*/
 
 .images input{
@@ -233,4 +332,24 @@ table select{
   border: 1px solid #c5c6c9;
   border-radius: 4px;
   margin-bottom: 32px;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .addGigContainer{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .leftContainer, .rightContainer{
+    width: 100%;
+  }
+
+  .top{
+    width: 50%;
+  }
+
+
 }
