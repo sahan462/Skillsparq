@@ -63,13 +63,80 @@
                     <span class="type-1">Package Details</span>
                     <span class="type-2">Describe your offer and the service you provide</span>
 
+                    <div class="outerTab">
+
+                        <div class="Tab">
+                            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Basic</button>
+                            <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
+                        </div>
+
+                        <div id="London" class="tabcontent">
+
+                            <div class="row">
+                                <span>Create a Custom Name For Your Package: </span>
+                                <div class="customName"><input type="text"  oninput="this.className = ''"></div>
+                            </div>
+
+                            <div class="row">
+                                <span>How long will it take to Deliver: </span>
+                                <div class="noOfDeliveryDays">
+                                    <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
+                                    <select name="timePeriod1" class="categories" required="">
+                                        <option value="Days">Day(s)</option>
+                                        <option value="Weeks">Week(s)</option>
+                                        <option value="Months">Month(s)</option>
+                                        <option value="Years">Year(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <span>Number of Revisions You Provide: </span>
+                                <div class="noOfRevisions">
+                                    <select name="revision1"  class="categories" required="">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="Unlimited">Unlimited</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <span>Describe your offer and the service you provide on this package: </span>
+                            <div class="packageDescription">
+                                <textarea name="description" placeholder="I need.." rows="6" required="" spellcheck="false" oninput="this.className = ''"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div id="Paris" class="tabcontent">
+                            <h3>Paris</h3>
+                            <p>Paris is the capital of France.</p>
+                        </div>
+
+                        <div id="Tokyo" class="tabcontent">
+                            <h3>Tokyo</h3>
+                            <p>Tokyo is the capital of Japan.</p>
+                        </div>
+
+                    </div>
+
+
+
+<!--
                     <div class="packages">
                         <table>
                             <tr>
-                                <th style="width: 20%;"></th>
-                                <th>Basic</th>
-                                <th>Standard</th>
-                                <th>Premium</th>
+                                <th></th>
+                                <th class="top">Basic</th>
+                                <th class="top">Standard</th>
+                                <th class="top">Premium</th>
                             </tr>
                             <tr>
                                 <td>Create a Custome Name For Your Package: </td>
@@ -81,7 +148,7 @@
                                 <td>How long will it take to Deliver: </td>
                                 <td>
                                     <div class="noOfDeliveryDays">
-                                        <input type="text"  oninput="this.className = ''">
+                                        <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
                                         <select name="timePeriod1" class="categories" required="">
                                             <option value="Days">Day(s)</option>
                                             <option value="Weeks">Week(s)</option>
@@ -92,7 +159,7 @@
                                 </td>
                                 <td>
                                     <div class="noOfDeliveryDays">
-                                        <input type="text"  oninput="this.className = ''">
+                                        <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
                                         <select name="timePeriod2" class="categories" required="">
                                             <option value="Days">Day(s)</option>
                                             <option value="Weeks">Week(s)</option>
@@ -102,8 +169,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="noOfDeliveryDays" style="display: flex;">
-                                        <input type="text"  oninput="this.className = ''">
+                                    <div class="noOfDeliveryDays" >
+                                        <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
                                         <select name="timePeriod3" class="categories" required="">
                                             <option value="Days">Day(s)</option>
                                             <option value="Weeks">Week(s)</option>
@@ -117,7 +184,7 @@
                                 <td>Number of Revisions You Provide: </td>
                                 <td>
                                     <div class="noOfRevisions">
-                                        <select name="revision1" class="categories" required="">
+                                        <select name="revision1"  class="categories" required="">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -178,6 +245,7 @@
                             </tr>
                         </table>
                     </div>
+-->
                 </div>
 
                 <!-- tab 3 -->
