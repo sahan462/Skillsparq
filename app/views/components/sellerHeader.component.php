@@ -33,9 +33,9 @@ $data['profilePicture'] = "avishka.jpg";
                 <nav>
                     <ul class="nav-links">
                         <li class="wordLink"><a href="sellerDashboard">Dashboard</a></li>
-                        <li class="wordLink"><a href="#">Orders</a></li>
+                        <li class="wordLink"><a href="manageOrders">Orders</a></li>
                         <li class="wordLink"><a href="#">Earnings</a></li>
-                        <li class="wordLink"><a href="loginUser">Switch to Buying</a></li>
+                        <li class="wordLink"><a href="loginUser">Buying Mode</a></li>
                     </ul>
                 </nav>
                 <nav>

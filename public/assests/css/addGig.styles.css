@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box
+}
+
 body{
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
   margin: 0;
@@ -5,18 +9,15 @@ body{
 }
 
 /*Main Container*/
-
 .addGigContainer{
   margin: 16px 32px;
   padding: 16px;
-  min-height: calc(100vh - 60px);
   height: auto;
   display: flex;
   box-sizing: border-box;
 }
 
 /*left side*/
-
 .leftContainer{
   width: 40%;
 }
@@ -39,14 +40,16 @@ body{
 }
 
 /*right side*/
-
 .rightContainer{
   width: 60%;
+  min-height: calc(100vh - 60px);
+  height: auto;
 }
 
 .rightContainer #regForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -60,6 +63,7 @@ body{
 }
 
 .rightContainer #regForm .navigation{
+  margin-top: 16px;
   height: 20%;
 }
 
@@ -166,7 +170,7 @@ input.invalid {
   height: 40px;
   font-size: 16px;
   margin-bottom: 32px;
-  border-radius: 4px;
+  border-radius: 4px !important;
   width: 100%;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -175,11 +179,18 @@ input.invalid {
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
-/*tab 2*/
+.rightContainer input[type="number"]{
+  font-size: 16px;
+  border: 1px solid #c5c6c9;
+  border-radius: 4px !important;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
 
+/*tab 2*/
 .outerTab{
-  min-height: 300px;
-  height: auto ;
+  display: flex;
+  height: 300px ;
+  margin-bottom: 32px;
 }
 
 .row{
@@ -188,23 +199,19 @@ input.invalid {
   align-items: center;
 }
 
-* {box-sizing: border-box}
-
-/* Style the tab */
 .Tab {
-  float: left;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  border: 1px solid #c5c6c9;
+  border-radius: 4px !important;
+  background-color: #f7f7f7;
   width: 25%;
+  min-height: 300px;
   height: 100% !important;
 }
 
-/* Style the buttons that are used to open the tab content */
 .Tab button {
   display: block;
   background-color: inherit;
   color: black;
-  padding: 22px 16px;
   width: 100%;
   border: none;
   outline: none;
@@ -213,24 +220,23 @@ input.invalid {
   transition: 0.3s;
 }
 
-/* Change background color of buttons on hover */
 .Tab button:hover {
-  background-color: #ddd;
+  background-color: #404145;
+  color: #ffffff;
 }
 
-/* Create an active/current "tab button" class */
 .Tab button.active {
-  background-color: #ccc;
+  background-color: #404145;
+  color: #ffffff;
 }
 
-/* Style the tab content */
 .tabcontent {
-  float: left;
   padding: 0px 12px;
   border: 1px solid #ccc;
   width: 75%;
   border-left: none;
-  height: 100% !important;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .tabcontent input{
@@ -254,69 +260,21 @@ input.invalid {
 }
 
 .tabcontent select{
+  font-size: 16px;
   margin-bottom: 0 !important;
   height: auto !important;
   width: auto !important;
-  border-radius: 4px;
+  border-radius: 4px !important;
   cursor: pointer;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-/*
-table{
-  width: 100%;
-  height: 100%;
-}
 
-table, th, td {
-  border: 1px solid #c5c6c9;
-  border-collapse: collapse;
-  border-radius: 5px;
-}
-
-.customName, .noOfDeliveryDays, .noOfRevisions{
-  padding: 0 8px 0 8px;
-}
-
-.customName, .noOfDeliveryDays{
+.images{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-
-table input{
-  margin-bottom: 0 !important;
-  border-radius: 0 !important;
-  width: auto;
-  border: none !important;
-  border-bottom: 2px dotted black !important;
-}
-
-table textarea{
-  margin: 16px;
-  padding: 0;
-  height: 40px;
-  font-size: 16px;
-  margin-bottom: 0 !important;
-  border-radius: 0 !important;
-  width: 100%;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  border: none !important;
-  border-bottom: 2px dotted black !important;
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
-table select{
-  margin-bottom: 0 !important;
-  height: 40px;
-  width: 100%;
-  width: auto !important;
-  border-radius: 4px;
-  cursor: pointer;
-  border: none !important;
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
-*/
-/*tab 3*/
 
 .images input{
   display: none;
@@ -324,17 +282,15 @@ table select{
 
 .images label{
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   height: 40px;
-  width: 200px;
+  width: 150px;
   border: 1px solid #c5c6c9;
   border-radius: 4px;
-  margin-bottom: 32px;
 }
-
-
 
 @media only screen and (max-width: 900px) {
   .addGigContainer{
@@ -350,6 +306,56 @@ table select{
   .top{
     width: 50%;
   }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .addGigContainer{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .leftContainer, .rightContainer{
+    width: 100%;
+  }
+
+  .top{
+    width: 50%;
+  }
+
+  .outerTab{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .Tab {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px !important;
+    background-color: #f7f7f7;
+    width: 100%;
+    min-height: 38px !important;
+  }
+
+  .tabcontent {
+    padding: 0px 12px;
+    border: 1px solid #ccc !important;
+    width: 100%;
+    border-left: none;
+    overflow-y: auto;
+  }
+
+  .Tab button{
+    text-align: center;
+    font-size: 16px;
+    width: calc(100% / 3);
+    height: auto;
+    transition: all 0.5s;
+    cursor: pointer;
+}
 
 
 }
