@@ -15,6 +15,7 @@ $data['profilePicture'] = "avishka.jpg";
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
+    <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -32,9 +33,9 @@ $data['profilePicture'] = "avishka.jpg";
                 <nav>
                     <ul class="nav-links">
                         <li class="wordLink"><a href="sellerDashboard">Dashboard</a></li>
-                        <li class="wordLink"><a href="#">Orders</a></li>
+                        <li class="wordLink"><a href="manageOrders">Orders</a></li>
                         <li class="wordLink"><a href="#">Earnings</a></li>
-                        <li class="wordLink"><a href="loginUser">Switch to Buying</a></li>
+                        <li class="wordLink"><a href="loginUser">Buying Mode</a></li>
                     </ul>
                 </nav>
                 <nav>

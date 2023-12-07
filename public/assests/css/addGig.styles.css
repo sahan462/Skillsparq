@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box
+}
+
 body{
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
   margin: 0;
@@ -5,18 +9,15 @@ body{
 }
 
 /*Main Container*/
-
 .addGigContainer{
   margin: 16px 32px;
   padding: 16px;
-  width: 100;
-  height: calc(100vh - 60px);
+  height: auto;
   display: flex;
   box-sizing: border-box;
 }
 
 /*left side*/
-
 .leftContainer{
   width: 40%;
 }
@@ -39,12 +40,16 @@ body{
 }
 
 /*right side*/
-
 .rightContainer{
   width: 60%;
+  min-height: calc(100vh - 60px);
+  height: auto;
 }
 
 .rightContainer #regForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -53,26 +58,20 @@ body{
   background-color: #ffffff;
 }
 
-.rightContainer input[type="text"], textarea {
-  margin: 0;
-  padding: 0;
-  height: 40px;
-  font-size: 16px;
-  margin-bottom: 32px;
-  border-radius: 4px;
-  width: 100%;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  border: 1px solid #c5c6c9;
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+.rightContainer #regForm .content{
+  height: 80%;
+}
+
+.rightContainer #regForm .navigation{
+  margin-top: 16px;
+  height: 20%;
 }
 
 input.invalid {
   background-color: #ffdddd;
 }
 
-.tab {
+.addGigContainer .tab {
   display: none;
 }
 
@@ -161,4 +160,202 @@ input.invalid {
   top: 0;
   right: -20px;
   transition: 0.5s;
+}
+
+/*tab 1*/
+
+.rightContainer input[type="text"], .rightContainer textarea {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  font-size: 16px;
+  margin-bottom: 32px;
+  border-radius: 4px !important;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 1px solid #c5c6c9;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.rightContainer input[type="number"]{
+  font-size: 16px;
+  border: 1px solid #c5c6c9;
+  border-radius: 4px !important;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+/*tab 2*/
+.outerTab{
+  display: flex;
+  height: 300px ;
+  margin-bottom: 32px;
+}
+
+.row{
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.Tab {
+  border: 1px solid #c5c6c9;
+  border-radius: 4px !important;
+  background-color: #f7f7f7;
+  width: 25%;
+  min-height: 300px;
+  height: 100% !important;
+}
+
+.Tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.Tab button:hover {
+  background-color: #404145;
+  color: #ffffff;
+}
+
+.Tab button.active {
+  background-color: #404145;
+  color: #ffffff;
+}
+
+.tabcontent {
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 75%;
+  border-left: none;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tabcontent input{
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  width: auto;
+  height: auto !important;
+}
+
+.tabcontent textarea{
+  padding: 0;
+  font-size: 16px;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  height: auto !important;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.tabcontent select{
+  font-size: 16px;
+  margin-bottom: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  border-radius: 4px !important;
+  cursor: pointer;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.images{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.images input{
+  display: none;
+}
+
+.images label{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  width: 150px;
+  border: 1px solid #c5c6c9;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 900px) {
+  .addGigContainer{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .leftContainer, .rightContainer{
+    width: 100%;
+  }
+
+  .top{
+    width: 50%;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .addGigContainer{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .leftContainer, .rightContainer{
+    width: 100%;
+  }
+
+  .top{
+    width: 50%;
+  }
+
+  .outerTab{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .Tab {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px !important;
+    background-color: #f7f7f7;
+    width: 100%;
+    min-height: 38px !important;
+  }
+
+  .tabcontent {
+    padding: 0px 12px;
+    border: 1px solid #ccc !important;
+    width: 100%;
+    border-left: none;
+    overflow-y: auto;
+  }
+
+  .Tab button{
+    text-align: center;
+    font-size: 16px;
+    width: calc(100% / 3);
+    height: auto;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
 }
