@@ -25,16 +25,40 @@ body{
 }
 
 /*Content*/
-  
+.manageOrdersContent{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 32px;
+    height: calc(100vh - 180px);
+}  
+
+.manageOrdersContent .rightContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+}
+
+.manageOrdersContent .leftContainer{
+    width: 82%;
+}
 /* Style the tab */
 .manageOrdersContainer .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
+    border: none !important;
     background-color: #f1f1f1;
   }
   
   /* Style the buttons that are used to open the tab content */
 .manageOrdersContainer .tab button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 32px;
+    font-size: 16px;
     background-color: inherit;
     float: left;
     border: none;
@@ -46,18 +70,79 @@ body{
 
 /* Change background color of buttons on hover */
 .manageOrdersContainer .tab button:hover {
-    background-color: #ddd;
+    background-color: #404145;
+    color: #ffffff;
 }
 
 /* Create an active/current tablink class */
 .manageOrdersContainer .tab button.active {
-    background-color: #ccc;
+    background-color: #404145;
+    color: #ffffff;
 }
 
 /* Style the tab content */
 .manageOrdersContainer .tabcontent {
     display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+    background-color: inherit;
+    padding: 16px 0px;
+    border: none !important;
+    height: calc(100vh - 208px);
+    width: 100%;
+}
+
+/*styling table*/
+
+.outerTable {
+    height: 100%;
+    overflow: auto;
+}
+
+table{
+    background-color: #fff;
+    width: 100%;
+}
+
+table, th, td{
+    border-collapse: collapse !important;
+    border: 1px solid #c5c6c9 !important;
+}
+
+.thead th {
+    font-size: 32px;
+}
+.tbody tr{
+    cursor: pointer;
+}
+
+/*buyer column*/
+
+.buyer{
+    display: flex;
+    align-items: center;
+    border: 1px;
+}
+
+img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 900px) {
+    .manageOrdersContent{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 32px;
+        height: calc(100vh - 180px);
+    }  
+    
+    .manageOrdersContent .rightContainer{
+        display: none;
+    }
+    
+    .manageOrdersContent .leftContainer{
+        width: 100%;
+    }
 }
