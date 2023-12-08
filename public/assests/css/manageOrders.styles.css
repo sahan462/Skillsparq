@@ -35,7 +35,6 @@ body{
     margin-top: 32px;
     height: calc(100vh - 180px);
 }  
-
 .manageOrdersContent .rightContainer{
     display: flex;
     flex-direction: column;
@@ -43,7 +42,6 @@ body{
     align-items: center;
     width: 18%;
 }
-
 .manageOrdersContent .leftContainer{
     width: 100%;
 }
@@ -54,7 +52,7 @@ body{
     overflow: hidden;
     border: none !important;
     background-color: #f1f1f1;
-  }
+}
   
   /* Style the buttons that are used to open the tab content */
 .manageOrdersContainer .tab button {
@@ -100,31 +98,25 @@ body{
     height: 100%;
     overflow: auto;
 }
-
 table{
     margin-top: 16px;
     background-color: #fff;
     border-radius: 4px;
     width: 100%;
 }
-
 table, th, td{
     border-collapse: collapse !important;
     border-bottom: 1px solid #c5c6c9 !important;
 }
-
 tbody tr{
     cursor: pointer;
 }
-
 tbody tr:hover{
     background-color: #f1f1f1;
 }
-
 tbody th {
     font-size: 16px;
 }
-
 tbody td{
     justify-content: center;
     text-align: center;
@@ -136,7 +128,6 @@ tbody td{
     display: flex;
     align-items: center;
 }
-
 img{
     width: 48px;
     height: 48px;

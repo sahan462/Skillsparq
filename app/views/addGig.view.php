@@ -37,21 +37,28 @@
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
                     <div class="title">
-                        <p><input type="text" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
+                        <p><input type="text" name="title" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
                     </div>
 
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description" placeholder="I need.." rows="16" required="" spellcheck="false" oninput="this.className = ''" style="height: 150px"></textarea>
+                        <textarea name="description" placeholder="I need.." rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" required></textarea>
                     </div>
 
                     <div class="category">
                         <span class="type-1">Which category best fits your project?</span>
                         <span class="type-2">Choose from the list</span>
-                        <select name="category" class="categories" required="">
-                            <option value="Graphics &amp; Design">Graphics &amp; Design</option>
-                            <!-- ... other options ... -->
+                        <select name="category" class="categories" required>
+                            <option value="Graphics & Design">Graphics & Design</option>
+                            <option value="Programming & Tech">Programming & Tech</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Video & Animation">Video & Animation</option>
+                            <option value="Writing & Translation">Writing & Translation</option>
+                            <option value="Music & Audio">Music & Audio</option>
+                            <option value="Business">Business</option>
+                            <option value="Data">Data</option>
+                            <option value="Photography">Photography</option>
                             <option value="AI Services">AI Services</option>
                         </select>
                     </div>
@@ -75,14 +82,14 @@
 
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  oninput="this.className = ''"></div>
+                                <div class="customName"><input type="text"  name ="customName_1" oninput="this.className = ''"></div>
                             </div>
 
                             <div class="row">
                                 <span>How long will it take to Deliver: </span>
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
-                                    <select name="timePeriod1" class="categories" required="">
+                                    <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                    <select name="timePeriod_1" class="categories" >
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -94,7 +101,7 @@
                             <div class="row">
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
-                                    <select name="revision1"  class="categories" required="">
+                                    <select name="noOfRevisions_1"  class="categories" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -110,7 +117,7 @@
 
                             <span>Describe your offer and the service you provide on this package: </span>
                             <div class="packageDescription">
-                                <textarea name="description" placeholder="I need.." rows="6" required="" spellcheck="false" oninput="this.className = ''"></textarea>
+                                <textarea name="packageDescription_1" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
                             </div>
 
                         </div>
@@ -118,14 +125,14 @@
                         <div id="Paris" class="tabcontent">
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  oninput="this.className = ''"></div>
+                                <div class="customName"><input type="text"  name ="customName_2" oninput="this.className = ''"></div>
                             </div>
 
                             <div class="row">
                                 <span>How long will it take to Deliver: </span>
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
-                                    <select name="timePeriod1" class="categories" required="">
+                                    <input type="number" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                    <select name="timePeriod_2" class="categories" required>
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -137,7 +144,7 @@
                             <div class="row">
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
-                                    <select name="revision1"  class="categories" required="">
+                                    <select name="noOfRevisions_2"  class="categories" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -153,21 +160,21 @@
 
                             <span>Describe your offer and the service you provide on this package: </span>
                             <div class="packageDescription">
-                                <textarea name="description" placeholder="I need.." rows="6" required="" spellcheck="false" oninput="this.className = ''"></textarea>
+                                <textarea name="packageDescription_2" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
                             </div>
                         </div>
 
                         <div id="Tokyo" class="tabcontent">
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  oninput="this.className = ''"></div>
+                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''"></div>
                             </div>
 
                             <div class="row">
                                 <span>How long will it take to Deliver: </span>
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" oninput="this.className = ''" id="quantity" name="quantity" min="1" max="5">
-                                    <select name="timePeriod1" class="categories" required="">
+                                    <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                    <select name="timePeriod_3" class="categories" required>
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -179,7 +186,7 @@
                             <div class="row">
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
-                                    <select name="revision1"  class="categories" required="">
+                                    <select name="noOfRevisions_3"  class="categories" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -194,8 +201,9 @@
 
                             <span>Describe your offer and the service you provide on this package: </span>
                             <div class="packageDescription">
-                                <textarea name="description" placeholder="I need.." rows="6" required="" spellcheck="false" oninput="this.className = ''"></textarea>
+                                <textarea name="packageDescription_3" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -204,7 +212,7 @@
 
                     <div class="images">
                         <label for="coverImage">Cover Image:</label>
-                        <input type="file" id="coverImage" name="coverImage"  required />
+                        <input type="file" id="coverImage" name="coverImage"  required/>
 
                         <label for="sliderImage1">Slider Image 1:</label>
                         <input type="file" id="sliderImage1" name="sliderImage1"   />
@@ -226,7 +234,7 @@
                 <div>
                     <div style="float:right;">
                         <button type="button" id="prevBtn" onclick="nextPrev(-1)"><span class="previous">Previous</span></button>
-                        <button type="submit" id="nextBtn" onclick="nextPrev(1)"><span class="next">Next</span></button>
+                        <button type="submit" id="nextBtn" name="submit" onclick="nextPrev(1)"><span class="next">Next</span></button>
                     </div>
                 </div>
 
