@@ -210,10 +210,10 @@ input.invalid {
 }
 
 .Tab button {
-  display: block;
-  background-color: inherit;
-  color: black;
-  width: 100%;
+  display: block !important;
+  background-color: inherit !important;
+  color: black !important;
+  width: 100% !important; 
   border: none;
   outline: none;
   text-align: left;
@@ -222,13 +222,13 @@ input.invalid {
 }
 
 .Tab button:hover {
-  background-color: #404145;
-  color: #ffffff;
+  background-color: #404145 !important;
+  color: #ffffff !important;
 }
 
 .Tab button.active {
-  background-color: #404145;
-  color: #ffffff;
+  background-color: #404145 !important;
+  color: #ffffff !important;
 }
 
 .tabcontent {

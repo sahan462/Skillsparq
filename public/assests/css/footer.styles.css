@@ -87,10 +87,6 @@
     margin-left: -37px;
   }
 
-  .footer-bottom{
-    margin-left: 93px;
-    margin-right: 59px;
-  }
   @media (max-width: 768px) {
     .footer {
       position: relative;

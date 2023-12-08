@@ -28,19 +28,4 @@ class AddGig extends Controller
 
         return $errors;
     }
-
-    public function CreateGig()
-    {
-    }
-
-    public function viewGig()
-    {
-    }
-    public function updateGig()
-    {
-    }
-
-    public function deleteGig()
-    {
-    }
 }

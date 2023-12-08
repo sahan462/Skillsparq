@@ -42,8 +42,8 @@
                                 $i = 0;
                                 while($i < 20){
                             ?>
-                                    <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                    <tr onclick="window.location='sellerdashboard';">
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -83,12 +83,12 @@
                                 while($i < 20){
                             ?>
                                     <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
-                                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
-                                            <span>Ann Perera</span>
+                                            <img src="https://images.unsplash.com/photo-1489980869433-d1f7c7ac0fcf?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="right">       
+                                            <span>Kumar Sanagakkara</span>
                                         </td>
-                                        <td>I will create wordpress websites</td>
+                                        <td>I will architect your hotel</td>
                                         <td>5 Sep</td>
                                         <td>3 July</td>
                                         <td>$5000</td>
@@ -123,7 +123,7 @@
                                 while($i < 20){
                             ?>
                                     <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -163,7 +163,7 @@
                                 while($i < 20){
                             ?>
                                     <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -203,7 +203,7 @@
                                 while($i < 20){
                             ?>
                                     <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -243,7 +243,7 @@
                                 while($i < 20){
                             ?>
                                     <tr onclick="window.location='#';">
-                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -266,10 +266,13 @@
 
 
         </div>
+
+        <!--
         <div class="rightContainer">
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
             <dotlottie-player src="https://lottie.host/d0bf7d76-fee3-4563-952d-db0f24df4d15/rBV8gQ17Tk.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
+                            -->
 
     </div>
 </div>
