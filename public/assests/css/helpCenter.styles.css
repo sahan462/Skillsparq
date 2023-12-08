@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box
+}
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.title{
+    font-size: 32px;
+}
+.dark-title{
+    color:#4b4b4b;
+    font-size: 20px;
+}
+.container{
+    padding: 16px 32px;
+    border: none !important;
+}
+
+/*help center header*/
+.helpCenterHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+.helpCenterContent{
+    display: flex;
+    margin-right: 32px;
+    margin-left: 32px;
+    padding: 0px 16px;
+}
+.helpCenterContent .leftContainer{ 
+    width: 50%;
+}
+.helpCenterContent .rightContainer{ 
+    width: 50%;
+}
+
+/*left container*/
+a{
+    text-decoration: none;
+}
+
+/* for seller buyer chose buttons */
+.btn{
+    padding: 32px;
+    box-shadow:1px 1px 10px #888888; /*apply a shadow*/
+    text-align: center;
+    margin-right:32px;
+    border-radius: 4px;
+    transition : 0.8s;/*animation time*/
+}
+
+/* when button is hover by mouse pointer */
+.btn:hover{
+    transform:scale(1.04) translateY(-5px);
+    transition : 0.2s; /*animation time*/
+}
+.btn-group-1{
+    display: flex;/*make button side by side */
+}
+.btn-title{
+    color: black;
+    font-size: large;
+    margin-top: 10px;
+}
+
+/* for morabout buttons */
+.btn2{
+    padding: 15px 25px; /*height width*/
+    background-color: #f0f0f0;
+    text-align: center;
+    color:black;
+    margin-right:30px;
+    border-radius: 50px;
+    transition : 0.3s;/*animation time*/
+}
+
+
+/* for recommanded buttons */
+.btn3{
+    color: black;
+    padding: 16px;
+    margin-bottom: 8px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px;
+    transition : 0.3s;/*animation time*/
+}
+/* when button is hover by mouse pointer */
+.btn3:hover{
+    transition : 0.3s; /*animation time*/
+    background-color: #404145;
+    color: #ffffff;
+}
+
+/*****************************************************/
+/*********** Advertisement Help *********************/
+.sub-title
+{
+    color:#007bff;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+li{
+    font-size: 17px;
+    color: #333;
+}
+
+.subans
+{
+    margin-left: 50px;
+}
+
+.backbtn
+{
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 7px;
+    background-color: #007bff;
+    width: 200px;
+    font-size:15px;
+    margin-right: 20px;
+}
+
+
+/*****************************************************/
+/*********** Seller/Buyer Help *********************/
+
+/* for recommanded buttons */
+.btn4
+{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:1px 1px 10px #888888; /*apply a shadow*/
+    height: 150px;
+    width:170px;
+    
+    text-align: center;
+    font-weight: 550;
+    margin-right:50px;
+    border-radius: 7px;
+    transition : 0.8s;/*animation time*/
+    background-color: white;
+    color:#007bff;
+}
+
+/* when button is hover by mouse pointer */
+.btn4:hover{
+    transform:scale(1.01) translateY(-2px);
+    transition : 0.2s; /*animation time*/
+    background-color: #007bff;
+    color: white;
+}
+.btncontainer{
+    display: flex;
+}
+.createbtn
+{
+    padding: 9px 20px;
+    text-align: center;
+    border-radius: 7px;
+    background-color: #36aa00;
+    width: 175px;
+    font-size:15px;
+    margin-right: 20px;
+    transition: ease-in-out 0.3s;
+}
+.createbtn:hover{
+    background-color: #f0f0f0;
+    color: #36aa00;
+}
+
+/*right container*/
+.helpCenterContent .rightContainer img{
+    width: auto !important;
+    height: auto !important;
+}
+
+@media only screen and (max-width: 900px) {
+    .helpCenterContent .rightContainer{ 
+        display: none;
+    }
+
+    .helpCenterContent .leftContainer{ 
+        width: 100%;
+    }
+
+}
