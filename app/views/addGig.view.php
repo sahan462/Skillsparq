@@ -30,7 +30,7 @@
         <form id="regForm" method="get" action="addGig/createGig" autocomplete="off">
             <!-- One "tab" for each step in the form: -->
 
-            <div class="content">
+            <div class="addGigContent">
 
                 <!-- tab 1 -->
                 <div class="tab">
