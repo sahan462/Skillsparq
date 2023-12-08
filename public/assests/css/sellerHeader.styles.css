@@ -160,14 +160,14 @@ header .upperHeader{
 }
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
     .navbar  {
         display: none;
     }
 }
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 600px) {
 
     .upperHeader .navbar{
         display: none;
@@ -206,9 +206,8 @@ header .upperHeader{
 
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
     header .upperHeader  {
-        height: 116px;
         border-bottom: 1px solid #c5c6c9;
     }
 }

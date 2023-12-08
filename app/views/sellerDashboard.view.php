@@ -61,7 +61,7 @@ $job["buyer_id"] = 0;
                     </div>
                 </div>
                 <div class="preview-profile">
-                    <a href="updateProfile"><button>View My Gigs</button></a>
+                    <a href="sellerProfile#gigs"><button>View My Gigs</button></a>
                 </div>
                 <div class="user-info">
                     <div class="info">

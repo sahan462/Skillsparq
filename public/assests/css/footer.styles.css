@@ -87,10 +87,6 @@
     margin-left: -37px;
   }
 
-  .footer-bottom{
-    margin-left: 93px;
-    margin-right: 59px;
-  }
   @media (max-width: 768px) {
     .footer {
       position: relative;
@@ -123,6 +119,7 @@
     padding-top: 8px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .footer-bottom-left img{
@@ -132,7 +129,6 @@
 .footer-bottom-right{
     display: flex;
     flex-direction: row;
-    margin-left: 850px;
 }
 
 .footer-bottom-right svg{
