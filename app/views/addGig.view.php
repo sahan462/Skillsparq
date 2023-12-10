@@ -27,7 +27,7 @@
     <div class="rightContainer">
 
         <!-- form -->
-        <form id="regForm" method="get" action="addGig/createGig" autocomplete="off">
+        <form id="regForm" method="post" enctype="multipart/form-data" action="Gig/publishGig" autocomplete="off">
             <!-- One "tab" for each step in the form: -->
 
             <div class="addGigContent">
