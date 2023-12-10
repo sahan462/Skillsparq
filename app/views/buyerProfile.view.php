@@ -1,5 +1,5 @@
 <?php 
-    include "components/buyerHeader.component.php"; 
+    include "components/buyerSimpleHeader.component.php"; 
     $jobs = $data['jobs'];
     //$profile = $data['profile'];
 ?>

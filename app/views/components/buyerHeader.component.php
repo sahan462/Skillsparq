@@ -55,8 +55,8 @@
                         </li>
                     </div>
                     <div class="wordLinks">
-                        <li><a href="order" class="wordLink">Orders</a></li>
-                        <li><a href="#" class="wordLink">My Selling</a></li>
+                        <li><a href="manageOrders" class="wordLink">Orders</a></li>
+                        <li><a href="helpCenter" class="wordLink">Help Center</a></li>
                         <li><a href="loginUser/logout" class="wordLink">Sign Out</a></li>
                     </div>
 
