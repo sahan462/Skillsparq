@@ -5,7 +5,7 @@ class Gig extends Controller
 
     public function __construct()
     {
-        $this->JobHandlerModel = $this->model('jobHandler');
+        $this->GigHandlerModel = $this->model('GigHandler');
     }
 
     public function getGig()
@@ -15,46 +15,51 @@ class Gig extends Controller
     public function publishGig()
     {
 
-        if (isset($_GET['submit'])) {
+        if (isset($_POST['submit'])) {
 
-            $title = $_GET['title'];
-            $description = $_GET['description'];
-            $category = $_GET['category'];
+            print_r($_POST);
 
-            $customName_1 = $_GET['customName_1'];
-            $noOfDeliveryDays_1 = $_GET['noOfDeliveryDays_1'];
-            $timePeriod_1 = $_GET['timePeriod_1'];
-            $noOfRevisions_1 = $_GET['noOfRevisions_1'];
-            $packageDescription_1 = $_GET['packageDescription_1'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $category = $_POST['category'];
 
-            $customName_2 = $_GET['customName_2'];
-            $noOfDeliveryDays_2 = $_GET['noOfDeliveryDays_2'];
-            $timePeriod_2 = $_GET['timePeriod_2'];
-            $noOfRevisions_2 = $_GET['noOfRevisions_2'];
-            $packageDescription_2 = $_GET['packageDescription_2'];
+            $customName_1 = $_POST['customName_1'];
+            $noOfDeliveryDays_1 = $_POST['noOfDeliveryDays_1'];
+            $timePeriod_1 = $_POST['timePeriod_1'];
+            $noOfRevisions_1 = $_POST['noOfRevisions_1'];
+            $packageDescription_1 = $_POST['packageDescription_1'];
 
-            $customName_3 = $_GET['customName_3'];
-            $noOfDeliveryDays_3 = $_GET['noOfDeliveryDays_3'];
-            $timePeriod_3 = $_GET['timePeriod_3'];
-            $noOfRevisions_3 = $_GET['noOfRevisions_3'];
-            $packageDescription_3 = $_GET['packageDescription_3'];
+            $customName_2 = $_POST['customName_2'];
+            $noOfDeliveryDays_2 = $_POST['noOfDeliveryDays_2'];
+            $timePeriod_2 = $_POST['timePeriod_2'];
+            $noOfRevisions_2 = $_POST['noOfRevisions_2'];
+            $packageDescription_2 = $_POST['packageDescription_2'];
+
+            $customName_3 = $_POST['customName_3'];
+            $noOfDeliveryDays_3 = $_POST['noOfDeliveryDays_3'];
+            $timePeriod_3 = $_POST['timePeriod_3'];
+            $noOfRevisions_3 = $_POST['noOfRevisions_3'];
+            $packageDescription_3 = $_POST['packageDescription_3'];
 
             $currentDateTime = date('Y-m-d H:i:s');
             $sellerId = $_SESSION['userId'];
 
             $targetDir = "../public/assests/images/gigImages/";
 
-            $coverImage = basename($_FILES["file"]["coverImage"]); 
+            $coverImage = basename($_FILES["coverImage"]["name"]); 
+            print_r($coverImage);
+            print_r($sellerId);
+
             $targetFilePath = $targetDir . $coverImage; 
-            $upload = move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
+            $upload = move_uploaded_file($_FILES["coverImage"]["tmp_name"], $targetFilePath);
     
             if($upload){
                 $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId);
                 if($gig){
                     echo "
                     <script>
-                        alert('Job is Published Successfully');
-                        window.location.href = '" . BASEURL . "buyerProfile';
+                        alert('Gig is Published Successfully');
+                        window.location.href = '" . BASEURL . "sellerProfile#gigs';
                     </script>
                     ";
                 }else{
