@@ -1,4 +1,10 @@
-<?php include "components/sellerHeader.component.php";?>
+<?php
+    if($_SESSION['role'] == 'Buyer'){
+        include "components/buyerSimpleHeader.component.php";
+    }else if($_SESSION['role'] == 'Seller'){
+        include "components/sellerHeader.component.php";
+    }
+?>
 
 <!-- Main Container -->
 <div class="manageOrdersContainer">

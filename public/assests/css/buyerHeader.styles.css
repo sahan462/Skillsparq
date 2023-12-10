@@ -35,7 +35,7 @@ header .upperHeader{
 /*search bar*/
 
 .upperHeader .searchBar{
-    width: 54%;
+    width: 50%;
     justify-content: space-between;
 }
 .upperHeader .searchBar form{
@@ -186,9 +186,9 @@ header .upperHeader{
 .headerCategories nav .nav-links {
     display: flex;
     justify-content: space-between;
-    border-top: 2px solid #62646A;
-    border-bottom: 2px solid #62646A;
-    padding: 10px 32px 10px 32px;
+    border-top: 1px solid #62646A;
+    border-bottom: 1px solid #62646A;
+    padding: 0px 32px;
 }
 
 

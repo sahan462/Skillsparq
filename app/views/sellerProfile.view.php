@@ -210,38 +210,13 @@ $data["profilePicture"] = "dummyprofile.jpg";
 
             </div>
             <div class="card">
-                <img src="../public/assests/images/gigcard2.jpg">
-                <div class="card-content">
-                    <h2>Gig Card</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">Read more</a>
-                </div>
-
-            </div>
-            <div class="card">
-                <img src="../public/assests/images/gigcard3.jpg">
-                <div class="card-content">
-                    <h2>Gig Card</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">Read more</a>
-                </div>
-
-            </div>
-            <div class="card">
                 <img src="../public/assests/images/gigcard4.jpg">
                 <div class="card-content">
                     <h2>Gig Card</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">Read more</a>
-                </div>
-
-            </div>
-            <div class="card">
-                <img src="../public/assests/images/gigcard4.jpg">
-                <div class="card-content">
-                    <h2>Gig Card</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">Read more</a>
+                    <a href="">View</a>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
                 </div>
             </div>
         </div>

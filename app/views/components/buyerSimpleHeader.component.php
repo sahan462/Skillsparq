@@ -10,7 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css">
+    <link rel="stylesheet" href="./assests/css/profile.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
+    <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
+    <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -46,6 +49,8 @@
                         </div>
                         <div class="wordLinks">
                             <li><a href="buyerDashboard" class="wordLink">Dashboard</a></li>
+                            <li><a href="manageOrders" class="wordLink">Orders</a></li>
+                            <li><a href="helpCentter" class="wordLink">Help Center</a></li>
                             <li><a href="loginUser/logout" class="wordLink">Sign Out</a></li>
                         </div>
 
