@@ -8,6 +8,7 @@ body{
 .sellerDashboard-content{
     padding: 16px 32px 0px 32px;
 }
+
 /*header*/
 .sellerDashboard-content .personalizedHeader{
     min-height: 24px;
@@ -19,12 +20,7 @@ body{
     line-height: 140%;
     padding: 0 32px;
 }
-@media only screen and (min-width: 600px) {
-    .personalized-header {
-        margin-top: 8px;
-        padding: 0;
-    }
-}
+
 /*dashboard-content*/
 .dashboard-container{
     display: flex;
@@ -121,6 +117,7 @@ body{
     height: 20px; 
     left: 0px;
 }
+
 /*Profile Pic upload*/
 .dashboard-container .profile .profile-picture{
     display: flex;
@@ -184,7 +181,6 @@ body{
     border: 2px solid #fff;
     box-shadow: 5px 10px 18px #333;
 }
-
 .dashboard-container .profile .user-info{
     padding-top: 16px;
     border-top: 2px solid #dadbdd;
@@ -204,4 +200,22 @@ body{
 .dashboard-container .profile .user-info span{
     display: flex;
     align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .dashboard-container{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 32px;
+    } 
+
+    .dashboard-container .seller-details {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    .dashboard-container .job-feed{
+        width: 100%;
+        padding: 0px 16px;
+    }
 }
