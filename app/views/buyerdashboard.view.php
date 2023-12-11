@@ -1,6 +1,6 @@
 <?php include "components/buyerHeader.component.php"; ?>
 
-<div class="buyerDashboard-content">
+<div class="buyerDashboardContent">
 
     <!--Header -->
     <div class="personalizedHeader">

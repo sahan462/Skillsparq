@@ -1,46 +1,4 @@
-.topgig-container{
-    text-align: center; 
-    margin: 0;
-    background-color: #f7f7f7; 
-    padding: 32px 16px 32px 16px;
-    margin-top: 32px;
-    margin-bottom: 64px;
-}
-.topgig-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 32px;
-}
-.topgig-header h1{
-    font-size: 24px;
-    padding: 0;
-    margin: 0;
-    color: #333; 
-    padding-left: 48px;
-    padding-right: 48px;
-}
-.topgig-header svg{
-    width: 32px;
-    height: 32px;
-    background-color: #fff;
-    text-align: center;
-    line-height: 32px;
-    border: 2px solid #333; 
-    border-radius: 50%;
-    cursor: pointer;
-}
-.topgig-header svg:hover{
-    background-color: #31d65a;
-    color: #fff;
-    border: 2px solid #fff;
-}
-.topgig-header svg:first-child{
-    left: 0px;
-}
-.topgig-header svg:last-child{
-    right: 0px;
-}
+
 .card-slider{
     margin-bottom: 0;
 }

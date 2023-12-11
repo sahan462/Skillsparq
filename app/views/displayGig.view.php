@@ -1,4 +1,4 @@
-<?php include "components/buyerHeader.component.php"; ?>
+<?php include "components/buyerSimpleHeader.component.php"; ?>
 
 <?php
     $data["profilePicture"] = "dummyprofile.jpg";
