@@ -1,10 +1,14 @@
 /*home content*/
 
+.buyerDashboardContent{
+    padding: 16px 32px;
+}
+
 /*Header*/
-.buyerDashboard-content .personalizedHeader{
+.buyerDashboardContent .personalizedHeader{
     min-height: 24px;
-    margin-top: 32px;
-    margin-bottom: 64px;
+    margin-top: 24px;
+    margin-bottom: 48px;
     font-size: 32px;
     font-weight: 700;
     color: #222325;
@@ -13,36 +17,36 @@
 }
 
 /*Main Container*/
-.buyerDashboard-content .mainContent{
+.buyerDashboardContent .mainContent{
     margin: 0 32px;
 }
 
-.buyerDashboard-content #content{
+.buyerDashboardContent #content{
     margin-top: 32px;
     margin-bottom: 32px;
 }
 
-.buyerDashboard-content .row{
+.buyerDashboardContent .row{
     display: flex;
     justify-content: space-between;
 }
 
-.buyerDashboard-content .row .leftSide{
+.buyerDashboardContent .row .leftSide{
     display: flex;
     align-items: center;
 }
 
-.buyerDashboard-content svg{
+.buyerDashboardContent svg{
     height: 32px;
     width: 32px;
 }
 
-.buyerDashboard-content a{
+.buyerDashboardContent a{
     color: #222325;
     text-decoration: none;
 }
 
-.buyerDashboard-content #content h3{ 
+.buyerDashboardContent #content h3{ 
     margin-bottom: 16px;
 }
 @media only screen and (min-width: 600px) {
