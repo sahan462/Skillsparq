@@ -22,9 +22,8 @@ $data["profilePicture"] = "dummyprofile.jpg";
                             <div class="icon-location-value">Colombo Sri Lanka</div>
                         </div>
                         <div class="icon-time">
-                            Local time
-                            <div class="icon-time-value">12.55</div>
-                            <div class="icon-time-spec">a.m.</div>
+                            <div>Local Time is</div>
+                            <div class="time"></div>
                         </div>
                     </div>
                 </div>
@@ -286,5 +285,22 @@ $data["profilePicture"] = "dummyprofile.jpg";
         <div>content</div>
     </div>
 
+    <script>
+        // Function to update the div with the current local time
+        function updateLocalTime() {
+            // Get the current local time
+            const currentTime = new Date();
+            // Format the time as needed (for example, HH:mm:ss)
+            const formattedTime = currentTime.toLocaleTimeString();
+            // Select the div using the class selector and update its content
+            const iconTimeDiv = document.querySelector('.time');
+            iconTimeDiv.textContent = formattedTime;
+        }
 
+        // Update the time initially
+        updateLocalTime();
+
+        // Update the time every second (1000 milliseconds)
+        setInterval(updateLocalTime, 1000);
+    </script>
     <?php include "components/footer.component.php"; ?>

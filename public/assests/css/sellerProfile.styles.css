@@ -158,11 +158,12 @@ body{
     /* display: flex; */
     padding: 2px;
     flex-direction: column;
+    margin: 7px;
 }
 
 .icon-time{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin: 7px;
     font-size: 18px;
@@ -172,11 +173,13 @@ body{
     font-size: 30px;
     font-weight: bold;
     margin: 7px;
+    padding: 2px;
+    padding-left: 10px;
 }
 
 .icon-location{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin: 7px;
 }
@@ -327,6 +330,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.time{
+    margin: 7px;
 }
 
 .Topics{
