@@ -1,0 +1,168 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*Main Container */
+.manageOrdersContainer{
+    padding: 16px 32px;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    height: auto;
+    box-sizing: border-box;
+  }
+
+/*Topic*/
+.manageOrdersHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+/*Content*/
+.manageOrdersContent{
+    margin-right: 32px;
+    margin-left: 32px;
+    padding: 0px 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    height: calc(100vh - 180px);
+}  
+
+.manageOrdersContent .rightContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+}
+
+.manageOrdersContent .leftContainer{
+    width: 100%;
+}
+
+/* Style the tab */
+.manageOrdersContainer .tab {
+    width: 100%;
+    overflow: hidden;
+    border: none !important;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+.manageOrdersContainer .tab button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 32px;
+    font-size: 16px;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.manageOrdersContainer .tab button:hover {
+    background-color: #404145;
+    color: #ffffff;
+}
+
+/* Create an active/current tablink class */
+.manageOrdersContainer .tab button.active {
+    background-color: #404145;
+    color: #ffffff;
+}
+
+/* Style the tab content */
+.manageOrdersContainer .tabcontent {
+    display: none;
+    background-color: inherit;
+    padding: 16px 0px;
+    border: none !important;
+    height: calc(100vh - 208px);
+    width: 100%;
+}
+
+/*styling table*/
+.outerTable {
+    height: 100%;
+    overflow: auto;
+}
+
+table{
+    margin-top: 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    width: 100%;
+}
+
+table, th, td{
+    border-collapse: collapse !important;
+    border-bottom: 1px solid #c5c6c9 !important;
+}
+
+tbody tr{
+    cursor: pointer;
+}
+
+tbody tr:hover{
+    background-color: #f1f1f1;
+}
+
+tbody th {
+    font-size: 16px;
+}
+
+tbody td{
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+}
+
+/*buyer column*/
+.buyer{
+    display: flex;
+    align-items: center;
+}
+
+img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 900px) {
+    .manageOrdersContent{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 32px;
+        height: calc(100vh - 180px);
+    }  
+    
+    .manageOrdersContent .rightContainer{
+        display: none;
+    }
+    
+    .manageOrdersContent .leftContainer{
+        width: 100%;
+    }
+
+    .manageOrdersContent .tab{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

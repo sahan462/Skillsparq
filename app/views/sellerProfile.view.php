@@ -187,11 +187,11 @@ $data["profilePicture"] = "dummyprofile.jpg";
         </div> -->
     </div>
 
-    <div class="other-category-container">
+    <div class="other-category-container" id="gigs">
         <div class="other-category-header">
             <div class="Topics">My Gigs</div>
             <!-- <div class="buttons">
-                <button id="button">&plus;</button>
+                <a href="addgig"><button id="button">&plus;</button></a>
             </div> -->
             <div class="plus">
                 <a href="addGig"><button id="plus">Add New Gig</button></a>
