@@ -119,7 +119,7 @@ $job["buyer_id"] = 0;
                 <div class="job-header">
                     <h3>Most Recent Jobs You Might Like</h3>
                 </div>
-                <div class="content">
+                <div class="jobContent">
                     <?php
                     $i = 0;
                     while ($i < 5) {

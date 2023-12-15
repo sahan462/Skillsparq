@@ -1,22 +1,18 @@
 * {
     box-sizing: border-box
 }
-
 body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
 }
-
 .title{
     font-size: 32px;
 }
-
 .dark-title{
     color:#4b4b4b;
     font-size: 20px;
 }
-
 .container{
     padding: 16px 32px;
     border: none !important;
@@ -33,24 +29,20 @@ body{
     line-height: 140%;
     padding: 0 32px;
 }
-
 .helpCenterContent{
     display: flex;
     margin-right: 32px;
     margin-left: 32px;
     padding: 0px 16px;
 }
-
 .helpCenterContent .leftContainer{ 
     width: 50%;
 }
-
 .helpCenterContent .rightContainer{ 
     width: 50%;
 }
 
 /*left container*/
-
 a{
     text-decoration: none;
 }
@@ -70,11 +62,9 @@ a{
     transform:scale(1.04) translateY(-5px);
     transition : 0.2s; /*animation time*/
 }
-
 .btn-group-1{
     display: flex;/*make button side by side */
 }
-
 .btn-title{
     color: black;
     font-size: large;
@@ -170,11 +160,9 @@ li{
     background-color: #007bff;
     color: white;
 }
-
 .btncontainer{
     display: flex;
 }
-
 .createbtn
 {
     padding: 9px 20px;
@@ -186,15 +174,24 @@ li{
     margin-right: 20px;
     transition: ease-in-out 0.3s;
 }
-
 .createbtn:hover{
     background-color: #f0f0f0;
     color: #36aa00;
 }
 
 /*right container*/
-
 .helpCenterContent .rightContainer img{
     width: auto !important;
     height: auto !important;
+}
+
+@media only screen and (max-width: 900px) {
+    .helpCenterContent .rightContainer{ 
+        display: none;
+    }
+
+    .helpCenterContent .leftContainer{ 
+        width: 100%;
+    }
+
 }
