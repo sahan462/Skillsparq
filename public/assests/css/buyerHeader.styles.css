@@ -13,66 +13,61 @@ header .upperHeader{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #c5c6c9;
     box-sizing: border-box;
 }
-header .upperHeader .row{
-    display: flex;
-    align-items: center;
-    width: 40%;
-    gap: 64px;
-}
 
-/*Logo*/
+/*logo*/
 .logo{
-    width: 30%;
+    width: auto;
 }
-
 .logo a {
     font-size: 24px;
     color: #1dbf73;
     text-decoration: none;
     font-weight: bold;
 }
+.logo a span {
+    width: 10%;
+}
 
-/*Search Bar*/
-.searchBar{
-    width: 70%;
+/*search bar*/
+.upperHeader .searchBar{
+    width: 40%;
+    justify-content: space-between;
 }
-.searchBar form{
-    width: 100%;
+.upperHeader .searchBar form{
     display: flex;
+    width: 100%;
 }
-.searchBar input{
+.upperHeader .searchBar input[type=text] {
     display: block;
     text-align: left;
-    height: 32px;
     width: 100%;
     margin: 0;
-    padding: 14px;
-    border: 1px solid #62646A;
-    border-radius: 16px 0 0 16px;
+    padding: 8px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
     border-right: 0;
-    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-.searchBar button{
-    border-left: 0 !important;
-    border: 1px solid #62646A !important;
-    background-color: #1dbf73;
-    color: #ffffff;
-    border-radius: 0 16px 16px 0;
-    height: 32px;
-    width: 32px;
+.upperHeader .searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+    background-color: #000000;
+    color: #fff;
+    transition: ease-in-out 0.3s;
 }
-.searchBar button:hover{
-    transition : 0.3s; 
-    background-color: #ffffff;
-    color: #62646A;
+.upperHeader .searchBar button:hover {
+    color: #333;
+    background: #fff;
 }
 
-/*Navigation Bar*/
+/*navbar and navigation links*/
 .upperHeader .navbar{
-    width: 50%;
     display: flex;
     align-items: center;
 }
@@ -173,3 +168,108 @@ header .upperHeader .row{
     object-fit: cover;
 }
 
+@media only screen and (max-width: 1500px) {
+    .navbar .wordLink  {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .upperHeader .searchBar{
+        flex-basis: 500%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+
+      .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar  {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .upperHeader .navbar{
+        display: none;
+    }
+
+    .upperHeader{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .upperHeader .searchBar{
+      width: 100%;
+    }
+
+    .upperHeader .searchBar form{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .upperHeader .logo {
+        margin-bottom: 10px;
+        margin: 0 auto;
+    }
+
+    .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    header .upperHeader  {
+        border-bottom: 1px solid #c5c6c9;
+    }
+}
+
+
+/*header categories*/
+.headerCategories{
+    width: 100%;
+    background-color: #fff !important;
+}
+.headerCategories nav .nav-links li{
+    display: inline-block;
+    margin-left: 0 !important;
+}
+.headerCategories nav .nav-links {
+    width: auto;
+    overflow-x: auto;
+    border-top: 2px solid #62646A;
+    border-bottom: 2px solid #62646A;
+    padding: 0px 32px;
+}
+
+
+@media only screen and (max-width: 900px) {
+    header .upperHeader .row{
+        display: flex;
+        flex-direction: column;
+    }
+
+}

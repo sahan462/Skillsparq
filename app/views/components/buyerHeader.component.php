@@ -11,12 +11,14 @@
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/buyerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
+    <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
     <link rel="stylesheet" href="./assests/css/profile.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
+    <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,23 +27,15 @@
 <body>
     <header>
         <div class="upperHeader" style="justify-content: space-between;">
-
-            <div class="row">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="#">SKILLSPARQ</a>
-                </div>
-
-                <!-- Search Bar -->
-                <div class = "searchBar">
-                    <form action="">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+            <div class="logo">
+                <a href="#">SKILLSPARQ</a>
             </div>
-
-            <!-- Navigation Bar -->
+            <div class = "searchBar">
+                <form action="">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
             <div class="navbar" style="width:auto;">
                 <nav>
                     <ul class="nav-links">
@@ -80,6 +74,20 @@
                 </nav>
             </div>
         </div>
+        <div class = "headerCategories">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="wordLink">Graphics & Design</a></li>
+                    <li><a href="#" class="wordLink">Programming & Tech</a></li>
+                    <li><a href="#" class="wordLink">Digital Marketing</a></li>
+                    <li><a href="#" class="wordLink">Video & Animation</a></li>
+                    <li><a href="#" class="wordLink">Writing & Translation</a></li>
+                    <li><a href="#" class="wordLink">Music & Audio</a></li>
+                    <li><a href="#" class="wordLink">Business</a></li>
+                    <li><a href="#" class="wordLink">Data</a></li>
+                    <li><a href="#" class="wordLink">Photography</a></li>
+                    <li><a href="#" class="wordLink">AI Services</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
-
