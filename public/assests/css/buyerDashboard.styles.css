@@ -1,17 +1,15 @@
 /*home content*/
 
-@media only screen and (min-width: 600px) {
-    .personalized-header {
-        margin-top: 8px;
-        padding: 0;
-    }
+.buyerDashboardContent{
+    padding: 16px 0px;
+    background-color: #f7f7f7 !important;
 }
 
-
-.buyerDashboard-content .personalizedHeader{
+/*Header*/
+.buyerDashboardContent .personalizedHeader{
     min-height: 24px;
     margin-top: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
     font-size: 32px;
     font-weight: 700;
     color: #222325;
@@ -19,22 +17,55 @@
     padding: 0 32px;
 }
 
+/*Main Container*/
+.buyerDashboardContent .mainContent{
+    margin: 0 32px;
+}
 
-.buyerDashboard-content .userHistoryContent{
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 24px;
-    border: 1px solid #e4e5e7;
-    overflow: auto;
-    padding: 16px 32px 32px;
-    box-sizing: border-box;
+.buyerDashboardContent #content{
+    padding: 16px;
+    margin-top: 32px;
+    margin-bottom: 64px;
+    background-color: #fff;
     border-radius: 8px;
 }
 
-
-.buyerDashboard-content .historyHeader{
-    font-size: 20px;
-    color: #404145;
+.buyerDashboardContent .row{
+    display: flex;
+    justify-content: space-between;
 }
 
+.buyerDashboardContent .row .leftSide{
+    display: flex;
+    align-items: center;
+}
+
+.buyerDashboardContent svg{
+    height: 32px;
+    width: 32px;
+}
+
+.buyerDashboardContent a{
+    color: #222325;
+    text-decoration: none;
+}
+
+.buyerDashboardContent #content h2{ 
+    margin-bottom: 16px;
+}
+
+/*container 1*/
+.recentGigs .recentGigsContent{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+ 
+
+@media only screen and (min-width: 600px) {
+    .personalized-header {
+        margin-top: 8px;
+        padding: 0;
+    }
+}
 

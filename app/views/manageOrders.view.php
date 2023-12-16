@@ -1,4 +1,10 @@
-<?php include "components/sellerHeader.component.php";?>
+<?php
+    if($_SESSION['role'] == 'Buyer'){
+        include "components/buyerSimpleHeader.component.php";
+    }else if($_SESSION['role'] == 'Seller'){
+        include "components/sellerHeader.component.php";
+    }
+?>
 
 <!-- Main Container -->
 <div class="manageOrdersContainer">
@@ -42,7 +48,7 @@
                                 $i = 0;
                                 while($i < 20){
                             ?>
-                                    <tr onclick="window.location='sellerdashboard';">
+                                    <tr onclick="window.location='order';">
                                         <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
