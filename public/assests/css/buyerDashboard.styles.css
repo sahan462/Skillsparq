@@ -49,6 +49,26 @@
 .buyerDashboardContent #content h3{ 
     margin-bottom: 16px;
 }
+
+/*container 1*/
+.recentGigs .user-details img{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.recentGigs .coverImg{
+    width: 100%;
+    min-height: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.recentGigs .recentGigsContent{
+    display: flex;
+}
+
 @media only screen and (min-width: 600px) {
     .personalized-header {
         margin-top: 8px;
