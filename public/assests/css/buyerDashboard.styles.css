@@ -1,7 +1,8 @@
 /*home content*/
 
 .buyerDashboardContent{
-    padding: 16px 32px;
+    padding: 16px 0px;
+    background-color: #f7f7f7 !important;
 }
 
 /*Header*/
@@ -22,8 +23,11 @@
 }
 
 .buyerDashboardContent #content{
+    padding: 16px;
     margin-top: 32px;
-    margin-bottom: 32px;
+    margin-bottom: 64px;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 .buyerDashboardContent .row{
@@ -46,28 +50,17 @@
     text-decoration: none;
 }
 
-.buyerDashboardContent #content h3{ 
+.buyerDashboardContent #content h2{ 
     margin-bottom: 16px;
 }
 
 /*container 1*/
-.recentGigs .user-details img{
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.recentGigs .coverImg{
-    width: 100%;
-    min-height: 150px;
-    height: auto;
-    border-radius: 8px;
-}
-
 .recentGigs .recentGigsContent{
     display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
+ 
 
 @media only screen and (min-width: 600px) {
     .personalized-header {

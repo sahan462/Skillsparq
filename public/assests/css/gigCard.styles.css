@@ -1,0 +1,45 @@
+.gigCard{
+    width: calc(100% / 5 - 16px);
+    border: 2px solid #dadbdd;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.gigCard .user-details img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 4px;
+}
+.gigCard .coverImg img{
+    width: 100%;
+    min-height: 150px;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+.gigCard .rating{
+    display: flex;
+}
+.gigCard:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+.gigCard:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+.gigCard .cardRow{
+    display: flex;
+}
+.gigCard .gigDescription{
+    margin: 16px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+.gigCard .cardRow,.gigDescription,.price{
+    padding: 0 8px;
+}
