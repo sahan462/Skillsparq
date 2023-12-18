@@ -1,4 +1,3 @@
-
 .card-slider{
     margin-bottom: 0;
 }
@@ -15,28 +14,52 @@
 }
 .card-slider ul{
     padding-left: 0;
-}
-.card-slider .carousel .card{
     list-style: none;
-    border: 1px solid #ddd;
-    border-radius: 10px; 
-    cursor: pointer;
 }
-.card-slider .carousel .card .img img{
+.card-slider .card{
+    border: 2px solid #dadbdd;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.card-slider .card .user-details img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 4px;
+}
+.card-slider .card .coverImg img{
     width: 100%;
     min-height: 150px;
     height: auto;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
 }
-
-.card-slider .carousel .card .user-details .profile-pic{
-    margin-right: 2px;
+.card-slider .card .rating{
+    display: flex;
 }
-.card-slider .carousel .card .user-details .profile-pic img{
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
+.card-slider .card:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4) !important;
+}
+.card-slider .card:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4) !important;
+}
+.card-slider .card .cardRow{
+    display: flex;
+}
+.card-slider .card .gigDescription{
+    margin: 16px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+.card-slider .card .cardRow,.gigDescription,.price{
+    padding: 0 8px;
 }
 .checked {
     color: orange;
