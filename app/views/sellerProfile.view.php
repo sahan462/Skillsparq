@@ -69,16 +69,16 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         asljdflk
                     </div>
                     <hr>
-                    <div class="profile-content-category-header">
+                    <!-- <div class="profile-content-category-header">
                         <div class="Topics">Hours Per Week</div>
                         <div class="buttons">
                             <button id="button"> Add</button>
                         </div>
-                    </div>
-                    <div class="profile-content-category-content">
+                    </div> -->
+                    <!-- <div class="profile-content-category-content">
                         asljdflk
-                    </div>
-                    <hr>
+                    </div> -->
+                    <!-- <hr> -->
                     <div class="profile-content-category-header">
                         <div class="Topics">Education</div>
                         <div class="buttons">
@@ -88,16 +88,16 @@ $data["profilePicture"] = "dummyprofile.jpg";
                     <div class="profile-content-category-content">
                         asljdflk
                     </div>
-                    <hr>
-                    <div class="profile-content-category-header">
+                    <!-- <hr> -->
+                    <!-- <div class="profile-content-category-header">
                         <div class="Topics">Linked Accounts</div>
                         <div class="buttons">
                             <button id="button"> Add</button>
                         </div>
-                    </div>
-                    <div class="profile-content-category-content">
+                    </div> -->
+                    <!-- <div class="profile-content-category-content">
                         asljdflk
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="profile-content2">
@@ -131,16 +131,16 @@ $data["profilePicture"] = "dummyprofile.jpg";
                     <div class="profile-content-category-content">
                         asljdflk
                     </div>
-                    <hr>
-                    <div class="profile-content-category-header">
+                    <!-- <hr> -->
+                    <!-- <div class="profile-content-category-header">
                         <div class="Topics">Project Catalog</div>
                         <div class="buttons">
                             <button id="button"> Add</button>
                         </div>
-                    </div>
-                    <div class="profile-content-category-content">
+                    </div> -->
+                    <!-- <div class="profile-content-category-content">
                         asljdflk
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

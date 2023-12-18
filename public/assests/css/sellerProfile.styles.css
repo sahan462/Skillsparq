@@ -51,7 +51,7 @@ body{
 }
 
 .card{
-    width: 300px;
+    width: 250px;
     background-color:#32bd6e;
     margin: 7px;
     transition: transform 0.5s ease, background-color 0.4s ease;
@@ -64,7 +64,7 @@ body{
 
 .card img{
     width: 100%;
-    min-height: 200px;
+    min-height: 250px;
     object-fit: cover;
     margin-bottom: 10px;
 }
