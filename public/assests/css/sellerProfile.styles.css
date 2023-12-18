@@ -280,7 +280,7 @@ body{
     font-family: sans-serif;
     box-sizing:inherit;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content:space-evenly; 
     margin: 10px;
     /* border: 1px solid #c5c6c9; */
@@ -291,21 +291,19 @@ body{
 }
 
 .profile-content1{
-    /* display: flex; */
     border: 1px solid #c5c6c9;
-    /* width: 100px;
-    height: 100px; */
-    flex-grow: 1;
-    /* border-right: 1px solid #c5c6c9; */
+    width: 50%;
+    min-height: 500px;
+    height: auto;
     
 }
 
 .profile-content2{
-    /* display: flex; */
     border: 1px solid #c5c6c9;
-    /* width: 500px;
-    height: 0px; */
-    flex-grow: 1;
+    width: 50%;
+    min-height: 500px;
+    height: auto;
+    text-align: justify;
 }
 
 .profile-header{
