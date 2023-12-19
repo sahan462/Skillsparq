@@ -24,7 +24,6 @@ class BuyerDashboard extends Controller
 
             if ($recentGigs) {
 
-                $recentGigs = mysqli_fetch_assoc($recentGigs); 
                 $data['recentGigs'] = $recentGigs;
                 
             } else {

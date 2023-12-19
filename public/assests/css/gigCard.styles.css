@@ -1,10 +1,14 @@
 .gigCard{
     width: calc(100% / 5 - 16px);
+    height: 320px;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+}
+.gigCard .user-details{
+    height: 50px;
 }
 .gigCard .user-details img{
     width: 48px;
@@ -15,8 +19,7 @@
 }
 .gigCard .coverImg img{
     width: 100%;
-    min-height: 150px;
-    height: auto;
+    height: 160px;
     border-radius: 8px 8px 0 0;
     margin-bottom: 8px;
 }
@@ -32,15 +35,19 @@
 .gigCard .cardRow{
     display: flex;
 }
-.gigCard .gigDescription{
-    margin: 16px 0;
+.gigCard .gigTitle{
+    height: 50px;
+    margin: 8px 0;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-            line-clamp: 3; 
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
     -webkit-box-orient: vertical;
     text-align: justify;
 }
-.gigCard .cardRow,.gigDescription,.price{
+.gigCard .price{
+    bottom: 0;
+}
+.gigCard .cardRow,.gigTitle,.price{
     padding: 0 8px;
 }

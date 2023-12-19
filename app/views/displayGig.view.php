@@ -280,33 +280,7 @@
 </section>
 
 <section class="section-four">
-    <h1 class="heading-one">About this gig</h1>
-    <h4 class="heading-two">Greetings!
-        We are passionate, hardworking and professional bunch of people 
-        working together side by side to provide our clients the absolute 
-        best. Our products are always CLEAN HIGH-QUALITY RESPONSIVE DESIGN.
-    </h4>
-    <h4 class="heading-three">Our Premium Services</h4>
-        <ul>
-            <li>100% Clean Responsive Design</li>
-            <li>Ecommerce site Design (Standard and Premium Plans Only)</li>
-            <li>Multiple Payment Methods (PayPal, Stripe, Bank, Credit Card, etc.)</li>
-            <li>Wholesale site</li>
-            <li>Website Revamp</li>
-            <li>Blog</li>
-            <li>Figma to WordPress</li>
-            <li>Elementor / Fix Elementor Issue</li>
-            <li>Social media integration</li>
-            <li>SEO friendly site</li>
-        </ul>
-    <h4 class="heading-four">We don't just deliver a WordPress site, we make sure that 
-        you can easily manage your website by yourself, which results 
-        in you managing it on your own without any help. We also 
-        provide small video tutorials on demand explaining the complete 
-        know-hows of your website.</h4>
-    <h4>Please contact us with your requirements before placing the 
-        order to avoid cancellation. If you are clear about your 
-        requirement, Place your order now. </h4>
+ 
 </section>
 
 <section class="section-three">
@@ -322,9 +296,7 @@
 
         <div class="section-three-left-two">
             <div class="section-three-left-two-one">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>
+
             </div>
             <div class="section-three-left-two-two">
                 <div class="section-three-left-two-two-left">
@@ -341,21 +313,7 @@
                         <div class="section-three-left-two-two-right-up-right">
                             <h2>United States</h2>
                             <h2>|</h2>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
+
                             <h2>5</h2>
                         </div>
                     </div>
@@ -366,9 +324,7 @@
                 </div>
             </div>
             <div class="section-three-left-two-three">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
+
             </div>
         </div>
     </div>

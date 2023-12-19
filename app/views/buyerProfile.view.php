@@ -16,6 +16,12 @@
 
 ?>
     <div class="container">
+        
+        <!-- Topic -->
+        <div class="manageOrdersHeader">
+            My Profile
+        </div>
+
         <div class="sub-container">
             <div class="profile-container">
 

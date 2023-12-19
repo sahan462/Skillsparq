@@ -4,7 +4,7 @@
 .card-slider .carousel{
     display: grid;
     grid-auto-flow: column;  
-    grid-auto-columns: calc((100%/5));
+    grid-auto-columns: calc((100%/5) - 16px);
     gap: 20px;
     overflow: hidden;
 }
