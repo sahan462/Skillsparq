@@ -1,7 +1,7 @@
-<div class="gigCard" gigUrl="displayGig&gigId=<?php echo $gig['gig_id']?>">
+<div class="gigCard" gigUrl="displayGig&gigId=<?php echo $row['gig_id']?>">
     <!-- Cover Image -->
     <div class="coverImg">
-        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="card-1">
+        <img src="./assests/images/gigimages/<?php echo $row['cover_image']?>" alt="card-1">
     </div>
 
     <!-- User Details -->
@@ -27,11 +27,11 @@
             </div>
         </div>
     </div>
+
+
     <div class="gig-details">
-        <div class="gigDescription">
-              I will design and develop a professional business website html/css/js
-              I will design and develop a professional business website html/css/js
-              I will design and develop a professional business website html/css/js
+        <div class="gigTitle">
+            <?php echo $row['title'] ?>
         </div>
         <div class="price">
             <b><span>From 5$<span></b>

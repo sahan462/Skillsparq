@@ -51,7 +51,7 @@ body{
 }
 
 .card{
-    width: 300px;
+    width: 250px;
     background-color:#32bd6e;
     margin: 7px;
     transition: transform 0.5s ease, background-color 0.4s ease;
@@ -64,7 +64,7 @@ body{
 
 .card img{
     width: 100%;
-    min-height: 200px;
+    min-height: 250px;
     object-fit: cover;
     margin-bottom: 10px;
 }
@@ -158,11 +158,12 @@ body{
     /* display: flex; */
     padding: 2px;
     flex-direction: column;
+    margin: 7px;
 }
 
 .icon-time{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin: 7px;
     font-size: 18px;
@@ -172,11 +173,13 @@ body{
     font-size: 30px;
     font-weight: bold;
     margin: 7px;
+    padding: 2px;
+    padding-left: 10px;
 }
 
 .icon-location{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin: 7px;
 }
@@ -277,7 +280,7 @@ body{
     font-family: sans-serif;
     box-sizing:inherit;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content:space-evenly; 
     margin: 10px;
     /* border: 1px solid #c5c6c9; */
@@ -288,21 +291,19 @@ body{
 }
 
 .profile-content1{
-    /* display: flex; */
     border: 1px solid #c5c6c9;
-    /* width: 100px;
-    height: 100px; */
-    flex-grow: 1;
-    /* border-right: 1px solid #c5c6c9; */
+    width: 50%;
+    min-height: 500px;
+    height: auto;
     
 }
 
 .profile-content2{
-    /* display: flex; */
     border: 1px solid #c5c6c9;
-    /* width: 500px;
-    height: 0px; */
-    flex-grow: 1;
+    width: 50%;
+    min-height: 500px;
+    height: auto;
+    text-align: justify;
 }
 
 .profile-header{
@@ -327,6 +328,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.time{
+    margin: 7px;
 }
 
 .Topics{

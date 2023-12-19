@@ -1,5 +1,9 @@
 <?php include "components/buyerHeader.component.php"; ?>
 
+<?php
+    $recentGigs = $data['recentGigs'];
+?>
+
 <div class="buyerDashboardContent">
 
     <!--Header -->
@@ -19,12 +23,12 @@
             </a>
             <div class="recentGigsContent">
                 <?php
-                    $i = 0;
-                    while($i < 3){?>
-                    <?php include "components/GigCard.component.php"?>
+                    foreach($recentGigs as $row){
+                ?>
+                        <?php include "components/GigCard.component.php"?>
                 <?php
-                $i = $i + 1;
-                }?>
+                    }
+                ?>
             </div>
         </div>
 

@@ -40,3 +40,20 @@ const carousels = document.querySelectorAll(".carousel");
 carousels.forEach(carousel => {
     setupSlider(carousel);
 });
+
+//redirecting to displt gig page
+document.addEventListener("DOMContentLoaded", function () {
+    var clickableCards = document.querySelectorAll(".gigCard");
+    
+    clickableCards.forEach(function (card) {
+        card.addEventListener("click", function () {
+            var url = card.getAttribute("gigUrl");
+
+            if (url) {
+                window.location.href = url;
+            }else{
+                alert("Undefined url");
+            }
+        });
+    });
+});
