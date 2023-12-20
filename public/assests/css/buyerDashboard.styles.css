@@ -7,6 +7,9 @@
 
 /*Header*/
 .buyerDashboardContent .personalizedHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     min-height: 24px;
     margin-top: 24px;
     margin-bottom: 48px;
@@ -17,11 +20,43 @@
     padding: 0 32px;
 }
 
+/*search bar*/
+.buyerDashboardContent .searchBar{
+    width: 25%;
+}
+.buyerDashboardContent .searchBar form{
+    display: flex;
+    width: 100%;
+}
+.buyerDashboardContent .searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    border: 1px solid #c5c6c9;
+    border-radius: 16px 0 0 16px;
+    border-right: 0;
+}
+.buyerDashboardContent .searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 16px 16px 0;
+    background-color: #000000;
+    color: #fff;
+    transition: ease-in-out 0.3s;
+}
+.buyerDashboardContent .searchBar button:hover {
+    color: #333;
+    background: #fff;
+}
+
 /*Main Container*/
 .buyerDashboardContent .mainContent{
     margin: 0 32px;
 }
-
 .buyerDashboardContent #content{
     padding: 16px;
     margin-top: 32px;
@@ -29,17 +64,14 @@
     background-color: #fff;
     border-radius: 8px;
 }
-
 .buyerDashboardContent .row{
     display: flex;
     justify-content: space-between;
 }
-
 .buyerDashboardContent .row .leftSide{
     display: flex;
     align-items: center;
 }
-
 .buyerDashboardContent svg{
     height: 32px;
     width: 32px;
@@ -50,18 +82,14 @@
     border-radius: 100%;
     transition: ease-in-out 0.3s;
 }
-
 .buyerDashboardContent svg:hover{
     background-color:  #fff;
     color: #000000;
 }
-
-
 .buyerDashboardContent a{
     color: #222325;
     text-decoration: none;
 }
-
 .buyerDashboardContent #content h2{ 
     margin-bottom: 16px;
 }
@@ -74,10 +102,13 @@
 }
  
 
-@media only screen and (min-width: 600px) {
-    .personalized-header {
-        margin-top: 8px;
-        padding: 0;
+@media only screen and (max-width: 600px) {
+    .buyerDashboardContent .personalizedHeader{
+        display: flex;
+        flex-direction: column;
+    }
+    .buyerDashboardContent .searchBar{
+        width: 100%;
     }
 }
 
