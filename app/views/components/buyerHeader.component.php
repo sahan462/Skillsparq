@@ -30,7 +30,7 @@
             <div class="logo">
                 <a href="#">SKILLSPARQ</a>
             </div>
-            <div class = "searchBar">
+            <div class="searchBar">
                 <form action="">
                     <input type="text" placeholder="Search.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>

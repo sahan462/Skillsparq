@@ -1,15 +1,95 @@
 <?php include "components/buyerSimpleHeader.component.php"; ?>
 
 <?php
-    $data["profilePicture"] = "dummyprofile.jpg";
+    $data["profilePicture"] = "avishka.jpg";
     $data["sliderImage-1"] = "slide1.webp";
     $data["sliderImage-2"] = "slide2.webp";
     $data["sliderImage-3"] = "slide3.webp";
     $data["sliderImage-4"] = "slide4.webp";
 
+    $data["category"] = "Programming and Tech";
+    $data["gigTitle"] = "I will do generative ai and machine learning projects using python";
+    $data["sellerName"] = "Avishka Idunil";
+
+ 
 ?>
 
-<section class="section-one">
+<!-- Display Gig Container -->
+<div class="displayGigContainer">
+
+    <!-- Main Container -->
+    <div class="mainContainer">
+        <div class="topContainer">
+            <div class="topLeftContainer">
+                <div class="category">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                    </svg>
+                    <?php echo $data["category"]; ?> 
+                </div>
+                <div class="seller">
+                    <div class="image">
+                        <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" loading="lazy">
+                    </div>
+                    <div class="sellerName">
+                        <a href="">
+                            <?php echo $data["sellerName"]; ?>
+                        </a>
+                    </div>
+                </div>
+                <div class="gigTitle">
+                    <h1>
+                        <?php echo $data["gigTitle"]; ?>
+                    </h1>
+                </div>
+                <div class="gigImageSlider">
+                    <div class="slidercontainer">
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/<?php echo $data["sliderImage-1"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/<?php echo $data["sliderImage-2"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/<?php echo $data["sliderImage-3"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/<?php echo $data["sliderImage-4"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                        <!-- Navigation arrows -->
+                        <div class="navigationArrows">
+                            <a class="left" onclick="nextSlide(-1)">&#10094;</a>
+                            <a class="right" onclick="nextSlide(1)">&#10095;</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="topRightContainer">
+                <div class="packageDetails"></div>
+                <div class="milestoneApproach"></div>
+                <div class="other"></div>
+            </div>
+        </div>
+        <div class="bottomContainer">
+            <div class="bottomLeftContainer">
+                <div class="aboutSeller"></div>
+                <div class="gigRatings"></div>
+            </div>
+            <div class="bottomRightContainer">
+                <div class="animation"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- <section class="section-one">
     <div class="section-one-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
@@ -23,7 +103,7 @@
         <h1>I will design clean & responsive wordpress website</h1>
         <div class="section-two-left-one">
             <div class="section-two-left-left">
-                <img class="gig-profile-image" src="../public/assests/images/<?php echo $data["profilePicture"]?>" loading="lazy">
+                <img class="gig-profile-image" src="../public/assests/images/<//?php echo $data["profilePicture"]?>" loading="lazy">
             </div>
             <div class="section-two-left-right">
                 <div class="section-two-left-right-one">
@@ -44,23 +124,23 @@
         <div class="section-two-left-two">
             <div class="slidercontainer">
                 <div class="showSlide fade">
-                    <img src="../public/assests/images/<?php echo $data["sliderImage-1"]?>" loading="lazy">
+                    <img src="../public/assests/images/<//?php echo $data["sliderImage-1"]?>" loading="lazy">
                     <div class="content"></div>
                 </div>
                 <div class="showSlide fade">
-                    <img src="../public/assests/images/<?php echo $data["sliderImage-2"]?>" loading="lazy">
+                    <img src="../public/assests/images/<//?php echo $data["sliderImage-2"]?>" loading="lazy">
                     <div class="content"></div>
                 </div>
         
                 <div class="showSlide fade">
-                    <img src="../public/assests/images/<?php echo $data["sliderImage-3"]?>" loading="lazy">
+                    <img src="../public/assests/images/<//?php echo $data["sliderImage-3"]?>" loading="lazy">
                     <div class="content"></div>
                 </div>
                 <div class="showSlide fade">
-                    <img src="../public/assests/images/<?php echo $data["sliderImage-4"]?>" loading="lazy">
+                    <img src="../public/assests/images/<//?php echo $data["sliderImage-4"]?>" loading="lazy">
                     <div class="content"></div>
                 </div>
-                <!-- Navigation arrows -->
+               Navigation arrows
                 <a class="left" onclick="nextSlide(-1)">&#10094;</a>
                 <a class="right" onclick="nextSlide(1)">&#10095;</a>
             </div> 
@@ -74,7 +154,7 @@
                 <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
             </div>
                 
-            <!-- Tab content -->
+          Tab content 
             <div id="London" class="tabcontent" style="display: block;">
                 <div class="columns">
                     <ul class="price">
@@ -300,7 +380,7 @@
             </div>
             <div class="section-three-left-two-two">
                 <div class="section-three-left-two-two-left">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" loading="lazy">
+                    <img src="../public/assests/images/<//?php echo $data["profilePicture"]?>" loading="lazy">
                 </div>
                 <div class="section-three-left-two-two-right">
                     <div class="section-three-left-two-two-right-up">
@@ -328,7 +408,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <script src="./assests/js/displayGig.script.js"></script>
 

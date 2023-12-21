@@ -1,10 +1,129 @@
 body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Display Gig Container */
+.displayGigContainer{
+    padding: 16px 32px;
+    width: 100%;
+}
+.displayGigContainer svg{
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+/*Main Container*/
+.displayGigContainer{
+    background-color: #f7f7f7 !important;
+}
+.displayGigContainer .mainContainer{
+    margin-right: 32px;
+    margin-left: 32px;
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: auto;
+}
+
+/* top container */
+ .displayGigContainer .topContainer{
+    display: flex;
+    width: 100%;
+ }
+
+/* top left container */
+.displayGigContainer .topLeftContainer{
+    width: 50%;
+}
+.topLeftContainer .category{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #222325;
+}
+.topLeftContainer .seller{
+    display: flex;
+    align-items: center;
+}
+.topLeftContainer .seller a{
+    text-decoration: none;
+    color: #222325;
+}
+.topLeftContainer .seller img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.topLeftContainer .gigImageSlider{
+    width: 100%;
+    border: 1px solid black;
+}
+.topLeftContainer .navigationArrows{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.left, .right {
+    cursor: pointer;
+    width: auto;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.right {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.left:hover, .right:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.topLeftContainer .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+.topLeftContainer .category, .topLeftContainer .seller, .topLeftContainer .gigTitle{
+    margin-bottom: 16px;
+}
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+
+
+
+
+
+/* /* body{
     overflow-x: hidden;
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #404145;
 }
 /*section one*/
-.section-one {
+/* .section-one {
     margin-top: 32px;
     margin-left: 32px;
     padding: 16px 32px;
@@ -32,10 +151,10 @@ body{
     padding-bottom: 5px;
     border: 1px solid gray;
     border-radius: 3px;
-}
+} */
 
 /*section two*/
-.section-two {
+/* .section-two {
     display: flex;
     justify-content: space-between;
     margin: 16px 32px;
@@ -162,10 +281,10 @@ body{
 }
 .active {
     background-color: #717171;
-}
+} */
 
 /* Fading animation */
-.fade {
+/* .fade {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
@@ -198,7 +317,7 @@ body{
 }
   
 /* Style the buttons that are used to open the tab content */
-.tab button {
+/* .tab button {
     width: calc(100% / 3);
     background-color: #f7f7f7;
     border: 0.3px solid rgb(226, 226, 226);
@@ -229,38 +348,38 @@ body{
 }
 .columns:first-child{
     display: block;
-}
+} */ */
 
 /* Style the list */
-.columns .price {
+/* .columns .price {
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
-}
+} */
   
 /* Add shadows on hover */
-.columns .price:hover {
+/* .columns .price:hover {
     box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
-}
+} */
 
 /* Pricing header */
-.columns .price .header {
+/* .columns .price .header {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     font-size: 18px;
     font-weight: 600;
-}
+} */
 
 /* List items */
-.columns .price li {
+/* .columns .price li {
     text-align: center;
-}
+} */
 
 /* Grey list item */
 
 /* The "Sign Up" button */
-.button {
+/* .button {
     background-color: #1dbf73;
     width: 100%;
     border: none;
@@ -294,14 +413,14 @@ ul button:hover{
 }
 
 /* Grey list item */
-.price .black {
+/* .price .black {
     background-color: #f7f7f7;
     font-size: 18px;
     padding: 10px 25px;
   }
-  
+   */ */
 /* The "Sign Up" button */
-.button-black {
+/* .button-black {
     background-color: #f7f7f7;
     border: none;
     color: rgb(125, 123, 123);
@@ -309,17 +428,17 @@ ul button:hover{
     text-align: center;
     text-decoration: none;
     font-size: 18px;
-}
+} */
 
 /* Change the width of the three columns to 100%
 (to stack horizontally on small screens) */
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
 .columns {
     width: 100%;
 }
-}
+} */
 
-.section-three-left-one{
+/* .section-three-left-one{
     display: flex;
 }
 
@@ -418,4 +537,4 @@ ul button:hover{
     color: gray;
     font-weight:500;
 }
-
+*/

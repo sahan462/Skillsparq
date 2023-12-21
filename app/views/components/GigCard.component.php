@@ -14,16 +14,6 @@
                 <div class="username">
                     <span>Avishka Idunil</span>
                 </div>
-                <div class="rating">
-                    <div class="star-rating">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div class="numeric-rating">(4.3)</div>
-                </div>
             </div>
         </div>
     </div>
@@ -32,6 +22,16 @@
     <div class="gig-details">
         <div class="gigTitle">
             <?php echo $row['title'] ?>
+        </div>
+        <div class="rating">
+            <div class="star-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <div class="numeric-rating">(4.3)</div>
         </div>
         <div class="price">
             <b><span>From 5$<span></b>
