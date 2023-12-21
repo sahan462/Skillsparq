@@ -100,7 +100,12 @@
     gap: 20px;
     flex-wrap: wrap;
 }
- 
+
+@media only screen and (min-width: 1200px) {
+    .buyerDashboardContent .searchBar{
+        display: none;
+    }
+}
 
 @media only screen and (max-width: 600px) {
     .buyerDashboardContent .personalizedHeader{

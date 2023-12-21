@@ -1,15 +1,15 @@
 .gigCard{
     width: calc(100% / 5 - 16px);
-    height: 320px;
+    height: 328px;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-.gigCard .user-details{
+/* .gigCard .user-details{
     height: 50px;
-}
+} */
 .gigCard .user-details img{
     width: 48px;
     height: 48px;
@@ -21,7 +21,7 @@
     width: 100%;
     height: 160px;
     border-radius: 8px 8px 0 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 .gigCard .rating{
     display: flex;
@@ -36,8 +36,8 @@
     display: flex;
 }
 .gigCard .gigTitle{
-    height: 50px;
-    margin: 8px 0;
+    /* height: 50px; */
+    /* margin: 1px 0; */
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
@@ -46,9 +46,9 @@
     text-align: justify;
 }
 .gigCard .price{
-    bottom: 0;
+    margin: 4px 0;
 }
-.gigCard .cardRow,.gigTitle,.price{
+.gigCard .cardRow,.gigTitle,.price,.rating{
     padding: 0 8px;
 }
 

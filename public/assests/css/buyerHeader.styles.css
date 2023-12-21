@@ -167,6 +167,17 @@ header .upperHeader{
     object-fit: cover;
 }
 
+@media only screen and (max-width: 1200px) {
+    .headerCategories{
+        display: none;
+    }
+    .upperHeader .searchBar{
+        display: none;
+    }
+    header .upperHeader {
+        border-bottom: 1px solid #c5c6c9;
+    }
+}
 
 @media only screen and (max-width: 900px) {
     .headerCategories{
