@@ -4,6 +4,7 @@ body{
     padding: 0;
 }
 
+
 /* Display Gig Container */
 .displayGigContainer{
     padding: 16px 32px;
@@ -15,7 +16,25 @@ body{
     margin-right: 4px;
 }
 
-/* Model Stylings */
+
+/* category */
+.category{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 2px;
+    margin: 32px 32px 0 32px;
+    color: #222325;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 8px;
+}
+
+
+/* Modal Stylings */
+
+/* modal behaviour */
 .overlay{
     z-index: 1;
     display: none;
@@ -27,31 +46,34 @@ body{
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+
 }
-/* Styles for the modal */
+#overlay{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
 .modal {
     z-index: 1;
     display: none;
     position: absolute;
     background: #fff;
     padding: 20px;
-    border-radius: 5px;
-    width: 300px;
-    text-align: center;
+    border-radius: 8px;
+    width: 40%;
+    height: auto;
 }
-
-/* Styles for form elements */
-.modal form {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal label, .modal input {
-    margin: 10px 0;
-}
-
-/* Styles for confirmation pop-up */
-.confirmation {
+.confirmation{
     display: none;
     background: #fff;
     padding: 20px;
@@ -59,13 +81,63 @@ body{
     width: 300px;
     text-align: center;
 }
-
-/* Style for buttons */
-.modal button, .confirmation button {
+.modal .confirmation button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
 }
+.topRightContainer .fade {
+    opacity: 1;
+}
+
+/* modal content */
+.modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.modal input, textarea{
+    margin-bottom: 16px;
+}
+.modal .type-1{
+    font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.modal .type-2{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #62646a;
+}
+.modal .row{
+    display: flex;
+    flex-direction: column !important;
+}
+.modal .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+.modal .buttons button{
+    width: 50%;
+    padding: 16px;
+    margin-top: 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    background-color: #31d65a;
+}
+.modal .buttons button:hover{
+    color: #333;
+    background-color: rgb(241, 241, 241);
+    font-weight: 500;
+}
+
 
 /*Main Container*/
 .displayGigContainer{
@@ -85,18 +157,12 @@ body{
  .displayGigContainer .topContainer{
     display: flex;
     width: 100%;
-    gap: 32px;
+    gap: 48px;
 }
 
 /* top left container */
 .displayGigContainer .topLeftContainer{
     width: 50%;
-}
-.topLeftContainer .category{
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #222325;
 }
 .topLeftContainer .seller{
     display: flex;
@@ -115,6 +181,12 @@ body{
 .topLeftContainer .gigImageSlider{
     width: 100%;
     border: 1px solid black;
+}
+.topLeftContainer .sliderContainer{
+    width: 100%;
+}
+.topLeftContainer .sliderContainer img{
+    width: 100%;
 }
 .topLeftContainer .navigationArrows{
     width: 100%;
@@ -147,6 +219,7 @@ body{
 .topLeftContainer .category, .topLeftContainer .seller, .topLeftContainer .gigTitle{
     margin-bottom: 16px;
 }
+
 @-webkit-keyframes fade {
     from {
         opacity: .4
@@ -166,23 +239,24 @@ body{
 }
 
 /*top right container*/
+
+/* packages */
 .tab {
     width: 100%;
     overflow: hidden;
     display: flex;
     background-color: #f1f1f1;
+    border-radius: 8px 8px 0 0;
 }
-  
-/* Style the buttons that are used to open the tab content */
 .tab button {
     width: calc(100% / 3);
     background-color: #f7f7f7;
     border: 0.3px solid rgb(226, 226, 226);
     cursor: pointer;
-    padding: 16px 32px;
+    padding: 8px 32px;
     transition: 0.3s;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
 }
 .tab button:hover {
     background-color: #000000;
@@ -206,29 +280,21 @@ body{
 .columns:first-child{
     display: block;
 } 
-
-/* Style the list */
 .columns .price {
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-  
-/* Add shadows on hover */
 .columns .price:hover {
     box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
-
-/* Pricing header */
 .columns .price .header {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     font-size: 18px;
     font-weight: 600;
 }
-
-/* List items */
 .columns .price li {
     text-align: center;
 }
@@ -243,7 +309,7 @@ body{
     font-size: 18px;
 }
 ul button{
-    padding: 16px;
+    padding: 8px;
     margin-top: 16px;
     width: 100%;
     font-weight: 600;
@@ -259,5 +325,41 @@ ul button:hover{
     transition: ease-in-out 0.3s;
 }
 
+/* milestones */
+
+.topRightContainer .milestoneApproach{
+
+}
 
 
+
+/* media queries */
+@media only screen and (max-width: 900px) {
+    .topContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .displayGigContainer .topLeftContainer, .topRightContainer{
+        width: 100%;
+    }
+    .modal{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .topContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .displayGigContainer .topLeftContainer, .topRightContainer{
+        width: 100%;
+    }
+    .tab button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    .modal{
+        width: 85%;
+    }
+}

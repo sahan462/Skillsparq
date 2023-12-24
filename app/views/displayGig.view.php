@@ -17,41 +17,72 @@
 <!-- Display Gig Container -->
 <div class="displayGigContainer">
 
-    <!--Model 1  -->
+    <!--Modal 1  -->
     <div class="overlay" id="overlay">
         <div class="modal" id="modal">
-            <form>
-                <label for="requestDescription">Request Description:</label>
-                <textarea id="requestDescription" name="requestDescription" rows="4" ></textarea>
+            <form id="requestForm">
+                <div class="row">
+                    <label for="requestDescription" class="type-1">Request Description:</label>
+                    <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
+                    <textarea id="requestDescription" name="requestDescription" rows="10" ></textarea>
+                </div>
 
-                <label for="attachments">Attachments:</label>
-                <input type="file" id="attachments" name="attachments" multiple>
+                <div class="row">
+                    <label for="attachments" class="type-1">Attachments:</label>
+                    <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+                    <input type="file" id="attachments" name="attachments" multiple>
+                </div>
 
-                <button onclick="confirmAction('send')">Send Request</button>
-                <button onclick="confirmAction('cancel')">Cancel Request</button>
+                <div class="buttons">
+                    <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                    <button type="button" onclick="confirmAction('send')">Send Request</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Model 2 -->
-    <div class="overlay" id="confirmationOverlay">
-        <div class="confirmation" id="confirmation">
-            <p>Are you sure?</p>
-            <button onclick="handleConfirmation('yes')">Yes</button>
-            <button onclick="handleConfirmation('no')">No</button>
+    <!-- Modal 2 -->
+    <div class="overlay" id="cancelConfirmationOverlay">
+        <div class="confirmation" id="cancelConfirmation">
+            <p>Are you sure you want to continue?</p>
+            <button onclick="handleConfirmation('cancelYes')">Yes</button>
+            <button onclick="handleConfirmation('cancelNo')">No</button>
         </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="overlay" id="sendConfirmationOverlay">
+        <div class="confirmation" id="sendConfirmation">
+            <p>Are you sure you want to continue?</p>
+            <button onclick="handleConfirmation('sendYes')">Yes</button>
+            <button onclick="handleConfirmation('sendNo')">No</button>
+        </div>
+    </div>
+
+
+
+    <!-- category -->
+    <div class="category">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+        </svg>
+        <?php echo $data["category"]; ?> 
     </div>
 
     <!-- Main Container -->
     <div class="mainContainer">
+
+        <!-- Top Container -->
         <div class="topContainer">
+
+            <!--Top Left Container  -->
             <div class="topLeftContainer">
-                <div class="category">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
-                    </svg>
-                    <?php echo $data["category"]; ?> 
+
+                <div class="gigTitle">
+                    <h1>
+                        <?php echo $data["gigTitle"]; ?>
+                    </h1>
                 </div>
                 <div class="seller">
                     <div class="image">
@@ -63,13 +94,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="gigTitle">
-                    <h1>
-                        <?php echo $data["gigTitle"]; ?>
-                    </h1>
-                </div>
                 <div class="gigImageSlider">
-                    <div class="slidercontainer">
+                    <div class="sliderContainer">
                         <div class="showSlide fade">
                             <img src="../public/assests/images/<?php echo $data["sliderImage-1"]?>" loading="lazy">
                             <div class="content"></div>
@@ -95,13 +121,17 @@
                     </div> 
                 </div>
             </div>
+
+            <!-- Top Right Container -->
             <div class="topRightContainer">
+
+                <!--packages  -->
                 <div class="packageDetails">
                     <div class="package-tabs">
                         <div class="tab">
-                            <button id="active" class="tablinks" onclick="openCity(event, 'London')">Basic</button>
+                            <button class="tablinks" onclick="openCity(event, 'London')" id = "defaultOpen" style="border-radius: 8px 0 0 0;">Basic</button>
                             <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
-                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button>
                         </div>
                     
                         <div id="London" class="tabcontent" style="display: block;">
@@ -126,7 +156,7 @@
                                         </div>
                                     </li>
                                     </div>
-                                    <a href="#"><button>Request to Order</button></a>
+                                    <a href="#"><button onclick="openModal()">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -153,7 +183,7 @@
                                             </div>
                                         </li>
                                     </div>
-                                    <a href="#"><button>Request to Order</button></a>
+                                    <a href="#"><button onclick="openModal()">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -187,25 +217,32 @@
                     </div>                    
                 </div>
 
+                <!-- Milestones-->
                 <div class="milestoneApproach">
-
+                    
                 </div>
                 <div class="other">
 
                 </div>
             </div>
         </div>
+
+        <!-- Bottom Container -->
         <div class="bottomContainer">
+
+            <!-- Bottom Left Container -->
             <div class="bottomLeftContainer">
                 <div class="aboutSeller"></div>
                 <div class="gigRatings"></div>
             </div>
+
+            <!-- Bottom Right Container -->
             <div class="bottomRightContainer">
                 <div class="animation"></div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 <script src="./assests/js/displayGig.script.js"></script>
