@@ -128,7 +128,7 @@ tbody td{
     display: flex;
     align-items: center;
 }
-img{
+.buyer img{
     width: 48px;
     height: 48px;
     border-radius: 100%;

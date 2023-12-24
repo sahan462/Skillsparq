@@ -1,11 +1,21 @@
 <?php include "components/buyerHeader.component.php"; ?>
 
+<?php
+    $recentGigs = $data['recentGigs'];
+?>
+
 <div class="buyerDashboardContent">
 
     <!--Header -->
-    <div class="personalizedHeader">
-        Hey there, <?php echo $_SESSION['firstName']?>
-    </div>
+        <div class="personalizedHeader">
+            Hey there, <?php echo $_SESSION['firstName']?>
+            <div class = "searchBar">
+                <form action="">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
 
     <!-- Main Container -->
     <div class="mainContent">
@@ -19,12 +29,12 @@
             </a>
             <div class="recentGigsContent">
                 <?php
-                    $i = 0;
-                    while($i < 3){?>
-                    <?php include "components/GigCard.component.php"?>
+                    foreach($recentGigs as $row){
+                ?>
+                        <?php include "components/GigCard.component.php"?>
                 <?php
-                $i = $i + 1;
-                }?>
+                    }
+                ?>
             </div>
         </div>
 
@@ -44,7 +54,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
                         </svg>
                         <svg id="right" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
                         </svg>
                     </div>
                 </div>
