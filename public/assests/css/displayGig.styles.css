@@ -15,6 +15,58 @@ body{
     margin-right: 4px;
 }
 
+/* Model Stylings */
+.overlay{
+    z-index: 1;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+/* Styles for the modal */
+.modal {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Styles for form elements */
+.modal form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal label, .modal input {
+    margin: 10px 0;
+}
+
+/* Styles for confirmation pop-up */
+.confirmation {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Style for buttons */
+.modal button, .confirmation button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 /*Main Container*/
 .displayGigContainer{
     background-color: #f7f7f7 !important;
@@ -33,7 +85,8 @@ body{
  .displayGigContainer .topContainer{
     display: flex;
     width: 100%;
- }
+    gap: 32px;
+}
 
 /* top left container */
 .displayGigContainer .topLeftContainer{
@@ -112,203 +165,7 @@ body{
     }
 }
 
-
-
-
-
-
-/* /* body{
-    overflow-x: hidden;
-    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-    color: #404145;
-}
-/*section one*/
-/* .section-one {
-    margin-top: 32px;
-    margin-left: 32px;
-    padding: 16px 32px;
-    display: flex;
-    flex-direction: row; 
-}
-.section-one-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.section-one svg{
-    margin-right: 8px;
-}
-.section-one-right {
-    font-size: 8.2px;
-    font-weight: 400px;
-    display: flex;
-    flex-direction: row;
-}
-.section-one-right h1{
-    padding-top: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 5px;
-    border: 1px solid gray;
-    border-radius: 3px;
-} */
-
-/*section two*/
-/* .section-two {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px 32px;
-    padding: 16px 32px;
-    background-color: #fff;
-}
-.section-two-left{
-    width: 60%;
-}
-.section-two-left-one{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 16px;
-}
-.section-two-right{
-    width: 40%;
-}
-.gig-profile-image{
-    width: 64px;
-    height: 64px;
-    border-radius: 100%;
-}
-.section-two-left-right{
-    display: flex;
-    flex-direction: column;
-}
-.section-two-left-right-one {
-    display: flex;
-    flex-direction: row;
-}
-.section-two-left-right-h-one{
-    margin-left: 16px;
-}
-.section-two-left-right-h-two{
-    color: rgb(151, 149, 149);
-}
-.section-two-left-right-h-three{
-    margin-left: 20px;
-    color: rgb(151, 149, 149);
-}
-.section-two-left-right-h-four{
-    margin-top: 13px;
-    font-size: 13px;
-    margin-left: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border-radius: 5px;
-    color: #99501b;
-    background-color: #ffecd1;
-}
-.section-two-left-right-two{
-    display: flex;
-    margin-top: -5px;
-}
-.section-two-left-right-two-one, 
-.section-two-left-right-two-two {
-    display: flex;
-    margin-left: 8px;
-}
-.section-two-left-right-two-one{
-    margin-left: 20px;
-}
-.section-two-left-right-two-two{
-    margin-top: -15px;
-    font-size: 10px;
-    gap: 8px;
-}
-.section-two-left-right-two-two-h-two{
-    margin-left: 5px;
-    color: rgb(151, 149, 149);
-}
-.section-two-left-right-two-two-h-three{
-    margin-left: 5px;
-    margin-top: 14px;
-    font-size: 12px;
-    color: rgb(151, 149, 149);
-}
-.showSlide {
-    display: none;
-}
-.showSlide:first-child {
-    display: block;
-}
-.showSlide img {
-    width: 100%;
-}
-.slidercontainer {
-    max-width: 650px;
-    position: relative;
-    margin: auto;
-    margin-top: 25px;
-}
-.left, .right {
-    cursor: pointer;
-    position: absolute;
-    top: 48%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-}
-.right {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-.left:hover, .right:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-.slidercontainer .content {
-    color: #eff5d4;
-    font-size: 30px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    text-align: center;
-}
-.active {
-    background-color: #717171;
-} */
-
-/* Fading animation */
-/* .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-@-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
-}
-
-@keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
-}
-
-
+/*top right container*/
 .tab {
     width: 100%;
     overflow: hidden;
@@ -317,7 +174,7 @@ body{
 }
   
 /* Style the buttons that are used to open the tab content */
-/* .tab button {
+.tab button {
     width: calc(100% / 3);
     background-color: #f7f7f7;
     border: 0.3px solid rgb(226, 226, 226);
@@ -348,38 +205,34 @@ body{
 }
 .columns:first-child{
     display: block;
-} */ */
+} 
 
 /* Style the list */
-/* .columns .price {
+.columns .price {
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
-} */
+}
   
 /* Add shadows on hover */
-/* .columns .price:hover {
+.columns .price:hover {
     box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
-} */
+}
 
 /* Pricing header */
-/* .columns .price .header {
+.columns .price .header {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     font-size: 18px;
     font-weight: 600;
-} */
+}
 
 /* List items */
-/* .columns .price li {
+.columns .price li {
     text-align: center;
-} */
-
-/* Grey list item */
-
-/* The "Sign Up" button */
-/* .button {
+}
+.button {
     background-color: #1dbf73;
     width: 100%;
     border: none;
@@ -405,136 +258,6 @@ ul button:hover{
     border: none;
     transition: ease-in-out 0.3s;
 }
-.package-status li{
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-    gap: 50px;
-}
 
-/* Grey list item */
-/* .price .black {
-    background-color: #f7f7f7;
-    font-size: 18px;
-    padding: 10px 25px;
-  }
-   */ */
-/* The "Sign Up" button */
-/* .button-black {
-    background-color: #f7f7f7;
-    border: none;
-    color: rgb(125, 123, 123);
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-} */
 
-/* Change the width of the three columns to 100%
-(to stack horizontally on small screens) */
-/* @media only screen and (max-width: 600px) {
-.columns {
-    width: 100%;
-}
-} */
 
-/* .section-three-left-one{
-    display: flex;
-}
-
-.section-three-left-two{
-    margin-left: 120px;
-    display: flex;
-    width: 100%;
-}
-
-.section-three-left-two-one{
-    color: black;
-  }
-
-.section-three-left-two-one svg,
-.section-three-left-two-three svg{
-    color:black;
-    background-color: #ffffff;
-    padding: 12px;
-    border-radius: 50%;
-    position: absolute;
-    top: 126%;
-    margin-left: -20px;
-    box-shadow: 1px 1px 2px 1px #9c9c9d;
-}
-
-.section-three-left-two-two{
-    width: 660px;
-    height: 80px;
-    border: 1px solid rgb(192, 189, 189);
-    border-radius: 7px;
-    padding-left: 30px;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: row;
-
-}
-.section-three-left-two-two-left img{
-    width: 45px;
-    border-radius: 50%;
-}
-.section-three-left-two-two-right{
-
-}
-.section-three-left-two-two-right-up{
-    display: flex;
-    flex-direction: row;
-    font-size: 10px;
-    margin-top: -12px;
-    padding-left: 15px;
-}
-.section-three-left-two-two-right-up-middle img{
-    margin-left: 10px;
-    width: 20px;
-    margin-top: 13.5px;
-}
-.section-three-left-two-two-right-up-right{
-    display: flex;
-}
-.section-three-left-two-two-right-up-right h2{
-    margin-left: 10px;
-    font-size: 13px;
-    margin-top: 14px;
-    color: rgb(167, 166, 166);
-}
-.section-three-left-two-two-right-up-right svg{
-    margin-left: 2px;
-    color: rgb(113, 108, 108);
-    margin-top: 13.5px;
-    padding-left: 2px;
-}
-.section-three-left-two-two-right-down h2{
-    font-size: 15px;
-    margin-left: 15px;
-    margin-top: -9px;
-    color: #9c9c9d;
-}
-.section-four{
-    margin: 16px 32px;
-    padding: 16px 32px;
-    width: 60%;
-    text-align: justify;
-}
-.heading-one{
-    font-weight: 600;
-}
-.heading-two{
-    color: gray;
-}
-.heading-three{
-    font-weight: 600px;
-}
-.heading-four{
-    color: gray;
-}
-.section-four li{
-    color: gray;
-    font-weight:500;
-}
-*/
