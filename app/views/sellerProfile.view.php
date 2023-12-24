@@ -22,9 +22,8 @@ $data["profilePicture"] = "dummyprofile.jpg";
                             <div class="icon-location-value">Colombo Sri Lanka</div>
                         </div>
                         <div class="icon-time">
-                            Local time
-                            <div class="icon-time-value">12.55</div>
-                            <div class="icon-time-spec">a.m.</div>
+                            <div>Local Time is</div>
+                            <div class="time"></div>
                         </div>
                     </div>
                 </div>
@@ -57,7 +56,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         </div>
                     </div>
                     <div class="profile-content-category-content">
-                        asljdflk
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
                     <hr>
                     <div class="profile-content-category-header">
@@ -67,17 +66,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         </div>
                     </div>
                     <div class="profile-content-category-content">
-                        asljdflk
-                    </div>
-                    <hr>
-                    <div class="profile-content-category-header">
-                        <div class="Topics">Hours Per Week</div>
-                        <div class="buttons">
-                            <button id="button"> Add</button>
-                        </div>
-                    </div>
-                    <div class="profile-content-category-content">
-                        asljdflk
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
                     <hr>
                     <div class="profile-content-category-header">
@@ -87,32 +76,13 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         </div>
                     </div>
                     <div class="profile-content-category-content">
-                        asljdflk
-                    </div>
-                    <hr>
-                    <div class="profile-content-category-header">
-                        <div class="Topics">Linked Accounts</div>
-                        <div class="buttons">
-                            <button id="button"> Add</button>
-                        </div>
-                    </div>
-                    <div class="profile-content-category-content">
-                        asljdflk
+                        
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
                 </div>
             </div>
             <div class="profile-content2">
                 <div class="content-category2">
-                    <div class="profile-content-category-header">
-                        <div class="Topics">Web Developer (Editable)</div>
-                        <div class="buttons">
-                            <button id="button"> Add</button>
-                        </div>
-                    </div>
-                    <div class="profile-content-category-content">
-                        asljdflk
-                    </div>
-                    <hr>
                     <div class="profile-content-category-header">
                         <div class="Topics">Portfolio</div>
                         <div class="buttons">
@@ -120,80 +90,17 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         </div>
                     </div>
                     <div class="profile-content-category-content">
-                        asljdflk
-                    </div>
-                    <hr>
-                    <div class="profile-content-category-header">
-                        <div class="Topics">Skills</div>
-                        <div class="buttons">
-                            <button id="button"> Add</button>
-                        </div>
-                    </div>
-                    <div class="profile-content-category-content">
-                        asljdflk
-                    </div>
-                    <hr>
-                    <div class="profile-content-category-header">
-                        <div class="Topics">Project Catalog</div>
-                        <div class="buttons">
-                            <button id="button"> Add</button>
-                        </div>
-                    </div>
-                    <div class="profile-content-category-content">
-                        asljdflk
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero iure, cupiditate magni accusamus, perferendis non enim quibusdam eius explicabo eos odio labore, consequuntur ad facilis corporis assumenda eum sit rem inventore autem. A voluptatem deleniti, rerum pariatur odio numquam minima. Veritatis impedit repudiandae explicabo sit ea repellat assumenda nulla. Sint enim consequatur nam saepe illum, earum rem amet eius aspernatur accusantium dolor ad. Reprehenderit eveniet veniam maiores qui ipsa ad laudantium quos, tempore itaque possimus debitis magni modi ducimus tenetur quia velit fugiat hic architecto libero. Quaerat, dolorum suscipit consequuntur necessitatibus dicta sapiente voluptatum optio, aspernatur, ratione saepe asperiores quam.
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="intro-Topic">Full Stack Web Developer</div>
-        </div>
-        <div class="">
-            $20.00/hr
-        </div>
-        <hr>
-        <div class="other-category-header">
-            <div class="Topics">Work History</div>
-        </div>
-        <hr>
-        <div class="other-category-header">
-            <div class="Topics">Portfolio</div>
-        </div>
-        <hr>
-        <div class="other-category-header">
-            <div class="Topics">Skills</div>
-            <!-- <div class="input-container">
-                <div class="Topics">
-                    <a href="" class="add">&plus;</a>
-                </div>
-                <div class="inp-grp"></div>
-            </div> -->
-        </div>
-        <div class="other-category-content">
-            <div class="content">
-                <div class="wrap">
-                    <h4>Add your skills</h4>
-                    <a href="#" class="add">&plus;</a>
-                </div>
-                <div class="inp-grp"></div>
-            </div>
-        </div>
-        <!-- <hr>
-        <div class="other-category-header">
-            <div class="Topics">Full Stack Web Developer</div>
-        </div> -->
     </div>
 
     <div class="other-category-container" id="gigs">
         <div class="other-category-header">
             <div class="Topics">My Gigs</div>
-            <!-- <div class="buttons">
-                <a href="addgig"><button id="button">&plus;</button></a>
-            </div> -->
             <div class="plus">
                 <a href="addGig"><button id="plus">Add New Gig</button></a>
             </div>
@@ -221,45 +128,23 @@ $data["profilePicture"] = "dummyprofile.jpg";
             </div>
         </div>
     </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Testimonials</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
-            </div>
-        </div>
-        <hr>
-        <div class="">
-        </div>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Certifications</div>
-            <div class="buttons">
-                <button id="button">Add</button>
-            </div>
-        </div>
-        <hr>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Employment History</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
-            </div>
-        </div>
-        <hr>
-    </div>
-    <div class="other-category-container">
-        <div class="other-category-header">
-            <div class="Topics">Other Experiences</div>
-            <div class="buttons">
-                <button id="button"> Add</button>
-            </div>
-        </div>
-        <hr>
-        <div>content</div>
-    </div>
 
+    <script>
+        // Function to update the div with the current local time
+        function updateLocalTime() {
+            // Get the current local time
+            const currentTime = new Date();
+            // Format the time as needed (for example, HH:mm:ss)
+            const formattedTime = currentTime.toLocaleTimeString();
+            // Select the div using the class selector and update its content
+            const iconTimeDiv = document.querySelector('.time');
+            iconTimeDiv.textContent = formattedTime;
+        }
 
+        // Update the time initially
+        updateLocalTime();
+
+        // Update the time every second (1000 milliseconds)
+        setInterval(updateLocalTime, 1000);
+    </script>
     <?php include "components/footer.component.php"; ?>
