@@ -1,0 +1,77 @@
+.gigCard{
+    width: calc(100% / 5 - 16px);
+    height: 328px;
+    border: 2px solid #dadbdd;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+/* .gigCard .user-details{
+    height: 50px;
+} */
+.gigCard .user-details img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 4px;
+}
+.gigCard .coverImg img{
+    width: 100%;
+    height: 160px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 4px;
+}
+.gigCard .rating{
+    display: flex;
+}
+.gigCard:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+.gigCard .cardRow{
+    display: flex;
+}
+.gigCard .gigTitle{
+    /* height: 50px; */
+    /* margin: 1px 0; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+.gigCard .price{
+    margin: 4px 0;
+}
+.gigCard .cardRow,.gigTitle,.price,.rating{
+    padding: 0 8px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .gigCard{
+        width: calc(100% / 3 - 16px);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .gigCard{
+        width: calc(100% / 2 - 16px);
+        height: 360px;
+    }
+    .gigCard .coverImg img{
+        height: 200px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .gigCard{
+        width: calc(100% - 16px);
+        height: 360px;
+    }
+    .gigCard .coverImg img{
+        height: 200px;
+    }
+}

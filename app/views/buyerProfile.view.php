@@ -1,5 +1,5 @@
 <?php 
-    include "components/buyerHeader.component.php"; 
+    include "components/buyerSimpleHeader.component.php"; 
     $jobs = $data['jobs'];
     //$profile = $data['profile'];
 ?>
@@ -16,6 +16,12 @@
 
 ?>
     <div class="container">
+        
+        <!-- Topic -->
+        <div class="manageOrdersHeader">
+            My Profile
+        </div>
+
         <div class="sub-container">
             <div class="profile-container">
 

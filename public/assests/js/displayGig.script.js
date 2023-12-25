@@ -1,3 +1,5 @@
+//--------------------------------image slider--------------------------------
+
 var slide_index = 1;
 displaySlides(slide_index);
             
@@ -17,12 +19,14 @@ function displaySlides(n) {
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  slides[slide_index - 1].style.display = "block";
+  slides[slide_index - 1].style.display = "initial";
 }
 
 setInterval(function() {
   nextSlide(1);
 }, 5000);
+
+//-------------- package tabs -----------------------------------
 
 function openCity(evt, cityName) {
   // Declare all variables
@@ -43,4 +47,89 @@ function openCity(evt, cityName) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+
+
+
+
+//---------------------------------------- Modals---------------------------------------
+  
+// Function to open the modal
+function openPackageModal() {
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('modal').style.display = 'block';
+}
+
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) {
+    if (action === 'sendYes') {
+
+        document.getElementById('requestForm').submit();
+        window.location.href="manageOrders";
+
+    }else if (action === 'sendNo'){
+
+        document.getElementById('sendConfirmation').style.display = 'none';
+        document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
+    }else if(action === 'cancelNo'){
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
+    }else{
+
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('modal').style.display = 'none';
+
+    }
+
+}
+
+// Function to confirm the action
+function confirmAction(action) {
+    if (action === 'send') {
+    
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmation').style.display = 'block';
+    
+    } else {
+
+      document.getElementById('sendConfirmationOverlay').style.display = 'none';
+      document.getElementById('sendConfirmation').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmation').style.display = 'block';
+    
+    }
+}
+
+
+//----------------------------------------dynamic input methods -----------------------------------
+
+// Counter to keep track of added input fields
+let inputCounter = 1;
+
+function openMilestoneModal() {
+  document.getElementById('milestoneOverlay').style.display = 'flex';
+  document.getElementById('milestoneModal').style.display = 'block';
+}
+
+function addInput() {
+    // Increment the counter
+    inputCounter++;
+
+    // Create a new input element
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = 'dynamicInput[]';
+    newInput.placeholder = 'Enter something';
+    newInput.required = true;
+
+    // Get the container and append the new input
+    const inputContainer = document.getElementById('inputContainer');
+    inputContainer.appendChild(newInput);
 }
