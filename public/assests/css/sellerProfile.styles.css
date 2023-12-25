@@ -51,9 +51,8 @@ body{
 }
 
 .card{
-    width: 250px;
+    width: calc(100% / 5 - 10px);
     background-color:#32bd6e;
-    margin: 7px;
     transition: transform 0.5s ease, background-color 0.4s ease;
 }
 
@@ -73,8 +72,8 @@ body{
     box-sizing:inherit;
     display: flex;
     flex-wrap: wrap;
-    justify-content:center; 
-    margin: 10px;
+    gap: 12px;
+    margin: 16px;
 }
 
 .card-content{
@@ -123,11 +122,6 @@ body{
 
 .content-category{
     /* flex-grow: 1; */
-}
-
-.hr-line{
-    color: #e5e8efeb;
-    
 }
 
 .img{
@@ -225,10 +219,10 @@ body{
 .other-category-header{
     display: flex;
     justify-content: space-between;
-    border-radius: 100%;
-    object-fit: cover;
+    margin: 0 16px;
     width: auto;
     height: auto;
+    border-bottom: #c5c6c9 1px solid;
 }
 
 .personal-information{
@@ -236,12 +230,14 @@ body{
 }
 
 .profile-content-category-content{
-    margin-left: 18px;
-    padding: 15px;
+    padding: 16px;
+    border-bottom: 1px solid #c5c6c9;
+
 }
 
 .profile-content-category-header{
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -253,7 +249,7 @@ body{
     border: 1px solid #c5c6c9;
     border-radius: 15px;
     box-sizing: border-box;
-    padding: 16px;
+    padding: 8px;
     box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -275,31 +271,25 @@ body{
 }
 
 .profile-content{
-    /* justify-content: center; */
-    /* align-items: center; */
     font-family: sans-serif;
     box-sizing:inherit;
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content:space-evenly; 
-    margin: 10px;
-    /* border: 1px solid #c5c6c9; */
-    object-fit: cover;
-    margin-top: 16px;
-    /* padding: 16px; */
+    margin-top: 8px;
+    border: 1px solid #c5c6c9;
+    margin: 16px;
+    border-radius:15px ;
     
 }
 
 .profile-content1{
-    border: 1px solid #c5c6c9;
+    border-right: 1px solid #c5c6c9;
     width: 50%;
     min-height: 500px;
     height: auto;
-    
 }
 
 .profile-content2{
-    border: 1px solid #c5c6c9;
     width: 50%;
     min-height: 500px;
     height: auto;
@@ -322,6 +312,9 @@ body{
     display: flex;
     justify-content:space-between;
     align-items: center;
+    border: 1px solid #c5c6c9;
+    padding: 16px;
+    border-radius:15px ;
 }
 
 .seller-functions{
@@ -348,4 +341,11 @@ body{
     margin-bottom: 40px;
     padding-bottom: 15px;
     border-bottom: 2px solid #e4e1e1;
+}
+
+@media only screen and(min-width:600px) {
+    .seller{
+        display: flex;
+        flex-direction: column;
+    }
 }
