@@ -1,4 +1,5 @@
-// image slider
+//--------------------------------image slider--------------------------------
+
 var slide_index = 1;
 displaySlides(slide_index);
             
@@ -25,7 +26,7 @@ setInterval(function() {
   nextSlide(1);
 }, 5000);
 
-// package tabs
+//-------------- package tabs -----------------------------------
 
 function openCity(evt, cityName) {
   // Declare all variables
@@ -52,10 +53,10 @@ document.getElementById("defaultOpen").click();
 
 
 
-// Modals
+//---------------------------------------- Modals---------------------------------------
   
 // Function to open the modal
-function openModal() {
+function openPackageModal() {
   document.getElementById('overlay').style.display = 'flex';
   document.getElementById('modal').style.display = 'block';
 }
@@ -63,14 +64,21 @@ function openModal() {
 // Function to handle actions based on user confirmation
 function handleConfirmation(action) {
     if (action === 'sendYes') {
+
         document.getElementById('requestForm').submit();
         window.location.href="manageOrders";
+
     }else if (action === 'sendNo'){
+
         document.getElementById('sendConfirmation').style.display = 'none';
         document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
     }else if(action === 'cancelNo'){
         document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
     }else{
+
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
       document.getElementById('cancelConfirmation').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
@@ -97,4 +105,31 @@ function confirmAction(action) {
       document.getElementById('cancelConfirmation').style.display = 'block';
     
     }
+}
+
+
+//----------------------------------------dynamic input methods -----------------------------------
+
+// Counter to keep track of added input fields
+let inputCounter = 1;
+
+function openMilestoneModal() {
+  document.getElementById('milestoneOverlay').style.display = 'flex';
+  document.getElementById('milestoneModal').style.display = 'block';
+}
+
+function addInput() {
+    // Increment the counter
+    inputCounter++;
+
+    // Create a new input element
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = 'dynamicInput[]';
+    newInput.placeholder = 'Enter something';
+    newInput.required = true;
+
+    // Get the container and append the new input
+    const inputContainer = document.getElementById('inputContainer');
+    inputContainer.appendChild(newInput);
 }
