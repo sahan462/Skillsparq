@@ -113,15 +113,15 @@ body{
     display: flex;
     flex-direction: column !important;
 }
-.modal .buttons{
+.modal .buttons, .confirmation .buttons{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
 }
-.modal .buttons button{
+.modal button, .confirmation button{
     width: 50%;
-    padding: 16px;
+    padding: 8px;
     margin-top: 16px;
     width: 100%;
     font-weight: 600;
@@ -157,12 +157,17 @@ body{
  .displayGigContainer .topContainer{
     display: flex;
     width: 100%;
-    gap: 48px;
+    gap: 32px;
 }
 
 /* top left container */
-.displayGigContainer .topLeftContainer{
+.displayGigContainer .topLeftContainer,.topRightContainer{
     width: 50%;
+}
+.topLeftContainer h1{
+    line-height: 120%;
+    text-align: justify;
+    text-align-last: left;
 }
 .topLeftContainer .seller{
     display: flex;
@@ -179,8 +184,8 @@ body{
     object-fit: cover;
 }
 .topLeftContainer .gigImageSlider{
+    position: relative;
     width: 100%;
-    border: 1px solid black;
 }
 .topLeftContainer .sliderContainer{
     width: 100%;
@@ -189,6 +194,8 @@ body{
     width: 100%;
 }
 .topLeftContainer .navigationArrows{
+    top: 46%;
+    position: absolute;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -197,9 +204,10 @@ body{
     cursor: pointer;
     width: auto;
     padding: 16px;
-    color: rgb(0, 0, 0);
+    background-color: rgba(0,0,0);
+    color: #fff;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
 }
@@ -209,6 +217,7 @@ body{
 }
 .left:hover, .right:hover {
     background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(0,0,0);
 }
 .topLeftContainer .fade {
     -webkit-animation-name: fade;
@@ -270,6 +279,7 @@ body{
     display: none;
     border: 1px solid #dedddd;
     border-top: none;
+    border-radius: 0 0 8px 8px;
 }
 .tabcontent:first-child{
     display: block;
@@ -308,6 +318,9 @@ body{
     text-decoration: none;
     font-size: 18px;
 }
+ul{
+    border-radius: 0 0 8px 8px;
+}
 ul button{
     padding: 8px;
     margin-top: 16px;
@@ -316,7 +329,10 @@ ul button{
     font-size: 18px;
     color: #fff;
     background-color: #000000;
+    cursor: pointer;
     border: none;
+    border-radius: 0 0 8px 8px;
+    transition: ease-in-out 0.3s;
 }
 ul button:hover{
     background-color: #f7f7f7;
@@ -326,11 +342,36 @@ ul button:hover{
 }
 
 /* milestones */
-
 .topRightContainer .milestoneApproach{
-
+    margin-top: 48px;
 }
-
+.topRightContainer .milestoneApproach button{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border: 1px solid #c5c5c9;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    height: 100px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.topRightContainer .milestoneApproach button:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+.milestoneApproach .type-1{
+    font-weight: 600;
+    font-size: 16px;
+    text-align: justify;
+    color: #000000;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.milestoneApproach .type-2{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #62646a;
+}
 
 
 /* media queries */
