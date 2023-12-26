@@ -1,16 +1,17 @@
 <?php include "components/buyerSimpleHeader.component.php"; ?>
 
 <?php
-    $data["profilePicture"] = "avishka.jpg";
-    $data["sliderImage-1"] = "slide1.webp";
-    $data["sliderImage-2"] = "slide2.webp";
-    $data["sliderImage-3"] = "slide3.webp";
-    $data["sliderImage-4"] = "slide4.webp";
+    $seller["profilePicture"] = "avishka.jpg";
+    $seller["sellerName"] = "Avishka Idunil";
 
-    $data["category"] = "Programming and Tech";
-    $data["gigTitle"] = "I will create generative AI and machine learning projects using python";
-    $data["sellerName"] = "Avishka Idunil";
-    $data["gigDescription"] = "Hello,
+    $gig["sliderImage-1"] = "slide1.webp";
+    $gig["sliderImage-2"] = "slide2.webp";
+    $gig["sliderImage-3"] = "slide3.webp";
+    $gig["sliderImage-4"] = "slide4.webp";
+
+    $gig["category"] = "Programming and Tech";
+    $gig["gigTitle"] = "I will create generative AI and machine learning projects using python";
+    $gig["gigDescription"] = "Hello,
     I'm Syed, your machine learning expert for generative AI tasks. I'm Master's in Data Science with 2 years of experience in machine learning and with large language models. I have expertise in writing robust code in Python for the implementation of LLMs for data generation.
     utilizing the power of machine learning and state-of-the-art large language models like GPT-3.5! I can create bespoke applications and solutions utilizing these models, enabling your projects to comprehend and generate human-like data seamlessly using Python.
 
@@ -61,17 +62,21 @@
     <!--Modal 1  -->
     <div class="overlay" id="overlay">
         <div class="modal" id="modal">
-            <form method="get" id="requestForm">
+            <form id="requestForm" method="get" action="manageOrders/createOrder">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
                     <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
-                    <textarea id="requestDescription" name="requestDescription" rows="10" ></textarea>
+                    <textarea id="requestDescription" name="requestDescription" rows="10" required></textarea>
                 </div>
 
                 <div class="row">
                     <label for="attachments" class="type-1">Attachments:</label>
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
-                    <input type="file" id="attachments" name="attachments" multiple>
+                    <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                        <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <span id="fileName"></span>
+                    </div>
+                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
                 </div>
 
                 <div class="buttons">
@@ -131,7 +136,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
         </svg>
-        <?php echo $data["category"]; ?> 
+        <?php echo $gig["category"]; ?> 
     </div>
 
     <!-- Main Container -->
@@ -145,36 +150,36 @@
 
                 <div class="gigTitle">
                     <h1>
-                        <?php echo $data["gigTitle"]; ?>
+                        <?php echo $gig["gigTitle"]; ?>
                     </h1>
                 </div>
                 <div class="seller">
                     <div class="image">
-                        <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" loading="lazy">
+                        <img src="../public/assests/images/<?php echo $seller["profilePicture"]?>" loading="lazy">
                     </div>
                     <div class="sellerName">
                         <a href="">
-                            <?php echo $data["sellerName"]; ?>
+                            <?php echo $seller["sellerName"]; ?>
                         </a>
                     </div>
                 </div>
                 <div class="gigImageSlider">
                     <div class="sliderContainer">
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-1"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-1"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-2"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-2"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                 
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-3"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-3"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-4"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-4"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <!-- Navigation arrows -->
@@ -313,7 +318,7 @@
                     </div>
                     <div class="content">
                         <p>
-                            <?php echo $data["gigDescription"]; ?>
+                            <?php echo $gig["gigDescription"]; ?>
                         </p>
                     </div>
                 </div>
@@ -322,7 +327,7 @@
                         <h5>Feedbacks and Ratings</h5>
                     </div>
                     <div class="content">
-                        
+
                     </div>
                 </div>
             </div>

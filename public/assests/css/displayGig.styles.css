@@ -138,6 +138,23 @@ body{
     font-weight: 500;
 }
 
+/* file attachement stylings */
+.fileInput{
+    display: none;
+}
+#attachment{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+
+}
+
 
 /*Main Container*/
 .displayGigContainer{
