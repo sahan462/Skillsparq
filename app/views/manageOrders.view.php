@@ -46,7 +46,7 @@
                         <div class="tbody">
                             <?php 
                                 $i = 0;
-                                while($i < 20){
+                                while($i < 1){
                             ?>
                                     <tr onclick="window.location='order';">
                                         <td><?php echo $i+1 ?></td>

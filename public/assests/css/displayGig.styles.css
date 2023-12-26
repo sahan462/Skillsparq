@@ -138,6 +138,23 @@ body{
     font-weight: 500;
 }
 
+/* file attachement stylings */
+.fileInput{
+    display: none;
+}
+#attachment{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+
+}
+
 
 /*Main Container*/
 .displayGigContainer{
@@ -157,7 +174,7 @@ body{
  .displayGigContainer .topContainer{
     display: flex;
     width: 100%;
-    gap: 32px;
+    margin-bottom: 32px;
 }
 
 /* top left container */
@@ -250,6 +267,15 @@ body{
 /*top right container*/
 
 /* packages */
+.topRightContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.topRightContainer .packageDetails{
+    width: 80%;
+    margin-left: 16px;
+}
 .tab {
     width: 100%;
     overflow: hidden;
@@ -344,12 +370,14 @@ ul button:hover{
 /* milestones */
 .topRightContainer .milestoneApproach{
     margin-top: 48px;
+    width: 80%;
+    margin-left: 16px;
 }
 .topRightContainer .milestoneApproach button{
     display: flex;
     align-items: center;
     text-align: left;
-    border: 1px solid #c5c5c9;
+    border: 2px solid #c5c5c9;
     background-color: #fff;
     border-radius: 8px;
     width: 100%;
@@ -374,6 +402,29 @@ ul button:hover{
 }
 
 
+/* Bottom Container */
+.bottomContainer{
+    width: 100%;
+}
+.bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
+    width: 50%;
+}
+
+/* Bottom Left Container */
+.bottomLeftContainer .header h5{
+    font-size: 18px;
+    color: #222325;
+    line-height: 25px;
+    font-weight: 700px;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.bottomLeftContainer .aboutGig .content p{
+    white-space: pre-wrap;
+    text-align: justify;
+    margin-bottom: 32px;
+}
+/* Bottom Right Container */
+
 /* media queries */
 @media only screen and (max-width: 900px) {
     .topContainer{
@@ -385,6 +436,17 @@ ul button:hover{
     }
     .modal{
         width: 85%;
+    }
+    .topRightContainer .packageDetails{
+        width:100%;
+        margin-left: 0;
+    }
+    .topRightContainer .milestoneApproach{
+        width: 100%;
+        margin-left: 0;
+    }
+    .bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
+        width: 100%;
     }
 }
 
@@ -400,7 +462,22 @@ ul button:hover{
         padding: 8px 16px;
         font-size: 12px;
     }
+    ul button{
+        padding: 8px 16px;
+        font-size: 12px;
+    }
     .modal{
         width: 85%;
+    }
+    .topRightContainer .packageDetails{
+        width:100%;
+        margin-left: 0;
+    }
+    .topRightContainer .milestoneApproach{
+        width: 100%;
+        margin-left: 0;
+    }
+    .bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
+        width: 100%;
     }
 }
