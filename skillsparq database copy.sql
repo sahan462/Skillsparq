@@ -1,4 +1,3 @@
-create database skillsparq;
 show databases;
 use skillsparq;
 show tables;
@@ -71,14 +70,56 @@ create table Auctions (
 	FOREIGN KEY (buyer_id) REFERENCES user(user_id)
 );
 
+CREATE TABLE Gigs (
+    gig_id int(10) unsigned AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    category VARCHAR(50) default NULL,
+    cover_image VARCHAR(255) NOT NULL,
+    custom_name_1 VARCHAR(255) default NULL,
+    no_of_delivery_days_1 int(10) default 1,
+    time_period_1 VARCHAR(50) default NULL,
+    no_of_revisions_1 VARCHAR(50) default NULL,
+    package_description_1 TEXT,
+	custom_name_2 VARCHAR(255) default NULL,
+    no_of_delivery_days_2 int(10) default 1,
+    time_period_2 VARCHAR(50) default NULL,
+    no_of_revisions_2 VARCHAR(50) default NULL,
+    package_description_2 TEXT,
+	custom_name_3 VARCHAR(255) default NULL,
+    no_of_delivery_days_3 int(10) default 1,
+    time_period_3 VARCHAR(50) default NULL,
+    no_of_revisions_3 VARCHAR(50) default NULL,
+    package_description_3 TEXT,
+    ongoing_order_count int(10) default 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    state VARCHAR(50) default 'InActive',
+    seller_id int(10) unsigned,
+    primary key(gig_id),
+    foreign key(seller_id) references user(user_id)
+);
+
+create table Slide_Images(
+	side_images_id int(10) unsigned AUTO_INCREMENT,
+    side_image_1 VARCHAR(255) NOT NULL,
+	side_image_2 VARCHAR(255) NOT NULL,
+	side_image_3 VARCHAR(255) NOT NULL,
+	side_image_4 VARCHAR(255) NOT NULL,
+	gig_id int(10) unsigned,
+	primary key(side_images_id),
+    foreign key(gig_id) references gigs(gig_id)
+);
+
 select * from User;
 select * from Buyer;
 select * from Profile;
 select * from seller;
 select * from jobs;
+select * from auctions;
+select * from gigs;
+select * from side_images;
 
-
-delete from jobs where job_id = 2;
+delete from jobs where job_id = 6;
 delete from user where user_id = 1;
 update user set user_email = "dummy" where user_id = 3;
 
@@ -88,6 +129,8 @@ drop table Buyer;
 drop table seller;
 drop table jobs;
 drop table auctions;
+drop table Slide_Images;
+drop table gigs;
 
 select * from jobs, auctions where jobs.buyer_id = auctions.buyer_id;
 select * from jobs, auctions where jobs.buyer_id = '1' and ((jobs.publish_mode = "Standard Mode") or (jobs.publish_mode = "Auction Mode" and jobs.job_id = auctions.job_id));

@@ -1,15 +1,57 @@
 <?php include "components/buyerSimpleHeader.component.php"; ?>
 
 <?php
-    $data["profilePicture"] = "avishka.jpg";
-    $data["sliderImage-1"] = "slide1.webp";
-    $data["sliderImage-2"] = "slide2.webp";
-    $data["sliderImage-3"] = "slide3.webp";
-    $data["sliderImage-4"] = "slide4.webp";
+    $seller["profilePicture"] = "avishka.jpg";
+    $seller["sellerName"] = "Avishka Idunil";
 
-    $data["category"] = "Programming and Tech";
-    $data["gigTitle"] = "I will do generative ai and machine learning projects using python";
-    $data["sellerName"] = "Avishka Idunil";
+    $gig["sliderImage-1"] = "slide1.webp";
+    $gig["sliderImage-2"] = "slide2.webp";
+    $gig["sliderImage-3"] = "slide3.webp";
+    $gig["sliderImage-4"] = "slide4.webp";
+
+    $gig["category"] = "Programming and Tech";
+    $gig["gigTitle"] = "I will create generative AI and machine learning projects using python";
+    $gig["gigDescription"] = "Hello,
+    I'm Syed, your machine learning expert for generative AI tasks. I'm Master's in Data Science with 2 years of experience in machine learning and with large language models. I have expertise in writing robust code in Python for the implementation of LLMs for data generation.
+    utilizing the power of machine learning and state-of-the-art large language models like GPT-3.5! I can create bespoke applications and solutions utilizing these models, enabling your projects to comprehend and generate human-like data seamlessly using Python.
+
+    Main Services:
+
+        Large Language Models (LLMs) Implementation
+        Prompt Engineering
+        Diffusion models
+        Chatbot creation
+        Langchain application development
+        Other Generative AI Tasks
+
+    LLMs Models:
+
+        Open Ai
+        Latent and stable diffusion models
+        Hugging face
+        Cohere
+        GANs
+        Foundation models
+        Pre-trained models
+        latest transformers and large language models (LLMs)
+
+
+    Python Libraries:
+
+        Cohere
+        Pandas
+        Open Ai
+        Langchain
+        Hugging face
+
+
+    Why Me?
+
+        On Time Completion
+        Quick Responses
+        Quality Work
+        Friendly Conversation.
+";
 
  
 ?>
@@ -17,74 +59,127 @@
 <!-- Display Gig Container -->
 <div class="displayGigContainer">
 
-    <!--Model 1  -->
+    <!--Modal 1  -->
     <div class="overlay" id="overlay">
         <div class="modal" id="modal">
-            <form>
-                <label for="requestDescription">Request Description:</label>
-                <textarea id="requestDescription" name="requestDescription" rows="4" ></textarea>
+            <form id="requestForm" method="get" action="manageOrders/createOrder">
+                <div class="row">
+                    <label for="requestDescription" class="type-1">Request Description:</label>
+                    <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
+                    <textarea id="requestDescription" name="requestDescription" rows="10" required></textarea>
+                </div>
 
-                <label for="attachments">Attachments:</label>
-                <input type="file" id="attachments" name="attachments" multiple>
+                <div class="row">
+                    <label for="attachments" class="type-1">Attachments:</label>
+                    <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+                    <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                        <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <span id="fileName"></span>
+                    </div>
+                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                </div>
 
-                <button onclick="confirmAction('send')">Send Request</button>
-                <button onclick="confirmAction('cancel')">Cancel Request</button>
+                <div class="buttons">
+                    <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                    <button type="button" onclick="confirmAction('send')">Send Request</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Model 2 -->
-    <div class="overlay" id="confirmationOverlay">
-        <div class="confirmation" id="confirmation">
-            <p>Are you sure?</p>
-            <button onclick="handleConfirmation('yes')">Yes</button>
-            <button onclick="handleConfirmation('no')">No</button>
+    <!-- Modal 2 -->
+    <div class="overlay" id="cancelConfirmationOverlay">
+        <div class="confirmation" id="cancelConfirmation">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmation('cancelNo')">No</button>
+                <button onclick="handleConfirmation('cancelYes')">Yes</button>
+            </div>
         </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="overlay" id="sendConfirmationOverlay">
+        <div class="confirmation" id="sendConfirmation">
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmation('sendNo')">No</button>
+                <button onclick="handleConfirmation('sendYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="overlay" id="milestoneOverlay">
+        <div class="modal" id="milestoneModal">
+            <form method="get" id="milestoneRequestForm">
+
+                <button type="button" onclick="addInput()">Add Input Field</button>
+
+                <div id="inputContainer">
+                    <input type="text" name="dynamicInput[]" placeholder="Enter something" required>
+                </div>
+
+
+                <div class="buttons">
+                    <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                    <button type="button" onclick="confirmAction('send')">Send Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- category -->
+    <div class="category">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+        </svg>
+        <?php echo $gig["category"]; ?> 
     </div>
 
     <!-- Main Container -->
     <div class="mainContainer">
+
+        <!-- Top Container -->
         <div class="topContainer">
+
+            <!--Top Left Container  -->
             <div class="topLeftContainer">
-                <div class="category">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
-                    </svg>
-                    <?php echo $data["category"]; ?> 
+
+                <div class="gigTitle">
+                    <h1>
+                        <?php echo $gig["gigTitle"]; ?>
+                    </h1>
                 </div>
                 <div class="seller">
                     <div class="image">
-                        <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" loading="lazy">
+                        <img src="../public/assests/images/<?php echo $seller["profilePicture"]?>" loading="lazy">
                     </div>
                     <div class="sellerName">
                         <a href="">
-                            <?php echo $data["sellerName"]; ?>
+                            <?php echo $seller["sellerName"]; ?>
                         </a>
                     </div>
                 </div>
-                <div class="gigTitle">
-                    <h1>
-                        <?php echo $data["gigTitle"]; ?>
-                    </h1>
-                </div>
                 <div class="gigImageSlider">
-                    <div class="slidercontainer">
+                    <div class="sliderContainer">
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-1"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-1"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-2"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-2"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                 
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-3"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-3"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $data["sliderImage-4"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-4"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <!-- Navigation arrows -->
@@ -95,13 +190,17 @@
                     </div> 
                 </div>
             </div>
-            <div class="topRightContainer">
-                <div class="packageDetails">
+
+            <!-- Top Right Container -->
+            <div class="topRightContainer" >
+
+                <!--packages  -->
+                <div class="packageDetails" >
                     <div class="package-tabs">
                         <div class="tab">
-                            <button id="active" class="tablinks" onclick="openCity(event, 'London')">Basic</button>
+                            <button class="tablinks" onclick="openCity(event, 'London')" id = "defaultOpen" style="border-radius: 8px 0 0 0;">Basic</button>
                             <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
-                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button>
                         </div>
                     
                         <div id="London" class="tabcontent" style="display: block;">
@@ -126,7 +225,7 @@
                                         </div>
                                     </li>
                                     </div>
-                                    <a href="#"><button>Request to Order</button></a>
+                                    <a href="#"><button onclick="openPackageModal()">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -153,7 +252,7 @@
                                             </div>
                                         </li>
                                     </div>
-                                    <a href="#"><button>Request to Order</button></a>
+                                    <a href="#"><button onclick="openPackageModal()">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -180,32 +279,66 @@
                                             </div>
                                         </li>
                                     </div>
-                                    <a href="#" onclick="openModal()"><button>Request to Order</button></a>
+                                    <a href="#" onclick="openPackageModal()"><button>Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
                     </div>                    
                 </div>
 
+                <!-- Milestones-->
                 <div class="milestoneApproach">
-
-                </div>
-                <div class="other">
-
+                    <div class="type-1">
+                        Unlock success step by step with our 'Milestones' feature, offering you the flexibility to create tailored offers while ensuring transparency at every stage of your journey.
+                    </div>
+                    <button onclick="openMilestoneModal()">
+                        <div class="flag">
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                            <dotlottie-player src="https://lottie.host/81cc4e66-ff04-446f-9d05-54324102c08a/KAnzyVEJyf.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></dotlottie-player>
+                        </div>
+                        <div class="milestoneContent">
+                            <div class="type-1">MileStones</div>
+                            <div class="type-2">
+                                Get work done in gradual steps and pay for each milestone.
+                            </div>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
+
+        <!-- Bottom Container -->
         <div class="bottomContainer">
+
+            <!-- Bottom Left Container -->
             <div class="bottomLeftContainer">
-                <div class="aboutSeller"></div>
-                <div class="gigRatings"></div>
+                <div class="aboutGig">
+                    <div class="header">
+                        <h5>About this Gig</h5>
+                    </div>
+                    <div class="content">
+                        <p>
+                            <?php echo $gig["gigDescription"]; ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="gigRatings">
+                    <div class="header">
+                        <h5>Feedbacks and Ratings</h5>
+                    </div>
+                    <div class="content">
+
+                    </div>
+                </div>
             </div>
+
+            <!-- Bottom Right Container -->
             <div class="bottomRightContainer">
                 <div class="animation"></div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 <script src="./assests/js/displayGig.script.js"></script>
