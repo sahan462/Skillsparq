@@ -52,7 +52,6 @@ document.getElementById("defaultOpen").click();
 
 
 
-
 //---------------------------------------- Modals---------------------------------------
   
 // Function to open the modal
@@ -65,8 +64,8 @@ function openPackageModal() {
 function handleConfirmation(action) {
     if (action === 'sendYes') {
 
-        document.getElementById('requestForm').submit();
-        window.location.href="manageOrders";
+        document.forms['requestForm'].submit();
+        // window.location.href="manageOrders";
 
     }else if (action === 'sendNo'){
 
@@ -79,10 +78,13 @@ function handleConfirmation(action) {
 
     }else{
 
+      var fileNameSpan = document.getElementById('fileName');
+
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
       document.getElementById('cancelConfirmation').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
       document.getElementById('modal').style.display = 'none';
+      fileNameSpan.textContent = '';
 
     }
 
@@ -107,6 +109,17 @@ function confirmAction(action) {
     }
 }
 
+// -------------------file attachements --------------------------------
+function displayFileName(input) {
+  var fileNameSpan = document.getElementById('fileName');
+  var files = input.files;
+
+  if (files.length > 0) {
+    fileNameSpan.textContent = files[0].name;
+  } else {
+    fileNameSpan.textContent = '';
+  }
+}
 
 //----------------------------------------dynamic input methods -----------------------------------
 
