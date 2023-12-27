@@ -3,13 +3,42 @@
 class displayGig extends Controller
 {
 
+    public function __construct()
+    {
+        $this->GigHandlerModel = $this->model('GigHandler');
+        $this->sellerHandlerModel = $this->model('sellerHandler');
+
+    }
+
+
     public function index(){
 
-        $data['var'] = "Display Gig Page";
-        $data['title'] = "SkillSparq";
+        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
-        $this->view('displayGig', $data);
+            header("location: loginUser");
+
+        }else{
+            $data['var'] = "Display Gig Page";
+            $data['title'] = "SkillSparq";
+            $data['feedbacks'] = "";
+
+            $gigId = $_GET['gigId'];
+            
+
+            //get gig details
+            $gig = $this->GigHandlerModel->getGig($gigId);
+            if ($gig) {
+
+                $data['gig'] = mysqli_fetch_assoc($gig);
+
+            } else {
+                echo "<script>alert('Gig function is not Accessible!')</script>";
+            }
+
+            $this->view('displayGig', $data);
+        }
     }
+
 
 }
 

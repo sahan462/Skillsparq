@@ -2,7 +2,24 @@
 
 class GigHandler extends database
 {
-    
+    public function getGig($gigId)
+    {
+        $query = "SELECT * FROM gigs WHERE gig_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
     public function getRecentGigs()
     {
         $query = "SELECT * FROM Gigs order by created_at DESC";
