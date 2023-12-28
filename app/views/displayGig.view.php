@@ -1,57 +1,16 @@
 <?php include "components/buyerSimpleHeader.component.php"; ?>
 
 <?php
+    $gig = $data['gig'];
+    $feedbacks = $data['feedbacks'];
+
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
 
-    $gig["sliderImage-1"] = "slide1.webp";
     $gig["sliderImage-2"] = "slide2.webp";
     $gig["sliderImage-3"] = "slide3.webp";
     $gig["sliderImage-4"] = "slide4.webp";
-
-    $gig["category"] = "Programming and Tech";
-    $gig["gigTitle"] = "I will create generative AI and machine learning projects using python";
-    $gig["gigDescription"] = "Hello,
-    I'm Syed, your machine learning expert for generative AI tasks. I'm Master's in Data Science with 2 years of experience in machine learning and with large language models. I have expertise in writing robust code in Python for the implementation of LLMs for data generation.
-    utilizing the power of machine learning and state-of-the-art large language models like GPT-3.5! I can create bespoke applications and solutions utilizing these models, enabling your projects to comprehend and generate human-like data seamlessly using Python.
-
-    Main Services:
-
-        Large Language Models (LLMs) Implementation
-        Prompt Engineering
-        Diffusion models
-        Chatbot creation
-        Langchain application development
-        Other Generative AI Tasks
-
-    LLMs Models:
-
-        Open Ai
-        Latent and stable diffusion models
-        Hugging face
-        Cohere
-        GANs
-        Foundation models
-        Pre-trained models
-        latest transformers and large language models (LLMs)
-
-
-    Python Libraries:
-
-        Cohere
-        Pandas
-        Open Ai
-        Langchain
-        Hugging face
-
-
-    Why Me?
-
-        On Time Completion
-        Quick Responses
-        Quality Work
-        Friendly Conversation.
-";
+    $gig['price'] = 200;
 
  
 ?>
@@ -112,19 +71,34 @@
     <!-- Modal 4 -->
     <div class="overlay" id="milestoneOverlay">
         <div class="modal" id="milestoneModal">
+            
+            <button type="button" onclick="addCollapsible()">Add Collapsible</button>
+            
             <form method="get" id="milestoneRequestForm">
 
-                <button type="button" onclick="addInput()">Add Input Field</button>
+                <!-- button to add new milestone -->
 
-                <div id="inputContainer">
-                    <input type="text" name="dynamicInput[]" placeholder="Enter something" required>
-                </div>
+                <!-- New milestone appends here -->
+                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto"></div>
+
+                <button type="button" onclick="submitForm()">Submit Form</button>
+
+                <!-- Template for a milestone-->
+                <template id="collapsibleTemplate">
+                    <div class="collapsibleSet">
+                        <button class="collapsible" onclick="expand(this)">Open Collapsible</button>
+                        <div class="collapsibleContent">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </div>
+                </template>
 
 
                 <div class="buttons">
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
                     <button type="button" onclick="confirmAction('send')">Send Request</button>
                 </div>
+
             </form>
         </div>
     </div>
@@ -150,7 +124,7 @@
 
                 <div class="gigTitle">
                     <h1>
-                        <?php echo $gig["gigTitle"]; ?>
+                        <?php echo $gig["title"]; ?>
                     </h1>
                 </div>
                 <div class="seller">
@@ -166,7 +140,7 @@
                 <div class="gigImageSlider">
                     <div class="sliderContainer">
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $gig["sliderImage-1"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/<?php echo $gig["cover_image"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
@@ -206,25 +180,28 @@
                         <div id="London" class="tabcontent" style="display: block;">
                             <div class="columns">
                                 <ul class="price">
-                                    <li><b>USD 120 </b></li>
-                                    <li><b>Clean and responsive</b> landing page, <b>Unique</b> and clean landing page for your business</li>
-                                    <div class="package-status">
-                                    <li>
-                                        <div class="package-status-one">
+                                    <div class="row" style="display: flex; justify-content:space-between;padding: 8px"> 
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                                            </svg>
+                                                USD 120
+                                        </li>
+                                        <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
                                                 <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
                                                 <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
                                                 </svg>
                                             2 Days Delivery
-                                        </div>
-                                        <div class="package-status-two">
+                                        </li>
+                                        <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
                                                 <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
                                                 </svg>
                                             3 Revisions
-                                        </div>
-                                    </li>
+                                        </li>
                                     </div>
+                                    <li><?php echo $gig['package_description_1']; ?></li>
                                     <a href="#"><button onclick="openPackageModal()">Request to Order</button></a>
                                 </ul>
                             </div>
@@ -233,7 +210,7 @@
                         <div id="Paris" class="tabcontent">
                             <div class="columns">
                                 <ul class="price">
-                                    <li class="package-cost"><b>USD 220 </b></li>
+                                    <li class="package-cost"><b>USD <?php echo $gig['price'];?></b></li>
                                     <li><b>Clean and responsive</b> landing page, <b>Unique</b> and clean landing page for your business</li>
                                     <div class="package-status">
                                         <li>
@@ -299,7 +276,7 @@
                         <div class="milestoneContent">
                             <div class="type-1">MileStones</div>
                             <div class="type-2">
-                                Get work done in gradual steps and pay for each milestone.
+                                Get your work done in gradual steps and pay for each milestone.
                             </div>
                         </div>
                     </button>
@@ -318,7 +295,7 @@
                     </div>
                     <div class="content">
                         <p>
-                            <?php echo $gig["gigDescription"]; ?>
+                            <?php echo $gig["description"]; ?>
                         </p>
                     </div>
                 </div>

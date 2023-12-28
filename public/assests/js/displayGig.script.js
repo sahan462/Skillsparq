@@ -131,18 +131,33 @@ function openMilestoneModal() {
   document.getElementById('milestoneModal').style.display = 'block';
 }
 
-function addInput() {
-    // Increment the counter
-    inputCounter++;
+function addCollapsible() {
+  // Get the template content
+  const template = document.getElementById('collapsibleTemplate');
 
-    // Create a new input element
-    const newInput = document.createElement('input');
-    newInput.type = 'text';
-    newInput.name = 'dynamicInput[]';
-    newInput.placeholder = 'Enter something';
-    newInput.required = true;
+  // Clone the template content
+  const clone = document.importNode(template.content, true);
 
-    // Get the container and append the new input
-    const inputContainer = document.getElementById('inputContainer');
-    inputContainer.appendChild(newInput);
+  // Append the cloned content to the inputContainer
+  document.getElementById('inputContainer').appendChild(clone);
 }
+
+
+
+// -------------------------collapsible-----------------------------
+
+function expand(button) {
+  // Toggle the class to change the button appearance
+  button.classList.toggle("collapsibleActive");
+
+  // Find the next element (collapsibleContent) based on the button
+  var content = button.nextElementSibling;
+
+  // Check if the content is currently visible
+  if (content.style.maxHeight) {
+      content.style.maxHeight = null; // If visible, hide the content
+  } else {
+      content.style.maxHeight = content.scrollHeight + "px"; // If hidden, show the content
+  }
+}
+
