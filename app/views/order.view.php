@@ -68,7 +68,9 @@
         <!-- Tab Content 2 -->
         <div class="orderDetails">
             <span>Order Info.</span>
-            <div class="timer"></div>
+            <div class="timer">
+                
+            </div>
             <div class="Details"></div>
         </div>
     </div>
