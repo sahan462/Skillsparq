@@ -125,6 +125,7 @@ function displayFileName(input) {
 
 // Counter to keep track of added input fields
 let inputCounter = 1;
+let count = 1;
 
 function openMilestoneModal() {
   document.getElementById('milestoneOverlay').style.display = 'flex';
@@ -134,10 +135,15 @@ function openMilestoneModal() {
 function addCollapsible() {
   // Get the template content
   const template = document.getElementById('collapsibleTemplate');
+  const name = document.getElementById('collapsible');
 
   // Clone the template content
   const clone = document.importNode(template.content, true);
 
+  // Update the milestone name using innerHTML
+  const button = clone.querySelector('.collapsible');
+  button.innerHTML = "MileStone " + count;
+  count++;
   // Append the cloned content to the inputContainer
   document.getElementById('inputContainer').appendChild(clone);
 

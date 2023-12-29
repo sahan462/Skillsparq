@@ -74,18 +74,26 @@
             
             <!-- button to add new milestone -->
 
-            <button type="button" onclick="addCollapsible()">Create New MileStone</button>
+            <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
             <form method="get" id="milestoneRequestForm">
 
                 <!-- New milestone appends here -->
-                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto"></div>
+                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto;"></div>
 
                 <!-- Template for a milestone-->
                 <template id="collapsibleTemplate">
-                    <button type="button" class="collapsible" onclick="expand(this)">Open Collapsible</button>
+                    <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
                     <div class="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <div class="row">
+                            <div class="type-1">Milestone Name</div>
+                            <div class="type-1">Revisions</div>
+                            <div class="type-1">Delivery</div>
+                            <div class="type-1">Price</div>
+                        </div>
+                        <div class="row">
+                            <div class="type-1">Milestone Description</div>
+                        </div>
                     </div>
                 </template>
 
