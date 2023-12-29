@@ -27,24 +27,12 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         </div>
                     </div>
                 </div>
-                <!-- <div class="icons-content">Chamal Fernando</div> -->
                 <div class="buttons">
                     <a href="#"><button id="button">See Public View</button></a>
                     <a href="#"><button id="button">Profile Settings</button></a>
                 </div>
             </div>
-            <!-- <hr> -->
-            <div class="seller-details">
-                <div class="personal-information">
-                    Web Developer, Undergraduate at University of Colombo School of Computing.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam nostrum quod cumque ea tenetur fugit, debitis excepturi modi asperiores sapiente!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, amet aspernatur neque maiores commodi eos inventore recusandae vel rerum nostrum consequatur delectus exercitationem. Enim, consectetur. Debitis porro magni eius ex voluptate veniam, eveniet iusto fuga?
-                </div>
-                <div class="se-professionalPulse">
-                </div>
-            </div>
         </div>
-        <hr class="hr-line">
         <div class="profile-content">
             <div class="profile-content1">
                 <div class="content-category1">
@@ -58,7 +46,6 @@ $data["profilePicture"] = "dummyprofile.jpg";
                     <div class="profile-content-category-content">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
-                    <hr>
                     <div class="profile-content-category-header">
                         <div class="Topics">Languages</div>
                         <div class="buttons">
@@ -68,14 +55,13 @@ $data["profilePicture"] = "dummyprofile.jpg";
                     <div class="profile-content-category-content">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
-                    <hr>
                     <div class="profile-content-category-header">
                         <div class="Topics">Education</div>
                         <div class="buttons">
                             <button id="button"> Add</button>
                         </div>
                     </div>
-                    <div class="profile-content-category-content">
+                    <div class="profile-content-category-content"  style="border-bottom: 0;">
                         
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
                     </div>
@@ -89,7 +75,7 @@ $data["profilePicture"] = "dummyprofile.jpg";
                             <button id="button"> Add</button>
                         </div>
                     </div>
-                    <div class="profile-content-category-content">
+                    <div class="profile-content-category-content" style="border-bottom: 0;">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero iure, cupiditate magni accusamus, perferendis non enim quibusdam eius explicabo eos odio labore, consequuntur ad facilis corporis assumenda eum sit rem inventore autem. A voluptatem deleniti, rerum pariatur odio numquam minima. Veritatis impedit repudiandae explicabo sit ea repellat assumenda nulla. Sint enim consequatur nam saepe illum, earum rem amet eius aspernatur accusantium dolor ad. Reprehenderit eveniet veniam maiores qui ipsa ad laudantium quos, tempore itaque possimus debitis magni modi ducimus tenetur quia velit fugiat hic architecto libero. Quaerat, dolorum suscipit consequuntur necessitatibus dicta sapiente voluptatum optio, aspernatur, ratione saepe asperiores quam.
                     </div>
                 </div>
@@ -100,12 +86,11 @@ $data["profilePicture"] = "dummyprofile.jpg";
 
     <div class="other-category-container" id="gigs">
         <div class="other-category-header">
-            <div class="Topics">My Gigs</div>
-            <div class="plus">
+            <div class="Topics" style="padding-left: 0;">My Gigs</div>
+            <div class="plus" >
                 <a href="addGig"><button id="plus">Add New Gig</button></a>
             </div>
         </div>
-        <hr>
         <div class="card-container">
             <div class="card">
                 <img src="../public/assests/images/gigcard3.jpg">
@@ -121,15 +106,76 @@ $data["profilePicture"] = "dummyprofile.jpg";
                 <div class="card-content">
                     <h2>Gig Card</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">View</a>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <button class="button open-view-modal-button" onclick="window.location.href='#'">View</button>
+                    <button class="button open-edit-modal-button" onclick="window.location.href='#'">Edit</button>
+                    <button class="button open-delete-modal-button" onclick="window.location.href='#'">Delete</button>
+
+                    <dialog class="Modal viewModal" id="viewModal">
+                        <h2>Your Gig Details</h2>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <button class="button close-view-modal-button">close</button>
+                    </dialog>
+                    <dialog class="Modal editModal" id="editModal">
+                        <h2>Edit your Gig details Here</h2>
+                        <form action="" method="dialog">
+                            <input type="text" name="text" value="text">
+                            <input type="submit" value="submit" name="submit">
+                        </form>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <button class="button close-edit-modal-button">close</button>
+                    </dialog>
+                    <dialog class="Modal deleteModal" id="deleteModal">
+                        <h2>Are you Sure that you want to delete your Gig?</h2>
+                        <button class="button close-delete-modal-button">Delete</button>
+                    </dialog>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+
+        // javascript code for view pop up modal
+        const viewModal = document.querySelector('#viewModal');
+        const openViewModal = document.querySelector('.open-view-modal-button');
+        const closeViewModal = document.querySelector('.close-view-modal-button');
+
+        openViewModal.addEventListener('click',()=>{
+            viewModal.showModal();
+        });
+
+        closeViewModal.addEventListener('click',()=>{
+            viewModal.close();
+        });
+        
+        // javascript code for edit pop up modal
+        const editModal = document.querySelector('#editModal');
+        const openEditModal = document.querySelector('.open-edit-modal-button');
+        const closeEditModal = document.querySelector('.close-edit-modal-button');
+
+        openEditModal.addEventListener('click',()=>{
+            editModal.showModal();
+        });
+
+        closeEditModal.addEventListener('click',()=>{
+            editModal.close();
+        });
+
+        // javascript code for delete pop up modal
+        const deleteModal = document.querySelector('#deleteModal');
+        const openDeleteModal = document.querySelector('.open-delete-modal-button');
+        const closeDeleteModal = document.querySelector('.close-delete-modal-button');
+
+        openDeleteModal.addEventListener('click',()=>{
+            deleteModal.showModal();
+        });
+
+        closeDeleteModal.addEventListener('click',()=>{
+            deleteModal.close();
+        });
+
         // Function to update the div with the current local time
         function updateLocalTime() {
             // Get the current local time
