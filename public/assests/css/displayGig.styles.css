@@ -18,7 +18,7 @@ body{
 
 
 /* category */
-.category{
+.displayGigContainer .category{
     width: fit-content;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@ body{
     align-items: center;
 
 }
-#overlay{
+#overlay, #milestoneOverlay{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -119,7 +119,7 @@ body{
     align-items: center;
     gap: 16px;
 }
-.modal button, .confirmation button{
+.modal .buttons button, .confirmation button{
     width: 50%;
     padding: 8px;
     margin-top: 16px;
@@ -136,6 +136,53 @@ body{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 500;
+}
+.createNewMileStone{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+/* collapsible */
+.collapsible {
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    margin: 8px 0;
+}
+.collapsible .row{
+    display: flex;
+    flex-direction: row !important;
+}
+.active, .collapsible:hover {
+    background-color: #555;
+}
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.active:after {
+    content: "\2212";
+}
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
 }
 
 /* file attachement stylings */
@@ -171,14 +218,18 @@ body{
 }
 
 /* top container */
- .displayGigContainer .topContainer{
+ .displayGigContainer .topContainer, .bottomContainer{
     display: flex;
     width: 100%;
     margin-bottom: 32px;
+    gap: 128px;
 }
 
 /* top left container */
-.displayGigContainer .topLeftContainer,.topRightContainer{
+.displayGigContainer .topLeftContainer{
+    width: 50%;
+}
+.displayGigContainer .topRightContainer{
     width: 50%;
 }
 .topLeftContainer h1{
@@ -206,12 +257,14 @@ body{
 }
 .topLeftContainer .sliderContainer{
     width: 100%;
+    height: 445px;
 }
 .topLeftContainer .sliderContainer img{
     width: 100%;
+    height: 445px;
 }
 .topLeftContainer .navigationArrows{
-    top: 46%;
+    top: 44%;
     position: absolute;
     width: 100%;
     display: flex;
@@ -270,10 +323,10 @@ body{
 .topRightContainer{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 .topRightContainer .packageDetails{
-    width: 80%;
+    width: 100%;
     margin-left: 16px;
 }
 .tab {
@@ -334,7 +387,7 @@ body{
 .columns .price li {
     text-align: center;
 }
-.button {
+.buttons .button {
     background-color: #1dbf73;
     width: 100%;
     border: none;
@@ -370,8 +423,7 @@ ul button:hover{
 /* milestones */
 .topRightContainer .milestoneApproach{
     margin-top: 48px;
-    width: 80%;
-    margin-left: 16px;
+    width: 100%;
 }
 .topRightContainer .milestoneApproach button{
     display: flex;
@@ -385,6 +437,7 @@ ul button:hover{
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    margin-top: 16px;
 }
 .topRightContainer .milestoneApproach button:hover{
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
@@ -419,43 +472,25 @@ ul button:hover{
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 .bottomLeftContainer .aboutGig .content p{
+    margin-top: -1em;
     white-space: pre-wrap;
     text-align: justify;
     margin-bottom: 32px;
 }
+.bottomLeftContainer .aboutGig .content p:first-line{
+    line-height: 0px;
+}
+
 /* Bottom Right Container */
 
 /* media queries */
 @media only screen and (max-width: 900px) {
-    .topContainer{
+    .displayGigContainer .topContainer, .bottomContainer{
         display: flex;
         flex-direction: column;
+        gap: 16px;
     }
-    .displayGigContainer .topLeftContainer, .topRightContainer{
-        width: 100%;
-    }
-    .modal{
-        width: 85%;
-    }
-    .topRightContainer .packageDetails{
-        width:100%;
-        margin-left: 0;
-    }
-    .topRightContainer .milestoneApproach{
-        width: 100%;
-        margin-left: 0;
-    }
-    .bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .topContainer{
-        display: flex;
-        flex-direction: column;
-    }
-    .displayGigContainer .topLeftContainer, .topRightContainer{
+    .displayGigContainer .topLeftContainer, .displayGigContainer .topRightContainer{
         width: 100%;
     }
     .tab button {
@@ -479,5 +514,54 @@ ul button:hover{
     }
     .bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
         width: 100%;
+    }
+    .topLeftContainer .sliderContainer{
+        width: 100%;
+        height: auto;
+    }
+    .topLeftContainer .sliderContainer img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .displayGigContainer .topContainer, .bottomContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .displayGigContainer .topLeftContainer, .displayGigContainer .topRightContainer{
+        width: 100%;
+    }
+    .tab button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    ul button{
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    .modal{
+        width: 85%;
+    }
+    .topRightContainer .packageDetails{
+        width:100%;
+        margin-left: 0;
+    }
+    .topRightContainer .milestoneApproach{
+        width: 100%;
+        margin-left: 0;
+    }
+    .bottomContainer .bottomLeftContainer, .bottomContainer .bottomRightContainer{
+        width: 100%;
+    }
+    .topLeftContainer .sliderContainer{
+        width: 100%;
+        height: auto;
+    }
+    .topLeftContainer .sliderContainer img{
+        width: 100%;
+        height: auto;
     }
 }

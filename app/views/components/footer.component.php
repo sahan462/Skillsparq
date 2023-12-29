@@ -55,7 +55,7 @@
             <hr></hr>
             <div class="footer-bottom-one">
                 <div class="footer-bottom-left">
-                    <img src="Assets/logo-main.png">
+                    <img src="./assets/images/logo-main.png" alt="logo">
                 </div>
                 <div class="footer-bottom-right">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">

@@ -58,7 +58,7 @@
 @media only screen and (max-width: 900px) {
     .gigCard{
         width: calc(100% / 2 - 16px);
-        height: 360px;
+        height: auto;
     }
     .gigCard .coverImg img{
         height: 200px;
@@ -68,8 +68,8 @@
 
 @media only screen and (max-width: 600px) {
     .gigCard{
-        width: calc(100% - 16px);
-        height: 360px;
+        width: 100%;
+        height: auto;
     }
     .gigCard .coverImg img{
         height: 200px;
