@@ -106,15 +106,76 @@ $data["profilePicture"] = "dummyprofile.jpg";
                 <div class="card-content">
                     <h2>Gig Card</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">View</a>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <button class="button open-view-modal-button" onclick="window.location.href='#'">View</button>
+                    <button class="button open-edit-modal-button" onclick="window.location.href='#'">Edit</button>
+                    <button class="button open-delete-modal-button" onclick="window.location.href='#'">Delete</button>
+
+                    <dialog class="Modal viewModal" id="viewModal">
+                        <h2>Your Gig Details</h2>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <button class="button close-view-modal-button">close</button>
+                    </dialog>
+                    <dialog class="Modal editModal" id="editModal">
+                        <h2>Edit your Gig details Here</h2>
+                        <form action="" method="dialog">
+                            <input type="text" name="text" value="text">
+                            <input type="submit" value="submit" name="submit">
+                        </form>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
+                        <button class="button close-edit-modal-button">close</button>
+                    </dialog>
+                    <dialog class="Modal deleteModal" id="deleteModal">
+                        <h2>Are you Sure that you want to delete your Gig?</h2>
+                        <button class="button close-delete-modal-button">Delete</button>
+                    </dialog>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+
+        // javascript code for view pop up modal
+        const viewModal = document.querySelector('#viewModal');
+        const openViewModal = document.querySelector('.open-view-modal-button');
+        const closeViewModal = document.querySelector('.close-view-modal-button');
+
+        openViewModal.addEventListener('click',()=>{
+            viewModal.showModal();
+        });
+
+        closeViewModal.addEventListener('click',()=>{
+            viewModal.close();
+        });
+        
+        // javascript code for edit pop up modal
+        const editModal = document.querySelector('#editModal');
+        const openEditModal = document.querySelector('.open-edit-modal-button');
+        const closeEditModal = document.querySelector('.close-edit-modal-button');
+
+        openEditModal.addEventListener('click',()=>{
+            editModal.showModal();
+        });
+
+        closeEditModal.addEventListener('click',()=>{
+            editModal.close();
+        });
+
+        // javascript code for delete pop up modal
+        const deleteModal = document.querySelector('#deleteModal');
+        const openDeleteModal = document.querySelector('.open-delete-modal-button');
+        const closeDeleteModal = document.querySelector('.close-delete-modal-button');
+
+        openDeleteModal.addEventListener('click',()=>{
+            deleteModal.showModal();
+        });
+
+        closeDeleteModal.addEventListener('click',()=>{
+            deleteModal.close();
+        });
+
         // Function to update the div with the current local time
         function updateLocalTime() {
             // Get the current local time

@@ -343,6 +343,119 @@ body{
     border-bottom: 2px solid #e4e1e1;
 }
 
+/* pop up modal button styles */
+
+.deleteModal{
+     
+}
+
+#deleteModal{
+
+}
+
+.deleteModal::backdrop{
+    background: linear-gradient(45deg,#fff,#d63128)!important;
+}
+
+.open-delete-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-delete-modal-button{
+
+}
+
+
+.editModal{
+    
+}
+
+#editModal{
+}
+
+.editModal::backdrop{
+    background: linear-gradient(45deg,#fff,#97a442)!important;
+}
+
+.open-edit-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-edit-modal-button{
+
+}
+
+
+.viewModal{
+      
+}
+
+#viewModal{
+
+}
+
+.open-view-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-view-modal-button{
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #32bd6e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.Modal{
+    padding: 1em;
+    min-width: 50ch;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust the width as needed */
+    background-color: white;
+    padding: 20px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    & > *{
+        margin: 0 0 0.5rem 0;
+    } 
+}
+
+.Modal::backdrop{
+    background: linear-gradient(90deg,#fff,#32bd6e);
+    opacity: .9;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+/* */
+
 @media only screen and(min-width:600px) {
     .seller{
         display: flex;
