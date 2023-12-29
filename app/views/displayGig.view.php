@@ -72,24 +72,20 @@
     <div class="overlay" id="milestoneOverlay">
         <div class="modal" id="milestoneModal">
             
-            <button type="button" onclick="addCollapsible()">Add Collapsible</button>
+            <!-- button to add new milestone -->
+
+            <button type="button" onclick="addCollapsible()">Create New MileStone</button>
             
             <form method="get" id="milestoneRequestForm">
-
-                <!-- button to add new milestone -->
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto"></div>
 
-                <button type="button" onclick="submitForm()">Submit Form</button>
-
                 <!-- Template for a milestone-->
                 <template id="collapsibleTemplate">
-                    <div class="collapsibleSet">
-                        <button class="collapsible" onclick="expand(this)">Open Collapsible</button>
-                        <div class="collapsibleContent">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </div>
+                    <button type="button" class="collapsible" onclick="expand(this)">Open Collapsible</button>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                 </template>
 
