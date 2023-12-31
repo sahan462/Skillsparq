@@ -125,7 +125,15 @@ function displayFileName(input) {
 
 // Counter to keep track of added input fields
 let inputCounter = 1;
-let count = 1;
+let count = 0;
+
+if (count == 0) {
+  const inputContainer = document.getElementById('inputContainer');
+  inputContainer.innerHTML = `
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+  <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  `;
+}
 
 function openMilestoneModal() {
   document.getElementById('milestoneOverlay').style.display = 'flex';
@@ -142,8 +150,8 @@ function addCollapsible() {
 
   // Update the milestone name using innerHTML
   const button = clone.querySelector('.collapsible');
-  button.innerHTML = "MileStone " + count;
   count++;
+  button.innerHTML = "MileStone " + count;
   // Append the cloned content to the inputContainer
   document.getElementById('inputContainer').appendChild(clone);
 
@@ -153,7 +161,7 @@ function addCollapsible() {
 
 function expand(button){
 
-    button.classList.toggle("active");
+    button.classList.toggle("collapsibleActive");
     var content = button.nextElementSibling;
     if (content.style.maxHeight){
       content.style.maxHeight = null;
