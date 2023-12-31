@@ -160,11 +160,12 @@ body{
     outline: none;
     margin: 8px 0;
 }
-.collapsible .row{
+#milestoneModal .row{
     display: flex;
     flex-direction: row !important;
+    justify-content: space-between;
 }
-.active, .collapsible:hover {
+.collapsibleActive, .collapsible:hover {
     background-color: #555;
 }
 .collapsible:after {
@@ -174,16 +175,33 @@ body{
     float: right;
     margin-left: 5px;
 }
-.active:after {
+.collapsibleActive:after {
     content: "\2212";
 }
-.content {
+.collapsibleContent {
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
 }
+#inputContainer{
+    min-height: 150px;
+    border-radius: 8px;
+
+}
+textarea {
+    padding: 0;
+    font-size: 16px;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
 
 /* file attachement stylings */
 .fileInput{

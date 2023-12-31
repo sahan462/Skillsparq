@@ -40,7 +40,7 @@
               exclusive offers.
             </p>
             <form action="#">
-              <input type="text" placeholder="Your email" required>
+              <input type="text" placeholder="Your email">
               <button type="submit">SUBSCRIBE</button>
             </form>
             <div class="footer-bottom">

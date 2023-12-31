@@ -11,12 +11,15 @@ header{
     background-color: #fff !important;
 }
 
-/*order container header*/
 
+
+/* Main Container */
 .orderContainer{
     margin: 16px 32px;
     padding: 16px 32px;
 }
+
+/* Tab Section */
 .orderContainerHeader{
     border-bottom: 2px solid #c5c6c9;
 }
@@ -38,14 +41,15 @@ header{
     border-bottom: 4px solid #1dbf73;
 }
 
-
-/*order container content*/
-
+/*Tab Content*/
 .orderContent{
     display: flex;
     justify-content: space-between;
     gap: 16px;
 }
+
+
+/* Left Container*/
 .userActivity{
     width: 60%;
     background-color: #fff;
@@ -53,16 +57,8 @@ header{
     border: 1px solid #c5c6c9;
     border-radius: 5px;
 }
-.orderContent .orderDetails{
-    width: 40%;
-    background-color: #fff;
-    margin-top: 16px;
-    border: 1px solid #c5c6c9;
-    border-radius: 5px;
-}
 
-/*userActivity*/
-
+/* Tab 1 */
 .userActivity .tabContent{
     padding: 16px 32px;
 }
@@ -70,8 +66,9 @@ header{
     text-align: justify;
 }
 
-/*userActivity - details*/
+/* Tab 2 */
 
+/* buyer details */
 .userActivity #details .buyer{
     border: 1px solid #c5c6c9;
     border-radius: 5px;
@@ -83,3 +80,24 @@ header{
     border-radius: 100%;
     object-fit: cover;
 }
+
+
+/* Right Container */
+.orderContent .orderDetails{
+    width: 40%;
+    background-color: #fff;
+    margin-top: 16px;
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+    height: 300px;
+}
+.orderDetails .timer{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.orderDetails p{
+    text-align: center;
+    font-size: 32px;
+    margin-top: 0px;
+}
+
