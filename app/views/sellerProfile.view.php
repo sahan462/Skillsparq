@@ -40,7 +40,6 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         <div class="Topics">About</div>
                         <div class="buttons">
                             <button id="button">Add</button>
-                            <!-- <a href="#" class="add">&plus;</a> -->
                         </div>
                     </div>
                     <div class="profile-content-category-content">
