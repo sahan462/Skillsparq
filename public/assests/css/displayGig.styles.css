@@ -119,7 +119,7 @@ body{
     align-items: center;
     gap: 16px;
 }
-.modal button, .confirmation button{
+.modal .buttons button, .confirmation button{
     width: 50%;
     padding: 8px;
     margin-top: 16px;
@@ -137,19 +137,34 @@ body{
     background-color: rgb(241, 241, 241);
     font-weight: 500;
 }
+.createNewMileStone{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
 
 /* collapsible */
 .collapsible {
-    background-color: #777;
     color: white;
     cursor: pointer;
-    padding: 18px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
-  }
+    margin: 8px 0;
+}
+#milestoneModal .row{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
 .collapsibleActive, .collapsible:hover {
     background-color: #555;
 }
@@ -169,6 +184,22 @@ body{
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
+}
+#inputContainer{
+    min-height: 150px;
+    border-radius: 8px;
+
+}
+textarea {
+    padding: 0;
+    font-size: 16px;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 
@@ -374,7 +405,7 @@ body{
 .columns .price li {
     text-align: center;
 }
-.button {
+.buttons .button {
     background-color: #1dbf73;
     width: 100%;
     border: none;

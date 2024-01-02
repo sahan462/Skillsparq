@@ -72,25 +72,71 @@
     <div class="overlay" id="milestoneOverlay">
         <div class="modal" id="milestoneModal">
             
-            <button type="button" onclick="addCollapsible()">Add Collapsible</button>
+            <!-- button to add new milestone -->
+
+            <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
             <form method="get" id="milestoneRequestForm">
 
-                <!-- button to add new milestone -->
-
                 <!-- New milestone appends here -->
-                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto"></div>
-
-                <button type="button" onclick="submitForm()">Submit Form</button>
+                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto;"></div>
 
                 <!-- Template for a milestone-->
                 <template id="collapsibleTemplate">
-                    <div class="collapsibleSet">
-                        <button class="collapsible" onclick="expand(this)">Open Collapsible</button>
-                        <div class="collapsibleContent">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
+
+                    <div class="collapsibleContent">
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="type-1">Subject</div>
+                                <input type="text" name="milestone[subject][]">
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="type-1">Revisions</div>
+                                <select name="milestone[revisions][]" required="">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="Unlimited">Unlimited</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <div class="type-1">Delivery</div>
+                                <div class="row">
+                                    <input type="number" name="milestone[quantity][]" min="1">
+                                    <select name="milestone[timePeriod][]" class="categories">
+                                        <option value="Days">Day(s)</option>
+                                        <option value="Weeks">Week(s)</option>
+                                        <option value="Months">Month(s)</option>
+                                        <option value="Years">Year(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="type-1">Price</div>
+                                <input type="text" name="milestone[price][]">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="type-1">Milestone Description</div>
+                                <textarea name="milestone[description][]" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required=""></textarea>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="removeCollapsible(this)">Remove Milestone</button>
+
                     </div>
+
                 </template>
 
 
@@ -177,6 +223,7 @@
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button>
                         </div>
                     
+                        <!-- package 1 -->
                         <div id="London" class="tabcontent" style="display: block;">
                             <div class="columns">
                                 <ul class="price">
@@ -207,6 +254,7 @@
                             </div>
                         </div>
                     
+                        <!-- package 2 -->
                         <div id="Paris" class="tabcontent">
                             <div class="columns">
                                 <ul class="price">
@@ -229,11 +277,16 @@
                                             </div>
                                         </li>
                                     </div>
+                                    <form action="">
+                                        <input type="hidden" name="package[type]" value="Basic">
+                                        <input type="hidden" name="package[price]" value="<?php echo $gig['price']?>">
+                                        <input type="hidden" name="package[description]" value="<?php echo $gig['package_description_2']?>">                                    </form>
                                     <a href="#"><button onclick="openPackageModal()">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
                     
+                        <!-- package 3 -->
                         <div id="Tokyo" class="tabcontent">
                             <div class="columns">
                                 <ul class="price">

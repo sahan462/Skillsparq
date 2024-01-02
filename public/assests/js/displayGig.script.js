@@ -125,6 +125,15 @@ function displayFileName(input) {
 
 // Counter to keep track of added input fields
 let inputCounter = 1;
+let count = 0;
+
+if (count == 0) {
+  const inputContainer = document.getElementById('inputContainer');
+  inputContainer.innerHTML = `
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+  <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  `;
+}
 
 function openMilestoneModal() {
   document.getElementById('milestoneOverlay').style.display = 'flex';
@@ -134,30 +143,47 @@ function openMilestoneModal() {
 function addCollapsible() {
   // Get the template content
   const template = document.getElementById('collapsibleTemplate');
+  const name = document.getElementById('collapsible');
 
   // Clone the template content
   const clone = document.importNode(template.content, true);
 
+  // Update the milestone name using innerHTML
+  const button = clone.querySelector('.collapsible');
+  count++;
+  button.innerHTML = "MileStone " + count;
   // Append the cloned content to the inputContainer
   document.getElementById('inputContainer').appendChild(clone);
+
 }
 
+function removeCollapsible(button) {
+  // Remove the parent container when removing a milestone
+  button.parentElement.parentElement.remove();
+  count--;
+  // Update the numbering of remaining milestones
+  updateMilestoneNumbering();
+}
 
+function updateMilestoneNumbering() {
+  const milestones = document.querySelectorAll('.collapsibleSet .collapsible');
+  milestones.forEach((milestone, index) => {
+      milestone.innerHTML = "MileStone " + (index + 1);
+  });
+}
 
 // -------------------------collapsible-----------------------------
 
-function expand(button) {
-  // Toggle the class to change the button appearance
-  button.classList.toggle("collapsibleActive");
+function expand(button){
 
-  // Find the next element (collapsibleContent) based on the button
-  var content = button.nextElementSibling;
-
-  // Check if the content is currently visible
-  if (content.style.maxHeight) {
-      content.style.maxHeight = null; // If visible, hide the content
-  } else {
-      content.style.maxHeight = content.scrollHeight + "px"; // If hidden, show the content
-  }
+    button.classList.toggle("collapsibleActive");
+    var content = button.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  
 }
+
 

@@ -6,6 +6,14 @@
     }
 ?>
 
+<?php 
+    $userRole = 'buyer';
+    $order['orderType'] = 'package';
+    $order['orderStatus'] = 'Active';
+    $order['paymentStaus'] = 'Pending';
+
+?>
+
 
 <?php 
     $data['buyerRequirement'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -31,13 +39,18 @@
         <button class="tablinks" onclick="openTab(event, 'details')">Order Details</button>
     </div>
 
+    <!-- Tab Content -->
     <div class="orderContent">
 
-        <!-- Tab Content 1 -->
+        <!-- Left Container -->
         <div class="userActivity">
+
+            <!-- Tab 1  -->
             <div id="activity" class="tabContent" >
                 Activity
             </div>
+
+            <!-- Tab 2 -->
             <div id="details" class="tabContent" style="display:none;">
 
                 <!-- buyer requirements -->
@@ -65,13 +78,47 @@
             </div>
         </div>
 
-        <!-- Tab Content 2 -->
+        <!-- Right Container -->
         <div class="orderDetails">
-            <span>Order Info.</span>
-            <div class="timer">
-                
+
+            <div class="deadline">
+                <div class="type-1">
+                    Deadline
+                </div>
+                <div class="timer">
+                    <p id="demo"></p>
+                </div>
             </div>
-            <div class="Details"></div>
+
+            <div class="orderStatus">
+                <div class="orderStatusHeader">
+                    <div class="type-1">
+                        Order Status
+                    </div>
+                    <?php echo $order['orderStatus'] ?>
+                </div>
+                <div class="orderStatusData">
+
+                    <?php 
+                        if  ($order['orderStatus'] == 'Request') {
+                    ?>
+                        Order Request expires in :
+                    <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Pending"){ ?>
+                        Pending Payments
+                        <?php if($userRole == "buyer"){ ?>
+                            <a href="payment"><button>Proceed to Payment</button></a>
+                        <?php } ?>
+                    <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                        Paid
+                    <?php }?>
+
+                </div>
+            </div>
+
+
+            <div class="Details">
+
+            </div>
         </div>
     </div>
 </div>
