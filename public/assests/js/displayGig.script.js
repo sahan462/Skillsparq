@@ -157,6 +157,21 @@ function addCollapsible() {
 
 }
 
+function removeCollapsible(button) {
+  // Remove the parent container when removing a milestone
+  button.parentElement.parentElement.remove();
+  count--;
+  // Update the numbering of remaining milestones
+  updateMilestoneNumbering();
+}
+
+function updateMilestoneNumbering() {
+  const milestones = document.querySelectorAll('.collapsibleSet .collapsible');
+  milestones.forEach((milestone, index) => {
+      milestone.innerHTML = "MileStone " + (index + 1);
+  });
+}
+
 // -------------------------collapsible-----------------------------
 
 function expand(button){
