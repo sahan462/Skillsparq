@@ -106,7 +106,7 @@
                     <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Pending"){ ?>
                         Pending Payments
                         <?php if($userRole == "buyer"){ ?>
-                            <button>Proceed to Payment</button>
+                            <a href="payment"><button>Proceed to Payment</button></a>
                         <?php } ?>
                     <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
                         Paid
