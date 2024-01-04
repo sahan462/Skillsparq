@@ -126,10 +126,10 @@ function displayFileName(input) {
 // Counter to keep track of added input fields
 let inputCounter = 1;
 let count = 0;
+const animation = document.getElementById('animation');
 
 if (count == 0) {
-  const inputContainer = document.getElementById('inputContainer');
-  inputContainer.innerHTML = `
+  animation.innerHTML = `
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
   <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   `;
@@ -141,6 +141,9 @@ function openMilestoneModal() {
 }
 
 function addCollapsible() {
+
+
+
   // Get the template content
   const template = document.getElementById('collapsibleTemplate');
   const name = document.getElementById('collapsible');
@@ -152,18 +155,37 @@ function addCollapsible() {
   const button = clone.querySelector('.collapsible');
   count++;
   button.innerHTML = "MileStone " + count;
+
+    // Remove animation
+    if(count != 0){
+      animation.innerHTML = '';
+    }
+
   // Append the cloned content to the inputContainer
   document.getElementById('inputContainer').appendChild(clone);
 
 }
 
 function removeCollapsible(button) {
-  // Remove the parent container when removing a milestone
-  button.parentElement.parentElement.remove();
-  count--;
-  // Update the numbering of remaining milestones
-  updateMilestoneNumbering();
+  // Find the parent container
+  const container = button.closest('collapsibleTemplate');
+
+  // Log the container and button for debugging
+  console.log('Container:', container);
+  console.log('Button:', button);
+
+  // Remove the container if found
+  if (container) {
+      container.remove();
+      milestoneCount--;
+
+      // Update the numbering of remaining milestones
+      updateMilestoneNumbering();
+  } else {
+      console.error('Container not found.');
+  }
 }
+
 
 function updateMilestoneNumbering() {
   const milestones = document.querySelectorAll('.collapsibleSet .collapsible');

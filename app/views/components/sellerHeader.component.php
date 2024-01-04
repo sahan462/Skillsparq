@@ -17,6 +17,7 @@ $data['profilePicture'] = "avishka.jpg";
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
+    <link rel="stylesheet" href="./assests/css/help.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
