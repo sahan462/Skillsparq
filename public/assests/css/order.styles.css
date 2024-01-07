@@ -59,6 +59,9 @@ header{
 }
 
 /* Tab 1 */
+.userActivity #activity{
+    height: 500px;
+}
 .userActivity .tabContent{
     padding: 16px 32px;
 }
@@ -90,14 +93,59 @@ header{
     border: 1px solid #c5c6c9;
     border-radius: 5px;
     height: 300px;
+    padding: 16px;
+}
+.orderDetails .deadline{
 }
 .orderDetails .timer{
-    border: 1px solid black;
     border-radius: 8px;
 }
 .orderDetails p{
+    border: 1px solid black;
+    height: fit-content;
+    width: 100%;
     text-align: center;
-    font-size: 32px;
-    margin-top: 0px;
+    font-size: 64px;
+    padding: 32px 16px;
+    margin: 16px 0px;
 }
-
+.orderDetails .row{
+    display: flex;
+    gap: 16px;
+}
+.acceptButton{
+    width: 50%;
+    padding: 8px;
+    margin-top: 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    background-color: #31d65a;
+}
+.acceptButton:hover{
+    color: #333;
+    background-color: rgb(241, 241, 241);
+    font-weight: 500;
+}
+.rejectButton{
+    width: 50%;
+    padding: 8px;
+    margin-top: 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    background-color: #C72300;
+}
+.rejectButton:hover{
+    color: #333;
+    background-color: rgb(241, 241, 241);
+    font-weight: 500;
+}

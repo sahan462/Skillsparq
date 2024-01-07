@@ -9,7 +9,7 @@
 <?php 
     $userRole = 'buyer';
     $order['orderType'] = 'package';
-    $order['orderStatus'] = 'Active';
+    $order['orderStatus'] = 'Request';
     $order['paymentStaus'] = 'Pending';
 
 ?>
@@ -92,17 +92,24 @@
 
             <div class="orderStatus">
                 <div class="orderStatusHeader">
-                    <div class="type-1">
-                        Order Status
+                    <div class="row">
+                        <div class="type-1">
+                            Current Status of Order :
+                        </div>
+                        <?php echo $order['orderStatus'] ?>
                     </div>
-                    <?php echo $order['orderStatus'] ?>
                 </div>
                 <div class="orderStatusData">
 
                     <?php 
                         if  ($order['orderStatus'] == 'Request') {
                     ?>
-                        Order Request expires in :
+                            <div class="row">
+                                <button class="acceptButton">Accept</button>
+                                <button class="rejectButton">Reject</button>
+                            </div>
+                            <span>Order Request expires in :</span>
+
                     <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Pending"){ ?>
                         Pending Payments
                         <?php if($userRole == "buyer"){ ?>
