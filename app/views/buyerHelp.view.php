@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advertisement Help</title>
-  </head>
+<?php
+    if($_SESSION['role'] == 'Buyer'){
+        include "components/buyerSimpleHeader.component.php";
+    }else if($_SESSION['role'] == 'Seller'){
+        include "components/sellerHeader.component.php";
+    }
+?>
+
   <body>
     <div class="header">
       <div class="primary">&nbsp&nbspHelp&nbsp&&nbspSupport</div>

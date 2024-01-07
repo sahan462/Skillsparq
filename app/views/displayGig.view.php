@@ -79,7 +79,9 @@
             <form method="get" id="milestoneRequestForm">
 
                 <!-- New milestone appends here -->
-                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto;"></div>
+                <div id="inputContainer"  style="height:auto;max-height:320px;overflow:auto;">
+                    <div id="animation"></div>
+                </div>
 
                 <!-- Template for a milestone-->
                 <template id="collapsibleTemplate">

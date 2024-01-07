@@ -17,8 +17,8 @@
         <div class="leftContainer">
             <p class="title">Choose <span class="dark-title"> Which Help You Need</span></p><br><br>
             <div class="btn-group-1">
-                <a href="<?php echo BASEURL.'/helpCenter/seller' ?>"><div class="btn"><img src="../public/assests/images/seller.png"><p class="btn-title">Seller Support</p></div></a>
-                <a href="<?php echo BASEURL.'/helpCenter/seller' ?>"><div class="btn"><img src="../public/assests/images/buyer.png"><p class="btn-title">Buyer Support</p></div></a>
+                <a href="<?php echo BASEURL.'sellerHelp' ?>"><div class="btn"><img src="../public/assests/images/seller.png"><p class="btn-title">Seller Support</p></div></a>
+                <a href="<?php echo BASEURL.'buyerHelp' ?>"><div class="btn"><img src="../public/assests/images/buyer.png"><p class="btn-title">Buyer Support</p></div></a>
             </div>
             
             <br><br><br>
