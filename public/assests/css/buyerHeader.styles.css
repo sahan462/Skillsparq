@@ -232,7 +232,6 @@ header .upperHeader{
 
 /*header categories*/
 .headerCategories{
-    width: 100vw;
     background-color: #fff !important;
 }
 .headerCategories nav .nav-links li{
