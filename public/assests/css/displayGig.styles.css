@@ -418,7 +418,7 @@ textarea {
 .topRightContainer ul{
     border-radius: 0 0 8px 8px;
 }
-.topRightContainer .ul button{
+.topRightContainer ul button{
     padding: 8px;
     margin-top: 16px;
     width: 100%;
