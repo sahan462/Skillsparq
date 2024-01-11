@@ -12,7 +12,6 @@ header{
 }
 
 
-
 /* Main Container */
 .orderContainer{
     margin: 16px 32px;
@@ -87,36 +86,64 @@ header{
 
 /* Right Container */
 .orderContent .orderDetails{
+    display: flex;
+    flex-direction: column;
     width: 40%;
-    background-color: #fff;
     margin-top: 16px;
+    gap: 16px;
+    height: auto;
+}
+
+/* Right Container Upper Part */
+.orderContent .orderDetailsUpperContainer{
+    width: 100%;
+    background-color: #fff;
     border: 1px solid #c5c6c9;
     border-radius: 5px;
-    height: 300px;
+    height: auto;
     padding: 16px;
 }
-.orderDetails .deadline{
+.orderDetails .deadline span{
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    margin-bottom: 16px;
 }
 .orderDetails .timer{
     border-radius: 8px;
 }
 .orderDetails p{
-    border: 1px solid black;
+    border: 1px solid #c5c6c9;
+    border-radius: 8px;
     height: fit-content;
     width: 100%;
     text-align: center;
     font-size: 64px;
     padding: 32px 16px;
-    margin: 16px 0px;
+    margin-bottom: 16px;
+    line-height: 120%;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.orderDetails .orderStatus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.orderDetails .orderStatusHeader{
+    background-color: #c5c6c9;
+    border-radius: 8px;
+    height: fit-content;
+    padding: 0 2px;
+    width: 100%;
 }
 .orderDetails .row{
     display: flex;
     gap: 16px;
 }
-.acceptButton{
+.buttonType-1{
     width: 50%;
     padding: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
     width: 100%;
     font-weight: 600;
     font-size: 18px;
@@ -126,15 +153,15 @@ header{
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
 }
-.acceptButton:hover{
+.buttonType-1:hover{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 500;
 }
-.rejectButton{
+.buttonType-2{
     width: 50%;
     padding: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
     width: 100%;
     font-weight: 600;
     font-size: 18px;
@@ -144,8 +171,15 @@ header{
     transition: ease-in-out 0.3s;
     background-color: #C72300;
 }
-.rejectButton:hover{
+.buttonType-2:hover{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 500;
+}
+
+/* Right Container Bottom Part */
+.orderContent .orderDetailsBottomContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
