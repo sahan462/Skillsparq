@@ -2,7 +2,6 @@
 
 class UpdateJob extends Controller
 {
-
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');

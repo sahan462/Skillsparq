@@ -4,8 +4,8 @@
 class App
 {
 
-    protected $controller = "_404";
-    protected $method = "index";
+    protected $controller = "_404"; // default controller
+    protected $method = "index"; // default method 
 
     function __construct()
     {

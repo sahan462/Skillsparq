@@ -1,7 +1,8 @@
 <?php include "components/sellerHeader.component.php";?>
 
 <?php 
-
+    $gigId = $data["gigId"];
+    echo print_r($gigId);
 ?>
 
 <!-- Main Container -->
@@ -26,7 +27,7 @@
     <div class="rightContainer">
 
         <!-- form -->
-        <form id="regForm" method="post" enctype="multipart/form-data" action="<?php echo BASEURL.'Gig/publishGig';?>" autocomplete="off">
+        <form id="regForm" method="get" enctype="multipart/form-data" action="<?php echo BASEURL.'Gig/updateGig'?>" autocomplete="off">
             <!-- One "tab" for each step in the form: -->
 
             <div class="addGigContent">
@@ -36,29 +37,29 @@
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
                     <div class="title">
-                        <p><input type="text" name="title" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
+                        <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php ;?>" oninput="this.className = ''"></p>
                     </div>
 
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" value="chamal" required></textarea>
+                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" value="<?php ;?>" required></textarea>
                     </div>
 
                     <div class="category">
                         <span class="type-1">Which category best fits your project?</span>
                         <span class="type-2">Choose from the list</span>
                         <select name="category" class="categories" required>
-                            <option value="Graphics & Design">Graphics & Design</option>
-                            <option value="Programming & Tech">Programming & Tech</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Video & Animation">Video & Animation</option>
-                            <option value="Writing & Translation">Writing & Translation</option>
-                            <option value="Music & Audio">Music & Audio</option>
-                            <option value="Business">Business</option>
-                            <option value="Data">Data</option>
-                            <option value="Photography">Photography</option>
-                            <option value="AI Services">AI Services</option>
+                            <option value="Graphics & Design <?php ;?>">Graphics & Design</option>
+                            <option value="Programming & Tech <?php ;?>">Programming & Tech</option>
+                            <option value="Digital Marketing <?php ;?>">Digital Marketing</option>
+                            <option value="Video & Animation <?php ;?>">Video & Animation</option>
+                            <option value="Writing & Translation <?php ;?>">Writing & Translation</option>
+                            <option value="Music & Audio <?php ;?>">Music & Audio</option>
+                            <option value="Business <?php ;?>">Business</option>
+                            <option value="Data <?php ;?>">Data</option>
+                            <option value="Photography <?php ;?>">Photography</option>
+                            <option value="AI Services <?php ;?>">AI Services</option>
                         </select>
                     </div>
                 </div>
@@ -89,10 +90,10 @@
                                 <div class="noOfDeliveryDays">
                                     <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_1" class="categories" >
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
+                                        <option value="Days <?php ;?>">Day(s)</option>
+                                        <option value="Weeks<?php ;?>">Week(s)</option>
+                                        <option value="Months <?php ;?>">Month(s)</option>
+                                        <option value="Years <?php ;?>">Year(s)</option>
                                     </select>
                                 </div>
                             </div>
@@ -101,14 +102,14 @@
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
                                     <select name="noOfRevisions_1"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
+                                        <option value="1 <?php ;?>">1</option>
+                                        <option value="2 <?php ;?>">2</option>
+                                        <option value="3 <?php ;?>">3</option>
+                                        <option value="4 <?php ;?>">4</option>
+                                        <option value="5 <?php ;?>">5</option>
+                                        <option value="6 <?php ;?>">6</option>
+                                        <option value="7 <?php ;?>">7</option>
+                                        <option value="Unlimited<?php ;?>">Unlimited</option>
                                     </select>
                                 </div>
                             </div>
@@ -132,10 +133,10 @@
                                 <div class="noOfDeliveryDays">
                                     <input type="number" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_2" class="categories" required>
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
+                                        <option value="Days<?php ;?>">Day(s)</option>
+                                        <option value="Weeks<?php ;?>">Week(s)</option>
+                                        <option value="Months<?php ;?>">Month(s)</option>
+                                        <option value="Years<?php ;?>">Year(s)</option>
                                     </select>
                                 </div>
                             </div>
@@ -144,14 +145,14 @@
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
                                     <select name="noOfRevisions_2"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
+                                        <option value="1<?php ;?>">1</option>
+                                        <option value="2<?php ;?>">2</option>
+                                        <option value="3<?php ;?>">3</option>
+                                        <option value="4<?php ;?>">4</option>
+                                        <option value="5<?php ;?>">5</option>
+                                        <option value="6<?php ;?>">6</option>
+                                        <option value="7<?php ;?>">7</option>
+                                        <option value="Unlimited<?php ;?>">Unlimited</option>
                                     </select>
                                 </div>
                             </div>
@@ -166,7 +167,7 @@
                         <div id="Tokyo" class="tabcontent">
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''"></div>
+                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''" value="<?php ;?>"></div>
                             </div>
 
                             <div class="row">
@@ -248,6 +249,6 @@
     </div>
 </div>
 
-<script src="/skillsparq/public/assests/js/addGig.script.js"></script>
+<script src="/skillsparq/public/assests/js/updateGigscript.js"></script>
 
 <?php include "components/footer.component.php";?>
