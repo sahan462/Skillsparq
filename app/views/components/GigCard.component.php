@@ -4,6 +4,14 @@
         <img src="./assests/images/gigimages/<?php echo $row['cover_image']?>" alt="card-1">
     </div>
 
+    <div class="title">
+        <?php //echo $job['title']?>
+        <!-- <div class="links">
+            <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;jobId=<?php echo $row['gig_id']?>&amp;">edit</a>
+            <a href="job/deleteJob&amp;userId=<?php echo $row['seller_id']?>&amp;jobId=<?php echo $row['gig_id']?>&amp;>delete</a>
+        </div> -->
+    </div>
+
     <!-- User Details -->
     <div class="user-details" >
         <div class="cardRow" style="align-items: center;">
@@ -12,12 +20,18 @@
             </div>
             <div class="cardRow" style="flex-direction: column;">
                 <div class="username">
-                    <span>Avishka Idunil</span>
+                    <span><?php echo $_SESSION['firstName']." ".$_SESSION['lastName']?></span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Description -->
+    <div class="description">
+    <p>
+        <?php //echo $row['description']?>
+    </p>
+    </div>
 
     <div class="gig-details">
         <div class="gigTitle">

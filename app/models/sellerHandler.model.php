@@ -30,6 +30,12 @@ class SellerHandler extends database
         mysqli_stmt_close($stmt);
     }
     
+    public function updateSeller(){
 
+    }
+
+    public function deleteSeller(){
+        
+    }
 
 }

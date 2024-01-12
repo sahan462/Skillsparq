@@ -1,9 +1,12 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-$data["profilePicture"] = "dummyprofile.jpg";
+    $data["profilePicture"] = "dummyprofile.jpg";
+    $recentGigs = $data['recentGigs'];
 ?>
 
+<?php 
+?>
 <div class="container">
     <div class="profile-container">
         <div class="profile-header">
@@ -40,7 +43,6 @@ $data["profilePicture"] = "dummyprofile.jpg";
                         <div class="Topics">About</div>
                         <div class="buttons">
                             <button id="button">Add</button>
-                            <!-- <a href="#" class="add">&plus;</a> -->
                         </div>
                     </div>
                     <div class="profile-content-category-content">
@@ -85,54 +87,23 @@ $data["profilePicture"] = "dummyprofile.jpg";
     </div>
 
     <div class="other-category-container" id="gigs">
-        <div class="other-category-header">
-            <div class="Topics" style="padding-left: 0;">My Gigs</div>
-            <div class="plus" >
-                <a href="addGig"><button id="plus">Add New Gig</button></a>
+        <div class="recentGigs" id="content">
+            <a href="">
+                <div class="row">
+                    <h2>My Gigs</h2>
+                </div>
+            </a>
+            <div class="recentGigsContent">
+                <?php
+                    foreach($recentGigs as $row){
+                ?>
+                        <?php include "components/GigCard.component.php"?>
+                <?php
+                    }
+                ?>
             </div>
         </div>
-        <div class="card-container">
-            <div class="card">
-                <img src="../public/assests/images/gigcard3.jpg">
-                <div class="card-content">
-                    <h2>Gig Card</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <a href="">Read more</a>
-                </div>
 
-            </div>
-            <div class="card">
-                <img src="../public/assests/images/gigcard4.jpg">
-                <div class="card-content">
-                    <h2>Gig Card</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quibusdam perspiciatis, ab inventore sunt harum.</p>
-                    <button class="button open-view-modal-button" onclick="window.location.href='#'">View</button>
-                    <button class="button open-edit-modal-button" onclick="window.location.href='#'">Edit</button>
-                    <button class="button open-delete-modal-button" onclick="window.location.href='#'">Delete</button>
-
-                    <dialog class="Modal viewModal" id="viewModal">
-                        <h2>Your Gig Details</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
-                        <button class="button close-view-modal-button">close</button>
-                    </dialog>
-                    <dialog class="Modal editModal" id="editModal">
-                        <h2>Edit your Gig details Here</h2>
-                        <form action="" method="dialog">
-                            <input type="text" name="text" value="text">
-                            <input type="submit" value="submit" name="submit">
-                        </form>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, animi.</p>
-                        <button class="button close-edit-modal-button">close</button>
-                    </dialog>
-                    <dialog class="Modal deleteModal" id="deleteModal">
-                        <h2>Are you Sure that you want to delete your Gig?</h2>
-                        <button class="button close-delete-modal-button">Delete</button>
-                    </dialog>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script>
