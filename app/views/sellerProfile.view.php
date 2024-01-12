@@ -1,6 +1,7 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
+    $data['fullName'] = $_SESSION['firstName']." ".$_SESSION['lastName'];
     $data["profilePicture"] = "dummyprofile.jpg";
     $recentGigs = $data['recentGigs'];
 ?>
@@ -15,7 +16,7 @@
                     <div class="img"><img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
                     </div>
                     <div class="icons-content">
-                        <div class="icon-name">Chamal Fernando</div>
+                        <div class="icon-name"><?php echo $data['fullName']?></div>
                         <div class="icon-location">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
@@ -32,7 +33,7 @@
                 </div>
                 <div class="buttons">
                     <a href="#"><button id="button">See Public View</button></a>
-                    <a href="#"><button id="button">Profile Settings</button></a>
+                    <a href=""><button id="button">Profile Update</button></a>
                 </div>
             </div>
         </div>
@@ -87,12 +88,13 @@
     </div>
 
     <div class="other-category-container" id="gigs">
+        <div class="other-category-header">
+            <div class="Topics" style="padding-left: 0;">My Gigs</div>
+            <div class="plus" >
+                <a href="addGig"><button id="plus">Add New Gig</button></a>
+            </div>
+        </div>
         <div class="recentGigs" id="content">
-            <a href="">
-                <div class="row">
-                    <h2>My Gigs</h2>
-                </div>
-            </a>
             <div class="recentGigsContent">
                 <?php
                     foreach($recentGigs as $row){

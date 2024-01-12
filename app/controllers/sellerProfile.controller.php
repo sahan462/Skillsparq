@@ -5,6 +5,7 @@ class SellerProfile extends Controller
     public function __construct()
     {
         $this->GigHandlerModel = $this->model('GigHandler');
+        $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
     public function index(){
@@ -15,6 +16,14 @@ class SellerProfile extends Controller
         }else{
             $data['var'] = "Seller Profile";
             $data['title'] = "SkillSparq";
+            $data["activeStatus"] =  "display: block;";
+            $userId = $_SESSION["userId"];
+
+            //get profile information
+            $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
+            $userProfile = mysqli_fetch_assoc($userProfile);
+            $data["userProfile"] = $userProfile;
+            print_r($data);
 
             //get recently added Gigs
             $recentGigs = $this->GigHandlerModel->getRecentGigs();

@@ -30,7 +30,7 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    public function updateProfile(){
+    public function updateProfile($userId){
 
     }
 
@@ -62,7 +62,7 @@ class ProfileHandler extends database
     //     }
     // }
 
-    public function deleteProfile(){
+    public function deleteProfile($userId){
 
     }
 
