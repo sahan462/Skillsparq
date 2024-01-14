@@ -57,7 +57,7 @@ document.getElementById("defaultOpen").click();
 // Function to open the modal
 function openPackageModal() {
   document.getElementById('overlay').style.display = 'flex';
-  document.getElementById('modal').style.display = 'block';
+  document.getElementById('packageModal').style.display = 'block';
 }
 
 // Function to handle actions based on user confirmation
@@ -83,7 +83,7 @@ function handleConfirmation(action) {
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
       document.getElementById('cancelConfirmation').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('packageModal').style.display = 'none';
       fileNameSpan.textContent = '';
 
     }
@@ -130,14 +130,18 @@ const animation = document.getElementById('animation');
 
 if (count == 0) {
   animation.innerHTML = `
-  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-  <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
   `;
+} else {
+  animation.innerHTML = '';
+  animation.style.width = '0px';
+  animation.style.height = '0px';
 }
 
 function openMilestoneModal() {
   document.getElementById('milestoneOverlay').style.display = 'flex';
-  document.getElementById('milestoneModal').style.display = 'block';
+  document.getElementById('milestoneModal').style.display = 'flex';
 }
 
 function addCollapsible() {
