@@ -1,9 +1,9 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $data['fullName'] = $_SESSION['firstName']." ".$_SESSION['lastName'];
-    $data["profilePicture"] = "dummyprofile.jpg";
-    $recentGigs = $data['recentGigs'];
+    // $data['fullName'] = $_SESSION['firstName']." ".$_SESSION['lastName'];
+    // $data["profilePicture"] = "dummyprofile.jpg";
+    // $recentGigs = $data['recentGigs'];
 ?>
 
 <?php 
@@ -31,10 +31,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="buttons">
-                    <a href="#"><button id="button">See Public View</button></a>
+                <!-- <div class="buttons">
                     <a href="editSellerProfile"><button id="button">Profile Update</button></a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="profile-content">

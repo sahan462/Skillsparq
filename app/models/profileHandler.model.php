@@ -30,7 +30,11 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    public function updateProfile($userId){
+    public function updateProfile($user_Id){
+
+    }
+
+    public function updateBuyerProfile(){
 
     }
 

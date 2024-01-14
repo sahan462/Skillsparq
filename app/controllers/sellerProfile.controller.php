@@ -2,6 +2,9 @@
 
 class SellerProfile extends Controller
 {
+    private $GigHandlerModel;
+    private $ProfileHandlerModel;
+    
     public function __construct()
     {
         $this->GigHandlerModel = $this->model('GigHandler');
@@ -9,7 +12,7 @@ class SellerProfile extends Controller
     }
 
     public function index(){
-        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
 
             header("location: loginUser");
 
@@ -38,7 +41,7 @@ class SellerProfile extends Controller
             
             $data['recentGigs'] = $recentGigs;
 
-            print_r(mysqli_fetch_assoc($data['recentGigs']));
+            // print_r(mysqli_fetch_assoc($data['recentGigs']));
 
             $this->view('sellerProfile', $data);
         } 
