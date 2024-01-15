@@ -26,7 +26,7 @@ class SellerProfile extends Controller
             $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
             $userProfile = mysqli_fetch_assoc($userProfile);
             $data["userProfile"] = $userProfile;
-            print_r($data);
+            // print_r($data);
 
             //get recently added Gigs
             $recentGigs = $this->GigHandlerModel->getRecentGigs();
@@ -40,8 +40,10 @@ class SellerProfile extends Controller
             }
             
             $data['recentGigs'] = $recentGigs;
-
-            // print_r(mysqli_fetch_assoc($data['recentGigs']));
+            // print_r( $data['recentGigs']);
+            $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
+            // print_r($data['recentGigs']);
+            // print_r($data);
 
             $this->view('sellerProfile', $data);
         } 
