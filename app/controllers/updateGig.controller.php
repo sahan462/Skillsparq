@@ -2,6 +2,9 @@
 
 class updateGig extends Controller
 {
+    private $GigHandlerModel;
+    private $GigController;
+    
     public function __construct()
     {
        $this->GigHandlerModel = $this->model('gigHandler');

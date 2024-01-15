@@ -13,7 +13,7 @@
 
         <!-- topic -->
         <div class="addGigHeader">
-            Craft and Contribute: Start Your New Gig
+            Need to Update : Update Your Gig
         </div>
 
         <!-- animation -->

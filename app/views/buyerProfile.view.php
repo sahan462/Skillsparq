@@ -6,8 +6,7 @@
 <?php 
     $data["activeStatus"] = "display: none;";
     $data["profilePicture"] = "assests/images/dummyprofile.jpg";
-    $data["fullName"] = $_SESSION['firstName']." ".$_SESSION['lastName'];
-    $data["userName"] = "@".$_SESSION['userName'];
+    $data["fullName"] = $data['userProfile']['first_name']." ".$data['userProfile']['last_name'];
     $data["country"] = "Sri Lanka";
     $data["expertise"] = "Programming and Tech";
     $data["joinedDate"] = "July 2023";
@@ -36,7 +35,7 @@
                             <?php echo $data["fullName"] ?>
                         </div>
                         <div class="user-name">
-                            <?php echo $data["userName"] ?>
+                            <?php echo '@'.$data["userProfile"]['user_name'] ?>
                         </div>
                         <div class="star-rating">
                             <span class="fa fa-star checked"></span>
@@ -61,7 +60,7 @@
                             </svg>
                                 From
                             </span>
-                            <span><b><?php echo $data["country"] ?></b></span>
+                            <span><b><?php echo $data["userProfile"]['country'] ?></b></span>
                         </div>
                         <div class="info">
                             <span>
@@ -70,7 +69,7 @@
                                 </svg>
                                 Member Since
                             </span>
-                            <span><b>July 2023</b></span>
+                            <span><b><?php echo $data['userProfile']['joined_date'];?></b></span>
                         </div>
                         <div class="info">
                             <span>
@@ -79,7 +78,7 @@
                             </svg>
                                 Expertise
                             </span>
-                            <span><b><?php echo $data["expertise"] ?></b></span>
+                            <span><b><?php echo $data['userProfile']['skills'];?></b></span>
                         </div>
                         <div class="info">
                             <span>
@@ -97,22 +96,14 @@
                 <div class="profile">
                     <div class="description">
                         <div class="topic">
-                            <span>Description</span>
+                            <span>About</span>
                             <div class="link">
                                 <a href="#">edit</a>
-                                <a href="">remove</a>
+                                <a href="#">remove</a>
                             </div>
                         </div>
                         <div class="description-content">
-                            Lorem ipsum dolor sit amet, consectetur 
-                            adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua.
-                            Lorem ipsum dolor sit amet, consectetur 
-                            adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua.
-                            Lorem ipsum dolor sit amet, consectetur 
-                            adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua.
+                            <?php $data['userProfile']['about']?>
                         </div>
                     </div>
                 </div>

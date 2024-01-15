@@ -16,6 +16,15 @@ class Job extends Controller
     {
     }
 
+    public function viewJob()
+    {
+        // create the method to view the job card in the sellerdashboard.
+    }
+
+    public function searchJob(){
+        // create the method to search job functionality
+    }
+
     public function publishJob()
     {
 
