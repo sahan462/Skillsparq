@@ -64,7 +64,6 @@ body{
     to {top:0; opacity:1}
 }
 #packageModal {
-    z-index: 1;
     display: none;
     position: absolute;
     background: #fff;
@@ -74,7 +73,6 @@ body{
     height: auto;
 }
 #milestoneModal{
-    z-index: 1;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -144,6 +142,7 @@ body{
     border: none;
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
+    cursor: pointer;
 }
 .modal .buttons button:hover{
     color: #333;
@@ -638,5 +637,9 @@ ul button:hover{
     .topLeftContainer .sliderContainer img{
         width: 100%;
         height: auto;
+    }
+    .displayGigContainer .mainContainer {
+        margin-right: 0px;
+        margin-left: 0px;
     }
 }

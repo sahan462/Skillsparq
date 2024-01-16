@@ -13,12 +13,14 @@ class ManageOrders extends Controller
     }
 
     public function createOrder(){
-        echo "
-        <script>
-            alert('Order created successfully');
-            window.location.href = '" . BASEURL . "manageOrders';
-        </script>
-    ";
+        
+        print_r($_GET);
+    //     echo "
+    //     <script>
+    //         alert('Order created successfully');
+    //         window.location.href = '" . BASEURL . "manageOrders';
+    //     </script>
+    // ";
     }
 
     
