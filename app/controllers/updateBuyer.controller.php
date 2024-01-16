@@ -2,10 +2,10 @@
 
 class updateBuyer extends Controller
 {
-
+    // private $ProfileHandlerModel;
     public function __construct()
     {
-        $this->JobHandlerModel = $this->model('jobHandler');
+        $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
     public function index(){
