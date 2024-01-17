@@ -17,7 +17,6 @@ class Gig extends Controller
 
         if (isset($_POST['submit'])) {
 
-            print_r($_POST);
 
             $title = $_POST['title'];
             $description = $_POST['description'];
@@ -47,8 +46,6 @@ class Gig extends Controller
             $targetDir = "../public/assests/images/gigImages/";
 
             $coverImage = basename($_FILES["coverImage"]["name"]); 
-            print_r($coverImage);
-            print_r($sellerId);
 
             $targetFilePath = $targetDir . $coverImage; 
             $upload = move_uploaded_file($_FILES["coverImage"]["tmp_name"], $targetFilePath);
@@ -75,121 +72,121 @@ class Gig extends Controller
         }
     }
 
-    public function updateGig(){
+    // public function updateGig(){
 
-        if(isset($_POST["update"])){
+    //     if(isset($_POST["update"])){
 
-            $gigId = $_POST["gigId"];
-            $title = $_POST['title'];
-            $description = $_POST['description'];
-            $file = $_POST['fileToUpload'];
-            $category = $_POST['category'];
-            $deadline = $_POST['deadline_1'];
-            $publishMode = $_POST['publishMode'];
-            $currentDateTime = date('Y-m-d H:i:s'); 
-            $buyerId = $_SESSION['userId'];
+    //         $gigId = $_POST["gigId"];
+    //         $title = $_POST['title'];
+    //         $description = $_POST['description'];
+    //         $file = $_POST['fileToUpload'];
+    //         $category = $_POST['category'];
+    //         $deadline = $_POST['deadline_1'];
+    //         $publishMode = $_POST['publishMode'];
+    //         $currentDateTime = date('Y-m-d H:i:s'); 
+    //         $buyerId = $_SESSION['userId'];
 
-            if($publishMode == 'Standard Mode'){
+    //         if($publishMode == 'Standard Mode'){
 
-                $amount = $_GET['amount_3'];
-                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+    //             $amount = $_GET['amount_3'];
+    //             if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
 
-                $job = $this->GigHandlerModel->updateGig($gigId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
-                if($job){
-                    echo "
-                    <script>
-                        alert('Standard Job is Updated Successfully');
-                        window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                ";
-                }
+    //             $job = $this->GigHandlerModel->updateGig($gigId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+    //             if($job){
+    //                 echo "
+    //                 <script>
+    //                     alert('Standard Job is Updated Successfully');
+    //                     window.location.href = '" . BASEURL . "buyerProfile';
+    //                 </script>
+    //             ";
+    //             }
 
-            }else if($publishMode == 'Auction Mode'){
+    //         }else if($publishMode == 'Auction Mode'){
 
-                $amount = $_GET['amount_1'];
-                if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+    //             $amount = $_GET['amount_1'];
+    //             if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
 
-                $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+    //             $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
 
-                $starting_time = $_GET['deadline_2'];
-                $end_time = $_GET['deadline_3'];
-                $starting_bid = $_GET['amount_1'];
-                $min_bid_amount = $_GET['amount_2'];
+    //             $starting_time = $_GET['deadline_2'];
+    //             $end_time = $_GET['deadline_3'];
+    //             $starting_bid = $_GET['amount_1'];
+    //             $min_bid_amount = $_GET['amount_2'];
 
-                $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
+    //             $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
 
-                if($job and $auction){
-                    echo "
-                    <script>
-                        alert('Auction Job is Updated Successfully');
-                        window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                ";
-                }
+    //             if($job and $auction){
+    //                 echo "
+    //                 <script>
+    //                     alert('Auction Job is Updated Successfully');
+    //                     window.location.href = '" . BASEURL . "buyerProfile';
+    //                 </script>
+    //             ";
+    //             }
 
-            }else{
-                echo "
-                <script>alert('Invalid Publish Mode')</script>
-                ";
-            }
-        }
-    }
+    //         }else{
+    //             echo "
+    //             <script>alert('Invalid Publish Mode')</script>
+    //             ";
+    //         }
+    //     }
+    // }
 
-    public function deleteGig(){
+    // public function deleteGig(){
 
-        $gigId = $_GET['gigId'];
-        $userId = $_GET['userId'];
-        $publishMode = $_GET['publishMode'];
+    //     $gigId = $_GET['gigId'];
+    //     $userId = $_GET['userId'];
+    //     $publishMode = $_GET['publishMode'];
 
-        if($publishMode == 'Auction Mode'){
+    //     if($publishMode == 'Auction Mode'){
             
-            if($this->GigHandlerModel->deleteAuction($jobId, $userId)){
-                if($this->GigHandlerModel->deleteJob($jobId)){
-                    echo 
-                    "
-                    <script>alert('Job deleted Successfully')
-                    window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                    ";
-                }else{
-                    echo 
-                    "
-                    <script>alert('Job deletion failed')
-                    window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                    ";
-                }
-            }else{
-                echo 
-                "
-                <script>alert('Auction deletion failed')
-                window.location.href = '" . BASEURL . "buyerProfile';
-                </script>
-                ";
-            }
+    //         if($this->GigHandlerModel->deleteAuction($jobId, $userId)){
+    //             if($this->GigHandlerModel->deleteJob($jobId)){
+    //                 echo 
+    //                 "
+    //                 <script>alert('Job deleted Successfully')
+    //                 window.location.href = '" . BASEURL . "buyerProfile';
+    //                 </script>
+    //                 ";
+    //             }else{
+    //                 echo 
+    //                 "
+    //                 <script>alert('Job deletion failed')
+    //                 window.location.href = '" . BASEURL . "buyerProfile';
+    //                 </script>
+    //                 ";
+    //             }
+    //         }else{
+    //             echo 
+    //             "
+    //             <script>alert('Auction deletion failed')
+    //             window.location.href = '" . BASEURL . "buyerProfile';
+    //             </script>
+    //             ";
+    //         }
 
-        }else if($publishMode == 'Standard Mode'){
-            if($this->GigHandlerModel->deleteGig($jobId)){
-                echo 
-                "
-                <script>alert('Job deleted Successfully')
-                window.location.href = '" . BASEURL . "buyerProfile';
-                </script>
-                ";
-            }else{
-                echo 
-                "
-                <script>alert('Job deletion failed')
-                window.location.href = '" . BASEURL . "buyerProfile';
-                </script>
-                ";
-            }
-        }else{
-            echo 
-            "
-            <script>alert('Invalid Publish Mode!')</script>
-            ";
-        }
-    }
+    //     }else if($publishMode == 'Standard Mode'){
+    //         if($this->GigHandlerModel->deleteGig($jobId)){
+    //             echo 
+    //             "
+    //             <script>alert('Job deleted Successfully')
+    //             window.location.href = '" . BASEURL . "buyerProfile';
+    //             </script>
+    //             ";
+    //         }else{
+    //             echo 
+    //             "
+    //             <script>alert('Job deletion failed')
+    //             window.location.href = '" . BASEURL . "buyerProfile';
+    //             </script>
+    //             ";
+    //         }
+    //     }else{
+    //         echo 
+    //         "
+    //         <script>alert('Invalid Publish Mode!')</script>
+    //         ";
+    //     }
+    // }
 
 }
