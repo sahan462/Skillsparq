@@ -40,7 +40,9 @@ class UserHandler extends database
         }
     }
     
-
+    public function addNewAdmin(){
+        
+    }
 
 
 }

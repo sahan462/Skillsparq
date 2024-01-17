@@ -3,7 +3,7 @@
         include "components/buyerSimpleHeader.component.php";
     }else if($_SESSION['role'] == 'Seller'){
         include "components/sellerHeader.component.php";
-    }
+    }   
 ?>
 
 

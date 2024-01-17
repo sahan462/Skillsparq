@@ -83,6 +83,63 @@ class GigHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3){
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Gigs 
+            SET 
+            title = ?, 
+            description = ?, 
+            category = ?, 
+            coverImage = ?, 
+            customName_1 = ?, 
+            noOfDeliveryDays_1 = ?, 
+            timePeriod_1 = ?, 
+            noOfRevisions_1 = ?, 
+            packageDescription_1 = ?,
+            customName_2 = ?, 
+            noOfDeliveryDays_2 = ?, 
+            timePeriod_2 = ?, 
+            noOfRevisions_2 = ?, 
+            packageDescription_2 = ?,
+            customName_3 = ?, 
+            noOfDeliveryDays_3 = ?, 
+            timePeriod_3 = ?, 
+            noOfRevisions_3 = ?, 
+            packageDescription_3 = ?,
+
+            WHERE gigId = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "sssssissssissssisss",$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deleteGig($gigId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM Gigs 
+            WHERE gig_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error when deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
 
 

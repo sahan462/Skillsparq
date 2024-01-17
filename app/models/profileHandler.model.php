@@ -13,7 +13,8 @@ class ProfileHandler extends database
 
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)");
+        $query = "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -27,6 +28,46 @@ class ProfileHandler extends database
         }
     
         mysqli_stmt_close($stmt);
+    }
+
+    public function updateProfile($user_Id){
+
+    }
+
+    public function updateBuyerProfile(){
+
+    }
+
+    // public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
+    // {
+    //     $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 
+    //         SET 
+    //         title = ?, 
+    //         description = ?, 
+    //         file = ?, 
+    //         category = ?, 
+    //         amount = ?, 
+    //         deadline = ?, 
+    //         publish_mode = ?, 
+    //         flexible_amount = ? 
+    //         WHERE job_id = ?");
+        
+    //     if ($stmt === false) {
+    //         throw new Exception("Failed to create prepared statement.");
+    //     }
+        
+    //     mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $jobId);
+        
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         mysqli_stmt_close($stmt);
+    //         return true; 
+    //     } else {
+    //         throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
+
+    public function deleteProfile($userId){
+
     }
 
     //get profile
