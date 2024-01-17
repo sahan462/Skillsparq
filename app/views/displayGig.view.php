@@ -42,6 +42,8 @@
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
                     <button type="button" onclick="confirmAction('send')">Send Request</button>
                 </div>
+
+                <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
             </form>
         </div>
     </div>
@@ -174,6 +176,11 @@
                     <h1>
                         <?php echo $gig["title"]; ?>
                     </h1>
+                </div>
+                <div class="gigDetails" style="margin-bottom: 16px;display: flex; gap:16px;">
+                    <span class="type-2">Created On : <?php echo $gig['created_at']; ?></span>
+                    <span class="type-2">|</span>
+                    <span class="type-2">Active Orders : <?php echo $gig['ongoing_order_count']; ?></span>
                 </div>
                 <div class="seller">
                     <div class="image">
