@@ -32,12 +32,14 @@ class BuyerDashboard extends Controller
             
             $data['recentGigs'] = $recentGigs;
     
+            print_r(mysqli_fetch_assoc($data['recentGigs']));
 
             //get top rated Gigs
             
 
 
             //get newbie gigs
+            
 
 
             $this->view('buyerdashboard', $data);

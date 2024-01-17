@@ -2,6 +2,10 @@
 
 class SellerDashboard extends Controller
 {
+    public function __construct()
+    {
+        $this->JobHandlerModel = $this->model('JobHandler');
+    }
 
     public function index()
     {

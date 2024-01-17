@@ -1,23 +1,20 @@
 <?php
 
-class UpdateJob extends Controller
-{
+class ShowJob extends Controller{
+    private $JobHandlerModel;
+
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
-        $this->JobController = $this->controller('job');
     }
 
     public function index()
     {
-
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
-            
             header("location: loginUser");
             exit;
-
         }else{
-            $data['var'] = "UpdateJob";
+            $data['var'] = "ViewJob";
             $data['title'] = "SkillSparq";
 
             $jobId = $_GET['jobId'];
@@ -28,7 +25,6 @@ class UpdateJob extends Controller
             $data['Auction-Details'] = [];
 
             if($_GET['userId'] == $_SESSION['userId']){
-
                 if($publishMode == 'Auction Mode'){
 
                     $data['Basic-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getJob($jobId));
@@ -41,7 +37,7 @@ class UpdateJob extends Controller
                 }else{
                     echo 
                     "
-                    <script>alert('Can not perform update!')</script>
+                    <script>alert('Can not perform viewing!')</script>
                     ";
                 }
             }else{
@@ -50,10 +46,7 @@ class UpdateJob extends Controller
                 <script>alert('Unauthorized User!')</script>
                 ";
             }
-            $this->view('UpdateJob', $data);   
+            $this->view('ShowJobs', $data);   
         }
     }
-
 }
-
-?>

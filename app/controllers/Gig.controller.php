@@ -77,15 +77,15 @@ class Gig extends Controller
 
     public function updateGig(){
 
-        if(isset($_GET["update"])){
+        if(isset($_POST["update"])){
 
-            $jobId = $_GET["jobId"];
-            $title = $_GET['title'];
-            $description = $_GET['description'];
-            $file = $_GET['fileToUpload'];
-            $category = $_GET['category'];
-            $deadline = $_GET['deadline_1'];
-            $publishMode = $_GET['publishMode'];
+            $gigId = $_POST["gigId"];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $file = $_POST['fileToUpload'];
+            $category = $_POST['category'];
+            $deadline = $_POST['deadline_1'];
+            $publishMode = $_POST['publishMode'];
             $currentDateTime = date('Y-m-d H:i:s'); 
             $buyerId = $_SESSION['userId'];
 
@@ -94,7 +94,7 @@ class Gig extends Controller
                 $amount = $_GET['amount_3'];
                 if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
 
-                $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+                $job = $this->GigHandlerModel->updateGig($gigId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
                 if($job){
                     echo "
                     <script>
@@ -137,14 +137,14 @@ class Gig extends Controller
 
     public function deleteGig(){
 
-        $jobId = $_GET['jobId'];
+        $gigId = $_GET['gigId'];
         $userId = $_GET['userId'];
         $publishMode = $_GET['publishMode'];
 
         if($publishMode == 'Auction Mode'){
             
-            if($this->JobHandlerModel->deleteAuction($jobId, $userId)){
-                if($this->JobHandlerModel->deleteJob($jobId)){
+            if($this->GigHandlerModel->deleteAuction($jobId, $userId)){
+                if($this->GigHandlerModel->deleteJob($jobId)){
                     echo 
                     "
                     <script>alert('Job deleted Successfully')
@@ -169,7 +169,7 @@ class Gig extends Controller
             }
 
         }else if($publishMode == 'Standard Mode'){
-            if($this->JobHandlerModel->deleteJob($jobId)){
+            if($this->GigHandlerModel->deleteGig($jobId)){
                 echo 
                 "
                 <script>alert('Job deleted Successfully')

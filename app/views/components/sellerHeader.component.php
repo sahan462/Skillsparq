@@ -15,6 +15,7 @@ $data['profilePicture'] = "avishka.jpg";
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
+    <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">

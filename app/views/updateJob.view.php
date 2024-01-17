@@ -26,7 +26,7 @@
 
                         <span class="type-1">Give your project brief a title</span>
                         <span class="type-2">Keep it short and simple - this will help us match you to the right category.</span>
-                        <input type="text" value="<?php echo $basicDetails['title']?>" name="title" placeholder="Example: Create a WordPress website for my company" required/>
+                        <input type="text" value="<?php echo $basicDetails['title'];?>" name="title" placeholder="Example: Create a WordPress website for my company" required/>
 
                         <span class="type-1">What are you looking to get done?</span>
                         <span class="type-2">This will help get your brief to the right talent. Specifics help here.</span>
