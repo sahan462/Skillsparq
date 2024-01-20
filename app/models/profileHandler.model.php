@@ -38,6 +38,10 @@ class ProfileHandler extends database
 
     }
 
+    public function updateSellerProfile(){
+
+    }
+
     // public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
     // {
     //     $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 

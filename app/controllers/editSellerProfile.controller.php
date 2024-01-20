@@ -1,29 +1,20 @@
 <?php
-
-class EditSellerProfile extends Controller
+include 'sellerProfile.controller.php';
+class EditSellerProfile extends SellerProfile
 {
-    private $ProfileHandlerModel;
+    // private $ProfileHandlerModel;
     private $SellerProfileController;
+    protected $userId;
 
     public function __construct() {
-        $this->ProfileHandlerModel = $this->model('profileHandler');
         $this->SellerProfileController = $this->controller('sellerProfile');
     }
 
     public function index(){
-
-        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
-            header("location: loginUser");
-            exit;
-        }else{
             $data['var'] = "Edit Seller Profile Page";
-            $data['title'] = "SkillSparq";
-            
-
-            $this->SellerProfileController->index();
-
+            $userId = $_SESSION["userId"];
+            $data["userProfile"] =$this->SellerProfileController->getSellerDetails($userId);
+            print_r($data);
             $this->view('editSellerProfile', $data);
         }
-    }
-
 }

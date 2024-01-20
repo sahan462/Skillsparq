@@ -2,6 +2,7 @@
 
 class BuyerDashboard extends Controller
 {
+    private $GigHandlerModel;
     public function __construct()
     {
         $this->GigHandlerModel = $this->model('GigHandler');
@@ -10,7 +11,7 @@ class BuyerDashboard extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
 
             header("location: loginUser");
 

@@ -1,7 +1,7 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    // $data['fullName'] = $_SESSION['firstName']." ".$_SESSION['lastName'];
+    $data['fullName'] = $data['userProfile']['first_name']." ".$data['userProfile']['last_name'];
     // $data["profilePicture"] = "dummyprofile.jpg";
     // $recentGigs = $data['recentGigs'];
 ?>
@@ -13,7 +13,7 @@
         <div class="profile-header">
             <div class="seller">
                 <div class="img-container">
-                    <div class="img"><img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
+                    <div class="img"><img src="../public/assests/images/<?php echo $data['userProfile']['profile_pic'] ?>" alt="pro-pic">
                     </div>
                     <div class="icons-content">
                         <div class="icon-name"><?php echo $data['fullName']?></div>
@@ -42,16 +42,17 @@
                     <div class="profile-content-category-header">
                         <div class="Topics">About</div>
                         <div class="buttons">
-                            <button id="button">Add</button>
+                            <button id="button">Edit</button>
                         </div>
                     </div>
                     <div class="profile-content-category-content">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus aspernatur commodi quidem vero harum veniam incidunt fuga cupiditate, dignissimos voluptatem corporis nihil quaerat sit ipsam deleniti accusamus animi hic architecto non error officiis nobis minima. Error maxime tempore esse alias.
+                        <input type="text" value="<?php echo $data['userProfile']['about']?>">
+                        <?php $data['userProfile']['about']?>
                     </div>
                     <div class="profile-content-category-header">
                         <div class="Topics">Languages</div>
                         <div class="buttons">
-                            <button id="button"> Add</button>
+                            <button id="button"> Edit</button>
                         </div>
                     </div>
                     <div class="profile-content-category-content">
@@ -60,7 +61,7 @@
                     <div class="profile-content-category-header">
                         <div class="Topics">Education</div>
                         <div class="buttons">
-                            <button id="button"> Add</button>
+                            <button id="button">Edit</button>
                         </div>
                     </div>
                     <div class="profile-content-category-content"  style="border-bottom: 0;">
@@ -74,34 +75,14 @@
                     <div class="profile-content-category-header">
                         <div class="Topics">Portfolio</div>
                         <div class="buttons">
-                            <button id="button"> Add</button>
+                            <button id="button" onclick="">Edit</button>
                         </div>
                     </div>
                     <div class="profile-content-category-content" style="border-bottom: 0;">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero iure, cupiditate magni accusamus, perferendis non enim quibusdam eius explicabo eos odio labore, consequuntur ad facilis corporis assumenda eum sit rem inventore autem. A voluptatem deleniti, rerum pariatur odio numquam minima. Veritatis impedit repudiandae explicabo sit ea repellat assumenda nulla. Sint enim consequatur nam saepe illum, earum rem amet eius aspernatur accusantium dolor ad. Reprehenderit eveniet veniam maiores qui ipsa ad laudantium quos, tempore itaque possimus debitis magni modi ducimus tenetur quia velit fugiat hic architecto libero. Quaerat, dolorum suscipit consequuntur necessitatibus dicta sapiente voluptatum optio, aspernatur, ratione saepe asperiores quam.
+                    <input type="text" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero iure, cupiditate magni accusamus, perferendis non enim quibusdam eius explicabo eos odio labore, consequuntur ad facilis corporis assumenda eum sit rem inventore autem. A voluptatem deleniti, rerum pariatur odio numquam minima. Veritatis impedit repudiandae explicabo sit ea repellat assumenda nulla. Sint enim consequatur nam saepe illum, earum rem amet eius aspernatur accusantium dolor ad. Reprehenderit eveniet veniam maiores qui ipsa ad laudantium quos, tempore itaque possimus debitis magni modi ducimus tenetur quia velit fugiat hic architecto libero. Quaerat, dolorum suscipit consequuntur necessitatibus dicta sapiente voluptatum optio, aspernatur, ratione saepe asperiores quam.">
+                        
                     </div>
                 </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="other-category-container" id="gigs">
-        <div class="other-category-header">
-            <div class="Topics" style="padding-left: 0;">My Gigs</div>
-            <div class="plus" >
-                <a href="addGig"><button id="plus">Add New Gig</button></a>
-            </div>
-        </div>
-        <div class="recentGigs" id="content">
-            <div class="recentGigsContent">
-                <?php
-                    foreach($recentGigs as $row){
-                ?>
-                        <?php include "components/GigCard.component.php"?>
-                <?php
-                    }
-                ?>
             </div>
         </div>
 

@@ -3,6 +3,8 @@
 class LoginUser extends Controller
 {
 
+    private $loginHandler;
+    private $profileHandler;
     public function __construct()
     {
         $this->loginHandler = $this->model('LoginHandler');

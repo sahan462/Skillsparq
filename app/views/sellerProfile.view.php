@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <a href=<?php echo BASEURL."editSellerProfile"?>><button id="button">Profile Update</button></a>
+                    <a href="<?php echo BASEURL."editSellerProfile"?>"><button id="button">Profile Update</button></a>
                 </div>
             </div>
         </div>

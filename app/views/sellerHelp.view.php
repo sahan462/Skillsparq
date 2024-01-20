@@ -16,7 +16,7 @@
     <br><br>
     <p class="title">Popular  <span class="dark-title">Topics</span></p><br><br>
     <div class="btn-group">
-        <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">About Skillsparq/div></a>
+        <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">About Skillsparq</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Creating an Advertisemnt</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">How to Start Selling on EXL</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Accounts and profile  settings</div></a>
