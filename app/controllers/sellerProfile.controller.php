@@ -71,6 +71,11 @@ class SellerProfile extends Controller
         return mysqli_fetch_assoc($data['recentGigs']);
     }
 
+    public function passDataArray(){
+        $data['title'] = "SkillSparq";
+    }
+
+    
 }
 
 ?>
