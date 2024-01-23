@@ -44,6 +44,8 @@
                 </div>
 
                 <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
+                <input type="hidden" name="orderType" value="package">
+                <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
             </form>
         </div>
     </div>
@@ -260,7 +262,7 @@
                                     <li><?php echo $gig['package_description_1']; ?></li>
 
                                     <form id="package_1" method="get" action="manageOrders/createOrder">
-                                        <input type="hidden" name="packageName" value="Basic">
+                                        <input type="hidden" name="packageType" value="Basic">
                                         <input type="hidden" name="packagePrice" value="<?php echo $gig['price']; ?>">
                                         <input type="hidden" name="noOfDeliveryDays" value="<?php echo $gig['no_of_delivery_days_1']; ?>">
                                         <input type="hidden" name="timePeriod" value="<?php echo $gig['time_period_1']; ?>">
