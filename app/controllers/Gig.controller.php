@@ -17,7 +17,6 @@ class Gig extends Controller
 
         if (isset($_POST['submit'])) {
 
-
             $title = $_POST['title'];
             $description = $_POST['description'];
             $category = $_POST['category'];
@@ -52,7 +51,7 @@ class Gig extends Controller
     
             if($upload){
                 $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId);
-                if($gig){
+                if($gig[0]){
                     echo "
                     <script>
                         alert('Gig is Published Successfully');
