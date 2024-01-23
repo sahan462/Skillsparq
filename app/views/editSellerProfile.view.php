@@ -4,8 +4,6 @@
     $data['fullName'] = $data['userProfile']['first_name']." ".$data['userProfile']['last_name'];
 ?>
 
-<?php 
-?>
 <div class="container">
     <div class="innerContainer">
         <div class="externalIconLottie">
@@ -17,21 +15,15 @@
         </div>         
         <div class="profile-container">
             <div class="profile-header">
-            
-                <div class="seller">
-                    <div class="img-container">
+                <div class="sellerEdit">
+                    <div class="sellerContainer">
                         <div class="img"><img src="../public/assests/images/<?php echo $data['userProfile']['profile_pic'] ?>" alt="pro-pic">
                         </div>
-                        <div class="icons-content">
-                            <div class="icon-name"><?php echo $data['fullName']?></div>
-                            <div class="icon-location">
-                                <div class="icon-location-value">Colombo Sri Lanka</div>
-                            </div>
+                        <div class="sellerName"><?php echo $data['fullName']?></div>
+                        <div class="sellerUserName">
+                            <?php echo "@".$data['userProfile']['user_name'];?>
                         </div>
                     </div>
-                    <!-- <div class="buttons">
-                        <a href="editSellerProfile"><button id="button">Profile Update</button></a>
-                    </div> -->
                 </div>
             </div>
             <div class="profile-content">
@@ -72,76 +64,39 @@
                 <div class="profile-content2">
                     <div class="content-category2">
                         <div class="profile-content-category-header">
-                            <div class="Topics">Portfolio</div>
-                            <div class="buttons">
-                                <button id="button" onclick="">Edit</button>
+                                <div class="Topics">Skills</div>
+                        </div>
+                        <div class="profile-content-category-content">
+                            <div class="wrapper">
+                                <!-- <div class="title">
+                                    <img src="../../public/assests/images/avishka.jpg" alt="tag-icon">
+                                    <h2>Tags</h2>
+                                </div> -->
+                                <div class="tagContent">
+                                    <p>Press enter or add a comma after each tag</p>
+                                    <ul>
+                                        <input type="text" value="<?php echo $data['userProfile']['skills'];?>">
+                                    </ul>
+                                    <p><span>10</span>tags are remaining!</p>
+                                </div>
+                                <div class="tagDetails">
+                                    <button>Remove All</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="profile-content-category-content" style="border-bottom: 0;">
-                        <input type="text" value="" id="portfolio">
-                        
-                        <textarea  name="description" placeholder="I need.." rows="8" required>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero iure, cupiditate magni accusamus, perferendis non enim quibusdam eius explicabo eos odio labore, consequuntur ad facilis corporis assumenda eum sit rem inventore autem. A voluptatem deleniti, rerum pariatur odio numquam minima. Veritatis impedit repudiandae explicabo sit ea repellat assumenda nulla. Sint enim consequatur nam saepe illum, earum rem amet eius aspernatur accusantium dolor ad. Reprehenderit eveniet veniam maiores qui ipsa ad laudantium quos, tempore itaque possimus debitis magni modi ducimus tenetur quia velit fugiat hic architecto libero. Quaerat, dolorum suscipit consequuntur necessitatibus dicta sapiente voluptatum optio, aspernatur, ratione saepe asperiores quam.
-                        </textarea>
                         </div>
-                    </div>
                     <div class="content-category2">
                         <div class="profile-content-category-header">
-                            <div class="Topics">Skills</div>
-                            <div class="buttons">
-                                <button id="button" onclick="">Edit</button>
-                            </div>
+                               
                         </div>
-                        <div class="profile-content-category-content" style="border-bottom: 0;">
-                        <input type="text" value="<?php echo $data['userProfile']['skills']?>" id="portfolio">
+                        <div class="profile-content-category-content">
+                            
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
 
         </div>
     </div>
-    
-
-    <script>
-
-        // javascript code for view pop up modal
-        const viewModal = document.querySelector('#viewModal');
-        const openViewModal = document.querySelector('.open-view-modal-button');
-        const closeViewModal = document.querySelector('.close-view-modal-button');
-
-        openViewModal.addEventListener('click',()=>{
-            viewModal.showModal();
-        });
-
-        closeViewModal.addEventListener('click',()=>{
-            viewModal.close();
-        });
-        
-        // javascript code for edit pop up modal
-        const editModal = document.querySelector('#editModal');
-        const openEditModal = document.querySelector('.open-edit-modal-button');
-        const closeEditModal = document.querySelector('.close-edit-modal-button');
-
-        openEditModal.addEventListener('click',()=>{
-            editModal.showModal();
-        });
-
-        closeEditModal.addEventListener('click',()=>{
-            editModal.close();
-        });
-
-        // javascript code for delete pop up modal
-        const deleteModal = document.querySelector('#deleteModal');
-        const openDeleteModal = document.querySelector('.open-delete-modal-button');
-        const closeDeleteModal = document.querySelector('.close-delete-modal-button');
-
-        openDeleteModal.addEventListener('click',()=>{
-            deleteModal.showModal();
-        });
-
-        closeDeleteModal.addEventListener('click',()=>{
-            deleteModal.close();
-        });
-    </script>
-   
+<script type="text/javascript" src="/skillsparq/public/assests/js/sellerProfile.js"></script>   
 <?php include "components/footer.component.php"; ?>

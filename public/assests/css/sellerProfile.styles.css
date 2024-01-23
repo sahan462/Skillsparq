@@ -93,7 +93,7 @@ body{
     margin-bottom: 10px;
 }
 
-.container{
+.container {
     background-color: #f7f7f7;
     border: 1px solid #c5c6c9;
     padding-bottom: 32px;
@@ -121,7 +121,7 @@ body{
     padding: 2px;
 }
 
-.img-container{
+.img-container , .sellerContainer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -311,13 +311,36 @@ body{
     height: 100px;
 }
 
-.seller{
+.seller , .sellerEdit{
     display: flex;
     justify-content:space-between;
     align-items: center;
     border: 1px solid #c5c6c9;
     padding: 16px;
     border-radius:15px ;
+}
+
+.sellerEdit{
+    justify-content:space-evenly;
+}
+
+.sellerContent{
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+}
+
+.sellerName , .sellerUserName {
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 7px;
+    padding: 2px;
+    padding-left: 10px;
 }
 
 .seller-functions{
@@ -493,3 +516,98 @@ a{
 
 
 /* Edit profile Styles */
+
+    /* select tag styles*/
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    ::selection{
+        color: #fff;
+        background: #5372F0;
+    }
+    .wrapper{
+        width: auto;
+        min-height: 200px;
+        background: white;
+        border-radius: 10px;
+        padding: 18px 25px 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.06);
+        justify-content: center;
+        align-items: center;
+        border: #333 solid;
+    }
+
+    .wrapper , .tagContent{
+        margin: 10px 0;
+        height: auto;
+    }
+
+    .tagContent p{
+        font-size: 15px;
+    }
+
+    .tagContent ul{   
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 7px;
+        margin: 12px 0;
+        border-radius: 5px;
+        border: 1px solid #a6a6a6;
+    }
+
+    .tagContent ul li{
+        color: #333;
+        margin: 4px 3px;
+        list-style: none;
+        border-radius: 5px;
+        background: #f2f2f2;
+        padding: 5px 8px 5px 10px;
+        border: 1px solid #e3e1e1;
+    }
+
+    .tagContent ul li i{
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        color: #808080;
+        font-size: 12px;
+        margin-left: 8px;
+        border-radius: 50%;
+        background: #dfdfdf;
+        justify-content: center;
+    }
+
+    .tagContent ul input{
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    .wrapper .tagDetails{
+        justify-content: space-between;
+        min-height: 200px;
+    }
+
+    .tagDetails button{
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 9px 15px;
+        border-radius: 5px;
+        background-color:#32bd6e;
+    }
+
+    .tagDetails button:hover{
+        background: #2c52ed;
+      }

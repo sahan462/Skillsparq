@@ -26,12 +26,13 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
             $userId = $_SESSION["userId"];
-
+            $gigId = 2;
             $data["userProfile"] = $this->getSellerDetails($userId);
-            print_r($data);
+            //print_r($data);
 
             //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getRecentGigs();
+            $recentGigs = $this->GigHandlerModel->getGig($gigId,$userId);
+            // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             if ($recentGigs) {
 
@@ -44,8 +45,8 @@ class SellerProfile extends Controller
             $data['recentGigs'] = $recentGigs;
             $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
             $data['recentGigs'] = $this->recentGigs();
-            print_r($data);
-
+            print_r($data['recentGigs']);
+            //print_r($_SESSION['gig_id']);
             $this->view('sellerProfile', $data);
         } 
     }
