@@ -2,8 +2,13 @@
 
 class SellerProfile extends Controller
 {
-    private $GigHandlerModel;
-    private $ProfileHandlerModel;
+    protected $GigHandlerModel;
+    protected $ProfileHandlerModel;
+    
+    protected $userId;
+    protected $userProfile;
+    protected $recentGigs;
+    protected $data;
     
     public function __construct()
     {
@@ -21,15 +26,13 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
             $userId = $_SESSION["userId"];
-
-            //get profile information
-            $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
-            $userProfile = mysqli_fetch_assoc($userProfile);
-            $data["userProfile"] = $userProfile;
-            // print_r($data);
+            $gigId = 2;
+            $data["userProfile"] = $this->getSellerDetails($userId);
+            //print_r($data);
 
             //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getRecentGigs();
+            $recentGigs = $this->GigHandlerModel->getGig($gigId,$userId);
+            // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             if ($recentGigs) {
 
@@ -40,15 +43,40 @@ class SellerProfile extends Controller
             }
             
             $data['recentGigs'] = $recentGigs;
-            // print_r( $data['recentGigs']);
             $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
-            // print_r($data['recentGigs']);
-            // print_r($data);
-
+            $data['recentGigs'] = $this->recentGigs();
+            print_r($data['recentGigs']);
+            //print_r($_SESSION['gig_id']);
             $this->view('sellerProfile', $data);
         } 
     }
 
+    //get profile information
+    public function getSellerDetails($userId){
+        $this->userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
+        $userProfile = mysqli_fetch_assoc($this->userProfile);
+        return $userProfile;
+    }
+
+    public function recentGigs(){
+        $this->recentGigs = $this->GigHandlerModel->getRecentGigs();
+        if ($this->recentGigs) {
+
+            $data['recentGigs'] = $this->recentGigs;
+            
+        } else {
+            echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+        }
+        
+        $data['recentGigs'] = $this->recentGigs;
+        return mysqli_fetch_assoc($data['recentGigs']);
+    }
+
+    public function passDataArray(){
+        $data['title'] = "SkillSparq";
+    }
+
+    
 }
 
 ?>

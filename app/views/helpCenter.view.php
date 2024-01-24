@@ -25,7 +25,7 @@
 
             <p class="title">Recommended <span class="dark-title">For You</span></p><br><br>
             <div class="btn-group-2">
-                <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn3">About SkillSparq</div></a>
+                <a href="<?php echo BASEURL.'about' ?>"><div class="btn3">About SkillSparq</div></a>
                 <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn3">Creating an Advertisemnt</div></a>
                 <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn3">How to Start Selling on SkillSparq</div></a>
                 <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn3">Accounts and profile  settings</div></a>

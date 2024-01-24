@@ -31,7 +31,7 @@ class SellerHandler extends database
     }
     
     public function updateSeller(){
-
+        
     }
 
     public function deleteSeller(){
