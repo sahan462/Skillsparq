@@ -2,7 +2,7 @@
 //login controller for Seller
 class LoginSeller extends Controller
 {
-
+    private $loginHandler;
     public function __construct()
     {
         $this->loginHandler = $this->model('LoginHandler');

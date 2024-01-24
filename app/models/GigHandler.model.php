@@ -2,9 +2,9 @@
 
 class GigHandler extends database
 {
-    public function getGig($gigId)
+    public function getGig($gigId,$sellerId)
     {
-        $query = "SELECT * FROM gigs WHERE gig_id = ? ";
+        $query = "SELECT * FROM gigs WHERE gig_id = ? AND seller_id = ?";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -12,7 +12,7 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
-        mysqli_stmt_bind_param($stmt, "i", $gigId);
+        mysqli_stmt_bind_param($stmt, "ii", $gigId,$sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
@@ -20,7 +20,7 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    
+
     public function getRecentGigs()
     {
         $query = "SELECT * FROM Gigs order by created_at DESC";
