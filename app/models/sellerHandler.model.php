@@ -12,7 +12,7 @@ class SellerHandler extends database
 
     }
 
-    //add new buyer
+    //add new seller
     public function addNewSeller($user_id, $phoneNumber)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller (seller_id, phone_number) VALUES (?, ?)");
