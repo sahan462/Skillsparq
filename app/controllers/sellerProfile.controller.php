@@ -28,7 +28,7 @@ class SellerProfile extends Controller
             $userId = $_SESSION["userId"];
             $gigId = 2;
             $data["userProfile"] = $this->getSellerDetails($userId);
-            //print_r($data);
+            print_r($data);
 
             //get recently added Gigs
             $recentGigs = $this->GigHandlerModel->getGig($gigId,$userId);
