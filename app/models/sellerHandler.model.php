@@ -30,6 +30,23 @@ class SellerHandler extends database
         mysqli_stmt_close($stmt);
     }
     
+    public function getPhoneNumber($userId){
+        $query = "SELECT phone_number FROM seller WHERE seller_id = ?;";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $seller_id);
+    
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error inserting data into buyer: " . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_close($stmt);
+    }
+
     public function updateSeller(){
         
     }
