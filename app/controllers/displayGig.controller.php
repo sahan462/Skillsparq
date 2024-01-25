@@ -11,7 +11,8 @@ class displayGig extends Controller
     }
 
 
-    public function index(){
+    public function index()
+    {
 
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
@@ -26,7 +27,8 @@ class displayGig extends Controller
             
 
             //get gig details
-            $gig = $this->GigHandlerModel->getGig($gigId);
+            $gig = $this->GigHandlerModel->displayGig($gigId);
+            print_r($gig);
             if ($gig) {
 
                 $data['gig'] = mysqli_fetch_assoc($gig);
