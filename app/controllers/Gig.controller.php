@@ -8,10 +8,6 @@ class Gig extends Controller
         $this->GigHandlerModel = $this->model('GigHandler');
     }
 
-    public function getRecentGigs()
-    {
-    }
-
     public function publishGig()
     {
 
