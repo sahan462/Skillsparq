@@ -2,39 +2,68 @@
 class OrderHandler extends database
 {
 
-    //add new job
-    public function createOrder($title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId)
+    //create new order
+    public function createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Jobs 
+        $stmt_1 = mysqli_prepare($GLOBALS['db'], "INSERT INTO Orders 
         (
-            title, 
-            description, 
-            file, 
-            category, 
-            deadline,
-            publish_mode, 
-            amount, 
-            flexible_amount, 
-            created_at, 
-            buyer_id
+            order_status, 
+            order_type, 
+            order_created_date, 
+            buyer_id,
+            seller_id
         ) 
         VALUES 
         (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?
         )");
     
-        if ($stmt === false) {
+        if ($stmt_1 === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
-        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $description, $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            $jobId = mysqli_insert_id($GLOBALS['db']);
-            mysqli_stmt_close($stmt);
-            return $jobId;
+
+        mysqli_stmt_bind_param($stmt_1, "sssii", $orderStatus,  $orderType, $currentDateTime, $buyerId, $sellerId);
+
+        if (mysqli_stmt_execute($stmt_1)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt_1->close();
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
+
+        //insert data to package order table    
+        if($orderType == "package"){
+
+            $stmt_2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO packageOrders 
+            (
+                package_order_id,
+                order_description, 
+                order_attachement,
+                gig_id,
+                package_id
+            ) 
+            VALUES 
+            (
+                ?, ?, ?, ?, ?
+            )");
+        
+            if ($stmt_2 === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+
+            mysqli_stmt_bind_param($stmt_2, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
+            mysqli_stmt_execute($stmt_2);
+            $stmt_2->close();
+
+        }else{
+
+        }
+
+        return $orderId;
+
     }
+
+
+
+
 }

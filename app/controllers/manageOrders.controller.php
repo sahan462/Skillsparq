@@ -13,20 +13,31 @@ class ManageOrders extends Controller
         $data['var'] = "Manage Orders Page";
         $data['title'] = "SkillSparq";
 
-        $this->view('manageOrders', $data); //change this
+        $this->view('manageOrders', $data); 
     }
 
     public function createOrder(){
         
         print_r($_GET);
+        $orderStatus = "request";
+        $orderType = $_GET['orderType'];
+
+        date_default_timezone_set('UTC');
+        $currentDateTime = date('Y-m-d H:i:s');
+        
+        $buyerId = $_GET['buyerId'];	
+        $sellerId = $_GET['sellerId'];
 
         $requestDescription = $_GET['requestDescription'];
-        $attachements = $_GET['attachments'];
-        $orderType = $_GET['orderType'];
+        $attachement = $_GET['attachments'];
         $gigId = $_GET['gigId'];
         $packageId = $_GET['packageId'];
-        $sellerId = $_GET['sellerId'];
-        $buyerId = $_GET['buyerId'];	
+
+        $upload = 1;
+
+        if($upload){
+            $orderId = $this->OrderHandlerModel->createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId);
+        }
 
 
     //     echo "
