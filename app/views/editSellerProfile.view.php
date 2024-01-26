@@ -1,7 +1,7 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $data['fullName'] = $data['userProfile']['first_name']." ".$data['userProfile']['last_name'];
+    $data['fullName'] = $data['sellerProfileDetails']['first_name']." ".$data['sellerProfileDetails']['last_name'];
 ?>
 
 <!-- Main container for Edit Seller Profile -->
@@ -37,7 +37,7 @@
                         <div class="img-container"><!-- editSeller_ImageContainer  -->
                             <!-- tag for  -->
                             <div class="img"><!-- editSeller_Image  -->
-                                <img src="../public/assests/images/<?php echo $data['userProfile']['profile_pic'] ?>" alt="pro-pic">
+                                <img src="../public/assests/images/<?php echo $data['sellerProfileDetails']['profile_pic'] ?>" alt="pro-pic">
                                 <!-- <label for="">Profile Picture</label>
                                 <input type="file" name="profilePic" value="<?php //echo $data['userProfile']['profile_pic'] ?>"> -->
 
@@ -82,7 +82,7 @@
                                     <!-- tag for  -->
                                     <div>
                                         <!-- <input type="text" value="" class="sellerUserName"> -->
-                                        <?php echo "@".$data['userProfile']['user_name'];?>
+                                        <?php echo "@".$data['sellerProfileDetails']['user_name'];?>
                                     </div>
 
                                     <!-- tag for  -->
@@ -120,7 +120,7 @@
                         <div class="profile-content-category-content">
 
                             <!-- tag for  -->
-                            <textarea  name="description" placeholder="I need.." rows="8" required><?php echo $data['userProfile']['about']?>
+                            <textarea  name="description" placeholder="I need.." rows="8" required><?php echo $data['sellerProfileDetails']['about']?>
                             </textarea>
 
                         </div>
@@ -142,7 +142,7 @@
                         <!-- tag for  -->
                         <div class="profile-content-category-content">
                             <!-- input for  -->
-                            <input type="text" value="<?php echo $data['userProfile']['languages']?>">
+                            <input type="text" value="<?php echo $data['sellerProfileDetails']['languages']?>">
                         </div>
 
                         <!-- tag for  -->
@@ -183,7 +183,7 @@
                                 <div class="tagContent">
                                     <p>Press enter or add a comma after each tag</p>
                                     <ul>
-                                        <input type="text" value="<?php echo $data['userProfile']['skills'];?>">
+                                        <input type="text" value="<?php echo $data['sellerProfileDetails']['skills'];?>">
                                     </ul>
                                     <p><span>10</span>tags are remaining!</p>
                                 </div>
