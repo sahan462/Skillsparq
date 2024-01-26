@@ -30,7 +30,7 @@ class RegisterSeller extends Controller
         $data['var'] = "Register Seller Page";
         $data['title'] = "SkillSparq";
 
-        // Load the 'registerBuyer' view with data
+        // Load the 'registerSeller' view with data
         $this->view('registerSeller', $data);
     }
 
