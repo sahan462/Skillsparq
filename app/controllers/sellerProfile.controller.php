@@ -16,11 +16,11 @@ class SellerProfile extends Controller
     {
         $this->GigHandlerModel = $this->model('GigHandler');
         $this->ProfileHandlerModel = $this->model('profileHandler');
-        $this->UserHandlerModel = $this->model('userHandler');
     }
 
     public function index()
     {
+<<<<<<< HEAD
         $userId = $_SESSION["userId"];
         $data['SellerUserDetails'] = $this->getSellerUserDetails($userId);
         $role = $data['SellerUserDetails']['role'];
@@ -62,6 +62,31 @@ class SellerProfile extends Controller
             header("location: loginUser");
         }
         
+=======
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
+
+            header("location: loginUser");
+
+        }else{ 
+
+            $data['var'] = "Seller Profile";
+            $data['title'] = "SkillSparq";
+            $data["activeStatus"] =  "display: block;";
+            $sellerId = $_SESSION["userId"];
+            $data["userProfile"] = $this->getSellerDetails($sellerId);
+
+            $recentGigs = $this->GigHandlerModel->getGig($sellerId);
+
+            if ($recentGigs) {
+                $data['recentGigs'] = $recentGigs;
+            } else {
+                echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+            }
+            
+            $this->view('sellerProfile', $data);
+        } 
+
+>>>>>>> 1c7c664c0defc499396a2252e49a9c18c62f466a
     }
 
     //get profile information
@@ -72,8 +97,14 @@ class SellerProfile extends Controller
         return $userProfile;
     }
 
+<<<<<<< HEAD
     public function getSellerUserDetails($userId){
         $this->user = $this->UserHandlerModel->getUserData($userId);
+=======
+
+    public function getUserDets($userId){
+        $this->user = $this->UserHandlerModel->getUserDetails($userId);
+>>>>>>> 1c7c664c0defc499396a2252e49a9c18c62f466a
         $user = mysqli_fetch_assoc($this->user);
         return $user;
     }
@@ -83,9 +114,16 @@ class SellerProfile extends Controller
         $user = mysqli_fetch_assoc($this->user);
         return $user;
     }
+
+<<<<<<< HEAD
+    public function passDataArray()
+    {
+=======
 
     public function passDataArray()
     {
+
+>>>>>>> 1c7c664c0defc499396a2252e49a9c18c62f466a
         $data['title'] = "SkillSparq";
     }
 
