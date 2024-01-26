@@ -3,6 +3,7 @@
 class Job extends Controller
 {
 
+    private $JobHandlerModel;
     public function index()
     {
     }

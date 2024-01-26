@@ -2,8 +2,13 @@
 
 class SellerProfile extends Controller
 {
-    private $GigHandlerModel;
-    private $ProfileHandlerModel;
+    protected $GigHandlerModel;
+    protected $ProfileHandlerModel;
+    
+    protected $userId;
+    protected $userProfile;
+    protected $recentGigs;
+    protected $data;
     
     public function __construct()
     {
@@ -11,44 +16,46 @@ class SellerProfile extends Controller
         $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
-    public function index(){
+    public function index()
+    {
         if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
 
             header("location: loginUser");
 
-        }else{
+        }else{ 
+
             $data['var'] = "Seller Profile";
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
-            $userId = $_SESSION["userId"];
+            $sellerId = $_SESSION["userId"];
+            $data["userProfile"] = $this->getSellerDetails($sellerId);
 
-            //get profile information
-            $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
-            $userProfile = mysqli_fetch_assoc($userProfile);
-            $data["userProfile"] = $userProfile;
-            // print_r($data);
-
-            //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getRecentGigs();
+            $recentGigs = $this->GigHandlerModel->getGig($sellerId);
 
             if ($recentGigs) {
-
                 $data['recentGigs'] = $recentGigs;
-                
             } else {
                 echo "<script>alert('getAllJobs function is not Accessible!')</script>";
             }
             
-            $data['recentGigs'] = $recentGigs;
-            // print_r( $data['recentGigs']);
-            $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
-            // print_r($data['recentGigs']);
-            // print_r($data);
-
             $this->view('sellerProfile', $data);
         } 
     }
 
+    //get profile information
+    public function getSellerDetails($sellerId)
+    {
+        $userProfile = $this->ProfileHandlerModel->getUserProfile($sellerId);
+        $userProfile = mysqli_fetch_assoc($userProfile);
+        return $userProfile;
+    }
+
+    public function passDataArray()
+    {
+        $data['title'] = "SkillSparq";
+    }
+
+    
 }
 
 ?>

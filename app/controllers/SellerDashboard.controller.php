@@ -2,9 +2,12 @@
 
 class SellerDashboard extends Controller
 {
+    private $JobHandlerModel;
+    private $ProfileHandlerModel;
     public function __construct()
-    {
+    {   
         $this->JobHandlerModel = $this->model('JobHandler');
+        $this->ProfileHandlerModel = $this->model('ProfileHandler');
     }
 
     public function index()
@@ -17,6 +20,7 @@ class SellerDashboard extends Controller
             $data['errors'] = $this->initiate();
             $data['var'] = "SellerDashboard";
             $data['title'] = "SkillSparq";
+            
             $this->view('SellerDashboard', $data);
         }
 

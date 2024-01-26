@@ -1,44 +1,7 @@
-.add{
-    text-decoration: none;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: #32bd6e;
-    font-size: 2rem;
-    font-weight: bold;
-    border-radius: 10px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin: 5px;
-}
-
 body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
-}
-
-#button{
-    /* display: flex; */
-    justify-content:end;
-    align-items: end;
-    background-color:#32bd6e;
-    color: white;
-    border: 0;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 5px;
-}
-
-.buttons{
-    padding: 15px;
-}
-
-#button:hover{
-    cursor: pointer;
 }
 
 .card{
@@ -93,7 +56,7 @@ body{
     margin-bottom: 10px;
 }
 
-.container{
+.container {
     background-color: #f7f7f7;
     border: 1px solid #c5c6c9;
     padding-bottom: 32px;
@@ -111,17 +74,13 @@ body{
     box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
-.content-category{
-    /* flex-grow: 1; */
-}
-
 .img{
     display: flex;
     justify-content: flex-start;
     padding: 2px;
 }
 
-.img-container{
+.img-container , .sellerContainer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,6 +132,12 @@ body{
     font-size: 20px;
 }
 
+.innerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .intro-Topic{
     font-size: 24px;
     font-weight: bold;
@@ -190,6 +155,12 @@ body{
     width: 600px;
     padding: 20px;
     box-shadow: 0 2px 2px 3px rgb(0, 0, 0,0.1);
+}
+
+.inputFields{
+    border-color: black ;
+    width: auto;
+    height: 100px;
 }
 
 .other-category-container{
@@ -299,13 +270,36 @@ body{
     height: 100px;
 }
 
-.seller{
+.seller , .sellerEdit{
     display: flex;
     justify-content:space-between;
     align-items: center;
     border: 1px solid #c5c6c9;
     padding: 16px;
     border-radius:15px ;
+}
+
+.sellerEdit{
+    justify-content:space-evenly;
+}
+
+.sellerContent{
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+}
+
+.sellerName , .sellerUserName {
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 7px;
+    padding: 2px;
+    padding-left: 10px;
 }
 
 .seller-functions{
@@ -322,6 +316,18 @@ body{
     font-size: 20px;
     font-weight: bold;
     padding: 20px;
+}
+
+textarea{
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
 }
 
 .wrap{
@@ -440,11 +446,6 @@ body{
     opacity: .9;
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-}
 /* */
 
 @media only screen and(min-width:600px) {
@@ -452,16 +453,4 @@ a{
         display: flex;
         flex-direction: column;
     }
-}
-
-/* Earnings stuff */
-
-.earningsHeading{
-    /* display: flex; */
-    justify-content:center;
-    align-items: center;
-    /* border: 1px solid #c5c6c9; */
-    padding: 16px;
-    font-size: 16px;
-    border-radius:15px ;
 }

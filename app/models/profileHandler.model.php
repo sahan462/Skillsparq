@@ -11,6 +11,7 @@ class ProfileHandler extends database
 
     }
 
+    //create new profile
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
         $query = "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)";
@@ -30,11 +31,36 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
+    //get profile
+    public function getUserProfile($userId)
+    {
+        $query = "SELECT * FROM profile WHERE user_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    
+
     public function updateProfile($user_Id){
 
     }
 
     public function updateBuyerProfile(){
+
+    }
+
+    public function updateSellerProfile(){
 
     }
 
@@ -70,26 +96,6 @@ class ProfileHandler extends database
 
     }
 
-    //get profile
-    public function getUserProfile($userId)
-    {
-        $query = "SELECT * FROM profile WHERE user_id = ? ";
-        
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
-        if (!$stmt) {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-
-        mysqli_stmt_bind_param($stmt, "i", $userId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
-        } else {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-    }
-    
 
 
 }
