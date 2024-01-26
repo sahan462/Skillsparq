@@ -6,13 +6,13 @@ class EditSellerProfile extends SellerProfile
     protected $SellerHandlerModel;
     private $SellerProfileController;
     protected $userId;
-   
+
+    protected $sellerId;
     private $emailAndPassWord;
 
     public function __construct() {
         $this->SellerProfileController = $this->controller('sellerProfile');
         $this->SellerHandlerModel = $this->model('sellerHandler');
-        // $this->ProfileHandlerModel = $this->model('profileHandler');
         $this->UserHandlerModel = $this->model('userHandler');
     }
 
@@ -21,14 +21,13 @@ class EditSellerProfile extends SellerProfile
             $userId = $_SESSION["userId"];
             $data["userProfile"] =$this->SellerProfileController->getSellerDetails($userId);
 
-            
             // get email and password from the userHandlerModel - user table
             $data['emailAndPassWord'] = $this->getEmailPassWord($userId);
-            // get phoneNumber from the sellerHandlerModel - seller table
-            //$data['phoneNumber'] = $this->SellerHandlerModel->getPhoneNumber($userId);
-            // get 
-            // $data['phoneNumber'] = $_SESSION['phoneNumber'];
-
+         
+            // get the phone number through session variable.
+            $phoneNum =  $_SESSION['phoneNumber'];
+            $data['sellerId'] = $this->SellerHandlerModel->sellerId($phoneNum);
+ 
             print_r($data);
             $this->view('editSellerProfile', $data);
     }
@@ -39,7 +38,7 @@ class EditSellerProfile extends SellerProfile
         return $emailAndPassWord;
     }
 
-    public function deleteSellerProfile(){
+    public function deleteSellerProfile($userId){
         
     }
 }
