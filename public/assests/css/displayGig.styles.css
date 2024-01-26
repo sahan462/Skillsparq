@@ -538,6 +538,9 @@ ul button:hover{
 }
 
 /* Bottom Left Container */
+.bottomLeftContainer .header{
+    border-bottom: 2px solid #dadbdd;
+}
 .bottomLeftContainer .header h5{
     font-size: 18px;
     color: #222325;
@@ -547,12 +550,22 @@ ul button:hover{
 }
 .bottomLeftContainer .aboutGig .content p{
     margin-top: -1em;
-    white-space: pre-wrap;
+    white-space: pre-line;
     text-align: justify;
     margin-bottom: 32px;
 }
 .bottomLeftContainer .aboutGig .content p:first-line{
     line-height: 0px;
+}
+.bottomLeftContainer .gigRatings .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bottomLeftContainer .gigRatings .content svg{
+    color: #dadbdd;
+    height: 100px;
+    width: 100px;
 }
 
 /* Bottom Right Container */
