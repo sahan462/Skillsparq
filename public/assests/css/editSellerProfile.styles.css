@@ -1,0 +1,554 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container for Edit Seller Profile */
+.editSellerProfile_MainContainer{
+    background-color: #f7f7f7;
+    border: 1px solid #c5c6c9;
+    padding-bottom: 32px;
+    height: 100%;
+}
+
+/* Inner Container for the Main Container */
+.editSellerProfile_InnerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* style for External Lottie Icon */
+.editSellerProfile_ExternalIconLottie{
+
+}
+
+.editSeller_ProfileHeading{
+
+}
+
+.editSeller_ProfileSubContainer{
+    background-color: #fff;
+    margin: 32px;
+    box-sizing: border-box;
+    border: 1px solid #c5c6c9;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 8px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.editSeller_ProfileHeader{
+    padding: 16px;
+}
+
+.editSeller_ProfileEdit{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border: 1px solid #c5c6c9;
+    padding: 16px;
+    border-radius:15px ;
+}
+
+.editSellerContainer{
+
+}
+
+.editSeller_ProfileContainer{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.add{
+    text-decoration: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #32bd6e;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+.card{
+    width: calc(100% / 5 - 10px);
+    background-color:#32bd6e;
+    transition: transform 0.5s ease, background-color 0.4s ease;
+}
+
+.card:hover{
+    transform : translateY(-15px);
+    background-color:#32bd6e;
+}
+
+.card img{
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.card-container{
+    font-family: sans-serif;
+    box-sizing:inherit;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px;
+}
+
+.card-content{
+    font-size: 18px;
+    padding: 12px;
+    color: #fff;
+}
+
+.card-content p{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.card-content a{
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    margin-bottom: 10px;
+}
+
+.card-content h2{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 5px;
+    /* max-width: 1240px; */
+    padding: 20px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.content-category{
+    /* flex-grow: 1; */
+}
+
+
+
+
+
+.icons{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+}
+
+
+.innerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-Topic{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container{
+    max-width: 600px;
+    background: #fff;
+    border-radius: 5px;
+    width: 600px;
+    padding: 20px;
+    box-shadow: 0 2px 2px 3px rgb(0, 0, 0,0.1);
+}
+
+.inputFields{
+    border-color: black ;
+    width: auto;
+    height: 100px;
+}
+
+
+
+.other-category-content{
+
+}
+
+
+
+.personal-information{
+    padding: 20px;
+}
+
+
+
+/*profile-header*/
+.profile-header img{
+    border-radius: 100%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+.sellerEdit{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border: 1px solid #c5c6c9;
+    padding: 16px;
+    border-radius:15px ;
+}
+
+.sellerEdit{
+    justify-content:space-evenly;
+}
+
+.sellerContent{
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+}
+
+.sellerName , .sellerUserName {
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
+    margin: 7px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 7px;
+    padding: 2px;
+    padding-left: 10px;
+}
+
+.sellerNameEdit , .sellerUserNameEdit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seller-functions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e4e1e1;
+}
+
+/* pop up modal button styles */
+
+.deleteModal{
+     
+}
+
+#deleteModal{
+
+}
+
+.deleteModal::backdrop{
+    background: linear-gradient(45deg,#fff,#d63128)!important;
+}
+
+.open-delete-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-delete-modal-button{
+
+}
+
+
+.editModal{
+    
+}
+
+#editModal{
+}
+
+.editModal::backdrop{
+    background: linear-gradient(45deg,#fff,#97a442)!important;
+}
+
+.open-edit-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-edit-modal-button{
+
+}
+
+
+.viewModal{
+      
+}
+
+#viewModal{
+
+}
+
+.open-view-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-view-modal-button{
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #32bd6e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.Modal{
+    padding: 1em;
+    min-width: 50ch;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust the width as needed */
+    background-color: white;
+    padding: 20px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    & > *{
+        margin: 0 0 0.5rem 0;
+    } 
+}
+
+.Modal::backdrop{
+    background: linear-gradient(90deg,#fff,#32bd6e);
+    opacity: .9;
+}
+
+/* */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea{
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
+}
+
+
+/* Edit profile Styles */
+
+    /* select tag styles*/
+
+    ::selection{
+        color: #fff;
+        background: #5372F0;
+    }
+    .wrapper{
+        width: auto;
+        min-height: 200px;
+        background: white;
+        border-radius: 10px;
+        padding: 18px 25px 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.06);
+        justify-content: center;
+        align-items: center;
+        border: #333 solid;
+    }
+
+    .wrapper , .tagContent{
+        margin: 10px 0;
+        height: auto;
+    }
+
+    .tagContent p{
+        font-size: 15px;
+    }
+
+    .tagContent ul{   
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 7px;
+        margin: 12px 0;
+        border-radius: 5px;
+        border: 1px solid #a6a6a6;
+    }
+
+    .tagContent ul li{
+        color: #333;
+        margin: 4px 3px;
+        list-style: none;
+        border-radius: 5px;
+        background: #f2f2f2;
+        padding: 5px 8px 5px 10px;
+        border: 1px solid #e3e1e1;
+    }
+
+    .tagContent ul li i{
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        color: #808080;
+        font-size: 12px;
+        margin-left: 8px;
+        border-radius: 50%;
+        background: #dfdfdf;
+        justify-content: center;
+    }
+
+    .tagContent ul input{
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    .wrapper .tagDetails{
+        justify-content: space-between;
+        min-height: 200px;
+    }
+
+    .tagDetails button{
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 9px 15px;
+        border-radius: 5px;
+        background-color:#32bd6e;
+    }
+
+    .tagDetails button:hover{
+        background: #2c52ed;
+      }
