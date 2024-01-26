@@ -19,7 +19,8 @@ class SellerProfile extends Controller
         $this->UserHandlerModel = $this->model('userHandler');
     }
 
-    public function index(){
+    public function index()
+    {
         $userId = $_SESSION["userId"];
         $data['SellerUserDetails'] = $this->getSellerUserDetails($userId);
         $role = $data['SellerUserDetails']['role'];
@@ -64,9 +65,10 @@ class SellerProfile extends Controller
     }
 
     //get profile information
-    public function getSellerProfileDetails($userId){
-        $this->userProfile = $this->ProfileHandlerModel->getProfileData($userId);
-        $userProfile = mysqli_fetch_assoc($this->userProfile);
+    public function getSellerProfileDetails($sellerId)
+    {
+        $userProfile = $this->ProfileHandlerModel->getProfileData($sellerId);
+        $userProfile = mysqli_fetch_assoc($userProfile);
         return $userProfile;
     }
 
@@ -76,21 +78,14 @@ class SellerProfile extends Controller
         return $user;
     }
 
-    public function recentGigs(){
-        $this->recentGigs = $this->GigHandlerModel->getRecentGigs();
-        if ($this->recentGigs) {
-
-            $data['recentGigs'] = $this->recentGigs;
-            
-        } else {
-            echo "<script>alert('getAllJobs function is not Accessible!')</script>";
-        }
-        
-        $data['recentGigs'] = $this->recentGigs;
-        return mysqli_fetch_assoc($data['recentGigs']);
+    public function getSellerUserDetails($userId){
+        $this->user = $this->UserHandlerModel->getUserData($userId);
+        $user = mysqli_fetch_assoc($this->user);
+        return $user;
     }
 
-    public function passDataArray(){
+    public function passDataArray()
+    {
         $data['title'] = "SkillSparq";
     }
 

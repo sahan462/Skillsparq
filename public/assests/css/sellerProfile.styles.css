@@ -4,7 +4,58 @@ body{
     padding: 0;
 }
 
-/* All styles are in sequential order of the view page top to bottom */
+.card{
+    width: calc(100% / 5 - 10px);
+    background-color:#32bd6e;
+    transition: transform 0.5s ease, background-color 0.4s ease;
+}
+
+.card:hover{
+    transform : translateY(-15px);
+    background-color:#32bd6e;
+}
+
+.card img{
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.card-container{
+    font-family: sans-serif;
+    box-sizing:inherit;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px;
+}
+
+.card-content{
+    font-size: 18px;
+    padding: 12px;
+    color: #fff;
+}
+
+.card-content p{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.card-content a{
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    margin-bottom: 10px;
+}
+
+.card-content h2{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
 .container {
     background-color: #f7f7f7;
     border: 1px solid #c5c6c9;
@@ -48,6 +99,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #fff;
+    border-radius: 5px;
+    /* max-width: 1240px; */
+    padding: 20px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .img{
@@ -223,17 +279,96 @@ a{
 
 #plus:hover{
     cursor: pointer;
-    background-color: rgb(25, 125, 92);
 }
 
-.recentGigs{
-
-}
-
-#content{
+.close-delete-modal-button{
 
 }
 
-.recentGigsContent{
 
+.editModal{
+    
+}
+
+#editModal{
+}
+
+.editModal::backdrop{
+    background: linear-gradient(45deg,#fff,#97a442)!important;
+}
+
+.open-edit-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-edit-modal-button{
+
+}
+
+
+.viewModal{
+      
+}
+
+#viewModal{
+
+}
+
+.open-view-modal-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #32bd6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-view-modal-button{
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #32bd6e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.Modal{
+    padding: 1em;
+    min-width: 50ch;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust the width as needed */
+    background-color: white;
+    padding: 20px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    & > *{
+        margin: 0 0 0.5rem 0;
+    } 
+}
+
+.Modal::backdrop{
+    background: linear-gradient(90deg,#fff,#32bd6e);
+    opacity: .9;
+}
+
+/* */
+
+@media only screen and(min-width:600px) {
+    .seller{
+        display: flex;
+        flex-direction: column;
+    }
 }
