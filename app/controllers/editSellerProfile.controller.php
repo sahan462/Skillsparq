@@ -2,28 +2,43 @@
 include 'sellerProfile.controller.php';
 class EditSellerProfile extends SellerProfile
 {
-    // private $ProfileHandlerModel;
+    protected $UserHandlerModel;
+    protected $SellerHandlerModel;
     private $SellerProfileController;
     protected $userId;
-    // private $sellerd
+
+    protected $sellerId;
+    private $emailAndPassWord;
 
     public function __construct() {
         $this->SellerProfileController = $this->controller('sellerProfile');
+        $this->SellerHandlerModel = $this->model('sellerHandler');
+        $this->UserHandlerModel = $this->model('userHandler');
     }
 
     public function index(){
             $data['var'] = "Edit Seller Profile Page";
             $userId = $_SESSION["userId"];
-            $data["userProfile"] =$this->SellerProfileController->getSellerDetails($userId);
+            $data["sellerProfileDetails"] =$this->SellerProfileController->getSellerProfileDetails($userId);
+
+            // get email and password from the userHandlerModel - user table
+            $data['emailAndPassWord'] = $this->getEmailPassWord($userId);
+         
+            // get the phone number through session variable.
+            $phoneNum =  $_SESSION['phoneNumber'];
+            $data['sellerId'] = $this->SellerHandlerModel->sellerId($phoneNum);
+ 
             print_r($data);
             $this->view('editSellerProfile', $data);
     }
 
-    public function updateSellerProfile(){
-        
+    public function getEmailPassWord($userId){
+        $this->emailAndPassWord = $this->UserHandlerModel->getEmailAndPassWord($userId);
+        $emailAndPassWord = mysqli_fetch_assoc($this->emailAndPassWord);
+        return $emailAndPassWord;
     }
 
-    public function deleteSellerProfile(){
+    public function deleteSellerProfile($userId){
         
     }
 }
