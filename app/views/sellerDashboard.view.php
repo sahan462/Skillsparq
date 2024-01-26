@@ -28,6 +28,7 @@ $job["amount"] = "$200";
 $job["flexible_amount"] = 0;
 $job["deadline"] = 0;
 $job["buyer_id"] = 0;
+
 ?>
 
 <div class="sellerDashboard-content">
