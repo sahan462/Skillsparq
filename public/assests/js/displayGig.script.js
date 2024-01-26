@@ -64,6 +64,7 @@ function openPackageModal(button) {
   document.getElementById('packageModal').style.display = 'block';
 }
 
+
 // Function to handle actions based on user confirmation
 function handleConfirmation(action) {
     if (action === 'sendYes') {
@@ -102,6 +103,7 @@ function handleConfirmation(action) {
       document.getElementById('cancelConfirmation').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
       document.getElementById('packageModal').style.display = 'none';
+      document.getElementById('warningMessage').style.display = 'none';
 
       fileNameSpan.textContent = '';
     }
@@ -142,12 +144,31 @@ function confirmAction(action) {
 }
 
 // -------------------file attachements --------------------------------
+
+
 function displayFileName(input) {
   var fileNameSpan = document.getElementById('fileName');
   var files = input.files;
 
   if (files.length > 0) {
-    fileNameSpan.textContent = files[0].name;
+    var file = input.files[0];
+  
+    if (file) {
+        var allowedExtensions = ['zip'];
+        var fileExtension = file.name.split('.').pop().toLowerCase();
+  
+        if (allowedExtensions.indexOf(fileExtension) !== -1) {
+
+            fileNameSpan.textContent = files[0].name;
+            document.getElementById('warningMessage').style.display = 'none';
+
+        } else {
+
+            document.getElementById('warningMessage').style.display = 'block';  
+            input.value = '';
+
+        }
+    }
   } else {
     fileNameSpan.textContent = '';
   }
