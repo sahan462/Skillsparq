@@ -5,6 +5,7 @@
     $data["profilePicture"] = "dummyprofile.jpg";
     $recentGigs = $data['recentGigs'];
 ?>
+
 <div class="container">
     <div class="profile-container">
         <div class="profile-header">
@@ -91,33 +92,31 @@
             <div class="recentGigsContent">
                 <?php
                     foreach($recentGigs as $row){
-                ?>
-                        <?php include "components/GigCard.component.php"?>
-                <?php
-                    }
-                ?>
+                        include "components/GigCard.component.php";
+                    } 
+                 ?>
             </div>
         </div>
-
     </div>
 </div>
-    <script>
-        // Function to update the div with the current local time
-        function updateLocalTime() {
-            // Get the current local time
-            const currentTime = new Date();
-            // Format the time as needed (for example, HH:mm:ss)
-            const formattedTime = currentTime.toLocaleTimeString();
-            // Select the div using the class selector and update its content
-            const iconTimeDiv = document.querySelector('.time');
-            iconTimeDiv.textContent = formattedTime;
-        }
 
-        // Update the time initially
-        updateLocalTime();
+<script>
+    // Function to update the div with the current local time
+    function updateLocalTime() {
+        // Get the current local time
+        const currentTime = new Date();
+        // Format the time as needed (for example, HH:mm:ss)
+        const formattedTime = currentTime.toLocaleTimeString();
+        // Select the div using the class selector and update its content
+        const iconTimeDiv = document.querySelector('.time');
+        iconTimeDiv.textContent = formattedTime;
+    }
 
-        // Update the time every second (1000 milliseconds)
-        setInterval(updateLocalTime, 1000);
-    </script>
-</div>
+    // Update the time initially
+    updateLocalTime();
+
+    // Update the time every second (1000 milliseconds)
+    setInterval(updateLocalTime, 1000);
+</script>
+
 <?php include "components/footer.component.php"; ?>
