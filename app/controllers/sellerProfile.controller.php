@@ -21,8 +21,8 @@ class SellerProfile extends Controller
 
     public function index(){
         $userId = $_SESSION["userId"];
-        $data['UserDetails'] = $this->getUserDets($userId);
-        $role = $data['UserDetails']['role'];
+        $data['SellerUserDetails'] = $this->getSellerUserDetails($userId);
+        $role = $data['SellerUserDetails']['role'];
         if($role === "Seller"){
             if(isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
 
@@ -34,7 +34,7 @@ class SellerProfile extends Controller
                 $data["activeStatus"] =  "display: block;";
                 $userId = $_SESSION["userId"];
                 $gigId = 2;
-                $data["userProfile"] = $this->getSellerDetails($userId);
+                $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
                 print_r($data);
     
                 //get recently added Gigs
@@ -64,14 +64,14 @@ class SellerProfile extends Controller
     }
 
     //get profile information
-    public function getSellerDetails($userId){
-        $this->userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
+    public function getSellerProfileDetails($userId){
+        $this->userProfile = $this->ProfileHandlerModel->getProfileData($userId);
         $userProfile = mysqli_fetch_assoc($this->userProfile);
         return $userProfile;
     }
 
-    public function getUserDets($userId){
-        $this->user = $this->UserHandlerModel->getUserDetails($userId);
+    public function getSellerUserDetails($userId){
+        $this->user = $this->UserHandlerModel->getUserData($userId);
         $user = mysqli_fetch_assoc($this->user);
         return $user;
     }

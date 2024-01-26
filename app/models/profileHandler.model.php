@@ -75,7 +75,7 @@ class ProfileHandler extends database
     }
 
     //get profile
-    public function getUserProfile($userId)
+    public function getProfileData($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";
         

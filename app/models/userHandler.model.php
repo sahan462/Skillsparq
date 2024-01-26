@@ -59,7 +59,7 @@ class UserHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    public function getUserDetails($userId){
+    public function getUserData($userId){
         $query = "SELECT * FROM User WHERE user_id = ?;";
         
         $stmt = mysqli_prepare($GLOBALS['db'],$query);

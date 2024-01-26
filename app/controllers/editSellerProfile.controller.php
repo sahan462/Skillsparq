@@ -19,7 +19,7 @@ class EditSellerProfile extends SellerProfile
     public function index(){
             $data['var'] = "Edit Seller Profile Page";
             $userId = $_SESSION["userId"];
-            $data["userProfile"] =$this->SellerProfileController->getSellerDetails($userId);
+            $data["userProfile"] =$this->SellerProfileController->getSellerProfileDetails($userId);
 
             // get email and password from the userHandlerModel - user table
             $data['emailAndPassWord'] = $this->getEmailPassWord($userId);
