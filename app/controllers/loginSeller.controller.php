@@ -42,19 +42,13 @@ class LoginSeller extends Controller
                     $_SESSION["userId"] = $row['user_id'];
                     $_SESSION["phoneNumber"] = $Seller['phone_number'];
                     $_SESSION['password'] = $row['user_password'];
-                    $_SESSION['role'] = $role =$row['role'];
+                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['firstName'] = $row['first_name'];
+                    $_SESSION['lastName'] = $row['last_name'];
+                    $_SESSION['userName'] = $row['user_name'];
 
-                    if($role == 'Buyer'){
-                        header("location: /skillsparq/public/buyerdashboard");
-                    }else if($role == "Seller"){
-                        header("location: /skillsparq/public/sellerdashboard");
-                    }else if($role == "Admin"){
-                        header("location: /skillsparq/public/adminDashboard");
-                    }else if($role == "Customer Support Assistant"){
-                        header("location: /skillsparq/public/helpCenterDashobard");
-                    }else{
-                        echo "<script>alert('Invalid')</script>";
-                    }
+                    header("location: /skillsparq/public/sellerdashboard");
+        
 
                 }else{
 

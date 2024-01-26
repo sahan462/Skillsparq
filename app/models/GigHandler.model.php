@@ -4,7 +4,7 @@ class GigHandler extends database
 {
 
     //create new gigs
-    public function addNewGig($title, $description, $category, $coverImage, $currentDateTime, $sellerId, $customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3)
+    public function addNewGig($title, $description, $category, $coverImage, $customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO gigs 
             (
@@ -119,9 +119,9 @@ class GigHandler extends database
     
 
     //read gigs based on gig id and seller id
-    public function getGig($gigId,$sellerId)
+    public function getGig($sellerId)
     {
-        $query = "SELECT * FROM gigs WHERE gig_id = ? AND seller_id = ?";
+        $query = "SELECT * FROM gigs WHERE seller_id = ?";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -129,7 +129,7 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
-        mysqli_stmt_bind_param($stmt, "ii", $gigId,$sellerId);
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
@@ -139,7 +139,8 @@ class GigHandler extends database
     }
 
     //display a specific gig
-    public function displayGig($gigId){
+    public function displayGig($gigId)
+    {
         $query = "SELECT * FROM gigs WHERE gig_id = ?";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -163,32 +164,29 @@ class GigHandler extends database
     }
 
     //get package details
-    public function getPackages($gigId){
-
-        try{
-            $query = "SELECT * FROM packages WHERE gig_id = ?";
+    public function getPackages($gigId)
+    {
+        $query = "SELECT * FROM packages where gig_id = ?";
         
-            $stmt = mysqli_prepare($GLOBALS['db'], $query);
-            
-            if (!$stmt) {
-                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-            }
-    
-            mysqli_stmt_bind_param($stmt, "i", $gigId);
-    
-            if (mysqli_stmt_execute($stmt)) {
-                return $stmt->get_result();
-            } else {
-                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-            }
-        }catch (mysqli_sql_exception $e){
-            die('Caught exception: ' . $e->getMessage());
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
     }
     
     //update gigs
-    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3){
+    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_30)
+    {
         $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Gigs 
             SET 
             title = ?, 

@@ -40,9 +40,12 @@ class LoginHandler extends database
     {
         $userName=mysqli_real_escape_string($GLOBALS['db'],$SellerId);
         $password=mysqli_real_escape_string($GLOBALS['db'],$password);
+        
         $userCheck = "SELECT * FROM user WHERE user_id='$SellerId' LIMIT 1";
         $result = mysqli_query($GLOBALS['db'], $userCheck);
+
         $row=mysqli_fetch_assoc($result);
+
         if(password_verify($password."skillsparq", $row['user_password']))
         {   
             return $row;

@@ -77,7 +77,6 @@
         <div class="modal" id="milestoneModal">
             
             <!-- button to add new milestone -->
-
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
             <form method="get" id="milestoneRequestForm">
