@@ -13,7 +13,6 @@ class displayGig extends Controller
 
     public function index()
     {
-
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
             header("location: loginUser");
@@ -41,5 +40,3 @@ class displayGig extends Controller
 
 
 }
-
-?>
