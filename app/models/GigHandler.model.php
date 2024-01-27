@@ -152,12 +152,12 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $gigId);
 
         if (mysqli_stmt_execute($stmt)) {
-            $packageDetails = $this->getPackages($gigId);
             $gigDetails = $stmt->get_result()->fetch_assoc();
-            return array(
-                'packageDetails' => $packageDetails,
-                'gigDetails' => $gigDetails
-            );
+            $stmt->close();
+
+            $packageDetails = $this->getPackages($gigId);
+
+            return $gigDetails + $packageDetails;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -166,23 +166,34 @@ class GigHandler extends database
     //get package details
     public function getPackages($gigId)
     {
-        $query = "SELECT * FROM packages where gig_id = ?";
+        $query = "SELECT * FROM packages WHERE gig_id = ?";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
-
+    
         mysqli_stmt_bind_param($stmt, "i", $gigId);
-
+    
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+    
+            $rows = array();
+    
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+    
+            $result->free();
+            $stmt->close();
+    
+            return $rows;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
-
     }
+    
     
     //update gigs
     public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_30)

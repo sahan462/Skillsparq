@@ -33,6 +33,7 @@
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
                     <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
                         <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                         <span id="fileName"></span>
                     </div>
                     <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
@@ -43,6 +44,7 @@
                     <button type="button" onclick="confirmAction('send')">Send Request</button>
                 </div>
 
+                <input type="hidden" name="gigId" value="<?php echo $gig['gig_id']?>">
                 <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
                 <input type="hidden" name="orderType" value="package">
                 <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
@@ -242,31 +244,28 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                                             </svg>
-                                                USD 120
+                                            <span>USD <?php echo $gig[0]['package_price']; ?></span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
                                                 <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
                                                 <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
-                                                </svg>
-                                            2 Days Delivery
+                                            </svg>
+                                            <span><?php echo $gig[0]['no_of_delivery_days']; ?> <?php echo $gig[2]['time_period']; ?> Delivery</span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
                                                 <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
-                                                </svg>
-                                            3 Revisions
+                                            </svg>
+                                            <?php echo $gig[0]['no_of_revisions']; ?> Revisions
                                         </li>
                                     </div>
-                                    <li><?php echo $gig['package_description_1']; ?></li>
+                                    <li><?php echo $gig[0]['package_description']; ?></li>
 
                                     <form id="package_1" method="get" action="manageOrders/createOrder">
-                                        <input type="hidden" name="packageType" value="Basic">
-                                        <input type="hidden" name="packagePrice" value="<?php echo $gig['price']; ?>">
-                                        <input type="hidden" name="noOfDeliveryDays" value="<?php echo $gig['no_of_delivery_days_1']; ?>">
-                                        <input type="hidden" name="timePeriod" value="<?php echo $gig['time_period_1']; ?>">
-                                        <input type="hidden" name="packageDescription" value="<?php echo $gig['package_description_1']; ?>">
+                                        <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
+
                                     <a href="#"><button id="package_1" onclick="openPackageModal(this)">Request to Order</button></a>
                                 </ul>
                             </div>
@@ -281,31 +280,28 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                                             </svg>
-                                                USD 120
+                                            <span>USD <?php echo $gig[1]['package_price']; ?></span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
                                                 <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
                                                 <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
-                                                </svg>
-                                            2 Days Delivery
+                                            </svg>
+                                            <span><?php echo $gig[1]['no_of_delivery_days']; ?> <?php echo $gig[2]['time_period']; ?> Delivery</span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
                                                 <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
-                                                </svg>
-                                            3 Revisions
+                                            </svg>
+                                            <?php echo $gig[1]['no_of_revisions']; ?> Revisions
                                         </li>
                                     </div>
-                                    <li><?php echo $gig['package_description_2']; ?></li>
+                                    <li><?php echo $gig[1]['package_description']; ?></li>
 
                                     <form id="package_2">
-                                        <input type="hidden" value = "Basic">
-                                        <input type="hidden" value = "<?php echo $gig['price']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['no_of_delivery_days_2']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['time_period_2']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['package_description_2']; ?>">
-                                    </form>      
+                                        <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
+                                    </form>     
+
                                     <a href="#"><button id="package_2" onclick="openPackageModal(this)">Request to Order</button></a>                            
                                  </ul>
                             </div>
@@ -320,31 +316,28 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                                             </svg>
-                                            <span>USD <?php echo $gig['price']; ?></span>
+                                            <span>USD <?php echo $gig[2]['package_price']; ?></span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
                                                 <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
                                                 <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
                                             </svg>
-                                            <span><?php echo $gig['no_of_delivery_days_3']; ?> <?php echo $gig['time_period_3']; ?> Delivery</span>
+                                            <span><?php echo $gig[2]['no_of_delivery_days']; ?> <?php echo $gig[2]['time_period']; ?> Delivery</span>
                                         </li>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
                                                 <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
                                                 </svg>
-                                            <?php echo $gig['no_of_delivery_days_3']; ?> Revisions
+                                            <?php echo $gig[2]['no_of_revisions']; ?> Revisions
                                         </li>
                                     </div>
-                                    <li><?php echo $gig['package_description_3']; ?></li>
+                                    <li><?php echo $gig[2]['package_description']; ?></li>
 
                                     <form id="package_3">
-                                        <input type="hidden" value = "Basic">
-                                        <input type="hidden" value = "<?php echo $gig['price']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['no_of_delivery_days_3']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['time_period_3']; ?>">
-                                        <input type="hidden" value = "<?php echo $gig['package_description_3']; ?>">
+                                        <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
+
                                     <a href="#"><button id="package_3" onclick="openPackageModal(this)">Request to Order</button></a>
                                 </ul>
                             </div>
@@ -393,7 +386,16 @@
                         <h5>Feedbacks and Ratings</h5>
                     </div>
                     <div class="content">
-
+                        <?php if (count($feedbacks) == 0) { ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>No feedbacks available</span>
+                        <?php } else { ?> 
+                            <div class="feedbackCard">
+                                <h4>feedbacks</h4>
+                            </div>    
+                        <?php } ?>
                     </div>
                 </div>
             </div>

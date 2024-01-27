@@ -30,9 +30,12 @@ class EditSellerProfile extends SellerProfile
             $data['sellerUserDetails'] = $this->SellerProfileController->getSellerUserDetails($userId);
 
             // get email and password from the userHandlerModel - user table
-            // $data['emailAndPassWord'] = $this->getEmailPassWord($userId);
-        
-            print_r($data);
+            $data['emailAndPassWord'] = $this->getEmailPassWord($userId);
+         
+            // get the phone number through session variable.
+            $phoneNum =  $_SESSION['phoneNumber'];
+            $data['sellerId'] = $this->SellerHandlerModel->sellerId($phoneNum);
+ 
             $this->view('editSellerProfile', $data);
     }
 

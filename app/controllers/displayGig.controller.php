@@ -20,14 +20,13 @@ class displayGig extends Controller
         }else{
             $data['var'] = "Display Gig Page";
             $data['title'] = "SkillSparq";
-            $data['feedbacks'] = "";
-
+            $data['feedbacks'] = array();
             $gigId = $_GET['gigId'];
             $gig = $this->GigHandlerModel->displayGig($gigId);
-           
+            print_r($gig);
             if ($gig) {
 
-                $data['gig'] = mysqli_fetch_assoc($gig);
+                $data['gig'] = $gig;
 
             } else {
 

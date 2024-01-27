@@ -7,7 +7,7 @@
 ?>
 
 
-<div class="container">
+<div class="helpCenterContainer">
 
     <div class="helpCenterHeader">
         Customer Assistance
