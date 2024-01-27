@@ -29,6 +29,4 @@ class BuyerHandler extends database
     
         mysqli_stmt_close($stmt);
     }
-    
-
 }
