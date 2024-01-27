@@ -59,7 +59,8 @@ class UserHandler extends database
     //     mysqli_stmt_close($stmt);
     // }
 
-    public function getUserData($userId){
+    public function getUserData($userId)
+    {
         $query = "SELECT * FROM User WHERE user_id = ?";
         
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
@@ -77,15 +78,57 @@ class UserHandler extends database
     
         mysqli_stmt_close($stmt);
     }
+
+
+     // Update the Password
+     public function setPassword($userId,$userPassWord)
+     {
+        $query = "UPDATE user SET user_password = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$userPassWord,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // Update the Email
+    public function setEmail($userId,$userEmail)
+    {
+        $query = "UPDATE user SET user_email = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$userEmail,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // common repeatable code for update with two parameters
+    public function updateQueryPrepStmtExecTwoParams($query,$parameterString,$param1,$userId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+                
+        mysqli_stmt_bind_param($stmt, $parameterString,$param1,$userId);
+                
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
     
     
     public function addNewAdmin(){
         
     }
-
-    public function updateUserTable(){
-
-    }
-
 
 }

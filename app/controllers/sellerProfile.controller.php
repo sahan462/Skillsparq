@@ -83,11 +83,6 @@ class SellerProfile extends Controller
     //     return $retrievedSellerId;
     // }
 
-    public function passDataArray()
-    {
-        $data['title'] = "SkillSparq";
-    }
-
 }
 
 ?>

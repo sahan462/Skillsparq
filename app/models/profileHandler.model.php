@@ -51,38 +51,93 @@ class ProfileHandler extends database
         }
     }
     
+    // Update the Profile Picture
+    public function setProfile_Pic($userId,$profilepic){
+        $query = "UPDATE profile SET profile_pic = ? WHERE user_id = ?";
 
-    // update fields of profile
-    public function updateProfileTable($userName,$profilePic,$firstName,$lastName,$country,$about,$languages,$skills,$userId){
-        $query = "UPDATE Profile 
-                 SET 
-                 user_name = ?, 
-                 profile_pic = ?, 
-                 first_name = ?, 
-                 last_name = ?, 
-                 country = ?, 
-                 about = ?, 
-                 languages = ?, 
-                 skills = ? 
-                 WHERE user_id = ?";
+        $parameterString = "si";
 
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$profilepic,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // update User Name, First Name and Last Name
+    public function setNames($userId,$uname,$fname,$lname){
+        $query = "UPDATE profile SET user_name = ?,first_name = ?,last_name = ? WHERE user_id = ?";
+        
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
 
         if ($stmt === false) {
-                     throw new Exception("Failed to create prepared statement.");
-                 }
-                
-                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
-                
-                 if (mysqli_stmt_execute($stmt)) {
-                     mysqli_stmt_close($stmt);
-                     return true; 
-                 } else {
-                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
-                 }
+            throw new Exception("Failed to create prepared statement.");
+        }
+       
+        mysqli_stmt_bind_param($stmt,"sssi",$uname,$fname,$lname,$userId);
+       
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+        
     }
 
-    public function updateQueryPrepStmtExec($query,$string,$fields,$userId)
+    // consider about updating the country field in the table.
+
+    // Update the About
+    public function setAbout($userId,$profileAbout){
+        $query = "UPDATE profile SET about = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$profileAbout,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // Update the Languages
+    public function setLanguages($userId,$profileLanuages){
+        $query = "UPDATE profile SET languages = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$profileLanuages,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // Update the Education
+    public function setEducations($userId,$profileEducations)
+    {
+        // doesn't have a column in the table.
+        $query = "UPDATE profile SET education = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$profileEducations,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // Update the Skills
+    public function setSkills($userId,$profileSkills){
+        $query = "UPDATE profile SET skills = ? WHERE user_id = ?";
+
+        $parameterString = "si";
+
+        $returnedResult = $this->updateQueryPrepStmtExecTwoParams($query,$parameterString,$profileSkills,$userId);
+
+        return $returnedResult;
+        
+    }
+
+    // common repeatable code for update with two parameters
+    public function updateQueryPrepStmtExecTwoParams($query,$parameterString,$param1,$userId)
     {
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
 
@@ -90,16 +145,16 @@ class ProfileHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
                 
-                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
+        mysqli_stmt_bind_param($stmt, $parameterString,$param1, $userId);
                 
-                 if (mysqli_stmt_execute($stmt)) {
-                     mysqli_stmt_close($stmt);
-                     
-                     return true; 
-                 } else {
-                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
-                 }
-    }
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    } 
 
     //get profile
     public function getProfileData($userId)
