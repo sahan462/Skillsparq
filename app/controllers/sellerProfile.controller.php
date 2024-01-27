@@ -21,13 +21,10 @@ class SellerProfile extends Controller
 
     public function index()
     {
-        $userId = $_SESSION["userId"];
-        $data['sellerUserDetails'] = $this->getSellerUserDetails($userId);
-        // $role = $data['SellerUserDetails']['role'];
 
-        if(isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
+        if(!isset($_SESSION["phoneNumber"]) || !isset($_SESSION["password"])){
 
-            header("location: loginUser");
+            header("location: loginSeller");
 
         }else{
             $data['var'] = "Seller Profile";

@@ -26,7 +26,7 @@ body{
     align-items: center;
 
 }
-#overlay, #milestoneOverlay{
+#overlay{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -41,7 +41,7 @@ body{
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-#packageModal {
+#Modal {
     display: none;
     position: absolute;
     background: #fff;
@@ -49,17 +49,6 @@ body{
     border-radius: 8px;
     width: auto;
     height: auto;
-}
-#milestoneModal{
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 50%;
-    height: 600px;
 }
 .confirmation{
     display: none;
@@ -168,20 +157,20 @@ body{
     left: 0px;
 }
 /*Profile Pic upload*/
-.profile-container .profile .profile-picture{
+ .profile-picture{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
 }
-.profile-container .profile .profile-picture img{
+.profile-picture img{
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 100%;
 }
-.profile-container .profile .profile-picture .full-name{
+.profile-picture .full-name{
     margin-top: 16px;
     font-size: 20px;
     line-height: 28px;
@@ -191,7 +180,7 @@ body{
     background: none;
     border: 0;
 }
-.profile-container .profile .profile-picture .user-name{
+.profile-picture .user-name{
     margin-bottom: 16px;
 }
 /**/
