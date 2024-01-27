@@ -28,7 +28,6 @@ class EditSellerProfile extends SellerProfile
             $phoneNum =  $_SESSION['phoneNumber'];
             $data['sellerId'] = $this->SellerHandlerModel->sellerId($phoneNum);
  
-            print_r($data);
             $this->view('editSellerProfile', $data);
     }
 
