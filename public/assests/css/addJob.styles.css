@@ -3,7 +3,6 @@ body{
     padding: 0;
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #62646a;
-    overflow: hidden;
 }
 .addjob-container{
     display: flex;
@@ -84,7 +83,7 @@ body{
 .addjob-container input[type="file"]{
     display: none;
 }
-.container{
+.addjob-container .container{
     display: flex;
     justify-content: space-between;
 }
@@ -101,38 +100,38 @@ body{
     color: #404145;
     cursor: pointer;
 }
-#auction{
+.addjob-container #auction{
     display: none;
 }
-.custom-auction{
+.addjob-container .custom-auction{
     border: 2px solid #c5c6c9;
     border-radius: 5px;
     padding: 16px;
 }
-.duration input{
+.addjob-container .duration input{
     margin-bottom: 0;
 }
-.duration{
+.addjob-container .duration{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
 }
-.price{
+.addjob-container .price{
     width: 100%;
     display: flex;
 }
-.price input[type="text"]{
+.addjob-container .price input[type="text"]{
     width: 60%;
 }
-.price .base-bid{
+.addjob-container .price .base-bid{
     width: 45%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-right: 60px;
 }
-.price .min-bid{
+.addjob-container .price .min-bid{
     width: 45%;
     display: flex;
     justify-content: space-between;
@@ -141,7 +140,7 @@ body{
 button {
     display: inline-block;
     border-radius: 4px;
-    background-color: #1dbf73;
+    background-color: #31dba3;
     border: none;
     color: #FFFFFF;
     text-align: center;

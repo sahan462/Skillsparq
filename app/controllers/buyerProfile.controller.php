@@ -26,7 +26,6 @@ class BuyerProfile extends Controller
             $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
             $userProfile = mysqli_fetch_assoc($userProfile);
             $data["userProfile"] = $userProfile;
-            print_r($data);
 
             //get Jobs
             $standardModeJobs = $this->JobHandlerModel->getAllJobs($userId);

@@ -1,3 +1,5 @@
+//--------------------- ----------View Jobs------------------------------------------------
+
 document.addEventListener("DOMContentLoaded", function () {
     var clickableCards = document.querySelectorAll(".job-card");
     
@@ -13,3 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+//------------------------------------Modal Behavior------------------------------------------------
+
+function openPackageModal(button) {
+    packageForm = button.id;
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('Modal').style.display = 'block';
+  }
+  
