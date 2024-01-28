@@ -71,14 +71,18 @@ class BuyerProfile extends Controller
         $language = "";
         $skills = "";
 
+        print_r($currentProfilePicture);
+
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
         $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
         $targetFilePath = $targetDir . $uniqueprofilePictureName; 
         $currentFilePath = $targetDir . $currentProfilePicture;
 
-        //check if the current and uploading files are same
-        if($uniqueprofilePictureName != $currentProfilePicture){
+
+        // check if the current and uploading files are same
+        if($profilePictureName != "")
+        {
 
             $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
             
@@ -102,10 +106,14 @@ class BuyerProfile extends Controller
 
             }
 
+        }else{
+            $uniqueprofilePictureName = $currentProfilePicture;
         }
 
         $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
-        if($updateProfile){
+
+        if($updateProfile)
+        {
 
             echo "
             <script>
@@ -124,7 +132,6 @@ class BuyerProfile extends Controller
             ";
 
         }
-
 
     }
 
