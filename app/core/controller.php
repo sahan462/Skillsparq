@@ -73,12 +73,10 @@ class Controller
     {
         if (!empty($sessionName)) {
 
-            if(isset($_SESSION[$sessionName])) {
+            if (isset($_SESSION[$sessionName])) {
 
                 return $_SESSION[$sessionName];
-
             }
-
         }
     }
 
@@ -103,8 +101,9 @@ class Controller
     }
 
     //send mail
-    public function sendVerificationMail($receiver_email, $receiver_name, $subject, $body, $AltBody){
-        
+    public function sendVerificationMail($receiver_email, $receiver_name, $subject, $body, $AltBody)
+    {
+
         $mail = new PHPMailer(true);
 
         try {
@@ -118,9 +117,9 @@ class Controller
             $mail->Port = 465; // TCP port to connect to
             $mail->SMTPOptions = array(
                 'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
                 )
             );
 
@@ -136,7 +135,7 @@ class Controller
 
             $mail->send();
 
-            echo 
+            echo
             "
             <script>
                 <alert>E mail Sent Successfully</alert>
@@ -149,26 +148,26 @@ class Controller
             // Email could not be sent
             return false;
         }
-
     }
 
-    public function sendVerificationMessage($receiverPhoneNumber, $receiverFirstName, $receiverLastName, $body){
+    public function sendVerificationMessage($receiverPhoneNumber, $receiverFirstName, $receiverLastName, $body)
+    {
 
         require_once('../app/vendor/nofity/autoload.php');
 
         $api_instance = new NotifyLk\Api\SmsApi();
-        $user_id = "25955"; 
+        $user_id = "25955";
         $api_key = "mOxnvCvochppWmtHQrqR";
-        $message = $body; 
-        $to = $receiverPhoneNumber; 
-        $sender_id = "NotifyDEMO"; 
-        $contact_fname = $receiverFirstName; 
-        $contact_lname = $receiverLastName; 
-        $contact_email = ""; 
-        $contact_address = ""; 
-        $contact_group = 0; 
-        $type = null; 
-        
+        $message = $body;
+        $to = $receiverPhoneNumber;
+        $sender_id = "NotifyDEMO";
+        $contact_fname = $receiverFirstName;
+        $contact_lname = $receiverLastName;
+        $contact_email = "";
+        $contact_address = "";
+        $contact_group = 0;
+        $type = null;
+
         try {
             $api_instance->sendSMS($user_id, $api_key, $message, $to, $sender_id, $contact_fname, $contact_lname, $contact_email, $contact_address, $contact_group, $type);
             return true;
@@ -177,5 +176,3 @@ class Controller
         }
     }
 }
-
-?>

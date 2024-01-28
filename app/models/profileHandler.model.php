@@ -31,7 +31,7 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    //get profile
+    //read profile
     public function getUserProfile($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";

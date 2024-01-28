@@ -56,6 +56,21 @@ class BuyerProfile extends Controller
 
     }
 
+    //Update buyer profile
+    function updateBuyerProfile(){
+        print_r($_GET);
+
+        $profilePicture = $_GET['newProfilePicture'];
+        $firstName = $_GET['firstName'];
+        $lastName = $_GET['lastName'];
+        $country = $_GET['country'];
+        $about = $_GET['about'];
+
+    }
+
+
+
+
 }
 
 ?>
