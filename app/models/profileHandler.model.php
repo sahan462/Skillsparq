@@ -31,7 +31,7 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    //get profile
+    //read profile
     public function getUserProfile($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";
@@ -51,9 +51,24 @@ class ProfileHandler extends database
         }
     }
     
+    //update last seen time
+    public function updateProfile($user_Id)
+    {
+        $query = "Update profile set last_seen = ? WHERE user_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
 
-    public function updateProfile($user_Id){
+        mysqli_stmt_bind_param($stmt, "i", $userId);
 
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
 
     public function updateBuyerProfile(){

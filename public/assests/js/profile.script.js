@@ -66,19 +66,8 @@ function confirmAction(action) {
 function handleConfirmation(action) {
     if (action === 'sendYes') {
 
-        var form1 = document.getElementById(packageForm);
-        var formData2 = new FormData(document.getElementById('packageRequestForm'));
-        
-        // Append data from form2 to form1
-        formData2.forEach((value, key) => {
-          var input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          form1.appendChild(input);
-        });
-
-        form1.submit();
+        var profileUpdateForm = document.getElementById('profileUpdateForm');
+        profileUpdateForm.submit();
 
     }else if (action === 'sendNo'){
 

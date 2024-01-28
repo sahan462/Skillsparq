@@ -4,7 +4,9 @@
     //$profile = $data['profile'];
 ?>
 <?php 
-    $data["activeStatus"] = "display: none;";
+
+    $profile = $data['userProfile'];
+    print_r($data['userProfile']);
     $data["profilePicture"] = "assests/images/dummyprofile.jpg";
     $data["fullName"] = $data['userProfile']['first_name']." ".$data['userProfile']['last_name'];
     $data["country"] = "Sri Lanka";
@@ -19,13 +21,13 @@
     <!-- Modal 1 -->
     <div class="overlay" id="overlay">
         <div class="modal" id="Modal">
-            <form id="profileUpdateForm" method="get" action="">
+            <form id="profileUpdateForm" method="get" action="buyerProfile/updateBuyerProfile">
 
                 <div class="profile-picture">
 
                     <div class="updateProfilePicture">
 
-                        <img id="previewImage" src="<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                        <img id="previewImage" src="./assests/images/<?php echo $profile["profile_pic"]?>" alt="pro-pic">
                         <div class="editIcon">
                             <label for="newProfilePicture">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -48,12 +50,12 @@
 
                         <div class="row">
                             <label class="type-1">First Name:</label>
-                            <input type="text" name="firstName" value="<?php echo $data['userProfile']['first_name'] ?>" >
+                            <input type="text" name="firstName" value="<?php echo $profile['first_name'] ?>" >
                         </div>
 
                         <div class="row">
                             <label class="type-1">Last Name:</label>
-                            <input type="text" name="lastName" value="<?php echo $data['userProfile']['last_name'] ?>" >
+                            <input type="text" name="lastName" value="<?php echo $profile['last_name'] ?>" >
                         </div>
 
                     </div>
@@ -64,7 +66,7 @@
 
                     <label for="attachments" class="type-1">Country:</label>
 
-                    <select>
+                    <select name="country" value="<?php echo $profile['country']?>">
                         <option value="Afghanistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
@@ -312,7 +314,7 @@
                 <div class="row">
 
                     <label for="attachments" class="type-1">About:</label>
-                    <textarea rows="5"></textarea>
+                    <textarea rows="5" name="about" value="<?php echo $profile['about']?>"></textarea>
 
                 </div>
 
@@ -321,10 +323,10 @@
                     <button type="button" onclick="confirmAction('send')">Update Profile</button>
                 </div>
 
-                <input type="hidden" name="gigId" value="<?php echo $gig['gig_id']?>">
-                <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
-                <input type="hidden" name="orderType" value="package">
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
+
             </form>
         </div>
     </div>
@@ -361,10 +363,17 @@
         <div class="profile-container">
 
             <div class="profile">
-                <div class="active status" style="<?php echo $data["activeStatus"] ?>">
-                    <i class="dot">.</i>
-                    Online
-                </div>
+
+                <?php if($profile['last_seen'] == 'online') {?>
+                    <div class="online">
+                        <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>
+                    </div>
+                <?php }else{ ?>
+                    <div class="offline">
+                        <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="offlineDot"></div>Last seen: <?php echo $profile['last_seen']?></span>
+                    </div>
+                <?php } ?>
+
                 <div class="profile-picture">
                     <img src="<?php echo $data["profilePicture"]?>" alt="pro-pic">
                     <div class="full-name">
@@ -407,25 +416,6 @@
                         </span>
                         <span><b><?php echo $data['userProfile']['joined_date'];?></b></span>
                     </div>
-                    <div class="info">
-                        <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.545 3.75 3.75 0 013.255 3.717z" clip-rule="evenodd" />
-                        </svg>
-                            Expertise
-                        </span>
-                        <span><b><?php echo $data['userProfile']['skills'];?></b></span>
-                    </div>
-                    <div class="info">
-                        <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path fill-rule="evenodd" d="M9.315 7.584C12.195 3.883 16.695 1.5 21.75 1.5a.75.75 0 01.75.75c0 5.056-2.383 9.555-6.084 12.436A6.75 6.75 0 019.75 22.5a.75.75 0 01-.75-.75v-4.131A15.838 15.838 0 016.382 15H2.25a.75.75 0 01-.75-.75 6.75 6.75 0 017.815-6.666zM15 6.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" clip-rule="evenodd" />
-                            <path d="M5.26 17.242a.75.75 0 10-.897-1.203 5.243 5.243 0 00-2.05 5.022.75.75 0 00.625.627 5.243 5.243 0 005.022-2.051.75.75 0 10-1.202-.897 3.744 3.744 0 01-3.008 1.51c0-1.23.592-2.323 1.51-3.008z" />
-                        </svg>
-                            Last Delivery
-                        </span>
-                        <span><b>July 2023</b></span>
-                    </div>
                 </div>
             </div>
 
@@ -433,10 +423,6 @@
                 <div class="description">
                     <div class="topic">
                         <span>About</span>
-                        <div class="link">
-                            <a href="#">edit</a>
-                            <a href="#">remove</a>
-                        </div>
                     </div>
                     <div class="description-content">
                         <?php $data['userProfile']['about']?>

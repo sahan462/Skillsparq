@@ -150,13 +150,28 @@ body{
 }
 
 /*Active Status*/
-.profile-container .profile .active-status{
-    position: absolute; 
-    right: 0px; 
-    height: 20px; 
-    left: 0px;
+.profile-container .profile .online{
+    color: #31d65a;
+    border-bottom: 4px solid #31d65a;
+    margin-bottom: 16px;
 }
-
+.profile-container .profile .onlineDot{
+    height: 8px;
+    width: 8px;
+    background-color: #31d65a;
+    border-radius: 100%;
+}
+.profile-container .profile .offline{
+    color: #C72300;
+    border-bottom: 4px solid #C72300;
+    margin-bottom: 16px;
+}
+.profile-container .profile .offlineDot{
+    height: 8px;
+    width: 8px;
+    background-color: #C72300;
+    border-radius: 100%;
+}
 /*Profile Pic upload*/
  .profile-picture{
     display: flex;
