@@ -12,15 +12,20 @@ $data['profilePicture'] = "avishka.jpg";
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/sellerDashboard.styles.css">
     <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css">
+    <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css">
+    <link rel="stylesheet" href="./assests/css/earnings.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
+    <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
+    <link rel="stylesheet" href="./assests/css/help.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
 </head>
 
 <body>

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advertisement Help</title>
-  </head>
+<?php
+    if($_SESSION['role'] == 'Buyer'){
+        include "components/buyerSimpleHeader.component.php";
+    }else if($_SESSION['role'] == 'Seller'){
+        include "components/sellerHeader.component.php";
+    }
+?>
+
   <body>
     <div class="header">
       <div class="primary">&nbsp&nbspHelp&nbsp&&nbspSupport</div>
@@ -16,7 +16,7 @@
     <br><br>
     <p class="title">Popular  <span class="dark-title">Topics</span></p><br><br>
     <div class="btn-group">
-        <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">About Skillsparq/div></a>
+        <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">About Skillsparq</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Creating an Advertisemnt</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">How to Start Selling on EXL</div></a>
         <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Accounts and profile  settings</div></a>

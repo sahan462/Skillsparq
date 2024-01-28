@@ -1,7 +1,7 @@
 <?php
 
 class BuyerProfile extends Controller
-{
+{ 
 
     public function __construct()
     {
@@ -17,18 +17,15 @@ class BuyerProfile extends Controller
             exit;
 
         }else{
-
             $data['var'] = "Buyer Profile Page";
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
-
             $userId = $_SESSION["userId"];
             
             //get profile information
             $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);
             $userProfile = mysqli_fetch_assoc($userProfile);
             $data["userProfile"] = $userProfile;
-
 
             //get Jobs
             $standardModeJobs = $this->JobHandlerModel->getAllJobs($userId);

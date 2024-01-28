@@ -53,41 +53,15 @@ document.getElementById("defaultOpen").click();
 
 
 //---------------------------------------- Modals---------------------------------------
-  
+
+//declare variable to keep track of the clicked button
+var button = "";
+
 // Function to open the modal
-function openPackageModal() {
+function openPackageModal(button) {
+  packageForm = button.id;
   document.getElementById('overlay').style.display = 'flex';
-  document.getElementById('modal').style.display = 'block';
-}
-
-// Function to handle actions based on user confirmation
-function handleConfirmation(action) {
-    if (action === 'sendYes') {
-
-        document.forms['requestForm'].submit();
-        // window.location.href="manageOrders";
-
-    }else if (action === 'sendNo'){
-
-        document.getElementById('sendConfirmation').style.display = 'none';
-        document.getElementById('sendConfirmationOverlay').style.display = 'none';
-
-    }else if(action === 'cancelNo'){
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-
-    }else{
-
-      var fileNameSpan = document.getElementById('fileName');
-
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-      document.getElementById('modal').style.display = 'none';
-      fileNameSpan.textContent = '';
-
-    }
-
+  document.getElementById('packageModal').style.display = 'block';
 }
 
 // Function to confirm the action
@@ -99,23 +73,101 @@ function confirmAction(action) {
       document.getElementById('sendConfirmationOverlay').style.display = 'flex';
       document.getElementById('sendConfirmation').style.display = 'block';
     
-    } else {
+    } else if(action === 'cancel') {
 
       document.getElementById('sendConfirmationOverlay').style.display = 'none';
       document.getElementById('sendConfirmation').style.display = 'none';
       document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
       document.getElementById('cancelConfirmation').style.display = 'block';
     
+    } else if(action === 'milestoneSend'){
+
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmation').style.display = 'block';
+
+    }else{
+
+      document.getElementById('sendConfirmationOverlay').style.display = 'none';
+      document.getElementById('sendConfirmation').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmation').style.display = 'block';
+
     }
 }
 
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) {
+  if (action === 'sendYes') {
+
+      var form1 = document.getElementById(packageForm);
+      var formData2 = new FormData(document.getElementById('packageRequestForm'));
+      
+      // Append data from form2 to form1
+      formData2.forEach((value, key) => {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form1.appendChild(input);
+      });
+
+      form1.submit();
+
+  }else if (action === 'sendNo'){
+
+      document.getElementById('sendConfirmation').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
+  }else if(action === 'cancelNo'){
+
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
+  }else{
+
+    packageForm = "";
+
+    var fileNameSpan = document.getElementById('fileName');
+
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    document.getElementById('cancelConfirmation').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('packageModal').style.display = 'none';
+    document.getElementById('warningMessage').style.display = 'none';
+
+    fileNameSpan.textContent = '';
+  }
+
+}
+
 // -------------------file attachements --------------------------------
+
+
 function displayFileName(input) {
   var fileNameSpan = document.getElementById('fileName');
   var files = input.files;
 
   if (files.length > 0) {
-    fileNameSpan.textContent = files[0].name;
+    var file = input.files[0];
+  
+    if (file) {
+        var allowedExtensions = ['zip'];
+        var fileExtension = file.name.split('.').pop().toLowerCase();
+  
+        if (allowedExtensions.indexOf(fileExtension) !== -1) {
+
+            fileNameSpan.textContent = files[0].name;
+            document.getElementById('warningMessage').style.display = 'none';
+
+        } else {
+
+            document.getElementById('warningMessage').style.display = 'block';  
+            input.value = '';
+
+        }
+    }
   } else {
     fileNameSpan.textContent = '';
   }
@@ -126,21 +178,26 @@ function displayFileName(input) {
 // Counter to keep track of added input fields
 let inputCounter = 1;
 let count = 0;
+const animation = document.getElementById('animation');
 
 if (count == 0) {
-  const inputContainer = document.getElementById('inputContainer');
-  inputContainer.innerHTML = `
-  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-  <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  animation.innerHTML = `
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
   `;
+} else {
+  animation.innerHTML = '';
+  animation.style.width = '0px';
+  animation.style.height = '0px';
 }
 
 function openMilestoneModal() {
   document.getElementById('milestoneOverlay').style.display = 'flex';
-  document.getElementById('milestoneModal').style.display = 'block';
+  document.getElementById('milestoneModal').style.display = 'flex';
 }
 
 function addCollapsible() {
+
   // Get the template content
   const template = document.getElementById('collapsibleTemplate');
   const name = document.getElementById('collapsible');
@@ -152,17 +209,35 @@ function addCollapsible() {
   const button = clone.querySelector('.collapsible');
   count++;
   button.innerHTML = "MileStone " + count;
+
+    // Remove animation
+    if(count != 0){
+      animation.innerHTML = '';
+    }
+
   // Append the cloned content to the inputContainer
   document.getElementById('inputContainer').appendChild(clone);
 
 }
 
 function removeCollapsible(button) {
-  // Remove the parent container when removing a milestone
-  button.parentElement.parentElement.remove();
-  count--;
-  // Update the numbering of remaining milestones
-  updateMilestoneNumbering();
+  // Find the parent container
+  const container = button.closest('collapsibleTemplate');
+
+  // Log the container and button for debugging
+  console.log('Container:', container);
+  console.log('Button:', button);
+
+  // Remove the container if found
+  if (container) {
+      container.remove();
+      milestoneCount--;
+
+      // Update the numbering of remaining milestones
+      updateMilestoneNumbering();
+  } else {
+      console.error('Container not found.');
+  }
 }
 
 function updateMilestoneNumbering() {
@@ -186,4 +261,24 @@ function expand(button){
   
 }
 
+// -------------------------form submission-----------------------------
 
+function submitForms() {
+  // Combine data from both forms
+  var formData1 = new FormData(document.getElementById('form1'));
+  var formData2 = new FormData(document.getElementById('form2'));
+
+  // Append data from form2 to form1
+  formData2.forEach((value, key) => {
+      formData1.append(key, value);
+  });
+
+  // Send an AJAX request
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/your-url', true);
+  xhr.send(formData1);
+
+  // Close modals or perform other actions as needed
+  closeConfirmationModal();
+  document.getElementById('secondForm').style.display = 'none';
+}

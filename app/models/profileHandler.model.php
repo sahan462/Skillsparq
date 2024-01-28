@@ -11,9 +11,11 @@ class ProfileHandler extends database
 
     }
 
+    //create new profile
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)");
+        $query = "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -50,5 +52,77 @@ class ProfileHandler extends database
     }
     
 
+    // update fields of profile
+    public function updateProfileTable($userName,$profilePic,$firstName,$lastName,$country,$about,$languages,$skills,$userId){
+        $query = "UPDATE Profile 
+                 SET 
+                 user_name = ?, 
+                 profile_pic = ?, 
+                 first_name = ?, 
+                 last_name = ?, 
+                 country = ?, 
+                 about = ?, 
+                 languages = ?, 
+                 skills = ? 
+                 WHERE user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+                     throw new Exception("Failed to create prepared statement.");
+                 }
+                
+                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
+                
+                 if (mysqli_stmt_execute($stmt)) {
+                     mysqli_stmt_close($stmt);
+                     return true; 
+                 } else {
+                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+                 }
+    }
+
+    public function updateQueryPrepStmtExec($query,$string,$fields,$userId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+                
+                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
+                
+                 if (mysqli_stmt_execute($stmt)) {
+                     mysqli_stmt_close($stmt);
+                     
+                     return true; 
+                 } else {
+                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+                 }
+    }
+
+    //get profile
+    public function getProfileData($userId)
+    {
+        $query = "SELECT * FROM profile WHERE user_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deleteProfile($userId){
+
+    }
 
 }

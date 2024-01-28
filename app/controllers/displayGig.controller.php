@@ -11,8 +11,8 @@ class displayGig extends Controller
     }
 
 
-    public function index(){
-
+    public function index()
+    {
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
             header("location: loginUser");
@@ -20,19 +20,18 @@ class displayGig extends Controller
         }else{
             $data['var'] = "Display Gig Page";
             $data['title'] = "SkillSparq";
-            $data['feedbacks'] = "";
-
+            $data['feedbacks'] = array();
             $gigId = $_GET['gigId'];
-            
-
-            //get gig details
-            $gig = $this->GigHandlerModel->getGig($gigId);
+            $gig = $this->GigHandlerModel->displayGig($gigId);
+            print_r($gig);
             if ($gig) {
 
-                $data['gig'] = mysqli_fetch_assoc($gig);
+                $data['gig'] = $gig;
 
             } else {
+
                 echo "<script>alert('Gig function is not Accessible!')</script>";
+            
             }
 
             $this->view('displayGig', $data);
@@ -41,5 +40,3 @@ class displayGig extends Controller
 
 
 }
-
-?>

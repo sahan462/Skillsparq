@@ -2,14 +2,14 @@
 
 <?php
 
-$data["fullName"] = "Damitha Sahan";
+$data["fullName"] = $_SESSION['firstName']." ".$_SESSION['lastName'];
 $data["activeStatus"] = "display: none";
 $data['ongoingOrders'] = 0;
 $data["earningsThisMonth"] = "$0";
 $data["completedOrders"] = 0;
 $data["lastDelivery"] = "July 2023";
 $data["expertise"] = "Tec";
-$data["userName"] = "@DSahan";
+$data["userName"] = $_SESSION['userName'];
 $data["profilePicture"] = "dummyprofile.jpg";
 
 $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
@@ -28,12 +28,13 @@ $job["amount"] = "$200";
 $job["flexible_amount"] = 0;
 $job["deadline"] = 0;
 $job["buyer_id"] = 0;
+
 ?>
 
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $_SESSION['firstName'] ?>
+        Howdy, <?php echo $data['fullName'] ?>
     </div>
 
     <div class="dashboard-container">
@@ -110,9 +111,9 @@ $job["buyer_id"] = 0;
         </div>
         <div class="job-feed">
             <div class="searchBar">
-                <form action="">
+                <form method="get" action="Job/searchJob">
                     <input type="text" placeholder="Search for Job" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <button name="submit" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
             <div class="jobs">

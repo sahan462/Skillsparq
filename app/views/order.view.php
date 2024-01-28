@@ -9,7 +9,7 @@
 <?php 
     $userRole = 'buyer';
     $order['orderType'] = 'package';
-    $order['orderStatus'] = 'Active';
+    $order['orderStatus'] = 'Accepted';
     $order['paymentStaus'] = 'Pending';
 
 ?>
@@ -81,44 +81,96 @@
         <!-- Right Container -->
         <div class="orderDetails">
 
-            <div class="deadline">
-                <div class="type-1">
-                    Deadline
-                </div>
-                <div class="timer">
-                    <p id="demo"></p>
-                </div>
-            </div>
+            <!-- Right Container Upper Part -->
+            <div class="orderDetailsUpperContainer">
+                <?php 
 
-            <div class="orderStatus">
-                <div class="orderStatusHeader">
-                    <div class="type-1">
-                        Order Status
+                if($_SESSION['role'] == "Buyer"){
+                    
+                ?>
+                    <div class="deadline">
+                        <span>Time Left to Deliver :</span>
+                        <div class="timer">
+                            <p id="demo"></p>
+                        </div>
                     </div>
-                    <?php echo $order['orderStatus'] ?>
-                </div>
-                <div class="orderStatusData">
 
-                    <?php 
-                        if  ($order['orderStatus'] == 'Request') {
-                    ?>
-                        Order Request expires in :
-                    <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Pending"){ ?>
-                        Pending Payments
-                        <?php if($userRole == "buyer"){ ?>
-                            <a href="payment"><button>Proceed to Payment</button></a>
-                        <?php } ?>
-                    <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
-                        Paid
-                    <?php }?>
+                    <div class="orderStatus">
+                        <div class="orderStatusHeader">
+                            <span>Current Status of Order :</span>
+                            <span><?php echo $order['orderStatus'] ?></span>
+                        </div>
+                        <div class="orderStatusData">
 
-                </div>
+                            <?php 
+                                if  ($order['orderStatus'] == 'Request') {
+                            ?>
+                                    <span>Order Request expires in :</span>
+                                    <div class="row">
+                                        <button class="buttonType-1">Accept</button>
+                                        <button class="buttonType-2">Reject</button>
+                                    </div>
+
+                            <?php }else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
+                                
+                                <div class="row">
+                                    <button class="buttonType-1">Proceed to Pay</button>
+                                    <button class="buttonType-2">Cancel Order</button>
+                                </div>
+
+                            <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                                Paid
+                            <?php }?>
+
+                        </div>
+                    </div>
+
+                <?php }else if($_SESSION['role'] == "Seller") {?>
+                    
+                    <div class="deadline">
+                        <span>Time Left to Receive :</span>
+                        <div class="timer">
+                            <p id="demo"></p>
+                        </div>
+                    </div>
+
+                    <div class="orderStatus">
+
+                        <div class="orderStatusHeader">
+                            <span>Current Status of Order :</span>
+                            <span>Waiting for Seller Response</span>
+                        </div>
+
+                        <div class="orderStatusData">
+
+                            <?php 
+                                if  ($order['orderStatus'] == 'Request') {
+                            ?>
+                                    <span>Order Request expires in :</span><br>
+                                    <button class="buttonType-2">withdraw your request</button>
+
+                            <?php }else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
+
+                                Pending Payments
+
+                            <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+
+                                Paid
+
+                            <?php }?>
+
+                        </div>
+                    </div>
+                    
+                <?php } ?>
+
+            </div>
+            
+            <!-- Animation -->
+            <div class="orderDetailsBottomContainer">
+                <img src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/earnings/high-five-illustration.28505d2.png" style="height: 360px; width: fit-content;">
             </div>
 
-
-            <div class="Details">
-
-            </div>
         </div>
     </div>
 </div>

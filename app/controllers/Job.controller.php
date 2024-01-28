@@ -3,6 +3,7 @@
 class Job extends Controller
 {
 
+    private $JobHandlerModel;
     public function index()
     {
     }
@@ -14,6 +15,15 @@ class Job extends Controller
 
     public function getJob()
     {
+    }
+
+    public function viewJob()
+    {
+        // create the method to view the job card in the sellerdashboard.
+    }
+
+    public function searchJob(){
+        // create the method to search job functionality
     }
 
     public function publishJob()
@@ -39,7 +49,7 @@ class Job extends Controller
                     $flexible_amount = 0;
                 };
 
-                $job = $this->JobHandlerModel->addNewJob($title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+                $job = $this->model("JobHandler")->addNewJob($title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
             } else if ($publishMode == 'Auction Mode') {
 
                 $amount = $_GET['amount_1'];

@@ -2,7 +2,6 @@
 
 <?php 
 
-
 ?>
 
 <!-- Main Container -->
@@ -27,7 +26,7 @@
     <div class="rightContainer">
 
         <!-- form -->
-        <form id="regForm" method="post" enctype="multipart/form-data" action="Gig/publishGig" autocomplete="off">
+        <form id="regForm" method="post" enctype="multipart/form-data" action="<?php echo BASEURL.'Gig/publishGig';?>" autocomplete="off">
             <!-- One "tab" for each step in the form: -->
 
             <div class="addGigContent">
@@ -43,7 +42,7 @@
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description" placeholder="I need.." rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" required></textarea>
+                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" value="chamal" required></textarea>
                     </div>
 
                     <div class="category">

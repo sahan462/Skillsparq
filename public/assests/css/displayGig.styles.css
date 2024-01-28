@@ -63,15 +63,25 @@ body{
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-.modal {
-    z-index: 1;
+#packageModal {
     display: none;
     position: absolute;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 40%;
+    width: auto;
     height: auto;
+}
+#milestoneModal{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    height: 600px;
 }
 .confirmation{
     display: none;
@@ -98,6 +108,7 @@ body{
 }
 .modal input, textarea{
     margin-bottom: 16px;
+    border-radius: 8px;
 }
 .modal .type-1{
     font-weight: 600;
@@ -105,7 +116,7 @@ body{
     color: #404145;
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-.modal .type-2{
+.type-2{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #62646a;
 }
@@ -131,64 +142,101 @@ body{
     border: none;
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
+    cursor: pointer;
 }
 .modal .buttons button:hover{
     color: #333;
     background-color: rgb(241, 241, 241);
-    font-weight: 500;
+    font-weight: 600;
 }
 .createNewMileStone{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: 1px solid #000000;
-    border-radius: 4px;
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    background-color: #000000;
+    cursor: pointer;
+    border: none;
+    border-radius: 0 0 8px 8px;
+    transition: ease-in-out 0.3s;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 8px;
 }
+#milestoneRequestForm{
+    height: 90%;
+}
+#milestoneRequestForm #inputContainer{
+    border-top: 1px solid #62646a;    
+    border-bottom: 1px solid #62646a;    
+    border-radius: 0px !important;
+    height: 90%;
+    overflow: auto;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #31d65a; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #176c2d; 
+}
+#milestoneRequestForm #animation{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 
 /* collapsible */
 .collapsible {
-    color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
     cursor: pointer;
     width: 100%;
-    border: none;
+    font-size: 16px;
     text-align: left;
-    outline: none;
     margin: 8px 0;
 }
-#milestoneModal .row{
-    display: flex;
-    flex-direction: row !important;
-    justify-content: space-between;
-}
 .collapsibleActive, .collapsible:hover {
+    color: #fff;
     background-color: #555;
 }
 .collapsible:after {
     content: '\002B';
-    color: white;
+    color: black;
     font-weight: bold;
     float: right;
     margin-left: 5px;
 }
 .collapsibleActive:after {
     content: "\2212";
+    color: #fff;
 }
 .collapsibleContent {
-    padding: 0 18px;
     max-height: 0;
+    padding: 0 8px;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
+    border-radius: 8px;
+}
+#milestoneModal .row{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
 }
 #inputContainer{
     min-height: 150px;
     border-radius: 8px;
-
 }
 textarea {
     padding: 0;
@@ -201,7 +249,15 @@ textarea {
     -ms-flex-pack: justify;
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
+.removeButton{
+    background-color: red;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: #fff;
+    float: right;
+}
 
 /* file attachement stylings */
 .fileInput{
@@ -415,10 +471,10 @@ textarea {
     text-decoration: none;
     font-size: 18px;
 }
-ul{
+.topRightContainer ul{
     border-radius: 0 0 8px 8px;
 }
-ul button{
+.topRightContainer ul button{
     padding: 8px;
     margin-top: 16px;
     width: 100%;
@@ -482,6 +538,9 @@ ul button:hover{
 }
 
 /* Bottom Left Container */
+.bottomLeftContainer .header{
+    border-bottom: 2px solid #dadbdd;
+}
 .bottomLeftContainer .header h5{
     font-size: 18px;
     color: #222325;
@@ -491,12 +550,22 @@ ul button:hover{
 }
 .bottomLeftContainer .aboutGig .content p{
     margin-top: -1em;
-    white-space: pre-wrap;
+    white-space: pre-line;
     text-align: justify;
     margin-bottom: 32px;
 }
 .bottomLeftContainer .aboutGig .content p:first-line{
     line-height: 0px;
+}
+.bottomLeftContainer .gigRatings .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bottomLeftContainer .gigRatings .content svg{
+    color: #dadbdd;
+    height: 100px;
+    width: 100px;
 }
 
 /* Bottom Right Container */
@@ -581,5 +650,9 @@ ul button:hover{
     .topLeftContainer .sliderContainer img{
         width: 100%;
         height: auto;
+    }
+    .displayGigContainer .mainContainer {
+        margin-right: 0px;
+        margin-left: 0px;
     }
 }
