@@ -20,13 +20,13 @@ class App
         } else {
             require "../app/controllers/" . $this->controller . ".controller.php";
         }
-<<<<<<< HEAD
+
         $mycontroller = new $this->controller(ucfirst($arr[0]));
 
         if (!empty($arr[1])) {
             if (method_exists($mycontroller, strtolower($arr[1]))) {
                 $this->method = strtolower($arr[1]);
-=======
+
         $mycontroller = new $this->controller();
         $mymethod = $arr[1] ?? $this-> method;
 
@@ -34,7 +34,6 @@ class App
             if(method_exists($mycontroller, strtolower($arr[1])))
             {
                 $this->method = strtolower($mymethod);
->>>>>>> c58ee14bf912a894c7a79a56fe149c26ce6b96b7
                 unset($arr[1]);
             }
         }
