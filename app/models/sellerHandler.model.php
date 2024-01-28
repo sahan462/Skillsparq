@@ -59,7 +59,7 @@ class SellerHandler extends database
     }
 
     public function deleteSeller(){
-        
+        // delete the seller profile if it doesn't contain any ongoing projects with a buyer.
     }
 
 }

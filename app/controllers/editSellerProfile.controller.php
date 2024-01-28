@@ -6,7 +6,7 @@ class EditSellerProfile extends SellerProfile
 
     protected $userId;
     protected $sellerId;
-    private $emailAndPassWord;
+    // private $emailAndPassWord;
 
     public function __construct() {
         // All the model instances are initiated in the sellerProfile controller itself. (GigHandlerModel,ProfileHandlerModel,UserHandlerModel,SellerHandlerModel)
