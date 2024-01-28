@@ -3,6 +3,10 @@
 class LoginUser extends Controller
 {
 
+    function __construct(){
+        $this->profileHandler = $this->model('ProfileHandler');    
+    }
+
     public function index(){
 
         $data['var'] = "Login Page";
@@ -13,7 +17,7 @@ class LoginUser extends Controller
         $errors["password"] = "";
         $data['errors'] = $errors;
 
-        $this->view('loginUser', $data);
+
 
     }
 }

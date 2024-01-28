@@ -67,7 +67,7 @@
 
                         <li class="imgLinks">
                             <a href="buyerProfile" class="imgLink">
-                                <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                                <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
                                 <div class="loginSign"></div>
                             </a>
                         </li>

@@ -252,8 +252,8 @@ input[type = "text"], textarea, select{
 }
 .preview-profile button:hover{
     color: #fff;
-    background: #1dbf73;
-    border: 2px solid #fff;
+    background: #31d65a;
+    border: 2px solid #333;
 }
 /*edit-profile*/
 .edit-profile button{
@@ -270,6 +270,7 @@ input[type = "text"], textarea, select{
 .edit-profile button:hover{
     color: #fff;
     background: #62646a;
+    border: 2px solid #333;
 }
 /*User Info*/
 .profile-container .profile .user-info{
@@ -278,7 +279,7 @@ input[type = "text"], textarea, select{
     border-top: 2px solid #dadbdd;
     border-bottom: 2px solid #dadbdd;
 }
-.profile-container .profile .user-info svg{
+.profile-container .profile  svg{
     width: 16px;
     height: 16px;
     color: #333;
@@ -301,7 +302,7 @@ input[type = "text"], textarea, select{
 }
 .profile .topic{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     margin-bottom: 16px;
 }
 .profile .description .description-content{
