@@ -111,9 +111,11 @@ class BuyerProfile extends Controller
         }
 
         $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
-
+        
         if($updateProfile)
         {
+            $_SESSION['firstName'] = $firstName;
+            $_SESSION['lastName'] = $lastName;
 
             echo "
             <script>
