@@ -156,6 +156,7 @@ body{
     height: 20px; 
     left: 0px;
 }
+
 /*Profile Pic upload*/
  .profile-picture{
     display: flex;
@@ -163,6 +164,27 @@ body{
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
+}
+.profile-picture .updateProfilePicture{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.profile-picture svg{
+    color: #fff;
+    margin: 4px;
+    cursor: pointer;
+}
+.profile-picture .editIcon{
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    border: 4px solid #fff;
+    border-radius: 100%;
+    background-color: #404145;
+    position: absolute;
+    margin-bottom: 2px;
+    margin-right: 2px;
 }
 .profile-picture img{
     width: 150px;
@@ -183,6 +205,23 @@ body{
 .profile-picture .user-name{
     margin-bottom: 16px;
 }
+
+/* change full name */
+input[type = "text"], textarea, select{
+    height: 40px;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
+}
+.full-name{
+    display: flex;
+    justify-content: space-between;
+}
+
 /**/
 /*preview-profile*/
 .preview-profile button{
