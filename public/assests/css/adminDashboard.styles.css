@@ -9,7 +9,7 @@
 
 :root{
     /* ===== Colors ===== */
-    --primary-color: #0E4BF1;
+    --primary-color: #31dba3;
     --panel-color: #FFF;
     --text-color: #000;
     --black-light-color: #707070;
@@ -56,7 +56,7 @@ body.dark{
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0b3cc1;
+    background: #31dba3;
 }
 
 body.dark::-webkit-scrollbar-thumb:hover,

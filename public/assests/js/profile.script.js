@@ -18,15 +18,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //------------------------------------Modal Behavior------------------------------------------------
+    
+// Wait for the DOM to fully load
+var preview = document.getElementById('previewImage');
+var currentProfilePicture = preview.src;
 
+var firstName = document.getElementById('firstName');
+var currentFirstName = firstName.value;
+
+var lastName = document.getElementById('lastName');
+var currentLastName = lastName.value;
+
+var country = document.getElementById('country');
+var currentCountry = country.value;
+
+var about = document.getElementById('about');
+var currentAbout = about.innerHTML;
+    
+//open update modal
 function openPackageModal(button) {
     packageForm = button.id;
     document.getElementById('overlay').style.display = 'flex';
     document.getElementById('Modal').style.display = 'block';
 }
-
-var preview = document.getElementById('previewImage');
-var currentProfilePicture = preview.src;
 
 //dynamically render profile picture
 function renderImage() {
@@ -80,20 +94,20 @@ function handleConfirmation(action) {
         document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 
     }else{
+        
+        packageForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        country.value = currentCountry;
+        about.value = currentAbout;
 
-      packageForm = "";
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('Modal').style.display = 'none';
+        document.getElementById('warningMessage').style.display = 'none';
 
-      var fileNameSpan = document.getElementById('fileName');
-
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-      document.getElementById('Modal').style.display = 'none';
-      document.getElementById('warningMessage').style.display = 'none';
-      preview.src = currentProfilePicture;
-
-
-      fileNameSpan.textContent = '';
     }
 
 }

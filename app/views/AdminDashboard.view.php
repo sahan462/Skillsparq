@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 
 <head>
@@ -20,7 +19,7 @@
         <img src="images/logo.png" alt="">
       </div>
 
-      <span class="logo_name">CodingLab</span>
+      <span class="logo_name">SKILLSPARQ</span>
     </div>
 
     <div class="menu-items">
