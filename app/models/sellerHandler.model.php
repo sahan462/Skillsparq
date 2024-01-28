@@ -48,13 +48,14 @@ class SellerHandler extends database
     }
 
     public function sellerId($phoneNumber){
-        $userCheck = "SELECT * FROM seller WHERE phone_number='$phoneNumber'  LIMIT 1";
-        $result = mysqli_query($GLOBALS['db'], $userCheck);
+        $query = "SELECT seller_id FROM seller WHERE phone_number='$phoneNumber'  LIMIT 1";
+        $result = mysqli_query($GLOBALS['db'], $query);
         return mysqli_fetch_assoc($result);
     }
 
-    public function updateSeller(){
-
+    // for update the phonenumber only.Have to discuss.
+    public function updateSeller($sellerId){
+        // $query = "UPDATE seller SET ";
     }
 
     public function deleteSeller(){

@@ -134,17 +134,12 @@ class JobHandler extends database
     //update job
     public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 
-            SET 
-            title = ?, 
-            description = ?, 
-            file = ?, 
-            category = ?, 
-            amount = ?, 
-            deadline = ?, 
-            publish_mode = ?, 
-            flexible_amount = ? 
-            WHERE job_id = ?");
+        $updateQuery = "UPDATE Jobs 
+            SET title = ?, description = ?, file = ?, category = ?, amount = ?, 
+            deadline = ?, publish_mode = ?, flexible_amount = ? 
+            WHERE job_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
         
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");

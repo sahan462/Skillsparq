@@ -40,24 +40,24 @@ class UserHandler extends database
         }
     }
 
-    public function getEmailAndPassWord($userId){
-        $query = "SELECT user_email,user_password FROM User WHERE user_id = ?;";
+    // public function getEmailAndPassWord($userId){
+    //     $query = "SELECT user_email,user_password FROM User WHERE user_id = ?;";
         
-        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+    //     $stmt = mysqli_prepare($GLOBALS['db'],$query);
     
-        if (!$stmt) {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-        mysqli_stmt_bind_param($stmt, "i",$userId);
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    //     mysqli_stmt_bind_param($stmt, "i",$userId);
     
-        if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
-        } else {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
     
-        mysqli_stmt_close($stmt);
-    }
+    //     mysqli_stmt_close($stmt);
+    // }
 
     public function getUserData($userId){
         $query = "SELECT * FROM User WHERE user_id = ?";
@@ -81,6 +81,10 @@ class UserHandler extends database
     
     public function addNewAdmin(){
         
+    }
+
+    public function updateUserTable(){
+
     }
 
 

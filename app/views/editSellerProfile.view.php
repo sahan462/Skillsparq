@@ -34,7 +34,7 @@
                     <!-- tag for  -->
                     <div class="editSeller_ProfileContainer">
                         <!-- tag for  -->
-                        <div class="img-container"><!-- editSeller_ImageContainer  -->
+                        <div class="editSeller_ImageContainer"><!-- editSeller_ImageContainer  -->
                             <!-- tag for  -->
                             <div class="img"><!-- editSeller_Image  -->
                                 <img src="../public/assests/images/<?php echo $data['sellerProfileDetails']['profile_pic'] ?>" alt="pro-pic">
@@ -112,7 +112,7 @@
                             <div class="buttons">
 
                                 <!-- button for  -->
-                                <button id="button">Edit</button>
+                                <button id="button"><a href="#">Edit</a></button>
                             </div>
                         </div>
 
@@ -162,7 +162,7 @@
                             <div class="Topics">Password</div>
                         </div>
                         <div class="profile-content-category-content">
-                        <div><input type="text" value="<?php echo $data['emailAndPassWord']['user_password'];?>" class=""></div>
+                        <div><input type="text" value="<?php echo $data['sellerUserDetails']['user_password'];?>" class=""></div>
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                             <div class="Topics">Email</div>
                         </div>
                         <div class="profile-content-category-content">
-                            <div><input type="text" value="<?php echo $data['emailAndPassWord']['user_email'];?>" class=""></div>
+                            <div><input type="text" value="<?php echo $data['sellerUserDetails']['user_email'];?>" class=""></div>
                         </div>
                     </div>
                     <!-- <div class="content-category2">
@@ -206,7 +206,7 @@
                             <div class="Topics">Email</div>
                         </div>
                         <div class="profile-content-category-content">
-                            <div><input type="text" value="<?php echo $data['emailAndPassWord']['user_email'];?>" class=""></div>
+                            <div><input type="text" value="<?php //echo $data['emailAndPassWord']['user_email'];?>" class=""></div>
                         </div>
                     </div> -->
                 </div>
