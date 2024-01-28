@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
     <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
-    <link rel="stylesheet" href="./assests/css/profile.styles.css">
+    <link rel="stylesheet" href="./assests/css/buyerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
@@ -67,7 +67,7 @@
 
                         <li class="imgLinks">
                             <a href="buyerProfile" class="imgLink">
-                                <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                                <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
                                 <div class="loginSign"></div>
                             </a>
                         </li>

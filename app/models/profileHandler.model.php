@@ -31,7 +31,7 @@ class ProfileHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-    //get profile
+    //read profile
     public function getUserProfile($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";
@@ -50,51 +50,28 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    
 
-    public function updateProfile($user_Id){
-
-    }
-
-    public function updateBuyerProfile(){
-
-    }
-
-    public function updateSellerProfile(){
-
-    }
-
-    // public function updateJob($jobId, $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $currentDateTime)
-    // {
-    //     $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Jobs 
-    //         SET 
-    //         title = ?, 
-    //         description = ?, 
-    //         file = ?, 
-    //         category = ?, 
-    //         amount = ?, 
-    //         deadline = ?, 
-    //         publish_mode = ?, 
-    //         flexible_amount = ? 
-    //         WHERE job_id = ?");
+    //update last seen
+    public function lastSeenUpdate($lastSeen, $userId)
+    {
+        $query = "UPDATE profile SET last_seen = ? WHERE user_id = ?";
         
-    //     if ($stmt === false) {
-    //         throw new Exception("Failed to create prepared statement.");
-    //     }
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
-    //     mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $description, $file, $category, $amount, $deadline, $publishMode, $flexibleAmount, $jobId);
-        
-    //     if (mysqli_stmt_execute($stmt)) {
-    //         mysqli_stmt_close($stmt);
-    //         return true; 
-    //     } else {
-    //         throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
-    //     }
-    // }
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
 
-    public function deleteProfile($userId){
+        mysqli_stmt_bind_param($stmt, "si", $lastSeen, $userId);
 
+        if (mysqli_stmt_execute($stmt)) {
+            $stmt->close();
+            return true;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
+
 
     //get profile
     public function getProfileData($userId)
@@ -117,5 +94,57 @@ class ProfileHandler extends database
     }
     
 
+    // update fields of profile
+    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $languages, $skills, $userId, $userName){
+        $query = "UPDATE Profile 
+                 SET 
+                 profile_pic = ?, 
+                 first_name = ?, 
+                 last_name = ?, 
+                 country = ?, 
+                 about = ?
+                 WHERE user_id = ? 
+                 and user_name = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "sssssis", $profilePic, $firstName, $lastName, $country, $about, $userId, $userName);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function updateQueryPrepStmtExec($query,$string,$fields,$userId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+                
+                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
+                
+                 if (mysqli_stmt_execute($stmt)) {
+                     mysqli_stmt_close($stmt);
+                     
+                     return true; 
+                 } else {
+                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+                 }
+    }
+
+
+
+    public function deleteProfile($userId){
+
+    }
 
 }

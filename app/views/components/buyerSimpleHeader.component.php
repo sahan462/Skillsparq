@@ -1,6 +1,3 @@
-<?php 
-    $data['profilePicture'] = "avishka.jpg";
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +9,14 @@
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
-    <link rel="stylesheet" href="./assests/css/profile.styles.css">
+    <link rel="stylesheet" href="./assests/css/buyerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
+    <link rel="stylesheet" href="./assests/css/addJob.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -60,7 +58,7 @@
 
                         <li class="imgLinks">
                             <a href="buyerProfile" class="imgLink">
-                                <img src="../public/assests/images/<?php echo $data["profilePicture"]?>" alt="pro-pic">
+                                <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
                                 <div class="loginSign"></div>
                             </a>
                         </li>
