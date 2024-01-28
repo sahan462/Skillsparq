@@ -1,6 +1,6 @@
 <?php
 
-class createBuyer extends Controller
+class buyerNotifications extends Controller
 {
 
     public function __construct()
@@ -11,8 +11,8 @@ class createBuyer extends Controller
     public function index()
     {
 
-        $data['var'] = "manage Users";
+        $data['var'] = "buyerNotifications";
         $data['title'] = "SkillSparq";
-        $this->view('createBuyer', $data);
+        $this->view('buyerNotifications', $data);
     }
 }
