@@ -1,6 +1,6 @@
 <?php
 
-class createBuyer extends Controller
+class HelpDeskCenter extends Controller
 {
 
     public function __construct()
@@ -11,8 +11,8 @@ class createBuyer extends Controller
     public function index()
     {
 
-        $data['var'] = "manage Users";
+        $data['var'] = "HelpDeskCenter";
         $data['title'] = "SkillSparq";
-        $this->view('createBuyer', $data);
+        $this->view('HelpDeskCenter', $data);
     }
 }
