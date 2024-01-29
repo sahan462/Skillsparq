@@ -9,7 +9,8 @@ class BuyerProfile extends Controller
         $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
-    public function index(){
+    public function index()
+    {
 
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
             
@@ -57,19 +58,84 @@ class BuyerProfile extends Controller
     }
 
     //Update buyer profile
-    function updateBuyerProfile(){
-        print_r($_GET);
+    function updateBuyerProfile()
+    {
 
-        $profilePicture = $_GET['newProfilePicture'];
-        $firstName = $_GET['firstName'];
-        $lastName = $_GET['lastName'];
-        $country = $_GET['country'];
-        $about = $_GET['about'];
+        $currentProfilePicture = $_POST['currentProfilePicture'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $country = $_POST['country'];
+        $about = $_POST['about'];
+        $userId = $_POST['userId'];
+        $userName = $_POST['userName'];
+        $language = "";
+        $skills = "";
+
+        print_r($currentProfilePicture);
+
+        $targetDir = "../public/assests/images/profilePictures/";
+        $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
+        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
+        $targetFilePath = $targetDir . $uniqueprofilePictureName; 
+        $currentFilePath = $targetDir . $currentProfilePicture;
+
+
+        // check if the current and uploading files are same
+        if($profilePictureName != "")
+        {
+
+            $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
+            
+            if($upload){
+                
+                if($currentProfilePicture != "dummyprofile.jpg"){
+                    //remove the old profile picture
+                    unlink($currentFilePath);
+                }
+
+                $_SESSION['profilePicture'] =  $uniqueprofilePictureName;
+
+            }else{
+
+                echo "
+                <script>
+                    alert('Error Uploading Profile Picture');
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+
+            }
+
+        }else{
+            $uniqueprofilePictureName = $currentProfilePicture;
+        }
+
+        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
+        
+        if($updateProfile)
+        {
+            $_SESSION['firstName'] = $firstName;
+            $_SESSION['lastName'] = $lastName;
+
+            echo "
+            <script>
+                alert('Profile Updated Successfully');
+                window.location.href = '" . BASEURL . "buyerProfile';
+            </script>
+        ";
+
+        }else{
+
+            echo "
+            <script>
+                alert('Error Updating Profile');
+                window.location.href = '" . BASEURL . "buyerProfile';
+            </script>
+            ";
+
+        }
 
     }
-
-
-
 
 }
 
