@@ -2,16 +2,6 @@
 
 class SellerProfile extends Controller
 {
-    protected $GigHandlerModel;
-    protected $ProfileHandlerModel;
-    protected $UserHandlerModel;
-    protected $SellerHandlerModel;
-    
-    protected $userId;
-    protected $sellerId;
-    protected $recentGigs;
-    protected $data;
-    protected $phoneNum;
     
     public function __construct()
     {
