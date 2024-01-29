@@ -20,6 +20,8 @@ class SellerDashboard extends Controller
             $data['var'] = "SellerDashboard";
             $data['title'] = "SkillSparq";
 
+            
+
             print_r($_SESSION);
             
             $this->view('SellerDashboard', $data);

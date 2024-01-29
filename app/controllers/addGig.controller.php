@@ -2,6 +2,7 @@
 
 class AddGig extends Controller
 {
+    private $GigHandlerModel;
     public function __construct()
     {
         // $this->JobHandlerModel = $this->model('jobHandler');
