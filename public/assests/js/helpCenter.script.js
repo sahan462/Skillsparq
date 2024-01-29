@@ -47,19 +47,8 @@ function confirmAction(action) {
 function handleConfirmation(action) {
   if (action === 'sendYes') {
 
-      var form1 = document.getElementById(packageForm);
-      var formData2 = new FormData(document.getElementById('packageRequestForm'));
-      
-      // Append data from form2 to form1
-      formData2.forEach((value, key) => {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form1.appendChild(input);
-      });
-
-      form1.submit();
+      var sendRequestForm = document.getElementById('sendRequestForm');
+      sendRequestForm.submit();
 
   }else if (action === 'sendNo'){
 
@@ -87,3 +76,35 @@ function handleConfirmation(action) {
   }
 
 }
+
+// -------------------file attachements --------------------------------
+function displayFileName(input) {
+    var fileNameSpan = document.getElementById('fileName');
+    var files = input.files;
+  
+    if (files.length > 0) {
+      var file = input.files[0];
+    
+      if (file) {
+          var allowedExtensions = ['zip'];
+          var fileExtension = file.name.split('.').pop().toLowerCase();
+    
+          if (allowedExtensions.indexOf(fileExtension) !== -1) {
+  
+              fileNameSpan.textContent = files[0].name;
+              document.getElementById('warningMessage').style.display = 'none';
+  
+          } else {
+  
+              document.getElementById('warningMessage').style.display = 'block';  
+              input.value = '';
+  
+          }
+      }
+    } else {
+
+      fileNameSpan.textContent = '';
+      
+    }
+  }
+  
