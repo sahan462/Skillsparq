@@ -241,8 +241,8 @@ body{
 textarea {
     padding: 0;
     font-size: 16px;
-    margin-bottom: 0 !important;
-    border-radius: 0 !important;
+    /* margin-bottom: 0 !important;
+    border-radius: 0 !important; */
     height: auto !important;
     width: 100%;
     -webkit-box-pack: justify;
