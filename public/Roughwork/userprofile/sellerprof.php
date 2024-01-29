@@ -1,92 +1,91 @@
-<?php include "components/sellerHeader.component.php"; ?>
+<?php include "/xampp/htdocs/skillsparq/public/Roughwork/userprofile/sellerHeader.component.php"; ?>
 
 <?php
-    $data['fullName'] = $data['sellerProfileDetails']['first_name']." ".$data['sellerProfileDetails']['last_name'];
-    $data["profilePicture"] = "dummyprofile.jpg";
-    $recentGigs = $data['recentGigs'];
+    // $data['fullName'] = $data['sellerProfileDetails']['first_name']." ".$data['sellerProfileDetails']['last_name'];
+    // $data["profilePicture"] = "dummyprofile.jpg";
+    // $recentGigs = $data['recentGigs'];
 ?>
 
+<html>
+    
+</html>
 <!-- Main Container for Seller Profile -->
 
 <div class="container">
 
-<div v class="personalizedHeader">
-        Howdy, <?php echo $data['fullName'] ?>
-    </div>
-
-     <!-- tag for  -->
-    <div class="profile-header">
+    <!-- tag for -->
+    <div class="profile-container">
 
         <!-- tag for  -->
-        <div class="seller">
+        <div class="profile-header">
 
             <!-- tag for  -->
-            <div class="img-container">
+            <div class="seller">
 
                 <!-- tag for  -->
-                <div class="img">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
-                </div>
-
-                <!-- tag for  -->
-                <div class="icons-content">
+                <div class="img-container">
 
                     <!-- tag for  -->
-                    <div class="icon-name">
-                        <?php echo $data['fullName']?>
+                    <div class="img">
+                        <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
                     </div>
 
                     <!-- tag for  -->
-                    <div class="icon-name">
-                        <?php echo '@'.$data['sellerProfileDetails']['user_name']?>
-                    </div>
-
-                    <!-- tag for  -->
-                    <div class="icon-location">
+                    <div class="icons-content">
 
                         <!-- tag for  -->
-                        <div class="icon">
+                        <div class="icon-name">
+                            <?php //echo $data['fullName']?>
+                        </div>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
-                                <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                            </svg>
+                        <!-- tag for  -->
+                        <div class="icon-name">
+                            <?php //echo '@'.$data['sellerProfileDetails']['user_name']?>
+                        </div>
+
+                        <!-- tag for  -->
+                        <div class="icon-location">
+
+                            <!-- tag for  -->
+                            <div class="icon">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                    <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                                </svg>
+
+                            </div>
+
+                            <!-- tag for  -->
+                            <div class="icon-location-value">Colombo Sri Lanka</div>
 
                         </div>
 
                         <!-- tag for  -->
-                        <div class="icon-location-value">Colombo Sri Lanka</div>
+                        <div class="icon-time">
 
-                    </div>
+                            <!-- tag for  -->
+                            <div>Local Time is</div>
 
-                    <!-- tag for  -->
-                    <div class="icon-time">
+                            <!-- tag for  -->
+                            <div class="time"></div>
 
-                        <!-- tag for  -->
-                        <div>Local Time is</div>
-
-                        <!-- tag for  -->
-                        <div class="time"></div>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <!-- tag for  -->
+                <div class="buttons">
 
-            <!-- tag for  -->
-            <div class="buttons">
-
-                <!-- anchor tag for  -->
-                <a href="<?php echo BASEURL."editSellerProfile"?>">
-                    <!-- button for  -->
-                    <button id="button">Profile Update</button>
-                </a>
+                    <!-- anchor tag for  -->
+                    <a href="<?php echo BASEURL."editSellerProfile"?>">
+                        <!-- button for  -->
+                        <button id="button">Profile Update</button>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- tag for -->
-    <div class="profile-container">
 
         <!-- tag for  -->
         <div class="profile-content">
@@ -176,47 +175,45 @@
 
         </div>
 
+    </div>
+
+    <!-- tag for  -->
+    <div class="other-category-container" id="gigs">
+
         <!-- tag for  -->
-        <div class="other-category-container" id="gigs">
+        <div class="other-category-header">
 
-                <!-- tag for  -->
-                <div class="other-category-header">
+            <!-- tag for  -->
+            <div class="Topics" style="padding-left: 0;">My Gigs</div>
 
-                    <!-- tag for  -->
-                    <div class="Topics" style="padding-left: 0;">My Gigs</div>
+            <!-- tag for  -->
+            <div class="plus" >
+                <!-- anchor tag for  -->
+                <a href="addGig">
+                    <!-- button for  -->
+                    <button id="plus">Add New Gig</button>
+                </a>
 
-                    <!-- tag for  -->
-                    <div class="plus" >
-                        <!-- anchor tag for  -->
-                        <a href="addGig">
-                            <!-- button for  -->
-                            <button id="plus">Add New Gig</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <!-- tag for  -->
-                <div class="recentGigs" id="content">
-                    <!-- tag for  -->
-                    <div class="recentGigsContent">
-                        <!--   -->
-                        <?php
-                            foreach($recentGigs as $row){
-                        ?>
-                                <?php include "components/GigCard.component.php"?>
-                        <?php
-                            }
-                        ?>
-                    </div>
-
-                </div>
             </div>
-
 
         </div>
 
+        <!-- tag for  -->
+        <div class="recentGigs" id="content">
+            <!-- tag for  -->
+            <div class="recentGigsContent">
+                <!--   -->
+                <?php
+                    foreach($recentGigs as $row){
+                ?>
+                        <?php include "components/GigCard.component.php"?>
+                <?php
+                    }
+                ?>
+            </div>
+
+        </div>
+    </div>
     
 
 

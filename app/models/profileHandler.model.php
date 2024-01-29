@@ -130,16 +130,16 @@ class ProfileHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
                 
-                 mysqli_stmt_bind_param($stmt, "ssssssssi", $userName,$profilePic, $firstName, $lastName, $country, $about,$languages, $skills, $userId);
+        mysqli_stmt_bind_param($stmt, $parameterString,$param1, $userId);
                 
-                 if (mysqli_stmt_execute($stmt)) {
-                     mysqli_stmt_close($stmt);
-                     
-                     return true; 
-                 } else {
-                     throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
-                 }
-    }
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    } 
 
 
 

@@ -7,12 +7,47 @@
 <!-- Main container for Edit Seller Profile -->
 <div class="editSellerProfile_MainContainer">
 
+    <!--Modal 1  -->
+    <!-- <div class="overlay" id="overlay">
+        <div class="modal" id="packageModal">
+            <form id="packageRequestForm">
+                <div class="row">
+                    <label for="requestDescription" class="type-1">Request Description:</label>
+                    <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
+                    <textarea id="requestDescription" name="requestDescription" rows="10" required></textarea>
+                </div>
+
+                <div class="row">
+                    <label for="attachments" class="type-1">Attachments:</label>
+                    <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+                    <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                        <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                        <span id="fileName"></span>
+                    </div>
+                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                </div>
+
+                <div class="buttons">
+                    <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                    <button type="button" onclick="confirmAction('send')">Send Request</button>
+                </div>
+
+                <input type="hidden" name="gigId" value="<?php echo $gig['gig_id']?>">
+                <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
+                <input type="hidden" name="orderType" value="package">
+                <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
+
+            </form>
+        </div>
+    </div> -->
+
     <!-- Inner Container for the Main Container -->
     <div class="editSellerProfile_InnerContainer">
 
         <!-- tag for External Lottie Icon -->
         <div class="editSellerProfile_ExternalIconLottie">
-            <!-- tag for  -->
+            <!-- tag for Heading -->
             <div class="editSeller_ProfileHeading">
                 <h1>Make Changes to your profile</h1>
             </div>
@@ -45,7 +80,7 @@
                                 <div class="buttons"><!-- editSeller_ButtonStyle  -->
 
                                     <!-- button for  -->
-                                    <button id="button">Edit</button><!-- editSeller_Button  -->
+                                    <a href="#"><button id="button">Edit</button></a><!-- editSeller_Button  -->
 
                                 </div>
 
@@ -74,21 +109,21 @@
                         <!-- tag for  -->
                         <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
 
-                                    <!-- tag for  -->
-                                    <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
-                                        UserName:
-                                    </div>
+                            <!-- tag for  -->
+                            <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
+                                UserName:
+                            </div>
 
-                                    <!-- tag for  -->
-                                    <div>
-                                        <!-- <input type="text" value="" class="sellerUserName"> -->
-                                        <?php echo "@".$data['sellerProfileDetails']['user_name'];?>
-                                    </div>
+                            <!-- tag for  -->
+                            <div>
+                                <!-- <input type="text" value="" class="sellerUserName"> -->
+                                <?php echo "@".$data['sellerProfileDetails']['user_name'];?>
+                            </div>
 
-                                    <!-- tag for  -->
-                                    <div class="buttons"><!-- editSeller_ButtonStyle  -->
-                                            <button id="button">Edit</button><!-- editSeller_Button  -->
-                                    </div>
+                            <!-- tag for  -->
+                            <div class="buttons"><!-- editSeller_ButtonStyle  -->
+                                    <button id="button">Edit</button><!-- editSeller_Button  -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -214,9 +249,15 @@
             <div class="buttons">
                 <button id="button">Save</button>
             </div>
+
+            <input type="hidden" name="">
         </div>
         
     </div>
     
-<script type="text/javascript" src="/skillsparq/public/assests/js/sellerProfile.js"></script>   
+</div>
+
+<!-- <script type="text/javascript" src="/skillsparq/public/assests/js/sellerProfile.js"></script>    -->
+<script type="text/javascript" src="/public/assests/js/editSellerProfile.js></script>
+
 <?php include "components/footer.component.php"; ?>
