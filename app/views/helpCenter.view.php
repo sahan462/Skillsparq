@@ -40,5 +40,5 @@
 
 </div>
 
-<script src="/skillsparq/public/assests/js/addGig.script.js"></script>
+<script src="/skillsparq/public/assests/js/helpCenter.script.js"></script>
 <?php include "components/footer.component.php";?>

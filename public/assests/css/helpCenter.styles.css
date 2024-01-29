@@ -100,12 +100,26 @@ body{
 }
 
 @media only screen and (max-width: 900px) {
-    .helpCenterContainer .rightContainer{ 
-        display: none;
+    .helpCenterContainer .container{
+        display: flex;
+        flex-direction: column;
+        margin-right: 0px;
+        margin-left: 0px;
     }
-
+    .helpCenterHeader{
+        padding: 0px;
+    }
     .helpCenterContainer .leftContainer{ 
         width: 100%;
     }
-
+    .helpCenterContainer .leftContainer{ 
+        width: 100%;
+    }
+    .helpCenterContainer .rightContainer{ 
+        width: 100%;
+    }
+    .helpCenterContainer .rightContainer img{ 
+        width: 100%;
+    }
+    
 }

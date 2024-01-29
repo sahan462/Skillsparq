@@ -14,12 +14,13 @@
     border: none !important;
 }
 .buyerHelpContainer .rightContainer, .sellerHelpContainer .rightContainer{
-    width: 70%;
-}
-.buyerHelpContainer .leftContainer, .sellerHelpContainer .leftContainer{
     width: 30%;
     display: flex;
     justify-content: center;
+}
+.buyerHelpContainer .leftContainer, .sellerHelpContainer .leftContainer{
+    width: 70%;
+
 }
 .buyerHelpContainer .container, .sellerHelpContainer .container{
     display: flex;
@@ -126,4 +127,40 @@
     transition : 0.3s; /*animation time*/
     background-color: #404145;
     color: #ffffff;
+}
+
+@media only screen and (max-width: 900px) {
+    .buyerHelpContainer .container, .sellerHelpContainer .container {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .helpCenterHeader{
+        padding: 0px;
+    }
+    .buyerHelpContainer .rightContainer, .sellerHelpContainer .rightContainer{
+        width: 100%;
+    }
+    .buyerHelpContainer .leftContainer, .sellerHelpContainer .leftContainer{
+        width: 100%;
+    }
+    
+}
+@media only screen and (max-width: 600px) {
+    .buyerHelpContainer .container, .sellerHelpContainer .container {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .buyerHelpHeader, .sellerHelpHeader{
+        padding: 0px;
+    }
+    .buyerHelpContainer .rightContainer img, .sellerHelpContainer .rightContainer img{
+        margin-bottom: 16px;
+    }
+    .btn4{
+        margin-right: 16px;
+        margin-bottom: 16px;
+    }
+    
 }
