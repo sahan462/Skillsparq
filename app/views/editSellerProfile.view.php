@@ -109,21 +109,21 @@
                         <!-- tag for  -->
                         <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
 
-                                    <!-- tag for  -->
-                                    <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
-                                        UserName:
-                                    </div>
+                            <!-- tag for  -->
+                            <div class="sellerUserNameEdit"><!-- editSeller_EditSellerUserName  -->
+                                UserName:
+                            </div>
 
-                                    <!-- tag for  -->
-                                    <div>
-                                        <!-- <input type="text" value="" class="sellerUserName"> -->
-                                        <?php echo "@".$data['sellerProfileDetails']['user_name'];?>
-                                    </div>
+                            <!-- tag for  -->
+                            <div>
+                                <!-- <input type="text" value="" class="sellerUserName"> -->
+                                <?php echo "@".$data['sellerProfileDetails']['user_name'];?>
+                            </div>
 
-                                    <!-- tag for  -->
-                                    <div class="buttons"><!-- editSeller_ButtonStyle  -->
-                                            <button id="button">Edit</button><!-- editSeller_Button  -->
-                                    </div>
+                            <!-- tag for  -->
+                            <div class="buttons"><!-- editSeller_ButtonStyle  -->
+                                    <button id="button">Edit</button><!-- editSeller_Button  -->
+                            </div>
                         </div>
                     </div>
                 </div>
