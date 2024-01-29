@@ -12,7 +12,7 @@
     </div>
 
     <br><br><br><br><br>
-    <div class="container">
+    <div class="sellerHelpContainer">
     <br><br>
     <p class="title">Popular  <span class="dark-title">Topics</span></p><br><br>
     <div class="btn-group">

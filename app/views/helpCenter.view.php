@@ -13,7 +13,7 @@
         Customer Assistance
     </div>
 
-    <div class="helpCenterContent">
+    <div class="container">
         <div class="leftContainer">
             <p class="title">Choose <span class="dark-title"> Which Help You Need</span></p><br><br>
             <div class="btn-group-1">
