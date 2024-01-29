@@ -6,7 +6,6 @@ body{
 }
 .addjob-container{
     display: flex;
-    height: 600px;
     margin: 32px;
     padding: 32px 16px 32px 16px;
 }
@@ -25,13 +24,7 @@ body{
     justify-content: center;
     border-left: #c5c6c9 10px solid;
 }
-.addjob-container .form form{
-    height: 600px;
-}
 .addjob-container .page {
-    height: 520px;
-    overflow-y: scroll;
-    overflow-x: hidden;
     padding-top: 8px;
     padding-bottom: 16px;
     padding-right: 16px;
@@ -137,19 +130,17 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-button {
+.addjob-container button {
     display: inline-block;
     border-radius: 4px;
-    background-color: #31dba3;
+    padding: 8px;
+    background-color: #31d65a;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 22px;
-    width: 200px;
-    height: 38px;
-    width: 114px;
-    transition: all 0.5s;
+    transition: ease-in-out 0.3s;
     cursor: pointer;
+    float: right;
 }
 button span {
     cursor: pointer;
