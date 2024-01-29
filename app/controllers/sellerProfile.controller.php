@@ -2,16 +2,6 @@
 
 class SellerProfile extends Controller
 {
-    protected $GigHandlerModel;
-    protected $ProfileHandlerModel;
-    protected $UserHandlerModel;
-    protected $SellerHandlerModel;
-    
-    protected $userId;
-    protected $sellerId;
-    protected $recentGigs;
-    protected $data;
-    protected $phoneNum;
     
     public function __construct()
     {
@@ -82,11 +72,6 @@ class SellerProfile extends Controller
     //     $retrievedSellerId = mysqli_fetch_assoc($retrievedSellerId);
     //     return $retrievedSellerId;
     // }
-
-    public function passDataArray()
-    {
-        $data['title'] = "SkillSparq";
-    }
 
 }
 

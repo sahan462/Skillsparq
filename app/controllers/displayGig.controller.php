@@ -23,7 +23,7 @@ class displayGig extends Controller
             $data['feedbacks'] = array();
             $gigId = $_GET['gigId'];
             $gig = $this->GigHandlerModel->displayGig($gigId);
-            print_r($gig);
+
             if ($gig) {
 
                 $data['gig'] = $gig;
