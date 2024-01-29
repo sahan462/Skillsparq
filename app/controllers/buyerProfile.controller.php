@@ -12,7 +12,7 @@ class BuyerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
             
             header("location: loginUser");
             exit;
