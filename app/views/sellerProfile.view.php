@@ -16,7 +16,7 @@
     $status = $data['activeStatus'];
 
 
-    $recentGigs = $data['recentGigs'];
+    $GigsOfSeller = $data['GigsOfSeller'];
 ?>
 
 <!-- Main Container for Seller -->
@@ -205,13 +205,13 @@
 
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php echo sizeof($recentGigs)?>)</span>
+                    <span>My Gigs(<?php echo sizeof($GigsOfSeller)?>)</span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
                     <?php
-                        if(!empty($recentGigs)){ 
-                            foreach($recentGigs as $recentGig){
+                        if(!empty($GigsOfSeller)){ 
+                            foreach($GigsOfSeller as $GOS){
                                 include "components/GigCard.component.php";
                     ?>
                     <?php }} ?>

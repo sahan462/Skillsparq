@@ -48,7 +48,7 @@ class SellerHandler extends database
     }
 
     public function sellerId($phoneNumber){
-        $query = "SELECT seller_id FROM seller WHERE phone_number='$phoneNumber'  LIMIT 1";
+        $query = "SELECT seller_id FROM seller WHERE phone_number = '$phoneNumber'  LIMIT 1";
         $result = mysqli_query($GLOBALS['db'], $query);
         return mysqli_fetch_assoc($result);
     }

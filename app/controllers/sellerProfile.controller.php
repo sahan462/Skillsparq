@@ -10,6 +10,7 @@ class SellerProfile extends Controller
     protected $userId;
     protected $sellerId;
     protected $recentGigs;
+    protected $GigsOfSeller;
     protected $data;
     protected $phoneNum;
     
@@ -43,19 +44,37 @@ class SellerProfile extends Controller
             $data['sellerId'] = $sellerId;
 
             //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getGig($sellerId);
+            $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
-            if ($recentGigs) {
+            $Gigs = array();
 
-                $data['recentGigs'] = $recentGigs;
-                
+
+            if ($GigsOfSeller) {
+                while ($Gig = mysqli_fetch_assoc($GigsOfSeller)) {
+                    $Gigs[] = $Gig;
+                }
             } else {
-                echo "<script>alert('getAllGigs function is not Accessible!')</script>";
+                echo "<script>alert('getGig function is not Accessible!')</script>";
             }
             
-            $data['recentGigs'] = $recentGigs;
-            $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
+            $data['gigs'] = $Gigs;
+
+
+
+            $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
+
+            // if ($GigsOfSeller) {
+
+            //     $data['GigsOfSeller'] = $GigsOfSeller;
+                
+            // } else {
+            //     echo "<script>alert('getAllGigs function is not Accessible!')</script>";
+            // }
+            
+            // $data['GigsOfSeller'] = $GigsOfSeller;
+            // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
+
             echo "<pre>";
             print_r($data);
             echo "</pre>"; 
