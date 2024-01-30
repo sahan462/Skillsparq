@@ -11,16 +11,14 @@
     $gig["sliderImage-3"] = "slide3.webp";
     $gig["sliderImage-4"] = "slide4.webp";
     $gig['price'] = 200;
-
- 
 ?>
 
 <!-- Display Gig Container -->
 <div class="displayGigContainer">
 
     <!--Modal 1  -->
-    <div class="overlay" id="overlay">
-        <div class="modal" id="packageModal">
+    <div class="overlay" id="packageOverlay">
+        <div class="modal" name="packageModal" id="modal">
             <form id="packageRequestForm">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
@@ -53,8 +51,8 @@
     </div>
 
     <!-- Modal 2 -->
-    <div class="overlay" id="cancelConfirmationOverlay">
-        <div class="confirmation" id="cancelConfirmation">
+    <div class="overlay" name="cancelConfirmationOverlay" id="cancelConfirmationOverlay">
+        <div class="confirmation" name="cancelConfirmationModal" id="cancelConfirmationModal">
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
                 <button onclick="handleConfirmation('cancelNo')">No</button>
@@ -64,8 +62,8 @@
     </div>
 
     <!-- Modal 3 -->
-    <div class="overlay" id="sendConfirmationOverlay">
-        <div class="confirmation" id="sendConfirmation">
+    <div class="overlay" name="sendConfirmationOverlay" id="sendConfirmationOverlay">
+        <div class="confirmation" name="sendConfirmationModal" id="sendConfirmationModal">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
                 <button onclick="handleConfirmation('sendNo')">No</button>
@@ -75,13 +73,13 @@
     </div>
 
     <!-- Modal 4 -->
-    <div class="overlay" id="milestoneOverlay">
-        <div class="modal" id="milestoneModal">
+    <div class="overlay" name="milestoneOverlay" id="overlay">
+        <div class="modal" name="milestoneModal" id="modal">
             
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form method="get" id="milestoneRequestForm">
+            <form method="get" id="milestoneRequestForm"> 
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
@@ -148,8 +146,8 @@
 
 
                 <div class="buttons">
-                    <button type="button" onclick="confirmAction('milestoneCancel')">Cancel Request</button>
-                    <button type="button" onclick="confirmAction('milestoneSend')">Send Request</button>
+                    <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                    <button type="button" onclick="confirmAction('send')">Send Request</button>
                 </div>
 
             </form>
@@ -266,7 +264,7 @@
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
-                                    <a href="#"><button id="package_1" onclick="openPackageModal(this)">Request to Order</button></a>
+                                    <a href="#"><button id="package_1" name="packageOrder" onclick="openModal(this)">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -302,7 +300,7 @@
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
-                                    <a href="#"><button id="package_2" onclick="openPackageModal(this)">Request to Order</button></a>                            
+                                    <a href="#"><button id="package_2" name="packageOrder" onclick="openModal(this)">Request to Order</button></a>                            
                                  </ul>
                             </div>
                         </div>
@@ -338,7 +336,7 @@
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 
-                                    <a href="#"><button id="package_3" onclick="openPackageModal(this)">Request to Order</button></a>
+                                    <a href="#"><button id="package_3" name="packageOrder" onclick="openModal(this)">Request to Order</button></a>
                                 </ul>
                             </div>
                         </div>
@@ -350,7 +348,7 @@
                     <div class="type-1">
                         Unlock success step by step with our 'Milestones' feature, offering you the flexibility to create tailored offers while ensuring transparency at every stage of your journey.
                     </div>
-                    <button onclick="openMilestoneModal()">
+                    <button name = "milestoneOrder" onclick="openModal(this)">
                         <div class="flag">
                             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
                             <dotlottie-player src="https://lottie.host/81cc4e66-ff04-446f-9d05-54324102c08a/KAnzyVEJyf.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></dotlottie-player>

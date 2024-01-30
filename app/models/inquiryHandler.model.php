@@ -24,7 +24,7 @@ class InquiryHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-        $stmt2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO helprequests 
+        $stmt2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO help_requests 
         (
             request_id
         ) 
