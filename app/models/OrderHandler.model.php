@@ -34,7 +34,7 @@ class OrderHandler extends database
         //insert data to package order table    
         if($orderType == "package"){
 
-            $stmt_2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO packageOrders 
+            $stmt_2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
             (
                 package_order_id,
                 order_description, 
