@@ -16,8 +16,8 @@
 <!-- Display Gig Container -->
 <div class="displayGigContainer">
 
-    <!--Modal 1  -->
-    <div class="overlay" id="packageOverlay">
+    <!-- Modal 1  -->
+    <div class="overlay" name="packageOverlay" id="overlay">
         <div class="modal" name="packageModal" id="modal">
             <form id="packageRequestForm">
                 <div class="row">
