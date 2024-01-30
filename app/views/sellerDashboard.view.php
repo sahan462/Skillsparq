@@ -48,7 +48,7 @@ $job["buyer_id"] = 0;
                     Online
                 </div>
                 <div class="profile-picture">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
+                    <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
                         <?php echo $firstName." ".$lastName ?>
                     </div>  

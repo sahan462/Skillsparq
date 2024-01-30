@@ -2,6 +2,10 @@
 
 class SellerProfile extends Controller
 {
+    private $GigHandlerModel;
+    private $ProfileHandlerModel;
+    private $UserHandlerModel;
+    private $SellerHandlerModel;
     
     public function __construct()
     {
@@ -24,16 +28,14 @@ class SellerProfile extends Controller
             $data["activeStatus"] =  "display: block;";
 
             $sellerId = $_SESSION["userId"];
-            $phoneNum = $_SESSION['phoneNumber'];
 
             $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
 
-            // get seller id for gigs.
-            // $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
-            // $data['sellerId'] = $sellerId;
             $data['sellerId'] = $sellerId;
+
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
+
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             $Gigs = array();
@@ -64,7 +66,7 @@ class SellerProfile extends Controller
             // $data['GigsOfSeller'] = $GigsOfSeller;
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
 
-            show($data);
+            // show($data);
         
 
             $this->view('sellerProfile', $data);

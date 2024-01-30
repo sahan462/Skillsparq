@@ -1,4 +1,5 @@
 <?php
+
 $data['profilePicture'] = "whoarewe.jpeg";
 $Country = "Sri Lanka";
 ?>

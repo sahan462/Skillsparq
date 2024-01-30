@@ -14,11 +14,7 @@
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = $data['gigs'];
-    $NoOfGigs = count($Gigs);
-
-    // $GigsOfSeller = $data['GigsOfSeller'];
-    
-    // show($data);
+    // $NoOfGigs = array_count_values($data['gigs']);
 
 ?>
 
@@ -144,7 +140,7 @@
                 <?php } ?>
 
                 <div class="profile-picture">
-                    <img src="../public/assests/images/profilePictures/<?php echo $profile["profile_pic"]?>" alt="pro-pic">
+                    <img src="../public/assests/images/profilePictures/<?php echo $data['profilePicture']?>" alt="pro-pic">
                     <div class="full-name">
                         <?php echo $firstname. " " . $lastname; ?>
                     </div>
@@ -208,7 +204,7 @@
 
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php echo sizeof($GigsOfSeller)?>)</span>
+                    <span>My Gigs(<?php //echo sizeof($GigsOfSeller)?>)</span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
