@@ -1,5 +1,5 @@
 <?php
-$data['profilePicture'] = "avishka.jpg";
+$data['profilePicture'] = "whoarewe.jpeg";
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ $data['profilePicture'] = "avishka.jpg";
 
         <div class="upperHeader">
             <div class="logo">
-                <a href="#">SKILLSPARQ</a>
+                <a href="home">SKILLSPARQ</a>
             </div>
             <div class="navbar">
                 <nav>

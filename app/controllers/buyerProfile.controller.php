@@ -3,6 +3,8 @@
 class BuyerProfile extends Controller
 { 
 
+    private $JobHandlerModel;
+    private $ProfileHandlerModel;
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
@@ -52,6 +54,9 @@ class BuyerProfile extends Controller
             }
             
             $data['jobs'] = $jobs;
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
             $this->view('buyerProfile', $data);
         }
 

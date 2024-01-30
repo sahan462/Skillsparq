@@ -24,7 +24,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) || !isset($_SESSION["password"])){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
 
             header("location: loginSeller");
 
@@ -36,12 +36,14 @@ class SellerProfile extends Controller
             $userId = $_SESSION["userId"];
             $phoneNum = $_SESSION['phoneNumber'];
 
-            // $data['sellerId']=$this->getSellerIdFromSellerTable($phoneNum);
-
             $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
 
+            // get seller id for gigs.
+            $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
+            $data['sellerId'] = $sellerId;
+
             //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getGig($userId);
+            $recentGigs = $this->GigHandlerModel->getGig($sellerId);
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             if ($recentGigs) {
@@ -49,12 +51,14 @@ class SellerProfile extends Controller
                 $data['recentGigs'] = $recentGigs;
                 
             } else {
-                echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+                echo "<script>alert('getAllGigs function is not Accessible!')</script>";
             }
             
             $data['recentGigs'] = $recentGigs;
             $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
-            print_r($data); 
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>"; 
             $this->view('sellerProfile', $data);
         } 
     }
@@ -76,16 +80,15 @@ class SellerProfile extends Controller
     }
 
     // get the Seller Id from the Seller Table using Phonenumber
-    // public function getSellerIdFromSellerTable($phoneNum)
-    // {
-    //     $retrievedSellerId = $this->SellerHandlerModel->sellerId($phoneNum);
-    //     $retrievedSellerId = mysqli_fetch_assoc($retrievedSellerId);
-    //     return $retrievedSellerId;
-    // }
+    public function getSellerIdFromSellerTable($phoneNum)
+    {
+        $retrievedSellerId = $this->SellerHandlerModel->sellerId($phoneNum);
+        return $retrievedSellerId;
+    }
 
     public function  updateSellerProfile()
     {
-        $currProfPic = $_POST['currProfPic'];
+        $currentProfilePicture = $_POST['currentProfilePicture'];
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $country = $_POST['country'];

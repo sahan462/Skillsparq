@@ -2,6 +2,7 @@
 
 class Gig extends Controller
 {
+    private $GigHandlerModel;
 
     public function __construct()
     {
