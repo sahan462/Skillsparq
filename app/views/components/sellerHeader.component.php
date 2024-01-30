@@ -1,5 +1,5 @@
 <?php
-$data['profilePicture'] = "avishka.jpg";
+$data['profilePicture'] = "whoarewe.jpeg";
 ?>
 
 <!DOCTYPE html>
@@ -9,15 +9,15 @@ $data['profilePicture'] = "avishka.jpg";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKILLSPARQ</title>
-    <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css">
-    <link rel="stylesheet" href="./assests/css/sellerDashboard.styles.css">
-    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css">
-    <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css">
+    <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/sellerDashboard.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
-    <link rel="stylesheet" href="./assests/css/addGig.styles.css">
-    <link rel="stylesheet" href="./assests/css/earnings.styles.css">
+    <link rel="stylesheet" href="./assests/css/addGig.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/earnings.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
-    <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
+    <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/help.styles.css">
@@ -33,7 +33,7 @@ $data['profilePicture'] = "avishka.jpg";
 
         <div class="upperHeader">
             <div class="logo">
-                <a href="#">SKILLSPARQ</a>
+                <a href="home">SKILLSPARQ</a>
             </div>
             <div class="navbar">
                 <nav>

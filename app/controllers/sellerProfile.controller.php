@@ -14,7 +14,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) || !isset($_SESSION["password"])){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
 
             header("location: loginSeller");
 
@@ -26,25 +26,47 @@ class SellerProfile extends Controller
             $userId = $_SESSION["userId"];
             $phoneNum = $_SESSION['phoneNumber'];
 
-            // $data['sellerId']=$this->getSellerIdFromSellerTable($phoneNum);
-
             $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
 
+            // get seller id for gigs.
+            $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
+            $data['sellerId'] = $sellerId;
+
             //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getGig($userId);
+            $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
-            if ($recentGigs) {
+            $Gigs = array();
 
-                $data['recentGigs'] = $recentGigs;
-                
+
+            if ($GigsOfSeller) {
+                while ($Gig = mysqli_fetch_assoc($GigsOfSeller)) {
+                    $Gigs[] = $Gig;
+                }
             } else {
-                echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+                echo "<script>alert('getGig function is not Accessible!')</script>";
             }
             
-            $data['recentGigs'] = $recentGigs;
-            $data['recentGigs'] =mysqli_fetch_assoc($data['recentGigs']);
-            print_r($data); 
+            $data['gigs'] = $Gigs;
+
+
+
+            $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
+
+            // if ($GigsOfSeller) {
+
+            //     $data['GigsOfSeller'] = $GigsOfSeller;
+                
+            // } else {
+            //     echo "<script>alert('getAllGigs function is not Accessible!')</script>";
+            // }
+            
+            // $data['GigsOfSeller'] = $GigsOfSeller;
+            // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
+
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>"; 
             $this->view('sellerProfile', $data);
         } 
     }
@@ -66,12 +88,88 @@ class SellerProfile extends Controller
     }
 
     // get the Seller Id from the Seller Table using Phonenumber
-    // public function getSellerIdFromSellerTable($phoneNum)
-    // {
-    //     $retrievedSellerId = $this->SellerHandlerModel->sellerId($phoneNum);
-    //     $retrievedSellerId = mysqli_fetch_assoc($retrievedSellerId);
-    //     return $retrievedSellerId;
-    // }
+    public function getSellerIdFromSellerTable($phoneNum)
+    {
+        $retrievedSellerId = $this->SellerHandlerModel->sellerId($phoneNum);
+        return $retrievedSellerId;
+    }
+
+    public function  updateSellerProfile()
+    {
+        $currentProfilePicture = $_POST['currentProfilePicture'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $country = $_POST['country'];
+        $about = $_POST['about'];
+        $userId = $_POST['userId'];
+        $userName = $_POST['userName'];
+        $language = "";
+        $skills = "";
+
+        print_r($currentProfilePicture);
+
+        $targetDir = "../public/assests/images/profilePictures/";
+        $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
+        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
+        $targetFilePath = $targetDir . $uniqueprofilePictureName; 
+        $currentFilePath = $targetDir . $currentProfilePicture;
+
+
+        // check if the current and uploading files are same
+        if($profilePictureName != "")
+        {
+
+            $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
+            
+            if($upload){
+                
+                if($currentProfilePicture != "dummyprofile.jpg"){
+                    //remove the old profile picture
+                    unlink($currentFilePath);
+                }
+
+                $_SESSION['profilePicture'] =  $uniqueprofilePictureName;
+
+            }else{
+
+                echo "
+                <script>
+                    alert('Error Uploading Profile Picture');
+                    window.location.href = '" . BASEURL . "buyerProfile';
+                </script>
+                ";
+
+            }
+
+        }else{
+            $uniqueprofilePictureName = $currentProfilePicture;
+        }
+
+        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
+        
+        if($updateProfile)
+        {
+            $_SESSION['firstName'] = $firstName;
+            $_SESSION['lastName'] = $lastName;
+
+            echo "
+            <script>
+                alert('Profile Updated Successfully');
+                window.location.href = '" . BASEURL . "buyerProfile';
+            </script>
+        ";
+
+        }else{
+
+            echo "
+            <script>
+                alert('Error Updating Profile');
+                window.location.href = '" . BASEURL . "buyerProfile';
+            </script>
+            ";
+
+        }
+    }
 
 }
 

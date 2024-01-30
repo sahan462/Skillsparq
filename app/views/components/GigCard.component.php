@@ -29,7 +29,7 @@
     <!-- Description -->
     <div class="description">
     <p>
-        <?php //echo $row['description']?>
+        <?php echo $row['description']?>
     </p>
     </div>
 

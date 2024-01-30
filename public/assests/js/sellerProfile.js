@@ -1,53 +1,114 @@
-const ul = document.querySelector("ul"),
-input = document.querySelector("input"),
-tagNumb = document.querySelector(".tagDetails span");
+//--------------------- ----------View Jobs------------------------------------------------
 
-let maxTags = 10,
-tags = ["chamal", "coding"];
+document.addEventListener("DOMContentLoaded", function () {
+    var clickableCards = document.querySelectorAll(".job-card");
+    
+    clickableCards.forEach(function (card) {
+        card.addEventListener("click", function () {
+            var url = card.getAttribute("job-url");
 
-countTags();
-createTag();
-
-function countTags(){
-    input.focus();
-    tagNumb.innerText = maxTags - tags.length;
-}
-
-function createTag(){
-    ul.querySelectorAll("li").forEach(li => li.remove());
-    tags.slice().reverse().forEach(tag =>{
-        let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
-        ul.insertAdjacentHTML("afterbegin", liTag);
-    });
-    countTags();
-}
-
-function remove(element, tag){
-    let index  = tags.indexOf(tag);
-    tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
-    element.parentElement.remove();
-    countTags();
-}
-
-function addTag(e){
-    if(e.key == "Enter"){
-        let tag = e.target.value.replace(/\s+/g, ' ');
-        if(tag.length > 1 && !tags.includes(tag)){
-            if(tags.length < 10){
-                tag.split(',').forEach(tag => {
-                    tags.push(tag);
-                    createTag();
-                });
+            if (url) {
+                window.location.href = url;
+            }else{
+                alert("Undefined url");
             }
-        }
-        e.target.value = "";
+        });
+    });
+});
+
+
+//------------------------------------Modal Behavior------------------------------------------------
+    
+// Wait for the DOM to fully load
+var preview = document.getElementById('previewImage');
+var currentProfilePicture = preview.src;
+
+var firstName = document.getElementById('firstName');
+var currentFirstName = firstName.value;
+
+var lastName = document.getElementById('lastName');
+var currentLastName = lastName.value;
+
+var country = document.getElementById('country');
+var currentCountry = country.value;
+
+var about = document.getElementById('about');
+var currentAbout = about.innerHTML;
+    
+//open update modal
+function openPackageModal(button) {
+    packageForm = button.id;
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('Modal').style.display = 'block';
+}
+
+//dynamically render profile picture
+function renderImage() {
+    var input = document.getElementById('newProfilePicture');
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
     }
 }
-input.addEventListener("keyup", addTag);
+  
+// Function to confirm the action
+function confirmAction(action) {
+    if (action === 'send') {
+    
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmation').style.display = 'block';
+    
+    } else if(action === 'cancel') {
 
-const removeBtn = document.querySelector(".tagDetails button");
-removeBtn.addEventListener("click", () =>{
-    tags.length = 0;
-    ul.querySelectorAll("li").forEach(li => li.remove());
-    countTags();
-});
+      document.getElementById('sendConfirmationOverlay').style.display = 'none';
+      document.getElementById('sendConfirmation').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmation').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) {
+    if (action === 'sendYes') {
+
+        var profileUpdateForm = document.getElementById('profileUpdateForm');
+        profileUpdateForm.submit();
+
+    }else if (action === 'sendNo'){
+
+        document.getElementById('sendConfirmation').style.display = 'none';
+        document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
+    }else if(action === 'cancelNo'){
+
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
+    }else{
+        
+        packageForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        country.value = currentCountry;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('Modal').style.display = 'none';
+        document.getElementById('warningMessage').style.display = 'none';
+
+    }
+
+}
+
