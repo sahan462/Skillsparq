@@ -51,7 +51,7 @@
     </div>
 
     <!-- Modal 2 -->
-    <div class="overlay" name="cancelConfirmationOverlay" id="cancelConfirmationOverlay">
+    <div class="overlay" name="cancelConfirmationOverlay" id="cancelConfirmationOverlay" style="z-index: 2;">
         <div class="confirmation" name="cancelConfirmationModal" id="cancelConfirmationModal">
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Modal 3 -->
-    <div class="overlay" name="sendConfirmationOverlay" id="sendConfirmationOverlay">
+    <div class="overlay" name="sendConfirmationOverlay" id="sendConfirmationOverlay" style="z-index: 2;">
         <div class="confirmation" name="sendConfirmationModal" id="sendConfirmationModal">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
