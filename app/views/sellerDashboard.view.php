@@ -116,7 +116,9 @@ $job["buyer_id"] = 0;
             <div class="searchBar">
                 <form method="get" action="Job/searchJob">
                     <input type="text" placeholder="Search for Job" name="search">
-                    <button name="submit" type="submit"><i class="fa fa-search"></i></button>
+                    <button name="submit" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </form>
             </div>
             <div class="jobs">

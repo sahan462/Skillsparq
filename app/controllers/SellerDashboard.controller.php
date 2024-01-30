@@ -26,9 +26,9 @@ class SellerDashboard extends Controller
             $data['sellerUserDetails'] = $this->getSellerUserDetails($userId);
             
 
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>";
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
             
             $this->view('SellerDashboard', $data);
         }
