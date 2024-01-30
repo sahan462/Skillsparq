@@ -76,8 +76,6 @@ class BuyerProfile extends Controller
         $language = "";
         $skills = "";
 
-        print_r($currentProfilePicture);
-
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
         $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
