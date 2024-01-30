@@ -73,8 +73,8 @@
     </div>
 
     <!-- Modal 4 -->
-    <div class="overlay" name="milestoneOverlay" id="overlay">
-        <div class="modal" name="milestoneModal" id="modal">
+    <div class="milestoneOverlay" name="milestoneOverlay" id="milestoneOverlay">
+        <div class="milestoneModal" name="milestoneModal" id="milestoneModal" style="width: 600px;">
             
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
@@ -134,7 +134,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="type-1">Milestone Description</div>
-                                <textarea name="milestone[description][]" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required=""></textarea>
+                                <textarea name="milestone[description][]" placeholder="I need.." rows="6" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
                             </div>
                         </div>
 
@@ -260,7 +260,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="get" action="manageOrders/createOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 

@@ -26,13 +26,7 @@
         </div>
     </div>
 
-    <!-- Description -->
-    <div class="description">
-    <p>
-        <?php echo $row['description']?>
-    </p>
-    </div>
-
+    <!-- title and rating -->
     <div class="gig-details">
         <div class="gigTitle">
             <?php echo $row['title'] ?>
@@ -47,6 +41,7 @@
             </div>
             <div class="numeric-rating">(4.3)</div>
         </div>
+        <!-- starting price -->
         <div class="price">
             <b><span>From 5$<span></b>
         </div>
