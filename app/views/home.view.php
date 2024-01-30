@@ -22,7 +22,7 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav-links">
-                            <li class="wordLink" id="wordLink-1"><a href="register">Become a Seller</a></li>
+                            <li class="wordLink" id="wordLink-1"><a href="registerSeller">Become a Seller</a></li>
                             <li class="wordLink" id="wordLink-2"><a href="loginUser">LogIn</a></li>
                             <li>
                                 <a href="register"><button>Join</button></a>
