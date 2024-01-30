@@ -34,15 +34,15 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
 
-            $userId = $_SESSION["userId"];
+            $sellerId = $_SESSION["userId"];
             $phoneNum = $_SESSION['phoneNumber'];
 
-            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
+            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
 
             // get seller id for gigs.
-            $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
+            // $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
+            // $data['sellerId'] = $sellerId;
             $data['sellerId'] = $sellerId;
-
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
             // not the recent gigs have to get the specific gigs which would be created by the seller.
@@ -62,7 +62,7 @@ class SellerProfile extends Controller
 
 
 
-            $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
+            // $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
 
             // if ($GigsOfSeller) {
 
@@ -75,9 +75,9 @@ class SellerProfile extends Controller
             // $data['GigsOfSeller'] = $GigsOfSeller;
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
 
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>"; 
+            show($data);
+        
+
             $this->view('sellerProfile', $data);
         } 
     }

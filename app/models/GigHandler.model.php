@@ -6,19 +6,21 @@ class GigHandler extends database
     //create new gigs
     public function addNewGig($title, $description, $category, $coverImage, $customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO gigs 
-            (
-                title, 
-                description, 
-                category, 
-                cover_image, 
-                created_at, 
-                seller_id
-            ) 
-            VALUES 
-            (
-                ?, ?, ?, ?, ?, ?
-            )");
+        $query = "INSERT INTO gigs (title,description,category,cover_image,created_at,seller_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        // $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO gigs 
+        //     (
+        //         title, 
+        //         description, 
+        //         category, 
+        //         cover_image, 
+        //         created_at, 
+        //         seller_id
+        //     ) 
+        //     VALUES 
+        //     (
+        //         ?, ?, ?, ?, ?, ?
+        //     )");
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -54,21 +56,24 @@ class GigHandler extends database
     
         $currentDateTime = date("Y-m-d H:i:s");  
     
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO packages 
-        (
-            package_type,
-            package_price,
-            no_of_delivery_days, 
-            time_period, 
-            no_of_revisions, 
-            package_description, 
-            created_at,
-            gig_id
-        ) 
-        VALUES 
-        (
-            ?, ?, ?, ?, ?, ?, ?, ?
-        )");
+        $query = "INSERT INTO packages (package_type,package_price,no_of_delivery_days,time_period,no_of_revisions,package_description,created_at,gig_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+         $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        // $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO packages 
+        // (
+        //     package_type,
+        //     package_price,
+        //     no_of_delivery_days, 
+        //     time_period, 
+        //     no_of_revisions, 
+        //     package_description, 
+        //     created_at,
+        //     gig_id
+        // ) 
+        // VALUES 
+        // (
+        //     ?, ?, ?, ?, ?, ?, ?, ?
+        // );");
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");

@@ -6,7 +6,6 @@
     $firstname = $data['sellerProfileDetails']['first_name'];
     $lastname = $data['sellerProfileDetails']['last_name'];
     $Country = $data['sellerProfileDetails']['country'];
-    $Country = "Sri Lanka";
     $DateJoined = $data['sellerProfileDetails']['joined_date'];
     $lastSeen = $data['sellerProfileDetails']['last_seen'];
     $about = $data['sellerProfileDetails']['about'];
@@ -14,9 +13,13 @@
     $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
+    $Gigs = $data['gigs'];
+    $NoOfGigs = count($Gigs);
 
+    // $GigsOfSeller = $data['GigsOfSeller'];
+    
+    // show($data);
 
-    $GigsOfSeller = $data['GigsOfSeller'];
 ?>
 
 <!-- Main Container for Seller -->
