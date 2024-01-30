@@ -54,9 +54,6 @@ class BuyerProfile extends Controller
             }
             
             $data['jobs'] = $jobs;
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>";
             $this->view('buyerProfile', $data);
         }
 
