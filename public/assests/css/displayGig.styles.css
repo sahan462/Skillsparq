@@ -36,7 +36,6 @@ body{
 
 /* modal behaviour */
 .overlay{
-    z-index: 1;
     display: none;
     position: fixed;
     top: 0;
@@ -48,6 +47,7 @@ body{
     align-items: center;
 }
 #overlay{
+    z-index: 1;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -62,7 +62,7 @@ body{
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-#modal {
+.modal {
     display: none;
     position: absolute;
     background: #fff;
@@ -70,6 +70,9 @@ body{
     border-radius: 8px;
     width: auto;
     height: auto;
+}
+#modal{
+    z-index: 1;
 }
 .confirmation{
     display: none;

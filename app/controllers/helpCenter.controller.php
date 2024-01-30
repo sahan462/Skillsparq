@@ -28,37 +28,27 @@ class HelpCenter extends Controller
 
         $targetDir = "../public/assests/zipFiles/inquiryFiles/";
         $inquiryAttachementName = basename($_FILES["inquiryAttachment"]["name"]); 
-        $uniqueInquiryAttachementName = uniqid($inquiryAttachementName, true) . '_' . time() . '_' . $userName . '_' . $inquiryType . '.zip';
-        $targetFilePath = $targetDir . $uniqueInquiryAttachementName ;
-
         $currentDateTime = date('Y-m-d H:i:s');
 
-
-        $upload = move_uploaded_file($_FILES["inquiryAttachment"]["tmp_name"], $targetFilePath);
-        if($upload){
-
-            $inquiry = $this->inquiryHandlerModel->createInquiry($requestSubject, $requestDescription, $uniqueInquiryAttachementName, $currentDateTime,$userId, $inquiryType);
-            if($inquiry){
-
-                echo "
-                <script>
-                    alert('Help Request is Sent Successfully');
-                    window.location.href = '" . BASEURL . 'helpCenter' . "';
-                </script>";
-            }
-
+        if($inquiryAttachementName != ""){
+            $uniqueInquiryAttachementName = uniqid($inquiryAttachementName, true) . '_' . time() . '_' . $userName . '_' . $inquiryType . '.zip';
+            $targetFilePath = $targetDir . $uniqueInquiryAttachementName ;
+            move_uploaded_file($_FILES["inquiryAttachment"]["tmp_name"], $targetFilePath);
         }else{
+            $uniqueInquiryAttachementName = "";
+        }
+
+        $inquiry = $this->inquiryHandlerModel->createInquiry($requestSubject, $requestDescription, $uniqueInquiryAttachementName, $currentDateTime,$userId, $inquiryType);
+        if($inquiry){
 
             echo "
             <script>
-                alert('Error Uploading Profile Picture');
+                alert('Help Request is Sent Successfully');
                 window.location.href = '" . BASEURL . 'helpCenter' . "';
             </script>";
-
         }
+
     }
-
-
 
 }
 
