@@ -271,6 +271,9 @@ body{
     justify-content: space-between;
     gap: 16px;
 }
+#milestoneModal .col{
+    width: 100%;
+}
 #inputContainer{
     min-height: 150px;
     border-radius: 8px;

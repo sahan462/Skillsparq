@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- Template for a milestone-->
-                <template id="collapsibleTemplate">
+                <div id="collapsibleTemplate">
                     <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
 
                     <div class="collapsibleContent">
@@ -134,15 +134,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="type-1">Milestone Description</div>
-                                <textarea name="milestone[description][]" placeholder="I need.." rows="6" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
+                                <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
                             </div>
                         </div>
 
                         <button type="button" class="removeButton" onclick="removeCollapsible(this)">Remove Milestone</button>
 
                     </div>
-
-                </template>
+                </div>
 
 
                 <div class="buttons">

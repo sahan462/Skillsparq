@@ -112,7 +112,7 @@ function handleConfirmation(action) {
   
     }else{
 
-      
+
 
 
     }
@@ -183,10 +183,10 @@ if (count === 0) {
 }
 
 function addCollapsible() {
-  const template = document.getElementById("collapsibleTemplate");
+  const frame = document.getElementById("collapsibleTemplate");
   const name = document.getElementById("collapsible");
 
-  const clone = document.importNode(template.content, true);
+  const clone = frame.cloneNode(true);;
 
   const button = clone.querySelector(".collapsible");
   count++;
@@ -199,22 +199,22 @@ function addCollapsible() {
   document.getElementById("inputContainer").appendChild(clone);
 }
 
+//remove milestones
 function removeCollapsible(button) {
-  const container = button.closest('collapsibleTemplate');
+  var container = button.parentElement.parentElement;
 
-  console.log('Container:', container);
   console.log('Button:', button);
+  alert('Container:', container);
 
   if (container) {
-    container.remove();
-    count--;
-
-    updateMilestoneNumbering();
+      container.remove();
+      updateMilestoneNumbering();
   } else {
-    console.error('Container not found.');
+      console.error('Container not found.');
   }
 }
 
+//update numbering of the milestones
 function updateMilestoneNumbering() {
   const milestones = document.querySelectorAll('.collapsibleSet .collapsible');
   milestones.forEach((milestone, index) => {
