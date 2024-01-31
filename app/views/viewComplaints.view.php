@@ -6,11 +6,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assests/css/Notifications.styles.css" />
-    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="../public/assests/css/Complaints.styles.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>Admin Dashboard Panel</title>
+    <style>
+        /* Hide the text box initially */
+        #replyBox {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,18 +25,18 @@
                 <img src="images/logo.png" alt="">
             </div>
 
-            <span class="logo_name">CodingLab</span>
+            <span class="logo_name">Skillsparq</span>
         </div>
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="helpDeskCenter">
                         <i class="uil uil-estate"></i>
                         <span class="link-name">Dahsboard</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="complaints">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Content</span>
+                        <span class="link-name">Complaints</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-chart"></i>
@@ -83,50 +88,75 @@
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
 
-                </div>
+        <?php
+        // Establish a database connection
+        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-            </div>
+        // Retrieve the inquiry_id from the query parameters
+        $inquiry_id = isset($_GET['inquiry_id']) ? $_GET['inquiry_id'] : null;
 
-            <p class="heading">Complaints</p>
+        // Fetch the full row for the given inquiry_id
+        $sql = "SELECT * FROM inquiries WHERE inquiry_id = " . $inquiry_id;
+        $result = $conn->query($sql);
 
-            <table class="content-table">
-                <tr>
-                    <th>name
-                    <th>
-                    <th>username
-                    <th>
-                    <th>email
-                    <th>
-                    <th>shipping_address
-                    <th>
-                    <th>phone
-                    <th>
-                    <th>payment
-                    <th>
-                        <?php
-                        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-                        if ($conn->connect_error) {
-                            die("connection failed:" . $conn->connect_error);
-                        }
-                        $sql = "SELECT inquiry_id,subject,description,attachements,response,inquiry_status from inquiries";
-                        $result = $conn->query($sql);
+        // Check if the query was successful
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr><td>" . $row["inquiry_id"] . "<td><td>" . $row["subject"] . "<td><td>" . $row["description"] . "<td><td>" . $row["attachements"] . "<td><td>" . $row["response"] . "<td><td>" . $row["inquiry_status"] . "<td></tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "No Buyers included";
-                        }
-                        $conn->close();
+            // Display the full row data
+            echo "<table>";
+            echo "<tr><td>Inquiry ID:</td><td>" . $row["inquiry_id"] . "</td></tr>";
+            echo "<tr><td>Subject:</td><td>" . $row["subject"] . "</td></tr>";
+            echo "<tr><td>Description:</td><td>" . $row["description"] . "</td></tr>";
+            echo "<tr><td>Attachments:</td><td>" . $row["attachements"] . "</td></tr>";
+            echo "<tr><td>Response:</td><td>" . $row["response"] . "</td></tr>";
+            echo "<tr><td>Inquiry Status:</td><td>" . $row["inquiry_status"] . "</td></tr>";
+            echo "<tr><td>Created at:</td><td>" . $row["created_at"] . "</td></tr>";
+            echo "<tr><td>Inquiry Originator ID:</td><td>" . $row["inquiry_originator_id"] . "</td></tr>";
+            echo "<tr><td>Customer Support Assistant ID:</td><td>" . $row["customer_support_assistant_id"] . "</td></tr>";
+            echo "<tr><td>Inquiry Type:</td><td>" . $row["inquiry_type"] . "</td></tr>";
+            echo "</table>";
+        } else {
+            echo "No data found";
+        }
 
-                        ?>
+        // Close the database connection
+        $conn->close();
+        ?>
+
+        <!-- Button to toggle the reply text box -->
+        <button onclick="toggleReplyBox()">Reply</button>
+
+        <!-- Text box for reply -->
+        <div id="replyBox">
+            <textarea rows="4" cols="50" placeholder="Type your reply here..."></textarea>
+            <button onclick="submitReply()">Submit</button>
+        </div>
+
+
+        <script>
+            // Function to toggle the visibility of the reply text box
+            function toggleReplyBox() {
+                var replyBox = document.getElementById('replyBox');
+                replyBox.style.display = (replyBox.style.display === 'none') ? 'block' : 'none';
+            }
+
+            // Function to handle reply submission (you can customize this as needed)
+            function submitReply() {
+                var replyText = document.querySelector('#replyBox textarea').value;
+                alert('Reply submitted: ' + replyText);
+                // Add logic for handling the reply submission here
+                toggleReplyBox(); // Optionally hide the reply box after submission
+            }
+        </script>
+
+
+
+
         </div>
     </section>
 

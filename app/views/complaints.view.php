@@ -13,26 +13,6 @@
     <title>Admin Dashboard Panel</title>
 </head>
 
-<?php
-$conn = mysqli_connect("localhost", "root", "", "skillsparq");
-if ($conn->connect_error) {
-    die("connection failed:" . $conn->connect_error);
-}
-$sql = "SELECT user_id from user";
-$result = $conn->query($sql);
-$count = 0;
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $count++;
-    }
-    echo "</table>";
-} else {
-    echo "No Buyers included";
-}
-$conn->close();
-
-?>
-
 <body>
     <nav>
         <div class="logo-name">
@@ -47,7 +27,7 @@ $conn->close();
             <ul class="nav-links">
                 <li><a href="helpDeskCenter">
                         <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
+                        <span class="link-name">Dahsboard</span>
                     </a></li>
                 <li><a href="complaints">
                         <i class="uil uil-files-landscapes"></i>
@@ -103,79 +83,55 @@ $conn->close();
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
+
+
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
+                    <span class="text">Complaints</span>
                 </div>
 
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Users</span>
-                        <span class="number"><?php echo $count ?></span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Comments</span>
-                        <span class="number">20,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Share</span>
-                        <span class="number">10,120</span>
-                    </div>
-                </div>
             </div>
 
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent Users</span>
-                </div>
+            <p class="heading">Complaints</p>
 
-                <table class="content-table">
-                    <tr>
-                        <th>user_id
-                        <th>
-                        <th>user_email
-                        <th>
-                        <th>role
-                        <th>
-                        <th>View
-                        <th>
-                        <th>delete
-                        <th>
+            <table class="content-table">
+                <tr>
+                    <th>inquiry_ID
+                    <th>
+                    <th>Subject
+                    <th>
+                    <th>description
+                    <th>
+                    <th>View
+                    <th>
 
+                        <?php
+                        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
+                        if ($conn->connect_error) {
+                            die("connection failed:" . $conn->connect_error);
+                        }
+                        $sql = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";
+                        $result = $conn->query($sql);
 
-                            <?php
-                            $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-                            if ($conn->connect_error) {
-                                die("connection failed:" . $conn->connect_error);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $inq_id = $row['inquiry_id'];
+                                echo "<tr><td>" . $row["inquiry_id"] . "</td><td>" . $row["subject"] . "</td><td>" . $row["description"] . "</td><td><a href='viewComplaints?inquiry_id=" . $inq_id . "'><button>View</button></a></td></tr>";
                             }
-                            $sql = "SELECT user_id,user_email,role from user";
-                            $result = $conn->query($sql);
+                            echo "</table>";
+                        } else {
+                            echo "No Buyers included";
+                        }
+                        $conn->close();
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["user_id"] . "<td><td>" . $row["user_email"] . "<td><td>" . $row["role"] . "<td>" . "</td><td><button>View</button></td></td>"  . "<td>" . "</td><td><button>Delete</button></td></tr>";
-                                }
-                                echo "</table>";
-                            } else {
-                                echo "No Buyers included";
-                            }
-                            $conn->close();
-
-                            ?>
-
-
-            </div>
-        </div>
+                        ?>
         </div>
     </section>
 
     <script src="../public/assests/js/helpDeskCenter.js"></script>
-    < /body>
+    </script>
+</body>
 
-        < /html>
+</html>
