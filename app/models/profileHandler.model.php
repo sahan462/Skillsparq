@@ -122,24 +122,24 @@ class ProfileHandler extends database
         }
     }
 
-    public function updateQueryPrepStmtExec($query,$string,$fields,$userId)
-    {
-        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+    // public function updateQueryPrepStmtExec($query,$string,$fields,$userId)
+    // {
+    //     $stmt = mysqli_prepare($GLOBALS['db'],$query);
 
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
-        }
+    //     if ($stmt === false) {
+    //         throw new Exception("Failed to create prepared statement.");
+    //     }
                 
-        mysqli_stmt_bind_param($stmt, $parameterString,$param1, $userId);
+    //     mysqli_stmt_bind_param($stmt, $parameterString,$param1, $userId);
                 
-        if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_close($stmt);
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         mysqli_stmt_close($stmt);
             
-            return true; 
-        } else {
-            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
-        }
-    } 
+    //         return true; 
+    //     } else {
+    //         throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+    //     }
+    // } 
 
 
 

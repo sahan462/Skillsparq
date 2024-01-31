@@ -18,7 +18,6 @@ class ManageOrders extends Controller
 
     public function createOrder(){
         
-        print_r($_GET);
         $orderStatus = "request";
         $orderType = $_GET['orderType'];
 
@@ -40,12 +39,12 @@ class ManageOrders extends Controller
         }
 
 
-    //     echo "
-    //     <script>
-    //         alert('Order created successfully');
-    //         window.location.href = '" . BASEURL . "manageOrders';
-    //     </script>
-    // ";
+        echo "
+        <script>
+            alert('Order created successfully');
+            window.location.href = '" . BASEURL . "manageOrders';
+        </script>
+    ";
     }
 
     

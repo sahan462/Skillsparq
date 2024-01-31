@@ -2,15 +2,18 @@
 
 <?php
 
-$data["fullName"] = $_SESSION['firstName']." ".$_SESSION['lastName'];
-$data["activeStatus"] = "display: none";
-$data['ongoingOrders'] = 0;
-$data["earningsThisMonth"] = "$0";
-$data["completedOrders"] = 0;
-$data["lastDelivery"] = "July 2023";
-$data["expertise"] = "Tec";
-$data["userName"] = $_SESSION['userName'];
-$data["profilePicture"] = "dummyprofile.jpg";
+    $firstName = $data['sellerProfileDetails']['first_name'];
+    $lastName = $data['sellerProfileDetails']['last_name'];
+    $profilePicture = $data['sellerProfileDetails']['profile_pic'];
+    
+    $data["activeStatus"] = "display: none";
+    $data['ongoingOrders'] = 0;
+    $data["earningsThisMonth"] = "$0";
+    $data["completedOrders"] = 0;
+    $data["lastDelivery"] = "July 2023";
+    $data["expertise"] = "Tech";
+    $data["userName"] = $_SESSION['userName'];
+    // $data["profilePicture"] = "dummyprofile.jpg";
 
 $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
 $job['job_id'] = "125";
@@ -34,7 +37,7 @@ $job["buyer_id"] = 0;
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $data['fullName'] ?>
+        Howdy, <?php echo $firstName." ".$lastName?>
     </div>
 
     <div class="dashboard-container">
@@ -47,10 +50,10 @@ $job["buyer_id"] = 0;
                 <div class="profile-picture">
                     <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
-                        <?php echo $data["fullName"] ?>
-                    </div>
+                        <?php echo $firstName." ".$lastName ?>
+                    </div>  
                     <div class="user-name">
-                        <?php echo $data["userName"] ?>
+                        <?php echo $data["sellerProfileDetails"]['user_name'] ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -113,7 +116,9 @@ $job["buyer_id"] = 0;
             <div class="searchBar">
                 <form method="get" action="Job/searchJob">
                     <input type="text" placeholder="Search for Job" name="search">
-                    <button name="submit" type="submit"><i class="fa fa-search"></i></button>
+                    <button name="submit" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </form>
             </div>
             <div class="jobs">

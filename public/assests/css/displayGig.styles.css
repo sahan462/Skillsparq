@@ -36,7 +36,6 @@ body{
 
 /* modal behaviour */
 .overlay{
-    z-index: 1;
     display: none;
     position: fixed;
     top: 0;
@@ -46,9 +45,9 @@ body{
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-
 }
-#overlay, #milestoneOverlay{
+#overlay{
+    z-index: 1;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -57,13 +56,13 @@ body{
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
-  }
+}
   
   @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-#packageModal {
+.modal {
     display: none;
     position: absolute;
     background: #fff;
@@ -72,16 +71,53 @@ body{
     width: auto;
     height: auto;
 }
-#milestoneModal{
+
+.milestoneOverlay {
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: end;
+    align-items: center;
+}
+#milestoneOverlay {
+    z-index: 1;
+    -webkit-animation-name: animateright;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animateright;
+    animation-duration: 0.4s;
+}
+@-webkit-keyframes animateright {
+    from {right:-300px; opacity:0} 
+    to {right:0; opacity:1}
+}
+  
+@keyframes animateright {
+    from {right:-300px; opacity:0}
+    to {right:0; opacity:1}
+}
+
+.milestoneModal {
+    display: none;
     position: absolute;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 50%;
-    height: 600px;
+    width: auto;
+    height: 100%;
+    -webkit-animation-name: animateright;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animateright;
+    animation-duration: 0.4s
+}
+
+
+
+#modal{
+    z-index: 1;
 }
 .confirmation{
     display: none;
@@ -101,16 +137,16 @@ body{
 }
 
 /* modal content */
-.modal form {
+.milestoneModal form,.modal form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.modal input, textarea{
+.milestoneModal, .modal input, textarea{
     margin-bottom: 16px;
     border-radius: 8px;
 }
-.modal .type-1{
+.milestoneModal .type-1, .modal .type-1{
     font-weight: 600;
     font-size: 16px;
     color: #404145;
@@ -124,13 +160,13 @@ body{
     display: flex;
     flex-direction: column !important;
 }
-.modal .buttons, .confirmation .buttons{
+.milestoneModal .buttons, .modal .buttons, .confirmation .buttons{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
 }
-.modal .buttons button, .confirmation button{
+.milestoneModal .buttons button,.modal .buttons button, .confirmation button{
     width: 50%;
     padding: 8px;
     margin-top: 16px;
@@ -233,6 +269,10 @@ body{
     display: flex;
     flex-direction: row !important;
     justify-content: space-between;
+    gap: 16px;
+}
+#milestoneModal .col{
+    width: 100%;
 }
 #inputContainer{
     min-height: 150px;
@@ -241,8 +281,8 @@ body{
 textarea {
     padding: 0;
     font-size: 16px;
-    margin-bottom: 0 !important;
-    border-radius: 0 !important;
+    /* margin-bottom: 0 !important;
+    border-radius: 0 !important; */
     height: auto !important;
     width: 100%;
     -webkit-box-pack: justify;

@@ -333,7 +333,7 @@ input[type = "text"], textarea, select{
 }
 .buyerProfileContainer .sub-container .user-contribution .user-content .header span:hover{
     text-decoration: underline;
-    border-bottom: 4px solid #1dbf73;
+    border-bottom: 4px solid #31d65a;
     padding-bottom: 2px;
     text-decoration: none;
 }
@@ -349,7 +349,7 @@ input[type = "text"], textarea, select{
 .buyerProfileContainer .sub-container .user-contribution .user-content .header button:hover{
     color: #fff;
     border: 2px solid #fff;
-    background: #1dbf73;
+    background: #31d65a;
 }
 
 /*user-content-content*/

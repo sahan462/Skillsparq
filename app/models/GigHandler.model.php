@@ -138,6 +138,25 @@ class GigHandler extends database
         }
     }
 
+    // public function getAllJobs($userId)
+    // {
+    //     $query = "SELECT * FROM Jobs WHERE buyer_id = ? ";
+        
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, "i", $userId);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
+
     //display a specific gig
     public function displayGig($gigId)
     {
@@ -158,6 +177,26 @@ class GigHandler extends database
             $packageDetails = $this->getPackages($gigId);
 
             return $gigDetails + $packageDetails;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get Gig Id based on seller id
+    public function getGigId($sellerId)
+    {
+        $query = "SELECT gig_id FROM gigs WHERE seller_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -196,7 +235,7 @@ class GigHandler extends database
     
     
     //update gigs
-    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_30)
+    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Gigs 
             SET 

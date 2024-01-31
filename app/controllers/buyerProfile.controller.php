@@ -3,6 +3,8 @@
 class BuyerProfile extends Controller
 { 
 
+    private $JobHandlerModel;
+    private $ProfileHandlerModel;
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
@@ -12,7 +14,7 @@ class BuyerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
             
             header("location: loginUser");
             exit;
@@ -70,8 +72,6 @@ class BuyerProfile extends Controller
         $userName = $_POST['userName'];
         $language = "";
         $skills = "";
-
-        print_r($currentProfilePicture);
 
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 

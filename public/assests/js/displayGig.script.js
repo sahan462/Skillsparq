@@ -1,284 +1,278 @@
-//--------------------------------image slider--------------------------------
+// Image Slider
 
-var slide_index = 1;
-displaySlides(slide_index);
-            
+var slideIndex = 1;
+displaySlides(slideIndex);
+
 function nextSlide(n) {
-  displaySlides(slide_index += n);
+  displaySlides((slideIndex += n));
 }
-            
+
 function currentSlide(n) {
-  displaySlides(slide_index = n);
+  displaySlides((slideIndex = n));
 }
-            
+
 function displaySlides(n) {
   var i;
   var slides = document.getElementsByClassName("showSlide");
-  if (n > slides.length) { slide_index = 1 }
-  if (n < 1) { slide_index = slides.length }
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  slides[slide_index - 1].style.display = "initial";
+  slides[slideIndex - 1].style.display = "initial";
 }
 
-setInterval(function() {
+setInterval(function () {
   nextSlide(1);
 }, 5000);
 
-//-------------- package tabs -----------------------------------
+// Package Tabs
 
 function openCity(evt, cityName) {
-  // Declare all variables
   var i, tabcontent, tablinks;
 
-  // Get all elements with class="tabcontent" and hide them
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
 
-  // Get all elements with class="tablinks" and remove the class "active"
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
-  // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
 document.getElementById("defaultOpen").click();
 
+// Modals
+
+var packageForm = "";
+var orderType = "";
+var packageOverlay = document.getElementsByName("packageOverlay")[0];
+var packageModal = document.getElementsByName("packageModal")[0];
+var milestoneOverlay = document.getElementsByName("milestoneOverlay")[0];
+var milestoneModal = document.getElementsByName("milestoneModal")[0];
+
+var animation = document.getElementById("animation");
+const inputContainer = document.getElementById("inputContainer");
+
+let count = 0;//count variable to keep track of the number of milestones
 
 
-//---------------------------------------- Modals---------------------------------------
-
-//declare variable to keep track of the clicked button
-var button = "";
-
-// Function to open the modal
-function openPackageModal(button) {
+function openModal(button) {
   packageForm = button.id;
-  document.getElementById('overlay').style.display = 'flex';
-  document.getElementById('packageModal').style.display = 'block';
+  var orderType = button.name;
+
+  if (orderType === "packageOrder") {
+    packageOverlay.style.display = "flex";
+    packageModal.style.display = "block";
+  } else {
+    milestoneOverlay.style.display = "flex";
+    milestoneModal.style.display = "block";
+  }
 }
 
-// Function to confirm the action
 function confirmAction(action) {
-    if (action === 'send') {
-    
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
-    
-    } else if(action === 'cancel') {
+  var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
+  var sendConfirmationModal = document.getElementById("sendConfirmationModal");
+  var cancelConfirmationOverlay = document.getElementById("cancelConfirmationOverlay");
+  var cancelConfirmationModal = document.getElementById("cancelConfirmationModal");
 
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
-    
-    } else if(action === 'milestoneSend'){
-
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
-
-    }else{
-
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
-
-    }
+  if (action === "send") {
+    sendConfirmationOverlay.style.display = "flex";
+    sendConfirmationModal.style.display = "block";
+  } else if (action === "cancel") {
+    cancelConfirmationOverlay.style.display = "flex";
+    cancelConfirmationModal.style.display = "block";
+  }
 }
 
-// Function to handle actions based on user confirmation
 function handleConfirmation(action) {
-  if (action === 'sendYes') {
+  var sendConfirmationModal = document.getElementById("sendConfirmationModal");
+  var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
+  var cancelConfirmationModal = document.getElementById("cancelConfirmationModal");
+  var cancelConfirmationOverlay = document.getElementById("cancelConfirmationOverlay");
+
+  if (action === "sendYes") {
+
+    if(orderType === "packageOrder"){
 
       var form1 = document.getElementById(packageForm);
-      var formData2 = new FormData(document.getElementById('packageRequestForm'));
-      
-      // Append data from form2 to form1
+      var formData2 = new FormData(document.getElementById("packageRequestForm"));
+  
       formData2.forEach((value, key) => {
-        var input = document.createElement('input');
-        input.type = 'hidden';
+        var input = document.createElement("input");
+        input.type = "hidden";
         input.name = key;
         input.value = value;
         form1.appendChild(input);
       });
-
       form1.submit();
+  
+    }else{
 
-  }else if (action === 'sendNo'){
 
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
 
-  }else if(action === 'cancelNo'){
 
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    }
 
-  }else{
+  } else if (action === "sendNo") {
 
-    packageForm = "";
+    sendConfirmationModal.style.display = "none";
+    sendConfirmationOverlay.style.display = "none";
 
-    var fileNameSpan = document.getElementById('fileName');
+  } else if (action === "cancelNo") {
 
-    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-    document.getElementById('cancelConfirmation').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('packageModal').style.display = 'none';
-    document.getElementById('warningMessage').style.display = 'none';
+    cancelConfirmationModal.style.display = "none";
+    cancelConfirmationOverlay.style.display = "none";
 
-    fileNameSpan.textContent = '';
+  } else {
+
+    if(orderType === "packageOrder"){
+      
+      packageForm = "";
+      var fileNameSpan = document.getElementById("fileName");
+      document.getElementById("warningMessage").style.display = "none";
+      fileNameSpan.textContent = "";  
+      packageOverlay.style.display = "none";
+      packageModal.style.display = "none";
+
+    }else{
+
+      milestoneOverlay.style.display = "none";
+      milestoneModal.style.display = "none";
+
+      count = 0;
+      //cloning animation div element, clearing input container an appending animation element again
+      var animationClone = inputContainer.querySelector('#animation').cloneNode(true);
+      inputContainer.innerHTML = "";
+      inputContainer.appendChild(animationClone);
+
+      animation = animationClone; //new animation container is the clone of the animation container
+
+      animation.style.width = '100%';
+      animation.style.height = '100%';
+      animation.innerHTML = `
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+      <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+    `;
+
+
+    }
+
+
+    orderType = "";
+    cancelConfirmationModal.style.display = "none";
+    cancelConfirmationOverlay.style.display = "none";
+    
   }
-
 }
 
-// -------------------file attachements --------------------------------
-
+// File Attachments
 
 function displayFileName(input) {
-  var fileNameSpan = document.getElementById('fileName');
+  var fileNameSpan = document.getElementById("fileName");
   var files = input.files;
 
   if (files.length > 0) {
     var file = input.files[0];
-  
+
     if (file) {
-        var allowedExtensions = ['zip'];
-        var fileExtension = file.name.split('.').pop().toLowerCase();
-  
-        if (allowedExtensions.indexOf(fileExtension) !== -1) {
+      var allowedExtensions = ["zip"];
+      var fileExtension = file.name.split(".").pop().toLowerCase();
 
-            fileNameSpan.textContent = files[0].name;
-            document.getElementById('warningMessage').style.display = 'none';
-
-        } else {
-
-            document.getElementById('warningMessage').style.display = 'block';  
-            input.value = '';
-
-        }
+      if (allowedExtensions.indexOf(fileExtension) !== -1) {
+        fileNameSpan.textContent = files[0].name;
+        document.getElementById("warningMessage").style.display = "none";
+      } else {
+        document.getElementById("warningMessage").style.display = "block";
+        input.value = "";
+      }
     }
   } else {
-    fileNameSpan.textContent = '';
+    fileNameSpan.textContent = "";
   }
 }
 
-//----------------------------------------dynamic input methods -----------------------------------
-
-// Counter to keep track of added input fields
-let inputCounter = 1;
-let count = 0;
-const animation = document.getElementById('animation');
-
-if (count == 0) {
-  animation.innerHTML = `
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-    <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
-  `;
-} else {
-  animation.innerHTML = '';
-  animation.style.width = '0px';
-  animation.style.height = '0px';
-}
-
-function openMilestoneModal() {
-  document.getElementById('milestoneOverlay').style.display = 'flex';
-  document.getElementById('milestoneModal').style.display = 'flex';
-}
+// Dynamic Input Methods
+animation.innerHTML = `
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+<dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+`;
 
 function addCollapsible() {
 
-  // Get the template content
-  const template = document.getElementById('collapsibleTemplate');
-  const name = document.getElementById('collapsible');
-
-  // Clone the template content
-  const clone = document.importNode(template.content, true);
-
-  // Update the milestone name using innerHTML
-  const button = clone.querySelector('.collapsible');
   count++;
+  if(count === 1){
+    
+    animation.innerHTML = '';
+    animation.style.width = '0px';
+    animation.style.height = '0px';
+
+    inputContainer.style.display = 'block';
+    inputContainer.style.width = '100%';
+    inputContainer.style.height = '100%';
+
+  }
+
+  const frame = document.getElementById("collapsibleTemplate");
+  const name = document.getElementById("collapsible");
+
+  const clone = frame.cloneNode(true);
+  clone.style.display = 'block';
+
+  const button = clone.querySelector(".collapsible");
   button.innerHTML = "MileStone " + count;
 
-    // Remove animation
-    if(count != 0){
-      animation.innerHTML = '';
-    }
-
-  // Append the cloned content to the inputContainer
-  document.getElementById('inputContainer').appendChild(clone);
-
+  document.getElementById("inputContainer").appendChild(clone);
 }
 
+//remove milestones
 function removeCollapsible(button) {
-  // Find the parent container
-  const container = button.closest('collapsibleTemplate');
+  var container = button.parentElement.parentElement;
 
-  // Log the container and button for debugging
-  console.log('Container:', container);
-  console.log('Button:', button);
-
-  // Remove the container if found
   if (container) {
       container.remove();
-      milestoneCount--;
-
-      // Update the numbering of remaining milestones
       updateMilestoneNumbering();
   } else {
       console.error('Container not found.');
   }
 }
 
+//update numbering of the milestones
 function updateMilestoneNumbering() {
-  const milestones = document.querySelectorAll('.collapsibleSet .collapsible');
-  milestones.forEach((milestone, index) => {
+  count--;
+
+  if (count === 0) {
+    animation.style.width = '100%';
+    animation.style.height = '100%';
+    animation.innerHTML = `
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+      <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+    `;
+  } else {
+    const milestones = document.querySelectorAll('#inputContainer .collapsible');
+    milestones.forEach((milestone, index) => {
       milestone.innerHTML = "MileStone " + (index + 1);
-  });
+    });
+  }
 }
 
-// -------------------------collapsible-----------------------------
 
-function expand(button){
-
-    button.classList.toggle("collapsibleActive");
-    var content = button.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  
-}
-
-// -------------------------form submission-----------------------------
-
-function submitForms() {
-  // Combine data from both forms
-  var formData1 = new FormData(document.getElementById('form1'));
-  var formData2 = new FormData(document.getElementById('form2'));
-
-  // Append data from form2 to form1
-  formData2.forEach((value, key) => {
-      formData1.append(key, value);
-  });
-
-  // Send an AJAX request
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/your-url', true);
-  xhr.send(formData1);
-
-  // Close modals or perform other actions as needed
-  closeConfirmationModal();
-  document.getElementById('secondForm').style.display = 'none';
+// Collapsible
+function expand(button) {
+  button.classList.toggle("collapsibleActive");
+  var content = button.nextElementSibling;
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
 }
