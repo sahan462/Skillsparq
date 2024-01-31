@@ -60,6 +60,12 @@ var packageModal = document.getElementsByName("packageModal")[0];
 var milestoneOverlay = document.getElementsByName("milestoneOverlay")[0];
 var milestoneModal = document.getElementsByName("milestoneModal")[0];
 
+var animation = document.getElementById("animation");
+const inputContainer = document.getElementById("inputContainer");
+
+let count = 0;//count variable to keep track of the number of milestones
+
+
 function openModal(button) {
   packageForm = button.id;
   var orderType = button.name;
@@ -112,31 +118,60 @@ function handleConfirmation(action) {
   
     }else{
 
-      
+
 
 
     }
 
   } else if (action === "sendNo") {
+
     sendConfirmationModal.style.display = "none";
     sendConfirmationOverlay.style.display = "none";
+
   } else if (action === "cancelNo") {
+
     cancelConfirmationModal.style.display = "none";
     cancelConfirmationOverlay.style.display = "none";
+
   } else {
-    packageForm = "";
+
+    if(orderType === "packageOrder"){
+      
+      packageForm = "";
+      var fileNameSpan = document.getElementById("fileName");
+      document.getElementById("warningMessage").style.display = "none";
+      fileNameSpan.textContent = "";  
+      packageOverlay.style.display = "none";
+      packageModal.style.display = "none";
+
+    }else{
+
+      milestoneOverlay.style.display = "none";
+      milestoneModal.style.display = "none";
+
+      count = 0;
+      //cloning animation div element, clearing input container an appending animation element again
+      var animationClone = inputContainer.querySelector('#animation').cloneNode(true);
+      inputContainer.innerHTML = "";
+      inputContainer.appendChild(animationClone);
+
+      animation = animationClone; //new animation container is the clone of the animation container
+
+      animation.style.width = '100%';
+      animation.style.height = '100%';
+      animation.innerHTML = `
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+      <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+    `;
+
+
+    }
+
+
     orderType = "";
-    var fileNameSpan = document.getElementById("fileName");
-    fileNameSpan.textContent = "";
-
-    cancelConfirmationOverlay.style.display = "none";
     cancelConfirmationModal.style.display = "none";
-    document.getElementById("warningMessage").style.display = "none";
-    packageOverlay.style.display = "none";
-    packageModal.style.display = "none";
-    milestoneOverlay.style.display = "none";
-    milestoneModal.style.display = "none";
-
+    cancelConfirmationOverlay.style.display = "none";
+    
   }
 }
 
@@ -167,63 +202,71 @@ function displayFileName(input) {
 }
 
 // Dynamic Input Methods
-
-let count = 0;
-const animation = document.getElementById("animation");
-
-if (count === 0) {
-  animation.innerHTML = `
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-    <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
-  `;
-} else {
-  animation.innerHTML = '';
-  animation.style.width = '0px';
-  animation.style.height = '0px';
-}
+animation.innerHTML = `
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+<dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+`;
 
 function addCollapsible() {
-  const template = document.getElementById("collapsibleTemplate");
+
+  count++;
+  if(count === 1){
+    
+    animation.innerHTML = '';
+    animation.style.width = '0px';
+    animation.style.height = '0px';
+
+    inputContainer.style.display = 'block';
+    inputContainer.style.width = '100%';
+    inputContainer.style.height = '100%';
+
+  }
+
+  const frame = document.getElementById("collapsibleTemplate");
   const name = document.getElementById("collapsible");
 
-  const clone = document.importNode(template.content, true);
+  const clone = frame.cloneNode(true);
+  clone.style.display = 'block';
 
   const button = clone.querySelector(".collapsible");
-  count++;
   button.innerHTML = "MileStone " + count;
-
-  if (count !== 0) {
-    animation.innerHTML = '';
-  }
 
   document.getElementById("inputContainer").appendChild(clone);
 }
 
+//remove milestones
 function removeCollapsible(button) {
-  const container = button.closest('collapsibleTemplate');
-
-  console.log('Container:', container);
-  console.log('Button:', button);
+  var container = button.parentElement.parentElement;
 
   if (container) {
-    container.remove();
-    count--;
-
-    updateMilestoneNumbering();
+      container.remove();
+      updateMilestoneNumbering();
   } else {
-    console.error('Container not found.');
+      console.error('Container not found.');
   }
 }
 
+//update numbering of the milestones
 function updateMilestoneNumbering() {
-  const milestones = document.querySelectorAll('.collapsibleSet .collapsible');
-  milestones.forEach((milestone, index) => {
-    milestone.innerHTML = "MileStone " + (index + 1);
-  });
+  count--;
+
+  if (count === 0) {
+    animation.style.width = '100%';
+    animation.style.height = '100%';
+    animation.innerHTML = `
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+      <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+    `;
+  } else {
+    const milestones = document.querySelectorAll('#inputContainer .collapsible');
+    milestones.forEach((milestone, index) => {
+      milestone.innerHTML = "MileStone " + (index + 1);
+    });
+  }
 }
 
-// Collapsible
 
+// Collapsible
 function expand(button) {
   button.classList.toggle("collapsibleActive");
   var content = button.nextElementSibling;
