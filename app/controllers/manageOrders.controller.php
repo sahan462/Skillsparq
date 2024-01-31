@@ -16,21 +16,22 @@ class ManageOrders extends Controller
         $this->view('manageOrders', $data); 
     }
 
-    public function createOrder(){
+    //create a package order
+    public function createPackageOrder(){
         
         $orderStatus = "request";
-        $orderType = $_GET['orderType'];
+        $orderType = $_POST['orderType'];
 
         date_default_timezone_set('UTC');
         $currentDateTime = date('Y-m-d H:i:s');
         
-        $buyerId = $_GET['buyerId'];	
-        $sellerId = $_GET['sellerId'];
+        $buyerId = $_POST['buyerId'];	
+        $sellerId = $_POST['sellerId'];
 
-        $requestDescription = $_GET['requestDescription'];
-        $attachement = $_GET['attachments'];
-        $gigId = $_GET['gigId'];
-        $packageId = $_GET['packageId'];
+        $requestDescription = $_POST['requestDescription'];
+        $attachement = $_POST['attachments'];
+        $gigId = $_POST['gigId'];
+        $packageId = $_POST['packageId'];
 
         $upload = 1;
 
@@ -45,6 +46,23 @@ class ManageOrders extends Controller
             window.location.href = '" . BASEURL . "manageOrders';
         </script>
     ";
+    }
+
+    //create milestone order
+    public function createMilestoneOrder(){
+
+        $milestones = $_POST['milestone'];
+        print_r($milestones['subject']);
+        print_r($milestones['revisions']);
+        print_r($milestones['quantity']);
+        print_r($milestones['timePeriod']);
+        print_r($milestones['price']);
+        print_r($milestones['description']);
+    }
+
+    //read orders
+    public function getOrders(){
+
     }
 
     

@@ -79,7 +79,7 @@
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form method="get" id="milestoneRequestForm"> 
+            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
@@ -102,7 +102,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="">
+                                <select name="milestone[revisions][]" required="" style="width: 25%;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -116,8 +116,8 @@
                             <div class="col">
                                 <div class="type-1">Delivery</div>
                                 <div class="row">
-                                    <input type="number" name="milestone[quantity][]" min="1">
-                                    <select name="milestone[timePeriod][]" class="categories">
+                                    <input type="number" name="milestone[quantity][]" min="1"  style="width: 25%;">
+                                    <select name="milestone[timePeriod][]" class="categories"  style="width: 25%;">
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="col">
                                 <div class="type-1">Price</div>
-                                <input type="text" name="milestone[price][]">
+                                <input type="text" name="milestone[price][]"  style="width: 25%;">
                             </div>
                         </div>
 
@@ -259,7 +259,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="post" action="manageOrders/createOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
@@ -295,7 +295,7 @@
                                     </div>
                                     <li><?php echo $gig[1]['package_description']; ?></li>
 
-                                    <form id="package_2">
+                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
@@ -331,7 +331,7 @@
                                     </div>
                                     <li><?php echo $gig[2]['package_description']; ?></li>
 
-                                    <form id="package_3">
+                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 
