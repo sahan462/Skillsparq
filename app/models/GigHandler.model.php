@@ -8,19 +8,6 @@ class GigHandler extends database
     {
         $query = "INSERT INTO gigs (title,description,category,cover_image,created_at,seller_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
-        // $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO gigs 
-        //     (
-        //         title, 
-        //         description, 
-        //         category, 
-        //         cover_image, 
-        //         created_at, 
-        //         seller_id
-        //     ) 
-        //     VALUES 
-        //     (
-        //         ?, ?, ?, ?, ?, ?
-        //     )");
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");

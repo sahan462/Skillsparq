@@ -204,13 +204,13 @@
 
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php //echo sizeof($GigsOfSeller)?>)</span>
+                    <span>My Gigs(<?php echo sizeof($Gigs)?>)</span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
                     <?php
-                        if(!empty($GigsOfSeller)){ 
-                            foreach($GigsOfSeller as $GOS){
+                        if(!empty($Gigs)){ 
+                            foreach($Gigs as $row){
                                 include "components/GigCard.component.php";
                     ?>
                     <?php }} ?>

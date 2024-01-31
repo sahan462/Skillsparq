@@ -66,7 +66,7 @@ class SellerProfile extends Controller
             // $data['GigsOfSeller'] = $GigsOfSeller;
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
 
-            // show($data);
+            show($data);
         
 
             $this->view('sellerProfile', $data);
@@ -96,6 +96,8 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
+
+    // has to adjust for client.
     public function  updateSellerProfile()
     {
         $currentProfilePicture = $_POST['currentProfilePicture'];
