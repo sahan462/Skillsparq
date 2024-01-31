@@ -83,11 +83,11 @@
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
-                    <div id="animation"></div>
+                    <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
 
                 <!-- Template for a milestone-->
-                <div id="collapsibleTemplate">
+                <div id="collapsibleTemplate" style="display: none;">
                     <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
 
                     <div class="collapsibleContent">
