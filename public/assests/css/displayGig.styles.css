@@ -269,7 +269,7 @@ body{
     display: flex;
     flex-direction: row !important;
     justify-content: space-between;
-    gap: 16px;
+    width: 100%;
 }
 #milestoneModal .col{
     width: 100%;
