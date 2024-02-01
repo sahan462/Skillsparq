@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../public/assests/css/complaints.styles.css" />
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 
     <title>Admin Dashboard Panel</title>
 </head>
@@ -99,8 +100,6 @@ $conn->close();
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-
-            <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
         <div class="dash-content">
