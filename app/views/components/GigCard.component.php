@@ -9,15 +9,23 @@
         <div class="links">
             <?php
                 if($_SESSION['role'] === "Seller"){
-                ?>
+                    if(($row['ongoing_order_count'])=== 0){
+            ?>
                     <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">edit</a>
                     <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">delete</a>
             <?php
-                }else{
-                    ?>
+                    }
+                    else{
+            ?>
                     <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>edit</a>
                     <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>delete</a>
-                    <?php 
+            <?php
+                    }
+                }else{
+            ?>
+                    <!-- <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>edit</a>
+                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>delete</a> -->
+            <?php 
                 }
             ?>
         </div>

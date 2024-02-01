@@ -15,6 +15,7 @@
     $status = $data['activeStatus'];
     $Gigs = $data['gigs'];
     print_r($_SESSION);
+    // show($Gigs);
     // $NoOfGigs = array_count_values($data['gigs']);
 
 ?>
