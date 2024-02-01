@@ -7,8 +7,19 @@
     <div class="title">
         <?php echo $row['title']?>
         <div class="links">
-            <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">edit</a>
-            <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">delete</a>
+            <?php
+                if($_SESSION['role'] === "Seller"){
+                ?>
+                    <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">edit</a>
+                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">delete</a>
+            <?php
+                }else{
+                    ?>
+                    <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>edit</a>
+                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>delete</a>
+                    <?php 
+                }
+            ?>
         </div>
     </div>
 

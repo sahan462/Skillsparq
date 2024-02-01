@@ -14,6 +14,7 @@
     $data["expertise"] = "Tech";
     $data["userName"] = $_SESSION['userName'];
     // $data["profilePicture"] = "dummyprofile.jpg";
+    print_r($_SESSION);
 
 $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
 $job['job_id'] = "125";

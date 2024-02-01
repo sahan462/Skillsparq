@@ -14,6 +14,7 @@
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = $data['gigs'];
+    print_r($_SESSION);
     // $NoOfGigs = array_count_values($data['gigs']);
 
 ?>
@@ -26,9 +27,9 @@
         <div class="modal" id="Modal">
             <form id="profileUpdateForm" method="post" action="sellerProfile/updateSellerProfile" enctype="multipart/form-data">
 
-                <div class="profile-picture">
+                <div class="seller-profile-picture">
 
-                    <div class="updateProfilePicture">
+                    <div class="updateSellerProfilePicture">
 
                         <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
                         <div class="editIcon">
@@ -49,7 +50,7 @@
 
                 <div class="row">
 
-                    <div class="full-name">
+                    <div class="seller-full-name">
 
                         <div class="row">
                             <label class="type-1">First Name:</label>

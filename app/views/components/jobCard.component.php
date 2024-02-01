@@ -2,8 +2,19 @@
     <div class="title">
         <?php echo $job['title']?>
         <div class="links">
-            <a href="updateJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">edit</a>
-            <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
+
+            <?php
+                if($_SESSION['role'] === "Buyer"){
+            ?>
+                    <!-- edit and delete will be accessible -->
+                    <a href="updateJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">edit</a>
+                    <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
+            <?php
+                }else{
+                    // view only
+                }
+            ?>
+
         </div>
     </div>
     <div class="description">

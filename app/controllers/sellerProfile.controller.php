@@ -51,7 +51,7 @@ class SellerProfile extends Controller
             
             $data['gigs'] = $Gigs;
 
-
+            // show($data);
 
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
 
@@ -66,7 +66,7 @@ class SellerProfile extends Controller
             // $data['GigsOfSeller'] = $GigsOfSeller;
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
 
-            show($data);
+            // show($data);
         
 
             $this->view('sellerProfile', $data);
