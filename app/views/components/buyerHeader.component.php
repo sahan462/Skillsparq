@@ -11,7 +11,7 @@
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/buyerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
-    <link rel="stylesheet" href="./assests/css/gigCard.styles.css">
+    <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">

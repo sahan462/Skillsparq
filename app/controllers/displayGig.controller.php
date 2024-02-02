@@ -2,6 +2,8 @@
 
 class displayGig extends Controller
 {
+    private $GigHandlerModel;
+    private $sellerHandlerModel;
 
     public function __construct()
     {
