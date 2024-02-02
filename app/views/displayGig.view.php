@@ -51,7 +51,7 @@
     </div>
 
     <!-- Modal 2 -->
-    <div class="overlay" name="cancelConfirmationOverlay" id="cancelConfirmationOverlay">
+    <div class="overlay" name="cancelConfirmationOverlay" id="cancelConfirmationOverlay" style="z-index: 2;">
         <div class="confirmation" name="cancelConfirmationModal" id="cancelConfirmationModal">
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Modal 3 -->
-    <div class="overlay" name="sendConfirmationOverlay" id="sendConfirmationOverlay">
+    <div class="overlay" name="sendConfirmationOverlay" id="sendConfirmationOverlay" style="z-index: 2;">
         <div class="confirmation" name="sendConfirmationModal" id="sendConfirmationModal">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
@@ -73,21 +73,21 @@
     </div>
 
     <!-- Modal 4 -->
-    <div class="overlay" name="milestoneOverlay" id="overlay">
-        <div class="modal" name="milestoneModal" id="modal">
+    <div class="milestoneOverlay" name="milestoneOverlay" id="milestoneOverlay">
+        <div class="milestoneModal" name="milestoneModal" id="milestoneModal" style="width: 600px;">
             
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form method="get" id="milestoneRequestForm"> 
+            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
-                    <div id="animation"></div>
+                    <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
 
                 <!-- Template for a milestone-->
-                <template id="collapsibleTemplate">
+                <div id="collapsibleTemplate" style="display: none;">
                     <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
 
                     <div class="collapsibleContent">
@@ -102,7 +102,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="">
+                                <select name="milestone[revisions][]" required="" style="width: 25%;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -116,8 +116,8 @@
                             <div class="col">
                                 <div class="type-1">Delivery</div>
                                 <div class="row">
-                                    <input type="number" name="milestone[quantity][]" min="1">
-                                    <select name="milestone[timePeriod][]" class="categories">
+                                    <input type="number" name="milestone[quantity][]" min="1"  style="width: 25%;">
+                                    <select name="milestone[timePeriod][]" class="categories"  style="width: 25%;">
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -127,22 +127,21 @@
                             </div>
                             <div class="col">
                                 <div class="type-1">Price</div>
-                                <input type="text" name="milestone[price][]">
+                                <input type="text" name="milestone[price][]"  style="width: 25%;">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <div class="type-1">Milestone Description</div>
-                                <textarea name="milestone[description][]" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required=""></textarea>
+                                <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
                             </div>
                         </div>
 
                         <button type="button" class="removeButton" onclick="removeCollapsible(this)">Remove Milestone</button>
 
                     </div>
-
-                </template>
+                </div>
 
 
                 <div class="buttons">
@@ -260,7 +259,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="get" action="manageOrders/createOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
@@ -296,7 +295,7 @@
                                     </div>
                                     <li><?php echo $gig[1]['package_description']; ?></li>
 
-                                    <form id="package_2">
+                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
@@ -332,7 +331,7 @@
                                     </div>
                                     <li><?php echo $gig[2]['package_description']; ?></li>
 
-                                    <form id="package_3">
+                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 
