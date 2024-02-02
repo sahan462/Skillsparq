@@ -14,8 +14,8 @@
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = $data['gigs'];
-    print_r($profilepicture);
-    // show($data);
+    // print_r($profilepicture);
+    show($data);
     // $NoOfGigs = array_count_values($data['gigs']);
 
 ?>

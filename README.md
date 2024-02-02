@@ -1,2 +1,3 @@
 # skillsparq
-2019/ 2020 ucsc cs batch group 52 project - Freelancing Platform for Sri Lankan Community - SKILLsparQ 
+
+2021 / 2022 | UCSC CS batch | group 52 project - Freelancing Platform for Sri Lankan Community - SKILLsparQ

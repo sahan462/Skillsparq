@@ -50,25 +50,7 @@ class SellerProfile extends Controller
             }
             
             $data['gigs'] = $Gigs;
-
-            // show($data);
-
-            // $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
-
-            // if ($GigsOfSeller) {
-
-            //     $data['GigsOfSeller'] = $GigsOfSeller;
-                
-            // } else {
-            //     echo "<script>alert('getAllGigs function is not Accessible!')</script>";
-            // }
             
-            // $data['GigsOfSeller'] = $GigsOfSeller;
-            // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
-
-            // show($data);
-        
-
             $this->view('sellerProfile', $data);
         } 
     }
