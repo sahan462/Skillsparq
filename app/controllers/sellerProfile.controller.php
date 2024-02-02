@@ -2,6 +2,10 @@
 
 class SellerProfile extends Controller
 {
+    private $GigHandlerModel;
+    private $ProfileHandlerModel;
+    private $UserHandlerModel;
+    private $SellerHandlerModel;
     
     public function __construct()
     {
@@ -23,17 +27,15 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
 
-            $userId = $_SESSION["userId"];
-            $phoneNum = $_SESSION['phoneNumber'];
+            $sellerId = $_SESSION["userId"];
 
-            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
+            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
 
-            // get seller id for gigs.
-            $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
             $data['sellerId'] = $sellerId;
 
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
+
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             $Gigs = array();
@@ -49,9 +51,9 @@ class SellerProfile extends Controller
             
             $data['gigs'] = $Gigs;
 
+            // show($data);
 
-
-            $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
+            // $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
 
             // if ($GigsOfSeller) {
 
@@ -64,9 +66,9 @@ class SellerProfile extends Controller
             // $data['GigsOfSeller'] = $GigsOfSeller;
             // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
 
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>"; 
+            // show($data);
+        
+
             $this->view('sellerProfile', $data);
         } 
     }
@@ -94,6 +96,8 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
+
+    // has to adjust for client.
     public function  updateSellerProfile()
     {
         $currentProfilePicture = $_POST['currentProfilePicture'];

@@ -14,7 +14,10 @@
     $data["expertise"] = "Tech";
     $data["userName"] = $_SESSION['userName'];
     // $data["profilePicture"] = "dummyprofile.jpg";
+    print_r($_SESSION);
 
+
+    // get the jobs from sellerdashboard controller.php to this view.
 $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
 $job['job_id'] = "125";
 $job['publish_mode'] = "StandardMode";
@@ -48,7 +51,7 @@ $job["buyer_id"] = 0;
                     Online
                 </div>
                 <div class="profile-picture">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
+                    <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
                         <?php echo $firstName." ".$lastName ?>
                     </div>  
@@ -143,5 +146,7 @@ $job["buyer_id"] = 0;
     </div>
 
 </div>
+
+<script src="../../public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>

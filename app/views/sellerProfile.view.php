@@ -6,7 +6,6 @@
     $firstname = $data['sellerProfileDetails']['first_name'];
     $lastname = $data['sellerProfileDetails']['last_name'];
     $Country = $data['sellerProfileDetails']['country'];
-    $Country = "Sri Lanka";
     $DateJoined = $data['sellerProfileDetails']['joined_date'];
     $lastSeen = $data['sellerProfileDetails']['last_seen'];
     $about = $data['sellerProfileDetails']['about'];
@@ -14,9 +13,11 @@
     $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
+    $Gigs = $data['gigs'];
+    print_r($profilepicture);
+    // show($data);
+    // $NoOfGigs = array_count_values($data['gigs']);
 
-
-    $GigsOfSeller = $data['GigsOfSeller'];
 ?>
 
 <!-- Main Container for Seller -->
@@ -27,9 +28,9 @@
         <div class="modal" id="Modal">
             <form id="profileUpdateForm" method="post" action="sellerProfile/updateSellerProfile" enctype="multipart/form-data">
 
-                <div class="profile-picture">
+                <div class="seller-profile-picture">
 
-                    <div class="updateProfilePicture">
+                    <div class="updateSellerProfilePicture">
 
                         <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
                         <div class="editIcon">
@@ -50,7 +51,7 @@
 
                 <div class="row">
 
-                    <div class="full-name">
+                    <div class="seller-full-name">
 
                         <div class="row">
                             <label class="type-1">First Name:</label>
@@ -141,7 +142,7 @@
                 <?php } ?>
 
                 <div class="profile-picture">
-                    <img src="../public/assests/images/profilePictures/<?php echo $profile["profile_pic"]?>" alt="pro-pic">
+                    <img src="../public/assests/images/profilePictures/<?php echo $data['profilePicture']?>" alt="pro-pic">
                     <div class="full-name">
                         <?php echo $firstname. " " . $lastname; ?>
                     </div>
@@ -205,13 +206,13 @@
 
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php echo sizeof($GigsOfSeller)?>)</span>
+                    <span>My Gigs(<?php echo sizeof($Gigs)?>)</span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
                     <?php
-                        if(!empty($GigsOfSeller)){ 
-                            foreach($GigsOfSeller as $GOS){
+                        if(!empty($Gigs)){ 
+                            foreach($Gigs as $row){
                                 include "components/GigCard.component.php";
                     ?>
                     <?php }} ?>
@@ -235,7 +236,8 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script>
+<!-- <script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script> -->
+<script src="./public/assests/js/sellerProfile.js"></script>
 
 
 <?php include "components/footer.component.php"; ?>
