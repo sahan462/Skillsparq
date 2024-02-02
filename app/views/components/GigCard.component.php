@@ -5,7 +5,7 @@
     </div>
 
     <div class="title">
-        <?php echo $row['title']?>
+        <?php //echo $row['title']?>
         <div class="links">
             <?php
                 if($_SESSION['role'] === "Seller"){
@@ -23,8 +23,7 @@
                     }
                 }else{
             ?>
-                    <!-- <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>edit</a>
-                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>delete</a> -->
+                    <!-- visibility hidden -->
             <?php 
                 }
             ?>
@@ -35,7 +34,8 @@
     <div class="user-details">
         <div class="cardRow" style="align-items: center;">
             <div class="profile-pic">
-                <img src="./assests/images/sl flag.png" alt="propic-1">
+                <!-- <img src="/assests/images/profilePictures/<?php //echo $row['profile_pic']?>" alt="propic-1"> -->
+                <img src="./assests/images/profilePictures/dummyprofile.jpg" alt="propic-1">
             </div>
             <div class="cardRow" style="flex-direction: column;">
                 <div class="username">
@@ -45,16 +45,17 @@
         </div>
     </div>
 
-    <!-- Description -->
-    <div class="description">
-    <p>
-        <?php echo $row['description']?>
-    </p>
-    </div>
+    
 
     <div class="gig-details">
         <div class="gigTitle">
             <?php echo $row['title'] ?>
+        </div>
+        <!-- Description -->
+        <div class="description">
+            <p>
+                <?php echo $row['description']?>
+            </p>
         </div>
         <div class="rating">
             <div class="star-rating">

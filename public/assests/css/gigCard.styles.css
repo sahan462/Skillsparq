@@ -45,6 +45,14 @@
 .gigCard .price{
     margin: 4px 0;
 }
+
+.gigCard .description{
+    width: 250px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
 .gigCard .cardRow,.gigTitle,.price,.rating{
     padding: 0 8px;
 }
@@ -52,6 +60,12 @@
 @media only screen and (max-width: 1200px) {
     .gigCard{
         width: calc(100% / 3 - 16px);
+    }
+
+    .gigCard .description{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 

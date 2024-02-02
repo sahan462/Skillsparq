@@ -26,6 +26,8 @@ class SellerDashboard extends Controller
             $data['sellerUserDetails'] = $this->getSellerUserDetails($userId);
             
 
+            // get The jobs for seller dashboard. Those are hardcoded in sellerdashboard view.php
+
             // echo "<pre>";
             // print_r($data);
             // echo "</pre>";
