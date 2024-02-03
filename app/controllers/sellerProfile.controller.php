@@ -18,7 +18,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])&&($_SESSION['role'] !== "Seller")){
 
             header("location: loginSeller");
 
@@ -31,6 +31,10 @@ class SellerProfile extends Controller
 
             $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
 
+            $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
+            $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
+            $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
+            
             $data['sellerId'] = $sellerId;
 
             //get recently added Gigs
@@ -51,6 +55,7 @@ class SellerProfile extends Controller
             
             $data['gigs'] = $Gigs;
             
+            print_r($_SESSION);
             $this->view('sellerProfile', $data);
         } 
     }
