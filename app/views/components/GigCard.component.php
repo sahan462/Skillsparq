@@ -53,9 +53,9 @@
         </div>
         <!-- Description -->
         <div class="description">
-            <p>
-                <?php echo $row['description']?>
-            </p>
+            <!-- <p>
+                <?php //echo $row['description']?>
+            </p> -->
         </div>
         <div class="rating">
             <div class="star-rating">

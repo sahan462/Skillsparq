@@ -13,10 +13,8 @@
     $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
-    $Gigs = $data['gigs'];
-    print_r($profilepicture);
+    $Gigs = $data['gigs'];;
     // show($data);
-    // $NoOfGigs = array_count_values($data['gigs']);
 
 ?>
 
@@ -141,8 +139,8 @@
                     </div>
                 <?php } ?>
 
-                <div class="profile-picture">
-                    <img src="../public/assests/images/profilePictures/<?php echo $data['profilePicture']?>" alt="pro-pic">
+                <div class="seller-profile-picture">
+                    <img src="../public/assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
                     <div class="full-name">
                         <?php echo $firstname. " " . $lastname; ?>
                     </div>
