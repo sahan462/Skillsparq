@@ -3,7 +3,7 @@ class LoginHandler extends database
 {
 
     public function emailCheck($email)
-    {;
+    {
         $email=mysqli_real_escape_string($GLOBALS['db'],$email);
         $userCheck = "SELECT * FROM User WHERE user_email='$email' LIMIT 1";
         $result = mysqli_query($GLOBALS['db'], $userCheck);
