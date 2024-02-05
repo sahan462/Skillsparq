@@ -16,7 +16,6 @@ class updateGig extends Controller
     public function index()
     {
 
-        // echo print_r($_POST);
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
             
             header("location: loginUser");
@@ -28,6 +27,7 @@ class updateGig extends Controller
 
             $gigId = $_GET['gigId'];
             $userId = $_GET['userId'];
+
             $data['userId'] = $userId;
             $data['gigId'] = $gigId;
 
@@ -45,7 +45,7 @@ class updateGig extends Controller
                 echo "<script>alert('Gig function is not Accessible!')</script>";
             }
            
-            show($data);
+            print_r($data);
             $this->view('UpdateGig', $data);   
         }
     }

@@ -235,7 +235,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- <script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script> -->
-<script src="./public/assests/js/sellerProfile.js"></script>
+<script src="./public/assests/js/sellerProfile.script.js"></script>
 
 
 <?php include "components/footer.component.php"; ?>

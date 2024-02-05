@@ -54,8 +54,8 @@ class SellerProfile extends Controller
             }
             
             $data['gigs'] = $Gigs;
-            
-            print_r($_SESSION);
+            // show($data);
+            // print_r($_SESSION);
             $this->view('sellerProfile', $data);
         } 
     }

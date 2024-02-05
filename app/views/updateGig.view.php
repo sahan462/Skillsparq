@@ -2,22 +2,22 @@
 
 <?php 
     $gigId = $data["gigId"];
-    echo print_r($gigId);
+    // echo print_r($gigId);
 ?>
 
 <!-- Main Container -->
-<div class="addGigContainer">
+<div class="updateGigContainer">
 
     <!-- left side -->
     <div class="leftContainer">
 
         <!-- topic -->
-        <div class="addGigHeader">
+        <div class="updateGigHeader">
             Need to Update : Update Your Gig
         </div>
 
         <!-- animation -->
-        <div class="addGigAnimation">
+        <div class="updateGigAnimation">
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
             <dotlottie-player src="https://lottie.host/881eaa0d-a9ec-48c3-8d93-95f4121b411c/Hxv4H6Yonz.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
         </div>
@@ -249,6 +249,6 @@
     </div>
 </div>
 
-<script src="/skillsparq/public/assests/js/updateGigscript.js"></script>
+<script src="/skillsparq/public/assests/js/updateGig.script.js"></script>
 
 <?php include "components/footer.component.php";?>
