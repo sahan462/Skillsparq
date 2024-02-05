@@ -133,6 +133,18 @@
 
                         <div class="row">
                             <div class="col">
+                                <label for="attachments" class="type-1" >Attachments:</label>
+                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="attachments" id="attachment" style="margin-right: 4px;background-color: white;">Attachements</label>
+                                    <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                                    <span id="fileName"></span>
+                                </div>
+                                <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
                                 <div class="type-1">Milestone Description</div>
                                 <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
                             </div>
