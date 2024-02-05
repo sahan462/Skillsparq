@@ -52,12 +52,8 @@ class ManageOrders extends Controller
     public function createMilestoneOrder(){
 
         $milestones = $_POST['milestone'];
-        print_r($milestones['subject']);
-        print_r($milestones['revisions']);
-        print_r($milestones['quantity']);
-        print_r($milestones['timePeriod']);
-        print_r($milestones['price']);
-        print_r($milestones['description']);
+
+        
     }
 
     //read orders
