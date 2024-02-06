@@ -68,6 +68,31 @@ class Gig extends Controller
         }
     }
 
+    public function deleteGig()
+    {
+        // function to delete a specific gig.
+        // $userId = $_GET['userId'];
+        $gigId = $_GET['gigId'];
+        // print_r($userId);
+        // print_r($gigId);
+        if($this->GigHandlerModel->deleteGig($gigId)){
+            echo 
+            "
+            <script>alert('Gig deleted Successfully')
+            window.location.href = '" . BASEURL . "sellerProfile';
+            </script>
+            ";
+        }else{
+            echo 
+            "
+            <script>alert('Gig deletion failed')
+            window.location.href = '" . BASEURL . "sellerProfile';
+            </script>
+            ";
+        }
+        
+    }
+
     // public function updateGig(){
 
     //     if(isset($_POST["update"])){

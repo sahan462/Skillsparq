@@ -52,6 +52,7 @@ class UpdateJob extends Controller
                 <script>alert('Unauthorized User!')</script>
                 ";
             }
+            print_r($data);
             $this->view('UpdateJob', $data);   
         }
     }

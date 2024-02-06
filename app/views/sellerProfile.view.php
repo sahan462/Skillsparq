@@ -13,7 +13,8 @@
     $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
-    $Gigs = $data['gigs'];;
+    $Gigs = (array) $data['gigs'];
+    // print_r($Gigs['gig_id']);
     // show($data);
 
 ?>
@@ -212,8 +213,11 @@
                         if(!empty($Gigs)){ 
                             foreach($Gigs as $row){
                                 include "components/GigCard.component.php";
+                            }
+                        }
                     ?>
-                    <?php }} ?>
+                    <?php    
+                    ?>
                 </div>
             </div>
 
