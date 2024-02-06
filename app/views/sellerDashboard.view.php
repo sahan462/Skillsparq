@@ -2,6 +2,20 @@
 
 <?php
 
+<<<<<<< HEAD
+$firstName = $data['sellerProfileDetails']['first_name'];
+$lastName = $data['sellerProfileDetails']['last_name'];
+$profilePicture = $data['sellerProfileDetails']['profile_pic'];
+
+$data["activeStatus"] = "display: none";
+$data['ongoingOrders'] = 0;
+$data["earningsThisMonth"] = "$0";
+$data["completedOrders"] = 0;
+$data["lastDelivery"] = "July 2023";
+$data["expertise"] = "Tech";
+$data["userName"] = $_SESSION['userName'];
+// $data["profilePicture"] = "dummyprofile.jpg";
+=======
     $firstName = $data['sellerProfileDetails']['first_name'];
     $lastName = $data['sellerProfileDetails']['last_name'];
     $profilePicture = $data['sellerProfileDetails']['profile_pic'];
@@ -15,6 +29,7 @@
     $data["expertise"] = "Tech";
     // $data["profilePicture"] = "dummyprofile.jpg";
     print_r($_SESSION);
+>>>>>>> 60e5e461fe5908f7bfbd0bc37a782356a8fa5807
 
     // get the jobs from sellerdashboard controller.php to this view.
     print_r($data['AllJobs']);
@@ -24,7 +39,7 @@
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $firstName." ".$lastName?>
+        Howdy, <?php echo $firstName . " " . $lastName ?>
     </div>
 
     <div class="dashboard-container">
@@ -37,8 +52,8 @@
                 <div class="profile-picture">
                     <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
-                        <?php echo $firstName." ".$lastName ?>
-                    </div>  
+                        <?php echo $firstName . " " . $lastName ?>
+                    </div>
                     <div class="user-name">
                         <?php echo $userName?>
                     </div>
