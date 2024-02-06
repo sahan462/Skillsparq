@@ -2,18 +2,18 @@
 
 <?php
 
-    $firstName = $data['sellerProfileDetails']['first_name'];
-    $lastName = $data['sellerProfileDetails']['last_name'];
-    $profilePicture = $data['sellerProfileDetails']['profile_pic'];
-    
-    $data["activeStatus"] = "display: none";
-    $data['ongoingOrders'] = 0;
-    $data["earningsThisMonth"] = "$0";
-    $data["completedOrders"] = 0;
-    $data["lastDelivery"] = "July 2023";
-    $data["expertise"] = "Tech";
-    $data["userName"] = $_SESSION['userName'];
-    // $data["profilePicture"] = "dummyprofile.jpg";
+$firstName = $data['sellerProfileDetails']['first_name'];
+$lastName = $data['sellerProfileDetails']['last_name'];
+$profilePicture = $data['sellerProfileDetails']['profile_pic'];
+
+$data["activeStatus"] = "display: none";
+$data['ongoingOrders'] = 0;
+$data["earningsThisMonth"] = "$0";
+$data["completedOrders"] = 0;
+$data["lastDelivery"] = "July 2023";
+$data["expertise"] = "Tech";
+$data["userName"] = $_SESSION['userName'];
+// $data["profilePicture"] = "dummyprofile.jpg";
 
 $job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
 $job['job_id'] = "125";
@@ -37,7 +37,7 @@ $job["buyer_id"] = 0;
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $firstName." ".$lastName?>
+        Howdy, <?php echo $firstName . " " . $lastName ?>
     </div>
 
     <div class="dashboard-container">
@@ -50,8 +50,8 @@ $job["buyer_id"] = 0;
                 <div class="profile-picture">
                     <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
-                        <?php echo $firstName." ".$lastName ?>
-                    </div>  
+                        <?php echo $firstName . " " . $lastName ?>
+                    </div>
                     <div class="user-name">
                         <?php echo $data["sellerProfileDetails"]['user_name'] ?>
                     </div>
