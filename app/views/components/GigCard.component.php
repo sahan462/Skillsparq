@@ -1,4 +1,4 @@
-<div class="gigCard" gig-url="displayGig&gigId=<?php echo $row['gig_id']?>">
+<div class="gigCard" gig-url="displayGig&amp;gigId=<?php echo $row['gig_id']?>&amp;userId=<?php echo $row['seller_id']?>">
     <!-- Cover Image -->
     <div class="coverImg">
         <img src="./assests/images/gigimages/<?php echo $row['cover_image']?>" alt="card-1">
@@ -58,6 +58,7 @@
             </p> -->
         </div>
         <div class="rating">
+            <?php // have to create a rating mechanism.?>
             <div class="star-rating">
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>

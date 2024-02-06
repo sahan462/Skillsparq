@@ -2,6 +2,8 @@
 
 class UpdateJob extends Controller
 {
+    private $JobHandlerModel;
+    private $JobController;
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
@@ -50,6 +52,7 @@ class UpdateJob extends Controller
                 <script>alert('Unauthorized User!')</script>
                 ";
             }
+            print_r($data);
             $this->view('UpdateJob', $data);   
         }
     }

@@ -76,6 +76,13 @@ class GigHandler extends database
         return $insertedIds; 
     }
 
+    public function updatePackages($gigId)
+    {
+
+    }
+
+    
+
     //read recently added gigs
     public function getRecentGigs()
     {
@@ -235,8 +242,9 @@ class GigHandler extends database
     //delete gig
     public function deleteGig($gigId)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM Gigs 
-            WHERE gig_id = ?");
+        $query = "DELETE FROM Gigs 
+        WHERE gig_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -250,6 +258,29 @@ class GigHandler extends database
         } else {
             throw new Exception("Error when deleting data: " . mysqli_error($GLOBALS['db']));
         }
+    }
+
+    public function deletePackages($gigId)
+    {
+        for($i = 0;$i<3;$i++){
+            $query = "DELETE FROM packages WHERE gig_id = ?;";
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+            
+            mysqli_stmt_bind_param($stmt, "i", $gigId);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_close($stmt);
+                $stmt->close();
+                return true; 
+            } else {
+                throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+            }
+        }
+        
     }
 }
 
