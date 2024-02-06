@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2024 at 07:46 PM
+-- Generation Time: Feb 06, 2024 at 11:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,7 +55,8 @@ CREATE TABLE `buyer` (
 
 INSERT INTO `buyer` (`buyer_id`) VALUES
 (1),
-(2);
+(2),
+(7);
 
 -- --------------------------------------------------------
 
@@ -127,6 +128,13 @@ CREATE TABLE `help_requests` (
   `request_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `help_requests`
+--
+
+INSERT INTO `help_requests` (`request_id`) VALUES
+(3);
+
 -- --------------------------------------------------------
 
 --
@@ -152,7 +160,8 @@ CREATE TABLE `inquiries` (
 
 INSERT INTO `inquiries` (`inquiry_id`, `subject`, `description`, `attachements`, `response`, `inquiry_status`, `created_at`, `inquiry_originator_id`, `customer_support_assistant_id`, `inquiry_type`) VALUES
 (1, 'rerere', 'rerererer', 'ATM simulation.zip65b7b7540eb393.02237679_1706538836_dsahan_help request.zip', NULL, 'unsolved', '2024-01-29 15:33:56', 1, 0, 'help request'),
-(2, 'wewe', 'wewe', 'ATM simulation.zip65b7b7aa3edf18.81857004_1706538922_dsahan_help request.zip', NULL, 'unsolved', '2024-01-29 15:35:22', 1, 0, 'help request');
+(2, 'wewe', 'wewe', 'ATM simulation.zip65b7b7aa3edf18.81857004_1706538922_dsahan_help request.zip', NULL, 'unsolved', '2024-01-29 15:35:22', 1, 0, 'help request'),
+(3, 'df', 'df', '', NULL, 'unsolved', '2024-01-30 21:05:09', 1, 0, 'help request');
 
 -- --------------------------------------------------------
 
@@ -202,7 +211,9 @@ INSERT INTO `orders` (`order_id`, `order_status`, `order_type`, `order_created_d
 (7, 'request', 'package', '2015-10-14 00:00:00', 1, 3),
 (8, 'request', 'package', '2024-01-26 23:19:18', 1, 3),
 (9, 'request', 'package', '2024-01-26 23:20:40', 1, 3),
-(10, 'request', 'package', '2024-01-26 23:21:21', 1, 3);
+(10, 'request', 'package', '2024-01-26 23:21:21', 1, 3),
+(11, 'request', 'package', '2024-01-30 21:24:47', 1, 3),
+(12, 'request', 'package', '2024-01-31 04:08:46', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -254,6 +265,14 @@ CREATE TABLE `package_orders` (
   `package_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `package_orders`
+--
+
+INSERT INTO `package_orders` (`package_order_id`, `order_description`, `order_attachement`, `gig_id`, `package_id`) VALUES
+(11, '', '[object File]', 15, 10),
+(12, 'hello', '[object File]', 15, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -278,8 +297,9 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_name`, `profile_pic`, `first_name`, `last_name`, `country`, `joined_date`, `last_seen`, `about`, `user_id`) VALUES
 ('ChFernando', '1667170773982.jpg65b6ee9167aa73.77042511_1706487441_ChFernando', 'Elon', 'Musk', 'Australia', '2023-11-16', '01/29/2024 12:21:26 am', 'Elon Musk (born June 28, 1971, Pretoria, South Africa) South African-born American entrepreneur who cofounded the electronic-payment firm PayPal and formed SpaceX, maker of launch vehicles and spacecraft. He was also one of the first significant investors in, as well as chief executive officer of, the electric car manufacturer Tesla. In addition, Musk acquired Twitter (later X) in 2022.', 2),
-('dsahan', 'avishka.jpg65b74837d10649.72982869_1706510391_dsahan', 'Avishka', 'Indunil', 'Sri Lanka', '2023-11-07', 'online', 'Hello there! I\'m Damitha. I\'m an enthusiastic individual with a passion for exploring the boundless realms of knowledge and creativity. My journey through life has been shaped by a relentless curiosity and a love for learning, propelling me to embrace diverse experiences and perspectives. Whether delving into the intricacies of technology, savoring the nuances of literature, or immersing myself in the beauty of nature, I find joy in the multifaceted tapestry of existence. A seeker of wisdom and a fervent advocate for positive change, I am committed to continuous self-improvement and contributing to the betterment of the world around me. In my downtime, you might find me immersed in a good book, tinkering with new ideas, or enjoying the simple pleasures of life. Let\'s embark on this journey of discovery together!', 1),
-('KSPerera', 'dummyprofile.jpg', 'kaveeja', 'perera', NULL, '2024-01-09', '01/29/2024 09:37:16 am', NULL, 3);
+('dsahan', 'istockphoto-1300512215-612x612.jpg65bf2b74aad2b6.04036693_1707027316_dsahan', 'Damitha', 'Sahan', 'Bangladesh', '2023-11-07', 'online', 'Hello there! I\'m Damitha. I\'m an enthusiastic individual with a passion for exploring the boundless realms of knowledge and creativity. My journey through life has been shaped by a relentless curiosity and a love for learning, propelling me to embrace diverse experiences and perspectives. Whether delving into the intricacies of technology, savoring the nuances of literature, or immersing myself in the beauty of nature, I find joy in the multifaceted tapestry of existence. A seeker of wisdom and a fervent advocate for positive change, I am committed to continuous self-improvement and contributing to the betterment of the world around me. In my downtime, you might find me immersed in a good book, tinkering with new ideas, or enjoying the simple pleasures of life. Let\'s embark on this journey of discovery together!', 1),
+('kPerera', 'istockphoto-1300512215-612x612.jpg65bd1301592ec4.33593279_1706889985_kPerera', 'kaveeja', 'sachintha perera', 'France', '2024-02-02', '02/02/2024 04:06:49 pm', 'Hello, I am Kaveeja Perera', 7),
+('KSPerera', 'dummyprofile.jpg', 'kaveeja', 'perera', NULL, '2024-01-09', '02/03/2024 04:28:27 am', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -352,7 +372,8 @@ INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `role`, `agreement
 (2, '2021cs029@stu.ucsc.cmb.ac.lk', '$2y$10$zsnCHK1P0EA1yVIEPPjWo.ccwS3iMbBZeYEU1QXjbyKkLjmpeVV1S', 'Buyer', 1),
 (3, NULL, '$2y$10$germmkn5veGmFNG0DMptgumadBxDyxe1GgNWdLSvmwLwxIixjDPfu', 'Seller', 1),
 (5, 'dummyemail@gmail.com', '$2y$10$jgUKSXjNbUn.rv8Z5bDDfe5uDH4oaBjh3iXbU/IhT22IKDHPudlAu', 'csa', 1),
-(6, 'dummyemail2@gmail.com', '$2y$10$jgUKSXjNbUn.rv8Z5bDDfe5uDH4oaBjh3iXbU/IhT22IKDHPudlAu', 'CSA', 1);
+(6, 'dummyemail2@gmail.com', '$2y$10$jgUKSXjNbUn.rv8Z5bDDfe5uDH4oaBjh3iXbU/IhT22IKDHPudlAu', 'CSA', 1),
+(7, 'IT21080494@my.sliit.lk', '$2y$10$7nTy9bmk7L/WOE/T8ecRq.oAhi8I87LjX5NVCJbw8H7Ml23GK6ZwK', 'Buyer', 1);
 
 --
 -- Indexes for dumped tables
@@ -484,7 +505,7 @@ ALTER TABLE `auctions`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `buyer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `buyer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `gigs`
@@ -496,7 +517,7 @@ ALTER TABLE `gigs`
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `inquiry_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `inquiry_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -508,7 +529,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -532,7 +553,7 @@ ALTER TABLE `slide_images`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
