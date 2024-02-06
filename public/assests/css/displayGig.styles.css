@@ -353,11 +353,12 @@ textarea {
 }
 .topLeftContainer .seller{
     display: flex;
-    align-items: center;
+    align-items:center;
 }
 .topLeftContainer .seller a{
     text-decoration: none;
     color: #222325;
+    margin-left: 16px;
 }
 .topLeftContainer .seller img{
     width: 48px;
