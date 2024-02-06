@@ -180,7 +180,7 @@ body{
     background-color: #31d65a;
     cursor: pointer;
 }
-.modal .buttons button:hover{
+.milestoneModal .buttons button:hover, .modal .buttons button:hover{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 600;
@@ -269,7 +269,7 @@ body{
     display: flex;
     flex-direction: row !important;
     justify-content: space-between;
-    gap: 16px;
+    width: 100%;
 }
 #milestoneModal .col{
     width: 100%;

@@ -2,6 +2,10 @@
 
 class SellerProfile extends Controller
 {
+    private $GigHandlerModel;
+    private $ProfileHandlerModel;
+    private $UserHandlerModel;
+    private $SellerHandlerModel;
     
     public function __construct()
     {
@@ -14,7 +18,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])&&($_SESSION['role'] !== "Seller")){
 
             header("location: loginSeller");
 
@@ -23,17 +27,19 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
 
-            $userId = $_SESSION["userId"];
-            $phoneNum = $_SESSION['phoneNumber'];
+            $sellerId = $_SESSION["userId"];
 
-            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
+            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
 
-            // get seller id for gigs.
-            $sellerId = $this->getSellerIdFromSellerTable($phoneNum);
+            $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
+            $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
+            $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
+            
             $data['sellerId'] = $sellerId;
 
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
+
             // not the recent gigs have to get the specific gigs which would be created by the seller.
 
             $Gigs = array();
@@ -48,25 +54,8 @@ class SellerProfile extends Controller
             }
             
             $data['gigs'] = $Gigs;
-
-
-
-            $data['GigsOfSeller'] =mysqli_fetch_assoc($GigsOfSeller);
-
-            // if ($GigsOfSeller) {
-
-            //     $data['GigsOfSeller'] = $GigsOfSeller;
-                
-            // } else {
-            //     echo "<script>alert('getAllGigs function is not Accessible!')</script>";
-            // }
             
-            // $data['GigsOfSeller'] = $GigsOfSeller;
-            // $data['GigsOfSeller'] =mysqli_fetch_assoc($data['GigsOfSeller']);
-
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>"; 
+            print_r($_SESSION);
             $this->view('sellerProfile', $data);
         } 
     }
@@ -94,6 +83,8 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
+
+    // has to adjust for client.
     public function  updateSellerProfile()
     {
         $currentProfilePicture = $_POST['currentProfilePicture'];

@@ -2,6 +2,8 @@
 
 class DisplayJob extends Controller
 {
+
+    private $jobHandlerModel;
     public function index(){
 
         $data['title'] = "SkillSparq";

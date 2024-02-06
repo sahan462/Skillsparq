@@ -28,6 +28,7 @@ class updateGig extends Controller
 
             $gigId = $_GET['gigId'];
             $userId = $_GET['userId'];
+            $data['userId'] = $userId;
             $data['gigId'] = $gigId;
 
             if($userId == $_SESSION['userId']){
@@ -44,6 +45,7 @@ class updateGig extends Controller
                 echo "<script>alert('Gig function is not Accessible!')</script>";
             }
            
+            show($data);
             $this->view('UpdateGig', $data);   
         }
     }

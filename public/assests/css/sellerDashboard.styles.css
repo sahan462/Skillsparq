@@ -72,8 +72,12 @@ body{
     height: auto;
     border: 1px solid #c5c6c9;
     margin-top: 32px;
-    padding-bottom: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 0px;
     border-radius: 10px;
+    border-bottom-left-radius:0px ;
+    border-bottom-right-radius:0px ;
+    border-bottom: none;
 }
 .job-card{
     width: auto !important;
@@ -82,7 +86,10 @@ body{
     border-left: none !important;
     border-right: none !important;
     border-bottom: 2px solid #dadbdd !important;
+    margin-top: 5px!important;
+    margin-bottom: 5px !important; 
 }
+
 .jobs .job-header{
     border-bottom: 1px solid #c5c6c9;
     padding: 16px;
