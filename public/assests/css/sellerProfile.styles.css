@@ -2,7 +2,6 @@ body{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
-    /*background-color: #f7f7f7;*/
 }
 
 /* Main Container */
@@ -209,7 +208,7 @@ body{
 }
 .seller-profile-picture .seller-full-name{
     margin-top: 16px;
-    font-size: 20px;
+    font-size: 20px !important;
     line-height: 28px;
     font-weight: 700;
     color: #222325;
@@ -235,6 +234,7 @@ input[type = "text"], textarea, select{
 .seller-full-name{
     display: flex;
     justify-content: space-between;
+    font-size: 20px !important;
 }
 
 /**/
@@ -303,6 +303,7 @@ input[type = "text"], textarea, select{
 .profile .topic{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 16px;
 }
 .profile .description .description-content{

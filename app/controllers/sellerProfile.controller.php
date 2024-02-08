@@ -22,7 +22,8 @@ class SellerProfile extends Controller
 
             header("location: loginSeller");
 
-        }else{
+        }
+        else if(isset($_SESSION["phoneNumber"]) && isset($_SESSION["password"])&&($_SESSION['role'] === "Seller")){
             $data['var'] = "Seller Profile";
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
