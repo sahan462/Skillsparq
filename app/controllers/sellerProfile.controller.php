@@ -162,6 +162,11 @@ class SellerProfile extends Controller
         }
     }
 
+    public function deleteSellerProfile()
+    {
+        // delete a seller profile.
+    }
+
 }
 
 ?>

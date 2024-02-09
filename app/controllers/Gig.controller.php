@@ -93,7 +93,10 @@ class Gig extends Controller
         
     }
 
-    // public function updateGig(){
+    public function updateGig(){
+        // function for update Gigs.
+        
+    }
 
     //     if(isset($_POST["update"])){
 
@@ -150,63 +153,6 @@ class Gig extends Controller
     //             <script>alert('Invalid Publish Mode')</script>
     //             ";
     //         }
-    //     }
-    // }
-
-    // public function deleteGig(){
-
-    //     $gigId = $_GET['gigId'];
-    //     $userId = $_GET['userId'];
-    //     $publishMode = $_GET['publishMode'];
-
-    //     if($publishMode == 'Auction Mode'){
-            
-    //         if($this->GigHandlerModel->deleteAuction($jobId, $userId)){
-    //             if($this->GigHandlerModel->deleteJob($jobId)){
-    //                 echo 
-    //                 "
-    //                 <script>alert('Job deleted Successfully')
-    //                 window.location.href = '" . BASEURL . "buyerProfile';
-    //                 </script>
-    //                 ";
-    //             }else{
-    //                 echo 
-    //                 "
-    //                 <script>alert('Job deletion failed')
-    //                 window.location.href = '" . BASEURL . "buyerProfile';
-    //                 </script>
-    //                 ";
-    //             }
-    //         }else{
-    //             echo 
-    //             "
-    //             <script>alert('Auction deletion failed')
-    //             window.location.href = '" . BASEURL . "buyerProfile';
-    //             </script>
-    //             ";
-    //         }
-
-    //     }else if($publishMode == 'Standard Mode'){
-    //         if($this->GigHandlerModel->deleteGig($jobId)){
-    //             echo 
-    //             "
-    //             <script>alert('Job deleted Successfully')
-    //             window.location.href = '" . BASEURL . "buyerProfile';
-    //             </script>
-    //             ";
-    //         }else{
-    //             echo 
-    //             "
-    //             <script>alert('Job deletion failed')
-    //             window.location.href = '" . BASEURL . "buyerProfile';
-    //             </script>
-    //             ";
-    //         }
-    //     }else{
-    //         echo 
-    //         "
-    //         <script>alert('Invalid Publish Mode!')</script>
-    //         ";
     //     }
     // }
 
