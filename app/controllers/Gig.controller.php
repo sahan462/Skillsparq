@@ -68,92 +68,99 @@ class Gig extends Controller
         }
     }
 
-    public function deleteGig()
-    {
-        // function to delete a specific gig.
-        // $userId = $_GET['userId'];
-        $gigId = $_GET['gigId'];
-        // print_r($userId);
-        // print_r($gigId);
-        if($this->GigHandlerModel->deleteGig($gigId)){
-            echo 
-            "
-            <script>alert('Gig deleted Successfully')
-            window.location.href = '" . BASEURL . "sellerProfile';
-            </script>
-            ";
-        }else{
-            echo 
-            "
-            <script>alert('Gig deletion failed')
-            window.location.href = '" . BASEURL . "sellerProfile';
-            </script>
-            ";
+     // function for update Gigs.
+     public function updateGig(){
+        
+        if(isset($_GET["update"])){
+
         }
         
     }
 
-    public function updateGig(){
-        // function for update Gigs.
+    public function deleteGig()
+    {
+        // function to delete a specific gig.
+        $userId = $_GET['userId'];
+        $gigId = $_GET['gigId'];
+
+        while($this->GigHandlerModel->deletePackages($gigId)){
+            if($this->GigHandlerModel->deleteGig($gigId)){
+                    echo 
+                "
+                <script>alert('Gig deleted Successfully')
+                window.location.href = '" . BASEURL . "sellerProfile';
+                </script>
+                ";
+                break;
+            }
+            else
+            {
+                echo 
+                "
+                <script>alert('Gig deletion failed')
+                window.location.href = '" . BASEURL . "sellerProfile';
+                </script>
+                ";
+            }
+        }
         
     }
 
-    //     if(isset($_POST["update"])){
+        
+        //     $gigId = $_POST["gigId"];
+        //     $title = $_POST['title'];
+        //     $description = $_POST['description'];
+        //     $file = $_POST['fileToUpload'];
+        //     $category = $_POST['category'];
+        //     $deadline = $_POST['deadline_1'];
+        //     $publishMode = $_POST['publishMode'];
+        //     $currentDateTime = date('Y-m-d H:i:s'); 
+        //     $buyerId = $_SESSION['userId'];
 
-    //         $gigId = $_POST["gigId"];
-    //         $title = $_POST['title'];
-    //         $description = $_POST['description'];
-    //         $file = $_POST['fileToUpload'];
-    //         $category = $_POST['category'];
-    //         $deadline = $_POST['deadline_1'];
-    //         $publishMode = $_POST['publishMode'];
-    //         $currentDateTime = date('Y-m-d H:i:s'); 
-    //         $buyerId = $_SESSION['userId'];
+        //     if($publishMode == 'Standard Mode'){
 
-    //         if($publishMode == 'Standard Mode'){
+        //         $amount = $_GET['amount_3'];
+        //         if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
 
-    //             $amount = $_GET['amount_3'];
-    //             if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+        //         $job = $this->GigHandlerModel->updateGig($gigId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+        //         if($job){
+        //             echo "
+        //             <script>
+        //                 alert('Standard Job is Updated Successfully');
+        //                 window.location.href = '" . BASEURL . "buyerProfile';
+        //             </script>
+        //         ";
+        //         }
 
-    //             $job = $this->GigHandlerModel->updateGig($gigId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
-    //             if($job){
-    //                 echo "
-    //                 <script>
-    //                     alert('Standard Job is Updated Successfully');
-    //                     window.location.href = '" . BASEURL . "buyerProfile';
-    //                 </script>
-    //             ";
-    //             }
+        //     }else if($publishMode == 'Auction Mode'){
 
-    //         }else if($publishMode == 'Auction Mode'){
+        //         $amount = $_GET['amount_1'];
+        //         if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
 
-    //             $amount = $_GET['amount_1'];
-    //             if(isset($_GET['flexible-amount'])){$flexible_amount = 1;}else{$flexible_amount = 0;};
+        //         $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
 
-    //             $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
+        //         $starting_time = $_GET['deadline_2'];
+        //         $end_time = $_GET['deadline_3'];
+        //         $starting_bid = $_GET['amount_1'];
+        //         $min_bid_amount = $_GET['amount_2'];
 
-    //             $starting_time = $_GET['deadline_2'];
-    //             $end_time = $_GET['deadline_3'];
-    //             $starting_bid = $_GET['amount_1'];
-    //             $min_bid_amount = $_GET['amount_2'];
+        //         $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
 
-    //             $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
+        //         if($job and $auction){
+        //             echo "
+        //             <script>
+        //                 alert('Auction Job is Updated Successfully');
+        //                 window.location.href = '" . BASEURL . "buyerProfile';
+        //             </script>
+        //         ";
+        //         }
 
-    //             if($job and $auction){
-    //                 echo "
-    //                 <script>
-    //                     alert('Auction Job is Updated Successfully');
-    //                     window.location.href = '" . BASEURL . "buyerProfile';
-    //                 </script>
-    //             ";
-    //             }
-
-    //         }else{
-    //             echo "
-    //             <script>alert('Invalid Publish Mode')</script>
-    //             ";
-    //         }
-    //     }
+        //     }else{
+        //         echo "
+        //         <script>alert('Invalid Publish Mode')</script>
+        //         ";
+        //     }
+        // }
     // }
 
 }

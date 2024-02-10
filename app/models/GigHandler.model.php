@@ -74,14 +74,30 @@ class GigHandler extends database
         mysqli_stmt_close($stmt);
     
         return $insertedIds; 
-    }
+    } 
 
-    public function updatePackages($gigId)
-    {
+    // retrieve a specific gig of a user
+    // public function retrieveAGig($userId,$gigId)
+    // {
+    //     $query = "SELECT * FROM gigs WHERE gig_id = ? AND seller_id = ?";
+        
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
 
-    }
+    //     mysqli_stmt_bind_param($stmt, "ii", $gigId,$userId);
 
-    
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         $retrieveGigDetails = $stmt->get_result()->fetch_assoc();
+    //         $stmt->close();
+
+    //         return $retrieveGigDetails;
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
 
     //read recently added gigs
     public function getRecentGigs()
@@ -102,7 +118,7 @@ class GigHandler extends database
     }
     
 
-    //read gigs based on gig id and seller id
+    //read gigs based on seller id
     public function getGig($sellerId)
     {
         $query = "SELECT * FROM gigs WHERE seller_id = ?";
@@ -239,6 +255,12 @@ class GigHandler extends database
         }
     }
 
+    // update packages
+    public function updatePackages($gigId)
+    {
+
+    }
+
     //delete gig
     public function deleteGig($gigId)
     {
@@ -262,7 +284,6 @@ class GigHandler extends database
 
     public function deletePackages($gigId)
     {
-        for($i = 0;$i<3;$i++){
             $query = "DELETE FROM packages WHERE gig_id = ?;";
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -274,12 +295,10 @@ class GigHandler extends database
             
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_close($stmt);
-                $stmt->close();
                 return true; 
             } else {
                 throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
             }
-        }
         
     }
 }
