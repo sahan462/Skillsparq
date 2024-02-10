@@ -8,17 +8,20 @@ class DisplayJob extends Controller
 
         $data['title'] = "SkillSparq";
         $userId = $_SESSION['userId'];
+        $jobId = $_GET['jobId'];
 
         $this->jobHandlerModel = $this->model('JobHandler');
         $job = mysqli_fetch_assoc($this->jobHandlerModel->getJob($_GET['jobId'] ));
 
-        if ($job['publish_mode'] == 'Auction Mode'){
+        if ($job['publish_mode'] === "Auction Mode"){
 
-            $auction = $this->jobHandlerModel->getAuction($job['job_id'], $userId);
-            $data['job'] =  array_merge($job, mysqli_fetch_assoc($auction));
+            $auction = $this->jobHandlerModel->getAuction($jobId, $userId);
+            $auction = mysqli_fetch_assoc($auction);
+            $data['job'] = $job;
+            $data['auction'] = $auction;
             $this->view('displayJob', $data);
 
-        }else if($job['publish_mode'] == 'Standard Mode'){
+        }else if($job['publish_mode'] === "Standard Mode"){
             $data['job'] = $job;
             $this->view('displayJob', $data);
         }

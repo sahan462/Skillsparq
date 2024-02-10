@@ -3,12 +3,12 @@
 class updateGig extends Controller
 {
     private $GigHandlerModel;
-    private $GigController;
+    // private $GigController;
     
     public function __construct()
     {
-       $this->GigHandlerModel = $this->model('gigHandler');
-        $this->GigController = $this->controller('gig');
+       $this->GigHandlerModel = $this->model('GigHandler');
+        // $this->GigController = $this->controller('gig');
     }
 
    
@@ -16,7 +16,7 @@ class updateGig extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
             
             header("location: loginUser");
             exit;
@@ -32,21 +32,32 @@ class updateGig extends Controller
             $data['gigId'] = $gigId;
 
             if($userId == $_SESSION['userId']){
+                // $data['GigDetails'] = mysqli_fetch_assoc($this->GigHandlerModel->getGig($gigId));
 
+                $gig = $this->GigHandlerModel->displayGig($gigId);
+                // $packages = $this->GigHandlerModel->getPackages($gigId);
+                if ($gig != null) {
+                    $data['gigDetails'] = mysqli_fetch_assoc($gig);
+                    // $data['packageDetails'] = mysqli_fetch_assoc($packages);
+                    print_r($data);
+                    $this->view('UpdateGig', $data); 
+
+                } else {
+                    echo "<script>alert('Gig update is not Accessible!')</script>";
+                }
+                // $data['PackageDetails'] = mysqli_fetch_assoc($this->GigHandlerModel->getPackages($gigId));
+                
+            }else{
+                echo 
+                "
+                <script>alert('Can not perform update!')</script>
+                ";
             }
 
             //get gig details
-            $gig = $this->GigHandlerModel->getGig($gigId);
-            if ($gig) {
-
-                $data['gigId'] = mysqli_fetch_assoc($gig);
-
-            } else {
-                echo "<script>alert('Gig function is not Accessible!')</script>";
-            }
+            
            
-            print_r($data);
-            $this->view('UpdateGig', $data);   
+             
         }
     }
 

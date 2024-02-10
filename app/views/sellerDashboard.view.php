@@ -127,6 +127,6 @@
 
 </div>
 
-<script src="../../public/assests/js/sellerDashboard.js"></script>
+<script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>
