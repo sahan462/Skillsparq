@@ -1,6 +1,6 @@
 <?php 
     $job = $data['job'];
-   print_r ($job);
+//    print_r ($job);
 ?>
 <!DOCTYPE html>
 <html>

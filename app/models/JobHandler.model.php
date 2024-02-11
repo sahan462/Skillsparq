@@ -137,7 +137,7 @@ class JobHandler extends database
     //get auction details
     public function getAuction($jobId,$userId){
 
-        $query = "SELECT * FROM Auctions WHERE job_id = ? AND buyer_id = ?;";
+        $query = "SELECT * FROM auctions WHERE job_id = ? AND buyer_id = ?;";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
