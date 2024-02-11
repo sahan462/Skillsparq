@@ -6,7 +6,6 @@
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
     $profileData = $data['profileData'];
-
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
 
