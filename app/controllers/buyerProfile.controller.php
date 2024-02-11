@@ -55,7 +55,7 @@ class BuyerProfile extends Controller
             }
             
             $data['jobs'] = $jobs;
-            show($data);
+            // show($data);
             $this->view('buyerProfile', $data);
         }
 
