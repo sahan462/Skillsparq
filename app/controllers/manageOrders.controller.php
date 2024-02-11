@@ -39,7 +39,6 @@ class ManageOrders extends Controller
             $orderId = $this->OrderHandlerModel->createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId);
         }
 
-
         echo "
         <script>
             alert('Order created successfully');
@@ -52,7 +51,7 @@ class ManageOrders extends Controller
     public function createMilestoneOrder(){
 
         $milestones = $_POST['milestone'];
-
+        print_r($milestones);
         
     }
 

@@ -18,7 +18,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])&&($_SESSION['role'] !== "Seller")){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"]) && ($_SESSION['role'] !== "Seller")){
 
             header("location: loginSeller");
 
