@@ -81,7 +81,9 @@
 
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_1" oninput="this.className = ''"></div>
+                                <div class="customName">
+                                    <input type="text"  name ="customName_1" oninput="this.className = ''">
+                                </div>
                             </div>
 
                             <div class="row">

@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+  -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
@@ -297,12 +297,11 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_name`, `profile_pic`, `first_name`, `last_name`, `country`, `joined_date`, `last_seen`, `about`, `user_id`) VALUES
 ('ChFernando', '1667170773982.jpg65b6ee9167aa73.77042511_1706487441_ChFernando', 'Elon', 'Musk', 'Australia', '2023-11-16', '01/29/2024 12:21:26 am', 'Elon Musk (born June 28, 1971, Pretoria, South Africa) South African-born American entrepreneur who cofounded the electronic-payment firm PayPal and formed SpaceX, maker of launch vehicles and spacecraft. He was also one of the first significant investors in, as well as chief executive officer of, the electric car manufacturer Tesla. In addition, Musk acquired Twitter (later X) in 2022.', 2),
-('dsahan', 'istockphoto-1300512215-612x612.jpg65bf2b74aad2b6.04036693_1707027316_dsahan', 'Damitha', 'Sahan', 'Bangladesh', '2023-11-07', 'online', 'Hello there! I\'m Damitha. I\'m an enthusiastic individual with a passion for exploring the boundless realms of knowledge and creativity. My journey through life has been shaped by a relentless curiosity and a love for learning, propelling me to embrace diverse experiences and perspectives. Whether delving into the intricacies of technology, savoring the nuances of literature, or immersing myself in the beauty of nature, I find joy in the multifaceted tapestry of existence. A seeker of wisdom and a fervent advocate for positive change, I am committed to continuous self-improvement and contributing to the betterment of the world around me. In my downtime, you might find me immersed in a good book, tinkering with new ideas, or enjoying the simple pleasures of life. Let\'s embark on this journey of discovery together!', 1),
+('dsahan', 'dummyprofile.jpg', 'Damitha', 'Sahan', 'Bangladesh', '2023-11-07', 'online', 'Hello there! I am an enthusiastic individual with a passion for exploring the boundless realms of knowledge and creativity. My journey through life has been shaped by a relentless curiosity and a love for learning, propelling me to embrace diverse experiences and perspectives. Whether delving into the intricacies of technology, savoring the nuances of literature, or immersing myself in the beauty of nature, I find joy in the multifaceted tapestry of existence. A seeker of wisdom and a fervent advocate for positive change, I am committed to continuous self-improvement and contributing to the betterment of the world around me. In my downtime, you might find me immersed in a good book, tinkering with new ideas, or enjoying the simple pleasures of life. Let us embark on this journey of discovery together!', 1),
 ('kPerera', 'istockphoto-1300512215-612x612.jpg65bd1301592ec4.33593279_1706889985_kPerera', 'kaveeja', 'sachintha perera', 'France', '2024-02-02', '02/02/2024 04:06:49 pm', 'Hello, I am Kaveeja Perera', 7),
 ('KSPerera', 'dummyprofile.jpg', 'kaveeja', 'perera', NULL, '2024-01-09', '02/03/2024 04:28:27 am', NULL, 3);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `seller`
 --

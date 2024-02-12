@@ -2,37 +2,41 @@
 
 class DisplayJob extends Controller
 {
-
     private $jobHandlerModel;
+
+    public function __construct()
+    {
+        $this->jobHandlerModel = $this->model('JobHandler');
+    }
+
     public function index(){
 
         $data['title'] = "SkillSparq";
-        $userId = $_SESSION['userId'];
+        $buyerId = $_GET['buyerId'];
+        $jobId = $_GET['jobId'];
 
-        $this->jobHandlerModel = $this->model('JobHandler');
-        $job = mysqli_fetch_assoc($this->jobHandlerModel->getJob($_GET['jobId'] ));
+        $standardJob = $this->jobHandlerModel->getJob($jobId);
 
-        if ($job['publish_mode'] == 'Auction Mode'){
+        if ($standardJob) {
+            $job = mysqli_fetch_assoc($standardJob);
+            if ($job['publish_mode'] == 'Auction Mode') {
 
-            $auction = $this->jobHandlerModel->getAuction($job['job_id'], $userId);
-            $data['job'] =  array_merge($job, mysqli_fetch_assoc($auction));
-            $this->view('displayJob', $data);
+                $auction = $this->jobHandlerModel->getAuction($job['job_id'], $buyerId);
 
-        }else if($job['publish_mode'] == 'Standard Mode'){
-            $data['job'] = $job;
-            $this->view('displayJob', $data);
+                if ($auction) {
+                    $auction =  mysqli_fetch_assoc($auction);
+                    $mergedJob = array_merge($job,$auction);
+                    $data['job'] = $mergedJob;
+                }
+            } else {
+                $data['job'] = $job;
+            }
+            
+        } else {
+            echo "<script>alert('getJob function is not Accessible!')</script>";
         }
-        else{
-            echo "
-            <script>
-                alert('Job is not available');
-            </script>
-            ";
-            $this->view('buyerProfile', $data);
-        }
-
+        print_r($data);
+        $this->view('displayJob', $data);
     }
 
 }
-
-?>
