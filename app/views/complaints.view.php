@@ -95,38 +95,32 @@
             </div>
 
             <p class="heading">Complaints</p>
-
             <table class="content-table">
-                <tr>
+                <thead>
                     <th>inquiry_ID
-                    <th>
                     <th>Subject
-                    <th>
                     <th>description
-                    <th>
                     <th>View
-                    <th>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($recentComplaints as $row) {
+                    ?>
+                        <tr>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['subject']; ?></td>
+                            <td><?php echo $row['description']; ?></td>
+                            <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                                    <button>View1</button>
+                                </a></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
 
-                        <?php
-                        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-                        if ($conn->connect_error) {
-                            die("connection failed:" . $conn->connect_error);
-                        }
-                        $sql = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";
-                        $result = $conn->query($sql);
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $inq_id = $row['inquiry_id'];
-                                echo "<tr><td>" . $row["inquiry_id"] . "</td><td>" . $row["subject"] . "</td><td>" . $row["description"] . "</td><td><a href='viewComplaints?inquiry_id=" . $inq_id . "'><button>View</button></a></td></tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "No Buyers included";
-                        }
-                        $conn->close();
-
-                        ?>
         </div>
     </section>
 

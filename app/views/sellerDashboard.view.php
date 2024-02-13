@@ -2,10 +2,10 @@
 
 <?php
 
-<<<<<<< HEAD
 $firstName = $data['sellerProfileDetails']['first_name'];
 $lastName = $data['sellerProfileDetails']['last_name'];
 $profilePicture = $data['sellerProfileDetails']['profile_pic'];
+$userName = $data["sellerProfileDetails"]['user_name'];
 
 $data["activeStatus"] = "display: none";
 $data['ongoingOrders'] = 0;
@@ -13,27 +13,12 @@ $data["earningsThisMonth"] = "$0";
 $data["completedOrders"] = 0;
 $data["lastDelivery"] = "July 2023";
 $data["expertise"] = "Tech";
-$data["userName"] = $_SESSION['userName'];
 // $data["profilePicture"] = "dummyprofile.jpg";
-=======
-    $firstName = $data['sellerProfileDetails']['first_name'];
-    $lastName = $data['sellerProfileDetails']['last_name'];
-    $profilePicture = $data['sellerProfileDetails']['profile_pic'];
-    $userName = $data["sellerProfileDetails"]['user_name'];
-    
-    $data["activeStatus"] = "display: none";
-    $data['ongoingOrders'] = 0;
-    $data["earningsThisMonth"] = "$0";
-    $data["completedOrders"] = 0;
-    $data["lastDelivery"] = "July 2023";
-    $data["expertise"] = "Tech";
-    // $data["profilePicture"] = "dummyprofile.jpg";
-    print_r($_SESSION);
->>>>>>> 60e5e461fe5908f7bfbd0bc37a782356a8fa5807
+print_r($_SESSION);
 
-    // get the jobs from sellerdashboard controller.php to this view.
-    print_r($data['AllJobs']);
-    $jobs = $data['AllJobs'];
+// get the jobs from sellerdashboard controller.php to this view.
+print_r($data['AllJobs']);
+$jobs = $data['AllJobs'];
 ?>
 
 <div class="sellerDashboard-content">
@@ -55,7 +40,7 @@ $data["userName"] = $_SESSION['userName'];
                         <?php echo $firstName . " " . $lastName ?>
                     </div>
                     <div class="user-name">
-                        <?php echo $userName?>
+                        <?php echo $userName ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -129,8 +114,8 @@ $data["userName"] = $_SESSION['userName'];
                 </div>
                 <div class="jobContent">
                     <?php
-                    if(!empty($jobs)){
-                        foreach($jobs as $job){
+                    if (!empty($jobs)) {
+                        foreach ($jobs as $job) {
                             include "components/jobCard.component.php";
                         }
                     }
