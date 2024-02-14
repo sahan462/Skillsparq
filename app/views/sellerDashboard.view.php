@@ -17,7 +17,7 @@
     print_r($_SESSION);
 
     // get the jobs from sellerdashboard controller.php to this view.
-    print_r($data['AllJobs']);
+    // show($data['AllJobs']);
     $jobs = $data['AllJobs'];
 ?>
 
@@ -127,6 +127,6 @@
 
 </div>
 
-<script src="../../public/assests/js/sellerDashboard.js"></script>
+<script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>

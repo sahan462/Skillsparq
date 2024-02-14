@@ -9,7 +9,7 @@
         <div class="links">
             <?php
                 if($_SESSION['role'] === "Seller"){
-                    if(($row['ongoing_order_count'])=== 0){
+                    if(($row['ongoing_order_count']) === 0){
             ?>
                     <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">edit</a>
                     <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">delete</a>

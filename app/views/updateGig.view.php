@@ -1,8 +1,7 @@
 <?php include "components/sellerHeader.component.php";?>
 
 <?php 
-    $gigId = $data["gigId"];
-    // echo print_r($gigId);
+    $gigDetails = $data['gigDetails'];
 ?>
 
 <!-- Main Container -->
@@ -37,29 +36,31 @@
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
                     <div class="title">
-                        <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php ;?>" oninput="this.className = ''"></p>
+                        <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php echo $data['gigDetails']['title']?>" oninput="this.className = ''"></p>
                     </div>
 
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" value="<?php ;?>" required></textarea>
+                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" required>
+                            <?php echo $gigDetails['description']?>
+                        </textarea>
                     </div>
 
                     <div class="category">
                         <span class="type-1">Which category best fits your project?</span>
                         <span class="type-2">Choose from the list</span>
                         <select name="category" class="categories" required>
-                            <option value="Graphics & Design <?php ;?>">Graphics & Design</option>
-                            <option value="Programming & Tech <?php ;?>">Programming & Tech</option>
-                            <option value="Digital Marketing <?php ;?>">Digital Marketing</option>
-                            <option value="Video & Animation <?php ;?>">Video & Animation</option>
-                            <option value="Writing & Translation <?php ;?>">Writing & Translation</option>
-                            <option value="Music & Audio <?php ;?>">Music & Audio</option>
-                            <option value="Business <?php ;?>">Business</option>
-                            <option value="Data <?php ;?>">Data</option>
-                            <option value="Photography <?php ;?>">Photography</option>
-                            <option value="AI Services <?php ;?>">AI Services</option>
+                            <option value="Graphics & Design <?php echo ($gigDetails['category'] === 'Graphics & Design') ? 'selected' : '';?>">Graphics & Design</option>
+                            <option value="Programming & Tech <?php echo ($gigDetails['category'] === 'Programming & Tech') ? 'selected' : '';?>">Programming & Tech</option>
+                            <option value="Digital Marketing <?php echo ($gigDetails['category'] === 'Digital Marketing') ? 'selected' : '';?>">Digital Marketing</option>
+                            <option value="Video & Animation <?php echo ($gigDetails['category'] === 'Video & Animation') ? 'selected' : '';?>">Video & Animation</option>
+                            <option value="Writing & Translation <?php echo ($gigDetails['category'] === 'Writing & Translation') ? 'selected' : '';?>">Writing & Translation</option>
+                            <option value="Music & Audio <?php echo ($gigDetails['category'] === 'Music & Audio') ? 'selected' : '';?>">Music & Audio</option>
+                            <option value="Business <?php echo ($gigDetails['category'] === 'Business') ? 'selected' : '';?>">Business</option>
+                            <option value="Data <?php echo ($gigDetails['category'] === 'Data') ? 'selected' : '';?>">Data</option>
+                            <option value="Photography <?php echo ($gigDetails['category'] === 'Photography') ? 'selected' : '';?>">Photography</option>
+                            <option value="AI Services <?php echo ($gigDetails['category'] === 'AI Services') ? 'selected' : '';?>">AI Services</option>
                         </select>
                     </div>
                 </div>
@@ -82,7 +83,9 @@
 
                             <div class="row">
                                 <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_1" oninput="this.className = ''"></div>
+                                <div class="customName">
+                                    <input type="text"  name ="customName_1" oninput="this.className = ''">
+                                </div>
                             </div>
 
                             <div class="row">
@@ -90,7 +93,7 @@
                                 <div class="noOfDeliveryDays">
                                     <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_1" class="categories" >
-                                        <option value="Days <?php ;?>">Day(s)</option>
+                                        <option value="Days <?php echo ($gigDetails['time_period'] === 'AI Services') ? 'selected' : '';?>">Day(s)</option>
                                         <option value="Weeks<?php ;?>">Week(s)</option>
                                         <option value="Months <?php ;?>">Month(s)</option>
                                         <option value="Years <?php ;?>">Year(s)</option>
@@ -212,7 +215,7 @@
 
                     <div class="images">
                         <label for="coverImage">Cover Image:</label>
-                        <input type="file" id="coverImage" name="coverImage"  required/>
+                        <input type="file" id="coverImage" name="coverImage" value="<?php echo $gigDetails['cover_image']?>" required/>
 
                         <label for="sliderImage1">Slider Image 1:</label>
                         <input type="file" id="sliderImage1" name="sliderImage1"   />
