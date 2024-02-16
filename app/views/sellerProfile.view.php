@@ -9,8 +9,8 @@
     $DateJoined = $data['sellerProfileDetails']['joined_date'];
     $lastSeen = $data['sellerProfileDetails']['last_seen'];
     $about = $data['sellerProfileDetails']['about'];
-    $languages = $data['sellerProfileDetails']['languages'];
-    $skills = $data['sellerProfileDetails']['skills'];
+    // $languages = $data['sellerProfileDetails']['languages'];
+    // $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = (array) $data['gigs'];
@@ -224,6 +224,18 @@
             <div class="reviews">
                 <div class="sellerheader">
                     <span>Feedbacks and ratings</span>
+                </div>
+                <div class="review-content">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>No feedbacks available</span>
+                </div>
+            </div>
+
+            <div class="reviews">
+                <div class="sellerheader">
+                    <span>My Portfolio</span>
                 </div>
                 <div class="review-content">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

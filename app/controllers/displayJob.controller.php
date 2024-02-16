@@ -35,7 +35,7 @@ class DisplayJob extends Controller
         } else {
             echo "<script>alert('getJob function is not Accessible!')</script>";
         }
-        print_r($data);
+        // print_r($data);
         $this->view('displayJob', $data);
     }
 

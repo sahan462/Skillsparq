@@ -1,33 +1,24 @@
 body {
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-family: Arial, sans-serif;
-    /* color: #62646a;
-    background-color: #f7f7f7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     margin: 0;
     padding: 0;
-    /* height: 100vh; */
 }
 
 .displayJobContainer {
     margin: 0 auto;
     padding: 16px 32px;
-    /* background-color: #fff; */
-    /* border: 1px solid #dadbdd; */
     border-radius: 10px;
-    /* display: flex; */
-    margin-left: 60px;
+    margin-bottom:16px;
+    /* margin-left: 60px;
     margin-right: 60px;
-    margin-top: 30px;
+    margin-top: 30px; */
 }
 
 .displayJobHeader{
     min-height: 24px;
     margin-top: 24px;
-    margin-bottom: 48px;
+    /* margin-bottom: 48px; */
     font-size: 32px;
     font-weight: 700;
     color: #222325;
@@ -36,45 +27,123 @@ body {
 }
 
 .displayJobContent{
-    margin-right: 32px;
-    margin-left:32px;
+    /* margin-right: 32px;
+    margin-left:32px; */
     padding: 0px 16px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 32px;
+    justify-content:normal;
+    margin-top: 16px;
     height: calc(100vh - 180px);
 }
 
-.jobMajorDetails{
+.displayJobMajorDetails{
     width: 75%;
-    padding: 10px;
-    padding-right: 20px;
+    padding: 8px 0px 8px 8px;
+    margin-left: 8px;
     justify-content: center;
 }
-.jobViewBuyerDetailsSideBar {
-    width: 25%;
-    padding: 10px;
-    padding-left: 20px;
-    border-left: #dadbdd solid 1px;
+
+svg{
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
 }
 
-.jobCreatedTimeDetails{
+.displayJobMajorDetailsCategory{
+    width: 100%;
+    font-size: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: auto;
+}
+
+.displayJobCreatedTimeDetails{
     font-size:16px;
-    margin: 10px;
+    padding-bottom: 8px;
     margin-left:0px;
     border-bottom-style:solid;
-    border-bottom-width: 1px;
+    border-bottom-width: 1.5px;
     border-bottom-color: #1dbf73 ;
 }
 
+.displayJobMajorDetailsDescription{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom-style:solid;
+    border-bottom-width: 1.5px;
+    border-bottom-color: #1dbf73 ;
+}
+
+.displayJobMajorDetailsNegotiability{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom-style:solid;
+    border-bottom-width: 1.5px;
+    border-bottom-color: #1dbf73 ;
+}
+
+.displayJobBidAuction{
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: auto;
+}
+
+.auctionDetailHeader{
+    font-size: 24px;
+}
+
+.auctionDetailContent{
+    padding: 16px;
+}
+
+.auctionStartTime{
+    padding-bottom: 8px;
+    margin-left: 8px;
+}
+
+.auctionEndTime{
+    padding-bottom: 8px;
+    margin-left: 8px;
+}
+
+.auctionStartingBid{
+    padding-bottom: 8px;
+    margin-left: 8px;
+}
+
+.auctionCurrentMinBid{
+    padding-bottom: 8px;
+    margin-left: 8px;
+}
+
+.jobViewBuyerDetailsSideBar {
+    width: 25%;
+    padding: 8px;
+    padding-left: 16px;
+    border-left: #1dbf73 solid 1.5px;
+}
+
+.jobViewBuyerDetialsAbout{
+
+}
+
+
+
 @media only screen and (max-width: 900px) {
-    .container{
+    .displayJobContent{
         display: flex;
         flex-direction: column;
         gap:16px;
 
     }
-    .jobMajorDetails{
+    .displayJobMajorDetails{
         width: 100%;
         padding: 10px;
         padding-right: 20px;
@@ -83,30 +152,16 @@ body {
     .jobViewBuyerDetailsSideBar {
         width: 100%;
         padding: 10px;
-        border-left: #dadbdd solid 0px;
+        border-left: none;
     }
-}
-
-
-.jobMajorDetailsDescription{
-
-}
-
-.details{
-    display: flex;
-    justify-content: space-between;
-}
-.job-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.job-details {
-    font-size: 16px;
-}
-
-.job-description {
-    margin-top: 20px;
+    .jobViewBuyerDetialsAbout{
+        width: 100%;
+        border-left: #dadbdd solid 0px;
+        padding-left: 8px;
+    }
+    .displayJobCreatedTimeDetails{
+        margin-top: 8px;
+        gap: 10px;
+    }
 }
 
