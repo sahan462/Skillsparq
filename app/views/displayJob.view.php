@@ -3,8 +3,8 @@
     $job = $data['job'];
 //    print_r ($job);
 ?>
-    
-    <div class="container">
+
+    <div class="displayJobContainer">
         <!-- <h1 class="job-title"><?php //echo $job['title']?></h1>
         <div class="details">
             <div class="job-details">
@@ -34,43 +34,34 @@
             </p>
         </div> -->
 
-        <div class="jobMajorDetails">
-            <div class="jobMajorDetailsCategory">
-            
+        <!-- Topic -->
+        <div class="displayJobHeader">
+            <?php echo $job['title']?>
+        </div>
 
+        <div class="displayJobContent">
+            <div class="jobMajorDetails">
+                <div class="jobMajorDetailsCategory">
+                    <div class="jobCreatedTimeDetails">
+                        Job Posted :
+                        <?php echo $job['created_at']?>
+                    </div>
+                </div>
+                <div class="jobMajorDetailsDescription">
+                    
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero aspernatur laudantium, vel nisi corrupti nostrum libero cumque repellendus atque optio.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero aspernatur laudantium, vel nisi corrupti nostrum libero cumque repellendus atque optio.
+                    nostrum libero cumque repellendus atque optio.
+                    nostrum libero cumque repellendus atque optio.
+                    nostrum libero cumque repellendus atque optio.
+                </div>
             </div>
-            <div class="jobMajorDetailsTitle">
-                <h1 class="job-title"><?php echo $job['title']?></h1>
-            </div>
-            <div class="jobMajorDetailsDescription">
-                
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero aspernatur laudantium, vel nisi corrupti nostrum libero cumque repellendus atque optio.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero aspernatur laudantium, vel nisi corrupti nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
+            <div class="jobViewBuyerDetailsSideBar">
+                <div class="jobViewBuyerDetialsAbout">.
 
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
+                </div>
             </div>
         </div>
-        <div class="jobViewBuyerDetailsSideBar">
-            <div class="jobViewBuyerDetialsAbout">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt amet magni nisi! Et quaerat repellat in asperiores qui praesentium illo.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.
-                nostrum libero cumque repellendus atque optio.nostrum libero cumque repellendus atque optio.
-
-            </div>
-        </div>
+        
         
 
     </div>

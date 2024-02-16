@@ -12,47 +12,85 @@ body {
     /* height: 100vh; */
 }
 
-.container {
-    /* max-width: 800px; */
+.displayJobContainer {
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #dadbdd;
+    padding: 16px 32px;
+    /* background-color: #fff; */
+    /* border: 1px solid #dadbdd; */
     border-radius: 10px;
-    display: flex;
-    flex-wrap:initial;
-    justify-content: center;
+    /* display: flex; */
     margin-left: 60px;
     margin-right: 60px;
     margin-top: 30px;
 }
 
+.displayJobHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+.displayJobContent{
+    margin-right: 32px;
+    margin-left:32px;
+    padding: 0px 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    height: calc(100vh - 180px);
+}
+
 .jobMajorDetails{
-    /* display: flex; */
+    width: 75%;
     padding: 10px;
     padding-right: 20px;
     justify-content: center;
 }
-
-.jobMajorDetailsCategory{
-
-}
-
-.jobMajorDetailsTitle{
-
-}
-
-.jobMajorDetailsDescription{
-
-}
-
-.jobViewBuyerDetailsSideBar{
-    max-width: 35%;
+.jobViewBuyerDetailsSideBar {
+    width: 25%;
     padding: 10px;
     padding-left: 20px;
     border-left: #dadbdd solid 1px;
 }
 
+.jobCreatedTimeDetails{
+    font-size:16px;
+    margin: 10px;
+    margin-left:0px;
+    border-bottom-style:solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #1dbf73 ;
+}
+
+@media only screen and (max-width: 900px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap:16px;
+
+    }
+    .jobMajorDetails{
+        width: 100%;
+        padding: 10px;
+        padding-right: 20px;
+        justify-content: center;
+    }
+    .jobViewBuyerDetailsSideBar {
+        width: 100%;
+        padding: 10px;
+        border-left: #dadbdd solid 0px;
+    }
+}
+
+
+.jobMajorDetailsDescription{
+
+}
 
 .details{
     display: flex;
