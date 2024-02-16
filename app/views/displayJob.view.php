@@ -33,6 +33,11 @@
                     <?php echo $job['description']?>
                 </div>
 
+                <div class="displayJobMajorDetailsDeadline">
+                    Have to be done before : 
+                    <?php echo $job['deadline']?>
+                </div>
+
                 <div class="displayJobMajorDetailsNegotiability">
                     <?php 
                         if($job['flexible_amount'] === "1"){
@@ -44,7 +49,7 @@
                 </div>
 
                 <div class="displayJobMajorDetailsFile">
-                    Job File
+                    Download job File : 
                 </div>
 
             <?php if($job['publish_mode'] == 'Auction Mode'){?>
@@ -74,6 +79,10 @@
                             Current Minimum Bid : <?php echo $job['min_bid_amount']?>
                         </div>
 
+                        <div class="auctionCurrentMaxBid">
+                            Current Maximum Bid : <?php echo $job['current_highest_bid']?>
+                        </div>
+
                     </div>
 
                 </div>
@@ -84,9 +93,21 @@
 
             </div>
             <div class="jobViewBuyerDetailsSideBar">
-                
+
                 <div class="jobViewBuyerDetialsAbout">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non eius accusamus, vitae veniam temporibus cum quas libero dolorum consequatur pariatur ipsa veritatis nulla quos obcaecati delectus doloribus necessitatibus ipsam magni perspiciatis voluptate, aut maiores sequi eos recusandae! Qui, voluptate temporibus?
+                    About The Client
+                    <div class="jobViewBuyerDetialsPayVer">payment method verified</div>
+                    <div class="jobViewBuyerDetialsRatings">Ratings</div>
+                    <div>
+                    <ul class="jobViewBuyerDetialsUnOrList">
+                        <li class="jobViewBuyerDetailsListItems">country</li>
+                        <li class="jobViewBuyerDetailsListItems">posted job count</li>
+                        <li class="jobViewBuyerDetailsListItems">total spendings</li>
+                        <li class="jobViewBuyerDetailsListItems">average hrs per rate paid</li>
+                        <li class="jobViewBuyerDetailsListItems">member since</li>
+                    </ul>
+                    </div>
+                    
                 </div>
 
             </div>

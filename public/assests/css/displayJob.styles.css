@@ -10,15 +10,11 @@ body {
     padding: 16px 32px;
     border-radius: 10px;
     margin-bottom:16px;
-    /* margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 30px; */
 }
 
 .displayJobHeader{
     min-height: 24px;
     margin-top: 24px;
-    /* margin-bottom: 48px; */
     font-size: 32px;
     font-weight: 700;
     color: #222325;
@@ -27,8 +23,6 @@ body {
 }
 
 .displayJobContent{
-    /* margin-right: 32px;
-    margin-left:32px; */
     padding: 0px 16px;
     display: flex;
     justify-content:normal;
@@ -62,14 +56,22 @@ svg{
 
 .displayJobCreatedTimeDetails{
     font-size:16px;
-    padding-bottom: 8px;
     margin-left:0px;
-    border-bottom-style:solid;
-    border-bottom-width: 1.5px;
-    border-bottom-color: #1dbf73 ;
 }
 
 .displayJobMajorDetailsDescription{
+    
+}
+
+.displayJobMajorDetailsDeadline{
+
+}
+
+.displayJobMajorDetailsNegotiability{
+    
+}
+
+.displayJobCreatedTimeDetails,.displayJobMajorDetailsDescription,.displayJobMajorDetailsNegotiability,.displayJobMajorDetailsDeadline,.displayJobMajorDetailsFile{
     padding-top: 8px;
     padding-bottom: 8px;
     border-bottom-style:solid;
@@ -77,12 +79,9 @@ svg{
     border-bottom-color: #1dbf73 ;
 }
 
-.displayJobMajorDetailsNegotiability{
+.displayJobMajorDetailsFile{
     padding-top: 8px;
     padding-bottom: 8px;
-    border-bottom-style:solid;
-    border-bottom-width: 1.5px;
-    border-bottom-color: #1dbf73 ;
 }
 
 .displayJobBidAuction{
@@ -103,24 +102,22 @@ svg{
     padding: 16px;
 }
 
-.auctionStartTime{
+.auctionStartTime,.auctionEndTime,.auctionStartingBid,.auctionCurrentMinBid,.auctionCurrentMaxBid{
     padding-bottom: 8px;
     margin-left: 8px;
 }
 
 .auctionEndTime{
-    padding-bottom: 8px;
-    margin-left: 8px;
 }
 
 .auctionStartingBid{
-    padding-bottom: 8px;
-    margin-left: 8px;
 }
 
 .auctionCurrentMinBid{
-    padding-bottom: 8px;
-    margin-left: 8px;
+}
+
+.auctionCurrentMaxBid{
+
 }
 
 .jobViewBuyerDetailsSideBar {
@@ -131,7 +128,19 @@ svg{
 }
 
 .jobViewBuyerDetialsAbout{
+    text-align: center;
+    margin-top:24px;
+    font-size: 24px;
+}
 
+.jobViewBuyerDetialsUnOrList{
+
+}
+
+.jobViewBuyerDetailsListItems{
+    list-style-type: none;
+    text-align: center;
+    font-size: 16px;
 }
 
 
