@@ -33,7 +33,7 @@ class BuyerProfile extends Controller
             //get Jobs
             $standardModeJobs = $this->JobHandlerModel->getAllJobs($userId);
 
-            $jobs = array(); 
+            $jobs = []; 
 
             if ($standardModeJobs) {
                 while ($job = mysqli_fetch_assoc($standardModeJobs)) {
@@ -42,7 +42,8 @@ class BuyerProfile extends Controller
                         $auction = $this->JobHandlerModel->getAuction($job['job_id'], $userId);
 
                         if ($auction) {
-                            $mergedJob = array_merge($job, mysqli_fetch_assoc($auction));
+                            $auction =  mysqli_fetch_assoc($auction);
+                            $mergedJob = array_merge($job,$auction);
                             $jobs[] = $mergedJob; 
                         }
                     } else {
@@ -54,6 +55,7 @@ class BuyerProfile extends Controller
             }
             
             $data['jobs'] = $jobs;
+            // show($data);
             $this->view('buyerProfile', $data);
         }
 

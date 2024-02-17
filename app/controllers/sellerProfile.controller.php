@@ -18,7 +18,7 @@ class SellerProfile extends Controller
     public function index()
     {
 
-        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])&&($_SESSION['role'] !== "Seller")){
+        if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"]) && ($_SESSION['role'] !== "Seller")){
 
             header("location: loginSeller");
 
@@ -54,8 +54,8 @@ class SellerProfile extends Controller
             }
             
             $data['gigs'] = $Gigs;
-            
-            print_r($_SESSION);
+            // show($data);
+            // print_r($_SESSION);
             $this->view('sellerProfile', $data);
         } 
     }
@@ -160,6 +160,11 @@ class SellerProfile extends Controller
             ";
 
         }
+    }
+
+    public function deleteSellerProfile()
+    {
+        // delete a seller profile.
     }
 
 }

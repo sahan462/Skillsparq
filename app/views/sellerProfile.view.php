@@ -13,7 +13,8 @@
     $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
-    $Gigs = $data['gigs'];;
+    $Gigs = (array) $data['gigs'];
+    // print_r($Gigs['gig_id']);
     // show($data);
 
 ?>
@@ -212,8 +213,11 @@
                         if(!empty($Gigs)){ 
                             foreach($Gigs as $row){
                                 include "components/GigCard.component.php";
+                            }
+                        }
                     ?>
-                    <?php }} ?>
+                    <?php    
+                    ?>
                 </div>
             </div>
 
@@ -234,8 +238,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script> -->
-<script src="./public/assests/js/sellerProfile.js"></script>
+<script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script>
 
 
 <?php include "components/footer.component.php"; ?>

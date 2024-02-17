@@ -1,9 +1,11 @@
-<?php include "components/buyerSimpleHeader.component.php"; ?>
+<?php 
+    include "components/buyerSimpleHeader.component.php";
+?>
 
 <?php
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
-
+    $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
 
@@ -196,11 +198,11 @@
                 </div>
                 <div class="seller">
                     <div class="image">
-                        <img src="../public/assests/images/<?php echo $seller["profilePicture"]?>" loading="lazy">
+                        <img src="../public/assests/images/profilePictures/<?php echo $profileData['profile_pic']?>" loading="lazy">
                     </div>
                     <div class="sellerName">
                         <a href="">
-                            <?php echo $seller["sellerName"]; ?>
+                            <?php echo $profileData["first_name"]."   ".$profileData['last_name']; ?>
                         </a>
                     </div>
                 </div>

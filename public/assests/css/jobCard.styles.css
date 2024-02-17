@@ -24,6 +24,7 @@
     padding-bottom: 8px;
     margin-bottom: 8px;
     border-bottom: 2px solid #dadbdd;
+    color:#007bff !important;
 }
 .job-card .description{
     display: -webkit-box;
@@ -50,7 +51,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.job-card .category,.job-card .price,.job-card .flexibility,.job-card .start,.job-card .end, .job-card .base-bid, .job-card .min-bid, .job-card .current-highest{
+.job-card .category,.job-card .price,.job-card .flexibility,.job-card .start,.job-card .end, .job-card .base-bid, .job-card .min-bid, .job-card .current-highest .auction{
     display: flex;
     align-items: center;
 }

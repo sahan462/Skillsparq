@@ -2,23 +2,24 @@
 
 <?php
 
-$firstName = $data['sellerProfileDetails']['first_name'];
-$lastName = $data['sellerProfileDetails']['last_name'];
-$profilePicture = $data['sellerProfileDetails']['profile_pic'];
-$userName = $data["sellerProfileDetails"]['user_name'];
+    $firstName = $data['sellerProfileDetails']['first_name'];
+    $lastName = $data['sellerProfileDetails']['last_name'];
+    $profilePicture = $data['sellerProfileDetails']['profile_pic'];
+    $userName = $data["sellerProfileDetails"]['user_name'];
+    
+    $data["activeStatus"] = "display: none";
+    $data['ongoingOrders'] = 0;
+    $data["earningsThisMonth"] = "$0";
+    $data["completedOrders"] = 0;
+    $data["lastDelivery"] = "July 2023";
+    $data["expertise"] = "Tech";
+    // $data["profilePicture"] = "dummyprofile.jpg";
+    print_r($_SESSION);
 
-$data["activeStatus"] = "display: none";
-$data['ongoingOrders'] = 0;
-$data["earningsThisMonth"] = "$0";
-$data["completedOrders"] = 0;
-$data["lastDelivery"] = "July 2023";
-$data["expertise"] = "Tech";
-// $data["profilePicture"] = "dummyprofile.jpg";
-print_r($_SESSION);
+    // get the jobs from sellerdashboard controller.php to this view.
+    // show($data['AllJobs']);
+    $jobs = $data['AllJobs'];
 
-// get the jobs from sellerdashboard controller.php to this view.
-print_r($data['AllJobs']);
-$jobs = $data['AllJobs'];
 ?>
 
 <div class="sellerDashboard-content">
@@ -127,6 +128,6 @@ $jobs = $data['AllJobs'];
 
 </div>
 
-<script src="../../public/assests/js/sellerDashboard.js"></script>
+<script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>
