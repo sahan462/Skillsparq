@@ -43,7 +43,12 @@ svg{
     margin-right: 4px;
 }
 
-.displayJobMajorDetailsCategory{
+.verify{
+    color: #1dbf73;
+    stroke-width: 4;
+}
+
+.displayJobMajorDetailsCategory,.displayJobSendProposal{
     width: 100%;
     font-size: 24px;
     margin-top: 24px;
@@ -84,6 +89,44 @@ svg{
     padding-bottom: 8px;
 }
 
+.displayJobSendProposal{
+
+}
+
+.displayJobSendProposalContainer{
+
+}
+
+.displayJobSendProposalHeader{
+    padding: 16px 0px 16px 0px;
+}
+
+.displayJobSendProposalContent{
+    font-size: 16px;
+    text-align: center;
+}
+
+.displayJobSendProposalButton{
+    padding: 8px 0px 8px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* height: 100vh; */
+}
+
+.sendProposalButton{
+    background-color:#1dbf73;
+    border: none;
+    height: 32px;
+    width: 64px;
+    border-radius: 8px;
+}
+
+.proposalButtonLink{
+    text-decoration: none;
+    color: #fff;
+}
+
 .displayJobBidAuction{
     width: 100%;
     margin-top: 24px;
@@ -117,7 +160,10 @@ svg{
 }
 
 .auctionCurrentMaxBid{
+}
 
+.displayJobMajorDetails{
+    
 }
 
 .jobViewBuyerDetailsSideBar {
@@ -133,17 +179,61 @@ svg{
     font-size: 24px;
 }
 
-.jobViewBuyerDetialsUnOrList{
+.jobViewBuyerDetailsHeader{
+    padding: 16px 0px 16px 0px;
+}
+
+.jobViewBuyerDetialsVerification{
+    display: block;
+}
+
+.VerificationIcon,.paymentVerify,.phoneNumberVerify{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jobViewBuyerRatings,.paymentVerify,.phoneNumberVerify{
+    padding: 8px 0px 8px 0px;
+}
+
+.paymentVerify{
+}
+
+.phoneNumberVerify{
+}
+
+.VerificationIcon{
+    
+}
+
+.verifyContent{
+    color: #5e6d55;
+    font-size:16px;
+}
+
+.jobViewBuyerDetialsRatings{
+    font-size: 16px;
+}
+
+.jobViewBuyerRatings{
 
 }
 
+.jobViewBuyerRatingStars{
+
+}
+
+.jobViewBuyerDetialsUnOrList{
+    padding-left: 0px;
+}
+
 .jobViewBuyerDetailsListItems{
+    padding: 8px 0px 8px 0px;
     list-style-type: none;
     text-align: center;
     font-size: 16px;
 }
-
-
 
 @media only screen and (max-width: 900px) {
     .displayJobContent{
@@ -157,11 +247,13 @@ svg{
         padding: 10px;
         padding-right: 20px;
         justify-content: center;
+        order:1;
     }
     .jobViewBuyerDetailsSideBar {
         width: 100%;
         padding: 10px;
         border-left: none;
+        order:2;
     }
     .jobViewBuyerDetialsAbout{
         width: 100%;
@@ -174,3 +266,12 @@ svg{
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .displayJobMajorDetails{
+        order: 1;
+    }
+
+    .jobViewBuyerDetailsSideBar{
+        order: 2;
+    }
+}

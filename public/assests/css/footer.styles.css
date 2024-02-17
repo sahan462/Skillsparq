@@ -1,3 +1,16 @@
+@media only screen and (max-width: 900px) {
+  .footer-row{
+    order:5;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .footer-row{
+    order:5;
+  }
+}
+
+
 .footer {
     width: 100%;
     background: #f7f7f7;
@@ -87,7 +100,7 @@
     margin-left: -37px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .footer {
       position: relative;
       bottom: 0;
