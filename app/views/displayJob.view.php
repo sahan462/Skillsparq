@@ -1,7 +1,7 @@
 <?php 
     include "/xampp/htdocs/skillsparq/app/views/components/sellerHeader.component.php";
     $job = $data['job'];
-   print_r ($data);
+    print_r ($data);
 ?>
 
     <div class="displayJobContainer">
@@ -107,36 +107,54 @@
                     </div>
 
                     <div class="displayJobSendProposalButton">
+
                         <button class = "sendProposalButton">
                             <a class="proposalButtonLink" href="">Apply</a>
                         </button>
+
                     </div>
+
                 </div>
+
             <?php }?>
 
             </div>
+
             <div class="jobViewBuyerDetailsSideBar">
 
                 <div class="jobViewBuyerDetialsAbout">
+
                     <div class="jobViewBuyerDetailsHeader">
                         About The Client
                     </div>
+
                 <div class="jobViewBuyerDetialsVerification">
+
                     <div class="paymentVerify">
+
                         <div class="VerificationIcon">
+
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
+
                         </div>
+
                         <strong class="verifyContent">
                             payment method verified
                         </strong>
+
                     </div>
                     <div class="phoneNumberVerify">
+
                         <div class="VerificationIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/>
+                            </svg>
                         </div>
+
                         <strong class="verifyContent">
                             Phone Number verified
                         </strong>
+
                     </div>
                     
                 </div>
@@ -145,22 +163,28 @@
                     <div class="jobViewBuyerRatings">
                         Ratings
                         <div class="jobViewBuyerRatingStars">
+
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
+
                         </div>
 
                         <div class="numeric-rating">(4.3)</div>
 
                     </div>
+
                 </div>
 
                 <div>
+
                     <ul class="jobViewBuyerDetialsUnOrList">
+
                         <li class="jobViewBuyerDetailsListItems">Country
                             <div>
+                                
                                 <?php
                                     if(isset($data['buyerDetails']['country'])){
                                         echo $data['buyerDetails']['country'];
@@ -168,12 +192,22 @@
                                         echo "-";
                                     }
                                 ?>
+
                             </div>
                         </li>
-                        <li class="jobViewBuyerDetailsListItems">Posted Total Job Count <?php echo $data['jobCount']?></li>
-                        <li class="jobViewBuyerDetailsListItems">Total Spendings : </li>
-                        <li class="jobViewBuyerDetailsListItems">Average Hours Per Rate Paid : </li>
-                        <li class="jobViewBuyerDetailsListItems">Member Since : <?php echo $data['buyerDetails']['joined_date']?></li>
+
+                        <li class="jobViewBuyerDetailsListItems">
+                            Posted Total Job Count <?php echo $data['jobCount']?>
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Total Spendings : 
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Average Hours Per Rate Paid : 
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Member Since : <?php echo $data['buyerDetails']['joined_date']?>
+                        </li>
                     </ul>
                 </div>
 
