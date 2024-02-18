@@ -4,6 +4,7 @@
     $jobs = $data['jobs'];
     $profile = $data['userProfile'];
     $data["feedbacks"] = array();
+    // show($data);
 
 ?>
 

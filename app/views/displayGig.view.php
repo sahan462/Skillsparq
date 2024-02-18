@@ -1,9 +1,11 @@
-<?php include "components/buyerSimpleHeader.component.php"; ?>
+<?php 
+    include "components/buyerSimpleHeader.component.php";
+?>
 
 <?php
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
-
+    $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
 
@@ -99,10 +101,10 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row"  style="gap:16px;">
                             <div class="col">
                                 <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="" style="width: 25%;">
+                                <select name="milestone[revisions][]" required="" style="width: 100%;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -116,18 +118,18 @@
                             <div class="col">
                                 <div class="type-1">Delivery</div>
                                 <div class="row">
-                                    <input type="number" name="milestone[quantity][]" min="1"  style="width: 25%;">
-                                    <select name="milestone[timePeriod][]" class="categories"  style="width: 25%;">
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
+                                    <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
+                                    <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
+                                        <option value="Day(s)">Day(s)</option>
+                                        <option value="Week(s)">Week(s)</option>
+                                        <option value="Month(s)">Month(s)</option>
+                                        <option value="Year(s)">Year(s)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="type-1">Price</div>
-                                <input type="text" name="milestone[price][]"  style="width: 25%;">
+                                <div class="type-1">Price(USD)</div>
+                                <input type="text" name="milestone[price][]"  style="width: 100%;">
                             </div>
                         </div>
 
@@ -135,11 +137,11 @@
                             <div class="col">
                                 <label for="attachments" class="type-1" >Attachments:</label>
                                 <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="attachments" id="attachment" style="margin-right: 4px;background-color: white;">Attachements</label>
+                                    <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
                                     <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                                     <span id="fileName"></span>
                                 </div>
-                                <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                                <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]" multiple onchange="displayFileName(this)">
                             </div>
                         </div>
 
@@ -196,11 +198,11 @@
                 </div>
                 <div class="seller">
                     <div class="image">
-                        <img src="../public/assests/images/<?php echo $seller["profilePicture"]?>" loading="lazy">
+                        <img src="../public/assests/images/profilePictures/<?php echo $profileData['profile_pic']?>" loading="lazy">
                     </div>
                     <div class="sellerName">
                         <a href="">
-                            <?php echo $seller["sellerName"]; ?>
+                            <?php echo $profileData["first_name"]."   ".$profileData['last_name']; ?>
                         </a>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ class Job extends Controller
 {
 
     private $JobHandlerModel;
+
     public function index()
     {
     }
@@ -11,6 +12,13 @@ class Job extends Controller
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
+    }
+
+    public function getBuyerJobCount($userId)
+    {
+        $count = $this->JobHandlerModel->getJobCount($userId);
+        $count = mysqli_fetch_assoc($count);
+        return $count;
     }
 
     public function getJob()

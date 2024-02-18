@@ -182,6 +182,7 @@ function handleConfirmation(action) {
 function displayFileName(input) {
   var fileNameSpan = document.getElementById("fileName");
   var files = input.files;
+  alert(orderType);
 
   if (files.length > 0) {
     var file = input.files[0];

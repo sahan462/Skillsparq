@@ -123,7 +123,7 @@ class ProfileHandler extends database
     }
 
     public function deleteProfile($userId){
-
+        
     }
 
 }

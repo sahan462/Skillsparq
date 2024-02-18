@@ -17,6 +17,8 @@ $Country = "Sri Lanka";
     <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/displayJob.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/updateGig.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/earnings.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php echo time(); ?>">

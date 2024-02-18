@@ -114,6 +114,26 @@ class JobHandler extends database
         }
     }
 
+    // get Job count for a single buyer
+    public function getJobCount($userId)
+    {
+        $query = "SELECT COUNT(*) FROM jobs WHERE buyer_id = ?;";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get single job
     public function getJob($jobId)
     {
@@ -137,7 +157,7 @@ class JobHandler extends database
     //get auction details
     public function getAuction($jobId,$userId){
 
-        $query = "SELECT * FROM Auctions WHERE job_id = ? and buyer_id = ?";
+        $query = "SELECT * FROM auctions WHERE job_id = ? AND buyer_id = ?;";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -148,7 +168,12 @@ class JobHandler extends database
         mysqli_stmt_bind_param($stmt, "ii", $jobId, $userId);
     
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            if ($result) {
+                return $result;
+            } else {
+                die('Error getting result: ' . mysqli_error($GLOBALS['db']));
+            }
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
