@@ -127,7 +127,7 @@ body{
     line-height: 140%;
     padding: 0 32px;
 }
-.buyerProfileContainer .sub-container{
+.sellerProfileContainer .sub-container{
     display: flex;
     gap: 64px;
     margin-right: 32px;
@@ -173,24 +173,24 @@ body{
     border-radius: 100%;
 }
 /*Profile Pic upload*/
- .profile-picture{
+ .seller-profile-picture{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
 }
-.profile-picture .updateProfilePicture{
+.seller-profile-picture .updateSellerProfilePicture{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
 }
-.profile-picture svg{
+.seller-profile-picture svg{
     color: #fff;
     margin: 4px;
     cursor: pointer;
 }
-.profile-picture .editIcon{
+.seller-profile-picture .editIcon{
     width: 48px;
     height: 48px;
     padding: 2px;
@@ -201,13 +201,13 @@ body{
     margin-bottom: 2px;
     margin-right: 2px;
 }
-.profile-picture img{
+.seller-profile-picture img{
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 100%;
 }
-.profile-picture .full-name{
+.seller-profile-picture .seller-full-name{
     margin-top: 16px;
     font-size: 20px;
     line-height: 28px;
@@ -217,7 +217,7 @@ body{
     background: none;
     border: 0;
 }
-.profile-picture .user-name{
+.seller-profile-picture .user-name{
     margin-bottom: 16px;
 }
 
@@ -232,7 +232,7 @@ input[type = "text"], textarea, select{
     justify-content: space-between;
     border: 1px solid #c5c6c9;
 }
-.full-name{
+.seller-full-name{
     display: flex;
     justify-content: space-between;
 }
@@ -315,7 +315,7 @@ input[type = "text"], textarea, select{
 }
 
 /* Seller User-content-header */
-.buyerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader{
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -331,13 +331,13 @@ input[type = "text"], textarea, select{
     font-weight: 600;
     cursor: pointer;
 }
-.buyerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader span:hover{
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader span:hover{
     text-decoration: underline;
     border-bottom: 4px solid #1dbf73;
     padding-bottom: 2px;
     text-decoration: none;
 }
-.buyerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button{
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button{
     color: #0e0e0f;
     border: 2px solid #fff;
     padding: 8px;
@@ -346,14 +346,14 @@ input[type = "text"], textarea, select{
     font-size: 14px;
     transition: ease-in-out 0.3s;
 }
-.buyerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button:hover{
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button:hover{
     color: #fff;
     border: 2px solid #fff;
     background: #1dbf73;
 }
 
 /* Seller User-content-content */
-.buyerProfileContainer .sub-container .sellerUser-contribution .Gig-content{
+.sellerProfileContainer .sub-container .sellerUser-contribution .Gig-content{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -364,7 +364,7 @@ input[type = "text"], textarea, select{
 
 
 /*reviews*/
-.buyerProfileContainer .sub-container .sellerUser-contribution .reviews{
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews{
     width: 100%;
     position: relative;
     background-color: #fff;
@@ -374,7 +374,7 @@ input[type = "text"], textarea, select{
 }
 
 /*reviews-header*/
-.buyerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerheader{
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerheader{
     width: 100%;
     color: #0e0e0f;
     background-color: #fff;
@@ -401,12 +401,12 @@ input[type = "text"], textarea, select{
 
 
 @media only screen and (max-width: 600px) {
-    .buyerProfileContainer{
+    .sellerProfileContainer{
         height: 100%;
         width: 100%;
         padding: 32px 16px;
     }
-    .buyerProfileContainer .sub-container{
+    .sellerProfileContainer .sub-container{
         margin: 0 auto;
         width: 100%;
         display: flex;
@@ -416,7 +416,7 @@ input[type = "text"], textarea, select{
     .sub-container .profile-container{
         width: 100%;
     }
-    .buyerProfileContainer .sub-container .sellerUser-contribution{
+    .sellerProfileContainer .sub-container .sellerUser-contribution{
         width: 100%;
     }
     .job-card .job-data-basic{
@@ -427,12 +427,12 @@ input[type = "text"], textarea, select{
     }
 }
 @media only screen and (max-width: 900px) {
-    .buyerProfileContainer{
+    .sellerProfileContainer{
         height: 100%;
         width: 100%;
         padding: 32px 16px;
     }
-    .buyerProfileContainer .sub-container{
+    .sellerProfileContainer .sub-container{
         margin: 0 auto;
         width: 100%;
         display: flex;
@@ -442,7 +442,7 @@ input[type = "text"], textarea, select{
     .sub-container .profile-container{
         width: 100%;
     }
-    .buyerProfileContainer .sub-container .sellerUser-contribution{
+    .sellerProfileContainer .sub-container .sellerUser-contribution{
         width: 100%;
     }
 }

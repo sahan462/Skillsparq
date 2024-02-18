@@ -16,21 +16,22 @@ class ManageOrders extends Controller
         $this->view('manageOrders', $data); 
     }
 
-    public function createOrder(){
+    //create a package order
+    public function createPackageOrder(){
         
         $orderStatus = "request";
-        $orderType = $_GET['orderType'];
+        $orderType = $_POST['orderType'];
 
         date_default_timezone_set('UTC');
         $currentDateTime = date('Y-m-d H:i:s');
         
-        $buyerId = $_GET['buyerId'];	
-        $sellerId = $_GET['sellerId'];
+        $buyerId = $_POST['buyerId'];	
+        $sellerId = $_POST['sellerId'];
 
-        $requestDescription = $_GET['requestDescription'];
-        $attachement = $_GET['attachments'];
-        $gigId = $_GET['gigId'];
-        $packageId = $_GET['packageId'];
+        $requestDescription = $_POST['requestDescription'];
+        $attachement = $_POST['attachments'];
+        $gigId = $_POST['gigId'];
+        $packageId = $_POST['packageId'];
 
         $upload = 1;
 
@@ -38,13 +39,59 @@ class ManageOrders extends Controller
             $orderId = $this->OrderHandlerModel->createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId);
         }
 
-
         echo "
         <script>
             alert('Order created successfully');
             window.location.href = '" . BASEURL . "manageOrders';
         </script>
     ";
+    }
+
+    //create milestone order
+    public function createMilestoneOrder(){
+
+        $milestones = $_POST['milestone'];
+
+        $subjects = $milestones['subject'];
+        $revisions = $milestones['revisions'];
+        $deliveryQuantities = $milestones['deliveryQuantity'];
+        $deliveryTimePeriodTypes = $milestones['deliveryTimePeriodType'];
+        $prices = $milestones['price'];
+        $descriptions = $milestones['description'];
+
+        for ($i = 0; $i < count($subjects); $i++) {
+
+            echo "Milestone: $i <br>";
+
+            $subject = $subjects[$i];
+            $revision = $revisions[$i];
+            $deliveryQuantity = $deliveryQuantities[$i];
+            $deliveryTimePeriodType = $deliveryTimePeriodTypes[$i];
+            $price = $prices[$i];
+            $description = $descriptions[$i];
+
+            print_r($subject);
+            echo "<br>";
+            print_r($revision);
+            echo "<br>";
+            print_r($deliveryQuantity);
+            echo "<br>";
+            print_r($deliveryTimePeriodType);
+            echo "<br>";
+            print_r($price);
+            echo "<br>";
+            print_r($description);
+            echo "<br>";
+
+        }
+        
+
+        
+    }
+
+    //read orders
+    public function getOrders(){
+
     }
 
     

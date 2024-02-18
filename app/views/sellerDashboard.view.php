@@ -5,6 +5,7 @@
     $firstName = $data['sellerProfileDetails']['first_name'];
     $lastName = $data['sellerProfileDetails']['last_name'];
     $profilePicture = $data['sellerProfileDetails']['profile_pic'];
+    $userName = $data["sellerProfileDetails"]['user_name'];
     
     $data["activeStatus"] = "display: none";
     $data['ongoingOrders'] = 0;
@@ -12,32 +13,19 @@
     $data["completedOrders"] = 0;
     $data["lastDelivery"] = "July 2023";
     $data["expertise"] = "Tech";
-    $data["userName"] = $_SESSION['userName'];
     // $data["profilePicture"] = "dummyprofile.jpg";
+    print_r($_SESSION);
 
-$job['title'] = "Design and Create a front end for a python script on a debian virtual comptuer";
-$job['job_id'] = "125";
-$job['publish_mode'] = "StandardMode";
-$job["description"] = "Use of Chat GPT to create course materials for an IELTS course.
-
-    Chat GPT prompts will be given to the freelancer. The freelancer doesn't need to check the exercises they just need to create them and save them to a google drive folder.
-    
-    Work
-    
-    A) Choose 12 words at random from a list that will be given to the freelancer and then use chat GPT to create exercises for this list.  
-    B) 20 units of materials need to be created (3 exercises per unit)";
-$job["category"] = "programming and tech";
-$job["amount"] = "$200";
-$job["flexible_amount"] = 0;
-$job["deadline"] = 0;
-$job["buyer_id"] = 0;
+    // get the jobs from sellerdashboard controller.php to this view.
+    // show($data['AllJobs']);
+    $jobs = $data['AllJobs'];
 
 ?>
 
 <div class="sellerDashboard-content">
 
     <div class="personalizedHeader">
-        Howdy, <?php echo $firstName." ".$lastName?>
+        Howdy, <?php echo $firstName . " " . $lastName ?>
     </div>
 
     <div class="dashboard-container">
@@ -48,12 +36,12 @@ $job["buyer_id"] = 0;
                     Online
                 </div>
                 <div class="profile-picture">
-                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic" loading="lazy">
+                    <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">
-                        <?php echo $firstName." ".$lastName ?>
-                    </div>  
+                        <?php echo $firstName . " " . $lastName ?>
+                    </div>
                     <div class="user-name">
-                        <?php echo $data["sellerProfileDetails"]['user_name'] ?>
+                        <?php echo $userName ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -127,15 +115,11 @@ $job["buyer_id"] = 0;
                 </div>
                 <div class="jobContent">
                     <?php
-                    $i = 0;
-                    while ($i < 5) {
-                        // if(!empty($jobs)){ 
-                        //   foreach($jobs as $job){
-                        include "components/jobCard.component.php";
-                        $i = $i + 1;
+                    if (!empty($jobs)) {
+                        foreach ($jobs as $job) {
+                            include "components/jobCard.component.php";
+                        }
                     }
-                    ?>
-                    <?php //}} 
                     ?>
                 </div>
             </div>
@@ -143,5 +127,7 @@ $job["buyer_id"] = 0;
     </div>
 
 </div>
+
+<script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>

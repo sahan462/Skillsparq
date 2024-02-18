@@ -2,6 +2,7 @@
 
 <?php
     $recentGigs = $data['recentGigs'];
+    // print_r($_SESSION);
 ?>
 
 <div class="buyerDashboardContent">

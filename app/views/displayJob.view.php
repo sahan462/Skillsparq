@@ -1,5 +1,6 @@
 <?php 
     $job = $data['job'];
+//    print_r ($job);
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/skillsparq/public/assests/css/displayJob.styles.css">
 </head>
 <body>
+    
     <div class="container">
         <h1 class="job-title"><?php echo $job['title']?></h1>
         <div class="details">

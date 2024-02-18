@@ -1,11 +1,10 @@
-//--------------------- ----------View Jobs------------------------------------------------
-
+//redirecting to display gig page
 document.addEventListener("DOMContentLoaded", function () {
-    var clickableCards = document.querySelectorAll(".job-card");
+    var clickableCards = document.querySelectorAll(".gigCard");
     
     clickableCards.forEach(function (card) {
         card.addEventListener("click", function () {
-            var url = card.getAttribute("job-url");
+            var url = card.getAttribute("gig-url");
 
             if (url) {
                 window.location.href = url;
@@ -16,9 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-//------------------------------------Modal Behavior------------------------------------------------
-    
 // Wait for the DOM to fully load
 var preview = document.getElementById('previewImage');
 var currentProfilePicture = preview.src;
@@ -28,9 +24,6 @@ var currentFirstName = firstName.value;
 
 var lastName = document.getElementById('lastName');
 var currentLastName = lastName.value;
-
-var country = document.getElementById('country');
-var currentCountry = country.value;
 
 var about = document.getElementById('about');
 var currentAbout = about.innerHTML;
@@ -111,4 +104,3 @@ function handleConfirmation(action) {
     }
 
 }
-

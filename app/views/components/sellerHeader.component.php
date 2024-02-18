@@ -1,5 +1,7 @@
 <?php
+
 $data['profilePicture'] = "whoarewe.jpeg";
+$Country = "Sri Lanka";
 ?>
 
 <!DOCTYPE html>
@@ -11,10 +13,11 @@ $data['profilePicture'] = "whoarewe.jpeg";
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/sellerDashboard.styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/updateGig.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/earnings.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php echo time(); ?>">

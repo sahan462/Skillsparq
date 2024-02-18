@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assests/css/Notifications.styles.css" />
+    <link rel="stylesheet" href="../public/assests/css/complaints.styles.css" />
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -20,18 +20,18 @@
                 <img src="images/logo.png" alt="">
             </div>
 
-            <span class="logo_name">CodingLab</span>
+            <span class="logo_name">Skillsparq</span>
         </div>
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="helpDeskCenter">
                         <i class="uil uil-estate"></i>
                         <span class="link-name">Dahsboard</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="complaints">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Content</span>
+                        <span class="link-name">Complaints</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-chart"></i>
@@ -83,86 +83,48 @@
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
+
+
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-
+                    <span class="text">Complaints</span>
                 </div>
 
             </div>
 
             <p class="heading">Complaints</p>
-
             <table class="content-table">
-                <tr>
-                    <th>name
-                    <th>
-                    <th>username
-                    <th>
-                    <th>email
-                    <th>
-                    <th>shipping_address
-                    <th>
-                    <th>phone
-                    <th>
-                    <th>payment
-                    <th>
-                        <?php
-                        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-                        if ($conn->connect_error) {
-                            die("connection failed:" . $conn->connect_error);
-                        }
-                        $sql = "SELECT inquiry_id,subject,description,attachements,response,inquiry_status from inquiries";
-                        $result = $conn->query($sql);
+                <thead>
+                    <th>inquiry_ID
+                    <th>Subject
+                    <th>description
+                    <th>View
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($recentComplaints as $row) {
+                    ?>
+                        <tr>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['subject']; ?></td>
+                            <td><?php echo $row['description']; ?></td>
+                            <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                                    <button>View1</button>
+                                </a></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr><td>" . $row["inquiry_id"] . "<td><td>" . $row["subject"] . "<td><td>" . $row["description"] . "<td><td>" . $row["attachements"] . "<td><td>" . $row["response"] . "<td><td>" . $row["inquiry_status"] . "<td></tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "No Buyers included";
-                        }
-                        $conn->close();
 
-                        ?>
         </div>
     </section>
 
-    <script>
-        const body = document.querySelector("body"),
-            modeToggle = body.querySelector(".mode-toggle");
-        sidebar = body.querySelector("nav");
-        sidebarToggle = body.querySelector(".sidebar-toggle");
-
-        let getMode = localStorage.getItem("mode");
-        if (getMode && getMode === "dark") {
-            body.classList.toggle("dark");
-        }
-
-        let getStatus = localStorage.getItem("status");
-        if (getStatus && getStatus === "close") {
-            sidebar.classList.toggle("close");
-        }
-
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark");
-            if (body.classList.contains("dark")) {
-                localStorage.setItem("mode", "dark");
-            } else {
-                localStorage.setItem("mode", "light");
-            }
-        });
-
-        sidebarToggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-            if (sidebar.classList.contains("close")) {
-                localStorage.setItem("status", "close");
-            } else {
-                localStorage.setItem("status", "open");
-            }
-        })
+    <script src="../public/assests/js/helpDeskCenter.js"></script>
     </script>
 </body>
 

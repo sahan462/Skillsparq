@@ -53,7 +53,7 @@ class SellerHandler extends database
         return mysqli_fetch_assoc($result);
     }
 
-    // for update the phonenumber only.Have to discuss.
+    // 
     public function updateSeller($sellerId){
         // $query = "UPDATE seller SET ";
     }

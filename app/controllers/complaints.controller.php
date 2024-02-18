@@ -1,7 +1,8 @@
 <?php
 
-class HelpDeskCenter extends Controller
+class complaints extends Controller
 {
+
     private $inquiryHandlerModel;
     public function __construct()
     {
@@ -13,9 +14,9 @@ class HelpDeskCenter extends Controller
 
         $data['var'] = "HelpDeskCenter";
         $data['title'] = "SkillSparq";
-        $recentInquiries = $this->inquiryHandlerModel->getRecentUsers();
-        $data['recentInquiries'] = $recentInquiries;
+        $recentComplaints = $this->inquiryHandlerModel->getComplaints();
+        $data['recentComplaints'] = $recentComplaints;
 
-        $this->view('HelpDeskCenter', $data);
+        $this->view('complaints', $data);
     }
 }

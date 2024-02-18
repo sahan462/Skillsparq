@@ -8,6 +8,7 @@ class SellerDashboard extends Controller
 
     public function __construct()
     {   
+        // creating instances for the models.
         $this->JobHandlerModel = $this->model('JobHandler');
         $this->ProfileHandlerModel = $this->model('ProfileHandler');
         $this->UserHandlerModel = $this->model('userHandler');
@@ -21,14 +22,22 @@ class SellerDashboard extends Controller
             $data['errors'] = $this->initiate();
             $data['var'] = "SellerDashboard";
             $data['title'] = "SkillSparq";
+
             $userId = $_SESSION['userId'];
+
+            // Getting the seller's profile details from the ProfileHandlerModel.
             $data["sellerProfileDetails"] = $this->getSellerProfileDetails($userId);
+
+            // Getting the seller's User details from the UserHandlerModel.
             $data['sellerUserDetails'] = $this->getSellerUserDetails($userId);
             
+            // get The jobs for seller dashboard. Those are hardcoded in sellerdashboard view.php.
+            $data['AllJobs'] = $this->JobHandlerModel->getJobsForSellerDashBoard();
 
-            // echo "<pre>";
-            // print_r($data);
-            // echo "</pre>";
+            // set the remaining session variables for sellerdashboard.
+            $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
+            $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
+            $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
             
             $this->view('SellerDashboard', $data);
         }

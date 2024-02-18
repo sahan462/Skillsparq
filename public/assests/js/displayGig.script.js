@@ -55,6 +55,8 @@ document.getElementById("defaultOpen").click();
 
 var packageForm = "";
 var orderType = "";
+var orderType = "";
+
 var packageOverlay = document.getElementsByName("packageOverlay")[0];
 var packageModal = document.getElementsByName("packageModal")[0];
 var milestoneOverlay = document.getElementsByName("milestoneOverlay")[0];
@@ -68,7 +70,7 @@ let count = 0;//count variable to keep track of the number of milestones
 
 function openModal(button) {
   packageForm = button.id;
-  var orderType = button.name;
+  orderType = button.name;
 
   if (orderType === "packageOrder") {
     packageOverlay.style.display = "flex";
@@ -101,7 +103,7 @@ function handleConfirmation(action) {
   var cancelConfirmationOverlay = document.getElementById("cancelConfirmationOverlay");
 
   if (action === "sendYes") {
-
+    
     if(orderType === "packageOrder"){
 
       var form1 = document.getElementById(packageForm);
@@ -118,9 +120,10 @@ function handleConfirmation(action) {
   
     }else{
 
-
-
-
+      var form1 = document.getElementById("milestoneRequestForm");
+      alert(form1);
+      form1.submit();
+      
     }
 
   } else if (action === "sendNo") {
@@ -140,7 +143,8 @@ function handleConfirmation(action) {
       packageForm = "";
       var fileNameSpan = document.getElementById("fileName");
       document.getElementById("warningMessage").style.display = "none";
-      fileNameSpan.textContent = "";  
+      fileNameSpan.textContent = ""; 
+
       packageOverlay.style.display = "none";
       packageModal.style.display = "none";
 
@@ -164,9 +168,7 @@ function handleConfirmation(action) {
       <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
     `;
 
-
     }
-
 
     orderType = "";
     cancelConfirmationModal.style.display = "none";

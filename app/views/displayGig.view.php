@@ -1,9 +1,11 @@
-<?php include "components/buyerSimpleHeader.component.php"; ?>
+<?php 
+    include "components/buyerSimpleHeader.component.php";
+?>
 
 <?php
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
-
+    $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
 
@@ -79,7 +81,7 @@
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form method="get" id="milestoneRequestForm"> 
+            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
@@ -99,10 +101,10 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row"  style="gap:16px;">
                             <div class="col">
                                 <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="">
+                                <select name="milestone[revisions][]" required="" style="width: 100%;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -116,8 +118,8 @@
                             <div class="col">
                                 <div class="type-1">Delivery</div>
                                 <div class="row">
-                                    <input type="number" name="milestone[quantity][]" min="1">
-                                    <select name="milestone[timePeriod][]" class="categories">
+                                    <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
+                                    <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
@@ -126,8 +128,20 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="type-1">Price</div>
-                                <input type="text" name="milestone[price][]">
+                                <div class="type-1">Price(USD)</div>
+                                <input type="text" name="milestone[price][]"  style="width: 100%;">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="attachments" class="type-1" >Attachments:</label>
+                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="attachments" id="attachment" style="margin-right: 4px;background-color: white;">Attachements</label>
+                                    <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                                    <span id="fileName"></span>
+                                </div>
+                                <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
                             </div>
                         </div>
 
@@ -184,11 +198,11 @@
                 </div>
                 <div class="seller">
                     <div class="image">
-                        <img src="../public/assests/images/<?php echo $seller["profilePicture"]?>" loading="lazy">
+                        <img src="../public/assests/images/profilePictures/<?php echo $profileData['profile_pic']?>" loading="lazy">
                     </div>
                     <div class="sellerName">
                         <a href="">
-                            <?php echo $seller["sellerName"]; ?>
+                            <?php echo $profileData["first_name"]."   ".$profileData['last_name']; ?>
                         </a>
                     </div>
                 </div>
@@ -259,7 +273,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="post" action="manageOrders/createOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
@@ -295,7 +309,7 @@
                                     </div>
                                     <li><?php echo $gig[1]['package_description']; ?></li>
 
-                                    <form id="package_2">
+                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
@@ -331,7 +345,7 @@
                                     </div>
                                     <li><?php echo $gig[2]['package_description']; ?></li>
 
-                                    <form id="package_3">
+                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 
