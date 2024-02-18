@@ -19,6 +19,7 @@
     // get the jobs from sellerdashboard controller.php to this view.
     // show($data['AllJobs']);
     $jobs = $data['AllJobs'];
+
 ?>
 
 <div class="sellerDashboard-content">
@@ -40,7 +41,7 @@
                         <?php echo $firstName . " " . $lastName ?>
                     </div>
                     <div class="user-name">
-                        <?php echo $userName?>
+                        <?php echo $userName ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -114,8 +115,8 @@
                 </div>
                 <div class="jobContent">
                     <?php
-                    if(!empty($jobs)){
-                        foreach($jobs as $job){
+                    if (!empty($jobs)) {
+                        foreach ($jobs as $job) {
                             include "components/jobCard.component.php";
                         }
                     }

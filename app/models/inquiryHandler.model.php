@@ -92,4 +92,57 @@ class InquiryHandler extends database
             echo "No Users included";
         }
     }
+
+    public function getRecentUsers()
+    {
+        $query = "SELECT user_id,user_email,role FROM user ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getComplaints()
+    {
+        $query = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";;
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function viewComplaints()
+    {
+        $inquiry_id = isset($_GET['inquiry_id']) ? $_GET['inquiry_id'] : null;
+
+        $query = "SELECT * FROM inquiries WHERE inquiry_id = " . $inquiry_id;
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

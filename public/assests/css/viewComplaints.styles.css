@@ -516,8 +516,8 @@ nav.close ~ .dashboard .top{
 }
 
 
-.button{
-    width: 100%;
+button{
+    width: 10%;
     height: 32px;
     margin-bottom: 16px;
     color: #fff;
@@ -526,4 +526,23 @@ nav.close ~ .dashboard .top{
     border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
+}
+
+ .grid{
+    width: 40%;
+    font-weight: none;
+ }
+
+
+
+ .grid ul li{
+    font-weight: none;
+    margin: 0;
+    list-style: none;
+    background: url(../images/istockphoto-1416145560-612x612.jpg) left top no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
 }

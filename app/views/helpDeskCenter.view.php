@@ -1,3 +1,10 @@
+<?php
+$count = 0;
+foreach ($recentInquiries as $row) {
+    $count++;
+}
+
+?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -14,27 +21,13 @@
     <title>Admin Dashboard Panel</title>
 </head>
 
-<?php
-$conn = mysqli_connect("localhost", "root", "", "skillsparq");
-if ($conn->connect_error) {
-    die("connection failed:" . $conn->connect_error);
-}
-$sql = "SELECT user_id from user";
-$result = $conn->query($sql);
-$count = 0;
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $count++;
-    }
-    echo "</table>";
-} else {
-    echo "No Buyers included";
-}
-$conn->close();
 
-?>
 
 <body>
+    <?php
+    $recentInquiries = $data['recentInquiries'];
+    print_r($data);
+    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -114,11 +107,13 @@ $conn->close();
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Total Users</span>
                         <span class="number"><?php echo $count ?></span>
+
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Comments</span>
                         <span class="number">20,120</span>
+
                     </div>
                     <div class="box box3">
                         <i class="uil uil-share"></i>
@@ -135,46 +130,34 @@ $conn->close();
                 </div>
 
                 <table class="content-table">
-                    <tr>
-                        <th>user_id
-                        <th>
-                        <th>user_email
-                        <th>
-                        <th>role
-                        <th>
-                        <th>View
-                        <th>
-                        <th>delete
-                        <th>
-
-
-                            <?php
-                            $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-                            if ($conn->connect_error) {
-                                die("connection failed:" . $conn->connect_error);
-                            }
-                            $sql = "SELECT user_id,user_email,role from user";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["user_id"] . "<td><td>" . $row["user_email"] . "<td><td>" . $row["role"] . "<td>" . "</td><td><button>View</button></td></td>"  . "<td>" . "</td><td><button>Delete</button></td></tr>";
-                                }
-                                echo "</table>";
-                            } else {
-                                echo "No Buyers included";
-                            }
-                            $conn->close();
-
-                            ?>
+                    <thead>
+                        <th>user_id</th>
+                        <th>user_email</th>
+                        <th>role</th>
+                        <th>View</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($recentInquiries as $row) {
+                        ?>
+                            <tr>
+                                <td><?php echo $row['user_id']; ?></td>
+                                <td><?php echo $row['user_email']; ?></td>
+                                <td><?php echo $row['role']; ?></td>
+                                <td><a href="#">View</a></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
 
 
             </div>
         </div>
         </div>
     </section>
-
-    <script src="../public/assests/js/helpDeskCenter.js"></script>
     < /body>
 
         < /html>
+            <script src="../public/assests/js/helpDeskCenter.js"></script>
