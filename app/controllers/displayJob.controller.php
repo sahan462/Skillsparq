@@ -3,10 +3,14 @@
 class DisplayJob extends Controller
 {
     private $jobHandlerModel;
+    private $profileHandlerModel;
+    private $jobController;
 
     public function __construct()
     {
         $this->jobHandlerModel = $this->model('JobHandler');
+        $this->jobController = $this->controller('job');
+        $this->profileHandlerModel = $this->model('profileHandler');
     }
 
     public function index(){
@@ -15,6 +19,12 @@ class DisplayJob extends Controller
         $buyerId = $_GET['buyerId'];
         $jobId = $_GET['jobId'];
 
+        $buyerDetails = $this->displayBuyerDetails($buyerId);
+        $data['buyerDetails'] = $buyerDetails;
+
+        $buyerJobCount = $this->jobController->getBuyerJobCount($buyerId);
+        $data['jobCount'] = $buyerJobCount['COUNT(*)'];
+       
         $standardJob = $this->jobHandlerModel->getJob($jobId);
 
         if ($standardJob) {
@@ -35,8 +45,15 @@ class DisplayJob extends Controller
         } else {
             echo "<script>alert('getJob function is not Accessible!')</script>";
         }
-        print_r($data);
+        // print_r($data);
         $this->view('displayJob', $data);
+    }
+
+    public function displayBuyerDetails($userId)
+    {
+        $profile = $this->profileHandlerModel->getUserProfile($userId);
+        $details = mysqli_fetch_assoc($profile);
+        return $details;
     }
 
 }
