@@ -120,10 +120,10 @@
                                 <div class="row">
                                     <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
                                     <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
+                                        <option value="Day(s)">Day(s)</option>
+                                        <option value="Week(s)">Week(s)</option>
+                                        <option value="Month(s)">Month(s)</option>
+                                        <option value="Year(s)">Year(s)</option>
                                     </select>
                                 </div>
                             </div>
@@ -137,11 +137,11 @@
                             <div class="col">
                                 <label for="attachments" class="type-1" >Attachments:</label>
                                 <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="attachments" id="attachment" style="margin-right: 4px;background-color: white;">Attachements</label>
+                                    <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
                                     <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                                     <span id="fileName"></span>
                                 </div>
-                                <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                                <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]" multiple onchange="displayFileName(this)">
                             </div>
                         </div>
 

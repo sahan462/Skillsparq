@@ -59,6 +59,9 @@ class ManageOrders extends Controller
         $prices = $milestones['price'];
         $descriptions = $milestones['description'];
 
+        print_r($milestones);
+        print_r($_FILES);
+
         for ($i = 0; $i < count($subjects); $i++) {
 
             echo "Milestone: $i <br>";
