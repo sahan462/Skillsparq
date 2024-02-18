@@ -115,6 +115,8 @@
             <?php
             }
             ?>
+
+
         </div>
 
 
@@ -148,6 +150,27 @@
     ?>
     </tbody>
     </table> -->
+    <div class="grid">
+        <p>
+            Sender details: <button onclick="viewSender()">View</button>
+        </p>
+        <div id="viewSender" style="display: none;">
+            <?php
+            foreach ($viewSenderDetails as $row) {
+            ?>
+                <ul>
+                    <li>User_ID <span><?php echo $row['user_id']; ?></span></li>
+                    <li>Subject: <span><?php echo $row['user_email']; ?></span></li>
+                    <li>Role: <span><?php echo $row['role']; ?></span></li>
+                    <li>Agreement: <span><?php echo $row['agreement']; ?></span></li>
+                    <li> </li>
+
+                </ul>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
 
 
     <!-- Button to toggle the reply text box -->
@@ -302,6 +325,13 @@
     </section>
 
     <script src="../public/assests/js/helpDeskCenter.js"></script>
+    </script>
+    <script>
+        function viewSender() {
+            var selectedDays = document.getElementById('viewSender');
+            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+        }
     </script>
 </body>
 
