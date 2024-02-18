@@ -9,7 +9,7 @@ class InquiryHandler extends database
         (
             subject, 
             description, 
-            attachments, 
+            attachements, 
             created_at, 
             inquiry_originator_id,
             inquiry_type 
