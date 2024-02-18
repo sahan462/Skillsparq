@@ -1,7 +1,7 @@
 <?php 
     include "/xampp/htdocs/skillsparq/app/views/components/sellerHeader.component.php";
     $job = $data['job'];
-    print_r ($data);
+    // print_r ($data);
 ?>
 
     <div class="displayJobContainer">
@@ -61,26 +61,40 @@
                         Auction Details
                     </div>
                     
-                    <div class="auctionDetailContent">
+                    <div class="auctionDetails">
 
-                        <div class="auctionStartTime">
-                            Auction Start at : <?php echo $job['start_time']?>
+                        <div class="auctionDetailContent">
+
+                            <div class="auctionStartTime">
+                                Auction Start at : <?php echo $job['start_time']?>
+                            </div>
+
+                            <div class="auctionEndTime">
+                                Auction End at : <?php echo $job['end_time']?>
+                            </div>
+
+                            <div class="auctionStartingBid">
+                                Bid Starts from : <?php echo $job['starting_bid']?>
+                            </div>
+
+                            <div class="auctionCurrentMinBid">
+                                Current Minimum Bid : <?php echo $job['min_bid_amount']?>
+                            </div>
+
+                            <div class="auctionCurrentMaxBid">
+                                Current Maximum Bid : <?php echo $job['current_highest_bid']?>
+                            </div>
+
                         </div>
 
-                        <div class="auctionEndTime">
-                            Auction End at : <?php echo $job['end_time']?>
-                        </div>
+                        <div class="auctionDetialsButton">
 
-                        <div class="auctionStartingBid">
-                            Bid Starts from : <?php echo $job['starting_bid']?>
-                        </div>
+                            <button class = "sendProposalButton" onclick="openJobProposalModal(this)">
 
-                        <div class="auctionCurrentMinBid">
-                            Current Minimum Bid : <?php echo $job['min_bid_amount']?>
-                        </div>
+                                <a class="proposalButtonLink" href="#">Send & Bid</a>
 
-                        <div class="auctionCurrentMaxBid">
-                            Current Maximum Bid : <?php echo $job['current_highest_bid']?>
+                            </button>
+
                         </div>
 
                     </div>
@@ -97,28 +111,102 @@
                         <div class="displayJobSendProposalHeader">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"><path d="M10.026 40.974v-22h-6v22z"/><path d="M10.026 18.974c7.123-6.52 11.251-10.26 12.384-11.222c1.7-1.443 3.62-.837 3.62 2.775s-5.285 5.695-5.285 8.447c-.004.016 6.756.017 20.277.003a3 3 0 0 1 3.004 2.998v.003a3.004 3.004 0 0 1-3.004 3.004h-8.01c-1.208 7.973-1.875 12.307-2 13.004c-.188 1.044-1.185 2.988-4.054 2.988H10.026z" clip-rule="evenodd"/></g></svg>
-                            <?php echo "Apply for the proposal"?>
+
+                            <?php echo "Send Job proposal"?>
 
                         </div>
 
                         <div class="displayJobSendProposalContent">
-                            Apply for the proposal in order to get a job with the customer in the first place !
+                            Apply for the Job by sending a job proposal to the customer at the first place !
                         </div>
+
                     </div>
 
                     <div class="displayJobSendProposalButton">
 
-                        <button class = "sendProposalButton">
+                        <button class = "sendProposalButton" onclick="openJobProposalModal(this)"> 
+
                             <a class="proposalButtonLink" href="">Apply</a>
+
                         </button>
 
                     </div>
 
-                </div>
+                </div>             
 
             <?php }?>
 
             </div>
+
+            <!-- Modal 1 -->
+            <div class="overlayDisplayJob" id="overlayDisplayJob">
+
+                    <div class="modalDisplayJob" id="modalIdDisplayJob">
+
+                        <form id="sendJobProposal" method="post" action="" enctype="multipart/form-data">
+
+                            <div class="profile-picture">
+
+                                <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profile["profile_pic"]?>" alt="pro-pic">
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="full-name">
+
+                                    <div class="row">
+
+                                        <label class="type-1">First Name:</label>
+                                        <input type="text" id="firstName" name="firstName" value="<?php echo $profile['first_name'] ?>" >
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <label class="type-1">Last Name:</label>
+                                        <input type="text" id="lastName" name="lastName" value="<?php echo $profile['last_name'] ?>" >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="buttons">
+
+                                <button type="button" onclick="confirmAction('cancel')">Cancel Update</button>
+                                <button type="button" onclick="confirmAction('send')">Update Profile</button>
+
+                            </div>
+
+                        </form>
+                        
+                </div>
+
+            </div>
+
+                <!-- Modal 2 -->
+                <div class="overlayDisplayJob" id="cancelConfirmationOverlay">
+                    <div class="confirmation" id="cancelConfirmation">
+                        <p>Are you sure want to cancel?</p>
+                        <div class="buttons">
+                            <button onclick="handleConfirmation('cancelNo')">No</button>
+                            <button onclick="handleConfirmation('cancelYes')">Yes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 3 -->
+                <div class="overlayDisplayJob" id="sendConfirmationOverlay">
+                    <div class="confirmation" id="sendConfirmation">
+                        <p>Are you sure want to continue?</p>
+                        <div class="buttons">
+                            <button onclick="handleConfirmation('sendNo')">No</button>
+                            <button onclick="handleConfirmation('sendYes')">Yes</button>
+                        </div>
+                    </div>
+                </div>
 
             <div class="jobViewBuyerDetailsSideBar">
 
@@ -152,7 +240,7 @@
                         </div>
 
                         <strong class="verifyContent">
-                            Phone Number verified
+                            Email verified
                         </strong>
 
                     </div>
