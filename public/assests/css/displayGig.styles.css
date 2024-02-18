@@ -147,6 +147,7 @@ body{
     border-radius: 8px;
 }
 .milestoneModal .type-1, .modal .type-1{
+    margin-top: 8px;
     font-weight: 600;
     font-size: 16px;
     color: #404145;
