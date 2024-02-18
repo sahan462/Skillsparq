@@ -51,7 +51,41 @@ class ManageOrders extends Controller
     public function createMilestoneOrder(){
 
         $milestones = $_POST['milestone'];
-        print_r($milestones);
+
+        $subjects = $milestones['subject'];
+        $revisions = $milestones['revisions'];
+        $deliveryQuantities = $milestones['deliveryQuantity'];
+        $deliveryTimePeriodTypes = $milestones['deliveryTimePeriodType'];
+        $prices = $milestones['price'];
+        $descriptions = $milestones['description'];
+
+        for ($i = 0; $i < count($subjects); $i++) {
+
+            echo "Milestone: $i <br>";
+
+            $subject = $subjects[$i];
+            $revision = $revisions[$i];
+            $deliveryQuantity = $deliveryQuantities[$i];
+            $deliveryTimePeriodType = $deliveryTimePeriodTypes[$i];
+            $price = $prices[$i];
+            $description = $descriptions[$i];
+
+            print_r($subject);
+            echo "<br>";
+            print_r($revision);
+            echo "<br>";
+            print_r($deliveryQuantity);
+            echo "<br>";
+            print_r($deliveryTimePeriodType);
+            echo "<br>";
+            print_r($price);
+            echo "<br>";
+            print_r($description);
+            echo "<br>";
+
+        }
+        
+
         
     }
 
