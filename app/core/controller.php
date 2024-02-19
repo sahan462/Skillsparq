@@ -156,8 +156,8 @@ class Controller
         require_once('../app/vendor/nofity/autoload.php');
 
         $api_instance = new NotifyLk\Api\SmsApi();
-        $user_id = "25955";
-        $api_key = "mOxnvCvochppWmtHQrqR";
+        $user_id = "";
+        $api_key = "";
         $message = $body;
         $to = $receiverPhoneNumber;
         $sender_id = "NotifyDEMO";
