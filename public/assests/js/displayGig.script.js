@@ -214,8 +214,9 @@ animation.innerHTML = `
 const frame = document.getElementById("collapsibleTemplate");
 
 function addCollapsible() {
-
+  // Increment count if it's already declared and initialized elsewhere
   count++;
+
   if (count === 1) {
     animation.innerHTML = '';
     animation.style.width = '0px';
@@ -226,7 +227,7 @@ function addCollapsible() {
   }
 
   var collapsibleTemplate = `
-  <div id="collapsibleTemplate">
+  <div id="collapsibleTemplate_${count}">
   <button type="button" class="collapsible" id="collapsible" onclick="expand(this)">Milestone ${count}</button>
 
   <div class="collapsibleContent">
@@ -274,11 +275,11 @@ function addCollapsible() {
           <div class="col">
               <label for="attachments" class="type-1" >Attachments:</label>
               <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                  <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
+                  <label for="milestoneAttachment_${count}" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
                   <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                   <span class="fileName" id="fileName"></span>
               </div>
-              <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]" multiple onchange = "displayFileName(${count})">
+              <input type="file" class="fileInput" id="milestoneAttachment_${count}" name="milestone[attachment][]" multiple onchange="displayFileName(${count})">
           </div>
       </div>
 
@@ -297,8 +298,8 @@ function addCollapsible() {
   `;
 
   inputContainer.innerHTML += collapsibleTemplate;
-
 }
+
 
 
 
