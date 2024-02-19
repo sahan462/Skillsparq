@@ -33,7 +33,7 @@
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
                     <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
                         <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
-                        <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                        <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                         <span class="fileName" id="fileName"></span>
                     </div>
                     <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(0)">
@@ -87,7 +87,7 @@
                 <div id="inputContainer" >
                     <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
-                
+
                 <div class="buttons">
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
                     <button type="button" onclick="confirmAction('send')">Send Request</button>
