@@ -6,28 +6,6 @@
 
     <div class="title">
         <?php //echo $row['title']?>
-        <div class="links">
-            <?php
-                if($_SESSION['role'] === "Seller"){
-                    if(($row['ongoing_order_count']) === 0){
-            ?>
-                    <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">edit</a>
-                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">delete</a>
-            <?php
-                    }
-                    else{
-            ?>
-                    <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>edit</a>
-                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden>delete</a>
-            <?php
-                    }
-                }else{
-            ?>
-                    <!-- visibility hidden -->
-            <?php 
-                }
-            ?>
-        </div>
     </div>
 
     <!-- User Details -->
@@ -72,5 +50,29 @@
         <div class="price">
             <b><span>From 5$<span></b>
         </div>
+
+        <div class="links">
+            <?php
+                if($_SESSION['role'] === "Seller"){
+                    if(($row['ongoing_order_count']) === 0){
+            ?>
+                    <button class="buttonType-1"><a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">Update</a></button>
+                    <button class="buttonType-2"><a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>">Delete</a></button>
+            <?php
+                    }
+                    else{
+            ?>
+                    <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden><button>Update</button></a>
+                    <a href="Gig/deleteGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>" hidden><button>Delete</button></a>
+            <?php
+                    }
+                }else{
+            ?>
+                    <!-- visibility hidden -->
+            <?php 
+                }
+            ?>
+        </div>
+
     </div>
 </div>
