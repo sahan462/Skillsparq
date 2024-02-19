@@ -112,7 +112,24 @@ class InquiryHandler extends database
 
     public function getComplaints()
     {
-        $query = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";;
+        $query = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description,c.inquiry_status,c.created_at from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";;
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getHelpRequests()
+    {
+        $query = "SELECT i.request_id,c.inquiry_id,c.subject,c.description,c.attachements,c.response,c.inquiry_status,c.created_at from help_requests i join inquiries c ON i.request_id = c.inquiry_id";;
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -203,5 +220,23 @@ class InquiryHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+    }
+
+    public function addNewResponse($inquiry_id, $response)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE inquiries SET response = ?, inquiry_status = 'solved' WHERE inquiry_id = ?");
+
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $response, $inquiry_id);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_close($stmt);
     }
 }

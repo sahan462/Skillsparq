@@ -13,8 +13,8 @@ class viewHelpRequests extends Controller
 
         $data['var'] = "viewHelpRequests";
         $data['title'] = "SkillSparq";
-        $recentInquiries = $this->inquiryHandlerModel->getRecentUsers();
-        $data['recentInquiries'] = $recentInquiries;
+        $recentRequests = $this->inquiryHandlerModel->getHelpRequests();
+        $data['recentRequests'] = $recentRequests;
 
         $this->view('viewHelpRequests', $data);
     }
