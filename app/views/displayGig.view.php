@@ -33,10 +33,10 @@
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
                     <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
                         <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
-                        <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                        <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                         <span class="fileName" id="fileName"></span>
                     </div>
-                    <!-- <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(0)"> -->
+                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(0)">
                 </div>
 
                 <div class="buttons">
@@ -87,76 +87,6 @@
                 <div id="inputContainer" >
                     <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
-
-                <!-- Template for a milestone-->
-                <!-- <div id="collapsibleTemplate" style="display: none;">
-                    <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
-
-                    <div class="collapsibleContent">
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="type-1">Subject</div>
-                                <input type="text" name="milestone[subject][]">
-                            </div>
-                        </div>
-
-                        <div class="row"  style="gap:16px;">
-                            <div class="col">
-                                <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="" style="width: 100%;">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="Unlimited">Unlimited</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <div class="type-1">Delivery</div>
-                                <div class="row">
-                                    <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
-                                    <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
-                                        <option value="Day(s)">Day(s)</option>
-                                        <option value="Week(s)">Week(s)</option>
-                                        <option value="Month(s)">Month(s)</option>
-                                        <option value="Year(s)">Year(s)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="type-1">Price(USD)</div>
-                                <input type="text" name="milestone[price][]"  style="width: 100%;">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="attachments" class="type-1" >Attachments:</label>
-                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
-                                    <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                                    <span class="fileName" id="fileName"></span>
-                                </div>
-                                <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="type-1">Milestone Description</div>
-                                <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
-                            </div>
-                        </div>
-
-                        <button type="button" class="removeButton" onclick="removeCollapsible(this)">Remove Milestone</button>
-
-                    </div>
-                </div> -->
-
 
                 <div class="buttons">
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
