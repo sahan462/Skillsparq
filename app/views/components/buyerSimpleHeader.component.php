@@ -59,7 +59,11 @@
 
                         <li class="imgLinks">
                             <a href="buyerProfile" class="imgLink">
-                                <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
+                                <?php if($_SESSION['role'] == 'Buyer') {?>
+                                    <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
+                                <?php }else{?>
+                                    <img src="../public/assests/images/profilePictures/dummyprofile.jpg" alt="pro-pic">
+                                <?php }?>
                                 <div class="loginSign"></div>
                             </a>
                         </li>

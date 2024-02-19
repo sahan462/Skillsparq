@@ -7,9 +7,16 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-/* .gigCard .user-details{
-    height: 50px;
-} */
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .Gig-content .gigCard{
+    width: calc(100% / 3 - 16px);
+    height: 360px;
+    border: 2px solid #dadbdd;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
 .gigCard .user-details img{
     width: 48px;
     height: 48px;
@@ -56,7 +63,37 @@
 .gigCard .cardRow,.gigTitle,.price,.rating{
     padding: 0 8px;
 }
-
+.gigCard .links{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gigCard .links a{
+    text-decoration: none;
+    color: #fff;
+}
+.gigCard button{
+    text-decoration: none;
+    width: 100% !important;
+    height: 25px;
+    width: 50%;
+    padding: 0px !important;
+    margin-top: 0px !important;
+    width: 100%;
+    color: #fff;
+    border-radius: 8px;
+}
+.gigCard button:hover{
+    color: black !important;
+}
+.gigCard .buttonType-1{
+    border-radius: 0 0 0 8px !important;
+}
+.gigCard .buttonType-2{
+    border-radius: 0 0 8px 0 !important;
+}
 @media only screen and (max-width: 1200px) {
     .gigCard{
         width: calc(100% / 2 - 16px);
