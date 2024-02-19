@@ -29,7 +29,7 @@ class updateGig extends Controller
                 $gig = $this->GigHandlerModel->displayGig($gigId);
                 if ($gig !== null) {
                     $data['gigDetails'] = $gig;
-                    // show($data);
+                    // print_r($data);
                     $this->view('UpdateGig', $data); 
                 } else {
                     echo "<script>alert('Gig update is not Accessible!')</script>";

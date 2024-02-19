@@ -93,10 +93,10 @@
                                 <div class="noOfDeliveryDays">
                                     <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_1" class="categories" >
-                                        <option value="Days <?php echo ($gigDetails['time_period'] === 'AI Services') ? 'selected' : '';?>">Day(s)</option>
-                                        <option value="Weeks<?php ;?>">Week(s)</option>
-                                        <option value="Months <?php ;?>">Month(s)</option>
-                                        <option value="Years <?php ;?>">Year(s)</option>
+                                        <option value="Days <?php echo ($gigDetails['time_period'] === 'Days') ? 'selected' : '';?>">Day(s)</option>
+                                        <option value="Weeks<?php echo ($gigDetails['time_period'] === 'Weeks') ? 'selected' : '';?>">Week(s)</option>
+                                        <option value="Months <?php echo ($gigDetails['time_period'] === 'Months') ? 'selected' : '';?>">Month(s)</option>
+                                        <option value="Years <?php echo ($gigDetails['time_period'] === 'Years') ? 'selected' : '';?>">Year(s)</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,14 +105,14 @@
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
                                     <select name="noOfRevisions_1"  class="categories" required>
-                                        <option value="1 <?php ;?>">1</option>
-                                        <option value="2 <?php ;?>">2</option>
-                                        <option value="3 <?php ;?>">3</option>
-                                        <option value="4 <?php ;?>">4</option>
-                                        <option value="5 <?php ;?>">5</option>
-                                        <option value="6 <?php ;?>">6</option>
-                                        <option value="7 <?php ;?>">7</option>
-                                        <option value="Unlimited<?php ;?>">Unlimited</option>
+                                        <option value="1 <?php echo ($gigDetails['time_period'] === '1') ? 'selected' : '';?>">1</option>
+                                        <option value="2 <?php echo ($gigDetails['time_period'] === '2') ? 'selected' : '';?>">2</option>
+                                        <option value="3 <?php echo ($gigDetails['time_period'] === '3') ? 'selected' : '';?>">3</option>
+                                        <option value="4 <?php echo ($gigDetails['time_period'] === '4') ? 'selected' : '';?>">4</option>
+                                        <option value="5 <?php echo ($gigDetails['time_period'] === '5') ? 'selected' : '';?>">5</option>
+                                        <option value="6 <?php echo ($gigDetails['time_period'] === '6') ? 'selected' : '';?>">6</option>
+                                        <option value="7 <?php echo ($gigDetails['time_period'] === '7') ? 'selected' : '';?>">7</option>
+                                        <option value="Unlimited<?php echo ($gigDetails['time_period'] === 'Days') ? 'selected' : '';?>">Unlimited</option>
                                     </select>
                                 </div>
                             </div>
