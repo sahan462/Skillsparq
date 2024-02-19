@@ -271,5 +271,10 @@ class JobHandler extends database
         }
     }
 
+    public function createProposal()
+    {
+        
+    }
+
 
 }

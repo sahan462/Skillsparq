@@ -1,6 +1,6 @@
 <?php
 
-class viewComplaints extends Controller
+class viewHelpRequestDetails extends Controller
 {
 
     private $inquiryHandlerModel;
@@ -14,7 +14,14 @@ class viewComplaints extends Controller
     {
         $inquiry_id = isset($_GET['inquiry_id']) ? $_GET['inquiry_id'] : null;
 
-        $data['var'] = "viewComplaints";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $response = $_POST['response'];
+            $this->inquiryHandlerModel->addNewResponse($inquiry_id, $response);
+            // Optionally, redirect to a different page after adding the response
+
+        }
+
+        $data['var'] = "viewHelpRequestDetails";
         $data['title'] = "SkillSparq";
         $data['inquiryId'] = $inquiry_id;
         $viewComplaint = $this->inquiryHandlerModel->viewComplaints();
@@ -23,6 +30,6 @@ class viewComplaints extends Controller
         // Pass $inquiry_id directly to viewSenderDetails function
         $viewSenderDetails = $this->inquiryHandlerModel->viewSenderDetails($inquiry_id);
         $data['viewSenderDetails'] = $viewSenderDetails;
-        $this->view('viewComplaints', $data);
+        $this->view('viewHelpRequestDetails', $data);
     }
 }
