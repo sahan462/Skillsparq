@@ -1,10 +1,3 @@
-<?php
-$count = 0;
-foreach ($recentInquiries as $row) {
-    $count++;
-}
-
-?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -19,14 +12,26 @@ foreach ($recentInquiries as $row) {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 
     <title>Admin Dashboard Panel</title>
+
+    <style>
+        button {
+            width: 20%;
+            height: 32px;
+            margin-bottom: 16px;
+            margin-left: 30%;
+            color: #fff;
+            border: 2px solid #1dbf73;
+            background: #1dbf73;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: ease-in-out 0.3s;
+        }
+    </style>
 </head>
-
-
 
 <body>
     <?php
-    $recentInquiries = $data['recentInquiries'];
-    print_r($data);
+    $recentRequests = $data['recentRequests']; // Assuming 'recentRequests' is the correct array name
     ?>
     <nav>
         <div class="logo-name">
@@ -96,68 +101,74 @@ foreach ($recentInquiries as $row) {
         </div>
 
         <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
-
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Users</span>
-                        <span class="number"><?php echo $count ?></span>
-
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Comments</span>
-                        <span class="number">20,120</span>
-
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Share</span>
-                        <span class="number">10,120</span>
-                    </div>
-                </div>
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">HelpRequests</span>
             </div>
-
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent inquiries</span>
-                </div>
-
+            <div id="toggle">
+                <button id="unsolved" onclick="togglebtn()">Not Solved</button>
+                <button id="solved" onclick="togglebtn()" style="margin-left: 0; ">Solved</button>
+            </div>
+            <div>
                 <table class="content-table">
                     <thead>
-                        <th>user_id</th>
-                        <th>user_email</th>
-                        <th>role</th>
-                        <th>View</th>
+                        <tr>
+                            <th>inquiry_ID</th>
+                            <th>Subject</th>
+                            <th>inquiry_status</th>
+                            <th>created_at</th>
+                            <th>view</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($recentInquiries as $row) {
+                        foreach ($recentRequests as $row) {
+                            if ($row['inquiry_status'] == "unsolved") {
                         ?>
-                            <tr>
-                                <td><?php echo $row['user_id']; ?></td>
-                                <td><?php echo $row['user_email']; ?></td>
-                                <td><?php echo $row['role']; ?></td>
-                                <td><a href="#">View</a></td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo $row['inquiry_id']; ?></td>
+                                    <td><?php echo $row['subject']; ?></td>
+                                    <td><?php echo $row['inquiry_status']; ?></td>
+                                    <td><?php echo $row['created_at']; ?></td>
+                                    <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                                            <button>View</button>
+                                        </a></td>
+                                </tr>
                         <?php
+                            }
                         }
                         ?>
                     </tbody>
                 </table>
-
-
             </div>
         </div>
-        </div>
     </section>
-    < /body>
 
-        < /html>
-            <script src="../public/assests/js/helpDeskCenter.js"></script>
+    <script src="../public/assests/js/helpDeskCenter.js"></script>
+
+</body>
+
+</html>
+
+
+<script>
+    function togglebtn() {
+        var solved = document.getElementById("solved");
+        var unsolved = document.getElementById("unsolved");
+
+        // Toggle background color for solved button
+        if (solved.style.background === 'rgb(29, 191, 115)' || solved.style.background === 'green') {
+            solved.style.background = 'white';
+
+        } else {
+            solved.style.background = 'rgb(29, 191, 115)';
+        }
+
+        // Toggle background color for unsolved button
+        if (unsolved.style.background === 'rgb(29, 191, 115)' || unsolved.style.background === 'green') {
+            unsolved.style.background = 'white';
+        } else {
+            unsolved.style.background = 'rgb(29, 191, 115)';
+        }
+    }
+</script>

@@ -290,8 +290,10 @@ nav.close ~ .dashboard .top{
     align-items: center;
     justify-content: center;
     font-size: 24px;
+    
 }
 .dash-content .title .text{
+    margin-left: 50%;
     font-size: 24px;
     font-weight: 500;
     color: var(--text-color);
@@ -519,6 +521,7 @@ nav.close ~ .dashboard .top{
 button{
     width: 10%;
     height: 32px;
+    margin-top: 50px;
     margin-bottom: 16px;
     color: #fff;
     border: 2px solid #1dbf73;
@@ -526,11 +529,18 @@ button{
     border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
+
 }
 
  .grid{
     width: 40%;
     font-weight: none;
+    display: inline-block;
+    width: 45%; /* Adjust the width as needed */
+    margin-right: 20px; /* Margin between the two divs */
+    vertical-align: top; /* Align the divs to the top */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 10px; /* Optional: Add padding inside the divs */
  }
 
 
@@ -545,4 +555,8 @@ button{
     margin: 0.4rem 0;
     font-weight: 600;
     opacity: 0.9;
+}
+
+p{
+    font-weight: bold;
 }

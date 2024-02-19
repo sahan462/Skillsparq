@@ -35,7 +35,7 @@ class displayGig extends Controller
                 if ($gig && $profileData) {
 
                     $data['gig'] = $gig;
-                    $data['sellerProfile'] = $profileData;
+                    $data['profileData'] = $profileData;
     
                 } else {
     

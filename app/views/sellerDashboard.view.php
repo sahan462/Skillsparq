@@ -13,11 +13,7 @@
     $data["completedOrders"] = 0;
     $data["lastDelivery"] = "July 2023";
     $data["expertise"] = "Tech";
-    // $data["profilePicture"] = "dummyprofile.jpg";
-    print_r($_SESSION);
 
-    // get the jobs from sellerdashboard controller.php to this view.
-    // show($data['AllJobs']);
     $jobs = $data['AllJobs'];
 
 ?>
