@@ -305,5 +305,7 @@
     
     </div>
 
-<script src="/public/assests/js/displayJob.script.js"></script>
+    
+<script src="./assests/js/displayJob.script.js"></script>
+
 <?php include "/xampp/htdocs/skillsparq/app/views/components/footer.component.php";?>

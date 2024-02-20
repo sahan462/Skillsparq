@@ -10,8 +10,8 @@ var currentFirstName = firstName.value;
 var lastName = document.getElementById('lastName');
 var currentLastName = lastName.value;
 
-var about = document.getElementById('about');
-var currentAbout = about.innerHTML;
+// var about = document.getElementById('about');
+// var currentAbout = about.innerHTML;
     
 //open update Modal
 function openJobProposalModal(button) {
