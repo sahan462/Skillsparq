@@ -1,17 +1,21 @@
 //------------------------------------Modal Behavior------------------------------------------------
     
 // Wait for the DOM to fully load
-var preview = document.getElementById('previewImage');
-var currentProfilePicture = preview.src;
 
-var firstName = document.getElementById('firstName');
-var currentFirstName = firstName.value;
+var fullName = document.getElementById('attachment');
+var currentFullName = fullName.value;
 
-var lastName = document.getElementById('lastName');
-var currentLastName = lastName.value;
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
 
-// var about = document.getElementById('about');
-// var currentAbout = about.innerHTML;
+function handleSubmit(event) {
+  event.preventDefault();
+}
+
+var description = document.getElementById('descriptionJobProposal');
+var descriptionJobProposal = description.value;
+
+// attachment
     
 //open update Modal
 function openJobProposalModal(button) {

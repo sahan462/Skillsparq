@@ -102,7 +102,7 @@
                 </div>
 
             <?php 
-            }else if($job['publish_mode'] == 'Standard Mode'){
+            }else if($job['publish_mode'] == 'Standard Mode' && ($_SESSION['role'] !== "Buyer")){
             ?>
                 <div class="displayJobSendProposal">
 
@@ -135,78 +135,94 @@
                 </div>             
 
             <?php }?>
-
             </div>
 
-            <!-- Modal 1 -->
-            <div class="overlayDisplayJob" id="overlayDisplayJob">
+            <?php if($_SESSION['role'] === "Seller"){?>
+                <!-- Modal 1 -->
+                <div class="overlayDisplayJob" id="overlayDisplayJob">
 
-                    <div class="modalDisplayJob" id="modalIdDisplayJob">
+                        <div class="modalDisplayJob" id="modalIdDisplayJob">
 
-                        <form id="sendJobProposal" method="post" action="" enctype="multipart/form-data">
-
-                            <div class="profile-picture">
-
-                                <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profile["profile_pic"]?>" alt="pro-pic">
-
+                            <div>
+                                <h3 class="modalDisplayJobTopic">Proposal for the Auction</h3>
                             </div>
 
-                            <div class="row">
+                            <form id="sendJobProposal" method="post" action="jobProposals" enctype="multipart/form-data">
 
-                                <div class="full-name">
+                                <div class="row">
 
-                                    <div class="row">
+                                    <div class="full-name">
 
-                                        <label class="type-1">First Name:</label>
-                                        <input type="text" id="firstName" name="firstName" value="<?php echo $profile['first_name'] ?>" >
+                                        <div class="row">
+                                            Full Name : <?php echo $data['sellerDetails']['first_name']. " " .$data['sellerDetails']['last_name']?>
+                                        </div>
 
                                     </div>
 
-                                    <div class="row">
+                                    <div class="descriptionJobProposal">
 
-                                        <label class="type-1">Last Name:</label>
-                                        <input type="text" id="lastName" name="lastName" value="<?php echo $profile['last_name'] ?>" >
+                                        <textarea name="descriptionJobProposal" id="descriptionJobProposal" cols="30" rows="10">
+    
+                                        </textarea>
+                                    </div>
 
+                                    <div class="attachmentJobProposal" id="attachmentJobProposal">
+                                            <input name="attachment" type="file" multiple>
+                                            <button type="submit">Upload</button>
                                     </div>
 
                                 </div>
 
-                            </div>
+                                <div class="buttons">
 
-                            <div class="buttons">
+                                    <button type="button" onclick="confirmAction('cancel')">Cancel Submission</button>
+                                    <button type="button" onclick="confirmAction('send')">Send Proposal</button>
 
-                                <button type="button" onclick="confirmAction('cancel')">Cancel Update</button>
-                                <button type="button" onclick="confirmAction('send')">Update Profile</button>
+                                </div>
 
-                            </div>
+                            </form>
+                            
+                    </div>
 
-                        </form>
-                        
                 </div>
-
-            </div>
 
                 <!-- Modal 2 -->
                 <div class="overlayDisplayJob" id="cancelConfirmationOverlay">
+
                     <div class="confirmation" id="cancelConfirmation">
+
                         <p>Are you sure want to cancel?</p>
+
                         <div class="buttons">
+
                             <button onclick="handleConfirmation('cancelNo')">No</button>
                             <button onclick="handleConfirmation('cancelYes')">Yes</button>
+
                         </div>
+
                     </div>
+
                 </div>
 
                 <!-- Modal 3 -->
                 <div class="overlayDisplayJob" id="sendConfirmationOverlay">
+
                     <div class="confirmation" id="sendConfirmation">
+
                         <p>Are you sure want to continue?</p>
+
                         <div class="buttons">
+
                             <button onclick="handleConfirmation('sendNo')">No</button>
                             <button onclick="handleConfirmation('sendYes')">Yes</button>
+
                         </div>
+
                     </div>
+                    
                 </div>
+
+            <?php }?>
 
             <div class="jobViewBuyerDetailsSideBar">
 
@@ -231,6 +247,7 @@
                         </strong>
 
                     </div>
+
                     <div class="phoneNumberVerify">
 
                         <div class="VerificationIcon">
@@ -246,9 +263,11 @@
                     </div>
                     
                 </div>
+
                 <div class="jobViewBuyerDetialsRatings">
 
                     <div class="jobViewBuyerRatings">
+
                         Ratings
                         <div class="jobViewBuyerRatingStars">
 
@@ -282,6 +301,7 @@
                                 ?>
 
                             </div>
+
                         </li>
 
                         <li class="jobViewBuyerDetailsListItems">
@@ -297,6 +317,7 @@
                             Member Since : <?php echo $data['buyerDetails']['joined_date']?>
                         </li>
                     </ul>
+
                 </div>
 
             </div>

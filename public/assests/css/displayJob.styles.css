@@ -399,3 +399,7 @@ svg{
     background-color: rgb(241, 241, 241);
     font-weight: 600;
 }
+
+.modalDisplayJobTopic{
+    font-size: 24px;
+}
