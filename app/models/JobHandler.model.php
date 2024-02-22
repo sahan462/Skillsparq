@@ -271,10 +271,73 @@ class JobHandler extends database
         }
     }
 
-    public function createProposal()
+    public function createProposal($description,$bidAmount,$attachment,$jobId,$buyerId, $sellerId)
     {
+        $query = "INSERT INTO Jobs (description,bid_amount,attachment,job_id,buyer_id,seller_id) 
+        VALUES (?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
         
+        mysqli_stmt_bind_param($stmt, "sisiii",$description,$bidAmount,$attachment, $jobId,$buyerId,$sellerId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            $proposalId = mysqli_insert_id($GLOBALS['db']);
+            mysqli_stmt_close($stmt);
+            return $proposalId;
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
+    public function viewJobProposals($jobId)
+    {
+        $query = "SELECT * FROM job_proposals";
 
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            if ($result) {
+                return $result;
+            } else {
+                die('Error getting result: ' . mysqli_error($GLOBALS['db']));
+            }
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getSingleJobProposal($proposalId)
+    {
+        $query = "SELECT * FROM job_proposals WHERE proposal_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $proposalId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            if ($result) {
+                return $result;
+            } else {
+                die('Error getting result: ' . mysqli_error($GLOBALS['db']));
+            }
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

@@ -2,8 +2,12 @@
     
 // Wait for the DOM to fully load
 
-var fullName = document.getElementById('attachment');
-var currentFullName = fullName.value;
+
+
+var description = document.getElementById('descriptionJobProposal');
+var descriptionJobProposal = description.value;
+
+
 
 const form = document.querySelector('form');
 form.addEventListener('submit', handleSubmit);
@@ -12,12 +16,11 @@ function handleSubmit(event) {
   event.preventDefault();
 }
 
-var description = document.getElementById('descriptionJobProposal');
-var descriptionJobProposal = description.value;
+
 
 // attachment
     
-//open update Modal
+//open Submit Modal
 function openJobProposalModal(button) {
     packageForm = button.id;
     document.getElementById('overlayDisplayJob').style.display = 'flex';
@@ -49,6 +52,7 @@ function handleConfirmation(action) {
 
         var sendJobProposal = document.getElementById('sendJobProposal');
         sendJobProposal.submit();
+        alert('Successfully Sent The Proposal!');
 
     }else if (action === 'sendNo'){
 
@@ -60,19 +64,13 @@ function handleConfirmation(action) {
         document.getElementById('cancelConfirmation').style.display = 'none';
         document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 
-    }else{
+    }
+    else{
         
-        packageForm = "";
-        preview.src = currentProfilePicture;
-        firstName.value = currentFirstName;
-        lastName.value = currentLastName;
-        about.value = currentAbout;
-
         document.getElementById('cancelConfirmationOverlay').style.display = 'none';
         document.getElementById('cancelConfirmation').style.display = 'none';
         document.getElementById('overlayDisplayJob').style.display = 'none';
         document.getElementById('modalIdDisplayJob').style.display = 'none';
-        document.getElementById('warningMessage').style.display = 'none';
 
     }
 

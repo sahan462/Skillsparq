@@ -52,7 +52,7 @@
                     Download job File : 
                 </div>
 
-            <?php if($job['publish_mode'] == 'Auction Mode'){?>
+            <?php if(($job['publish_mode'] == 'Auction Mode') && ($_SESSION['role'] !== "Buyer")){?>
 
                 <div class="displayJobBidAuction">
 
@@ -102,7 +102,7 @@
                 </div>
 
             <?php 
-            }else if($job['publish_mode'] == 'Standard Mode' && ($_SESSION['role'] !== "Buyer")){
+            }else if(($job['publish_mode'] == 'Standard Mode') && ($_SESSION['role'] !== "Buyer")){
             ?>
                 <div class="displayJobSendProposal">
 
@@ -124,9 +124,9 @@
 
                     <div class="displayJobSendProposalButton">
 
-                        <button class = "sendProposalButton" onclick="openJobProposalModal(this)"> 
+                        <button class = "sendProposalButton" onclick="openJobProposalModal(this)" id="sendProposalButton"> 
 
-                            <a class="proposalButtonLink" href="">Apply</a>
+                            <a class="proposalButtonLink" href="#">Apply</a>
 
                         </button>
 
@@ -144,7 +144,9 @@
                         <div class="modalDisplayJob" id="modalIdDisplayJob">
 
                             <div>
+
                                 <h3 class="modalDisplayJobTopic">Proposal for the Auction</h3>
+
                             </div>
 
                             <form id="sendJobProposal" method="post" action="jobProposals" enctype="multipart/form-data">
@@ -160,15 +162,23 @@
                                     </div>
 
                                     <div class="descriptionJobProposal">
+                                        Write a description about what you're gonna offer to get this job.
+                                        <textarea name="descriptionJobProposal" id="descriptionJobProposalText" cols="30" rows="10" required>
 
-                                        <textarea name="descriptionJobProposal" id="descriptionJobProposal" cols="30" rows="10">
-    
                                         </textarea>
+
                                     </div>
 
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
-                                            <input name="attachment" type="file" multiple>
-                                            <button type="submit">Upload</button>
+
+                                            <input name="attachment" type="file" id="inputFile" required>
+                                            <!-- <button type="submit">Upload</button> -->
+
+                                    </div>
+
+                                    <div>
+                                        Your Bidding Amount :
+                                        <input type="text" required>
                                     </div>
 
                                 </div>

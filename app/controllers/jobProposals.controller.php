@@ -8,7 +8,7 @@ class JobProposals extends Controller
         // logic to view all job proposals.
         $data['var'] = "JobProposal Page";
         $data['title'] = "SkillSparq";
-
+        
         $this->view('jobProposals', $data);
     }
 
