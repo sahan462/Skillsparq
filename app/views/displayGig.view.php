@@ -1,3 +1,4 @@
+
 <?php 
     include "components/buyerSimpleHeader.component.php";
 ?>
@@ -21,7 +22,7 @@
     <!-- Modal 1  -->
     <div class="overlay" name="packageOverlay" id="overlay">
         <div class="modal" name="packageModal" id="modal">
-            <form id="packageRequestForm">
+            <form id="packageRequestForm" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
                     <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
@@ -32,11 +33,11 @@
                     <label for="attachments" class="type-1">Attachments:</label>
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
                     <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                        <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <label for="packageAttachement" id="attachment" style="margin-right: 4px;">Attachements</label>
                         <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                         <span class="fileName" id="fileName"></span>
                     </div>
-                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(0)">
+                    <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
                 </div>
 
                 <div class="buttons">
@@ -81,7 +82,7 @@
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder">
+            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder" enctype="multipart/form-data">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
@@ -203,7 +204,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
@@ -239,7 +240,7 @@
                                     </div>
                                     <li><?php echo $gig[1]['package_description']; ?></li>
 
-                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
@@ -275,7 +276,7 @@
                                     </div>
                                     <li><?php echo $gig[2]['package_description']; ?></li>
 
-                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 
