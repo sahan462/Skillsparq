@@ -8,123 +8,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/assests/css/viewComplaints.styles.css" />
     <!----===== Iconscout CSS ===== -->
-
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
 
     <title>Admin Dashboard Panel</title>
 </head>
 
 <body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="images/logo.png" alt="">
+    <?php include "components/helpCenter.component.php"; ?>
+
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Complaint no: <?php echo $data['inquiryId']
+                                                    ?></span>
+
             </div>
 
-            <span class="logo_name">Skillsparq</span>
         </div>
 
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="helpDeskCenter">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dahsboard</span>
-                    </a></li>
-                <li><a href="complaints">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Complaints</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-chart"></i>
-                        <span class="link-name">Analytics</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="link-name">Like</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Comment</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-share"></i>
-                        <span class="link-name">Share</span>
-                    </a></li>
-            </ul>
+        <div style="display: flex;">
+            <div class="grid">
+                <p style="font-weight: bold ; font-size:large">Request Details</P>
+                <?php
+                foreach ($viewComplaint as $row) {
+                ?>
+                    <ul>
+                        <li>Inquiry_ID: <span><?php echo $row['inquiry_id']; ?></span></li>
+                        <li>Subject: <span><?php echo $row['subject']; ?></span></li>
+                        <li>Description: <span><?php echo $row['description']; ?></span></li>
+                        <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
+                        <li>Response: <span><?php echo $row['response']; ?></span></li>
+                        <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
+                        <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
+                    </ul>
+                <?php
+                }
+                ?>
 
-            <ul class="logout-mode">
-                <li><a href="#">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a></li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
-
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-
-            <!--<img src="images/profile.jpg" alt="">-->
-        </div>
-
-
-
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Complaint no: <?php echo $data['inquiryId']
-                                                        ?></span>
-
-                </div>
 
             </div>
 
 
 
-            <div style="display: flex;">
-                <div class="grid">
-                    <p style="font-weight: bold ; font-size:large">Request Details</P>
-                    <?php
-                    foreach ($viewComplaint as $row) {
-                    ?>
-                        <ul>
-                            <li>Inquiry_ID: <span><?php echo $row['inquiry_id']; ?></span></li>
-                            <li>Subject: <span><?php echo $row['subject']; ?></span></li>
-                            <li>Description: <span><?php echo $row['description']; ?></span></li>
-                            <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
-                            <li>Response: <span><?php echo $row['response']; ?></span></li>
-                            <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
-                            <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
-                        </ul>
-                    <?php
-                    }
-                    ?>
 
-
-                </div>
-
-
-
-
-                <!-- <table class="content-table" style="margin-top: 50px;">
+            <!-- <table class="content-table" style="margin-top: 50px;">
 
             <th>inquiry_originator_id
             <th>customer_support_assistant_id
@@ -138,67 +69,67 @@
     ?>
     </tbody>
     </table> -->
-                <div class="grid">
-                    <p style="font-weight: bold ; font-size:large">
-                        Sender details:
-                    </p>
-                    <div id="viewSender">
-                        <?php
-                        foreach ($viewSenderDetails as $row) {
+            <div class="grid">
+                <p style="font-weight: bold ; font-size:large">
+                    Sender details:
+                </p>
+                <div id="viewSender">
+                    <?php
+                    foreach ($viewSenderDetails as $row) {
 
-                        ?>
-                            <ul>
-                                <li>User_ID <span><?php echo $row['user_id']; ?></span></li>
-                                <li>User_email: <span><?php echo $row['user_email']; ?></span></li>
-                                <li>Role: <span><?php echo $row['role']; ?></span></li>
-                                <li>Agreement: <span><?php echo $row['agreement']; ?></span></li>
-                                <li> </li>
+                    ?>
+                        <ul>
+                            <li>User_ID <span><?php echo $row['user_id']; ?></span></li>
+                            <li>User_email: <span><?php echo $row['user_email']; ?></span></li>
+                            <li>Role: <span><?php echo $row['role']; ?></span></li>
+                            <li>Agreement: <span><?php echo $row['agreement']; ?></span></li>
+                            <li> </li>
 
-                            </ul>
-                        <?php
-                        }
-                        ?>
-                    </div>
+                        </ul>
+                    <?php
+                    }
+                    ?>
                 </div>
-
             </div>
-
-            <form method="post">
-                <textarea name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
-                <br>
-                <input type="submit" value="Reply">
-            </form>
-
-
 
         </div>
 
-
-
-
-
-
-
-
-
-
-
-        <!-- Form to submit the user_id for updating the blacklist -->
-        <form id="blacklistForm" method="post" style="display: none;">
-            <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
-            <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
-
+        <form method="post">
+            <textarea name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+            <br>
+            <input type="submit" value="Reply">
         </form>
 
 
-        <!-- Text box for reply -->
-        <!-- <div id="replyBox">
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Form to submit the user_id for updating the blacklist -->
+    <form id="blacklistForm" method="post" style="display: none;">
+        <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
+        <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
+
+    </form>
+
+
+    <!-- Text box for reply -->
+    <!-- <div id="replyBox">
                 <textarea rows="4" cols="50" placeholder="Type your reply here..."></textarea>
                 <button onclick="submitReply()">Submit</button>
             </div> -->
 
 
-        <!-- <script>
+    <!-- <script>
                 // Function to toggle the visibility of the reply text box
                 // function toggleReplyBox() {
                 //     var replyBox = document.getElementById('replyBox');
@@ -217,7 +148,7 @@
 
 
 
-        </div>
+    </div>
     </section>
 
     <script>
@@ -288,6 +219,19 @@
             selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
 
         }
+    </script>
+
+    <script>
+        let profileDropdownList = document.querySelector(".profile-dropdown-list");
+        let btn = document.querySelector(".profile-dropdown-btn");
+
+        let classList = profileDropdownList.classList;
+
+        const toggle = () => classList.toggle("active");
+
+        window.addEventListener("click", function(e) {
+            if (!btn.contains(e.target)) classList.remove("active");
+        });
     </script>
 </body>
 
