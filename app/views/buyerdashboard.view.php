@@ -91,5 +91,6 @@
 </div>
 
 <script src="./assests/js/buyerDashboard.script.js"></script>
+<script src="./assests/js/notifications.script.js"></script>
 
 <?php include "components/footer.component.php"?>

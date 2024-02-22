@@ -1,9 +1,14 @@
 <?php
+
     if($_SESSION['role'] == 'Buyer'){
         include "components/buyerSimpleHeader.component.php";
     }else if($_SESSION['role'] == 'Seller'){
         include "components/sellerHeader.component.php";
     }
+
+    $myOrders = $data['myOrders'];
+    print_r($myOrders);
+
 ?>
 
 <!-- Main Container -->
@@ -29,6 +34,8 @@
             </div>
 
             <!-- Tab content -->
+
+            <!-- order requests -->
             <div id="Requests" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -38,9 +45,8 @@
                                 <th style="width: 28%;">Buyer</th>
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -48,7 +54,7 @@
                                 $i = 0;
                                 while($i < 1){
                             ?>
-                                    <tr onclick="window.location='order';">
+                                    <tr onclick="window.location='order&orderId=1';">
                                         <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
@@ -56,9 +62,8 @@
                                         </td>
                                         <td>I will create wordpress websites</td>
                                         <td>5 Sep</td>
-                                        <td>3 July</td>
                                         <td>$5000</td>
-                                        <td>-</td>
+                                        <td>Package Order</td>
                                     </tr>
                             <?php 
                                     $i = $i + 1;
@@ -69,6 +74,7 @@
                 </div>
             </div>
 
+            <!-- accepted orders -->
             <div id="Accepted" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -78,9 +84,8 @@
                                 <th style="width: 28%;">Buyer</th>
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -91,14 +96,12 @@
                                     <tr onclick="window.location='#';">
                                         <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
-                                            <img src="https://images.unsplash.com/photo-1489980869433-d1f7c7ac0fcf?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="right">       
                                             <span>Kumar Sanagakkara</span>
                                         </td>
                                         <td>I will architect your hotel</td>
                                         <td>5 Sep</td>
-                                        <td>3 July</td>
                                         <td>$5000</td>
-                                        <td>-</td>
+                                        <td>Package Order</td>
                                     </tr>
                             <?php 
                                     $i = $i + 1;
@@ -109,6 +112,7 @@
                 </div>
             </div>
 
+            <!-- rejected orders -->
             <div id="Rejected" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -118,9 +122,8 @@
                                 <th style="width: 28%;">Buyer</th>
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -137,8 +140,7 @@
                                         <td>I will create wordpress websites</td>
                                         <td>5 Sep</td>
                                         <td>3 July</td>
-                                        <td>$5000</td>
-                                        <td>-</td>
+                                        <td>Package Order</td>
                                     </tr>
                             <?php 
                                     $i = $i + 1;
@@ -149,6 +151,7 @@
                 </div>
             </div>
 
+            <!-- running orders -->
             <div id="Active" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -158,9 +161,8 @@
                                 <th style="width: 28%;">Buyer</th>
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -176,9 +178,8 @@
                                         </td>
                                         <td>I will create wordpress websites</td>
                                         <td>5 Sep</td>
-                                        <td>3 July</td>
                                         <td>$5000</td>
-                                        <td>-</td>
+                                        <td>Package Order</td>
                                     </tr>
                             <?php 
                                     $i = $i + 1;
@@ -189,6 +190,7 @@
                 </div>
             </div>
 
+            <!-- completed orders -->
             <div id="Completed" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -199,7 +201,7 @@
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
                                 <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
+                                <th style="width: 10%;">Total Amount</th>
                                 <th style="width: 10%;">Status</th>
                             </tr>
                         </div>
@@ -229,6 +231,7 @@
                 </div>
             </div>
 
+            <!-- late delivery -->
             <div id="Late" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -239,8 +242,8 @@
                                 <th style="width: 30%;">Gig</th>
                                 <th style="width: 10%;">Due On</th>
                                 <th style="width: 10%;">Delivered At</th>
-                                <th style="width: 10%;">Total</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -258,7 +261,7 @@
                                         <td>5 Sep</td>
                                         <td>3 July</td>
                                         <td>$5000</td>
-                                        <td>-</td>
+                                        <td>Package Order</td>
                                     </tr>
                             <?php 
                                     $i = $i + 1;
