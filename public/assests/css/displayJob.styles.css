@@ -115,10 +115,10 @@ svg{
 }
 
 .sendProposalButton{
-    background-color:#1dbf73;
+    background-color:#31d65a;
     border: none;
-    height: 32px;
-    width: 64px;
+    height: 40px;
+    width: 80px;
     border-radius: 8px;
 }
 

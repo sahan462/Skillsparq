@@ -7,6 +7,12 @@
 var description = document.getElementById('descriptionJobProposal');
 var descriptionJobProposal = description.value;
 
+var bidValue = document.getElementById('bidValue').value
+if (bidValue === '') {
+    alert('Please enter a number.');
+  } else {
+    console.log('Entered number:', numericInput);
+}
 
 
 const form = document.querySelector('form');
@@ -31,20 +37,25 @@ function openJobProposalModal(button) {
 function confirmAction(action) {
 
     
-
     if (action === 'send') {
     
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
+		var bidValue = document.getElementById('bidValue').value
+		if (bidValue === '') {
+			alert('Please enter a number.');
+		} else {
+			console.log('Entered number:', numericInput);
+		}
+		document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+		document.getElementById('cancelConfirmation').style.display = 'none';
+		document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+		document.getElementById('sendConfirmation').style.display = 'block';
     
     } else if(action === 'cancel') {
 
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
+		document.getElementById('sendConfirmationOverlay').style.display = 'none';
+		document.getElementById('sendConfirmation').style.display = 'none';
+		document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+		document.getElementById('cancelConfirmation').style.display = 'block';
     
     } 
 }
@@ -52,7 +63,12 @@ function confirmAction(action) {
 // Function to handle actions based on user confirmation
 function handleConfirmation(action) {
     if (action === 'sendYes') {
-
+		var bidValue = document.getElementById('bidValue').value
+		if (bidValue === '') {
+			alert('Please enter a number.');
+		} else {
+			console.log('Entered number:', numericInput);
+		}
         var sendJobProposal = document.getElementById('sendJobProposal');
         sendJobProposal.submit();
         alert('Successfully Sent The Proposal!');

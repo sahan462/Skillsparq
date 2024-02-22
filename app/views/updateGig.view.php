@@ -2,6 +2,7 @@
 
 <?php 
     $gigDetails = $data['gigDetails'];
+    print_r($gigDetails);
 ?>
 
 <!-- Main Container -->
@@ -33,36 +34,48 @@
 
                 <!-- tab 1 -->
                 <div class="tab">
+
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
+
                     <div class="title">
+
                         <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php echo $data['gigDetails']['title']?>" oninput="this.className = ''"></p>
+
                     </div>
 
                     <div class="description">
+
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
                         <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" required>
                             <?php echo $gigDetails['description']?>
                         </textarea>
+                        
                     </div>
 
                     <div class="category">
+
                         <span class="type-1">Which category best fits your project?</span>
                         <span class="type-2">Choose from the list</span>
+
                         <select name="category" class="categories" required>
-                            <option value="Graphics & Design <?php echo ($gigDetails['category'] === 'Graphics & Design') ? 'selected' : '';?>">Graphics & Design</option>
-                            <option value="Programming & Tech <?php echo ($gigDetails['category'] === 'Programming & Tech') ? 'selected' : '';?>">Programming & Tech</option>
-                            <option value="Digital Marketing <?php echo ($gigDetails['category'] === 'Digital Marketing') ? 'selected' : '';?>">Digital Marketing</option>
-                            <option value="Video & Animation <?php echo ($gigDetails['category'] === 'Video & Animation') ? 'selected' : '';?>">Video & Animation</option>
-                            <option value="Writing & Translation <?php echo ($gigDetails['category'] === 'Writing & Translation') ? 'selected' : '';?>">Writing & Translation</option>
-                            <option value="Music & Audio <?php echo ($gigDetails['category'] === 'Music & Audio') ? 'selected' : '';?>">Music & Audio</option>
-                            <option value="Business <?php echo ($gigDetails['category'] === 'Business') ? 'selected' : '';?>">Business</option>
-                            <option value="Data <?php echo ($gigDetails['category'] === 'Data') ? 'selected' : '';?>">Data</option>
-                            <option value="Photography <?php echo ($gigDetails['category'] === 'Photography') ? 'selected' : '';?>">Photography</option>
-                            <option value="AI Services <?php echo ($gigDetails['category'] === 'AI Services') ? 'selected' : '';?>">AI Services</option>
+
+                            <option value="Graphics & Design" <?php echo ($gigDetails['category'] === 'Graphics & Design') ? 'selected' : '';?>>Graphics & Design</option>
+                            <option value="Programming & Tech" <?php echo ($gigDetails['category'] === 'Programming & Tech') ? 'selected' : '';?>>Programming & Tech</option>
+                            <option value="Digital Marketing" <?php echo ($gigDetails['category'] === 'Digital Marketing') ? 'selected' : '';?>>Digital Marketing</option>
+                            <option value="Video & Animation" <?php echo ($gigDetails['category'] === 'Video & Animation') ? 'selected' : '';?>>Video & Animation</option>
+                            <option value="Writing & Translation" <?php echo ($gigDetails['category'] === 'Writing & Translation') ? 'selected' : '';?>>Writing & Translation</option>
+                            <option value="Music & Audio" <?php echo ($gigDetails['category'] === 'Music & Audio') ? 'selected' : '';?>>Music & Audio</option>
+                            <option value="Business" <?php echo ($gigDetails['category'] === 'Business') ? 'selected' : '';?>>Business</option>
+                            <option value="Data" <?php echo ($gigDetails['category'] === 'Data') ? 'selected' : '';?>>Data</option>
+                            <option value="Photography" <?php echo ($gigDetails['category'] === 'Photography') ? 'selected' : '';?>>Photography</option>
+                            <option value="AI Services" <?php echo ($gigDetails['category'] === 'AI Services') ? 'selected' : '';?>>AI Services</option>
+
                         </select>
+
                     </div>
+
                 </div>
 
                 <!-- tab 2 -->
@@ -74,140 +87,181 @@
                     <div class="outerTab">
 
                         <div class="Tab">
+
                             <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Basic</button>
                             <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
+
                         </div>
 
                         <div id="London" class="tabcontent">
 
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName">
-                                    <input type="text"  name ="customName_1" oninput="this.className = ''">
-                                </div>
-                            </div>
 
-                            <div class="row">
                                 <span>How long will it take to Deliver: </span>
+
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
-                                    <select name="timePeriod_1" class="categories" >
-                                        <option value="Days <?php echo ($gigDetails['time_period'] === 'Days') ? 'selected' : '';?>">Day(s)</option>
-                                        <option value="Weeks<?php echo ($gigDetails['time_period'] === 'Weeks') ? 'selected' : '';?>">Week(s)</option>
-                                        <option value="Months <?php echo ($gigDetails['time_period'] === 'Months') ? 'selected' : '';?>">Month(s)</option>
-                                        <option value="Years <?php echo ($gigDetails['time_period'] === 'Years') ? 'selected' : '';?>">Year(s)</option>
-                                    </select>
+
+                                    <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5" value="<?php echo ($gigDetails[0]['no_of_delivery_days'])?>">
+
+                                        <select name="timePeriod_1" lass="categories">
+
+                                            <option value="Days"<?php echo ($gigDetails[0]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                            <option value="Weeks"<?php echo ($gigDetails[0]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                            <option value="Months"<?php echo ($gigDetails[0]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                            <option value="Years"<?php echo ($gigDetails[0]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
+
+                                        </select>
+
                                 </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>Number of Revisions You Provide: </span>
+
                                 <div class="noOfRevisions">
-                                    <select name="noOfRevisions_1"  class="categories" required>
-                                        <option value="1 <?php echo ($gigDetails['time_period'] === '1') ? 'selected' : '';?>">1</option>
-                                        <option value="2 <?php echo ($gigDetails['time_period'] === '2') ? 'selected' : '';?>">2</option>
-                                        <option value="3 <?php echo ($gigDetails['time_period'] === '3') ? 'selected' : '';?>">3</option>
-                                        <option value="4 <?php echo ($gigDetails['time_period'] === '4') ? 'selected' : '';?>">4</option>
-                                        <option value="5 <?php echo ($gigDetails['time_period'] === '5') ? 'selected' : '';?>">5</option>
-                                        <option value="6 <?php echo ($gigDetails['time_period'] === '6') ? 'selected' : '';?>">6</option>
-                                        <option value="7 <?php echo ($gigDetails['time_period'] === '7') ? 'selected' : '';?>">7</option>
-                                        <option value="Unlimited<?php echo ($gigDetails['time_period'] === 'Days') ? 'selected' : '';?>">Unlimited</option>
+                                
+                                    <select name="noOfRevisions_1" class="categories" required>
+                                        <option value="1"<?php echo ($gigDetails[0]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                        <option value="2"<?php echo ($gigDetails[0]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                        <option value="3"<?php echo ($gigDetails[0]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                        <option value="4"<?php echo ($gigDetails[0]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                        <option value="5"<?php echo ($gigDetails[0]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                        <option value="6"<?php echo ($gigDetails[0]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                        <option value="7"<?php echo ($gigDetails[0]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                        <option value="Unlimited"<?php echo ($gigDetails[0]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
                                     </select>
+
                                 </div>
+
                             </div>
 
 
                             <span>Describe your offer and the service you provide on this package: </span>
                             <div class="packageDescription">
-                                <textarea name="packageDescription_1" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
+                                <textarea name="packageDescription_1" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required>
+                                    <?php echo $gigDetails[0]['package_description']?>
+                                </textarea>
                             </div>
 
                         </div>
 
                         <div id="Paris" class="tabcontent">
-                            <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_2" oninput="this.className = ''"></div>
-                            </div>
 
                             <div class="row">
+
                                 <span>How long will it take to Deliver: </span>
+
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5">
+
+                                    <input type="number" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5" value="<?php echo ($gigDetails[1]['no_of_delivery_days'])?>">
                                     <select name="timePeriod_2" class="categories" required>
-                                        <option value="Days<?php ;?>">Day(s)</option>
-                                        <option value="Weeks<?php ;?>">Week(s)</option>
-                                        <option value="Months<?php ;?>">Month(s)</option>
-                                        <option value="Years<?php ;?>">Year(s)</option>
+
+                                        <option value="Days"<?php echo ($gigDetails[1]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                        <option value="Weeks"<?php echo ($gigDetails[1]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                        <option value="Months"<?php echo ($gigDetails[1]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                        <option value="Years"<?php echo ($gigDetails[1]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
+
                                     <select name="noOfRevisions_2"  class="categories" required>
-                                        <option value="1<?php ;?>">1</option>
-                                        <option value="2<?php ;?>">2</option>
-                                        <option value="3<?php ;?>">3</option>
-                                        <option value="4<?php ;?>">4</option>
-                                        <option value="5<?php ;?>">5</option>
-                                        <option value="6<?php ;?>">6</option>
-                                        <option value="7<?php ;?>">7</option>
-                                        <option value="Unlimited<?php ;?>">Unlimited</option>
+
+                                        <option value="1"<?php echo ($gigDetails[1]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                        <option value="2"<?php echo ($gigDetails[1]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                        <option value="3"<?php echo ($gigDetails[1]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                        <option value="4"<?php echo ($gigDetails[1]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                        <option value="5"<?php echo ($gigDetails[1]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                        <option value="6"<?php echo ($gigDetails[1]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                        <option value="7"<?php echo ($gigDetails[1]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                        <option value="Unlimited"<?php echo ($gigDetails[1]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
 
                             <span>Describe your offer and the service you provide on this package: </span>
+
                             <div class="packageDescription">
-                                <textarea name="packageDescription_2" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
+
+                                <textarea name="packageDescription_2" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required>
+                                    <?php echo $gigDetails[1]['package_description']?>
+                                </textarea>
+
                             </div>
+
                         </div>
 
                         <div id="Tokyo" class="tabcontent">
-                            <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''" value="<?php ;?>"></div>
-                            </div>
 
                             <div class="row">
+
                                 <span>How long will it take to Deliver: </span>
+                                
                                 <div class="noOfDeliveryDays">
-                                    <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
+
+                                    <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5" value="<?php echo ($gigDetails[2]['no_of_delivery_days'])?>">
                                     <select name="timePeriod_3" class="categories" required>
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
+
+                                        <option value="Days"<?php echo ($gigDetails[2]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                        <option value="Weeks"<?php echo ($gigDetails[2]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                        <option value="Months"<?php echo ($gigDetails[2]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                        <option value="Years"<?php echo ($gigDetails[2]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>Number of Revisions You Provide: </span>
+
                                 <div class="noOfRevisions">
+
                                     <select name="noOfRevisions_3"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
+
+                                        <option value="1"<?php echo ($gigDetails[2]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                        <option value="2"<?php echo ($gigDetails[2]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                        <option value="3"<?php echo ($gigDetails[2]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                        <option value="4"<?php echo ($gigDetails[2]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                        <option value="5"<?php echo ($gigDetails[2]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                        <option value="6"<?php echo ($gigDetails[2]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                        <option value="7"<?php echo ($gigDetails[2]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                        <option value="Unlimited"<?php echo ($gigDetails[2]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <span>Describe your offer and the service you provide on this package: </span>
+
                             <div class="packageDescription">
-                                <textarea name="packageDescription_3" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
+
+                                <textarea name="packageDescription_3" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required>
+                                     <?php echo $gigDetails[2]['package_description']?>
+                                </textarea>
+
                             </div>
                             
                         </div>
+
                     </div>
 
                     <span class="type-1">Upload Images</span>
@@ -231,9 +285,11 @@
                     </div>
 
                 </div>
+
             </div>
 
             <div class="navigation">
+
                 <div>
                     <div style="float:right;">
                         <button type="button" id="prevBtn" onclick="nextPrev(-1)"><span class="previous">Previous</span></button>
@@ -249,7 +305,9 @@
             </div>
 
         </form>
+
     </div>
+
 </div>
 
 <script src="/skillsparq/public/assests/js/updateGig.script.js"></script>

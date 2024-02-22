@@ -186,7 +186,7 @@
                                             Your Bidding Amount :
                                         </div>
                                         
-                                        <input type="text" id="" required>
+                                        <input type="text" id="bidValue" required>
 
                                     </div>
 
