@@ -216,36 +216,16 @@ class GigHandler extends database
     
     
     //update gigs
-    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3)
+    public function updateGig($gigId,$title, $description, $category, $coverImage)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Gigs 
-            SET 
-            title = ?, 
-            description = ?, 
-            category = ?, 
-            coverImage = ?, 
-            customName_1 = ?, 
-            noOfDeliveryDays_1 = ?, 
-            timePeriod_1 = ?, 
-            noOfRevisions_1 = ?, 
-            packageDescription_1 = ?,
-            customName_2 = ?, 
-            noOfDeliveryDays_2 = ?, 
-            timePeriod_2 = ?, 
-            noOfRevisions_2 = ?, 
-            packageDescription_2 = ?,
-            customName_3 = ?, 
-            noOfDeliveryDays_3 = ?, 
-            timePeriod_3 = ?, 
-            noOfRevisions_3 = ?, 
-            packageDescription_3 = ?,
-
-            WHERE gigId = ?");
+        $query = "UPDATE Gigs SET title = ?, description = ?, category = ?, 
+        coverImage = ? WHERE gigId = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
         
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        mysqli_stmt_bind_param($stmt, "sssssissssissssisss",$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+        mysqli_stmt_bind_param($stmt, "issss",$gigId,$title, $description, $category, $coverImage);
         
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
@@ -258,7 +238,7 @@ class GigHandler extends database
     // update packages
     public function updatePackages($gigId)
     {
-
+        
     }
 
     //delete gig

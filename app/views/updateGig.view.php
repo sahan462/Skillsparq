@@ -303,7 +303,10 @@
                 </div>
 
             </div>
-
+            <input type="hidden" name="gigId" value="<?php echo $gig_id?>">
+            <input type="hidden" name="pckgId1" value="<?php echo $gigDetails[0]["package_id"]?>">
+            <input type="hidden" name="pckgId2" value="<?php echo $gigDetails[1]["package_id"]?>">
+            <input type="hidden" name="pckgId3" value="<?php echo $gigDetails[2]["package_id"]?>">
         </form>
 
     </div>
