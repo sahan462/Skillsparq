@@ -183,7 +183,6 @@ function displayFileName(index) {
   var fileNameSpan = document.getElementsByClassName("fileName")[index];
   var input = document.getElementsByClassName("fileInput")[index];
   var files = input.files;
-  alert(index);
 
   if (files.length > 0) {
     var file = input.files[0];
@@ -194,9 +193,9 @@ function displayFileName(index) {
 
       if (allowedExtensions.indexOf(fileExtension) !== -1) {
         fileNameSpan.textContent = files[0].name;
-        document.getElementById("warningMessage").style.display = "none";
+        document.getElementsByClassName("warningMessage")[index].style.display = "none";
       } else {
-        document.getElementById("warningMessage").style.display = "block";
+        document.getElementsByClassName("warningMessage")[index].style.display = "block";
         input.value = "";
       }
     }
@@ -214,8 +213,9 @@ animation.innerHTML = `
 const frame = document.getElementById("collapsibleTemplate");
 
 function addCollapsible() {
-
+  // Increment count if it's already declared and initialized elsewhere
   count++;
+
   if (count === 1) {
     animation.innerHTML = '';
     animation.style.width = '0px';
@@ -226,7 +226,7 @@ function addCollapsible() {
   }
 
   var collapsibleTemplate = `
-  <div id="collapsibleTemplate">
+  <div id="collapsibleTemplate_${count}">
   <button type="button" class="collapsible" id="collapsible" onclick="expand(this)">Milestone ${count}</button>
 
   <div class="collapsibleContent">
@@ -274,11 +274,11 @@ function addCollapsible() {
           <div class="col">
               <label for="attachments" class="type-1" >Attachments:</label>
               <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                  <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
-                  <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                  <label for="milestoneAttachment_${count}" class = "milestoneAttachmentLabel" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
+                  <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                   <span class="fileName" id="fileName"></span>
               </div>
-              <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]" multiple onchange = "displayFileName(${count})">
+              <input type="file" class="fileInput" id="milestoneAttachment_${count}" name="milestone[attachment][]" multiple onchange="displayFileName(${count})">
           </div>
       </div>
 
@@ -297,10 +297,7 @@ function addCollapsible() {
   `;
 
   inputContainer.innerHTML += collapsibleTemplate;
-
 }
-
-
 
 //remove milestones
 function removeCollapsible(button) {
@@ -309,6 +306,7 @@ function removeCollapsible(button) {
   if (container) {
       container.remove();
       updateMilestoneNumbering();
+      updateCountForAttachments();
   } else {
       console.error('Container not found.');
   }
@@ -327,11 +325,32 @@ function updateMilestoneNumbering() {
     `;
   } else {
     const milestones = document.querySelectorAll('#inputContainer .collapsible');
+    var fileInputs = document.querySelectorAll('.fileInput');
     milestones.forEach((milestone, index) => {
       milestone.innerHTML = "MileStone " + (index + 1);
     });
   }
 }
+
+//update count value for file attachements
+function updateCountForAttachments() {
+  const attachmentsLabels = Array.from(document.querySelectorAll('.milestoneAttachmentLabel'));
+  const attachmentsInputs = Array.from(document.querySelectorAll('.fileInput'));
+
+  // Omitting the first element from the attachmentsLabels array
+  attachmentsLabels.forEach((label, index) => {
+    const count = index + 1;
+    label.setAttribute('for', `milestoneAttachment_${count}`);
+  });
+
+  // Omitting the first element from the attachmentsInputs array
+  attachmentsInputs.slice(1).forEach((input, index) => {
+    const count = index + 1;
+    input.id = `milestoneAttachment_${count}`;
+    input.setAttribute('onchange', `displayFileName(${count})`);
+  });
+}
+
 
 
 // Collapsible

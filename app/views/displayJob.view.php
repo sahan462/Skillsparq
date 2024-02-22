@@ -1,5 +1,5 @@
 <?php 
-    include "/xampp/htdocs/skillsparq/app/views/components/sellerHeader.component.php";
+    include "components/sellerHeader.component.php"; 
     $job = $data['job'];
     // print_r ($data);
 ?>
