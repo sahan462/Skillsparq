@@ -162,7 +162,11 @@
                                     </div>
 
                                     <div class="descriptionJobProposal">
-                                        Write a description about what you're gonna offer to get this job.
+
+                                        <div class="topic">
+                                            Write a description about what you're gonna offer to get this job.
+                                        </div>
+                        
                                         <textarea name="descriptionJobProposal" id="descriptionJobProposalText" cols="30" rows="10" required>
 
                                         </textarea>
@@ -176,9 +180,14 @@
 
                                     </div>
 
-                                    <div>
-                                        Your Bidding Amount :
-                                        <input type="text" required>
+                                    <div class="bidAmount">
+
+                                        <div class="text">
+                                            Your Bidding Amount :
+                                        </div>
+                                        
+                                        <input type="text" id="" required>
+
                                     </div>
 
                                 </div>

@@ -358,6 +358,9 @@ svg{
 .modalDisplayJob input, textarea{
     margin-bottom: 16px;
     border-radius: 8px;
+    padding: 8px;
+    height:25%;
+    cursor: auto;
 }
 
 .modalDisplayJob .type-1{
@@ -402,4 +405,25 @@ svg{
 
 .modalDisplayJobTopic{
     font-size: 24px;
+    text-align: center;
+}
+
+.modalDisplayJob .descriptionJobProposal .topic{
+    text-align-last: center;
+    margin: 8px;
+}
+
+.modalDisplayJob .bidAmount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalDisplayJob .bidAmount .text{
+    text-align: center;
+}
+
+.modalDisplayJob .bidAmount input{
+    align-items: center !important;
+    margin-bottom: 0px;
 }

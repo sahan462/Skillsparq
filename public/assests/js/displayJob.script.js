@@ -29,6 +29,9 @@ function openJobProposalModal(button) {
  
 // Function to confirm the action
 function confirmAction(action) {
+
+    
+
     if (action === 'send') {
     
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
