@@ -28,15 +28,17 @@ class displayGig extends Controller
                 $userId = $_GET['userId'];
 
                 $gig = $this->GigHandlerModel->displayGig($gigId);
+                $sliderImgs = $this->GigHandlerModel->retrieveSliderImages($gigId);
 
                 $profileData = $this->ProfileHandlerModel->getUserProfile($userId);
                 $profileData = mysqli_fetch_assoc($profileData);
 
-                if ($gig && $profileData) {
+                if ($gig && $profileData &&$sliderImgs) {
 
                     $data['gig'] = $gig;
                     $data['profileData'] = $profileData;
-    
+                    $data['sliderImgs'] = $sliderImgs;
+
                 } else {
     
                     echo "<script>alert('Gig function is not Accessible!')</script>";

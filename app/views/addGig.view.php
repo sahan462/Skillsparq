@@ -259,7 +259,6 @@
                         <label for="sliderImage4">Slider Image 4:</label>
                         <input type="file" id="sliderImage4" name="sliderImage4"   />
                     </div>
-
                 </div>
             </div>
 

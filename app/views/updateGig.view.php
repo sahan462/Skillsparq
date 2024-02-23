@@ -98,7 +98,12 @@
 
                             <div class="row">
 
-                                <span>Package Price : <strong><?php echo $gigDetails[0]['package_price']?></strong></span>
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" value="<?php echo $gigDetails[0]['package_price']?>">
+
+                                </div>
 
                             </div>
 
@@ -157,8 +162,13 @@
                         <div id="Paris" class="tabcontent">
                             
                             <div class="row">
-                                
-                                <span>Package Price : <strong><?php echo $gigDetails[1]['package_price']?></strong></span>
+
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" value="<?php echo $gigDetails[1]['package_price']?>">
+
+                                </div>
 
                             </div>
 
@@ -221,7 +231,12 @@
 
                             <div class="row">
 
-                                <span>Package Price : <strong><?php echo $gigDetails[2]['package_price']?></strong></span>
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" value="<?php echo $gigDetails[2]['package_price']?>">
+
+                                </div>
 
                             </div>
 
@@ -322,9 +337,9 @@
 
             </div>
             <input type="hidden" name="gigId" value="<?php echo $gig_id?>">
-            <input type="hidden" name="pckgId1" value="<?php echo $gigDetails[0]["package_id"]?>">
-            <input type="hidden" name="pckgId2" value="<?php echo $gigDetails[1]["package_id"]?>">
-            <input type="hidden" name="pckgId3" value="<?php echo $gigDetails[2]["package_id"]?>">
+            <input type="hidden" name="packageId1" value="<?php echo $gigDetails[0]["package_id"]?>">
+            <input type="hidden" name="packageId2" value="<?php echo $gigDetails[1]["package_id"]?>">
+            <input type="hidden" name="packageId3" value="<?php echo $gigDetails[2]["package_id"]?>">
         </form>
 
     </div>
