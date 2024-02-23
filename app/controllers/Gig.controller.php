@@ -72,7 +72,30 @@ class Gig extends Controller
      public function updateGig(){
         
         if(isset($_GET["update"])){
+            // For gigs table
+            $gigId = $_GET['gig_id'];
+            $title = $_GET['title'];
+            $description = $_GET['description'];
+            $category = $_GET['category'];
+            $coverImage = $_GET['coverImage'];
 
+
+            $numDeliveryDays1 = $_GET['noOfDeliveryDays_1'];
+            $timeFrame1 = $_GET['timePeriod_1'];
+            $numOfRevs1 = $_GET['noOfRevisions_1'];
+            $pckgDescription1 = $_GET['packageDescription_1'];
+
+            $numDeliveryDays2 = $_GET['noOfDeliveryDays_2'];
+            $timeFrame2 = $_GET['timePeriod_2'];
+            $numOfRevs2 = $_GET['noOfRevisions_2'];
+            $pckgDescription2 = $_GET['packageDescription_2'];
+
+            $numDeliveryDays3 = $_GET['noOfDeliveryDays_3'];
+            $timeFrame3 = $_GET['timePeriod_3'];
+            $numOfRevs3 = $_GET['noOfRevisions_3'];
+            $pckgDescription3 = $_GET['packageDescription_3'];
+
+            $currentDateTime = date('Y-m-d H:i:s');
         }
         
     }
