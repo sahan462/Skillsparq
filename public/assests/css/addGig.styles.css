@@ -167,7 +167,7 @@ input.invalid {
 /*tab 1*/
 .rightContainer input[type="text"], .rightContainer textarea {
   margin: 0;
-  padding: 0;
+  padding:16px !important;
   height: 40px;
   font-size: 16px;
   margin-bottom: 32px;

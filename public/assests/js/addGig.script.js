@@ -88,3 +88,29 @@ function openCity(evt, cityName) {
 }
 
 document.getElementById("defaultOpen").click();
+
+function myfunction()
+{
+  var x = document.getElementById("sliderImage1");
+  var text = "";
+  if('files' in x){
+    if(x.files.length == 0){
+      text = "Select One File";
+    }
+    else{
+      var file = x.files
+      if('name' in file){
+        text += "Name : " + file.name + "<br>";
+      }
+    }
+
+  }else{
+    if(x.value == ""){
+      text += "Select One file"
+    }else{
+      text += "The file Property is not supported in your browser"
+      text += "<br> The path of the selected file : " + x.value
+    }
+  }
+  document.getElementById("demo").innerHTML = text
+}

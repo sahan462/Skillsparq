@@ -20,6 +20,7 @@
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
             <dotlottie-player src="https://lottie.host/881eaa0d-a9ec-48c3-8d93-95f4121b411c/Hxv4H6Yonz.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
         </div>
+
     </div>
 
     <!-- right side -->
@@ -33,8 +34,10 @@
 
                 <!-- tab 1 -->
                 <div class="tab">
+
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
+                    
                     <div class="title">
                         <p><input type="text" name="title" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
                     </div>
@@ -215,9 +218,12 @@
                         <label for="coverImage">Cover Image:</label>
                         <input type="file" id="coverImage" name="coverImage"  required/>
 
-                        <label for="sliderImage1">Slider Image 1:</label>
-                        <input type="file" id="sliderImage1" name="sliderImage1"   />
-
+                        <div class="slideimg1">
+                            <label for="sliderImage1">Slider Image 1:</label>
+                            <input type="file" id="sliderImage1" name="sliderImage1" onchange="myfunction()"/>
+                            <p id="demo"></p>
+                        </div>
+                        
                         <label for="sliderImage2">Slider Image 2:</label>
                         <input type="file" id="sliderImage2" name="sliderImage2"   />
 

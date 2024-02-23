@@ -98,6 +98,12 @@
 
                             <div class="row">
 
+                                <span>Package Price : <strong><?php echo $gigDetails[0]['package_price']?></strong></span>
+
+                            </div>
+
+                            <div class="row">
+
                                 <span>How long will it take to Deliver: </span>
 
                                 <div class="noOfDeliveryDays">
@@ -149,6 +155,12 @@
                         </div>
 
                         <div id="Paris" class="tabcontent">
+                            
+                            <div class="row">
+                                
+                                <span>Package Price : <strong><?php echo $gigDetails[1]['package_price']?></strong></span>
+
+                            </div>
 
                             <div class="row">
 
@@ -206,6 +218,12 @@
                         </div>
 
                         <div id="Tokyo" class="tabcontent">
+
+                            <div class="row">
+
+                                <span>Package Price : <strong><?php echo $gigDetails[2]['package_price']?></strong></span>
+
+                            </div>
 
                             <div class="row">
 
