@@ -18,19 +18,19 @@ class Gig extends Controller
             $description = $_POST['description'];
             $category = $_POST['category'];
 
-            $customName_1 = $_POST['customName_1'];
+            $packagePrice_1 = $_POST['packagePrice_1'];
             $noOfDeliveryDays_1 = $_POST['noOfDeliveryDays_1'];
             $timePeriod_1 = $_POST['timePeriod_1'];
             $noOfRevisions_1 = $_POST['noOfRevisions_1'];
             $packageDescription_1 = $_POST['packageDescription_1'];
 
-            $customName_2 = $_POST['customName_2'];
+            $packagePrice_2 = $_POST['packagePrice_2'];
             $noOfDeliveryDays_2 = $_POST['noOfDeliveryDays_2'];
             $timePeriod_2 = $_POST['timePeriod_2'];
             $noOfRevisions_2 = $_POST['noOfRevisions_2'];
             $packageDescription_2 = $_POST['packageDescription_2'];
 
-            $customName_3 = $_POST['customName_3'];
+            $packagePrice_3 = $_POST['packagePrice_3'];
             $noOfDeliveryDays_3 = $_POST['noOfDeliveryDays_3'];
             $timePeriod_3 = $_POST['timePeriod_3'];
             $noOfRevisions_3 = $_POST['noOfRevisions_3'];
@@ -47,7 +47,7 @@ class Gig extends Controller
             $upload = move_uploaded_file($_FILES["coverImage"]["tmp_name"], $targetFilePath);
     
             if($upload){
-                $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId);
+                $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId);
                 if($gig[0]){
                     echo "
                     <script>

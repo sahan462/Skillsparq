@@ -83,10 +83,14 @@
                         <div id="London" class="tabcontent">
 
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
+
+                                <span>Package Price : </span>
                                 <div class="customName">
-                                    <input type="text"  name ="customName_1" oninput="this.className = ''">
+
+                                    <input type="number"  name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000">
+
                                 </div>
+
                             </div>
 
                             <div class="row">
@@ -127,9 +131,16 @@
                         </div>
 
                         <div id="Paris" class="tabcontent">
+
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_2" oninput="this.className = ''"></div>
+
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000">
+
+                                </div>
+
                             </div>
 
                             <div class="row">
@@ -169,27 +180,42 @@
                         </div>
 
                         <div id="Tokyo" class="tabcontent">
+
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''"></div>
+
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000">
+
+                                </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>How long will it take to Deliver: </span>
                                 <div class="noOfDeliveryDays">
+
                                     <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_3" class="categories" required>
+
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
                                         <option value="Years">Year(s)</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
+
                                     <select name="noOfRevisions_3"  class="categories" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>

@@ -4,7 +4,7 @@ class GigHandler extends database
 {
 
     //create new gigs
-    public function addNewGig($title, $description, $category, $coverImage, $customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId)
+    public function addNewGig($title, $description, $category, $coverImage, $packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId)
     {
         $query = "INSERT INTO gigs (title,description,category,cover_image,created_at,seller_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
@@ -20,7 +20,7 @@ class GigHandler extends database
             mysqli_stmt_close($stmt);
 
             if ($gigId) {
-                $packages = $this->addNewPackages($customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+                $packages = $this->addNewPackages($packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
             }
 
             return [$gigId, $packages];
@@ -31,11 +31,11 @@ class GigHandler extends database
     }
 
     //create new packages
-    public function addNewPackages($customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId)
+    public function addNewPackages($packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId)
     {
 
         $param1_values = ['Basic', 'Standard', 'Premium'];
-        $param2_values = [ 100, 200, 300];
+        $param2_values = [$packagePrice_1,$packagePrice_2, $packagePrice_3];
         $param3_values = [$noOfDeliveryDays_1, $noOfDeliveryDays_2, $noOfDeliveryDays_3];
         $param4_values = [$timePeriod_1, $timePeriod_2, $timePeriod_3];
         $param5_values = [$noOfRevisions_1, $noOfRevisions_2, $noOfRevisions_3];
