@@ -1,3 +1,15 @@
+let profileDropdownList = document.querySelector(".profile-dropdown-list");
+let btn = document.querySelector(".profile-dropdown-btn");
+
+let classList = profileDropdownList.classList;
+
+const toggle = () => classList.toggle("active");
+
+window.addEventListener("click", function(e) {
+    if (!btn.contains(e.target)) classList.remove("active");
+});
+
+
 const body = document.querySelector("body"),
     modeToggle = body.querySelector(".mode-toggle");
 sidebar = body.querySelector("nav");
@@ -29,4 +41,5 @@ sidebarToggle.addEventListener("click", () => {
     } else {
         localStorage.setItem("status", "open");
     }
-})
+});
+
