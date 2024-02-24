@@ -12,7 +12,8 @@ class Gig extends Controller
     public function publishGig()
     {
 
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['submit']))
+        {
 
             $title = $_POST['title'];
             $description = $_POST['description'];
@@ -48,21 +49,44 @@ class Gig extends Controller
 
             $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
 
-            $sliderImage1 = basename($_FILES["sliderImage1"]["name"]);
-            $targetFilePath1 = $targetDirectory . $sliderImage1; 
-            $upload1 = move_uploaded_file($_FILES["sliderImage1"]["tmp_name"], $targetFilePath1);
+            $arrayImagesString = [];
+            $arrayImageUploads = [];
 
-            $sliderImage2 = basename($_FILES["sliderImage2"]["name"]);
-            $targetFilePath2 = $targetDirectory . $sliderImage2; 
-            $upload2 = move_uploaded_file($_FILES["sliderImage2"]["tmp_name"], $targetFilePath2);
+            for ($i = 1; $i < 5; $i++)
+            {
 
-            $sliderImage3 = basename($_FILES["sliderImage3"]["name"]);
-            $targetFilePath3 = $targetDirectory . $sliderImage3; 
-            $upload3 = move_uploaded_file($_FILES["sliderImage3"]["tmp_name"], $targetFilePath3);
+                $sliderImageName = '';
+                $targetFilePath= '';
+                $uniqueImageName = '';
+                $upload = false;
+                $fieldName = "sliderImage" . $i;
 
-            $sliderImage4 = basename($_FILES["sliderImage4"]["name"]);
-            $targetFilePath4 = $targetDirectory . $sliderImage4; 
-            $upload4 = move_uploaded_file($_FILES["sliderImage4"]["tmp_name"], $targetFilePath4);
+                $sliderImageName = basename($_FILES[$fieldName]["name"]);
+
+                $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
+                // Ensure the generated number is exactly 5 digits
+                $randomNumber = $randomNumber % 100000; 
+                $extension = pathinfo($sliderImageName, PATHINFO_EXTENSION);
+                $sliderImageName = pathinfo($sliderImageName, PATHINFO_FILENAME);
+                $uniqueImageName = uniqid($sliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+
+                $arrayImagesString[] = $uniqueImageName;
+
+                $targetFilePath = $targetDirectory . $uniqueImageName; 
+                $upload = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
+                $arrayImageUploads[] = $upload;
+
+            }
+
+            $sliderImage1 = $arrayImagesString[0];
+            $sliderImage2 = $arrayImagesString[1];
+            $sliderImage3 = $arrayImagesString[2];
+            $sliderImage4 = $arrayImagesString[3];
+
+            $upload1 = $arrayImageUploads[0];
+            $upload2 = $arrayImageUploads[1];
+            $upload3 = $arrayImageUploads[2];
+            $upload4 = $arrayImageUploads[3];
 
             if($upload && $upload1 && $upload2 && $upload3 && $upload4){
                 $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId);
@@ -77,7 +101,7 @@ class Gig extends Controller
                     echo "<script>
                             alert('Error publishing Gig');
                             </script>
-                     ";
+                    ";
                 }
             }else{
                 echo "
@@ -88,9 +112,12 @@ class Gig extends Controller
             }
         }
     }
+        
+    
 
-     // function for update Gigs.
-     public function updateGig(){
+    // function for update Gigs.
+    public function updateGig()
+    {
         
         if(isset($_GET["update"])){
             // For gigs table
@@ -136,12 +163,6 @@ class Gig extends Controller
             $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $coverImage);
 
             $packages = $this->GigHandlerModel->updatePackages($packagePrice_1,$numDeliveryDays1,$timeFrame1,$numOfRevs1,$pckgDescription1,$packageId1,$packagePrice_2,$numDeliveryDays2,$timeFrame2,$numOfRevs2,$pckgDescription2,$packageId2,$packagePrice_3,$numDeliveryDays3,$timeFrame3,$numOfRevs3,$pckgDescription3,$packageId3);
-
-            // $sliderImages = $this->GigHandlerModel->updateSliderImages();
-
-            if($gig & $packages){
-                
-            }
         }
         
     }
@@ -149,29 +170,60 @@ class Gig extends Controller
     public function deleteGig()
     {
         // function to delete a specific gig.
-        $userId = $_GET['userId'];
         $gigId = $_GET['gigId'];
+        $i = 0;
+        $check = [];
+        for($i;$i<3;$i++){
+            $check[] = $this->GigHandlerModel->deletePackages($gigId);
+        }
 
-        while($this->GigHandlerModel->deletePackages($gigId)){
-            if($this->GigHandlerModel->deleteGig($gigId)){
+        if($check[0] && $check[1] && $check[2]){
+            if($this->GigHandlerModel->deleteSliderImages($gigId)){
+                if($this->GigHandlerModel->deleteGig($gigId)){
                     echo 
-                "
-                <script>alert('Gig deleted Successfully')
-                window.location.href = '" . BASEURL . "sellerProfile';
-                </script>
-                ";
-                break;
-            }
-            else
-            {
-                echo 
-                "
-                <script>alert('Gig deletion failed')
-                window.location.href = '" . BASEURL . "sellerProfile';
-                </script>
-                ";
+                    "
+                    <script>alert('Gig deleted Successfully')
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                    </script>
+                    ";
+                }else{
+                    echo 
+                    "
+                    <script>alert('Gig deletion failed')
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                    </script>
+                    ";
+                }
             }
         }
-        
+
+        $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
+        $img = [];
+        $img[0] = $imagesArr['side_image_1'];
+        $img[1] = $imagesArr['side_image_2'];
+        $img[2] = $imagesArr['side_image_3'];
+        $img[3] = $imagesArr['side_image_4'];
+        // Specify the directory where the files are located
+        $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
+
+        $i = 0;
+        for($i;$i<4;$i++) {
+
+            $filePath = '';
+            // Construct the full path to the file
+            $filePath = $targetDirectory . $img[$i];
+
+            // Check if the file exists before attempting to delete it
+            if (file_exists($filePath)) {
+                // Attempt to delete the file
+                if (unlink($filePath)) {
+                    echo "Image '{$img[$i]}' deleted successfully.<br>";
+                } else {
+                    echo "Error deleting the file '{$img[$i]}'.<br>";
+                }
+            } else {
+                echo "File '{$img[$i]}' does not exist.<br>";
+            }
+        }
     }
 }

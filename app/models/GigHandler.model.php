@@ -116,7 +116,6 @@ class GigHandler extends database
         if (mysqli_stmt_execute($stmt)) {
             $retrieveImgDetails = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-
             return $retrieveImgDetails;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
@@ -331,6 +330,27 @@ class GigHandler extends database
                 return true; 
             } else {
                 throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+            }
+        
+    }
+
+    public function deleteSliderImages($gigId)
+    {
+            $query = "DELETE FROM slide_images WHERE gig_id = ?;";
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+            
+            mysqli_stmt_bind_param($stmt, "i", $gigId);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_close($stmt);
+                return true; 
+            } else {
+                throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+                return false;
             }
         
     }
