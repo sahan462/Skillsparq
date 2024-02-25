@@ -238,7 +238,7 @@ class GigHandler extends database
     }
     
     
-    //update gigs
+    //update gigs. Should call at the last in controller.
     public function updateGig($gigId,$title, $description, $category, $coverImage,$onGoingOrderCount,$createdAt,$state)
     {
         $query = "UPDATE Gigs SET title = ?, description = ?, category = ?, 
@@ -278,10 +278,24 @@ class GigHandler extends database
         }
     }
 
-    // function to update 4 slider Images.
+    // update 4 slider Images.
     public function updateSliderImages()
     {
+        $query = "UPDATE packages SET package_price = ?, no_of_delivery_days = ?, time_period = ?,no_of_revisions = ?,package_description = ? WHERE package_id = ?";
 
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "idisss",$packageId,$packagePrice,$numDeliveryDays, $timeFrame, $numOfRevs,$pckgDescription);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
     //delete gig

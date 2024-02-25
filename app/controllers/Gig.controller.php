@@ -151,13 +151,6 @@ class Gig extends Controller
             $packageId3 = $_POST['packageId3'];
 
             $currentDateTime = date('Y-m-d H:i:s');
-            $coverImage = $_POST['currentCoverImage'];
-
-            // getting current slider images
-            $sliderImage['value1'] = $_POST['currentSliderImg1'];
-            $sliderImage['value2'] = $_POST['currentSliderImg2'];
-            $sliderImage['value3'] = $_POST['currentSliderImg3'];
-            $sliderImage['value4'] = $_POST['currentSliderImg4'];
 
             // have to consider about $onGoingOrderCount,$createdAt,$state later on for this.
             
@@ -170,9 +163,7 @@ class Gig extends Controller
 
             $packages = [];
             $imagesConfirm = [];
-
-            $i = 0;
-            for($i;$i<3;$i++){
+            for($i=0;$i<3;$i++){
                 $packages[] = $this->GigHandlerModel->updatePackages($packageIds[$i],$packagePrices[$i],$packageDelivery[$i],$packageTimeFrame[$i],$packageRevisions[$i],$packageDescriptions[$i]);
             }
 
@@ -182,6 +173,16 @@ class Gig extends Controller
             $arrayImagesString = [];
             $arrayImageUploads = [];
 
+            // have to consider about the current cover image. look at this after 4 images.
+            //$_FILES['newCoverImage']['name']
+            $coverImage = $_POST['currentCoverImage'];
+
+            // getting current slider images
+            $sliderImage['value1'] = $_POST['currentSliderImg1'];
+            $sliderImage['value2'] = $_POST['currentSliderImg2'];
+            $sliderImage['value3'] = $_POST['currentSliderImg3'];
+            $sliderImage['value4'] = $_POST['currentSliderImg4'];
+
             for ($i = 1; $i < 5; $i++)
             {
 
@@ -189,6 +190,7 @@ class Gig extends Controller
                 $targetFilePath= '';
                 $uniqueImageName = '';
                 $upload = false;
+                //"newSliderImage1","newSliderImage2","newSliderImage3","newSliderImage4"
                 $fieldName = "newSliderImage" . $i;
                 $value = "value".$i;
                 $currentFileName =  $sliderImage[$value] ;
@@ -207,35 +209,44 @@ class Gig extends Controller
                 $targetFilePath = $targetDirectory . $uniqueImageName; 
                 $currentFilePath = $targetDirectory .$currentFileName;
 
-
-                if($profilePictureName != "")
-                {
-
-                    $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
-                    
-                    if($upload){
-                        
-                        if($currentProfilePicture != "dummyprofile.jpg"){
-                            //remove the old profile picture
-                            unlink($currentFilePath);
-                        }
-
-                        $_SESSION['profilePicture'] =  $uniqueprofilePictureName;
-
-                    }else{
-
-                        echo "
-                        <script>
-                            alert('Error Uploading Profile Picture');
-                            window.location.href = '" . BASEURL . "buyerProfile';
-                        </script>
-                        ";
-
+                if(file_exists($currentFileName)){
+                    $arrayImageUploads[] = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
+                    if($currentFileName !== $arrayImageUploads[$i]){
+                        unlink($currentFilePath);
                     }
-
                 }else{
-                    $uniqueprofilePictureName = $currentProfilePicture;
+                    echo "File doesn't exists";
+                    break;
                 }
+
+                // if($profilePictureName != "")
+                // {
+
+                //     $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
+                    
+                //     if($upload){
+                        
+                //         if($currentProfilePicture != "dummyprofile.jpg"){
+                //             //remove the old profile picture
+                //             unlink($currentFilePath);
+                //         }
+
+                //         $_SESSION['profilePicture'] =  $uniqueprofilePictureName;
+
+                //     }else{
+
+                //         echo "
+                //         <script>
+                //             alert('Error Uploading Profile Picture');
+                //             window.location.href = '" . BASEURL . "sellerProfile';
+                //         </script>
+                //         ";
+
+                //     }
+
+                // }else{
+                //     $uniqueprofilePictureName = $currentProfilePicture;
+                // }
 
 
                 $upload = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
@@ -253,6 +264,10 @@ class Gig extends Controller
             $upload3 = $arrayImageUploads[2];
             $upload4 = $arrayImageUploads[3];
 
+            if($packages[0] && $packages[1] && $packages[2]){
+                $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $coverImage);
+            }
+
         }else{
             echo "
                 <script>
@@ -261,7 +276,7 @@ class Gig extends Controller
                 </script>
                 ";
         }
-        $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $coverImage);
+        
 
         ############################################################################33333
         
