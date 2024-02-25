@@ -239,10 +239,10 @@ class GigHandler extends database
     
     
     //update gigs. Should call at the last in controller.
-    public function updateGig($gigId,$title, $description, $category, $coverImage,$onGoingOrderCount,$createdAt,$state)
+    public function updateGig($gigId,$title, $description, $category, $coverImage)
     {
         $query = "UPDATE Gigs SET title = ?, description = ?, category = ?, 
-        coverImage = ? WHERE gigId = ?";
+        cover_image = ? WHERE gig_id = ?";
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
         
         if ($stmt === false) {
@@ -279,16 +279,16 @@ class GigHandler extends database
     }
 
     // update 4 slider Images.
-    public function updateSliderImages()
+    public function updateSliderImages($gigId,$image1,$image2, $image3, $image4)
     {
-        $query = "UPDATE packages SET package_price = ?, no_of_delivery_days = ?, time_period = ?,no_of_revisions = ?,package_description = ? WHERE package_id = ?";
+        $query = "UPDATE slide_images SET side_image_1 = ?, side_image_2 = ?, side_image_3 = ?,side_image_4= ? WHERE gig_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
         
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        mysqli_stmt_bind_param($stmt, "idisss",$packageId,$packagePrice,$numDeliveryDays, $timeFrame, $numOfRevs,$pckgDescription);
+        mysqli_stmt_bind_param($stmt, "issss",$gigId,$image1,$image2, $image3, $image4);
         
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);

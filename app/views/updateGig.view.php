@@ -3,7 +3,7 @@
 <?php 
     $gigDetails = $data['gigDetails'];
     $slides = $data['slideImages'];
-    show($data);
+    // show($data);
 ?>
 
 <!-- Main Container -->
