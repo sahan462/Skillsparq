@@ -122,29 +122,6 @@ class GigHandler extends database
         }
     }
 
-    // retrieve a specific gig of a user
-    // public function retrieveAGig($userId,$gigId)
-    // {
-    //     $query = "SELECT * FROM gigs WHERE gig_id = ? AND seller_id = ?";
-        
-    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
-    //     if (!$stmt) {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-
-    //     mysqli_stmt_bind_param($stmt, "ii", $gigId,$userId);
-
-    //     if (mysqli_stmt_execute($stmt)) {
-    //         $retrieveGigDetails = $stmt->get_result()->fetch_assoc();
-    //         $stmt->close();
-
-    //         return $retrieveGigDetails;
-    //     } else {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-    // }
-
     //read recently added gigs
     public function getRecentGigs()
     {
@@ -282,9 +259,23 @@ class GigHandler extends database
     }
 
     // update packages
-    public function updatePackages($gigId)
+    public function updatePackages($packageId,$packagePrice,$numDeliveryDays,$timeFrame,$numOfRevs,$pckgDescription)
     {
+        $query = "UPDATE packages SET package_price = ?, no_of_delivery_days = ?, time_period = ?,no_of_revisions = ?,package_description = ? WHERE package_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
         
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "idisss",$packageId,$packagePrice,$numDeliveryDays, $timeFrame, $numOfRevs,$pckgDescription);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
     // function to update 4 slider Images.

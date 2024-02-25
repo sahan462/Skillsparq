@@ -119,51 +119,151 @@ class Gig extends Controller
     public function updateGig()
     {
         
-        if(isset($_GET["update"])){
+        if(isset($_POST["update"])){
             // For gigs table
-            $gigId = $_GET['gig_id'];
-            $title = $_GET['title'];
-            $description = $_GET['description'];
-            $category = $_GET['category'];
+            $gigId = $_POST['gig_id'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $category = $_POST['category'];
 
             // package 1 details (Basic)
-            $packagePrice_1 = $_GET["packagePrice_1"];
-            $numDeliveryDays1 = $_GET['noOfDeliveryDays_1'];
-            $timeFrame1 = $_GET['timePeriod_1'];
-            $numOfRevs1 = $_GET['noOfRevisions_1'];
-            $pckgDescription1 = $_GET['packageDescription_1'];
-            $packageId1 = $_GET['packageId1'];
+            $packagePrice_1 = $_POST["packagePrice_1"];
+            $numDeliveryDays1 = $_POST['noOfDeliveryDays_1'];
+            $timeFrame1 = $_POST['timePeriod_1'];
+            $numOfRevs1 = $_POST['noOfRevisions_1'];
+            $pckgDescription1 = $_POST['packageDescription_1'];
+            $packageId1 = $_POST['packageId1'];
 
             // package 2 details (Standard)
-            $packagePrice_2 = $_GET["packagePrice_2"];
-            $numDeliveryDays2 = $_GET['noOfDeliveryDays_2'];
-            $timeFrame2 = $_GET['timePeriod_2'];
-            $numOfRevs2 = $_GET['noOfRevisions_2'];
-            $pckgDescription2 = $_GET['packageDescription_2'];
-            $packageId2 = $_GET['packageId2'];
+            $packagePrice_2 = $_POST["packagePrice_2"];
+            $numDeliveryDays2 = $_POST['noOfDeliveryDays_2'];
+            $timeFrame2 = $_POST['timePeriod_2'];
+            $numOfRevs2 = $_POST['noOfRevisions_2'];
+            $pckgDescription2 = $_POST['packageDescription_2'];
+            $packageId2 = $_POST['packageId2'];
 
             // package 3 details (Premium)
-            $packagePrice_3 = $_GET["packagePrice_3"];
-            $numDeliveryDays3 = $_GET['noOfDeliveryDays_3'];
-            $timeFrame3 = $_GET['timePeriod_3'];
-            $numOfRevs3 = $_GET['noOfRevisions_3'];
-            $pckgDescription3 = $_GET['packageDescription_3'];
-            $packageId3 = $_GET['packageId3'];
+            $packagePrice_3 = $_POST["packagePrice_3"];
+            $numDeliveryDays3 = $_POST['noOfDeliveryDays_3'];
+            $timeFrame3 = $_POST['timePeriod_3'];
+            $numOfRevs3 = $_POST['noOfRevisions_3'];
+            $pckgDescription3 = $_POST['packageDescription_3'];
+            $packageId3 = $_POST['packageId3'];
 
             $currentDateTime = date('Y-m-d H:i:s');
-            $coverImage = $_GET['coverImage'];
+            $coverImage = $_POST['currentCoverImage'];
 
-            // getting slider images
-            $sliderImage1 = $_GET['sliderImage1'];
-            $sliderImage2 = $_GET['sliderImage2'];
-            $sliderImage3 = $_GET['sliderImage3'];
-            $sliderImage4 = $_GET['sliderImage4'];
+            // getting current slider images
+            $sliderImage['value1'] = $_POST['currentSliderImg1'];
+            $sliderImage['value2'] = $_POST['currentSliderImg2'];
+            $sliderImage['value3'] = $_POST['currentSliderImg3'];
+            $sliderImage['value4'] = $_POST['currentSliderImg4'];
 
             // have to consider about $onGoingOrderCount,$createdAt,$state later on for this.
-            $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $coverImage);
+            
+            $packageIds = [$packageId1,$packageId2,$packageId3];
+            $packagePrices = [$packagePrice_1,$packagePrice_2,$packagePrice_3];
+            $packageDelivery = [$numDeliveryDays1,$numDeliveryDays2,$numDeliveryDays3];
+            $packageTimeFrame = [$timeFrame1,$timeFrame2,$timeFrame3];
+            $packageRevisions = [$numOfRevs1,$numOfRevs2,$numOfRevs3,];
+            $packageDescriptions = [$pckgDescription1,$pckgDescription2,$pckgDescription3];
 
-            $packages = $this->GigHandlerModel->updatePackages($packagePrice_1,$numDeliveryDays1,$timeFrame1,$numOfRevs1,$pckgDescription1,$packageId1,$packagePrice_2,$numDeliveryDays2,$timeFrame2,$numOfRevs2,$pckgDescription2,$packageId2,$packagePrice_3,$numDeliveryDays3,$timeFrame3,$numOfRevs3,$pckgDescription3,$packageId3);
+            $packages = [];
+            $imagesConfirm = [];
+
+            $i = 0;
+            for($i;$i<3;$i++){
+                $packages[] = $this->GigHandlerModel->updatePackages($packageIds[$i],$packagePrices[$i],$packageDelivery[$i],$packageTimeFrame[$i],$packageRevisions[$i],$packageDescriptions[$i]);
+            }
+
+            // files uploading part
+            $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
+
+            $arrayImagesString = [];
+            $arrayImageUploads = [];
+
+            for ($i = 1; $i < 5; $i++)
+            {
+
+                $sliderImageName = '';
+                $targetFilePath= '';
+                $uniqueImageName = '';
+                $upload = false;
+                $fieldName = "newSliderImage" . $i;
+                $value = "value".$i;
+                $currentFileName =  $sliderImage[$value] ;
+
+                $sliderImageName = basename($_FILES[$fieldName]["name"]);
+
+                $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
+                // Ensure the generated number is exactly 5 digits
+                $randomNumber = $randomNumber % 100000; 
+                $extension = pathinfo($sliderImageName, PATHINFO_EXTENSION);
+                $sliderImageName = pathinfo($sliderImageName, PATHINFO_FILENAME);
+                $uniqueImageName = uniqid($sliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+
+                $arrayImagesString[] = $uniqueImageName;
+
+                $targetFilePath = $targetDirectory . $uniqueImageName; 
+                $currentFilePath = $targetDirectory .$currentFileName;
+
+
+                if($profilePictureName != "")
+                {
+
+                    $upload = move_uploaded_file($_FILES["newProfilePicture"]["tmp_name"], $targetFilePath);
+                    
+                    if($upload){
+                        
+                        if($currentProfilePicture != "dummyprofile.jpg"){
+                            //remove the old profile picture
+                            unlink($currentFilePath);
+                        }
+
+                        $_SESSION['profilePicture'] =  $uniqueprofilePictureName;
+
+                    }else{
+
+                        echo "
+                        <script>
+                            alert('Error Uploading Profile Picture');
+                            window.location.href = '" . BASEURL . "buyerProfile';
+                        </script>
+                        ";
+
+                    }
+
+                }else{
+                    $uniqueprofilePictureName = $currentProfilePicture;
+                }
+
+
+                $upload = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
+                $arrayImageUploads[] = $upload;
+
+            }
+
+            $sliderImage1 = $arrayImagesString[0];
+            $sliderImage2 = $arrayImagesString[1];
+            $sliderImage3 = $arrayImagesString[2];
+            $sliderImage4 = $arrayImagesString[3];
+
+            $upload1 = $arrayImageUploads[0];
+            $upload2 = $arrayImageUploads[1];
+            $upload3 = $arrayImageUploads[2];
+            $upload4 = $arrayImageUploads[3];
+
+        }else{
+            echo "
+                <script>
+                    alert('Error submitting the data!!');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>
+                ";
         }
+        $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $coverImage);
+
+        ############################################################################33333
         
     }
 
@@ -197,12 +297,14 @@ class Gig extends Controller
             }
         }
 
+        // have to check the unlinking of the files in the folder structure.
         $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
         $img = [];
         $img[0] = $imagesArr['side_image_1'];
         $img[1] = $imagesArr['side_image_2'];
         $img[2] = $imagesArr['side_image_3'];
         $img[3] = $imagesArr['side_image_4'];
+
         // Specify the directory where the files are located
         $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
 

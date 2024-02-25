@@ -2,7 +2,8 @@
 
 <?php 
     $gigDetails = $data['gigDetails'];
-    print_r($gigDetails);
+    $slides = $data['slideImages'];
+    show($data);
 ?>
 
 <!-- Main Container -->
@@ -27,7 +28,7 @@
     <div class="rightContainer">
 
         <!-- form -->
-        <form id="regForm" method="get" enctype="multipart/form-data" action="<?php echo BASEURL.'Gig/updateGig'?>" autocomplete="off">
+        <form id="regForm" method="POST" enctype="multipart/form-data" action="<?php echo BASEURL.'Gig/updateGig'?>" autocomplete="off">
             <!-- One "tab" for each step in the form: -->
 
             <div class="addGigContent">
@@ -302,19 +303,20 @@
 
                     <div class="images">
                         <label for="coverImage">Cover Image:</label>
-                        <input type="file" id="coverImage" name="coverImage" value="<?php echo $gigDetails['cover_image']?>" required/>
+                        <input type="file" id="coverImage" name="newCoverImage" required/>
 
                         <label for="sliderImage1">Slider Image 1:</label>
-                        <input type="file" id="sliderImage1" name="sliderImage1"   />
+                        <input type="file" id="sliderImage1" name="newSliderImage1" required/>
 
                         <label for="sliderImage2">Slider Image 2:</label>
-                        <input type="file" id="sliderImage2" name="sliderImage2"   />
+                        <input type="file" id="sliderImage2" name="newSliderImage2" required/>
 
                         <label for="sliderImage3">Slider Image 3:</label>
-                        <input type="file" id="sliderImage3" name="sliderImage3"   />
+                        <input type="file" id="sliderImage3" name="newSliderImage3" required/>
 
                         <label for="sliderImage4">Slider Image 4:</label>
-                        <input type="file" id="sliderImage4" name="sliderImage4"   />
+                        <input type="file" id="sliderImage4" name="newSliderImage4" required/>
+
                     </div>
 
                 </div>
@@ -326,7 +328,7 @@
                 <div>
                     <div style="float:right;">
                         <button type="button" id="prevBtn" onclick="nextPrev(-1)"><span class="previous">Previous</span></button>
-                        <button type="submit" id="nextBtn" name="submit" onclick="nextPrev(1)"><span class="next">Next</span></button>
+                        <button type="submit" id="nextBtn" name="update" onclick="nextPrev(1)"><span class="next">Next</span></button>
                     </div>
                 </div>
 
@@ -340,6 +342,13 @@
             <input type="hidden" name="packageId1" value="<?php echo $gigDetails[0]["package_id"]?>">
             <input type="hidden" name="packageId2" value="<?php echo $gigDetails[1]["package_id"]?>">
             <input type="hidden" name="packageId3" value="<?php echo $gigDetails[2]["package_id"]?>">
+
+            <input type="hidden" name="currentSliderImg1" value="<?php echo $slides["side_image_1"]?>">
+            <input type="hidden" name="currentSliderImg2" value="<?php echo $slides["side_image_2"]?>">
+            <input type="hidden" name="currentSliderImg3" value="<?php echo $slides["side_image_3"]?>">
+            <input type="hidden" name="currentSliderImg4" value="<?php echo $slides["side_image_4"]?>">
+            <input type="hidden" name="currentCoverImage" value="<?php echo $gigDetails["cover_image"]?>">
+
         </form>
 
     </div>
