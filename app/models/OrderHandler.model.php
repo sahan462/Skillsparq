@@ -3,7 +3,7 @@ class OrderHandler extends database
 {
 
     //create new order
-    public function createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
+    public function createPackageOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
         $stmt_1 = mysqli_prepare($GLOBALS['db'], "INSERT INTO Orders 
         (
@@ -63,6 +63,36 @@ class OrderHandler extends database
 
     }
 
+    //create milestone order
+
+
+    //get orders
+    public function getOrders($userId, $userRole)
+    {
+        if($userRole == 'Buyer'){
+
+            $query = "SELECT * FROM orders WHERE buyer_id = ? ";
+
+        }else{
+
+            $query = "SELECT * FROM orders WHERE seller_id = ? ";
+
+        }
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
 
 
