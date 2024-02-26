@@ -141,7 +141,7 @@
                     <div class="sliderContainer">
 
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/<?php echo $gig["cover_image"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/coverImages/<?php echo $gig["cover_image"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">

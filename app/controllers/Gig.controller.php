@@ -14,11 +14,12 @@ class Gig extends Controller
 
         if (isset($_POST['submit']))
         {
-
+            // For gigs table
             $title = $_POST['title'];
             $description = $_POST['description'];
             $category = $_POST['category'];
 
+            // package 1 details (Basic)
             $packagePrice_1 = $_POST['packagePrice_1'];
             $noOfDeliveryDays_1 = $_POST['noOfDeliveryDays_1'];
             $timePeriod_1 = $_POST['timePeriod_1'];
@@ -41,10 +42,17 @@ class Gig extends Controller
             $sellerId = $_SESSION['userId'];
 
             // directory where gig slider images resides.
-            $targetDir = "../public/assests/images/gigImages/coverImages";
+            $targetDir = "../public/assests/images/gigImages/coverImages/";
 
             $coverImage = basename($_FILES["coverImage"]["name"]);
-            $targetFilePath = $targetDir . $coverImage; 
+            $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
+            // Ensure the generated number is exactly 5 digits
+            $randomNumber = $randomNumber % 100000; 
+            $extension = pathinfo($coverImage, PATHINFO_EXTENSION);
+            $coverImage = pathinfo($coverImage, PATHINFO_FILENAME);
+            $uniqueCoverImageName = uniqid($coverImage, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+
+            $targetFilePath = $targetDir . $uniqueCoverImageName; 
             $upload = move_uploaded_file($_FILES["coverImage"]["tmp_name"], $targetFilePath);
 
             $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
@@ -55,20 +63,20 @@ class Gig extends Controller
             for ($i = 1; $i < 5; $i++)
             {
 
-                $sliderImageName = '';
+                $newSliderImageName = '';
                 $targetFilePath= '';
                 $uniqueImageName = '';
                 $upload = false;
                 $fieldName = "sliderImage" . $i;
 
-                $sliderImageName = basename($_FILES[$fieldName]["name"]);
+                $newSliderImageName = basename($_FILES[$fieldName]["name"]);
 
                 $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
                 // Ensure the generated number is exactly 5 digits
                 $randomNumber = $randomNumber % 100000; 
-                $extension = pathinfo($sliderImageName, PATHINFO_EXTENSION);
-                $sliderImageName = pathinfo($sliderImageName, PATHINFO_FILENAME);
-                $uniqueImageName = uniqid($sliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+                $extension = pathinfo($newSliderImageName, PATHINFO_EXTENSION);
+                $newSliderImageName = pathinfo($newSliderImageName, PATHINFO_FILENAME);
+                $uniqueImageName = uniqid($newSliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
 
                 $arrayImagesString[] = $uniqueImageName;
 
@@ -89,7 +97,7 @@ class Gig extends Controller
             $upload4 = $arrayImageUploads[3];
 
             if($upload && $upload1 && $upload2 && $upload3 && $upload4){
-                $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $coverImage,$packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId);
+                $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $uniqueCoverImageName,$packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId);
                 if($gig[0]){
                     echo "
                         <script>
@@ -160,7 +168,6 @@ class Gig extends Controller
             $packageDescriptions = [$pckgDescription1,$pckgDescription2,$pckgDescription3];
 
             $packages = [];
-            // $imagesConfirm = [];
             for($i=0;$i<3;$i++){
                 $packages[$i] = $this->GigHandlerModel->updatePackages($packageIds[$i],$packagePrices[$i],$packageDelivery[$i],$packageTimeFrame[$i],$packageRevisions[$i],$packageDescriptions[$i]);
             }
@@ -168,7 +175,7 @@ class Gig extends Controller
             // files upload part for cover image.
             $currentCoverImage = $_POST['currentCoverImage'];
 
-            $targetDir = "../public/assests/images/gigImages/coverImages";
+            $targetDir = "../public/assests/images/gigImages/coverImages/";
 
             $newCoverImageName = basename($_FILES["newCoverImage"]["name"]); 
 
@@ -182,29 +189,36 @@ class Gig extends Controller
             $currentFilePath = $targetDir . $currentCoverImage;
 
             // check if the uploading file exists.
-            if($newCoverImageName != "")
+            if(!empty($currentCoverImage))
             {
-
-                $upload = move_uploaded_file($_FILES["newCoverImage"]["tmp_name"], $targetFilePath);
-                
-                if($upload){
-                    
-                    if(file_exists($currentFilePath)){
-                        //remove the old Cover Image
-                        unlink($currentFilePath);
-                    }
-
-                }else{
-
+                $isMoved = move_uploaded_file($_FILES["newCoverImage"]["tmp_name"], $targetFilePath);
+                $isDeleted = unlink($currentFilePath);
+                // if(file_exists($currentFilePath)){
+                if($isMoved && $isDeleted){
+                    // $isDeleted = unlink($currentFilePath);
+                    // if($isDeleted){
                     echo "
                     <script>
-                        alert('Error Uploading Cover Image');
+                        alert('Successfully Updated The New Cover Image');
+                    </script>
+                ";
+                    // }
+                }else{
+                    echo "
+                    <script>
+                        alert('Error Moving New Cover Image');
                         window.location.href = '" . BASEURL . "sellerProfile';
                     </script>
                     ";
-
                 }
-
+                // }else{
+                //     echo "
+                //     <script>
+                //         alert('Current Cover Image Doesn't Exist');
+                //         window.location.href = '" . BASEURL . "sellerProfile';
+                //     </script>
+                //     ";
+                // }
             }else{
                 $uniqueCoverImageName = $currentCoverImage;
             }
@@ -224,72 +238,104 @@ class Gig extends Controller
             for ($i = 1; $i < 5; $i++)
             {
 
-                // to restart this process.
-                $sliderImageName = ''; 
+                // to reinitialize the process variables.
+                $newSliderImageName = ''; 
                 $targetFilePath= '';
                 $uniqueImageName = '';
+                $arrayImageUploads[$i - 1] = false;
+                $currentFileName = "";
+                $fieldName  = '';
+                $value = '';
 
+                // to manipulate the key of $sliderImage['value'] above
                 $value = "value".$i;
                 $currentFileName =  $sliderImage[$value] ;
 
                 //"newSliderImage1","newSliderImage2","newSliderImage3","newSliderImage4"
                 $fieldName = "newSliderImage" . $i;
-                $sliderImageName = basename($_FILES[$fieldName]["name"]);
+                $newSliderImageName = basename($_FILES[$fieldName]["name"]);
 
-                $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
+                $randomNumber = random_int(10000, 99999);
                 // Ensure the generated number is exactly 5 digits
                 $randomNumber = $randomNumber % 100000; 
-                $extension = pathinfo($sliderImageName, PATHINFO_EXTENSION);
-                $sliderImageName = pathinfo($sliderImageName, PATHINFO_FILENAME);
-                $uniqueImageName = uniqid($sliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+
+                $extension = pathinfo($newSliderImageName, PATHINFO_EXTENSION);
+                $newSliderImageName = pathinfo($newSliderImageName, PATHINFO_FILENAME);
+                $uniqueImageName = uniqid($newSliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
 
                 $arrayImagesString[$i - 1] = $uniqueImageName;
 
                 $targetFilePath = $targetDirectory . $uniqueImageName; 
                 $currentFilePath = $targetDirectory .$currentFileName;
 
-                if($sliderImageName !== ""){
+                if(!empty($currentFileName)){
 
                     $arrayImageUploads[$i - 1] = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
+                    $isImageDeleted = unlink($currentFilePath);
 
-                    if($arrayImageUploads[$i - 1]){
-
-                        if(file_exists($currentFilePath) && file_exists($currentFileName)){
-                            unlink($currentFilePath);
-                        }
+                    // if(file_exists($currentFilePath)){
+                
+                    if($arrayImageUploads[$i - 1] && $isImageDeleted){
+                            echo "
+                            <script>
+                                alert('Successfully Updated The Slider Image');
+                            </script>
+                        ";
                     }else{
                         echo "
-                            <script>
-                                alert('Error Uploading Slider Images');
-                                window.location.href = '" . BASEURL . "sellerProfile';
-                            </script>
-                            ";
+                        <script>
+                            alert('Error Moving New Image to folder');
+                            window.location.href = '" . BASEURL . "sellerProfile';
+                        </script>
+                        ";
                     }
+                    // }else{
+        
+                    //     echo "
+                    //     <script>
+                    //         alert('Error Updating Slider Image');
+                    //         window.location.href = '" . BASEURL . "sellerProfile';
+                    //     </script>
+                    //     ";
+        
+                    // }
                 }else{
-                    $uniqueImageName = $currentFileName;
+                    $uniqueImageName =  $currentFileName;
                 }
-
             }
 
             // hve to include 4 images strings.
-            $resultImageStore = $this->GigHandlerModel->updateSliderImages($gigId,$arrayImagesString[0],$arrayImagesString[1],$arrayImagesString[2],$arrayImagesString[3]);
+            if($arrayImageUploads[0] && $arrayImageUploads[1] && $arrayImageUploads[2] && $arrayImageUploads[3]){
+                $resultImageStore = $this->GigHandlerModel->updateSliderImages($gigId,$arrayImagesString[0],$arrayImagesString[1],$arrayImagesString[2],$arrayImagesString[3]);
 
-            if($packages[0] && $packages[1] && $packages[2] && $resultImageStore){
-                $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $uniqueCoverImageName);
-                if($gig){
+                if($resultImageStore){
                     echo "
-                        <script>
-                            alert('Successfully Update the Gig!!');
-                            window.location.href = '" . BASEURL . "sellerProfile';
-                        </script>
-                    ";
+                    <script>
+                        alert('Successfully Update the Slider Images!!');
+                    </script>
+                ";
+                }else{
+                    echo "
+                    <script>
+                        alert('Couldn't update the Slider Images!!');
+                    </script>
+                ";
                 }
             }
 
+            $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $uniqueCoverImageName);
+            if($gig){
+                echo "
+                    <script>
+                        alert('Successfully Update the Gig!!');
+                        window.location.href = '" . BASEURL . "sellerProfile';
+                    </script>
+                ";
+            }
         }else{
             echo "
                 <script>
-                    alert('Error submitting the data!!');
+                    alert('Error updating the data!!');
                     window.location.href = '" . BASEURL . "sellerProfile';
                 </script>
                 ";
@@ -307,6 +353,37 @@ class Gig extends Controller
 
         if($check[0] && $check[1] && $check[2]){
             if($this->GigHandlerModel->deleteSliderImages($gigId)){
+
+                // have to check the unlinking of the files in the folder structure.
+                $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
+                $img = [];
+                $img[0] = $imagesArr['side_image_1'];
+                $img[1] = $imagesArr['side_image_2'];
+                $img[2] = $imagesArr['side_image_3'];
+                $img[3] = $imagesArr['side_image_4'];
+
+                // Specify the directory where the files are located
+                $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
+
+                for($j = 0;$j<4;$j++) {
+
+                    $filePath = '';
+                    // Construct the full path to the file
+                    $filePath = $targetDirectory . $img[$j];
+
+                    // Check if the file exists before attempting to delete it
+                    if ($filePath !== "") {
+                        $isDeletedFile = unlink($filePath);
+                        if($isDeletedFile){
+                            echo "Image '{$img[$j]}' deleted successfully.<br>";
+                        } else {
+                            echo "Error deleting the file '{$img[$j]}'.<br>";
+                        }
+                    } else {
+                        echo "File '{$img[$j]}' does not exist.<br>";
+                    }
+                }
+
                 if($this->GigHandlerModel->deleteGig($gigId)){
                     echo 
                     "
@@ -322,36 +399,6 @@ class Gig extends Controller
                     </script>
                     ";
                 }
-            }
-        }
-
-        // have to check the unlinking of the files in the folder structure.
-        $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
-        $img = [];
-        $img[0] = $imagesArr['side_image_1'];
-        $img[1] = $imagesArr['side_image_2'];
-        $img[2] = $imagesArr['side_image_3'];
-        $img[3] = $imagesArr['side_image_4'];
-
-        // Specify the directory where the files are located
-        $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
-
-        for($j = 0;$j<4;$j++) {
-
-            $filePath = '';
-            // Construct the full path to the file
-            $filePath = $targetDirectory . $img[$j];
-
-            // Check if the file exists before attempting to delete it
-            if (file_exists($filePath)) {
-                // Attempt to delete the file
-                if (unlink($filePath)) {
-                    echo "Image '{$img[$j]}' deleted successfully.<br>";
-                } else {
-                    echo "Error deleting the file '{$img[$j]}'.<br>";
-                }
-            } else {
-                echo "File '{$img[$j]}' does not exist.<br>";
             }
         }
     }
