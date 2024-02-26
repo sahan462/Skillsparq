@@ -70,8 +70,6 @@ class Gig extends Controller
                 $newSliderImageName = basename($_FILES[$fieldName]["name"]);
 
                 $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
-                // Ensure the generated number is exactly 5 digits
-                $randomNumber = $randomNumber % 100000; 
                 $extension = pathinfo($newSliderImageName, PATHINFO_EXTENSION);
                 $newSliderImageName = pathinfo($newSliderImageName, PATHINFO_FILENAME);
                 $uniqueImageName = uniqid($newSliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
@@ -178,16 +176,14 @@ class Gig extends Controller
             $newCoverImageName = basename($_FILES["newCoverImage"]["name"]); 
 
             $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
-            // Ensure the generated number is exactly 5 digits
-            $randomNumber = $randomNumber % 100000; 
             $extension = pathinfo($newCoverImageName, PATHINFO_EXTENSION);
-            $newCoverImageName = pathinfo($newCoverImageName, PATHINFO_FILENAME);
-            $uniqueCoverImageName = uniqid($newCoverImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+            $newCoverImageFirstName = pathinfo($newCoverImageName, PATHINFO_FILENAME);
+            $uniqueCoverImageName = uniqid($newCoverImageFirstName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
             $targetFilePath = $targetDirectory1. $uniqueCoverImageName; 
             $currentFilePath = $targetDirectory1 . $currentCoverImage;
 
             // check if the uploading file exists.
-            if($currentCoverImage != "")
+            if($newCoverImageName != "")
             {
                 $isMoved = move_uploaded_file($_FILES["newCoverImage"]["tmp_name"], $targetFilePath);
                 $isDeleted = unlink($currentFilePath);
@@ -212,57 +208,61 @@ class Gig extends Controller
             // file uploads for 4 slider images.
             $targetDirectory2 = "../public/assests/images/gigImages/pckgImages/";
 
+            // Get these as array elements as well as the file global variables.
+
+            $sliderImage = [
+                $_POST['currentSliderImg1'],
+                $_POST['currentSliderImg2'],
+                $_POST['currentSliderImg3'],
+                $_POST['currentSliderImg4']
+            ];
+
+            $newSliderImageName = [
+                basename($_FILES['newSliderImage1']["name"]),
+                basename($_FILES['newSliderImage2']["name"]),
+                basename($_FILES['newSliderImage3']["name"]),
+                basename($_FILES['newSliderImage4']["name"])
+            ];
+
+            $newSliderImageTempName = [
+                basename($_FILES['newSliderImage1']["tmp_name"]),
+                basename($_FILES['newSliderImage2']["tmp_name"]),
+                basename($_FILES['newSliderImage3']["tmp_name"]),
+                basename($_FILES['newSliderImage4']["tmp_name"])
+            ];
+
+            $uniqueImageName = [];
             $arrayImagesString = [];
             $arrayImageUploads = [];
 
-            // getting current slider images
-            $sliderImage['value1'] = $_POST['currentSliderImg1'];
-            $sliderImage['value2'] = $_POST['currentSliderImg2'];
-            $sliderImage['value3'] = $_POST['currentSliderImg3'];
-            $sliderImage['value4'] = $_POST['currentSliderImg4'];
-
-            for ($i = 1; $i < 5; $i++)
+            // Note that some alerts are for check whether the correct process happening.
+            for ($i = 0; $i < 4; $i++)
             {
-
                 // to reinitialize the process variables.
-                $newSliderImageName = ''; 
                 $targetFilePath= '';
-                $uniqueImageName = '';
-                $arrayImageUploads[$i - 1] = false;
-                $currentFileName = "";
-                $fieldName  = '';
-                $value = '';
+                $arrayImageUploads[$i] = false;
 
-                // to manipulate the key of $sliderImage['value'] above
-                $value = "value".$i;
-                $currentFileName =  $sliderImage[$value] ;
-
-                //"newSliderImage1","newSliderImage2","newSliderImage3","newSliderImage4"
-                $fieldName = "newSliderImage" . $i;
-                $newSliderImageName = basename($_FILES[$fieldName]["name"]);
+                // $currentFileName =  $sliderImage[$i];
 
                 $randomNumber = random_int(10000, 99999);
-                // Ensure the generated number is exactly 5 digits
-                $randomNumber = $randomNumber % 100000; 
+                $newSliderImageFirstName[$i] = pathinfo($newSliderImageName[$i], PATHINFO_FILENAME);
+                $extension = pathinfo($newSliderImageName[$i], PATHINFO_EXTENSION);
+                $uniqueImageName[] = uniqid($newSliderImageFirstName[$i], true) . '_' . time() . '_' .$randomNumber.".".$extension;
 
-                $extension = pathinfo($newSliderImageName, PATHINFO_EXTENSION);
-                $newSliderImageName = pathinfo($newSliderImageName, PATHINFO_FILENAME);
-                $uniqueImageName = uniqid($newSliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+                $arrayImagesString[] = $uniqueImageName[$i];
 
-                $arrayImagesString[$i - 1] = $uniqueImageName;
+                $targetFilePath = $targetDirectory2 . $uniqueImageName[$i]; 
+                $currentFilePath = $targetDirectory2 .$sliderImage[$i];
 
-                $targetFilePath = $targetDirectory2 . $uniqueImageName; 
-                $currentFilePath = $targetDirectory2 .$currentFileName;
+                if($newSliderImageName[$i] != ""){
 
-                if($currentFileName != ""){
-
-                    $arrayImageUploads[$i - 1] = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
+                    $arrayImageUploads[] = move_uploaded_file($newSliderImageTempName[$i], $targetFilePath);
                     $isImageDeleted = unlink($currentFilePath);
                 
-                    if($arrayImageUploads[$i - 1] && $isImageDeleted){
+                    if($arrayImageUploads[$i] && $isImageDeleted){
                             echo "
                             <script>
-                                alert('Successfully Updated The Slider Image');
+                                alert('Successfully Updated The Slider Image in folder');
                             </script>
                         ";
                     }else{
@@ -274,11 +274,10 @@ class Gig extends Controller
                         ";
                     }
                 }else{
-                    $uniqueImageName =  $currentFileName;
+                    $uniqueImageName =  $sliderImage[$i];
                 }
             }
 
-            // hve to include 4 images strings.
             // if($arrayImageUploads[0] && $arrayImageUploads[1] && $arrayImageUploads[2] && $arrayImageUploads[3]){
             $resultImageStore = $this->GigHandlerModel->updateSliderImages($gigId,$arrayImagesString[0],$arrayImagesString[1],$arrayImagesString[2],$arrayImagesString[3]);
 
