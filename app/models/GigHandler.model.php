@@ -101,6 +101,27 @@ class GigHandler extends database
         return $sliderImagesId; 
     }
 
+    public function retrieveCoverImage($gigId)
+    {
+        $query = "SELECT cover_image FROM gigs WHERE gig_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $retrieveImgDetails = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $retrieveImgDetails;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     public function retrieveSliderImages($gigId)
     {
         $query = "SELECT * FROM slide_images WHERE gig_id = ?";

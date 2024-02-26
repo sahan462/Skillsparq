@@ -46,8 +46,6 @@ class Gig extends Controller
 
             $coverImage = basename($_FILES["coverImage"]["name"]);
             $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
-            // Ensure the generated number is exactly 5 digits
-            $randomNumber = $randomNumber % 100000; 
             $extension = pathinfo($coverImage, PATHINFO_EXTENSION);
             $coverImage = pathinfo($coverImage, PATHINFO_FILENAME);
             $uniqueCoverImageName = uniqid($coverImage, true) . '_' . time() . '_' .$randomNumber.".".$extension;
@@ -175,7 +173,7 @@ class Gig extends Controller
             // files upload part for cover image.
             $currentCoverImage = $_POST['currentCoverImage'];
 
-            $targetDir = "../public/assests/images/gigImages/coverImages/";
+            $targetDirectory1 = "../public/assests/images/gigImages/coverImages/";
 
             $newCoverImageName = basename($_FILES["newCoverImage"]["name"]); 
 
@@ -185,24 +183,20 @@ class Gig extends Controller
             $extension = pathinfo($newCoverImageName, PATHINFO_EXTENSION);
             $newCoverImageName = pathinfo($newCoverImageName, PATHINFO_FILENAME);
             $uniqueCoverImageName = uniqid($newCoverImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
-            $targetFilePath = $targetDir . $uniqueCoverImageName; 
-            $currentFilePath = $targetDir . $currentCoverImage;
+            $targetFilePath = $targetDirectory1. $uniqueCoverImageName; 
+            $currentFilePath = $targetDirectory1 . $currentCoverImage;
 
             // check if the uploading file exists.
-            if(!empty($currentCoverImage))
+            if($currentCoverImage != "")
             {
                 $isMoved = move_uploaded_file($_FILES["newCoverImage"]["tmp_name"], $targetFilePath);
                 $isDeleted = unlink($currentFilePath);
-                // if(file_exists($currentFilePath)){
                 if($isMoved && $isDeleted){
-                    // $isDeleted = unlink($currentFilePath);
-                    // if($isDeleted){
                     echo "
                     <script>
                         alert('Successfully Updated The New Cover Image');
                     </script>
                 ";
-                    // }
                 }else{
                     echo "
                     <script>
@@ -211,20 +205,12 @@ class Gig extends Controller
                     </script>
                     ";
                 }
-                // }else{
-                //     echo "
-                //     <script>
-                //         alert('Current Cover Image Doesn't Exist');
-                //         window.location.href = '" . BASEURL . "sellerProfile';
-                //     </script>
-                //     ";
-                // }
             }else{
                 $uniqueCoverImageName = $currentCoverImage;
             }
 
             // file uploads for 4 slider images.
-            $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
+            $targetDirectory2 = "../public/assests/images/gigImages/pckgImages/";
 
             $arrayImagesString = [];
             $arrayImageUploads = [];
@@ -265,15 +251,13 @@ class Gig extends Controller
 
                 $arrayImagesString[$i - 1] = $uniqueImageName;
 
-                $targetFilePath = $targetDirectory . $uniqueImageName; 
-                $currentFilePath = $targetDirectory .$currentFileName;
+                $targetFilePath = $targetDirectory2 . $uniqueImageName; 
+                $currentFilePath = $targetDirectory2 .$currentFileName;
 
-                if(!empty($currentFileName)){
+                if($currentFileName != ""){
 
                     $arrayImageUploads[$i - 1] = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
                     $isImageDeleted = unlink($currentFilePath);
-
-                    // if(file_exists($currentFilePath)){
                 
                     if($arrayImageUploads[$i - 1] && $isImageDeleted){
                             echo "
@@ -289,39 +273,29 @@ class Gig extends Controller
                         </script>
                         ";
                     }
-                    // }else{
-        
-                    //     echo "
-                    //     <script>
-                    //         alert('Error Updating Slider Image');
-                    //         window.location.href = '" . BASEURL . "sellerProfile';
-                    //     </script>
-                    //     ";
-        
-                    // }
                 }else{
                     $uniqueImageName =  $currentFileName;
                 }
             }
 
             // hve to include 4 images strings.
-            if($arrayImageUploads[0] && $arrayImageUploads[1] && $arrayImageUploads[2] && $arrayImageUploads[3]){
-                $resultImageStore = $this->GigHandlerModel->updateSliderImages($gigId,$arrayImagesString[0],$arrayImagesString[1],$arrayImagesString[2],$arrayImagesString[3]);
+            // if($arrayImageUploads[0] && $arrayImageUploads[1] && $arrayImageUploads[2] && $arrayImageUploads[3]){
+            $resultImageStore = $this->GigHandlerModel->updateSliderImages($gigId,$arrayImagesString[0],$arrayImagesString[1],$arrayImagesString[2],$arrayImagesString[3]);
 
-                if($resultImageStore){
-                    echo "
-                    <script>
-                        alert('Successfully Update the Slider Images!!');
-                    </script>
-                ";
-                }else{
-                    echo "
-                    <script>
-                        alert('Couldn't update the Slider Images!!');
-                    </script>
-                ";
-                }
+            if($resultImageStore){
+                echo "
+                <script>
+                    alert('Successfully Update the Slider Images!!');
+                </script>
+            ";
+            }else{
+                echo "
+                <script>
+                    alert('Couldn't update the Slider Images!!');
+                </script>
+            ";
             }
+            // }
 
             $gig = $this->GigHandlerModel->updateGig($gigId,$title, $description, $category, $uniqueCoverImageName);
             if($gig){
@@ -351,29 +325,33 @@ class Gig extends Controller
             $check[] = $this->GigHandlerModel->deletePackages($gigId);
         }
 
+        // Specify the directory where the files are located
+        $targetFileDirectory1 = "../public/assests/images/gigImages/pckgImages/";
+        $targetFileDirectory2 = "../public/assests/images/gigImages/coverImages/";
+
+        // have to check the unlinking of the files in the folder structure.
+        $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
+        $img = [];
+        $img[0] = $imagesArr['side_image_1'];
+        $img[1] = $imagesArr['side_image_2'];
+        $img[2] = $imagesArr['side_image_3'];
+        $img[3] = $imagesArr['side_image_4'];
+
+        $coverImage = $this->GigHandlerModel->retrieveCoverImage($gigId);
+        $coverImg = $coverImage['cover_image'];
+
         if($check[0] && $check[1] && $check[2]){
             if($this->GigHandlerModel->deleteSliderImages($gigId)){
-
-                // have to check the unlinking of the files in the folder structure.
-                $imagesArr = $this->GigHandlerModel->retrieveSliderImages($gigId);
-                $img = [];
-                $img[0] = $imagesArr['side_image_1'];
-                $img[1] = $imagesArr['side_image_2'];
-                $img[2] = $imagesArr['side_image_3'];
-                $img[3] = $imagesArr['side_image_4'];
-
-                // Specify the directory where the files are located
-                $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
-
+                // delete slider images from the folder.
                 for($j = 0;$j<4;$j++) {
 
-                    $filePath = '';
+                    $filePath1 = '';
                     // Construct the full path to the file
-                    $filePath = $targetDirectory . $img[$j];
+                    $filePath1 = $targetFileDirectory1 . $img[$j];
 
                     // Check if the file exists before attempting to delete it
-                    if ($filePath !== "") {
-                        $isDeletedFile = unlink($filePath);
+                    if ($filePath1!= "") {
+                        $isDeletedFile = unlink($filePath1);
                         if($isDeletedFile){
                             echo "Image '{$img[$j]}' deleted successfully.<br>";
                         } else {
@@ -382,6 +360,19 @@ class Gig extends Controller
                     } else {
                         echo "File '{$img[$j]}' does not exist.<br>";
                     }
+                }
+
+                // delete cover image from the folder.
+                $filePath2 = $targetFileDirectory2 . $coverImg;
+                if ($filePath2 != "") {
+                    $isDeletedFile = unlink($filePath2);
+                    if($isDeletedFile){
+                        echo "Image '{$coverImg}' deleted successfully.<br>";
+                    } else {
+                        echo "Error deleting the file '{$coverImg}'.<br>";
+                    }
+                } else {
+                    echo "File '{$coverImg}' does not exist.<br>";
                 }
 
                 if($this->GigHandlerModel->deleteGig($gigId)){
