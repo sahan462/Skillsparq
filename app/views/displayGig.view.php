@@ -8,9 +8,7 @@
     $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
-
     $sliderPics = $data['sliderImgs'];
-
     $gig['price'] = 200;
     // show($data);
 ?>
