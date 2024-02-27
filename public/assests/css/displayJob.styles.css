@@ -115,10 +115,10 @@ svg{
 }
 
 .sendProposalButton{
-    background-color:#1dbf73;
+    background-color:#31d65a;
     border: none;
-    height: 32px;
-    width: 64px;
+    height: 40px;
+    width: 80px;
     border-radius: 8px;
 }
 
@@ -358,6 +358,9 @@ svg{
 .modalDisplayJob input, textarea{
     margin-bottom: 16px;
     border-radius: 8px;
+    padding: 8px;
+    height:25%;
+    cursor: auto;
 }
 
 .modalDisplayJob .type-1{
@@ -398,4 +401,29 @@ svg{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 600;
+}
+
+.modalDisplayJobTopic{
+    font-size: 24px;
+    text-align: center;
+}
+
+.modalDisplayJob .descriptionJobProposal .topic{
+    text-align-last: center;
+    margin: 8px;
+}
+
+.modalDisplayJob .bidAmount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalDisplayJob .bidAmount .text{
+    text-align: center;
+}
+
+.modalDisplayJob .bidAmount input{
+    align-items: center !important;
+    margin-bottom: 0px;
 }
