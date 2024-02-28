@@ -302,20 +302,35 @@
                     <span class="type-2">add cover image and other slider images</span>
 
                     <div class="images">
-                        <label for="coverImage">Cover Image:</label>
-                        <input type="file" id="coverImage" name="newCoverImage" required/>
+                        <div class="slideimg1">
+                            <label for="coverImage">Cover Image:</label>
+                            <input type="file" id="coverImage" name="newCoverImage" onchange="load_img_name(this.files[0],1)" required/>
+                            <div id="filename1"><?php echo $data['gigDetails']['cover_image']?></div>
+                        </div>
 
-                        <label for="sliderImage1">Slider Image 1:</label>
-                        <input type="file" id="sliderImage1" name="newSliderImage1" required/>
+                        <div class="slideimg1">
+                            <label for="sliderImage1">Slider Image 1:</label>
+                            <input type="file" id="sliderImage1" name="newSliderImage1"  onchange="load_img_name(this.files[0],2)" required/>
+                            <div id="filename2"><?php echo $data['slideImages']['side_image_1']?></div>
+                        </div>
 
-                        <label for="sliderImage2">Slider Image 2:</label>
-                        <input type="file" id="sliderImage2" name="newSliderImage2" required/>
+                        <div class="slideimg1">
+                            <label for="sliderImage2">Slider Image 2:</label>
+                            <input type="file" id="sliderImage2" name="newSliderImage2" onchange="load_img_name(this.files[0],3)" required/>
+                            <div id="filename3"><?php echo $data['slideImages']['side_image_2']?></div>
+                        </div>
 
-                        <label for="sliderImage3">Slider Image 3:</label>
-                        <input type="file" id="sliderImage3" name="newSliderImage3" required/>
+                        <div class="slideimg1">
+                            <label for="sliderImage3">Slider Image 3:</label>
+                            <input type="file" id="sliderImage3" name="newSliderImage3" onchange="load_img_name(this.files[0],4)" required/>
+                            <div id="filename4"><?php echo $data['slideImages']['side_image_3']?></div>
+                        </div>
 
-                        <label for="sliderImage4">Slider Image 4:</label>
-                        <input type="file" id="sliderImage4" name="newSliderImage4" required/>
+                        <div class="slideimg1">
+                            <label for="sliderImage4">Slider Image 4:</label>
+                            <input type="file" id="sliderImage4" name="newSliderImage4" onchange="load_img_name(this.files[0],5)" required/>
+                            <div id="filename5"><?php echo $data['slideImages']['side_image_4']?></div>
+                        </div>
 
                     </div>
 
