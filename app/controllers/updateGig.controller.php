@@ -27,9 +27,11 @@ class updateGig extends Controller
             if($userId === $_SESSION['userId']){
 
                 $gig = $this->GigHandlerModel->displayGig($gigId);
+                $slideImages = $this->GigHandlerModel->retrieveSliderImages($gigId);
+                
                 if ($gig !== null) {
                     $data['gigDetails'] = $gig;
-                    // print_r($data);
+                    $data['slideImages'] = $slideImages;
                     $this->view('UpdateGig', $data); 
                 } else {
                     echo "<script>alert('Gig update is not Accessible!')</script>";

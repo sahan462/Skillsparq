@@ -3,7 +3,8 @@ include 'sellerProfile.controller.php';
 class EditSellerProfile extends SellerProfile
 {
     private $SellerProfileController;
-
+    private $UserHandlerModel;
+    private $ProfileHandlerModel;
     protected $userId;
     protected $sellerId;
     // private $emailAndPassWord;
@@ -223,10 +224,7 @@ class EditSellerProfile extends SellerProfile
         } 
     }
 
-
-
-
-    public function deleteSellerProfile($userId){
+    public function deleteSellerProfile(){
         
     }
 }
