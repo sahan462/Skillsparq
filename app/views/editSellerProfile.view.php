@@ -61,6 +61,14 @@
         <div class="editSeller_ProfileSubContainer">
             <form action="">
 
+            <?php 
+
+                // Set the form properly to update the relevant seller.
+                // Right now the profile is beign update by this URL -> skillsparq/public/buyerProfile/updateBuyerProfile
+                // It's incorrect and it should have to be skillsparq/public/editSellerProfile or either it has to be skillsparq/public/sellerProfile/updateSellerProfile
+                
+            ?>
+            
             </form>
             <!-- tag for  -->
             <div class="editSeller_ProfileHeader">

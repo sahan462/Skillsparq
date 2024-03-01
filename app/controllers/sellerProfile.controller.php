@@ -105,7 +105,6 @@ class SellerProfile extends Controller
         $targetFilePath = $targetDir . $uniqueprofilePictureName; 
         $currentFilePath = $targetDir . $currentProfilePicture;
 
-
         // check if the current and uploading files are same
         if($profilePictureName != "")
         {
@@ -164,7 +163,7 @@ class SellerProfile extends Controller
 
     public function deleteSellerProfile()
     {
-        // delete a seller profile.
+        // delete a seller profile if he/she doesn't have ongoing orders to done.
     }
 
 }

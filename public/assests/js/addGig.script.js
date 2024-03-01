@@ -88,3 +88,9 @@ function openCity(evt, cityName) {
 }
 
 document.getElementById("defaultOpen").click();
+
+function load_img_name(file,index)
+{
+  var fileNameId = "filename" + index
+  document.getElementById(fileNameId).innerHTML = file.name;
+}
