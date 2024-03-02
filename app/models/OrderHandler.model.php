@@ -71,11 +71,11 @@ class OrderHandler extends database
     {
         if($userRole == 'Buyer'){
 
-            $query = "SELECT * FROM orders WHERE buyer_id = ? ";
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
 
         }else{
 
-            $query = "SELECT * FROM orders WHERE seller_id = ? ";
+            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
 
         }
         
