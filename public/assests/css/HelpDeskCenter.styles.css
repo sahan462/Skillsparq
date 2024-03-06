@@ -1,0 +1,395 @@
+
+.title
+{
+    color:#007bff;
+    font-size: 30px;
+}
+.dark-title
+{
+    color:#4b4b4b;
+    font-size: 20px;
+}
+.container
+{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+
+/* for seller buyer chose buttons */
+.btn
+{
+    padding: 20px;
+    box-shadow:1px 1px 10px #888888; /*apply a shadow*/
+    height: 200px;
+    width:200px;
+    text-align: center;
+    margin-right:50px;
+    border-radius: 7px;
+    transition : 0.8s;/*animation time*/
+}
+/* when button is hover by mouse pointer */
+.btn:hover{
+    transform:scale(1.04) translateY(-5px);
+    transition : 0.2s; /*animation time*/
+}
+
+.btn-group
+{
+    display: flex;/*make button side by side */
+}
+.btn-title
+{
+    color: black;
+    font-size: large;
+    margin-top: 10px;
+}
+
+/* for morabout buttons */
+.btn2
+{
+    padding: 15px 25px; /*height width*/
+    background-color: #f0f0f0;
+    text-align: center;
+    color:black;
+    margin-right:30px;
+    border-radius: 50px;
+    transition : 0.7s;/*animation time*/
+}
+/* when button is hover by mouse pointer */
+.btn2:hover{
+    background-color: #007bff;
+    color: white;
+}
+
+/* for recommanded buttons */
+.btn3
+{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:1px 1px 10px #888888; /*apply a shadow*/
+    height: 150px;
+    width:170px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-weight: 550;
+    margin-right:50px;
+    border-radius: 7px;
+    transition : 0.8s;/*animation time*/
+}
+/* when button is hover by mouse pointer */
+.btn3:hover{
+    transform:scale(1.01) translateY(-2px);
+    transition : 0.2s; /*animation time*/
+    background-color: white;
+    color:#007bff;
+}
+
+/*****************************************************/
+/*********** Advertisement Help *********************/
+
+.sub-title
+{
+    color:#007bff;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+li{
+    font-size: 17px;
+    color: #333;
+}
+.subans
+{
+    margin-left: 50px;
+}
+.backbtn
+{
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 7px;
+    background-color: #007bff;
+    width: 200px;
+    font-size:15px;
+    margin-right: 20px;
+}
+
+
+/*****************************************************/
+/*********** Seller/Buyer Help *********************/
+
+/* for recommanded buttons */
+.btn4
+{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:1px 1px 10px #888888; /*apply a shadow*/
+    height: 150px;
+    width:170px;
+    
+    text-align: center;
+    font-weight: 550;
+    margin-right:50px;
+    border-radius: 7px;
+    transition : 0.8s;/*animation time*/
+    background-color: white;
+    color:#007bff;
+}
+/* when button is hover by mouse pointer */
+.btn4:hover{
+    transform:scale(1.01) translateY(-2px);
+    transition : 0.2s; /*animation time*/
+    background-color: #007bff;
+    color: white;
+}
+.btncontainer
+{
+    display: flex;
+}
+.createbtn
+{
+    padding: 9px 20px;
+    text-align: center;
+    border-radius: 7px;
+    background-color: #36aa00;
+    width: 175px;
+    font-size:15px;
+    margin-right: 20px;
+    transition: ease-in-out 0.3s;
+}
+.createbtn:hover
+{
+    background-color: #f0f0f0;
+    color: #36aa00;
+    
+}
+
+.table-container {
+    margin-left: 430px;
+    margin-top: 60px;
+    margin-right: 70px;
+  }
+  
+  table {
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: 400;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 4px #333;
+  }
+  th {
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid white;
+  }
+  .title {
+    color: #007bff;
+    font-size: 24px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .title span {
+    color: #000000;
+    font-size: 17px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+  }
+  td {
+    font-weight: 500;
+    padding: 10px;
+    height: 10px;
+    background-color: rgb(250, 250, 250);
+    border-bottom: 2px solid white;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #007bff;
+  }
+  
+  tbody tr:nth-child(odd) button {
+    background-color: #007bff;
+    border-color: white;
+  }
+  
+  .style {
+    color: white;
+    background-color: #007bff;
+    padding: 8px 20px 8px 20px;
+    border-radius: 6px;
+  }
+  
+  input[type="text"] {
+    border: none;
+    font-size: medium;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    background-color: rgb(243, 243, 243);
+    transition: ease-in-out 0.3s;
+    text-align: center;
+  }
+  
+  .deletebutton {
+    color: white;
+    background-color: #007bff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 6px;
+    border: none;
+    transition: ease-in-out 0.2s;
+    box-shadow: 0 0 2px #333;
+  }
+  .deletebutton:hover {
+    background-color: white;
+    color: #007bff;
+  }
+
+  
+.content-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    align-items: center;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table th{
+    font-weight:bold ;
+    color: white;
+    background-color:#009879 ;
+
+}
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.heading{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-style: inherit;
+    text-align: center;
+    font-size: 30px;
+    color: #009879;
+
+}
+
+.dropdown-menu {
+    border-radius: 4px;
+    padding: 10px 0;
+    animation-name: dropdown-animate;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+    border: 0;
+    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+  }
+  
+  .dropdown-menu .dropdown-header,s
+  .dropdown-menu .dropdown-footer {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+  
+  .dropdown-menu .dropdown-footer a {
+    color: #444444;
+    text-decoration: underline;
+  }
+  
+  .dropdown-menu .dropdown-footer a:hover {
+    text-decoration: none;
+  }
+  
+  .dropdown-menu .dropdown-divider {
+    color: #a5c5fe;
+    margin: 0;
+  }
+  
+  .dropdown-menu .dropdown-item {
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: 0.3s;
+  }
+  
+  .dropdown-menu .dropdown-item i {
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 0;
+  }
+  
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #f6f9ff;
+  }
+  
+  @media (min-width: 768px) {
+    .dropdown-menu-arrow::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      background: #fff;
+      position: absolute;
+      top: -7px;
+      right: 20px;
+      transform: rotate(45deg);
+      border-top: 1px solid #eaedf1;
+      border-left: 1px solid #eaedf1;
+    }
+  }
+  
+  @keyframes dropdown-animate {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  
+    0% {
+      opacity: 0;
+    }
+  }
+
+ 
+
+  

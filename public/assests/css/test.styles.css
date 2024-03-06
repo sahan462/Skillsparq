@@ -1,0 +1,104 @@
+.card-slider{
+  margin-top: 32px;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-bottom: 0;
+  padding: 32px 16px 32px 16px;
+  position: relative;
+}
+.card-slider svg{
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  text-align: center;
+  line-height: 32px;
+  border: 2px solid #ddd; 
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.card-slider svg:first-child{
+  left: 0px;
+}
+.card-slider svg:last-child{
+  right: 0px;
+}
+.card-slider .carousel{
+  display: grid;
+  grid-auto-flow: column;  
+  grid-auto-columns: calc((100%/5) - 16px);
+  gap: 20px;
+  overflow: hidden;
+}
+.card-slider .carousel.dragging.card{
+  cursor: grab;
+  user-select: none;
+}
+.card-slider ul{
+  padding-left: 0;
+  margin-left: 7px;
+}
+.card-slider .carousel .card{
+  list-style: none;
+  border: 1px solid #ddd; 
+  cursor: pointer;
+}
+.card-slider .carousel .card .img img{
+  width: 100%;
+  min-height: 150px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card-slider .carousel .card .user-details{
+  display: flex;
+  align-items: center;
+}
+.card-slider .carousel .card .user-details .profile-pic{
+  margin-right: 2px;
+}
+
+.card-slider .carousel .card .user-details .profile-pic img{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.checked {
+  color: orange;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-slider .carousel{
+    grid-auto-columns: calc((100%/3) - 16px);
+  }
+  .card-slider ul{
+    padding-left: 0;
+    margin-left: 4px;
+    margin-right: -6px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card-slider .carousel{
+    grid-auto-columns: calc((100%/2) - 16px);
+  }
+  .card-slider ul{
+    padding-left: 0;
+    margin-left: 4px;
+    margin-right: -6px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-slider .carousel{
+    grid-auto-columns: calc((100%));
+  }
+  .card-slider ul{
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+

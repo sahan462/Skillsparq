@@ -1,0 +1,97 @@
+.card-slider{
+    margin-bottom: 0;
+}
+.card-slider .carousel{
+    display: grid;
+    grid-auto-flow: column;  
+    grid-auto-columns: calc((100%/5) - 16px);
+    gap: 20px;
+    overflow: hidden;
+}
+.card-slider .carousel.dragging.card{
+    cursor: grab;
+    user-select: none;
+}
+.card-slider ul{
+    padding-left: 0;
+    list-style: none;
+}
+.card-slider .card{
+    border: 2px solid #dadbdd;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.card-slider .card .user-details img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 4px;
+}
+.card-slider .card .coverImg img{
+    width: 100%;
+    min-height: 150px;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
+}
+.card-slider .card .rating{
+    display: flex;
+}
+.card-slider .card:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4) !important;
+}
+.card-slider .card:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4) !important;
+}
+.card-slider .card .cardRow{
+    display: flex;
+}
+.card-slider .card .gigDescription{
+    margin: 16px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+.card-slider .card .cardRow,.gigDescription,.price{
+    padding: 0 8px;
+}
+.checked {
+    color: orange;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .card-slider .carousel{
+        grid-auto-columns: calc((100%/3) - 16px);
+    }
+    .card-slider ul{
+        padding-left: 0;
+        margin-left: 4px;
+        margin-right: -6px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .card-slider .carousel{
+        grid-auto-columns: calc((100%/2) - 16px);
+}
+.card-slider ul{
+    padding-left: 0;
+    margin-left: 4px;
+    margin-right: -6px;
+}
+}
+@media screen and (max-width: 600px) {
+    .card-slider .carousel{
+        grid-auto-columns: calc(100% - 8px);
+}
+.card-slider ul{
+    padding-left: 0;
+    margin-left: 0;
+}
+}

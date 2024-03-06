@@ -4,8 +4,8 @@
 class App
 {
 
-    protected $controller = "_404";
-    protected $method = "index";
+    protected $controller = "_404"; // default controller
+    protected $method = "index"; // default method 
 
     function __construct()
     {
@@ -21,15 +21,15 @@ class App
             require "../app/controllers/".$this->controller.".controller.php";
         }
         $mycontroller = new $this->controller();
+        $mymethod = $arr[1] ?? $this-> method;
 
         if(!empty($arr[1])){
             if(method_exists($mycontroller, strtolower($arr[1])))
             {
-                $this->method = strtolower($arr[1]);
+                $this->method = strtolower($mymethod);
                 unset($arr[1]);
             }
         }
-
 
         $arr = array_values($arr);
         call_user_func_array([$mycontroller, $this->method], $arr);

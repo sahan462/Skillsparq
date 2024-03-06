@@ -1,0 +1,255 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    color: #62646A;
+}
+header .upperHeader{
+    height: 60px;
+    width: 100%;
+    padding: 32px 32px;
+    align-items: center;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+/*logo*/
+.logo{
+    width: auto;
+    margin-right: 8px;
+}
+.logo a {
+    font-size: 24px;
+    color: #1dbf73;
+    text-decoration: none;
+    font-weight: bold;
+}
+.logo a span {
+    width: 10%;
+}
+
+/*search bar*/
+.upperHeader .searchBar{
+    width: 40%;
+}
+.upperHeader .searchBar form{
+    display: flex;
+    width: 100%;
+}
+.upperHeader .searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+}
+.upperHeader .searchBar button {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+    background-color: #000000;
+    color: #fff;
+    transition: ease-in-out 0.3s;
+}
+.upperHeader .searchBar button:hover {
+    color: #333;
+    background: #fff;
+}
+
+/*navbar and navigation links*/
+.upperHeader .navbar{
+    display: flex;
+    align-items: center;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-links .svgLinks{
+    display: flex;
+    justify-content: space-around;
+}
+.nav-links .wordLinks{
+    display: flex;
+    justify-content: space-around;
+}
+.nav-links .imgLinks{
+    display: flex;
+    width: auto; 
+}
+.navbar .nav-links li {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.nav-links a {
+    color: #62646A;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items:end;
+    box-sizing: border-box;
+}
+.nav-links .wordLink{
+    padding-bottom: 4px;
+    padding-right: 4px;
+}
+.nav-links .wordLink:hover {
+    text-decoration: none;
+    border-bottom: 4px solid #1dbf73;
+    padding-bottom: 0; 
+    box-sizing: border-box;
+}
+.nav-links .imgLink{
+    padding: 2px;
+    border: 4px solid #1dbf73;
+    border-radius: 100%;
+}
+.upperHeader svg {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #62646A;
+    align-items: center;
+    margin: 3px;
+}
+
+.upperHeader .notificationSign{
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    position: absolute;
+    background-color: crimson;
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+.nav-links li {
+    margin-left: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.upperHeader svg {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: #62646A;
+    margin-right: 10px;
+    align-items: center;
+}
+
+/*profile pic*/
+.upperHeader img{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1200px) {
+    .headerCategories{
+        display: none;
+    }
+    .upperHeader .searchBar{
+        display: none;
+    }
+    header .upperHeader {
+        border-bottom: 1px solid #c5c6c9;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .headerCategories{
+        display: none;
+    }
+    .upperHeader .searchBar{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    header .upperHeader{
+        display: flex;
+        flex-direction: column;
+    }
+    .upperHeader .searchBar{
+        width: 100%;
+    }
+    .upperHeader .searchBar form{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .upperHeader .logo {
+        margin-bottom: 10px;
+        margin: 0 auto;
+    }  
+    .upperHeader .navbar{
+        display: none;
+    }
+    .upperHeader .searchBar a, .upperHeader .searchBar input[type=text]{
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .upperHeader .searchBar input[type=text] {
+        border: 1px solid #c5c6c9;
+    }
+    .headerCategories{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    header .upperHeader  {
+        border-bottom: 1px solid #c5c6c9;
+    }
+}
+
+
+/*header categories*/
+.headerCategories{
+    background-color: #fff !important;
+}
+.headerCategories nav .nav-links li{
+    display: inline-block;
+    margin-left: 0 !important;
+}
+.headerCategories nav .nav-links {
+    width: auto;
+    overflow-x: auto;
+    border-top: 2px solid #62646A;
+    border-bottom: 2px solid #62646A;
+    padding: 0px 32px;
+}
+
+@media only screen and (max-width: 900px) {
+    header .upperHeader .row{
+        display: flex;
+        flex-direction: column;
+    }
+
+}

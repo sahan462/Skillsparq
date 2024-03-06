@@ -1,0 +1,228 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*sellerDashboard-content*/
+.sellerDashboard-content{
+    padding: 16px 0px 0px 0px;
+}
+
+/*header*/
+.sellerDashboard-content .personalizedHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+/*dashboard-content*/
+.dashboard-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 16px;
+} 
+
+/*job-feed*/
+.dashboard-container .job-feed{
+    width: 75%;
+    padding: 0px 32px;
+}
+.searchBar{
+    width: 100%;
+}
+.searchBar form{
+    display: flex;
+    width: 100%;
+    height: 32px;
+}
+.searchBar input[type=text] {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #c5c6c9;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+}
+.searchBar button {
+    height: 40px;
+    display: block;
+    text-align: left;
+    margin: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #1dbf73;
+    border: 1px solid #c5c6c9;
+    border-radius: 0 4px 4px 0;
+    transition: ease-in-out 0.3s;
+}
+.searchBar button:hover {
+    color: #333;
+    background: #fff;
+}
+.jobs{
+    width: 100%;
+    height: auto;
+    border: 1px solid #c5c6c9;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-bottom: 0px;
+    border-radius: 10px;
+    border-bottom-left-radius:0px ;
+    border-bottom-right-radius:0px ;
+    border-bottom: none;
+}
+.job-card{
+    width: auto !important;
+    border-radius: 0 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 2px solid #dadbdd !important;
+    margin-top: 5px!important;
+    margin-bottom: 5px !important; 
+}
+
+.jobs .job-header{
+    border-bottom: 1px solid #c5c6c9;
+    padding: 16px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+.jobs .content{
+    width: 100%;
+}
+
+/*seller-details*/
+.dashboard-container .seller-details{
+    width: 25%;
+    padding: 0px 16px;
+}
+.dashboard-container .profile{
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #dadbdd;
+    padding: 32px 32px 16px 32px;
+    font-size: 14px;
+    line-height: 130%;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/*Active Status*/
+.dashboard-container .profile .active-status{
+    position: absolute; 
+    right: 0px; 
+    height: 20px; 
+    left: 0px;
+}
+
+/*Profile Pic upload*/
+.dashboard-container .profile .profile-picture{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.dashboard-container .profile .profile-picture img{
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.dashboard-container .profile .profile-picture .full-name{
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #222325;
+    cursor: default;
+    background: none;
+    border: 0;
+}
+.dashboard-container .profile .profile-picture .user-name{
+    margin-bottom: 16px;
+}
+
+/*preview-profile*/
+.preview-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 8px;
+    color: #fff;
+    border: 2px solid #1dbf73;
+    background: #1dbf73;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.preview-profile button:hover{
+    color: #fff;
+    background: #1dbf73;
+    border: 2px solid #fff;
+    box-shadow: 5px 5px 20px #333;
+}
+.edit-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #fff;
+    border: 2px solid #1dbf73;
+    background: #1dbf73;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.edit-profile button:hover{
+    color: #fff;
+    background: #1dbf73;
+    border: 2px solid #fff;
+    box-shadow: 5px 10px 18px #333;
+}
+.dashboard-container .profile .user-info{
+    padding-top: 16px;
+    border-top: 2px solid #dadbdd;
+    border-bottom: 2px solid #dadbdd;
+}
+.dashboard-container .profile .user-info svg{
+    width: 16px;
+    height: 16px;
+    color: #333;
+    margin-right: 8px;
+}
+.dashboard-container .profile .user-info .info{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.dashboard-container .profile .user-info span{
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .dashboard-container{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 32px;
+    } 
+
+    .dashboard-container .seller-details {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    .dashboard-container .job-feed{
+        width: 100%;
+        padding: 0px 16px;
+    }
+}
