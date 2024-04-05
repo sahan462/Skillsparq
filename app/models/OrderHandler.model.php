@@ -62,8 +62,4 @@ class OrderHandler extends database
         return $orderId;
 
     }
-
-
-
-
 }

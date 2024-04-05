@@ -112,3 +112,64 @@ function handleConfirmation(action) {
 
 }
 
+//open delete modal 
+function openDeleteModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlay1').style.display = 'flex';
+    document.getElementById('Modal1').style.display = 'block';
+}
+
+// Function to confirm the action of Deletion
+function confirmAction(action) {
+    if (action === 'sendDelete') {
+    
+      document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
+      document.getElementById('cancelConfirmation1').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay1').style.display = 'flex';
+      document.getElementById('sendConfirmation1').style.display = 'block';
+    
+    } else if(action === 'cancelDelete') {
+
+      document.getElementById('sendConfirmationOverlay1').style.display = 'none';
+      document.getElementById('sendConfirmation1').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay1').style.display = 'flex';
+      document.getElementById('cancelConfirmation1').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) {
+    if (action === 'sendDeleteYes') {
+
+        var profileDeleteForm = document.getElementById('profileDeleteForm');
+        profileDeleteForm.submit();
+
+    }else if (action === 'sendDeleteNo'){
+
+        document.getElementById('sendConfirmation1').style.display = 'none';
+        document.getElementById('sendConfirmationOverlay1').style.display = 'none';
+
+    }else if(action === 'cancelDeleteNo'){
+
+        document.getElementById('cancelConfirmation1').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        country.value = currentCountry;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
+        document.getElementById('cancelConfirmation1').style.display = 'none';
+        document.getElementById('overlay1').style.display = 'none';
+        document.getElementById('Modal1').style.display = 'none';
+        document.getElementById('warningMessage').style.display = 'none';
+
+    }
+
+}

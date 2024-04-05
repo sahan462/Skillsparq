@@ -143,6 +143,102 @@
         
     </div>
 
+    <!-- Modal 4 Delete Modal -->
+    <div class="overlay1" id="overlay1">
+
+        <div class="modal" id="Modal1">
+
+            <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
+
+                <div class="seller-profile-picture">
+
+                    <div class="updateSellerProfilePicture">
+
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="seller-full-name">
+
+                        <div class="row">
+
+                            <label class="type-1">First Name:</label>
+                            <!-- <input type="text" id="firstName" name="firstName" value="<?php //echo $firstname ?>" > -->
+
+                        </div>
+ 
+                        <div class="row">
+
+                            <label class="type-1">Last Name:</label>
+                            <!-- <input type="text" id="lastName" name="lastName" value="<?php //echo $lastname ?>" > -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <label for="attachments" class="type-1">About:</label>
+                    <!-- <textarea rows="5" id="about" name="about"><?php //echo $about; ?></textarea> -->
+
+                </div>
+
+                <div class="buttons">
+
+                    <button type="button" onclick="confirmAction('cancelDelete')">Cancel Delete</button>
+                    <button type="button" onclick="confirmAction('sendDelete')">Delete Profile</button>
+
+                </div>
+
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <!-- <input type="hidden" name="userName" value="<?php //echo $_SESSION['userName']?>"> -->
+                <!-- <input type="hidden" name="currentProfilePicture" value="<?php //echo $profilepicture?>"> -->
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Modal 5 Cancel Deletion -->
+    <div class="overlay1" id="cancelConfirmationOverlay1">
+
+        <div class="confirmation" id="cancelConfirmation1">
+
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+
+                <button onclick="handleConfirmation('cancelDeleteNo')">No</button>
+                <button onclick="handleConfirmation('cancelDeleteYes')">Yes</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Modal 6 -->
+    <div class="overlay1" id="sendConfirmationOverlay1">
+
+        <div class="confirmation" id="sendConfirmation1">
+
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+
+                <button onclick="handleConfirmation('sendDeleteNo')">No</button>
+                <button onclick="handleConfirmation('sendDeleteYes')">Yes</button>
+
+            </div>
+
+        </div>
+        
+    </div>
 
     <!-- Topic -->
     <div class="sellerProfileHeader">
@@ -206,15 +302,21 @@
 
                 </div>
 
-                <div class="preview-profile">
+                <!-- <div class="preview-profile">
 
                     <button>Preview Profile</button>
 
-                </div>
+                </div> -->
 
                 <div class="edit-profile">
 
                     <button onclick="openPackageModal(this)">Edit Profile</button>
+
+                </div>
+
+                <div class="delete-profile">
+
+                    <button onclick="openDeleteModal()">Delete Profile</button>
 
                 </div>
 
@@ -325,25 +427,28 @@
 
             </div>
 
-            <div class="reviews">
+            <!-- <div class="reviews"> -->
 
-                <div class="sellerheader">
+                <div class="sellerUser-content">
 
-                    <span>My Portfolio</span>
+                    <div class="sellerheader">
+
+                        <span>My Portfolio</span>
+                        <a href=""><button>Add to Portfolio</button></a>
+                        
+                    </div>
+
+                    <div class="review-content">
+
+                            <?php //if(empty()){?>
+                                <?php //}?>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/></svg>
+                        <span>Setup Your Portfolio Right Now !</span>
+
+                    </div>
 
                 </div>
-
-                <div class="review-content">
-
-                        <?php //if(empty()){?>
-                            <?php //}?>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/></svg>
-                    <span>Setup Your Portfolio Right Now !</span>
-
-                </div>
-
-            </div>
 
         </div>
         

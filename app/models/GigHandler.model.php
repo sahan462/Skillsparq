@@ -227,6 +227,26 @@ class GigHandler extends database
         }
     }
 
+    // get ongoing order count
+    public function getOngoingOrderCount($sellerId)
+    {
+        $query = "SELECT ongoing_order_count FROM gigs WHERE seller_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get package details
     public function getPackages($gigId)
     {

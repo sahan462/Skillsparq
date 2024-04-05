@@ -114,12 +114,11 @@ class UserHandler extends database
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-                
+
         mysqli_stmt_bind_param($stmt, $parameterString,$param1,$userId);
-                
+        
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            
             return true; 
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
@@ -129,6 +128,25 @@ class UserHandler extends database
     
     public function addNewAdmin(){
         
+    }
+
+    public function deleteUser($userId)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM user 
+            WHERE user_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
 }
