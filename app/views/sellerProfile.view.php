@@ -27,7 +27,7 @@
 
         <div class="modal" id="Modal">
 
-            <form id="profileUpdateForm" method="post" action="sellerProfile/updateSellerProfile" enctype="multipart/form-data">
+            <form id="profileUpdateForm" method="post" action="./sellerProfile/updateSellerProfile" enctype="multipart/form-data">
 
                 <div class="seller-profile-picture">
 

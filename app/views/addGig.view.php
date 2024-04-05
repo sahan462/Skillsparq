@@ -78,6 +78,7 @@
                             <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Basic</button>
                             <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
+                            <!--id="defaultOpen"-->
                         </div>
 
                         <div id="London" class="tabcontent">
@@ -87,7 +88,7 @@
                                 <span>Package Price : </span>
                                 <div class="customName">
 
-                                    <input type="number"  name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000">
+                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" required>
 
                                 </div>
 

@@ -125,7 +125,7 @@ class SellerProfile extends Controller
                 echo "
                 <script>
                     alert('Error Uploading Profile Picture');
-                    window.location.href = '" . BASEURL . "buyerProfile';
+                    window.location.href = '" . BASEURL . "sellerProfile';
                 </script>
                 ";
 
@@ -145,7 +145,7 @@ class SellerProfile extends Controller
             echo "
             <script>
                 alert('Profile Updated Successfully');
-                window.location.href = '" . BASEURL . "buyerProfile';
+                window.location.href = '" . BASEURL . "sellerProfile';
             </script>
         ";
 
@@ -154,7 +154,7 @@ class SellerProfile extends Controller
             echo "
             <script>
                 alert('Error Updating Profile');
-                window.location.href = '" . BASEURL . "buyerProfile';
+                window.location.href = '" . BASEURL . "sellerProfile';
             </script>
             ";
 
