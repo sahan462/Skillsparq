@@ -224,7 +224,4 @@ class EditSellerProfile extends SellerProfile
         } 
     }
 
-    public function deleteSellerProfile(){
-        
-    }
 }

@@ -72,13 +72,14 @@ body{
     width: auto;
     height: auto;
 }
+
 #Modal1 {
     display: none;
     position: absolute;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: auto;
+    width: 600px;
     height: auto;
 }
 .confirmation{
@@ -287,6 +288,7 @@ input[type = "text"], textarea, select{
     background: #31d65a;
     border: 2px solid #333;
 }
+
 /*edit-profile*/
 .edit-profile button{
     width: 100%;
@@ -305,6 +307,7 @@ input[type = "text"], textarea, select{
     border: 2px solid #333;
     box-shadow: none !important;
 }
+
 /*Delete Profile*/
 .delete-profile button{
     width: 100%;
@@ -321,6 +324,61 @@ input[type = "text"], textarea, select{
     color: #fff;
     background: #f81d00;
     border: 2px solid #333;
+}
+
+.seller-modal-name{
+
+}
+
+.seller-name{
+    font-size:32px;
+    text-align: center;
+    padding-bottom: 24px;
+}
+
+.seller-question{
+    font-size:24px;
+}
+
+.modal .confirmation button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.topRightContainer .fade {
+    opacity: 1;
+}
+
+/* modal1 content */
+.modal1 .row{
+    display: flex;
+    flex-direction: column !important;
+}
+.modal1 .buttons, .confirmation .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+.modal1 .buttons button, .confirmation button{
+    width: 50%;
+    padding: 8px;
+    margin-top: 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    background-color: #f81d00 !important;
+    cursor: pointer;
+}
+
+.modal1 .buttons button:hover{
+    color: #333;
+    background-color: rgb(241, 241, 241);
+    font-weight: 600;
 }
 
 /*User Info*/

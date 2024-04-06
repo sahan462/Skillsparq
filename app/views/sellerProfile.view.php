@@ -146,7 +146,7 @@
     <!-- Modal 4 Delete Modal -->
     <div class="overlay1" id="overlay1">
 
-        <div class="modal" id="Modal1">
+        <div class="modal1" id="Modal1">
 
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
 
@@ -162,19 +162,21 @@
 
                 <div class="row">
 
-                    <div class="seller-full-name">
+                    <div class="seller-modal-name">
 
-                        <div class="row">
+                        <div class="seller-name">
 
-                            <label class="type-1">First Name:</label>
-                            <!-- <input type="text" id="firstName" name="firstName" value="<?php //echo $firstname ?>" > -->
+                                <?php 
+                                    echo $firstname ." ". $lastname;
+                                ?>
 
                         </div>
- 
-                        <div class="row">
 
-                            <label class="type-1">Last Name:</label>
-                            <!-- <input type="text" id="lastName" name="lastName" value="<?php //echo $lastname ?>" > -->
+                        <div class="seller-question">
+
+                            <?php 
+                                echo "Do you want to delete your account?"; 
+                            ?>
 
                         </div>
 
@@ -182,23 +184,15 @@
 
                 </div>
 
-                <div class="row">
-
-                    <label for="attachments" class="type-1">About:</label>
-                    <!-- <textarea rows="5" id="about" name="about"><?php //echo $about; ?></textarea> -->
-
-                </div>
-
                 <div class="buttons">
 
-                    <button type="button" onclick="confirmAction('cancelDelete')">Cancel Delete</button>
-                    <button type="button" onclick="confirmAction('sendDelete')">Delete Profile</button>
+                    <button type="button" onclick="confirmActionDelete('cancelDelete')">Cancel Delete</button>
+                    <button type="button" onclick="confirmActionDelete('sendDelete')">Delete Profile</button>
 
                 </div>
 
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-                <!-- <input type="hidden" name="userName" value="<?php //echo $_SESSION['userName']?>"> -->
-                <!-- <input type="hidden" name="currentProfilePicture" value="<?php //echo $profilepicture?>"> -->
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
 
             </form>
 
@@ -214,8 +208,8 @@
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmation('cancelDeleteNo')">No</button>
-                <button onclick="handleConfirmation('cancelDeleteYes')">Yes</button>
+                <button onclick="handleConfirmationDelete('cancelDeleteNo')">No</button>
+                <button onclick="handleConfirmationDelete('cancelDeleteYes')">Yes</button>
 
             </div>
 
@@ -231,8 +225,8 @@
             <p>Are you sure want to continue?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmation('sendDeleteNo')">No</button>
-                <button onclick="handleConfirmation('sendDeleteYes')">Yes</button>
+                <button onclick="handleConfirmationDelete('sendDeleteNo')">No</button>
+                <button onclick="handleConfirmationDelete('sendDeleteYes')">Yes</button>
 
             </div>
 
@@ -300,13 +294,7 @@
                         <span>(0)</span>
                     </div>
 
-                </div>
-
-                <!-- <div class="preview-profile">
-
-                    <button>Preview Profile</button>
-
-                </div> -->
+            </div>
 
                 <div class="edit-profile">
 
@@ -316,7 +304,7 @@
 
                 <div class="delete-profile">
 
-                    <button onclick="openDeleteModal()">Delete Profile</button>
+                    <button onclick="openDeleteModal(this)">Delete Profile</button>
 
                 </div>
 

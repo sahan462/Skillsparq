@@ -164,8 +164,10 @@ class SellerProfile extends Controller
     public function deleteSellerProfile()
     {
         $sellerId = $_POST['userId'];
+        $userName = $_POST['userName'];
         // delete a seller profile if he/she doesn't have ongoing orders to done.
         $ongoing_order_count = $this->GigHandlerModel->getOngoingOrderCount($sellerId);
+
         if($ongoing_order_count != 0){
             echo "
             <script>
@@ -173,19 +175,26 @@ class SellerProfile extends Controller
                 window.location.href = '" . BASEURL . "sellerProfile';
             </script>
             ";
+            die;
+
         }else{
+
             $deleteUserStatus = $this->UserHandlerModel->deleteUser($sellerId);
             if($deleteUserStatus){
+
                 $deleteSellerStatus = $this->SellerHandlerModel->deleteSeller($sellerId);
                 if($deleteSellerStatus){
+
                     echo "
                     <script>
                         alert('Profile Deleted Successfully !!');
                         window.location.href = '" . BASEURL . "home';
                     </script>
                     ";
+                    
                 }
             }
+
         }
     }
 

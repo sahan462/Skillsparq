@@ -9,4 +9,20 @@
     font-size: 16px;
     border-radius:15px ;
 }
-/**/
+
+.sellerEarningsContainer{
+    height: 100%;
+    width: 100%;
+    padding: 16px 32px;
+}
+
+.sellerEarningsHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
