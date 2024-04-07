@@ -1,9 +1,5 @@
 <?php include "components/sellerHeader.component.php";?>
 
-<?php 
-
-?>
-
 <!-- Main Container -->
 <div class="addGigContainer">
 

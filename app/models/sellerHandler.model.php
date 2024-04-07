@@ -53,6 +53,12 @@ class SellerHandler extends database
         return mysqli_fetch_assoc($result);
     }
 
+    // adding the languages of the profile into seller_profile table
+    public function addLanguages($sellerId)
+    {
+        
+    }
+
     // 
     public function updateSeller($sellerId){
         // $query = "UPDATE seller SET ";

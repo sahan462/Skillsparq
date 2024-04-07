@@ -11,7 +11,7 @@ var bidValue = document.getElementById('bidValue').value
 if (bidValue === '') {
     alert('Please enter a number.');
   } else {
-    console.log('Entered number:', numericInput);
+    // console.log('Entered number:', numericInput);
 }
 
 
@@ -43,7 +43,7 @@ function confirmAction(action) {
 		if (bidValue === '') {
 			alert('Please enter a number.');
 		} else {
-			console.log('Entered number:', numericInput);
+			// console.log('Entered number:', numericInput);
 		}
 		document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 		document.getElementById('cancelConfirmation').style.display = 'none';
@@ -67,7 +67,7 @@ function handleConfirmation(action) {
 		if (bidValue === '') {
 			alert('Please enter a number.');
 		} else {
-			console.log('Entered number:', numericInput);
+			// console.log('Entered number:', numericInput);
 		}
         var sendJobProposal = document.getElementById('sendJobProposal');
         sendJobProposal.submit();

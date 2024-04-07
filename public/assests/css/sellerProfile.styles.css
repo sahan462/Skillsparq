@@ -405,10 +405,10 @@ input[type = "text"], textarea, select{
 }
 
 /*education-skills-certificates-languages*/
-.profile .education ,.profile .skills, .profile .certificates, .profile .languages{
+/* .profile .education ,.profile .skills, .profile .certificates, .profile .languages{
     border-bottom: 2px solid #dadbdd;
     text-align: justify;
-}
+} */
 .profile .topic{
     display: flex;
     align-items: center;
@@ -417,6 +417,55 @@ input[type = "text"], textarea, select{
 .profile .description .description-content{
     text-align: justify;
 }
+
+.profile .profileAdditionals {
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+.profile .addButton{
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: #0e0e0f;
+    background:none;
+    border: 2px solid #fff;
+    padding: 14px;
+    font-size: 14px;
+    width: auto;
+}
+
+.profile .addButton:hover{
+    text-decoration: none;
+    color: #fff;
+    background-color: #1dbf73;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: #0e0e0f;
+}
+
+/* Languages modal */
+.overlayLanguages{
+
+}
+
+#overlayLanguages{
+
+}
+
+.modalLanguages{
+
+}
+
+#ModalLanguages{
+    
+}
+
 /*user contribution*/
 .sellerProfileContainer .sub-container .sellerUser-contribution{
     margin-bottom: 32px;

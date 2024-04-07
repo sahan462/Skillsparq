@@ -1,7 +1,11 @@
 <?php 
     include "components/sellerHeader.component.php"; 
     $job = $data['job'];
-    // print_r ($data);
+    // print_r($data);
+    $buyerId = $data['buyerDetails']['user_id'];
+    $sellerId = $data['sellerDetails']['user_id'];
+    $jobId = $data['job']['job_id'];
+    // $buyer_id = $data['job']['buyer_id'];
 ?>
 
     <div class="displayJobContainer">
@@ -149,7 +153,7 @@
 
                             </div>
 
-                            <form id="sendJobProposal" method="post" action="jobProposals" enctype="multipart/form-data">
+                            <form id="sendJobProposal" method="post" action="jobProposals/addJobProposal" enctype="multipart/form-data">
 
                                 <div class="row">
 
@@ -186,8 +190,10 @@
                                             Your Bidding Amount :
                                         </div>
                                         
-                                        <input type="text" id="bidValue" required>
-
+                                        <input type="text" id="bidValue" name="biddingAmnt" required>
+                                        <input type="hidden" value="<?php $sellerId?>" name="sellerId">
+                                        <input type="hidden" value="<?php $buyerId?>" name="buyerId">
+                                        <input type="hidden" value="<?php $jobId?>" name="jobId">
                                     </div>
 
                                 </div>

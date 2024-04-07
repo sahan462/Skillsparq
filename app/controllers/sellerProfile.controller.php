@@ -83,6 +83,10 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
+    public function addProfileLanguages()
+    {
+        // 
+    }
 
     // has to adjust for client.
     public function  updateSellerProfile()
