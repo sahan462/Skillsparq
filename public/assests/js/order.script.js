@@ -1,5 +1,7 @@
 // -----------------------------tab function------------------------------------------------
 
+document.getElementById("defaultOpen").click();
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabContent, tablinks;
@@ -12,7 +14,6 @@ function openTab(evt, tabName) {
   
     //Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
-    console.log(tablinks);
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
@@ -24,10 +25,11 @@ function openTab(evt, tabName) {
 
 
 
+
 // ---------------------------------------Timer--------------------------------------------------------
 
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 12, 2024 15:37:25").getTime();
+var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -54,3 +56,57 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
+
+
+// ---------------------------------------modals--------------------------------------------------------
+
+function confirmAction(action) {
+  if (action === 'send') {
+  
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    document.getElementById('cancelConfirmation').style.display = 'none';
+    document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+    document.getElementById('sendConfirmation').style.display = 'block';
+  
+  } else if(action === 'cancel') {
+
+    document.getElementById('sendConfirmationOverlay').style.display = 'none';
+    document.getElementById('sendConfirmation').style.display = 'none';
+    document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+    document.getElementById('cancelConfirmation').style.display = 'block';
+  
+  } 
+}
+
+function handleConfirmation(action) {
+  if (action === 'sendYes') {
+
+      var sendRequestForm = document.getElementById('sendRequestForm');
+      sendRequestForm.submit();
+
+  }else if (action === 'sendNo'){
+
+      document.getElementById('sendConfirmation').style.display = 'none';
+      document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
+  }else if(action === 'cancelNo'){
+
+      document.getElementById('cancelConfirmation').style.display = 'none';
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
+  }else{
+
+    packageForm = "";
+
+    var fileNameSpan = document.getElementById('fileName');
+
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    document.getElementById('cancelConfirmation').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('packageModal').style.display = 'none';
+    document.getElementById('warningMessage').style.display = 'none';
+
+    fileNameSpan.textContent = '';
+  }
+
+}

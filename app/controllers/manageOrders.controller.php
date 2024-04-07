@@ -57,7 +57,7 @@ class ManageOrders extends Controller
         }
     
         // Handle success or failure
-        if($upload){
+        if($upload || $orderId){
 
             if(isset($_SESSION['email'])){
 
@@ -142,7 +142,7 @@ class ManageOrders extends Controller
         } else {
             echo "
             <script>
-                alert('Order creation failed');
+                alert('Error Crearing package order');
             </script>
             ";
         }

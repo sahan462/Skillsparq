@@ -27,15 +27,27 @@
     $data["buyerProfilePicture"] = "chamal.jpg";
     $data["firstName"] = "Chamal";
     $data["lastName"] = "Fernando";
-
+    $data["orderId"] = 11;
 ?>
 
 <!-- Main Container -->
 <div class="orderContainer"> 
 
+
+    <!-- Modal 1 -->
+    <div class="overlay" id="cancelConfirmationOverlay">
+        <div class="confirmation" id="cancelConfirmation">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmation('cancelNo')">No</button>
+                <button onclick="handleConfirmation('cancelYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Tab Section -->
     <div class="orderContainerHeader">
-        <button id="active" class="tablinks" onclick="openTab(event, 'activity')">Activity</button>
+        <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'activity')">Activity</button>
         <button class="tablinks" onclick="openTab(event, 'details')">Order Details</button>
     </div>
 
@@ -83,49 +95,99 @@
 
             <!-- Right Container Upper Part -->
             <div class="orderDetailsUpperContainer">
-                <?php 
 
-                if($_SESSION['role'] == "Buyer"){
-                    
-                ?>
+                <!-- Seller View -->
+                <?php if($_SESSION['role'] == "Buyer") { ?>
+
+                    <!-- Timer -->
                     <div class="deadline">
+
                         <span>Time Left to Deliver :</span>
                         <div class="timer">
                             <p id="demo"></p>
                         </div>
+
                     </div>
 
                     <div class="orderStatus">
+
                         <div class="orderStatusHeader">
                             <span>Current Status of Order :</span>
                             <span><?php echo $order['orderStatus'] ?></span>
                         </div>
+
                         <div class="orderStatusData">
 
-                            <?php 
-                                if  ($order['orderStatus'] == 'Request') {
-                            ?>
-                                    <span>Order Request expires in :</span>
+                            <!-- Requested State -->
+                            <?php if  ($order['orderStatus'] == 'Requested') { ?>
+
+                                <button class="buttonType-2">withdraw your Request</button>
+
+                            <!-- Accepted State / Payments Pending-->
+                            <?php } else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
+                                
+
+                                <?php
+
+                                    $merchant_id = 1224879;
+                                    $order_id = $data["orderId"];
+                                    $amount = 10;
+                                    $currency = "USD";
+                                    $merchant_secret = "MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ==";
+
+                                    $hash = strtoupper(
+                                        md5(
+                                            $merchant_id. 
+                                            $order_id . 
+                                            number_format($amount, 2, '.', '') . 
+                                            $currency .  
+                                            strtoupper(md5($merchant_secret)) 
+                                        ) 
+                                    );
+                                
+                                ?>
+
+                                <!-- Payment -->
+                                <form method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+
+                                    <input type="hidden" name="merchant_id" value="1224879">    
+                                    <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
+                                    <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">
+                                    <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
+                                    <input type="hidden" name="order_id" value="11">
+                                    <input type="hidden" name="items" value="Door bell wireless">
+                                    <input type="hidden" name="currency" value="USD">
+                                    <input type="hidden" name="amount" value="10">  
+                                    <input type="hidden" name="first_name" value="Saman">
+                                    <input type="hidden" name="last_name" value="Perera">
+                                    <input type="hidden" name="email" value="samanp@gmail.com">
+                                    <input type="hidden" name="phone" value="0771234567">
+                                    <input type="hidden" name="address" value="No.1, Galle Road">
+                                    <input type="hidden" name="city" value="Colombo">
+                                    <input type="hidden" name="country" value="Sri Lanka">
+                                    <input type="hidden" name="hash" value="<?php echo $hash ?>">  
+
                                     <div class="row">
-                                        <button class="buttonType-1">Accept</button>
-                                        <button class="buttonType-2">Reject</button>
+                                        <button type="submit" class="buttonType-1">Proceed to Pay</button>
+                                        <button class="buttonType-2" onclick="confirmAction('cancel')">Cancel Order</button>
                                     </div>
 
-                            <?php }else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
-                                
-                                <div class="row">
-                                    <button class="buttonType-1">Proceed to Pay</button>
-                                    <button class="buttonType-2">Cancel Order</button>
-                                </div>
+                                </form>
+                                        
 
-                            <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                            <!-- Accepted State / Paid/ Running-->
+                            <?php } else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                                    
                                 Paid
-                            <?php }?>
+                            
+                            <?php } ?>
 
                         </div>
                     </div>
 
-                <?php }else if($_SESSION['role'] == "Seller") {?>
+
+                <!-- Buyer View -->
+                <?php } else if($_SESSION['role'] == "Seller") { ?>
                     
                     <div class="deadline">
                         <span>Time Left to Receive :</span>
@@ -138,31 +200,40 @@
 
                         <div class="orderStatusHeader">
                             <span>Current Status of Order :</span>
-                            <span>Waiting for Seller Response</span>
+                            <span><?php echo $order['orderStatus'] ?></span>
                         </div>
 
                         <div class="orderStatusData">
 
-                            <?php 
-                                if  ($order['orderStatus'] == 'Request') {
-                            ?>
-                                    <span>Order Request expires in :</span><br>
-                                    <button class="buttonType-2">withdraw your request</button>
+                            <!-- Requested State -->
+                            <?php if  ($order['orderStatus'] == 'Requested') { ?>
 
-                            <?php }else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
+                                <!-- <span>Order Requested expires in :</span> -->
+                                <div class="row">
+                                    <button class="buttonType-1">Accept</button>
+                                    <button class="buttonType-2">Reject</button>
+                                </div>
+
+                            <!-- Accepted State / Payments Pending-->
+                            <?php } else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending") { ?>
 
                                 Pending Payments
 
-                            <?php }else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                            <!-- Accepted State / Paid/ Running-->
+                            <?php } else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid") { ?>
 
                                 Paid
 
-                            <?php }?>
+                            <?php } ?>
 
                         </div>
                     </div>
                     
-                <?php } ?>
+                <?php 
+
+                    } 
+
+                ?>
 
             </div>
             
