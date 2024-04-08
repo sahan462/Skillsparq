@@ -62,7 +62,7 @@
                                     if($row['order_status'] == 'request'){
 
                             ?>
-                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>';">
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
 
                                         <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">

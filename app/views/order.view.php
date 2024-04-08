@@ -9,7 +9,7 @@
 <?php 
     $userRole = 'buyer';
     $order['orderType'] = 'package';
-    $order['orderStatus'] = 'Accepted';
+    $order['orderStatus'] = 'Accepted/Pending Payments';
     $order['paymentStaus'] = 'Pending';
 
 ?>
@@ -123,8 +123,8 @@
 
                                 <button class="buttonType-2">withdraw your Request</button>
 
-                            <!-- Accepted State / Payments Pending-->
-                            <?php } else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending"){ ?>
+                            <!-- Accepted State Waiting for Payments -->
+                            <?php } else if($order['orderStatus'] == 'Accepted/Pending Payments'){ ?>
                                 
 
                                 <?php
@@ -147,8 +147,8 @@
                                 
                                 ?>
 
-                                <!-- Payment -->
-                                <form method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+                                <!-- Payment https://sandbox.payhere.lk/pay/checkout -->
+                                <form method="post" action="<?php echo BASEURL.'order/verifyPayment';?>">   
 
                                     <input type="hidden" name="merchant_id" value="1224879">    
                                     <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
@@ -174,9 +174,12 @@
 
                                 </form>
                                         
+                            <!-- Accepted and Paid -->
+                            <?php } else if($order['orderStatus'] == 'Accepted/Paid'){ ?>
+
 
                             <!-- Accepted State / Paid/ Running-->
-                            <?php } else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid"){ ?>
+                            <?php } else if($order['orderStatus'] == 'Running') { ?>
                                     
                                 Paid
                             
@@ -203,6 +206,7 @@
                             <span><?php echo $order['orderStatus'] ?></span>
                         </div>
 
+                        <!-- Order States -->
                         <div class="orderStatusData">
 
                             <!-- Requested State -->
@@ -214,15 +218,23 @@
                                     <button class="buttonType-2">Reject</button>
                                 </div>
 
-                            <!-- Accepted State / Payments Pending-->
-                            <?php } else if($order['orderStatus'] == 'Accepted' && $order['paymentStaus'] == "Pending") { ?>
+                            <!-- Accepted State Waiting for Payments -->
+                            <?php } else if($order['orderStatus'] == 'Accepted/Pending Payments') { ?>
+
 
                                 Pending Payments
+                            <!-- Accepted and Paid -->
+                            <?php } else if($order['orderStatus'] == 'Accepted/Paid') { ?>
+
+                            <!-- Rejected State -->
+                            <?php } else if($order['orderStatus'] == 'Rejected') { ?>
 
                             <!-- Accepted State / Paid/ Running-->
-                            <?php } else if($order['orderStatus'] == 'Active' && $order['paymentStaus'] == "Paid") { ?>
+                            <?php } else if($order['orderStatus'] == 'Running') { ?>
 
                                 Paid
+
+                            <?php } else if($order['orderStatus'] == 'Pending Payments') { ?>
 
                             <?php } ?>
 

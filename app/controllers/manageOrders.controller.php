@@ -14,7 +14,7 @@ class ManageOrders extends Controller
         $data['title'] = "SkillSparq";
 
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
- 
+        
         $this->view('manageOrders', $data); 
     }
 
@@ -163,6 +163,9 @@ class ManageOrders extends Controller
         $descriptions = $milestones['description'];
 
         print_r($milestones);
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
         print_r($_FILES);
 
         for ($i = 0; $i < count($subjects); $i++) {
