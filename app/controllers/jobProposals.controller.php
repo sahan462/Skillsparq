@@ -14,28 +14,50 @@ class JobProposals extends Controller
         $data['var'] = "JobProposal Page";
         $data['title'] = "SkillSparq";
         
-        // logic to add a job proposal to table
-        $sellerId = $_POST['sellerId'];
-        $buyerId = $_POST['buyerId'];
-        $jobId = $_POST['jobId'];
-        $bidAmnt = $_POST['biddingAmnt'];
-        $description = $_POST['descriptionJobProposal'];
+        if($_SESSION['role'] === "Seller"){
 
-        $attachment = ''; // do the file handling part 
+            // logic to add a job proposal to table
+            $jobMode = $_POST['mode'];
+            $sellerId = $_POST['sellerId'];
+            $buyerId = $_POST['buyerId'];
+            $jobId = $_POST['jobId'];
+            $description = $_POST['descriptionJobProposal'];
 
-        $proposalId = $this->JobHandlerModel->createProposal($description,$bidAmnt,$attachment,$jobId,$buyerId, $sellerId);
-        $data['proposalId'] = $proposalId;
-        $this->view('jobProposals',$data);
+            $attachment = ''; // do the file handling part 
+
+            if($jobMode == "Auction"){
+                $bidAmnt = $_POST['biddingAmnt'];
+                $proposalId = $this->JobHandlerModel->createProposal($description,$bidAmnt,$attachment,$jobId,$buyerId, $sellerId);
+            }else{
+                $proposalId = $this->JobHandlerModel->createProposal($description,NULL,$attachment,$jobId,$buyerId, $sellerId);
+            }
+            // $data['proposalId'] = $proposalId;
+
+            header("Location:sellerProfile");
+        }else if($_SESSION['role'] === "Buyer"){
+            $data['jobId'] = $_SESSION['jobId'];
+            $allProposals = $this->viewAllJobProposals($data['jobId']);
+            $data['proposalDetails'] = $allProposals;
+            $this->view('jobProposals',$data);
+            show($data);
+        }
+        
     }
 
-    public function viewSingleJobProposal()
+    // viewing a single job proposal.
+    public function viewSingleJobProposal($proposalId)
     {
-        // viewing a single job proposal.
+        $proposalDets = $this->JobHandlerModel->getSingleJobProposal($proposalId);
+        $proposalInfo = mysqli_fetch_assoc($proposalDets);
+        return $proposalInfo;
     }
 
-    public function viewAllJobProposals()
+    // viewing all job proposals for a particular job created .
+    public function viewAllJobProposals($jobId)
     {
-        // viewing all job proposals available.
+        $proposalDets = $this->JobHandlerModel->viewJobProposals($jobId);
+        $proposalInfo = mysqli_fetch_assoc($proposalDets);
+        return $proposalInfo;
     }
 
 }

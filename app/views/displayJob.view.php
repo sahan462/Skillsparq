@@ -52,6 +52,17 @@
                     Download job File : 
                 </div>
 
+                <?php if($_SESSION['role'] === "Buyer"){?>
+                    <div class="displayJobBidAuction">
+                        <?php 
+                            $_SESSION['jobId'] = $jobId;
+                        ?>
+                        <button class = "sendProposalButton">
+                            <a class="proposalButtonLink" href="jobproposals">See Proposals</a>
+                        </button>
+                    </div>
+                <?php }?>
+
                 <?php if(($job['publish_mode'] === 'Auction Mode') && ($_SESSION['role'] !== "Buyer")){?>
 
                 <div class="displayJobBidAuction">
@@ -118,6 +129,7 @@
                                         <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
                                         <input type="hidden" value="<?php echo $buyerId?>" name="buyerId">
                                         <input type="hidden" value="<?php echo $jobId?>" name="jobId">
+                                        <input type="hidden" value="Auction" name="mode">
                                     </div>
                                 </div>
                                 <div class="buttons">
@@ -196,6 +208,7 @@
                                     </div>
                                     <div class="bidAmount">
                                         <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
+                                        <input type="hidden" value="Standard" name="mode">
                                         <input type="hidden" value="<?php echo $buyerId?>" name="buyerId">
                                         <input type="hidden" value="<?php echo $jobId?>" name="jobId">
                                     </div>

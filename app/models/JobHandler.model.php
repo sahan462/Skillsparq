@@ -295,7 +295,7 @@ class JobHandler extends database
 
     public function viewJobProposals($jobId)
     {
-        $query = "SELECT * FROM job_proposals";
+        $query = "SELECT * FROM job_proposals WHERE job_id=?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
