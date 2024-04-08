@@ -1,4 +1,4 @@
-<?php include "components/buyerSimpleHeader.component.php"; ?>
+<?php include "components/buyerHeader.component.php"; ?>
 
 
 <div class="addjob-container">

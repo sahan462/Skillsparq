@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: #000000 !important;
 }
 
 .displayJobContainer {
@@ -17,7 +18,7 @@ body {
     margin-top: 24px;
     font-size: 32px;
     font-weight: 700;
-    color: #222325;
+    color: #222325 !important;
     line-height: 140%;
     padding: 0 32px;
 }

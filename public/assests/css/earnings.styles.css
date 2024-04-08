@@ -1,4 +1,10 @@
 /* Earnings stuff */
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000 !important;
+}
 
 .earningsHeading{
     /* display: flex; */

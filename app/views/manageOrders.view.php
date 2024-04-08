@@ -1,6 +1,6 @@
 <?php
     if($_SESSION['role'] == 'Buyer'){
-        include "components/buyerSimpleHeader.component.php";
+        include "components/buyerHeader.component.php";
     }else if($_SESSION['role'] == 'Seller'){
         include "components/sellerHeader.component.php";
     }

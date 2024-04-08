@@ -1,5 +1,10 @@
 <?php 
-    include "components/sellerHeader.component.php"; 
+    if($_SESSION['role'] === "Seller"){
+        include "components/sellerHeader.component.php"; 
+    }else if($_SESSION['role'] === "Buyer"){
+        include "components/buyerHeader.component.php"; 
+    }
+    
     $job = $data['job'];
     print_r($data);
     // show($data);

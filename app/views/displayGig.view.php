@@ -1,5 +1,5 @@
 <?php 
-    include "components/buyerSimpleHeader.component.php";
+    include "components/buyerHeader.component.php";
 ?>
 
 <?php

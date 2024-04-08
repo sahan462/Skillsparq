@@ -1,5 +1,7 @@
 <?php
     $Country = "Sri Lanka";
+    $user_id = $_SESSION['userId']; 
+    // print_r($_SESSION); // at the loginSeller.controller.php
 ?>  
 
 <!DOCTYPE html>
@@ -72,10 +74,13 @@
 
                         <li class="imgLinks">
                             <a href="sellerProfile" class="imgLink">
-                                <?php 
-                                    if(isset($data['profilePicture'])){
+                                <?php
+                                
                                 ?>
-                                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
+                                <?php 
+                                    if(isset($_SESSION['profilePicture'])){
+                                ?>
+                                    <img src="../public/assests/images/profilePictures/<?php echo $_SESSION['profilePicture']?>" alt="pro-pic">
                                 <?php
                                     }else{
                                 ?>

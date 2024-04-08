@@ -36,8 +36,10 @@ class JobProposals extends Controller
             header("Location:sellerProfile");
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
-            $allProposals = $this->viewAllJobProposals($data['jobId']);
-            $data['proposalDetails'] = $allProposals;
+            $data['buyerId'] = $_SESSION['userId'];
+            // $data['proposalDets'] = $this->viewAllProposalsForAJob($data['jobId'],$data['buyerId']);
+            $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+            // $data['proposalDetails'] = $allProposals;
             $this->view('jobProposals',$data);
             show($data);
         }
@@ -53,11 +55,15 @@ class JobProposals extends Controller
     }
 
     // viewing all job proposals for a particular job created .
-    public function viewAllJobProposals($jobId)
+    public function viewAllProposalsForAJob($jobId,$buyerId)
     {
-        $proposalDets = $this->JobHandlerModel->viewJobProposals($jobId);
-        $proposalInfo = mysqli_fetch_assoc($proposalDets);
-        return $proposalInfo;
+        // $proposalCount = $this->JobHandlerModel->getProposalCountForAJob($jobId,$buyerId);
+        // $proposalCount = mysqli_fetch_assoc($proposalCount);
+        // $count = $proposalCount['count'];
+        // print_r($count);
+        // $proposalDets = $this->JobHandlerModel->getJobProposals($jobId,$buyerId);
+        // $proposalDets = mysqli_fetch_assoc($proposalDets);
+        // return $proposalDets;
     }
 
 }
