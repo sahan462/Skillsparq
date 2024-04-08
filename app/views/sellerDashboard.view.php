@@ -9,8 +9,8 @@
     
     $data["activeStatus"] = "display: none";
     $data['ongoingOrders'] = 0;
-    $data["earningsThisMonth"] = "$0";
     $data["completedOrders"] = 0;
+    $data["earningsThisMonth"] = "$0";
     $data["lastDelivery"] = "July 2023";
     $data["expertise"] = "Tech";
 

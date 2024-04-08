@@ -307,7 +307,14 @@ svg{
 
 }
 
-#overlayDisplayJob{
+#overlayDisplayJobAuc{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#overlayDisplayJobStd{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -324,7 +331,7 @@ svg{
     to {top:0; opacity:1}
 }
 
-#modalIdDisplayJob {
+#modalIdDisplayJobAuc {
     display: none;
     position: absolute;
     background: #fff;
