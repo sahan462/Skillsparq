@@ -1,6 +1,5 @@
 <?php
-
-$data['profilePicture'] = "whoarewe.jpeg";
+// $data['profilePicture'] = "whoarewe.jpeg";
 $Country = "Sri Lanka";
 ?>
 
@@ -74,7 +73,18 @@ $Country = "Sri Lanka";
 
                         <li class="imgLinks">
                             <a href="sellerProfile" class="imgLink">
-                                <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
+                                <?php 
+                                    if(isset($data['profilePicture'])){
+                                ?>
+                                    <img src="../public/assests/images/<?php echo $data["profilePicture"] ?>" alt="pro-pic">
+                                <?php
+                                    }else{
+                                ?>
+                                    <img src="../public/assests/images/dummyprofile.jpg" alt="pro-pic">
+                                <?php
+                                    }
+                                ?>
+                                
                                 <div class="loginSign"></div>
                             </a>
                         </li>

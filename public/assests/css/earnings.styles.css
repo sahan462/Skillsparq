@@ -25,4 +25,12 @@
     color: #222325;
     line-height: 140%;
     padding: 0 32px;
+    display: flex;
+}
+
+.dollar{
+    width:48px !important;
+    height:48px !important;
+    padding-right: 8px;
+    padding-bottom: 8px;
 }

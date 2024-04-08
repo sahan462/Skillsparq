@@ -274,7 +274,7 @@ class JobHandler extends database
     public function createProposal($description,$bidAmount,$attachment,$jobId,$buyerId, $sellerId)
     {
         $query = "INSERT INTO job_proposals (description,bid_amount,attachments,job_id,buyer_id,seller_id) 
-        VALUES (?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
 

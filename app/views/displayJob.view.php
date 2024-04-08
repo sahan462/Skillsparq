@@ -1,11 +1,15 @@
 <?php 
     include "components/sellerHeader.component.php"; 
     $job = $data['job'];
-    // print_r($data);
+    print_r($data);
+    // show($data);
     $buyerId = $data['buyerDetails']['user_id'];
     $sellerId = $data['sellerDetails']['user_id'];
     $jobId = $data['job']['job_id'];
     // $buyer_id = $data['job']['buyer_id'];
+
+    $givenStartingBid = substr($job['starting_bid'],1);
+    echo $givenStartingBid;
 ?>
 
     <div class="displayJobContainer">
@@ -78,7 +82,10 @@
                             </div>
 
                             <div class="auctionStartingBid">
-                                Bid Starts from : <?php echo $job['starting_bid']?>
+                                Bid Starts from : $
+                                <div id="startingbid">
+                                    <?php echo $givenStartingBid?>
+                                </div>
                             </div>
 
                             <div class="auctionCurrentMinBid">
@@ -153,7 +160,7 @@
 
                             </div>
 
-                            <form id="sendJobProposal" method="post" action="jobProposals/addJobProposal" enctype="multipart/form-data">
+                            <form id="sendJobProposal" method="post" action="jobProposals" enctype="multipart/form-data">
 
                                 <div class="row">
 
@@ -171,16 +178,13 @@
                                             Write a description about what you're gonna offer to get this job.
                                         </div>
                         
-                                        <textarea name="descriptionJobProposal" id="descriptionJobProposalText" cols="30" rows="10" required>
-
-                                        </textarea>
+                                        <textarea name="descriptionJobProposal" id="descriptionJobProposalText" cols="30" rows="10" required></textarea>
 
                                     </div>
 
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
 
                                             <input name="attachment" type="file" id="inputFile" required>
-                                            <!-- <button type="submit">Upload</button> -->
 
                                     </div>
 
@@ -190,10 +194,11 @@
                                             Your Bidding Amount :
                                         </div>
                                         
-                                        <input type="text" id="bidValue" name="biddingAmnt" required>
-                                        <input type="hidden" value="<?php $sellerId?>" name="sellerId">
-                                        <input type="hidden" value="<?php $buyerId?>" name="buyerId">
-                                        <input type="hidden" value="<?php $jobId?>" name="jobId">
+                                        <input type="number" id="bidValue" name="biddingAmnt" min="<?php echo $givenStartingBid?>" max="1000" required>
+
+                                        <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
+                                        <input type="hidden" value="<?php echo $buyerId?>" name="buyerId">
+                                        <input type="hidden" value="<?php echo $jobId?>" name="jobId">
                                     </div>
 
                                 </div>

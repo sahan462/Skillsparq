@@ -14,11 +14,6 @@ class JobProposals extends Controller
         $data['var'] = "JobProposal Page";
         $data['title'] = "SkillSparq";
         
-        $this->view('jobProposals', $data);
-    }
-
-    public function addJobProposal()
-    {
         // logic to add a job proposal to table
         $sellerId = $_POST['sellerId'];
         $buyerId = $_POST['buyerId'];
@@ -28,8 +23,9 @@ class JobProposals extends Controller
 
         $attachment = ''; // do the file handling part 
 
-        $result = $this->JobHandlerModel->createProposal($description,$bidAmnt,$attachment,$jobId,$buyerId, $sellerId);
-
+        $proposalId = $this->JobHandlerModel->createProposal($description,$bidAmnt,$attachment,$jobId,$buyerId, $sellerId);
+        $data['proposalId'] = $proposalId;
+        $this->view('jobProposals',$data);
     }
 
     public function viewSingleJobProposal()
