@@ -1,7 +1,6 @@
 <?php
-// $data['profilePicture'] = "whoarewe.jpeg";
-$Country = "Sri Lanka";
-?>
+    $Country = "Sri Lanka";
+?>  
 
 <!DOCTYPE html>
 <html lang="en">
