@@ -20,6 +20,7 @@ class BuyerProfile extends Controller
             exit;
 
         }else{
+
             $data['var'] = "Buyer Profile Page";
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
@@ -57,7 +58,9 @@ class BuyerProfile extends Controller
             $data['jobs'] = $jobs;
             // show($data);
             $this->view('buyerProfile', $data);
+            
         }
+
 
     }
 

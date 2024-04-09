@@ -1,4 +1,4 @@
-<?php include "components/buyerHeader.component.php"; ?>
+<?php include "../app/views/components/buyerHeader.component.php"; ?>
 
 <?php
     $recentGigs = $data['recentGigs'];
@@ -32,7 +32,7 @@
                 <?php
                     foreach($recentGigs as $row){
                 ?>
-                        <?php include "components/GigCard.component.php"?>
+                        <?php include "../app/views/components/GigCard.component.php"?>
                 <?php
                     }
                 ?>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </a>
-            <?php include "components/cardSlider.component.php"?>
+            <?php include "../app/views/components/cardSlider.component.php"?>
         </div>
 
 
@@ -84,13 +84,13 @@
                     </div>
                 </div>
             </a>
-            <?php include "components/cardSlider.component.php"?>
+            <?php include "../app/views/components/cardSlider.component.php"?>
         </div>
     </div>
 
 </div>
 
-<script src="./assests/js/buyerDashboard.script.js"></script>
-<script src="./assests/js/notifications.script.js"></script>
+<script src="/skillsparq/public/assests/js/buyerDashboard.script.js"></script>
+<script src="/skillsparq/public/assests/js/notifications.script.js"></script>
 
-<?php include "components/footer.component.php"?>
+<?php include "../app/views/components/footer.component.php"?>

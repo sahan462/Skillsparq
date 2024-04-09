@@ -159,6 +159,41 @@ header .upperHeader{
     align-items: center;
 }
 
+/*notification component*/
+
+.notificationIcon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notificationBox {
+    display: none;
+    position: absolute;
+    top: 64px;
+    right: -16px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 8px;
+    width: 332px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.notificationList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notificationList li {
+    margin-bottom: 10px;
+}
+
+.notificationList li:last-child {
+    margin-bottom: 0;
+}
+
 /*profile pic*/
 .upperHeader img{
     width: 48px;

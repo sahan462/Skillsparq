@@ -1,6 +1,5 @@
-
 <?php 
-    include "components/buyerSimpleHeader.component.php";
+    include "../app/views/components/buyerSimpleHeader.component.php";
 ?>
 
 <?php
@@ -9,9 +8,11 @@
     $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
-    $sliderPics = $data['sliderImgs'];
+
+    $gig["sliderImage-2"] = "slide2.webp";
+    $gig["sliderImage-3"] = "slide3.webp";
+    $gig["sliderImage-4"] = "slide4.webp";
     $gig['price'] = 200;
-    // show($data);
 ?>
 
 <!-- Display Gig Container -->
@@ -136,27 +137,22 @@
                     </div>
                 </div>
                 <div class="gigImageSlider">
-
                     <div class="sliderContainer">
-
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/coverImages/<?php echo $gig["cover_image"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/<?php echo $gig["cover_image"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_1"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-2"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-3"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_2"]?>" loading="lazy">
-                            <div class="content"></div>
-                        </div>
-                        <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_3"]?>" loading="lazy">
-                            <div class="content"></div>
-                        </div>
-                        <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_4"]?>" loading="lazy">
+                            <img src="../public/assests/images/<?php echo $gig["sliderImage-4"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <!-- Navigation arrows -->
@@ -354,6 +350,6 @@
     </div>
 </div>
 
-<script src="./assests/js/displayGig.script.js"></script>
+<script src="/skillsparq/public/assests/js/displayGig.script.js"></script>
 
-<?php include "components/footer.component.php"?>
+<?php include "../app/views/components/footer.component.php"?>

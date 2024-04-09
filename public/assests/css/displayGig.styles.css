@@ -337,7 +337,7 @@ textarea {
     display: flex;
     width: 100%;
     margin-bottom: 32px;
-    gap: 128px;
+    gap: 164px;
 }
 
 /* top left container */
@@ -501,7 +501,8 @@ textarea {
     font-weight: 600;
 }
 .columns .price li {
-    text-align: center;
+    text-align: justify;
+    padding: 8px;
 }
 .buttons .button {
     background-color: #1dbf73;
