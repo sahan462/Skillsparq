@@ -45,6 +45,8 @@ function renderImage() {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+
 //open update modal
 function openProfileUpdateModal(button) {
     packageForm = button.id;
@@ -105,6 +107,8 @@ function handleConfirmProfUpdate(action) {
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+
 //open delete modal 
 function openProfileDeleteModal(button){
     deleteForm = button.id;
@@ -140,13 +144,13 @@ function handleConfirmProfDelete(action) {
 
     }else if (action === 'sendDeleteNo'){
 
-        document.getElementById('sendConfirmation1').style.display = 'none';
-        document.getElementById('sendConfirmationOverlay1').style.display = 'none';
+        document.getElementById('sendConfirmProfDelete').style.display = 'none';
+        document.getElementById('sendConfirmProfDeleteOverlay').style.display = 'none';
 
     }else if(action === 'cancelDeleteNo'){
 
-        document.getElementById('cancelConfirmation1').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
+        document.getElementById('cancelConfirmProfDelete').style.display = 'none';
+        document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'none';
 
     }else{
         
@@ -156,57 +160,59 @@ function handleConfirmProfDelete(action) {
         lastName.value = currentLastName;
         about.value = currentAbout;
 
-        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
-        document.getElementById('cancelConfirmation1').style.display = 'none';
-        document.getElementById('overlay1').style.display = 'none';
-        document.getElementById('Modal1').style.display = 'none';
+        document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfDelete').style.display = 'none';
+        document.getElementById('overlayDelete').style.display = 'none';
+        document.getElementById('ModalDelete').style.display = 'none';
 
     }
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+
 //open languages modal 
-function addLanguages(button){
+function openProfileaddLanguagesModal(button){
     deleteForm = button.id;
-    document.getElementById('overlayLanguages').style.display = 'flex';
-    document.getElementById('ModalLanguages').style.display = 'block';
+    document.getElementById('overlayAddLanguages').style.display = 'flex';
+    document.getElementById('ModalAddLanguages').style.display = 'block';
 }
 
-// Function to confirm the action of Deletion
-function confirmActionDelete(action) {
+function confirmActionProfAddLang(action) {
     if (action === 'Add') {
     
-      document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
-      document.getElementById('cancelConfirmation1').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay1').style.display = 'flex';
-      document.getElementById('sendConfirmation1').style.display = 'block';
+      document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+      document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddLang').style.display = 'block';
     
     } else if(action === 'Cancel') {
 
-      document.getElementById('sendConfirmationOverlay1').style.display = 'none';
-      document.getElementById('sendConfirmation1').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay1').style.display = 'flex';
-      document.getElementById('cancelConfirmation1').style.display = 'block';
+      document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddLang').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddLang').style.display = 'block';
     
     } 
 }
 
 // Function to handle actions based on user confirmation
-function handleConfirmationAddLan(action) {
+//handleConfirmProfDelete
+function handleConfirmProfAddLan(action) {
     if (action === 'sendDeleteYes') {
 
-        var profileDeleteForm = document.getElementById('profileDeleteForm');
-        profileDeleteForm.submit();
+        var profileAddLangForm = document.getElementById('languageForm');
+        profileAddLangForm.submit();
 
     }else if (action === 'sendDeleteNo'){
 
-        document.getElementById('sendConfirmation1').style.display = 'none';
-        document.getElementById('sendConfirmationOverlay1').style.display = 'none';
+        document.getElementById('sendConfirmProfAddLang').style.display = 'none';
+        document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
 
     }else if(action === 'cancelDeleteNo'){
 
-        document.getElementById('cancelConfirmation1').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
 
     }else{
         
@@ -216,35 +222,37 @@ function handleConfirmationAddLan(action) {
         lastName.value = currentLastName;
         about.value = currentAbout;
 
-        document.getElementById('cancelConfirmationOverlay1').style.display = 'none';
-        document.getElementById('cancelConfirmation1').style.display = 'none';
-        document.getElementById('overlay1').style.display = 'none';
-        document.getElementById('Modal1').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+        document.getElementById('overlayAddLanguages').style.display = 'none';
+        document.getElementById('ModalAddLanguages').style.display = 'none';
 
     }
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
 
-const languageInput = document.getElementById('languageInput');
-const languageTags = document.getElementById('languageTags');
 
-languageInput.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter' || event.keyCode === 13) {
-    addLanguageTag(this.value);
-    this.value = '';
-    event.preventDefault();
-  }
-});
+// const languageInput = document.getElementById('languageInput');
+// const languageTags = document.getElementById('languageTags');
 
-function addLanguageTag(language) {
-  if (language.trim() !== '') {
-    const tag = document.createElement('div');
-    tag.classList.add('languageTag');
-    tag.textContent = language;
-    tag.addEventListener('click', function() {
-      this.remove();
-    });
-    languageTags.appendChild(tag);
-  }
-}
+// languageInput.addEventListener('keydown', function(event) {
+//   if (event.key === 'Enter' || event.keyCode === 13) {
+//     addLanguageTag(this.value);
+//     this.value = '';
+//     event.preventDefault();
+//   }
+// });
+
+// function addLanguageTag(language) {
+//   if (language.trim() !== '') {
+//     const tag = document.createElement('div');
+//     tag.classList.add('languageTag');
+//     tag.textContent = language;
+//     tag.addEventListener('click', function() {
+//       this.remove();
+//     });
+//     languageTags.appendChild(tag);
+//   }
+// }

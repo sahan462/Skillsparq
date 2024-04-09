@@ -308,6 +308,25 @@ input[type = "text"], textarea, select{
     box-shadow: none !important;
 }
 
+/*addProfLang*/
+.addProfLang button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #333 !important;
+    /* border: 2px solid #333 !important; */
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.addProfLang button:hover{
+    color: #fff !important;
+    background: #31d65a !important;
+    /* border: 2px solid #333 !important; */
+    box-shadow: none !important;
+}
+
 /*Delete Profile*/
 .delete-profile button{
     width: 100%;
