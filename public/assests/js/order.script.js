@@ -70,43 +70,64 @@ function confirmAction(action) {
   
   } else if(action === 'cancel') {
 
-    document.getElementById('sendConfirmationOverlay').style.display = 'none';
-    document.getElementById('sendConfirmation').style.display = 'none';
     document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
     document.getElementById('cancelConfirmation').style.display = 'block';
   
   } 
 }
 
-function handleConfirmation(action) {
-  if (action === 'sendYes') {
+function handleConfirmation(action, orderId, orderType) {
+    if(action === 'cancelNo'){
 
-      var sendRequestForm = document.getElementById('sendRequestForm');
-      sendRequestForm.submit();
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 
-  }else if (action === 'sendNo'){
+    }else{
 
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-
-  }else if(action === 'cancelNo'){
-
-      document.getElementById('cancelConfirmation').style.display = 'none';
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
 
-  }else{
+      cancelOrder(orderId, orderType);
 
-    packageForm = "";
-
-    var fileNameSpan = document.getElementById('fileName');
-
-    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-    document.getElementById('cancelConfirmation').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('packageModal').style.display = 'none';
-    document.getElementById('warningMessage').style.display = 'none';
-
-    fileNameSpan.textContent = '';
-  }
+    }
 
 }
+
+
+// ---------------------------------------Payment Form submission--------------------------------------------------------
+
+function submitForm(){
+  const paymentForm = document.getElementById('paymentForm');
+  paymentForm.submit();
+}
+
+
+// ---------------------------------------Cancel an order--------------------------------------------------------
+
+async function cancelOrder(orderId, orderType) {
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+
+  try {
+      const response = await fetch('order/cancelOrder', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
+      });
+      
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      alert("Order cancelled successfully");
+      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
+
+
+
+
+

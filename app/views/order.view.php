@@ -9,7 +9,7 @@
 <?php 
     $userRole = 'buyer';
     $order['orderType'] = 'package';
-    $order['orderStatus'] = 'Accepted/Pending Payments';
+    $order['orderStatus'] = 'Accepted/Pending Payments';//Requested->Accepted/Pending Payments->Accepted/Paid
     $order['paymentStaus'] = 'Pending';
 
 ?>
@@ -37,10 +37,10 @@
     <!-- Modal 1 -->
     <div class="overlay" id="cancelConfirmationOverlay">
         <div class="confirmation" id="cancelConfirmation">
-            <p>Are you sure want to cancel?</p>
+            <p>Are you sure want to cancel your order?</p>
             <div class="buttons">
-                <button onclick="handleConfirmation('cancelNo')">No</button>
-                <button onclick="handleConfirmation('cancelYes')">Yes</button>
+                <button onclick="handleConfirmation('cancelNo', '', '')">No</button>
+                <button onclick="handleConfirmation('cancelYes', <?php echo $data['orderId']?>, '<?php echo $order['orderType']?>')">Yes</button>
             </div>
         </div>
     </div>
@@ -146,15 +146,16 @@
                                     );
                                 
                                 ?>
-
+                                
                                 <!-- Payment https://sandbox.payhere.lk/pay/checkout -->
-                                <form method="post" action="<?php echo BASEURL.'order/verifyPayment';?>">   
+                                <form method="post" action="<?php echo BASEURL.'order/verifyPayment';?>" id="paymentForm">   
 
                                     <input type="hidden" name="merchant_id" value="1224879">    
                                     <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
                                     <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">
                                     <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
                                     <input type="hidden" name="order_id" value="11">
+                                    <input type="hidden" name="order_type" value="<?php echo $order['orderType']?>">
                                     <input type="hidden" name="items" value="Door bell wireless">
                                     <input type="hidden" name="currency" value="USD">
                                     <input type="hidden" name="amount" value="10">  
@@ -167,12 +168,14 @@
                                     <input type="hidden" name="country" value="Sri Lanka">
                                     <input type="hidden" name="hash" value="<?php echo $hash ?>">  
 
-                                    <div class="row">
-                                        <button type="submit" class="buttonType-1">Proceed to Pay</button>
-                                        <button class="buttonType-2" onclick="confirmAction('cancel')">Cancel Order</button>
-                                    </div>
-
+                        
                                 </form>
+
+
+                                <div class="row">
+                                    <button class="buttonType-1" onclick="submitForm()">Proceed to Pay</button>
+                                    <button class="buttonType-2" onclick="confirmAction('cancel')">Cancel Order</button>
+                                </div>
                                         
                             <!-- Accepted and Paid -->
                             <?php } else if($order['orderStatus'] == 'Accepted/Paid'){ ?>
@@ -258,6 +261,7 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./assests/js/order.script.js"></script>
 
 <?php include "components/footer.component.php"; ?>

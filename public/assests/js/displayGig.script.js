@@ -105,7 +105,6 @@ function handleConfirmation(action) {
   if (action === "sendYes") {
     
     if(orderType === "packageOrder"){
-      alert(packageForm);
       var formData1 = new FormData(document.getElementById(packageForm));
       var form2 = document.getElementById("packageRequestForm");
   
@@ -122,7 +121,6 @@ function handleConfirmation(action) {
     }else{
       alert(orderType);
       var form1 = document.getElementById("milestoneRequestForm");
-      alert(form1);
       form1.submit();
       
     }

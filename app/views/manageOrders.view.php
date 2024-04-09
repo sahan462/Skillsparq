@@ -59,7 +59,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'request'){
+                                    if($row['order_state'] == 'request'){
 
                             ?>
                                     <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
@@ -107,7 +107,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'accepted'){
+                                    if($row['order_state'] == 'accepted'){
 
                             ?>
                                     <tr onclick="window.location='#';">
@@ -153,7 +153,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'rejected'){
+                                    if($row['order_state'] == 'rejected'){
 
                             ?>
                                     <tr onclick="window.location='#';">
@@ -200,7 +200,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'running'){
+                                    if($row['order_state'] == 'running'){
 
                             ?>
                                     <tr onclick="window.location='#';">
@@ -248,7 +248,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'completed'){
+                                    if($row['order_state'] == 'completed'){
 
                             ?>
                                     <tr onclick="window.location='#';">
@@ -297,7 +297,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_status'] == 'late delivery'){
+                                    if($row['order_state'] == 'late delivery'){
 
                             ?>
                                     <tr onclick="window.location='#';">
