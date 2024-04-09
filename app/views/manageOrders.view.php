@@ -31,6 +31,7 @@
                 <button class="tablinks" onclick="openCity(event, 'Active')">Active</button>
                 <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
                 <button class="tablinks" onclick="openCity(event, 'Late')">Late</button>
+                <button class="tablinks" onclick="openCity(event, 'Cancelled')">Cancelled</button>
             </div>
 
             <!-- Tab content -->
@@ -107,11 +108,11 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'accepted'){
+                                    if($row['order_state'] == 'Accepted'){
 
                             ?>
-                                    <tr onclick="window.location='#';">
-                                        <td><?php echo $i+1 ?></td>
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
+                                        <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <span>Kumar Sanagakkara</span>
                                         </td>
@@ -156,8 +157,8 @@
                                     if($row['order_state'] == 'rejected'){
 
                             ?>
-                                    <tr onclick="window.location='#';">
-                                        <td><?php echo $i+1 ?></td>
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
+                                        <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -203,8 +204,8 @@
                                     if($row['order_state'] == 'running'){
 
                             ?>
-                                    <tr onclick="window.location='#';">
-                                        <td><?php echo $i+1 ?></td>
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
+                                        <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
@@ -251,7 +252,7 @@
                                     if($row['order_state'] == 'completed'){
 
                             ?>
-                                    <tr onclick="window.location='#';">
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
                                         <td><?php echo $i+1 ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
@@ -297,11 +298,59 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'late delivery'){
+                                    if($row['order_state'] == 'late'){
 
                             ?>
-                                    <tr onclick="window.location='#';">
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
                                         <td><?php echo $i+1 ?></td>
+                                        <td class="buyer">
+                                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
+                                            <span>Ann Perera</span>
+                                        </td>
+                                        <td>I will create wordpress websites</td>
+                                        <td>5 Sep</td>
+                                        <td>3 July</td>
+                                        <td>$5000</td>
+                                        <td>Package Order</td>
+                                    </tr>
+                            <?php 
+                                    }
+                                }
+                            ?>
+                        </div>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Cancelled Orders -->
+            <div id="Cancelled" class="tabcontent">
+                <div class="outerTable">
+                    <table>
+                        <div class="thead">
+                            <tr style="position: sticky, top: 0;">
+                                <th style="width: 6%;">Order Id</th>
+
+                                <?php if($_SESSION["role"] == 'Seller') { ?>
+                                    <th style="width: 26%;">Buyer</th>
+                                <?php } else { ?>
+                                    <th style="width: 26%;">Seller</th>
+                                <?php }?>
+
+                                <th style="width: 28%;">Gig</th>
+                                <th style="width: 10%;">Due On</th>
+                                <th style="width: 10%;">Delivered At</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Order Type</th>
+                            </tr>
+                        </div>
+                        <div class="tbody">
+                            <?php 
+                                foreach($myOrders as $row){
+
+                                    if($row['order_state'] == 'Cancelled'){
+                            ?>
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>'">
+                                        <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>
