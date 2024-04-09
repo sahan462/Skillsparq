@@ -24,6 +24,7 @@ class JobProposals extends Controller
             $description = $_POST['descriptionJobProposal'];
 
             $attachment = ''; // do the file handling part 
+            
 
             if($jobMode == "Auction"){
                 $bidAmnt = $_POST['biddingAmnt'];

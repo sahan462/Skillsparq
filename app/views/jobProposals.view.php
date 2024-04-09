@@ -2,7 +2,7 @@
     include "components/buyerHeader.component.php"; 
 ?>
 
-    <div>
+    <div class="displayJobContainer">
         <?php
             if($_SESSION['role'] === "seller"){
                 
@@ -11,4 +11,7 @@
             }  
 
         ?>
+        <div class="displayJobHeader">
+            <?php echo "All Proposals";?>
+        </div>
     </div>

@@ -2,11 +2,11 @@
     if($_SESSION['role'] === "Seller"){
         include "components/sellerHeader.component.php"; 
     }else if($_SESSION['role'] === "Buyer"){
-        include "components/buyerHeader.component.php"; 
+        include "components/buyerSimpleHeader.component.php"; 
     }
     
-    $job = $data['job'];
-    print_r($data);
+    // $job = $data['job'];
+    // print_r($data);
     // show($data);
     $buyerId = $data['buyerDetails']['user_id'];
     if($_SESSION['role'] !== "Buyer"){
@@ -16,7 +16,7 @@
 
     if($job['publish_mode'] === "Auction Mode"){
         $givenStartingBid = substr($job['starting_bid'],1);
-        echo $givenStartingBid;
+        // echo $givenStartingBid;
     }
 ?>
 

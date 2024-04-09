@@ -8,18 +8,16 @@
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/buyerHeader.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerDashboard.styles.css">
-    <!-- <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php //echo time(); ?>"> -->
     <link rel="stylesheet" href="./assests/css/cardSlider.styles.css">
     <link rel="stylesheet" href="./assests/css/buyerProfile.styles.css">
     <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
     <link rel="stylesheet" href="./assests/css/order.styles.css">
     <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
-    <link rel="stylesheet" href="./assests/css/help.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
-    
     <link rel="stylesheet" href="./assests/css/addJob.styles.css">
+    <link rel="stylesheet" href="./assests/css/displayJob.styles.css">
     <link rel="stylesheet" href="./assests/css/userHelp.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />

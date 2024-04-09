@@ -9,23 +9,18 @@
     $DateJoined = $data['sellerProfileDetails']['joined_date'];
     $lastSeen = $data['sellerProfileDetails']['last_seen'];
     $about = $data['sellerProfileDetails']['about'];
-    // $languages = $data['sellerProfileDetails']['languages'];
-    // $skills = $data['sellerProfileDetails']['skills'];
     $userId = $data['sellerProfileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = (array) $data['gigs'];
-    // print_r($Gigs['gig_id']);
-    // show($data);
-
 ?>
 
 <!-- Main Container for Seller -->
 <div class="sellerProfileContainer">
 
     <!-- Modal 1 -->
-    <div class="overlay" id="overlay">
+    <div class="overlay" id="overlayUpdate">
 
-        <div class="modal" id="Modal">
+        <div class="modal" id="ModalUpdate">
 
             <form id="profileUpdateForm" method="post" action="./sellerProfile/updateSellerProfile" enctype="multipart/form-data">
 
@@ -94,8 +89,8 @@
 
                 <div class="buttons">
 
-                    <button type="button" onclick="confirmAction('cancel')">Cancel Update</button>
-                    <button type="button" onclick="confirmAction('send')">Update Profile</button>
+                    <button type="button" onclick="confirmActionProfUpdate('cancel')">Cancel Update</button>
+                    <button type="button" onclick="confirmActionProfUpdate('send')">Update Profile</button>
 
                 </div>
 
@@ -110,15 +105,15 @@
     </div>
 
     <!-- Modal 2 -->
-    <div class="overlay" id="cancelConfirmationOverlay">
+    <div class="overlay" id="cancelConfirmProfUpdateOverlay">
 
-        <div class="confirmation" id="cancelConfirmation">
+        <div class="confirmation" id="cancelConfirmProfUpdate">
 
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmation('cancelNo')">No</button>
-                <button onclick="handleConfirmation('cancelYes')">Yes</button>
+                <button onclick="handleConfirmProfUpdate('cancelNo')">No</button>
+                <button onclick="handleConfirmProfUpdate('cancelYes')">Yes</button>
 
             </div>
 
@@ -127,15 +122,15 @@
     </div>
 
     <!-- Modal 3 -->
-    <div class="overlay" id="sendConfirmationOverlay">
+    <div class="overlay" id="sendConfirmProfUpdateOverlay">
 
-        <div class="confirmation" id="sendConfirmation">
+        <div class="confirmation" id="sendConfirmProfUpdate">
 
             <p>Are you sure want to continue?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmation('sendNo')">No</button>
-                <button onclick="handleConfirmation('sendYes')">Yes</button>
+                <button onclick="handleConfirmProfUpdate('sendNo')">No</button>
+                <button onclick="handleConfirmProfUpdate('sendYes')">Yes</button>
 
             </div>
 
@@ -144,9 +139,9 @@
     </div>
 
     <!-- Modal 4 Delete Modal -->
-    <div class="overlay1" id="overlay1">
+    <div class="overlay1" id="overlayDelete">
 
-        <div class="modal1" id="Modal1">
+        <div class="modal1" id="ModalDelete"> 
 
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
 
@@ -186,8 +181,10 @@
 
                 <div class="buttons">
 
-                    <button type="button" onclick="confirmActionDelete('cancelDelete')">Cancel Delete</button>
-                    <button type="button" onclick="confirmActionDelete('sendDelete')">Delete Profile</button>
+                    <button type="button" onclick="function confirmActionProfDelete(action) {
+('cancelDelete')">Cancel Delete</button>
+                    <button type="button" onclick="function confirmActionProfDelete(action) {
+('sendDelete')">Delete Profile</button>
 
                 </div>
 
@@ -201,15 +198,15 @@
     </div>
 
     <!-- Modal 5 Cancel Deletion -->
-    <div class="overlay1" id="cancelConfirmationOverlay1">
+    <div class="overlay1" id="cancelConfirmProfDeleteOverlay">
 
-        <div class="confirmation" id="cancelConfirmation1">
+        <div class="confirmation" id="cancelConfirmProfDelete">
 
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmationDelete('cancelDeleteNo')">No</button>
-                <button onclick="handleConfirmationDelete('cancelDeleteYes')">Yes</button>
+                <button onclick="handleConfirmProfDelete('cancelDeleteNo')">No</button>
+                <button onclick="handleConfirmProfDelete('cancelDeleteYes')">Yes</button>
 
             </div>
 
@@ -218,15 +215,15 @@
     </div>
 
     <!-- Modal 6 -->
-    <div class="overlay1" id="sendConfirmationOverlay1">
+    <div class="overlay1" id="sendConfirmProfDeleteOverlay">
 
-        <div class="confirmation" id="sendConfirmation1">
+        <div class="confirmation" id="sendConfirmProfDelete">
 
             <p>Are you sure want to continue?</p>
             <div class="buttons">
 
-                <button onclick="handleConfirmationDelete('sendDeleteNo')">No</button>
-                <button onclick="handleConfirmationDelete('sendDeleteYes')">Yes</button>
+                <button onclick="handleConfirmProfDelete('sendDeleteNo')">No</button>
+                <button onclick="handleConfirmProfDelete('sendDeleteYes')">Yes</button>
 
             </div>
 
@@ -239,7 +236,7 @@
 
         <div class="modalLanguages" id="ModalLanguages">
 
-            <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
+            <form id="languageForm" method="post" action="./sellerProfile/deleteSellerProfile">
 
                 <div class="seller-profile-picture">
 
@@ -390,13 +387,13 @@
 
                 <div class="edit-profile">
 
-                    <button onclick="openPackageModal(this)">Edit Profile</button>
+                    <button onclick="openProfileUpdateModal(this)">Edit Profile</button>
 
                 </div>
 
                 <div class="delete-profile">
 
-                    <button onclick="openDeleteModal(this)">Delete Profile</button>
+                    <button onclick="openProfileDeleteModal(this)">Delete Profile</button>
 
                 </div>
 
@@ -639,9 +636,6 @@
                     </div>
 
                     <div class="review-content">
-
-                            <?php //if(empty()){?>
-                                <?php //}?>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/></svg>
                         <span>Setup Your Portfolio Right Now !</span>
