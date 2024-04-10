@@ -42,6 +42,9 @@ body.dark{
     --box3-color: #3A3B3C;
     --title-icon-color: #CCC;
 }
+text.dark{
+    --text-color:white;
+}
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
     width: 8px;
@@ -517,21 +520,6 @@ nav.close ~ .dashboard .top{
 
 }
 
-
-button{
-    width: 10%;
-    height: 32px;
-    margin-top: 50px;
-    margin-bottom: 16px;
-    color: #fff;
-    border: 2px solid #1dbf73;
-    background: #1dbf73;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-
-}
-
  .grid{
     width: 40%;
     font-weight: none;
@@ -734,4 +722,24 @@ box-shadow: var(--shadow); */
 .profile-dropdown-list-item:hover {
     padding-left: 1.5rem;
     background-color: var(--secondary-light);
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    color: #1dbf73;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #1dbf73;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background-color: #1dbf73;
+    color: white;
 }

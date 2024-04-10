@@ -9,7 +9,7 @@
 
 :root{
     /* ===== Colors ===== */
-    --primary-color: #31dba3;
+    --primary-color: #0E4BF1;
     --panel-color: #FFF;
     --text-color: #000;
     --black-light-color: #707070;
@@ -42,6 +42,9 @@ body.dark{
     --box3-color: #3A3B3C;
     --title-icon-color: #CCC;
 }
+text.dark{
+    --text-color:white;
+}
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
     width: 8px;
@@ -56,7 +59,7 @@ body.dark{
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #31dba3;
+    background: #0b3cc1;
 }
 
 body.dark::-webkit-scrollbar-thumb:hover,
@@ -290,8 +293,10 @@ nav.close ~ .dashboard .top{
     align-items: center;
     justify-content: center;
     font-size: 24px;
+    
 }
 .dash-content .title .text{
+    margin-left: 50%;
     font-size: 24px;
     font-weight: 500;
     color: var(--text-color);
@@ -455,4 +460,294 @@ nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
     }
+}
+
+
+.content-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    align-items: center;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table th{
+    font-weight:bold ;
+    color: white;
+    background-color:#009879 ;
+    margin-top: 10px;
+
+}
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.heading{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-style: inherit;
+    text-align: center;
+    font-size: 30px;
+    color: #009879;
+
+}
+
+ .grid{
+    width: 40%;
+    font-weight: none;
+    display: inline-block;
+    width: 45%; /* Adjust the width as needed */
+    margin-right: 20px; /* Margin between the two divs */
+    vertical-align: top; /* Align the divs to the top */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 10px; /* Optional: Add padding inside the divs */
+ }
+
+
+
+ .grid ul li{
+    font-weight: none;
+    margin: 0;
+    list-style: none;
+    background: url(../images/istockphoto-1416145560-612x612.jpg) left top no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+p{
+    font-weight: bold;
+}
+
+button {
+    width: 80px;
+    height: 32px;
+    color: #fff;
+    border: 2px solid #1dbf73;
+    background: #1dbf73;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
+
+:root {
+    --primary: #eeeeee;
+    --secondary: #227c70;
+    --green: #82cd47;
+    --secondary-light: rgb(34, 124, 112, 0.2);
+    --secondary-light-2: rgb(127, 183, 126, 0.1);
+    --white: #fff;
+    --black: #393e46;
+
+    --shadow: 0px 2px 8px 0px var(--secondary-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--primary);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    background-color: var(--white);
+    padding: 0 8%;
+    box-shadow: var(--shadow);
+}
+
+.navbar-logo {
+    cursor: pointer;
+}
+
+.navbar-list {
+    width: 100%;
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.navbar-list li {
+    display: inline-block;
+    margin: 0 1rem;
+}
+
+.navbar-list li a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.profile-dropdown {
+    position: relative;
+    width: fit-content;
+}
+
+.profile-dropdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 150px;
+    border-radius: 50px;
+    color: var(--black);
+    /* background-color: white;
+box-shadow: var(--shadow); */
+
+    cursor: pointer;
+    border: 1px solid var(--secondary);
+    transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
+        border 0.3s;
+}
+
+.profile-dropdown-btn:hover {
+    background-color: var(--secondary-light-2);
+    box-shadow: var(--shadow);
+}
+
+.profile-img {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: url(../public/assests/images/chamal.jpg);
+    background-size: cover;
+}
+
+.profile-img i {
+    position: absolute;
+    right: 0;
+    bottom: 0.3rem;
+    font-size: 0.5rem;
+    color: var(--green);
+}
+
+.profile-dropdown-btn span {
+    margin: 0 0.5rem;
+    margin-right: 0;
+}
+
+.profile-dropdown-list {
+    position: absolute;
+    top: 68px;
+    width: 220px;
+    right: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: max-height 0.5s;
+}
+
+.profile-dropdown-list hr {
+    border: 0.5px solid var(--green);
+}
+
+.profile-dropdown-list.active {
+    max-height: 500px;
+}
+
+.profile-dropdown-list-item {
+    padding: 0.5rem 0rem 0.5rem 1rem;
+    transition: background-color 0.2s ease-in, padding-left 0.2s;
+}
+
+.profile-dropdown-list-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.profile-dropdown-list-item a i {
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    background-color: var(--secondary);
+    color: var(--white);
+    line-height: 2.3rem;
+    text-align: center;
+    margin-right: 1rem;
+    border-radius: 50%;
+    transition: margin-right 0.3s;
+}
+
+.profile-dropdown-list-item:hover {
+    padding-left: 1.5rem;
+    background-color: var(--secondary-light);
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    color: #1dbf73;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #1dbf73;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background-color: #1dbf73;
+    color: white;
+}
+
+
+.subChart{
+    margin-top: 50px;
+    width: 45%;
+    border: #000;
+    border-radius: 10px;
 }

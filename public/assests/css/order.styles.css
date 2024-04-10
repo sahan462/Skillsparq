@@ -26,18 +26,22 @@ header{
     cursor: pointer;
     background-color: inherit;
     font-size: 20px;
-    border: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
     margin-right: 16px;
     padding-bottom: 4px;
-    border-bottom: 4px solid transparent; 
 }
 .orderContainerHeader button:hover {
     color: #1dbf73;
-    border-bottom-color: #1dbf73; 
+    border-bottom: 4px solid #1dbf73; 
+}
+.tablinks{
+    border-bottom: none;
 }
 .active{
     color: #1dbf73;
-    border-bottom: 4px solid #1dbf73;
+    border-bottom: 4px solid #1dbf73; 
 }
 
 /*Tab Content*/
@@ -103,11 +107,15 @@ header{
     height: auto;
     padding: 16px;
 }
+.orderDetails .deadline{
+    margin-bottom: 24px;
+}
 .orderDetails .deadline span{
     color: #404145;
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: 700;
     margin-bottom: 16px;
+    font-size: 18px;
 }
 .orderDetails .timer{
     border-radius: 8px;
@@ -125,6 +133,7 @@ header{
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 .orderDetails .orderStatus{
+    height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -135,17 +144,17 @@ header{
     height: fit-content;
     padding: 0 2px;
     width: 100%;
+    font-size: 18px;
+    color: black;
 }
 .orderDetails .row{
     display: flex;
     gap: 16px;
 }
 .buttonType-1{
-    width: 50%;
-    padding: 8px;
-    margin-top: 8px;
     width: 100%;
-    font-weight: 600;
+    padding: 8px;
+    font-weight: 500;
     font-size: 18px;
     color: #fff;
     border-radius: 8px;
@@ -159,11 +168,9 @@ header{
     font-weight: 500;
 }
 .buttonType-2{
-    width: 50%;
-    padding: 8px;
-    margin-top: 8px;
     width: 100%;
-    font-weight: 600;
+    padding: 8px;
+    font-weight: 500;
     font-size: 18px;
     color: #fff;
     border-radius: 8px;

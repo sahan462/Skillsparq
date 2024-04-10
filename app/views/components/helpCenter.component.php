@@ -19,7 +19,7 @@
                 </a></li>
             <li><a href="viewHelpRequests">
                     <i class="uil uil-chart"></i>
-                    <span class="link-name">Analytics</span>
+                    <span class="link-name">Help Requests</span>
                 </a></li>
             <li><a href="#">
                     <i class="uil uil-thumbs-up"></i>
@@ -77,9 +77,9 @@
 
             <ul class="profile-dropdown-list">
                 <li class="profile-dropdown-list-item">
-                    <a href="#">
+                    <a href="HCprofile">
                         <i class="fa-regular fa-user"></i>
-                        Edit Profile
+                        Profile
                     </a>
                 </li>
 

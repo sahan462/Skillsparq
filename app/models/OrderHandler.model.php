@@ -3,7 +3,7 @@ class OrderHandler extends database
 {
 
     //create new order
-    public function createOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
+    public function createPackageOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
         $stmt_1 = mysqli_prepare($GLOBALS['db'], "INSERT INTO Orders 
         (
@@ -62,4 +62,93 @@ class OrderHandler extends database
         return $orderId;
 
     }
+
+    //create milestone order
+
+
+    //get orders
+    public function getOrders($userId, $userRole)
+    {
+        if($userRole == 'Buyer'){
+
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
+
+        }else{
+
+            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
+
+        }
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get order details
+    public function getOrderDetails($orderId, $orderType)
+    {
+
+        if($orderType == 'package'){
+
+            $query = "SELECT * FROM orders inner join profile inner join package_orders on orders.order_id = package_orders.package_order_id where order_id = ?";
+
+        }else if($orderType == 'milestone'){
+
+        }else if($orderType == 'job'){
+
+        }else if($orderType == ''){
+
+        }else{
+
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    //Update order State
+    public function updateOrderState($orderId, $state)
+    {
+        $query = "Update orders set order_state = ? where order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $state, $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+
+
 }

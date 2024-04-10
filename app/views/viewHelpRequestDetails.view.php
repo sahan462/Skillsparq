@@ -34,7 +34,7 @@
             <div class="grid">
                 <p style="font-weight: bold ; font-size:large">Request Details</P>
                 <?php
-                foreach ($viewComplaint as $row) {
+                foreach ($viewHelpRequests as $row) {
                 ?>
                     <ul>
                         <li>Inquiry_ID: <span><?php echo $row['inquiry_id']; ?></span></li>
@@ -75,7 +75,7 @@
                 </p>
                 <div id="viewSender">
                     <?php
-                    foreach ($viewSenderDetails as $row) {
+                    foreach ($viewHelpRequests as $row) {
 
                     ?>
                         <ul>
@@ -97,7 +97,7 @@
         <form method="post">
             <textarea name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
             <br>
-            <input type="submit" value="Reply">
+            <input class="submit" type="submit" value="Reply">
         </form>
 
 

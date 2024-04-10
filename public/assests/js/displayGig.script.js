@@ -105,23 +105,22 @@ function handleConfirmation(action) {
   if (action === "sendYes") {
     
     if(orderType === "packageOrder"){
-
-      var form1 = document.getElementById(packageForm);
-      var formData2 = new FormData(document.getElementById("packageRequestForm"));
+      var formData1 = new FormData(document.getElementById(packageForm));
+      var form2 = document.getElementById("packageRequestForm");
   
-      formData2.forEach((value, key) => {
+      formData1.forEach((value, key) => {
         var input = document.createElement("input");
         input.type = "hidden";
         input.name = key;
         input.value = value;
-        form1.appendChild(input);
+        form2.appendChild(input);
       });
-      form1.submit();
+
+      form2.submit();
   
     }else{
-
+      alert(orderType);
       var form1 = document.getElementById("milestoneRequestForm");
-      alert(form1);
       form1.submit();
       
     }
@@ -317,12 +316,18 @@ function updateMilestoneNumbering() {
   count--;
 
   if (count === 0) {
+    var animationClone = inputContainer.querySelector('#animation').cloneNode(true);
+    inputContainer.innerHTML = "";
+    inputContainer.appendChild(animationClone);
+
+    animation = animationClone; //new animation container is the clone of the animation container
+
     animation.style.width = '100%';
     animation.style.height = '100%';
     animation.innerHTML = `
-      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-      <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
-    `;
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <dotlottie-player src="https://lottie.host/675546e0-ec0f-47bf-94d7-80b40da8d8ed/85JHIZQ26o.json" background="transparent" speed="1" style="width: 480px; height: 420px;" loop autoplay></dotlottie-player>
+  `;
   } else {
     const milestones = document.querySelectorAll('#inputContainer .collapsible');
     var fileInputs = document.querySelectorAll('.fileInput');

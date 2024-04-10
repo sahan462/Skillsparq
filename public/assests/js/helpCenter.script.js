@@ -10,38 +10,6 @@ function openPackageModal(button) {
   document.getElementById('packageModal').style.display = 'block';
 }
 
-// Function to confirm the action
-function confirmAction(action) {
-    if (action === 'send') {
-    
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
-    
-    } else if(action === 'cancel') {
-
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
-    
-    } else if(action === 'milestoneSend'){
-
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
-
-    }else{
-
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
-
-    }
-}
 
 // Function to handle actions based on user confirmation
 function handleConfirmation(action) {
