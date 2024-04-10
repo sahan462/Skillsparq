@@ -144,11 +144,82 @@ class InquiryHandler extends database
         }
     }
 
-    public function viewComplaints()
+    public function viewComplaints($inquiry_id)
     {
-        $inquiry_id = isset($_GET['inquiry_id']) ? $_GET['inquiry_id'] : null;
+        $query = "SELECT 
+        i.*, 
+        c.*, 
+        o.*, 
+        u1.user_id as seller_id, 
+        u1.user_email as seller_email,
+        u1.role as seller_role,
+        u1.agreement as seller_agreement,
+        u1.black_List as seller_blackList,
+        u1.black_Listed_Until as seller_blackListUntil,
+        u2.user_id as buyer_id,
+        u2.user_email as buyer_email,
+        u2.role as buyer_role,
+        u2.agreement as buyer_agreement,
+        u2.black_List as buyer_blackList,
+        u2.black_Listed_Until as buyer_blackListUntil
+    FROM inquiries i
+    JOIN complaints c ON c.complaint_id = i.inquiry_id
+    JOIN orders o ON o.order_id = c.order_id
+    JOIN user u1 ON o.seller_id = u1.user_id
+    JOIN user u2 ON o.buyer_id = u2.user_id
+    WHERE i.inquiry_id = ?";
 
-        $query = "SELECT * FROM inquiries WHERE inquiry_id = " . $inquiry_id;
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $inquiry_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function viewHelpRequests($inquiry_id)
+    {
+        $query = "SELECT 
+        i.*, 
+        c.*,  
+        u.*
+        
+    FROM inquiries i
+    JOIN help_requests c ON c.request_id = i.inquiry_id
+    JOIN user u ON u.user_id = i.inquiry_originator_id
+   
+    WHERE i.inquiry_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $inquiry_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
+
+    public function viewSenderDetails(int $num)
+
+    {
+        $num1 = (int) "SELECT inquiry_originator_id from inquiries where inquiry_id = $num";
+        $query = "SELECT user_id,user_email,role,agreement from user where user_id = $num1";
+
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -163,64 +234,7 @@ class InquiryHandler extends database
         }
     }
 
-    // public function viewSenderDetails(int $num)
 
-    // {
-    //     $num1 = (int) "SELECT inquiry_originator_id from inquiries where inquiry_id = $num";
-    //     $query = "SELECT user_id,user_email,role,agreement from user where user_id = $num1";
-
-
-    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
-
-    //     if (!$stmt) {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-
-    //     if (mysqli_stmt_execute($stmt)) {
-    //         return $stmt->get_result();
-    //     } else {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-    // }
-
-    public function viewSenderDetails(int $num)
-    {
-        $query1 = "SELECT inquiry_originator_id FROM inquiries WHERE inquiry_id = ?";
-        $stmt1 = mysqli_prepare($GLOBALS['db'], $query1);
-
-        if (!$stmt1) {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-
-        mysqli_stmt_bind_param($stmt1, "i", $num);
-
-        if (mysqli_stmt_execute($stmt1)) {
-            mysqli_stmt_bind_result($stmt1, $num1);
-            mysqli_stmt_fetch($stmt1);
-
-            // Free the result set
-            mysqli_stmt_free_result($stmt1);
-            // Close the statement
-            mysqli_stmt_close($stmt1);
-
-            $query2 = "SELECT user_id, user_email, role, agreement FROM user WHERE user_id = ?";
-            $stmt2 = mysqli_prepare($GLOBALS['db'], $query2);
-
-            if (!$stmt2) {
-                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-            }
-
-            mysqli_stmt_bind_param($stmt2, "i", $num1);
-
-            if (mysqli_stmt_execute($stmt2)) {
-                return $stmt2->get_result();
-            } else {
-                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-            }
-        } else {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-    }
 
     public function addNewResponse($inquiry_id, $response)
     {
@@ -238,5 +252,31 @@ class InquiryHandler extends database
         }
 
         mysqli_stmt_close($stmt);
+    }
+    public function blackListBuyer($userId)
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $user_id_to_blacklist = $_POST['user_id_to_blacklist'];
+            $blacklist_until_days = $_POST['blacklistUntil'];
+
+            // Use a prepared statement to prevent SQL injection
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_list = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+
+            if (!$stmt) {
+                die('MySQL Error: ' . $GLOBALS['db']->error);
+            }
+
+            // Bind parameters
+            $stmt->bind_param("ii", $blacklist_until_days, $user_id_to_blacklist);
+
+            if ($stmt->execute()) {
+                echo "User with ID $user_id_to_blacklist blacklisted successfully for $blacklist_until_days days ";
+            } else {
+                echo "Error updating user: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        }
     }
 }

@@ -3,10 +3,27 @@ $count = 0;
 foreach ($recentInquiries as $row) {
     $count++;
 }
-
+$solved = 0;
+$unsolved = 0;
+foreach ($recentRequests as $row) {
+    if ($row['inquiry_status'] == "solved") {
+        $solved++;
+    } else {
+        $unsolved++;
+    }
+}
+$solved1 = 0;
+$unsolved1 = 0;
+foreach ($recentComplaints as $row) {
+    if ($row['inquiry_status'] == "solved") {
+        $solved1++;
+    } else {
+        $unsolved1++;
+    }
+}
 ?>
+
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 
 <head>
@@ -19,11 +36,10 @@ foreach ($recentInquiries as $row) {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
     <title>Admin Dashboard Panel</title>
 </head>
-
-
 
 <body>
 
@@ -56,6 +72,14 @@ foreach ($recentInquiries as $row) {
                     <span class="number">10,120</span>
                 </div>
             </div>
+            <div class="boxes">
+                <div class="subChart">
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="pieChartComplaints"></canvas>
+                </div>
+            </div>
         </div>
 
         <div class="activity">
@@ -72,28 +96,75 @@ foreach ($recentInquiries as $row) {
                     <th>View</th>
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($recentInquiries as $row) {
-                    ?>
+                    <?php foreach ($recentInquiries as $row) { ?>
                         <tr>
                             <td><?php echo $row['user_id']; ?></td>
                             <td><?php echo $row['user_email']; ?></td>
                             <td><?php echo $row['role']; ?></td>
                             <td><a href="#">View</a></td>
                         </tr>
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                 </tbody>
             </table>
-
-
         </div>
     </div>
-    </div>
-    </section>
-    < /body>
 
-        < /html>
+    <script src="../public/assests/js/helpDeskCenter.js"></script>
+    <script>
+        var solved = <?php echo $solved; ?>;
+        var unsolved = <?php echo $unsolved; ?>;
+        var xValues = ["Solved", "Unsolved"];
+        var yValues = [solved, unsolved];
+        var barColors = [
+            "#00aba9",
+            "#b91d47"
+        ];
 
-            <script src="../public/assests/js/helpDeskCenter.js"></script>
+        new Chart("pieChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Help Requests"
+                }
+            }
+        });
+    </script>
+    <script>
+        var solved = <?php echo $solved1; ?>;
+        var unsolved = <?php echo $unsolved1; ?>;
+        var xValues = ["Solved", "Unsolved"];
+        var yValues = [solved, unsolved];
+        var barColors = [
+            "#00aba9",
+            "#b91d47"
+        ];
+
+        new Chart("pieChartComplaints", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Complaints"
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
