@@ -53,13 +53,34 @@ class SellerHandler extends database
         return mysqli_fetch_assoc($result);
     }
 
+    // adding the languages of the profile into seller_profile table
+    public function addLanguages($sellerId)
+    {
+        
+    }
+
     // 
     public function updateSeller($sellerId){
         // $query = "UPDATE seller SET ";
     }
 
-    public function deleteSeller(){
-        // delete the seller profile if it doesn't contain any ongoing projects with a buyer.
+    // delete the seller profile if it doesn't contain any ongoing projects with a buyer.
+    public function deleteSeller($sellerId){
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM seller
+            WHERE seller_id = ?");
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
 }

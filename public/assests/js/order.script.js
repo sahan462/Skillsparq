@@ -76,7 +76,7 @@ function confirmAction(action) {
   } 
 }
 
-function handleConfirmation(action, orderId, orderType) {
+function handleConfirmation(action, orderId, orderType, buyerId, sellerId) {
     if(action === 'cancelNo'){
 
         document.getElementById('cancelConfirmation').style.display = 'none';
@@ -87,7 +87,7 @@ function handleConfirmation(action, orderId, orderType) {
       document.getElementById('cancelConfirmationOverlay').style.display = 'none';
       document.getElementById('cancelConfirmation').style.display = 'none';
 
-      cancelOrder(orderId, orderType);
+      cancelOrder(orderId, orderType, buyerId, sellerId);
 
     }
 
@@ -104,7 +104,7 @@ function submitForm(){
 
 // ---------------------------------------Cancel an order--------------------------------------------------------
 
-async function cancelOrder(orderId, orderType) {
+async function cancelOrder(orderId, orderType, buyerId, sellerId) {
   var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
 
   try {

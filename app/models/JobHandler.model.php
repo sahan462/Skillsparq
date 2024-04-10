@@ -273,8 +273,8 @@ class JobHandler extends database
 
     public function createProposal($description,$bidAmount,$attachment,$jobId,$buyerId, $sellerId)
     {
-        $query = "INSERT INTO Jobs (description,bid_amount,attachment,job_id,buyer_id,seller_id) 
-        VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO job_proposals (description,bid_amount,attachments,job_id,buyer_id,seller_id) 
+        VALUES (?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
 
@@ -293,9 +293,28 @@ class JobHandler extends database
         }
     }
 
-    public function viewJobProposals($jobId)
+    public function getProposalCountForAJob($jobId,$buyerId)
     {
-        $query = "SELECT * FROM job_proposals";
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE job_id=? AND buyer_id=?;";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $jobId,$buyerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getJobProposals($jobId,$buyerId)
+    {
+        $query = "SELECT * FROM job_proposals WHERE job_id=? AND buyer_id=?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -303,18 +322,21 @@ class JobHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     
-        mysqli_stmt_bind_param($stmt, "i", $jobId);
+        mysqli_stmt_bind_param($stmt, "ii", $jobId,$buyerId);
     
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
-            if ($result) {
-                return $result;
-            } else {
-                die('Error getting result: ' . mysqli_error($GLOBALS['db']));
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
             }
+            return $data;
+
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+
     }
 
     public function getSingleJobProposal($proposalId)

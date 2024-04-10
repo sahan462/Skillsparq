@@ -2,95 +2,167 @@
     
 // Wait for the DOM to fully load
 
-
-
-var description = document.getElementById('descriptionJobProposal');
-var descriptionJobProposal = description.value;
-
-var bidValue = document.getElementById('bidValue').value
-if (bidValue === '') {
-    alert('Please enter a number.');
-  } else {
-    console.log('Entered number:', numericInput);
-}
-
+var minBiddingValue = document.getElementById('startingbid').value
+console.log(minBiddingValue)
 
 const form = document.querySelector('form');
 form.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
-  event.preventDefault();
-}
-
-
-
-// attachment
-    
-//open Submit Modal
-function openJobProposalModal(button) {
+//open Submit Modal for auction mode
+function openJobProposalModalAuc(button) {
     packageForm = button.id;
-    document.getElementById('overlayDisplayJob').style.display = 'flex';
-    document.getElementById('modalIdDisplayJob').style.display = 'block';
+    document.getElementById('overlayDisplayJobAuc').style.display = 'flex';
+    document.getElementById('modalIdDisplayJobAuc').style.display = 'block';
 }
- 
+
 // Function to confirm the action
-function confirmAction(action) {
+function confirmActionAuc(action) {
+    var bidValueNum = document.getElementById('bidValue').value
+    var description = document.getElementById('descriptionJobProposalAuc').value
+    var attachment = document.getElementById('inputFile').value
+    var minBiddingValue = document.getElementById('startingbid').value
+    console.log(minBiddingValue)
 
-    
-    if (action === 'send') {
-    
-		var bidValue = document.getElementById('bidValue').value
-		if (bidValue === '') {
-			alert('Please enter a number.');
-		} else {
-			console.log('Entered number:', numericInput);
-		}
-		document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-		document.getElementById('cancelConfirmation').style.display = 'none';
-		document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-		document.getElementById('sendConfirmation').style.display = 'block';
-    
-    } else if(action === 'cancel') {
+    if (action === 'send'){
 
-		document.getElementById('sendConfirmationOverlay').style.display = 'none';
-		document.getElementById('sendConfirmation').style.display = 'none';
-		document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-		document.getElementById('cancelConfirmation').style.display = 'block';
+      if (description.trim() === ''){
+        alert('Please enter a description for your proposal !!');
+      }else if(attachment === ''){
+        alert("Please insert an attachment to your proposal !!")
+      }else if(bidValueNum === ''){
+        alert("Please enter a bid !! ")
+      }
+
+      console.log(bidValueNum,minBiddingValue)
+      if(bidValueNum < minBiddingValue){
+        alert("Enter a Bid value which is larger than the minimum bid !!")
+      }else{
+        if((description !== '') && (attachment !== '') && (bidValueNum !== '')){
+          document.getElementById('cancelConfirmOverlayAuc').style.display = 'none';
+          document.getElementById('cancelConfirmAuc').style.display = 'none';
+          document.getElementById('sendConfirmaOverlayAuc').style.display = 'flex';
+          document.getElementById('sendConfirmAuc').style.display = 'block';
+        }
+      }
+      
+    }else if(action === 'cancel') {
+
+      document.getElementById('sendConfirmaOverlayAuc').style.display = 'none';
+      document.getElementById('sendConfirmAuc').style.display = 'none';
+      document.getElementById('cancelConfirmOverlayAuc').style.display = 'flex';
+      document.getElementById('cancelConfirmAuc').style.display = 'block';
     
     } 
+
 }
 
 // Function to handle actions based on user confirmation
-function handleConfirmation(action) {
+function handleConfirmAuc(action) {
     if (action === 'sendYes') {
-		var bidValue = document.getElementById('bidValue').value
-		if (bidValue === '') {
-			alert('Please enter a number.');
-		} else {
-			console.log('Entered number:', numericInput);
-		}
-        var sendJobProposal = document.getElementById('sendJobProposal');
+
+        var sendJobProposal = document.getElementById('sendJobProposalAuc');
         sendJobProposal.submit();
         alert('Successfully Sent The Proposal!');
 
     }else if (action === 'sendNo'){
 
-        document.getElementById('sendConfirmation').style.display = 'none';
-        document.getElementById('sendConfirmationOverlay').style.display = 'none';
+        document.getElementById('sendConfirmAuc').style.display = 'none';
+        document.getElementById('sendConfirmaOverlayAuc').style.display = 'none';
 
     }else if(action === 'cancelNo'){
 
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmAuc').style.display = 'none';
+        document.getElementById('cancelConfirmOverlayAuc').style.display = 'none';
 
     }
     else{
-        
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('overlayDisplayJob').style.display = 'none';
-        document.getElementById('modalIdDisplayJob').style.display = 'none';
+
+        document.getElementById('cancelConfirmOverlayAuc').style.display = 'none';
+        document.getElementById('cancelConfirmAuc').style.display = 'none';
+        document.getElementById('overlayDisplayJobAuc').style.display = 'none';
+        document.getElementById('modalIdDisplayJobAuc').style.display = 'none';
 
     }
+
+}
+
+// open submit modal for standard mode
+
+function openJobProposalModalStd(button) {
+  packageForm = button.id;
+  document.getElementById('overlayDisplayJobStd').style.display = 'flex';
+  document.getElementById('modalIdDisplayJobStd').style.display = 'block';
+}
+
+// Function to confirm the action
+function confirmActionStd(action) {
+  // var bidValueNum = document.getElementById('bidValue').value
+  var description = document.getElementById('descriptionJobProposalStd').value
+  var attachment = document.getElementById('inputFileStd').value
+  // var minBiddingValue = document.getElementById('startingbid').value
+  // console.log(minBiddingValue)
+
+  if (action === 'send'){
+
+    if (description.trim() === ''){
+      alert('Please enter a description for your proposal !!');
+    }else if(attachment === ''){
+      alert("Please insert an attachment to your proposal !!")
+    }
+    // else if(bidValueNum === ''){
+    //   alert("Please enter a bid !! ")
+    // }
+
+    // console.log(bidValueNum,minBiddingValue)
+    // if(bidValueNum < minBiddingValue){
+    //   alert("Enter a Bid value which is larger than the minimum bid !!")
+    // }else{
+
+    if((description !== '') && (attachment !== '')){
+      document.getElementById('cancelConfirmOverlayStd').style.display = 'none';
+      document.getElementById('cancelConfirmStd').style.display = 'none';
+      document.getElementById('sendConfirmOverlayStd').style.display = 'flex';
+      document.getElementById('sendConfirmStd').style.display = 'block';
+    }
+    // }
+    
+  }else if(action === 'cancel') {
+
+    document.getElementById('sendConfirmOverlayStd').style.display = 'none';
+    document.getElementById('sendConfirmStd').style.display = 'none';
+    document.getElementById('cancelConfirmOverlayStd').style.display = 'flex';
+    document.getElementById('cancelConfirmStd').style.display = 'block';
+  
+  } 
+
+}
+
+// Function to handle actions based on user confirmation
+function handleConfirmStd(action) {
+  if (action === 'sendYes') {
+
+      var sendJobProposal = document.getElementById('sendJobProposalStd');
+      sendJobProposal.submit();
+      alert('Successfully Sent The Proposal!');
+
+  }else if (action === 'sendNo'){
+
+      document.getElementById('sendConfirmStd').style.display = 'none';
+      document.getElementById('sendConfirmOverlayStd').style.display = 'none';
+
+  }else if(action === 'cancelNo'){
+
+      document.getElementById('cancelConfirmStd').style.display = 'none';
+      document.getElementById('cancelConfirmOverlayStd').style.display = 'none';
+
+  }
+  else{
+
+      document.getElementById('cancelConfirmOverlayStd').style.display = 'none';
+      document.getElementById('cancelConfirmStd').style.display = 'none';
+      document.getElementById('overlayDisplayJobStd').style.display = 'none';
+      document.getElementById('modalIdDisplayJobStd').style.display = 'none';
+
+  }
 
 }

@@ -83,6 +83,10 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
+    public function addProfileLanguages()
+    {
+        // 
+    }
 
     // has to adjust for client.
     public function  updateSellerProfile()
@@ -125,7 +129,7 @@ class SellerProfile extends Controller
                 echo "
                 <script>
                     alert('Error Uploading Profile Picture');
-                    window.location.href = '" . BASEURL . "buyerProfile';
+                    window.location.href = '" . BASEURL . "sellerProfile';
                 </script>
                 ";
 
@@ -145,7 +149,7 @@ class SellerProfile extends Controller
             echo "
             <script>
                 alert('Profile Updated Successfully');
-                window.location.href = '" . BASEURL . "buyerProfile';
+                window.location.href = '" . BASEURL . "sellerProfile';
             </script>
         ";
 
@@ -154,7 +158,7 @@ class SellerProfile extends Controller
             echo "
             <script>
                 alert('Error Updating Profile');
-                window.location.href = '" . BASEURL . "buyerProfile';
+                window.location.href = '" . BASEURL . "sellerProfile';
             </script>
             ";
 
@@ -163,7 +167,39 @@ class SellerProfile extends Controller
 
     public function deleteSellerProfile()
     {
+        $sellerId = $_POST['userId'];
+        $userName = $_POST['userName'];
         // delete a seller profile if he/she doesn't have ongoing orders to done.
+        $ongoing_order_count = $this->GigHandlerModel->getOngoingOrderCount($sellerId);
+
+        if($ongoing_order_count != 0){
+            echo "
+            <script>
+                alert('Can't Delete profile while ongoing orders exists !!!');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>
+            ";
+            die;
+
+        }else{
+
+            $deleteUserStatus = $this->UserHandlerModel->deleteUser($sellerId);
+            if($deleteUserStatus){
+
+                $deleteSellerStatus = $this->SellerHandlerModel->deleteSeller($sellerId);
+                if($deleteSellerStatus){
+
+                    echo "
+                    <script>
+                        alert('Profile Deleted Successfully !!');
+                        window.location.href = '" . BASEURL . "home';
+                    </script>
+                    ";
+                    
+                }
+            }
+
+        }
     }
 
 }

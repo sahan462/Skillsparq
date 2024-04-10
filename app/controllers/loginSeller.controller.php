@@ -3,9 +3,11 @@
 class LoginSeller extends Controller
 {
     private $loginHandler;
+    private $profileHandler;
     public function __construct()
     {
         $this->loginHandler = $this->model('LoginHandler');
+        $this->profileHandler = $this->model('ProfileHandler');
     }
 
     public function index(){
@@ -46,6 +48,9 @@ class LoginSeller extends Controller
                     $_SESSION['firstName'] = $row['first_name'];
                     $_SESSION['lastName'] = $row['last_name'];
                     $_SESSION['userName'] = $row['user_name'];
+
+                    $profile = mysqli_fetch_assoc($this->profileHandler->getProfPic($row['user_id']));
+                    $_SESSION['profilePicture'] = $profile['profile_pic'];
 
                     header("location: /skillsparq/public/sellerdashboard");
         
