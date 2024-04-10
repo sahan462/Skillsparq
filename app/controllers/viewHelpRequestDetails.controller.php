@@ -24,8 +24,9 @@ class viewHelpRequestDetails extends Controller
         $data['var'] = "viewHelpRequestDetails";
         $data['title'] = "SkillSparq";
         $data['inquiryId'] = $inquiry_id;
-        $viewComplaint = $this->inquiryHandlerModel->viewComplaints();
-        $data['viewComplaint'] = $viewComplaint;
+        $viewHelpRequests = $this->inquiryHandlerModel->viewHelpRequests($inquiry_id);
+
+        $data['viewHelpRequests'] = $viewHelpRequests;
 
         // Pass $inquiry_id directly to viewSenderDetails function
         $viewSenderDetails = $this->inquiryHandlerModel->viewSenderDetails($inquiry_id);

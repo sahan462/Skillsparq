@@ -22,22 +22,40 @@
 
 <body>
     <?php
-    $recentRequests = $data['recentRequests']; // Assuming 'recentRequests' is the correct array name
+    $rowsPerPage = 5; // Number of rows per page
+    $totalRows = 14; // Total number of rows
+    $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
+    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
+
+    // Assuming $recentRequests is the correct array name
+    $recentRequestsArray = [];
+    while ($row = $recentRequests->fetch_assoc()) {
+        $recentRequestsArray[] = $row;
+    }
+
+    // Calculate the starting index and ending index of rows for the current page
+    $start = ($currentPage - 1) * $rowsPerPage;
+    $end = $start + $rowsPerPage;
+    $end = min($end, $totalRows);
+
+    // Modify the total pages to ensure the last page has the remaining rows
+    if ($totalRows % $rowsPerPage != 0 && $currentPage == $totalPages) {
+        $rowsPerPage = $totalRows % $rowsPerPage;
+    }
     ?>
     <?php include "components/helpCenter.component.php"; ?>
-
 
     <div class="dash-content">
         <div class="title">
             <i class="uil uil-tachometer-fast-alt"></i>
             <span class="text">HelpRequests</span>
         </div>
-        <div style="margin-left: 40%; margin-bottom:16px;" ;>
+        <div style="margin-left: 40%; margin-bottom:16px;">
             <button onclick="clickbtn()" id="solved">Unsolved</button>
             <button onclick="clickbtn()" id="unsolved" style="color: black; background: white">Solved</button>
         </div>
         <div id="tableUnsolved">
-            <table class=" content-table">
+            <table class="content-table">
                 <thead>
                     <tr>
                         <th>inquiry_ID</th>
@@ -49,11 +67,12 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($recentRequests as $row) {
+                    $i = $start;
+                    while ($i < $end && $i < count($recentRequestsArray)) {
+                        $row = $recentRequestsArray[$i];
                         if ($row['inquiry_status'] == "unsolved") {
                     ?>
                             <tr>
-
                                 <td><?php echo $row['inquiry_id']; ?></td>
                                 <td><?php echo $row['subject']; ?></td>
                                 <td><?php echo $row['inquiry_status']; ?></td>
@@ -64,14 +83,28 @@
                             </tr>
                     <?php
                         }
+                        $i++;
                     }
                     ?>
                 </tbody>
             </table>
+            <div class="pagination">
+                <?php
+                if ($currentPage > 1) {
+                    echo "<a href='?page=" . ($currentPage - 1) . "'>&laquo; Previous</a>";
+                }
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    echo "<a href='?page=" . $i . "' " . ($i == $currentPage ? "class='active'" : "") . ">" . $i . "</a>";
+                }
+                if ($currentPage < $totalPages) {
+                    echo "<a href='?page=" . ($currentPage + 1) . "'>Next &raquo;</a>";
+                }
+                ?>
+            </div>
         </div>
 
         <div id="tableSolved" style="display: none;">
-            <table class=" content-table">
+            <table class="content-table">
                 <thead>
                     <tr>
                         <th>inquiry_ID</th>
@@ -83,7 +116,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($recentRequests as $row) {
+                    foreach ($recentRequestsArray as $row) {
                         if ($row['inquiry_status'] == "solved") {
                     ?>
                             <tr>
@@ -103,14 +136,12 @@
             </table>
         </div>
     </div>
-    </section>
 
     <script src="../public/assests/js/helpDeskCenter.js"></script>
 
 </body>
 
 </html>
-
 
 <script>
     var count = 0;
