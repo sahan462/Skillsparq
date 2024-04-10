@@ -11,47 +11,48 @@ class LoginUser extends Controller
         $this->profileHandler = $this->model('ProfileHandler');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $data['var'] = "Login Page";
         $data['title'] = "SkillSparq";
 
-        $errors = array();         
+        $errors = array();
         $errors["email"] = "";
         $errors["password"] = "";
         $data['errors'] = $errors;
 
         $this->view('loginUser', $data);
-
     }
 
-    public function validate(){
+    public function validate()
+    {
 
         $errors["email"] = "";
         $errors["password"] = "";
 
 
-        if(isset($_POST["login"]) ){
+        if (isset($_POST["login"])) {
 
             $email = $_POST["email"];
             $password = $_POST["password"];
 
-            if($this->loginHandler->emailCheck($email)){
+            if ($this->loginHandler->emailCheck($email)) {
 
                 $row = $this->loginHandler->userCheck($email, $password);
 
-                if($row){
+                if ($row) {
 
                     $_SESSION["userId"] = $row['user_id'];
                     $_SESSION["email"] = $row['user_email'];
                     $_SESSION['password'] = $row['user_password'];
-                    $_SESSION['role'] = $role =$row['role'];
+                    $_SESSION['role'] = $role = $row['role'];
 
-                
+
                     $lastSeenUpdate = $this->profileHandler->lastSeenUpdate("online", $row['user_id']);
 
 
-                    if($lastSeenUpdate){
+                    if ($lastSeenUpdate) {
 
                         $profile = mysqli_fetch_assoc($this->profileHandler->getUserProfile($row['user_id']));
                         $_SESSION['firstName'] = $profile['first_name'];
@@ -59,47 +60,34 @@ class LoginUser extends Controller
                         $_SESSION['userName'] = $profile['user_name'];
                         $_SESSION['profilePicture'] = $profile['profile_pic'];
                         $data['profile'] = $profile;
-                        
-                        if($role == 'Buyer'){
+
+                        if ($role == 'Buyer') {
                             header("location: /skillsparq/public/buyerdashboard");
-                        }else if($role == "Admin"){
+                        } else if ($role == "Admin") {
                             header("location: /skillsparq/public/adminDashboard");
-                        }else if($role == "Customer Support Assistant"){
-                            header("location: /skillsparq/public/helpCenterDashobard");
-                        }else{
+                        } else if ($role == "csa") {
+                            header("location: /skillsparq/public/helpDeskCenter");
+                        } else {
                             echo "<script>alert('Invalid')</script>";
                         }
-
-                    }else{
+                    } else {
 
                         echo "<script> alert('Error updating last seen'); </script>";
                         header("location: /skillsparq/public/login");
-                        
                     }
-
-
-                }else{
+                } else {
 
                     $errors["password"] = "Incorrect password";
                     $data["errors"] = $errors;
                     $this->view("loginUser/index", $data);
-
                 }
+            } else {
 
-
-
-            }else{
-
-                $errors["email"]="Email is not found";
+                $errors["email"] = "Email is not found";
                 $data["errors"] = $errors;
                 $this->view("loginUser/index", $data);
-
             }
-
-
-
-
-        }else{
+        } else {
 
             $errors["email"] = "";
             $errors["password"] = "";
@@ -107,21 +95,19 @@ class LoginUser extends Controller
 
             $this->view("505", $data);
         }
-
-
-
     }
 
 
-    public function logout(){
+    public function logout()
+    {
 
-        date_default_timezone_set('UTC'); 
+        date_default_timezone_set('UTC');
         $dateTime = new DateTime();
         $currentDateTime = $dateTime->format('m/d/Y h:i:s a');
 
         $lastSeenUpdate = $this->profileHandler->lastSeenUpdate($currentDateTime, $_SESSION['userId']);
 
-        if($lastSeenUpdate){
+        if ($lastSeenUpdate) {
 
             session_destroy();
             echo "
@@ -130,19 +116,10 @@ class LoginUser extends Controller
                 window.location.href = '" . BASEURL . "home';
             </script>
         ";
-
-        }else{
+        } else {
 
             echo "<script> alert('Error updating last seen'); </script>";
             header("location: /skillsparq/public/helpCenter");
-
         }
-        
-
-        
     }
-
-
 }
-
-?>

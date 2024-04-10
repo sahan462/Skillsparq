@@ -23,7 +23,7 @@
 <body>
     <?php
     $rowsPerPage = 5; // Number of rows per page
-    $totalRows = count($recentRequests); // Total number of rows
+    $totalRows = 14; // Total number of rows
     $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
 
@@ -88,19 +88,7 @@
                     ?>
                 </tbody>
             </table>
-            <div class="pagination">
-                <?php
-                if ($currentPage > 1) {
-                    echo "<a href='?page=" . ($currentPage - 1) . "'>&laquo; Previous</a>";
-                }
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo "<a href='?page=" . $i . "' " . ($i == $currentPage ? "class='active'" : "") . ">" . $i . "</a>";
-                }
-                if ($currentPage < $totalPages) {
-                    echo "<a href='?page=" . ($currentPage + 1) . "'>Next &raquo;</a>";
-                }
-                ?>
-            </div>
+
         </div>
 
         <div id="tableSolved" style="display: none;">
@@ -116,7 +104,9 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($recentRequestsArray as $row) {
+                    $i = $start;
+                    while ($i < $end && $i < count($recentRequestsArray)) {
+                        $row = $recentRequestsArray[$i];
                         if ($row['inquiry_status'] == "solved") {
                     ?>
                             <tr>
@@ -130,11 +120,26 @@
                             </tr>
                     <?php
                         }
+                        $i++;
                     }
                     ?>
                 </tbody>
             </table>
+
         </div>
+    </div>
+    <div class="pagination">
+        <?php
+        if ($currentPage > 1) {
+            echo "<a href='?page=" . ($currentPage - 1) . "'>&laquo; Previous</a>";
+        }
+        for ($i = 1; $i <= $totalPages; $i++) {
+            echo "<a href='?page=" . $i . "' " . ($i == $currentPage ? "class='active'" : "") . ">" . $i . "</a>";
+        }
+        if ($currentPage < $totalPages) {
+            echo "<a href='?page=" . ($currentPage + 1) . "'>Next &raquo;</a>";
+        }
+        ?>
     </div>
 
     <script src="../public/assests/js/helpDeskCenter.js"></script>
@@ -144,14 +149,12 @@
 </html>
 
 <script>
-    var count = 0;
-
     function clickbtn() {
         var solved = document.getElementById("solved")
         var unsolved = document.getElementById("unsolved")
         var tableSolved = document.getElementById("tableSolved")
         var tableUnsolved = document.getElementById("tableUnsolved")
-        if (count == 0) {
+        if (tableSolved.style.display === "none") {
             solved.style.background = 'white'
             solved.style.color = 'black'
             unsolved.style.background = '#1dbf73'
@@ -159,7 +162,7 @@
             tableSolved.style.display = "block"
             tableUnsolved.style.display = "none"
 
-            count = 1;
+
 
         } else {
             unsolved.style.background = 'white'
@@ -168,7 +171,7 @@
             solved.style.color = 'white'
             tableSolved.style.display = "none"
             tableUnsolved.style.display = "block"
-            count = 0;
+
         }
 
     }
