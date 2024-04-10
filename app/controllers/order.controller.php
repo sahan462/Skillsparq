@@ -15,9 +15,11 @@ class Order extends Controller
 
         $orderId = $_GET['orderId'];
         $orderType = $_GET['orderType'];
+        $userRole = $_SESSION['role'];
 
-        $data['orderData'] = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType);
-        print_r($data['orderData']);
+        $data['orderData'] = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $userRole);
+        print_r($data['orderData']->fetch_assoc());
+        print_r($data['orderData']->fetch_assoc());
         $this->view('order', $data);
     }
 
@@ -49,7 +51,7 @@ class Order extends Controller
             if($isUpdatedOrderState){
                 return $isUpdatedOrderState;
             }
-            
+
         } else {
             echo "Invalid request method";
         }
