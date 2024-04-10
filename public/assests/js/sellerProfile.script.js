@@ -28,12 +28,7 @@ var currentLastName = lastName.value;
 var about = document.getElementById('about');
 var currentAbout = about.innerHTML;
     
-//open update modal
-function openPackageModal(button) {
-    packageForm = button.id;
-    document.getElementById('overlay').style.display = 'flex';
-    document.getElementById('Modal').style.display = 'block';
-}
+// var languages = document.getElementById('');
 
 //dynamically render profile picture
 function renderImage() {
@@ -49,28 +44,37 @@ function renderImage() {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open update modal
+function openProfileUpdateModal(button) {
+    packageForm = button.id;
+    document.getElementById('overlayUpdate').style.display = 'flex';
+    document.getElementById('ModalUpdate').style.display = 'block';
+}
   
 // Function to confirm the action
-function confirmAction(action) {
+function confirmActionProfUpdate(action) {
     if (action === 'send') {
     
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-      document.getElementById('sendConfirmationOverlay').style.display = 'flex';
-      document.getElementById('sendConfirmation').style.display = 'block';
+      document.getElementById('cancelConfirmProfUpdateOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfUpdate').style.display = 'none';
+      document.getElementById('sendConfirmProfUpdateOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfUpdate').style.display = 'block';
     
     } else if(action === 'cancel') {
 
-      document.getElementById('sendConfirmationOverlay').style.display = 'none';
-      document.getElementById('sendConfirmation').style.display = 'none';
-      document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
-      document.getElementById('cancelConfirmation').style.display = 'block';
+      document.getElementById('sendConfirmProfUpdateOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfUpdate').style.display = 'none';
+      document.getElementById('cancelConfirmProfUpdateOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfUpdate').style.display = 'block';
     
     } 
 }
 
 // Function to handle actions based on user confirmation
-function handleConfirmation(action) {
+function handleConfirmProfUpdate(action) {
     if (action === 'sendYes') {
 
         var profileUpdateForm = document.getElementById('profileUpdateForm');
@@ -78,13 +82,13 @@ function handleConfirmation(action) {
 
     }else if (action === 'sendNo'){
 
-        document.getElementById('sendConfirmation').style.display = 'none';
-        document.getElementById('sendConfirmationOverlay').style.display = 'none';
+        document.getElementById('sendConfirmProfUpdate').style.display = 'none';
+        document.getElementById('sendConfirmProfUpdateOverlay').style.display = 'none';
 
     }else if(action === 'cancelNo'){
 
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfUpdate').style.display = 'none';
+        document.getElementById('cancelConfirmProfUpdateOverlay').style.display = 'none';
 
     }else{
         
@@ -92,15 +96,163 @@ function handleConfirmation(action) {
         preview.src = currentProfilePicture;
         firstName.value = currentFirstName;
         lastName.value = currentLastName;
-        country.value = currentCountry;
         about.value = currentAbout;
 
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('Modal').style.display = 'none';
-        document.getElementById('warningMessage').style.display = 'none';
+        document.getElementById('cancelConfirmProfUpdateOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfUpdate').style.display = 'none';
+        document.getElementById('overlayUpdate').style.display = 'none';
+        document.getElementById('ModalUpdate').style.display = 'none';
 
     }
 
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open delete modal 
+function openProfileDeleteModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayDelete').style.display = 'flex';
+    document.getElementById('ModalDelete').style.display = 'block';
+}
+
+// Function to confirm the action of Deletion
+function confirmActionProfDelete(action) {
+    if (action === 'sendDelete') {
+    
+      document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfDelete').style.display = 'none';
+      document.getElementById('sendConfirmProfDeleteOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfDelete').style.display = 'block';
+    
+    } else if(action === 'cancelDelete') {
+
+      document.getElementById('sendConfirmProfDeleteOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfDelete').style.display = 'none';
+      document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfDelete').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+function handleConfirmProfDelete(action) {
+    if (action === 'sendDeleteYes') {
+
+        var profileDeleteForm = document.getElementById('profileDeleteForm');
+        profileDeleteForm.submit();
+
+    }else if (action === 'sendDeleteNo'){
+
+        document.getElementById('sendConfirmProfDelete').style.display = 'none';
+        document.getElementById('sendConfirmProfDeleteOverlay').style.display = 'none';
+
+    }else if(action === 'cancelDeleteNo'){
+
+        document.getElementById('cancelConfirmProfDelete').style.display = 'none';
+        document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfDelete').style.display = 'none';
+        document.getElementById('overlayDelete').style.display = 'none';
+        document.getElementById('ModalDelete').style.display = 'none';
+
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open languages modal 
+function openProfileaddLanguagesModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayAddLanguages').style.display = 'flex';
+    document.getElementById('ModalAddLanguages').style.display = 'block';
+}
+
+function confirmActionProfAddLang(action) {
+    if (action === 'Add') {
+    
+      document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+      document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddLang').style.display = 'block';
+    
+    } else if(action === 'Cancel') {
+
+      document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddLang').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddLang').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+//handleConfirmProfDelete
+function handleConfirmProfAddLan(action) {
+    if (action === 'sendDeleteYes') {
+
+        var profileAddLangForm = document.getElementById('languageForm');
+        profileAddLangForm.submit();
+
+    }else if (action === 'sendDeleteNo'){
+
+        document.getElementById('sendConfirmProfAddLang').style.display = 'none';
+        document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
+
+    }else if(action === 'cancelDeleteNo'){
+
+        document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
+        document.getElementById('overlayAddLanguages').style.display = 'none';
+        document.getElementById('ModalAddLanguages').style.display = 'none';
+
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+// const languageInput = document.getElementById('languageInput');
+// const languageTags = document.getElementById('languageTags');
+
+// languageInput.addEventListener('keydown', function(event) {
+//   if (event.key === 'Enter' || event.keyCode === 13) {
+//     addLanguageTag(this.value);
+//     this.value = '';
+//     event.preventDefault();
+//   }
+// });
+
+// function addLanguageTag(language) {
+//   if (language.trim() !== '') {
+//     const tag = document.createElement('div');
+//     tag.classList.add('languageTag');
+//     tag.textContent = language;
+//     tag.addEventListener('click', function() {
+//       this.remove();
+//     });
+//     languageTags.appendChild(tag);
+//   }
+// }

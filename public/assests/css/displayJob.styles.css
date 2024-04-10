@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    /* color: #000000 !important; */
 }
 
 .displayJobContainer {
@@ -17,7 +18,7 @@ body {
     margin-top: 24px;
     font-size: 32px;
     font-weight: 700;
-    color: #222325;
+    color: #222325 !important;
     line-height: 140%;
     padding: 0 32px;
 }
@@ -168,6 +169,7 @@ svg{
 }
 
 .auctionStartingBid{
+    display: flex;
 }
 
 .auctionCurrentMinBid{
@@ -306,7 +308,14 @@ svg{
 
 }
 
-#overlayDisplayJob{
+#overlayDisplayJobAuc{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#overlayDisplayJobStd{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -323,7 +332,7 @@ svg{
     to {top:0; opacity:1}
 }
 
-#modalIdDisplayJob {
+#modalIdDisplayJobAuc {
     display: none;
     position: absolute;
     background: #fff;
