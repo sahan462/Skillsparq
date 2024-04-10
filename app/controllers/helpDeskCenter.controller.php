@@ -20,6 +20,6 @@ class HelpDeskCenter extends Controller
         $recentComplaints = $this->inquiryHandlerModel->getComplaints();
         $data['recentComplaints'] = $recentComplaints;
 
-        $this->view('HelpDeskCenter', $data);
+        $this->view('helpDeskCenter', $data);
     }
 }
