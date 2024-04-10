@@ -15,7 +15,11 @@ class HelpDeskCenter extends Controller
         $data['title'] = "SkillSparq";
         $recentInquiries = $this->inquiryHandlerModel->getRecentUsers();
         $data['recentInquiries'] = $recentInquiries;
-    
+        $recentRequests = $this->inquiryHandlerModel->getHelpRequests();
+        $data['recentRequests'] = $recentRequests;
+        $recentComplaints = $this->inquiryHandlerModel->getComplaints();
+        $data['recentComplaints'] = $recentComplaints;
+
         $this->view('HelpDeskCenter', $data);
     }
 }
