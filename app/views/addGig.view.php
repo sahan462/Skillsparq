@@ -20,6 +20,7 @@
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
             <dotlottie-player src="https://lottie.host/881eaa0d-a9ec-48c3-8d93-95f4121b411c/Hxv4H6Yonz.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
         </div>
+
     </div>
 
     <!-- right side -->
@@ -33,8 +34,10 @@
 
                 <!-- tab 1 -->
                 <div class="tab">
+
                     <span class="type-1">Title</span>
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
+                    
                     <div class="title">
                         <p><input type="text" name="title" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
                     </div>
@@ -80,10 +83,14 @@
                         <div id="London" class="tabcontent">
 
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
+
+                                <span>Package Price : </span>
                                 <div class="customName">
-                                    <input type="text"  name ="customName_1" oninput="this.className = ''">
+
+                                    <input type="number"  name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000">
+
                                 </div>
+
                             </div>
 
                             <div class="row">
@@ -124,9 +131,16 @@
                         </div>
 
                         <div id="Paris" class="tabcontent">
+
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_2" oninput="this.className = ''"></div>
+
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000">
+
+                                </div>
+
                             </div>
 
                             <div class="row">
@@ -166,27 +180,42 @@
                         </div>
 
                         <div id="Tokyo" class="tabcontent">
+
                             <div class="row">
-                                <span>Create a Custom Name For Your Package: </span>
-                                <div class="customName"><input type="text"  name ="customName_3" oninput="this.className = ''"></div>
+
+                                <span>Package Price : </span>
+                                <div class="customName">
+
+                                    <input type="number"  name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000">
+
+                                </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>How long will it take to Deliver: </span>
                                 <div class="noOfDeliveryDays">
+
                                     <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
                                     <select name="timePeriod_3" class="categories" required>
+
                                         <option value="Days">Day(s)</option>
                                         <option value="Weeks">Week(s)</option>
                                         <option value="Months">Month(s)</option>
                                         <option value="Years">Year(s)</option>
+
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <div class="row">
+
                                 <span>Number of Revisions You Provide: </span>
                                 <div class="noOfRevisions">
+
                                     <select name="noOfRevisions_3"  class="categories" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -212,23 +241,41 @@
                     <span class="type-2">add cover image and other slider images</span>
 
                     <div class="images">
-                        <label for="coverImage">Cover Image:</label>
-                        <input type="file" id="coverImage" name="coverImage"  required/>
 
-                        <label for="sliderImage1">Slider Image 1:</label>
-                        <input type="file" id="sliderImage1" name="sliderImage1"   />
+                        <div class="slideimg1">
+                            <label for="coverImage">Cover Image:</label>
+                            <input type="file" id="coverImage" name="coverImage" onchange="load_img_name(this.files[0],1)" required/>
+                            <div id="filename1"></div>
+                        </div>
 
-                        <label for="sliderImage2">Slider Image 2:</label>
-                        <input type="file" id="sliderImage2" name="sliderImage2"   />
+                        <div class="slideimg1">
+                            <label for="sliderImage1">Slider Image 1:</label>
+                            <input type=" file" id="sliderImage1" name="sliderImage1" onchange="load_img_name(this.files[0],2)" required/>
+                            <div id="filename2"></div>
+                        </div>
 
-                        <label for="sliderImage3">Slider Image 3:</label>
-                        <input type="file" id="sliderImage3" name="sliderImage3"   />
+                        <div class="slideimg1">
+                            <label for="sliderImage2">Slider Image 2:</label>
+                            <input type="file" id="sliderImage2" name="sliderImage2" onchange="load_img_name(this.files[0],3)" required/>
+                            <div id="filename3"></div>
+                        </div>
 
-                        <label for="sliderImage4">Slider Image 4:</label>
-                        <input type="file" id="sliderImage4" name="sliderImage4"   />
+                        <div class="slideimg1">
+                            <label for="sliderImage3">Slider Image 3:</label>
+                            <input type="file" id="sliderImage3" name="sliderImage3" onchange="load_img_name(this.files[0],4)" required/>
+                            <div id="filename4"></div>
+                        </div>
+
+                        <div class="slideimg1">
+                            <label for="sliderImage4">Slider Image 4:</label>
+                            <input type="file" id="sliderImage4" name="sliderImage4" onchange="load_img_name(this.files[0],5)" required/>
+                            <div id="filename5"></div>
+                        </div>
+
                     </div>
 
                 </div>
+                
             </div>
 
             <div class="navigation">

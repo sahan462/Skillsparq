@@ -19,8 +19,14 @@ class DisplayJob extends Controller
         $buyerId = $_GET['buyerId'];
         $jobId = $_GET['jobId'];
 
-        $buyerDetails = $this->displayBuyerDetails($buyerId);
+        $buyerDetails = $this->displayProfileDetails($buyerId);
         $data['buyerDetails'] = $buyerDetails;
+
+        if($_SESSION['role'] === "Seller"){
+            $sellerId = $_SESSION['userId'];
+            $sellerDetails = $this->displayProfileDetails($sellerId);
+            $data['sellerDetails'] = $sellerDetails;
+        }
 
         $buyerJobCount = $this->jobController->getBuyerJobCount($buyerId);
         $data['jobCount'] = $buyerJobCount['COUNT(*)'];
@@ -45,11 +51,10 @@ class DisplayJob extends Controller
         } else {
             echo "<script>alert('getJob function is not Accessible!')</script>";
         }
-        // print_r($data);
         $this->view('displayJob', $data);
     }
 
-    public function displayBuyerDetails($userId)
+    public function displayProfileDetails($userId)
     {
         $profile = $this->profileHandlerModel->getUserProfile($userId);
         $details = mysqli_fetch_assoc($profile);

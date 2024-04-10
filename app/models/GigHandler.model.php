@@ -4,7 +4,7 @@ class GigHandler extends database
 {
 
     //create new gigs
-    public function addNewGig($title, $description, $category, $coverImage, $customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sellerId)
+    public function addNewGig($title, $description, $category, $coverImage, $packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime,$sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId)
     {
         $query = "INSERT INTO gigs (title,description,category,cover_image,created_at,seller_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($GLOBALS['db'],$query);
@@ -20,10 +20,12 @@ class GigHandler extends database
             mysqli_stmt_close($stmt);
 
             if ($gigId) {
-                $packages = $this->addNewPackages($customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+                $packages = $this->addNewPackages($packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+
+                $images = $this->insertSliderImages($sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$gigId);
             }
 
-            return [$gigId, $packages];
+            return [$gigId, $packages,$images];
 
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
@@ -31,11 +33,11 @@ class GigHandler extends database
     }
 
     //create new packages
-    public function addNewPackages($customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId)
+    public function addNewPackages($packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId)
     {
 
         $param1_values = ['Basic', 'Standard', 'Premium'];
-        $param2_values = [ 100, 200, 300];
+        $param2_values = [$packagePrice_1,$packagePrice_2, $packagePrice_3];
         $param3_values = [$noOfDeliveryDays_1, $noOfDeliveryDays_2, $noOfDeliveryDays_3];
         $param4_values = [$timePeriod_1, $timePeriod_2, $timePeriod_3];
         $param5_values = [$noOfRevisions_1, $noOfRevisions_2, $noOfRevisions_3];
@@ -76,28 +78,70 @@ class GigHandler extends database
         return $insertedIds; 
     } 
 
-    // retrieve a specific gig of a user
-    // public function retrieveAGig($userId,$gigId)
-    // {
-    //     $query = "SELECT * FROM gigs WHERE gig_id = ? AND seller_id = ?";
+    public function insertSliderImages($sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$gigId)
+    {
+        $query = "INSERT INTO slide_images (side_image_1,side_image_2,side_image_3,side_image_4,gig_id) VALUES (?, ?, ?, ?, ?)";
+
+         $stmt = mysqli_prepare($GLOBALS['db'],$query);
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
         
-    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        mysqli_stmt_bind_param($stmt, "ssssi", $sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $sliderImagesId = mysqli_insert_id($GLOBALS['db']);
+        } else {
+            throw new Exception("Error inserting images: " . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_close($stmt);
+    
+        return $sliderImagesId; 
+    }
+
+    public function retrieveCoverImage($gigId)
+    {
+        $query = "SELECT cover_image FROM gigs WHERE gig_id = ?";
         
-    //     if (!$stmt) {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
 
-    //     mysqli_stmt_bind_param($stmt, "ii", $gigId,$userId);
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
 
-    //     if (mysqli_stmt_execute($stmt)) {
-    //         $retrieveGigDetails = $stmt->get_result()->fetch_assoc();
-    //         $stmt->close();
+        if (mysqli_stmt_execute($stmt)) {
+            $retrieveImgDetails = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $retrieveImgDetails;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
-    //         return $retrieveGigDetails;
-    //     } else {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-    // }
+    public function retrieveSliderImages($gigId)
+    {
+        $query = "SELECT * FROM slide_images WHERE gig_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $retrieveImgDetails = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $retrieveImgDetails;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
     //read recently added gigs
     public function getRecentGigs()
@@ -215,37 +259,17 @@ class GigHandler extends database
     }
     
     
-    //update gigs
-    public function updateGig($gigId,$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3)
+    //update gigs. Should call at the last in controller.
+    public function updateGig($gigId,$title, $description, $category, $coverImage)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE Gigs 
-            SET 
-            title = ?, 
-            description = ?, 
-            category = ?, 
-            coverImage = ?, 
-            customName_1 = ?, 
-            noOfDeliveryDays_1 = ?, 
-            timePeriod_1 = ?, 
-            noOfRevisions_1 = ?, 
-            packageDescription_1 = ?,
-            customName_2 = ?, 
-            noOfDeliveryDays_2 = ?, 
-            timePeriod_2 = ?, 
-            noOfRevisions_2 = ?, 
-            packageDescription_2 = ?,
-            customName_3 = ?, 
-            noOfDeliveryDays_3 = ?, 
-            timePeriod_3 = ?, 
-            noOfRevisions_3 = ?, 
-            packageDescription_3 = ?,
-
-            WHERE gigId = ?");
+        $query = "UPDATE Gigs SET title = ?, description = ?, category = ?, 
+        cover_image = ? WHERE gig_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
         
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        mysqli_stmt_bind_param($stmt, "sssssissssissssisss",$title, $description, $category, $coverImage,$customName_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $customName_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $customName_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3,$gigId);
+        mysqli_stmt_bind_param($stmt, "issss",$gigId,$title, $description, $category, $coverImage);
         
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
@@ -256,9 +280,43 @@ class GigHandler extends database
     }
 
     // update packages
-    public function updatePackages($gigId)
+    public function updatePackages($packageId,$packagePrice,$numDeliveryDays,$timeFrame,$numOfRevs,$pckgDescription)
     {
+        $query = "UPDATE packages SET package_price = ?, no_of_delivery_days = ?, time_period = ?,no_of_revisions = ?,package_description = ? WHERE package_id = ?";
 
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "idisss",$packageId,$packagePrice,$numDeliveryDays, $timeFrame, $numOfRevs,$pckgDescription);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // update 4 slider Images.
+    public function updateSliderImages($gigId,$image1,$image2, $image3, $image4)
+    {
+        $query = "UPDATE slide_images SET side_image_1 = ?, side_image_2 = ?, side_image_3 = ?,side_image_4= ? WHERE gig_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "issss",$gigId,$image1,$image2, $image3, $image4);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
     }
 
     //delete gig
@@ -298,6 +356,27 @@ class GigHandler extends database
                 return true; 
             } else {
                 throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+            }
+        
+    }
+
+    public function deleteSliderImages($gigId)
+    {
+            $query = "DELETE FROM slide_images WHERE gig_id = ?;";
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+            
+            mysqli_stmt_bind_param($stmt, "i", $gigId);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_close($stmt);
+                return true; 
+            } else {
+                throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+                return false;
             }
         
     }

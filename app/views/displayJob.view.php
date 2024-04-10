@@ -1,7 +1,7 @@
 <?php 
-    include "/xampp/htdocs/skillsparq/app/views/components/sellerHeader.component.php";
+    include "components/sellerHeader.component.php"; 
     $job = $data['job'];
-   print_r ($data);
+    // print_r ($data);
 ?>
 
     <div class="displayJobContainer">
@@ -52,7 +52,7 @@
                     Download job File : 
                 </div>
 
-            <?php if($job['publish_mode'] == 'Auction Mode'){?>
+            <?php if(($job['publish_mode'] == 'Auction Mode') && ($_SESSION['role'] !== "Buyer")){?>
 
                 <div class="displayJobBidAuction">
 
@@ -61,26 +61,40 @@
                         Auction Details
                     </div>
                     
-                    <div class="auctionDetailContent">
+                    <div class="auctionDetails">
 
-                        <div class="auctionStartTime">
-                            Auction Start at : <?php echo $job['start_time']?>
+                        <div class="auctionDetailContent">
+
+                            <div class="auctionStartTime">
+                                Auction Start at : <?php echo $job['start_time']?>
+                            </div>
+
+                            <div class="auctionEndTime">
+                                Auction End at : <?php echo $job['end_time']?>
+                            </div>
+
+                            <div class="auctionStartingBid">
+                                Bid Starts from : <?php echo $job['starting_bid']?>
+                            </div>
+
+                            <div class="auctionCurrentMinBid">
+                                Current Minimum Bid : <?php echo $job['min_bid_amount']?>
+                            </div>
+
+                            <div class="auctionCurrentMaxBid">
+                                Current Maximum Bid : <?php echo $job['current_highest_bid']?>
+                            </div>
+
                         </div>
 
-                        <div class="auctionEndTime">
-                            Auction End at : <?php echo $job['end_time']?>
-                        </div>
+                        <div class="auctionDetialsButton">
 
-                        <div class="auctionStartingBid">
-                            Bid Starts from : <?php echo $job['starting_bid']?>
-                        </div>
+                            <button class = "sendProposalButton" onclick="openJobProposalModal(this)">
 
-                        <div class="auctionCurrentMinBid">
-                            Current Minimum Bid : <?php echo $job['min_bid_amount']?>
-                        </div>
+                                <a class="proposalButtonLink" href="#">Send & Bid</a>
 
-                        <div class="auctionCurrentMaxBid">
-                            Current Maximum Bid : <?php echo $job['current_highest_bid']?>
+                            </button>
+
                         </div>
 
                     </div>
@@ -88,7 +102,7 @@
                 </div>
 
             <?php 
-            }else if($job['publish_mode'] == 'Standard Mode'){
+            }else if(($job['publish_mode'] == 'Standard Mode') && ($_SESSION['role'] !== "Buyer")){
             ?>
                 <div class="displayJobSendProposal">
 
@@ -97,70 +111,206 @@
                         <div class="displayJobSendProposalHeader">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"><path d="M10.026 40.974v-22h-6v22z"/><path d="M10.026 18.974c7.123-6.52 11.251-10.26 12.384-11.222c1.7-1.443 3.62-.837 3.62 2.775s-5.285 5.695-5.285 8.447c-.004.016 6.756.017 20.277.003a3 3 0 0 1 3.004 2.998v.003a3.004 3.004 0 0 1-3.004 3.004h-8.01c-1.208 7.973-1.875 12.307-2 13.004c-.188 1.044-1.185 2.988-4.054 2.988H10.026z" clip-rule="evenodd"/></g></svg>
-                            <?php echo "Apply for the proposal"?>
+
+                            <?php echo "Send Job proposal"?>
 
                         </div>
 
                         <div class="displayJobSendProposalContent">
-                            Apply for the proposal in order to get a job with the customer in the first place !
+                            Apply for the Job by sending a job proposal to the customer at the first place !
                         </div>
+
                     </div>
 
                     <div class="displayJobSendProposalButton">
-                        <button class = "sendProposalButton">
-                            <a class="proposalButtonLink" href="">Apply</a>
+
+                        <button class = "sendProposalButton" onclick="openJobProposalModal(this)" id="sendProposalButton"> 
+
+                            <a class="proposalButtonLink" href="#">Apply</a>
+
                         </button>
+
                     </div>
-                </div>
+
+                </div>             
+
             <?php }?>
-
             </div>
-            <div class="jobViewBuyerDetailsSideBar">
 
-                <div class="jobViewBuyerDetialsAbout">
-                    <div class="jobViewBuyerDetailsHeader">
-                        About The Client
+            <?php if($_SESSION['role'] === "Seller"){?>
+                <!-- Modal 1 -->
+                <div class="overlayDisplayJob" id="overlayDisplayJob">
+
+                        <div class="modalDisplayJob" id="modalIdDisplayJob">
+
+                            <div>
+
+                                <h3 class="modalDisplayJobTopic">Proposal for the Auction</h3>
+
+                            </div>
+
+                            <form id="sendJobProposal" method="post" action="jobProposals" enctype="multipart/form-data">
+
+                                <div class="row">
+
+                                    <div class="full-name">
+
+                                        <div class="row">
+                                            Full Name : <?php echo $data['sellerDetails']['first_name']. " " .$data['sellerDetails']['last_name']?>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="descriptionJobProposal">
+
+                                        <div class="topic">
+                                            Write a description about what you're gonna offer to get this job.
+                                        </div>
+                        
+                                        <textarea name="descriptionJobProposal" id="descriptionJobProposalText" cols="30" rows="10" required>
+
+                                        </textarea>
+
+                                    </div>
+
+                                    <div class="attachmentJobProposal" id="attachmentJobProposal">
+
+                                            <input name="attachment" type="file" id="inputFile" required>
+                                            <!-- <button type="submit">Upload</button> -->
+
+                                    </div>
+
+                                    <div class="bidAmount">
+
+                                        <div class="text">
+                                            Your Bidding Amount :
+                                        </div>
+                                        
+                                        <input type="text" id="bidValue" required>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="buttons">
+
+                                    <button type="button" onclick="confirmAction('cancel')">Cancel Submission</button>
+                                    <button type="button" onclick="confirmAction('send')">Send Proposal</button>
+
+                                </div>
+
+                            </form>
+                            
                     </div>
-                <div class="jobViewBuyerDetialsVerification">
-                    <div class="paymentVerify">
-                        <div class="VerificationIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
+
+                </div>
+
+                <!-- Modal 2 -->
+                <div class="overlayDisplayJob" id="cancelConfirmationOverlay">
+
+                    <div class="confirmation" id="cancelConfirmation">
+
+                        <p>Are you sure want to cancel?</p>
+
+                        <div class="buttons">
+
+                            <button onclick="handleConfirmation('cancelNo')">No</button>
+                            <button onclick="handleConfirmation('cancelYes')">Yes</button>
+
                         </div>
-                        <strong class="verifyContent">
-                            payment method verified
-                        </strong>
+
                     </div>
-                    <div class="phoneNumberVerify">
-                        <div class="VerificationIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
+
+                </div>
+
+                <!-- Modal 3 -->
+                <div class="overlayDisplayJob" id="sendConfirmationOverlay">
+
+                    <div class="confirmation" id="sendConfirmation">
+
+                        <p>Are you sure want to continue?</p>
+
+                        <div class="buttons">
+
+                            <button onclick="handleConfirmation('sendNo')">No</button>
+                            <button onclick="handleConfirmation('sendYes')">Yes</button>
+
                         </div>
-                        <strong class="verifyContent">
-                            Phone Number verified
-                        </strong>
+
                     </div>
                     
                 </div>
+
+            <?php }?>
+
+            <div class="jobViewBuyerDetailsSideBar">
+
+                <div class="jobViewBuyerDetialsAbout">
+
+                    <div class="jobViewBuyerDetailsHeader">
+                        About The Client
+                    </div>
+
+                <div class="jobViewBuyerDetialsVerification">
+
+                    <div class="paymentVerify">
+
+                        <div class="VerificationIcon">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
+
+                        </div>
+
+                        <strong class="verifyContent">
+                            payment method verified
+                        </strong>
+
+                    </div>
+
+                    <div class="phoneNumberVerify">
+
+                        <div class="VerificationIcon">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/>
+                            </svg>
+                        </div>
+
+                        <strong class="verifyContent">
+                            Email verified
+                        </strong>
+
+                    </div>
+                    
+                </div>
+
                 <div class="jobViewBuyerDetialsRatings">
 
                     <div class="jobViewBuyerRatings">
+
                         Ratings
                         <div class="jobViewBuyerRatingStars">
+
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
+
                         </div>
 
                         <div class="numeric-rating">(4.3)</div>
 
                     </div>
+
                 </div>
 
                 <div>
+
                     <ul class="jobViewBuyerDetialsUnOrList">
+
                         <li class="jobViewBuyerDetailsListItems">Country
                             <div>
+                                
                                 <?php
                                     if(isset($data['buyerDetails']['country'])){
                                         echo $data['buyerDetails']['country'];
@@ -168,13 +318,25 @@
                                         echo "-";
                                     }
                                 ?>
+
                             </div>
+
                         </li>
-                        <li class="jobViewBuyerDetailsListItems">Posted Total Job Count <?php echo $data['jobCount']?></li>
-                        <li class="jobViewBuyerDetailsListItems">Total Spendings : </li>
-                        <li class="jobViewBuyerDetailsListItems">Average Hours Per Rate Paid : </li>
-                        <li class="jobViewBuyerDetailsListItems">Member Since : <?php echo $data['buyerDetails']['joined_date']?></li>
+
+                        <li class="jobViewBuyerDetailsListItems">
+                            Posted Total Job Count <?php echo $data['jobCount']?>
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Total Spendings : 
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Average Hours Per Rate Paid : 
+                        </li>
+                        <li class="jobViewBuyerDetailsListItems">
+                            Member Since : <?php echo $data['buyerDetails']['joined_date']?>
+                        </li>
                     </ul>
+
                 </div>
 
             </div>
@@ -183,5 +345,7 @@
     
     </div>
 
-<script src="/public/assests/js/displayJob.script.js"></script>
+    
+<script src="./assests/js/displayJob.script.js"></script>
+
 <?php include "/xampp/htdocs/skillsparq/app/views/components/footer.component.php";?>

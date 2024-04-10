@@ -1,3 +1,4 @@
+
 <?php 
     include "components/buyerSimpleHeader.component.php";
 ?>
@@ -8,11 +9,9 @@
     $profileData = $data['profileData'];
     $seller["profilePicture"] = "avishka.jpg";
     $seller["sellerName"] = "Avishka Idunil";
-
-    $gig["sliderImage-2"] = "slide2.webp";
-    $gig["sliderImage-3"] = "slide3.webp";
-    $gig["sliderImage-4"] = "slide4.webp";
+    $sliderPics = $data['sliderImgs'];
     $gig['price'] = 200;
+    // show($data);
 ?>
 
 <!-- Display Gig Container -->
@@ -21,7 +20,7 @@
     <!-- Modal 1  -->
     <div class="overlay" name="packageOverlay" id="overlay">
         <div class="modal" name="packageModal" id="modal">
-            <form id="packageRequestForm">
+            <form id="packageRequestForm" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
                     <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
@@ -32,11 +31,11 @@
                     <label for="attachments" class="type-1">Attachments:</label>
                     <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
                     <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                        <label for="attachments" id="attachment" style="margin-right: 4px;">Attachements</label>
-                        <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                        <span id="fileName"></span>
+                        <label for="packageAttachement" id="attachment" style="margin-right: 4px;">Attachements</label>
+                        <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                        <span class="fileName" id="fileName"></span>
                     </div>
-                    <input type="file" class="fileInput" id="attachments" name="attachments" multiple onchange="displayFileName(this)">
+                    <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
                 </div>
 
                 <div class="buttons">
@@ -81,82 +80,12 @@
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder">
+            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder" enctype="multipart/form-data">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
                     <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
-
-                <!-- Template for a milestone-->
-                <div id="collapsibleTemplate" style="display: none;">
-                    <button type="button" class="collapsible" id="collapsible" onclick="expand(this)"></button>
-
-                    <div class="collapsibleContent">
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="type-1">Subject</div>
-                                <input type="text" name="milestone[subject][]">
-                            </div>
-                        </div>
-
-                        <div class="row"  style="gap:16px;">
-                            <div class="col">
-                                <div class="type-1">Revisions</div>
-                                <select name="milestone[revisions][]" required="" style="width: 100%;">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="Unlimited">Unlimited</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <div class="type-1">Delivery</div>
-                                <div class="row">
-                                    <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
-                                    <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
-                                        <option value="Day(s)">Day(s)</option>
-                                        <option value="Week(s)">Week(s)</option>
-                                        <option value="Month(s)">Month(s)</option>
-                                        <option value="Year(s)">Year(s)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="type-1">Price(USD)</div>
-                                <input type="text" name="milestone[price][]"  style="width: 100%;">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="attachments" class="type-1" >Attachments:</label>
-                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="attachments" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
-                                    <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                                    <span id="fileName"></span>
-                                </div>
-                                <input type="file" class="fileInput" id="attachments" name="milestone[attachment][]" multiple onchange="displayFileName(this)">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="type-1">Milestone Description</div>
-                                <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
-                            </div>
-                        </div>
-
-                        <button type="button" class="removeButton" onclick="removeCollapsible(this)">Remove Milestone</button>
-
-                    </div>
-                </div>
-
 
                 <div class="buttons">
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
@@ -207,22 +136,27 @@
                     </div>
                 </div>
                 <div class="gigImageSlider">
+
                     <div class="sliderContainer">
+
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/gigImages/<?php echo $gig["cover_image"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/coverImages/<?php echo $gig["cover_image"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $gig["sliderImage-2"]?>" loading="lazy">
-                            <div class="content"></div>
-                        </div>
-                
-                        <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $gig["sliderImage-3"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_1"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <div class="showSlide fade">
-                            <img src="../public/assests/images/<?php echo $gig["sliderImage-4"]?>" loading="lazy">
+                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_2"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_3"]?>" loading="lazy">
+                            <div class="content"></div>
+                        </div>
+                        <div class="showSlide fade">
+                            <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_4"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
                         <!-- Navigation arrows -->
@@ -273,7 +207,7 @@
                                     </div>
                                     <li><?php echo $gig[0]['package_description']; ?></li>
 
-                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_1" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
@@ -309,7 +243,7 @@
                                     </div>
                                     <li><?php echo $gig[1]['package_description']; ?></li>
 
-                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_2" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[1]['package_id']; ?>">
                                     </form>     
 
@@ -345,7 +279,7 @@
                                     </div>
                                     <li><?php echo $gig[2]['package_description']; ?></li>
 
-                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder">
+                                    <form id="package_3" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[2]['package_id']; ?>">
                                     </form>   
 

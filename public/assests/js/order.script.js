@@ -1,5 +1,7 @@
 // -----------------------------tab function------------------------------------------------
 
+document.getElementById("defaultOpen").click();
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabContent, tablinks;
@@ -12,7 +14,6 @@ function openTab(evt, tabName) {
   
     //Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
-    console.log(tablinks);
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
@@ -24,10 +25,11 @@ function openTab(evt, tabName) {
 
 
 
+
 // ---------------------------------------Timer--------------------------------------------------------
 
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 12, 2024 15:37:25").getTime();
+var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -54,3 +56,78 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
+
+
+// ---------------------------------------modals--------------------------------------------------------
+
+function confirmAction(action) {
+  if (action === 'send') {
+  
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    document.getElementById('cancelConfirmation').style.display = 'none';
+    document.getElementById('sendConfirmationOverlay').style.display = 'flex';
+    document.getElementById('sendConfirmation').style.display = 'block';
+  
+  } else if(action === 'cancel') {
+
+    document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
+    document.getElementById('cancelConfirmation').style.display = 'block';
+  
+  } 
+}
+
+function handleConfirmation(action, orderId, orderType) {
+    if(action === 'cancelNo'){
+
+        document.getElementById('cancelConfirmation').style.display = 'none';
+        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+
+    }else{
+
+      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmation').style.display = 'none';
+
+      cancelOrder(orderId, orderType);
+
+    }
+
+}
+
+
+// ---------------------------------------Payment Form submission--------------------------------------------------------
+
+function submitForm(){
+  const paymentForm = document.getElementById('paymentForm');
+  paymentForm.submit();
+}
+
+
+// ---------------------------------------Cancel an order--------------------------------------------------------
+
+async function cancelOrder(orderId, orderType) {
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+
+  try {
+      const response = await fetch('order/cancelOrder', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
+      });
+      
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      alert("Order cancelled successfully");
+      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
+
+
+
+
+
