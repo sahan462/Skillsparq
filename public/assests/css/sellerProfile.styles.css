@@ -33,8 +33,25 @@ body{
     animation-duration: 0.4s;
 }
 
+/* Languages modal */
+.overlayLanguages{
+
+}
+
+#overlayLanguages{
+
+}
+
+.modalLanguages{
+
+}
+
+#ModalLanguages{
+    
+}
+
 /* Delete Modal */
-.overlay1{
+/* .overlay1{
     z-index: 1;
     display: none;
     position: fixed;
@@ -52,7 +69,7 @@ body{
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-}
+} */
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
@@ -466,23 +483,6 @@ input[type = "text"], textarea, select{
 a{
     text-decoration: none;
     color: #0e0e0f;
-}
-
-/* Languages modal */
-.overlayLanguages{
-
-}
-
-#overlayLanguages{
-
-}
-
-.modalLanguages{
-
-}
-
-#ModalLanguages{
-    
 }
 
 /*user contribution*/

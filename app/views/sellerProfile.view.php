@@ -18,7 +18,7 @@
 <div class="sellerProfileContainer">
 
     <!-- ######################################################################### -->
-    
+
     <!-- Modal 1 Update Profile Modal -->
     <div class="overlay" id="overlayUpdate">
         <div class="modal" id="ModalUpdate">
@@ -94,8 +94,8 @@
     <!-- ######################################################################### -->
 
     <!-- Modal 4 Delete Profile Modal -->
-    <div class="overlay1" id="overlayDelete">
-        <div class="modal1" id="ModalDelete"> 
+    <div class="overlay" id="overlayDelete">
+        <div class="modal" id="ModalDelete"> 
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
@@ -127,7 +127,7 @@
     </div>
 
     <!-- Modal 5 Delete Profile Modal -->
-    <div class="overlay1" id="cancelConfirmProfDeleteOverlay">
+    <div class="overlay" id="cancelConfirmProfDeleteOverlay">
         <div class="confirmation" id="cancelConfirmProfDelete">
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
@@ -138,7 +138,7 @@
     </div>
 
     <!-- Modal 6 Delete Profile Modal -->
-    <div class="overlay1" id="sendConfirmProfDeleteOverlay">
+    <div class="overlay" id="sendConfirmProfDeleteOverlay">
         <div class="confirmation" id="sendConfirmProfDelete">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
@@ -151,8 +151,8 @@
     <!-- ######################################################################### -->
 
     <!-- Modal 7 Language Profile Modal -->
-    <div class="overlayLanguages" id="overlayAddLanguages">
-        <div class="modalLanguages" id="ModalAddLanguages">
+    <div class="overlay" id="overlayAddLanguages">
+        <div class="modal" id="ModalAddLanguages">
             <form id="languageForm" method="post" action="./sellerProfile">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
@@ -184,8 +184,8 @@
         </div>
     </div>
 
-    <!-- Modal 8 Language Profile Modal -->
-    <div class="overlayLanguages" id="cancelConfirmProfAddLangOverlay">
+    <!-- Modal 8 Language Profile Modal Cancel-->
+    <div class="overlay" id="cancelConfirmProfAddLangOverlay">
         <div class="confirmation" id="cancelConfirmProfAddLang">
             <p>Are you sure want to cancel?</p>
             <div class="buttons">
@@ -195,8 +195,8 @@
         </div>
     </div>
 
-    <!-- Modal 9 Language Profile Modal -->
-    <div class="overlay1" id="sendConfirmProfAddLangOverlay">
+    <!-- Modal 9 Language Profile Modal Confirm -->
+    <div class="overlay" id="sendConfirmProfAddLangOverlay">
         <div class="confirmation" id="sendConfirmProfAddLang">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
