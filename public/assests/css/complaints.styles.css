@@ -743,3 +743,11 @@ box-shadow: var(--shadow); */
     background-color: #1dbf73;
     color: white;
 }
+
+
+.subChart{
+    margin-top: 50px;
+    width: 45%;
+    border: #000;
+    border-radius: 10px;
+}
