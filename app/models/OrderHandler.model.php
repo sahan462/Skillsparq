@@ -95,18 +95,16 @@ class OrderHandler extends database
     }
 
     //get order details
-    public function getOrderDetails($orderId, $orderType)
+    public function getOrderDetails($orderId, $orderType, $userRole)
     {
 
         if($orderType == 'package'){
 
-            $query = "SELECT * FROM orders inner join profile inner join package_orders on orders.order_id = package_orders.package_order_id where order_id = ?";
+            $query = "SELECT * FROM orders inner join profile on profile.user_id = orders.buyer_id or profile.user_id = orders.seller_id inner join package_orders on orders.order_id = package_orders.package_order_id where order_id = ?";
 
         }else if($orderType == 'milestone'){
 
         }else if($orderType == 'job'){
-
-        }else if($orderType == ''){
 
         }else{
 
@@ -121,7 +119,7 @@ class OrderHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $orderId);
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result()->fetch_assoc();
+            return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
