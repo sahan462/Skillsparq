@@ -132,7 +132,7 @@ function confirmActionProfDelete(action) {
       document.getElementById('cancelConfirmProfDeleteOverlay').style.display = 'flex';
       document.getElementById('cancelConfirmProfDelete').style.display = 'block';
     
-    } 
+    }
 }
 
 // Function to handle actions based on user confirmation
@@ -234,25 +234,25 @@ function handleConfirmProfAddLan(action) {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-// const languageInput = document.getElementById('languageInput');
-// const languageTags = document.getElementById('languageTags');
+const languageInput = document.getElementById('languageInput');
+const languageTags = document.getElementById('languageTags');
 
-// languageInput.addEventListener('keydown', function(event) {
-//   if (event.key === 'Enter' || event.keyCode === 13) {
-//     addLanguageTag(this.value);
-//     this.value = '';
-//     event.preventDefault();
-//   }
-// });
+languageInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter' || event.keyCode === 13) {
+    addLanguageTag(this.value);
+    this.value = '';
+    event.preventDefault();
+  }
+});
 
-// function addLanguageTag(language) {
-//   if (language.trim() !== '') {
-//     const tag = document.createElement('div');
-//     tag.classList.add('languageTag');
-//     tag.textContent = language;
-//     tag.addEventListener('click', function() {
-//       this.remove();
-//     });
-//     languageTags.appendChild(tag);
-//   }
-// }
+function addLanguageTag(language) {
+  if (language.trim() !== '') {
+    const tag = document.createElement('div');
+    tag.classList.add('languageTag');
+    tag.textContent = language;
+    tag.addEventListener('click', function() {
+      this.remove();
+    });
+    languageTags.appendChild(tag);
+  }
+}

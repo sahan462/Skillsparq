@@ -368,6 +368,17 @@ svg{
 }
 
 /* modalDisplayJob content */
+
+.modalDisplayJob{
+    /* display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto; */
+}
+
 .modalDisplayJob form {
     display: flex;
     flex-direction: column;

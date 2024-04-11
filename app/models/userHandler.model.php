@@ -143,7 +143,7 @@ class UserHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-}
+
     public function deleteUser($userId)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM user 

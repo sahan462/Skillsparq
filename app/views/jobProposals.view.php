@@ -14,3 +14,6 @@ include "components/buyerSimpleHeader.component.php";
             <?php echo "All Proposals"; ?>
         </div>
     </div>
+
+
+<?php include "/xampp/htdocs/skillsparq/app/views/components/footer.component.php";?>

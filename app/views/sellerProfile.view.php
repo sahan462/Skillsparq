@@ -19,7 +19,7 @@
 
     <!-- ######################################################################### -->
 
-    <!-- Modal 1 Update Profile Modal -->
+    <!-- Modal 1 Update Profile Form Modal -->
     <div class="overlay" id="overlayUpdate">
         <div class="modal" id="ModalUpdate">
             <form id="profileUpdateForm" method="post" action="./sellerProfile/updateSellerProfile" enctype="multipart/form-data">
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <!-- Modal 2 Update Profile Modal -->
+    <!-- Modal 1 Update Profile Cancel Confirmation Modal (Sub) -->
     <div class="overlay" id="cancelConfirmProfUpdateOverlay">
         <div class="confirmation" id="cancelConfirmProfUpdate">
             <p>Are you sure want to cancel?</p>
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <!-- Modal 3 Update Profile Modal -->
+    <!-- Modal 1 Update Profile Confirm Proceed Modal (Sub) -->
     <div class="overlay" id="sendConfirmProfUpdateOverlay">
         <div class="confirmation" id="sendConfirmProfUpdate">
             <p>Are you sure want to continue?</p>
@@ -93,7 +93,7 @@
 
     <!-- ######################################################################### -->
 
-    <!-- Modal 4 Delete Profile Modal -->
+    <!-- Modal 2 Delete Profile Form Modal -->
     <div class="overlay" id="overlayDelete">
         <div class="modal" id="ModalDelete"> 
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
@@ -126,7 +126,7 @@
         </div>
     </div>
 
-    <!-- Modal 5 Delete Profile Modal -->
+    <!-- Modal 2 Delete Profile Cancel Confirmation Modal (Sub) -->
     <div class="overlay" id="cancelConfirmProfDeleteOverlay">
         <div class="confirmation" id="cancelConfirmProfDelete">
             <p>Are you sure want to cancel?</p>
@@ -137,7 +137,7 @@
         </div>
     </div>
 
-    <!-- Modal 6 Delete Profile Modal -->
+    <!-- Modal 2 Delete Profile Confirm Proceed Modal (Sub) -->
     <div class="overlay" id="sendConfirmProfDeleteOverlay">
         <div class="confirmation" id="sendConfirmProfDelete">
             <p>Are you sure want to continue?</p>
@@ -150,14 +150,14 @@
 
     <!-- ######################################################################### -->
 
-    <!-- Modal 7 Language Profile Modal -->
+    <!-- Modal 3 Language Profile Form Modal (Sub) -->
     <div class="overlay" id="overlayAddLanguages">
         <div class="modal" id="ModalAddLanguages">
             <form id="languageForm" method="post" action="./sellerProfile">
                 <div class="seller-profile-picture">
-                    <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
-                    </div>
+                    <!-- <div class="updateSellerProfilePicture">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
@@ -167,10 +167,9 @@
                             ?>
                         </div>
                         <div class="seller-question">
-                            <?php 
-                                echo "Do you want to delete your account?"; 
-                            ?>
+                            Add Languages You're familiar with.
                         </div>
+                        <input type="text">
                     </div>
                 </div>
                 <div class="buttons">
@@ -184,7 +183,7 @@
         </div>
     </div>
 
-    <!-- Modal 8 Language Profile Modal Cancel-->
+    <!-- Modal 3 Language Profile Cancel Confirmation Modal (Sub) -->
     <div class="overlay" id="cancelConfirmProfAddLangOverlay">
         <div class="confirmation" id="cancelConfirmProfAddLang">
             <p>Are you sure want to cancel?</p>
@@ -195,7 +194,7 @@
         </div>
     </div>
 
-    <!-- Modal 9 Language Profile Modal Confirm -->
+    <!-- Modal 3 Language Profile Confirm Proceed Modal (Sub) -->
     <div class="overlay" id="sendConfirmProfAddLangOverlay">
         <div class="confirmation" id="sendConfirmProfAddLang">
             <p>Are you sure want to continue?</p>
@@ -292,10 +291,12 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($about)){
+                            if(!empty($about)){
                                 echo $about;    
                             }else{
-                                echo "Please click update profile to edit the about!";
+                        ?>
+                            <div>Please click <b>Edit Profile</b> to edit the about!</div>
+                        <?php
                             }
                         ?>
                     </div>
