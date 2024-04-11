@@ -441,6 +441,8 @@
     <script>
         document.getElementById("chatBtnSeller").addEventListener("click", function() {
             document.getElementById("chatBoxSeller").style.display = "block";
+            document.getElementById("chatBoxBuyer").style.display = "none";
+
         });
 
         document.getElementById("closeChatBtnSeller").addEventListener("click", function() {
@@ -449,6 +451,7 @@
 
         document.getElementById("chatBtnBuyer").addEventListener("click", function() {
             document.getElementById("chatBoxBuyer").style.display = "block";
+            document.getElementById("chatBoxSeller").style.display = "none";
         });
 
         document.getElementById("closeChatBtnBuyer").addEventListener("click", function() {
