@@ -15,11 +15,14 @@ class Order extends Controller
 
         $orderId = $_GET['orderId'];
         $orderType = $_GET['orderType'];
+        $buyerId = $_GET['buyerId'];
+        $sellerid = $_GET['sellerId'];
         $userRole = $_SESSION['role'];
 
-        $data['orderData'] = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $userRole);
-        print_r($data['orderData']->fetch_assoc());
-        print_r($data['orderData']->fetch_assoc());
+        $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
+        print_r($data['order']);
+        print_r($data['buyer']);
+        print_r($data['seller']);
         $this->view('order', $data);
     }
 
@@ -31,7 +34,7 @@ class Order extends Controller
         echo "
             <script>
                 alert('Payment done successfully');
-                window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=". $_POST['order_type']. "';
+                window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=" . $_POST['order_type'] . "&buyerId=".$_POST['buyer_id'] . "&sellerId=". $_POST['seller_id'] ."';
             </script>
         ";
         
@@ -44,7 +47,7 @@ class Order extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $orderId = $_POST['orderId'];
-            $state = "Cancelled";
+            $state = "cancelled";
             
             $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
     

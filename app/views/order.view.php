@@ -7,40 +7,33 @@
 ?>
 
 <?php 
-    $userRole = 'buyer';
-    $order['orderType'] = 'package';
-    $order['orderStatus'] = 'Accepted/Pending Payments';//Requested->Accepted/Pending Payments->Accepted/Paid
-    $order['paymentStaus'] = 'Pending';
-
-?>
-
-
-<?php 
-    $data['buyerRequirement'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna 
-    aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-    eiusmod tempor incididunt ut labore et dolore magna aliqua." ;
-    
-    $data["filename"] = "file.zip";
-    $data["buyerProfilePicture"] = "chamal.jpg";
-    $data["firstName"] = "Chamal";
-    $data["lastName"] = "Fernando";
-    $data["orderId"] = 11;
+    $order = $data['order'];
+    $buyer = $data['buyer'];
+    $seller = $data['seller'];
+    $userRole = $_SESSION['role'];
 ?>
 
 <!-- Main Container -->
 <div class="orderContainer"> 
-
 
     <!-- Modal 1 -->
     <div class="overlay" id="cancelConfirmationOverlay">
         <div class="confirmation" id="cancelConfirmation">
             <p>Are you sure want to cancel your order?</p>
             <div class="buttons">
-                <button onclick="handleConfirmation('cancelNo', '', '')">No</button>
-                <button onclick="handleConfirmation('cancelYes', <?php echo $data['orderId']?>, '<?php echo $order['orderType']?>')">Yes</button>
+                <button onclick="handleConfirmation('cancelNo', '', '', '')">No</button>
+                <button onclick="handleConfirmation('cancelYes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="overlay" id="sendConfirmationOverlay">
+        <div class="confirmation" id="sendConfirmation">
+            <p>Are you sure want to continue with this order?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmation('cancelNo', '', '', '')">No</button>
+                <button onclick="handleConfirmation('cancelYes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
             </div>
         </div>
     </div>
@@ -49,6 +42,7 @@
     <div class="orderContainerHeader">
         <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'activity')">Activity</button>
         <button class="tablinks" onclick="openTab(event, 'details')">Order Details</button>
+        <button class="tablinks" onclick="openTab(event, 'orderHistory')">Order History</button>
     </div>
 
     <!-- Tab Content -->
@@ -65,29 +59,136 @@
             <!-- Tab 2 -->
             <div id="details" class="tabContent" style="display:none;">
 
-                <!-- buyer requirements -->
-                <h3>Buyer Requirement</h3>
-                <p><?php echo $data['buyerRequirement'] ?></p>
+                <!-- buyer -->
+                <?php if($_SESSION['role'] == 'Buyer'){?>
 
-                <!-- attachements -->
-                <h3>Attachement</h3>
-                <div class="attachement">
-                    <span><?php echo $data['filename'] ?></span>
-                    <span><button>Click here to Download!</button></span>
-                </div>
+                    <ul>
 
-                <!-- buyer details -->
-                <h3>Buyer Details</h3>
-                <div class="buyerDetails">
-                    <div class="buyer">
-                        <img class="gig-profile-image" src="../public/assests/images/<?php echo $data["buyerProfilePicture"]?>" loading="lazy">
-                        <div class="name&rating">
-                            <span><?php echo $data['firstName']." ".$data['lastName'];?></span>
-                        </div>
-                    </div>
-                </div>
+                        <li>
+                            <!-- buyer requirements -->
+                            <h3>Your Requirement</h3>
+                            <p><?php echo $order['order_description'] ?></p>
+                        </li>
+
+                        <li>
+                            <!-- attachements -->
+                            <h3>Attachements</h3>
+                            <div class="attachement">
+                                <span><?php echo $order['order_attachement'] ?></span>
+                                <span><button>Click here to Download!</button></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- seller details -->
+                            <h3>Seller Details</h3>
+                            <div class="buyerDetails">
+                                <div class="buyer">
+                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $seller["profile_pic"]?>" loading="lazy">
+                                    <div class="name&rating">
+                                        <span><?php echo $seller['first_name']." ".$seller['last_name'];?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                <!-- seller -->
+                <?php }elseif($_SESSION['role'] == 'Seller') {?>
+
+                    <ul>
+
+                        <li>
+                            <!-- buyer requirements -->
+                            <h3>Buyer Requirement</h3>
+                            <p><?php echo $order['order_description'] ?></p>
+                        </li>
+
+                        <li>
+                            <!-- attachements -->
+                            <h3>Attachements</h3>
+                            <div class="attachement">
+                                <span><?php echo $order['order_attachement'] ?></span>
+                                <span><button>Click here to Download!</button></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- buyer details -->
+                            <h3>Buyer Details</h3>
+                            <div class="buyerDetails">
+                                <div class="buyer">
+                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $buyer["profile_pic"]?>" loading="lazy">
+                                    <div class="name&rating">
+                                        <span><?php echo $buyer['first_name']." ".$buyer['last_name'];?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+                <!-- customer support asssistant -->
+                <?php }elseif($_SESSION['role'] == 'csa') {?>
+
+                    <ul>
+
+                        <li>
+                            <!-- buyer requirements -->
+                            <h3>Buyer Requirement</h3>
+                            <p><?php echo $order['order_description'] ?></p>
+                        </li>
+
+                        <li>
+                            <!-- attachements -->
+                            <h3>Attachements</h3>
+                            <div class="attachement">
+                                <span><?php echo $order['order_attachement'] ?></span>
+                                <span><button>Click here to Download!</button></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- buyer details -->
+                            <h3>Buyer Details</h3>
+                            <div class="buyerDetails">
+                                <div class="buyer">
+                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $buyer["profile_pic"]?>" loading="lazy">
+                                    <div class="name&rating">
+                                        <span><?php echo $buyer['first_name']." ".$buyer['last_name'];?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- seller details -->
+                            <h3>Seller Details</h3>
+                            <div class="buyerDetails">
+                                <div class="buyer">
+                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $seller["profile_pic"]?>" loading="lazy">
+                                    <div class="name&rating">
+                                        <span><?php echo $seller['first_name']." ".$seller['last_name'];?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                
+                <?php }else {?>
+
+                <?php } ?>
 
             </div>
+
+            <div id="orderHistory">
+
+            </div>            
+
+
         </div>
 
         <!-- Right Container -->
@@ -96,7 +197,7 @@
             <!-- Right Container Upper Part -->
             <div class="orderDetailsUpperContainer">
 
-                <!-- Seller View -->
+                <!-- Buyer View -->
                 <?php if($_SESSION['role'] == "Buyer") { ?>
 
                     <!-- Timer -->
@@ -109,22 +210,23 @@
 
                     </div>
 
-                    <div class="orderStatus">
+                    <!-- State transition -->
+                    <div class="orderState">
 
-                        <div class="orderStatusHeader">
+                        <div class="orderStateHeader">
                             <span>Current Status of Order :</span>
-                            <span><?php echo $order['orderStatus'] ?></span>
+                            <span><?php echo $order['order_state'] ?></span>
                         </div>
 
-                        <div class="orderStatusData">
+                        <div class="orderStateData">
 
-                            <!-- Requested State -->
-                            <?php if  ($order['orderStatus'] == 'Requested') { ?>
+                            <!-- requested State -->
+                            <?php if  ($order['order_state'] == 'requested') { ?>
 
-                                <button class="buttonType-2">withdraw your Request</button>
+                                <button class="buttonType-2" onclick="confirmAction('cancel')">withdraw your Request</button>
 
                             <!-- Accepted State Waiting for Payments -->
-                            <?php } else if($order['orderStatus'] == 'Accepted/Pending Payments'){ ?>
+                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments'){ ?>
                                 
 
                                 <?php
@@ -156,6 +258,8 @@
                                     <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
                                     <input type="hidden" name="order_id" value="11">
                                     <input type="hidden" name="order_type" value="<?php echo $order['orderType']?>">
+                                    <input type="hidden" name="buyer_id" value="<?php echo $order['buyer_id']?>">
+                                    <input type="hidden" name="seller_id" value="<?php echo $order['seller_id']?>">
                                     <input type="hidden" name="items" value="Door bell wireless">
                                     <input type="hidden" name="currency" value="USD">
                                     <input type="hidden" name="amount" value="10">  
@@ -168,21 +272,20 @@
                                     <input type="hidden" name="country" value="Sri Lanka">
                                     <input type="hidden" name="hash" value="<?php echo $hash ?>">  
 
-                        
                                 </form>
 
 
                                 <div class="row">
-                                    <button class="buttonType-1" onclick="submitForm()">Proceed to Pay</button>
+                                    <button class="buttonType-1" onclick="submitpaymentForm()">Proceed to Pay</button>
                                     <button class="buttonType-2" onclick="confirmAction('cancel')">Cancel Order</button>
                                 </div>
                                         
                             <!-- Accepted and Paid -->
-                            <?php } else if($order['orderStatus'] == 'Accepted/Paid'){ ?>
+                            <?php } else if($order['order_state'] == 'accepted/paid'){ ?>
 
 
                             <!-- Accepted State / Paid/ Running-->
-                            <?php } else if($order['orderStatus'] == 'Running') { ?>
+                            <?php } else if($order['order_state'] == 'running') { ?>
                                     
                                 Paid
                             
@@ -192,9 +295,10 @@
                     </div>
 
 
-                <!-- Buyer View -->
+                <!-- Seller View -->
                 <?php } else if($_SESSION['role'] == "Seller") { ?>
                     
+                    <!-- Timer -->
                     <div class="deadline">
                         <span>Time Left to Receive :</span>
                         <div class="timer">
@@ -202,42 +306,99 @@
                         </div>
                     </div>
 
-                    <div class="orderStatus">
+                    <!-- State transition -->
+                    <div class="orderState">
 
-                        <div class="orderStatusHeader">
+                        <!-- Current state -->
+                        <div class="orderStateHeader">
                             <span>Current Status of Order :</span>
-                            <span><?php echo $order['orderStatus'] ?></span>
+                            <span><?php echo $order['order_state'] ?></span>
                         </div>
 
                         <!-- Order States -->
-                        <div class="orderStatusData">
+                        <div class="orderStateData">
 
-                            <!-- Requested State -->
-                            <?php if  ($order['orderStatus'] == 'Requested') { ?>
+                            <!-- requested State -->
+                            <?php if  ($order['order_state'] == 'requested') { ?>
 
-                                <!-- <span>Order Requested expires in :</span> -->
+                                <!-- <span>Order requested expires in :</span> -->
                                 <div class="row">
-                                    <button class="buttonType-1">Accept</button>
-                                    <button class="buttonType-2">Reject</button>
+                                    <button class="buttonType-1" onclick="confirmAction('send')">Accept</button>
+                                    <button class="buttonType-2" onclick="confirmAction('cancel')">Reject</button>
                                 </div>
 
                             <!-- Accepted State Waiting for Payments -->
-                            <?php } else if($order['orderStatus'] == 'Accepted/Pending Payments') { ?>
-
+                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments') { ?>
 
                                 Pending Payments
+
                             <!-- Accepted and Paid -->
-                            <?php } else if($order['orderStatus'] == 'Accepted/Paid') { ?>
+                            <?php } else if($order['order_state'] == 'Accepted/Paid') { ?>
 
                             <!-- Rejected State -->
-                            <?php } else if($order['orderStatus'] == 'Rejected') { ?>
+                            <?php } else if($order['order_state'] == 'Rejected') { ?>
 
                             <!-- Accepted State / Paid/ Running-->
-                            <?php } else if($order['orderStatus'] == 'Running') { ?>
+                            <?php } else if($order['order_state'] == 'Running') { ?>
 
                                 Paid
 
-                            <?php } else if($order['orderStatus'] == 'Pending Payments') { ?>
+                            <?php } else if($order['order_state'] == 'Pending Payments') { ?>
+
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                
+                    <!-- Customer support assistant view-->
+                    <?php } else if($_SESSION['role'] == "csa") { ?>
+                    
+                    <!-- Timer -->
+                    <div class="deadline">
+                        <span>Time Left to Receive :</span>
+                        <div class="timer">
+                            <p id="demo"></p>
+                        </div>
+                    </div>
+
+                    <!-- State transition -->
+                    <div class="orderState">
+
+                        <!-- Current state -->
+                        <div class="orderStateHeader">
+                            <span>Current Status of Order :</span>
+                            <span><?php echo $order['order_state'] ?></span>
+                        </div>
+
+                        <!-- Order States -->
+                        <div class="orderStateData">
+
+                            <!-- requested State -->
+                            <?php if  ($order['order_state'] == 'requested') { ?>
+
+                                <!-- <span>Order requested expires in :</span> -->
+                                <div class="row">
+                                    <button class="buttonType-1" onclick="confirmAction('send')">Accept</button>
+                                    <button class="buttonType-2" onclick="confirmAction('cancel')">Reject</button>
+                                </div>
+
+                            <!-- Accepted State Waiting for Payments -->
+                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments') { ?>
+
+                                Pending Payments
+
+                            <!-- Accepted and Paid -->
+                            <?php } else if($order['order_state'] == 'Accepted/Paid') { ?>
+
+                            <!-- Rejected State -->
+                            <?php } else if($order['order_state'] == 'Rejected') { ?>
+
+                            <!-- Accepted State / Paid/ Running-->
+                            <?php } else if($order['order_state'] == 'Running') { ?>
+
+                                Paid
+
+                            <?php } else if($order['order_state'] == 'Pending Payments') { ?>
 
                             <?php } ?>
 

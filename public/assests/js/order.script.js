@@ -96,7 +96,7 @@ function handleConfirmation(action, orderId, orderType, buyerId, sellerId) {
 
 // ---------------------------------------Payment Form submission--------------------------------------------------------
 
-function submitForm(){
+function submitpaymentForm(){
   const paymentForm = document.getElementById('paymentForm');
   paymentForm.submit();
 }
@@ -105,7 +105,7 @@ function submitForm(){
 // ---------------------------------------Cancel an order--------------------------------------------------------
 
 async function cancelOrder(orderId, orderType, buyerId, sellerId) {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
 
   try {
       const response = await fetch('order/cancelOrder', {
@@ -121,7 +121,7 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId) {
       }
 
       alert("Order cancelled successfully");
-      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
   }

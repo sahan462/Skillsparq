@@ -14,14 +14,14 @@ class ManageOrders extends Controller
         $data['title'] = "SkillSparq";
 
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
-        
+
         $this->view('manageOrders', $data); 
     }
 
     //create a package order
     public function createPackageOrder() {
         // Get form data
-        $orderStatus = "request";
+        $orderState = "Requested";
         $orderType = $_POST['orderType'];
         $buyerId = $_POST['buyerId'];    
         $sellerId = $_POST['sellerId'];
@@ -38,7 +38,7 @@ class ManageOrders extends Controller
         $attachmentName = basename($attachment["name"]);
     
         // Create order and handle attachment
-        $orderId = $this->OrderHandlerModel->createPackageOrder($orderStatus, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
+        $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
 
         $orderFileName = "Order" . "_" . $orderId;
         $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
