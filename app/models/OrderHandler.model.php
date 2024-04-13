@@ -5,7 +5,7 @@ class OrderHandler extends database
     //create new order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
-        $stmt_1 = mysqli_prepare($GLOBALS['db'], "INSERT INTO Orders 
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Orders 
         (
             order_state, 
             order_type, 
@@ -18,15 +18,15 @@ class OrderHandler extends database
             ?, ?, ?, ?, ?
         )");
     
-        if ($stmt_1 === false) {
+        if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt_1, "sssii", $orderState,  $orderType, $currentDateTime, $buyerId, $sellerId);
+        mysqli_stmt_bind_param($stmt, "sssii", $orderState,  $orderType, $currentDateTime, $buyerId, $sellerId);
 
-        if (mysqli_stmt_execute($stmt_1)) {
+        if (mysqli_stmt_execute($stmt)) {
             $orderId = mysqli_insert_id($GLOBALS['db']);
-            $stmt_1->close();
+            $stmt->close();
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
@@ -34,7 +34,7 @@ class OrderHandler extends database
         //insert data to package order table    
         if($orderType == "package"){
 
-            $stmt_2 = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
+            $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
             (
                 package_order_id,
                 order_description, 
@@ -47,13 +47,13 @@ class OrderHandler extends database
                 ?, ?, ?, ?, ?
             )");
         
-            if ($stmt_2 === false) {
+            if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
 
-            mysqli_stmt_bind_param($stmt_2, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
-            mysqli_stmt_execute($stmt_2);
-            $stmt_2->close();
+            mysqli_stmt_bind_param($stmt, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
+            mysqli_stmt_execute($stmt);
+            $stmt->close();
 
         }else{
 
@@ -64,6 +64,11 @@ class OrderHandler extends database
     }
 
     //create milestone order
+    
+    public function createMilestoneOrder()
+    {
+        
+    }
 
 
     //get orders
@@ -188,6 +193,45 @@ class OrderHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+
+    }
+
+    //create new payment
+    public function createPayment($paymentId, $payerId, $payeeId, $amount, $paymentDate, $paymentDescription, $paymentState, $orderId, $refundReceiverId, $refundIssuerId, $refundCause, $refundDate,  $milestoneId)
+    {
+        //add values to payments table
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO payments 
+        (
+            payment_id, 
+            payer_id, 
+            payee_id,  
+            amount,
+            payment_date,
+            payment_description,
+            payment_state,
+            order_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?, ?, ?, ?
+        )");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "iiidsssi", $paymentId,  $payerId, $payeeId, $amount, $paymentDate, $paymentDescription, $paymentState, $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        
+
+
 
     }
 
