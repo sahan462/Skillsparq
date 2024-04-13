@@ -342,6 +342,16 @@ svg{
     height: auto;
 }
 
+#modalIdDisplayJobStd {
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
 .confirmation{
     display: none;
     background: #fff;
@@ -382,6 +392,7 @@ svg{
 .modalDisplayJob .row{
     display: flex;
     flex-direction: column !important;
+    text-align: left;;
 }
 
 .modalDisplayJob .buttons, .confirmation .buttons{
@@ -414,11 +425,11 @@ svg{
 
 .modalDisplayJobTopic{
     font-size: 24px;
-    text-align: center;
+    text-align: left;
 }
 
 .modalDisplayJob .descriptionJobProposal .topic{
-    text-align-last: center;
+    text-align-last: left;
     margin: 8px;
 }
 
