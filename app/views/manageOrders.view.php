@@ -60,7 +60,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'requested'){
+                                    if($row['order_state'] == 'Requested'){
 
                             ?>
                                     <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
@@ -108,7 +108,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'Accepted'){
+                                    if($row['order_state'] == 'Accepted/Pending Payments'){
 
                             ?>
                                     <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
@@ -347,7 +347,7 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'cancelled'){
+                                    if($row['order_state'] == 'Cancelled'){
                             ?>
                                     <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
                                         <td><?php echo $row['order_id'] ?></td>

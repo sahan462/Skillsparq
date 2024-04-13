@@ -407,7 +407,7 @@ input[type = "text"], textarea, select{
     border-radius: 8px;
     border: none;
     transition: ease-in-out 0.3s;
-    background-color: #f81d00 !important;
+    background-color: #f81d00;
     cursor: pointer;
 }
 

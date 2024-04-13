@@ -11,32 +11,11 @@
     $buyer = $data['buyer'];
     $seller = $data['seller'];
     $userRole = $_SESSION['role'];
+    $state = '';
 ?>
 
 <!-- Main Container -->
 <div class="orderContainer"> 
-
-    <!-- Modal 1 -->
-    <div class="overlay" id="cancelConfirmationOverlay">
-        <div class="confirmation" id="cancelConfirmation">
-            <p>Are you sure want to cancel your order?</p>
-            <div class="buttons">
-                <button onclick="handleConfirmation('cancelNo', '', '', '')">No</button>
-                <button onclick="handleConfirmation('cancelYes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div class="overlay" id="sendConfirmationOverlay">
-        <div class="confirmation" id="sendConfirmation">
-            <p>Are you sure want to continue with this order?</p>
-            <div class="buttons">
-                <button onclick="handleConfirmation('cancelNo', '', '', '')">No</button>
-                <button onclick="handleConfirmation('cancelYes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Tab Section -->
     <div class="orderContainerHeader">
@@ -220,20 +199,29 @@
 
                         <div class="orderStateData">
 
-                            <!-- requested State -->
-                            <?php if  ($order['order_state'] == 'requested') { ?>
+                            <!-- Requested State -->
+                            <?php if  ($order['order_state'] == 'Requested') { $state = 'Requested';?>
 
                                 <button class="buttonType-2" onclick="confirmAction('cancel')">withdraw your Request</button>
 
                             <!-- Accepted State Waiting for Payments -->
-                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments'){ ?>
+                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments'){ $state = 'Accepted/Pending Payments';?>
                                 
-
                                 <?php
 
                                     $merchant_id = 1224879;
-                                    $order_id = $data["orderId"];
-                                    $amount = 10;
+                                    $order_id = $order["order_id"];
+
+                                    if ($order['order_type'] == 'package') { 
+                                        
+                                        $amount = $order['package_price'];
+
+                                    }else if($order['order_type'] == 'milestone'){
+
+
+
+                                    }
+
                                     $currency = "USD";
                                     $merchant_secret = "MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ==";
 
@@ -249,27 +237,27 @@
                                 
                                 ?>
                                 
-                                <!-- Payment https://sandbox.payhere.lk/pay/checkout -->
-                                <form method="post" action="<?php echo BASEURL.'order/verifyPayment';?>" id="paymentForm">   
+                                <!-- Payment https://sandbox.payhere.lk/pay/authorize -->
+                                <form method="post" action="order/verifyPayment" id="paymentForm">   
 
                                     <input type="hidden" name="merchant_id" value="1224879">    
                                     <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
                                     <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">
                                     <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
-                                    <input type="hidden" name="order_id" value="11">
-                                    <input type="hidden" name="order_type" value="<?php echo $order['orderType']?>">
+                                    <input type="hidden" name="order_id" value="<?php echo $order_id?>">
+                                    <input type="hidden" name="order_type" value="<?php echo $order['order_type']?>">
                                     <input type="hidden" name="buyer_id" value="<?php echo $order['buyer_id']?>">
                                     <input type="hidden" name="seller_id" value="<?php echo $order['seller_id']?>">
-                                    <input type="hidden" name="items" value="Door bell wireless">
+                                    <input type="hidden" name="items" value="<?php echo $order['title'] ?>">
                                     <input type="hidden" name="currency" value="USD">
-                                    <input type="hidden" name="amount" value="10">  
-                                    <input type="hidden" name="first_name" value="Saman">
-                                    <input type="hidden" name="last_name" value="Perera">
-                                    <input type="hidden" name="email" value="samanp@gmail.com">
-                                    <input type="hidden" name="phone" value="0771234567">
-                                    <input type="hidden" name="address" value="No.1, Galle Road">
-                                    <input type="hidden" name="city" value="Colombo">
-                                    <input type="hidden" name="country" value="Sri Lanka">
+                                    <input type="hidden" name="amount" value="<?php echo $amount?>">  
+                                    <input type="hidden" name="first_name" value="<?php echo $buyer['first_name']?>">
+                                    <input type="hidden" name="last_name" value="<?php echo $buyer['last_name']?>">
+                                    <input type="hidden" name="country" value="<?php echo $buyer['country'] ?>">
+                                    <input type="hidden" name="email" value="">
+                                    <input type="hidden" name="phone" value="">
+                                    <input type="hidden" name="address" value="">
+                                    <input type="hidden" name="city" value="">
                                     <input type="hidden" name="hash" value="<?php echo $hash ?>">  
 
                                 </form>
@@ -280,15 +268,11 @@
                                     <button class="buttonType-2" onclick="confirmAction('cancel')">Cancel Order</button>
                                 </div>
                                         
-                            <!-- Accepted and Paid -->
-                            <?php } else if($order['order_state'] == 'accepted/paid'){ ?>
-
-
                             <!-- Accepted State / Paid/ Running-->
-                            <?php } else if($order['order_state'] == 'running') { ?>
+                            <?php } else if($order['order_state'] == 'Running') { ?>
                                     
-                                Paid
-                            
+                                <button class="buttonType-1" >View Share Point</button>
+
                             <?php } ?>
 
                         </div>
@@ -318,30 +302,27 @@
                         <!-- Order States -->
                         <div class="orderStateData">
 
-                            <!-- requested State -->
-                            <?php if  ($order['order_state'] == 'requested') { ?>
+                            <!-- Requested State -->
+                            <?php if  ($order['order_state'] == 'Requested') { $state = 'Requested';?>
 
-                                <!-- <span>Order requested expires in :</span> -->
+                                <!-- <span>Order Requested expires in :</span> -->
                                 <div class="row">
                                     <button class="buttonType-1" onclick="confirmAction('send')">Accept</button>
                                     <button class="buttonType-2" onclick="confirmAction('cancel')">Reject</button>
                                 </div>
 
                             <!-- Accepted State Waiting for Payments -->
-                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments') { ?>
+                            <?php } else if($order['order_state'] == 'Accepted/Pending Payments') { $state = 'Accepted/Pending Payments';?>
 
-                                Pending Payments
-
-                            <!-- Accepted and Paid -->
-                            <?php } else if($order['order_state'] == 'Accepted/Paid') { ?>
-
-                            <!-- Rejected State -->
-                            <?php } else if($order['order_state'] == 'Rejected') { ?>
+                                <button class="buttonType-2" >Waiting For Payments</button>
 
                             <!-- Accepted State / Paid/ Running-->
                             <?php } else if($order['order_state'] == 'Running') { ?>
 
-                                Paid
+                                <div class="row">
+                                    <button class="buttonType-1" >Deliver</button>
+                                    <button class="buttonType-2" >Deadline Extension</button>
+                                </div>
 
                             <?php } else if($order['order_state'] == 'Pending Payments') { ?>
 
@@ -373,10 +354,10 @@
                         <!-- Order States -->
                         <div class="orderStateData">
 
-                            <!-- requested State -->
-                            <?php if  ($order['order_state'] == 'requested') { ?>
+                            <!-- Requested State -->
+                            <?php if  ($order['order_state'] == 'Requested') { ?>
 
-                                <!-- <span>Order requested expires in :</span> -->
+                                <!-- <span>Order Requested expires in :</span> -->
                                 <div class="row">
                                     <button class="buttonType-1" onclick="confirmAction('send')">Accept</button>
                                     <button class="buttonType-2" onclick="confirmAction('cancel')">Reject</button>
@@ -403,23 +384,85 @@
                             <?php } ?>
 
                         </div>
+
                     </div>
                     
-                <?php 
-
-                    } 
-
-                ?>
+                <?php } ?>
 
             </div>
             
             <!-- Animation -->
             <div class="orderDetailsBottomContainer">
-                <img src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/earnings/high-five-illustration.28505d2.png" style="height: 360px; width: fit-content;">
+                <img src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/earnings/high-five-illustration.28505d2.png" style="height: 280px; width: fit-content;">
             </div>
 
         </div>
     </div>
+
+    <!-- Modal 1 -->
+    <div class="overlay" id="cancelConfirmationOverlay">
+        <div class="confirmation" id="cancelConfirmation">
+
+            <?php if ($_SESSION['role'] == 'Buyer') {?>
+            
+                <?php if($state == 'Requested') { ?>
+
+                    <p>Are you sure want to withdraw your request?</p>
+                    <div class="buttons">
+                        <button onclick="handleConfirmation('withdraw request', 'no', '', '', '')">No</button>
+                        <button onclick="handleConfirmation('withdraw request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                    </div>
+
+                <?php }else if($state == 'Accepted/Pending Payments') { ?>
+
+                    <p>Are you sure want to cancel your order?</p>
+                    <div class="buttons">
+                        <button onclick="handleConfirmation('cancel order', 'no', '', '', '')">No</button>
+                        <button onclick="handleConfirmation('cancel order', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                    </div>
+
+                <?php } ?>
+
+            <?php }else if($_SESSION['role'] == 'Seller') {?>
+            
+                <?php if($state == 'Requested') { ?>
+
+                    <p>Are you sure want to reject this request?</p>
+                    <div class="buttons">
+                        <button onclick="handleConfirmation('reject request', 'no', '', '', '')">No</button>
+                        <button onclick="handleConfirmation('reject request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                    </div>
+
+                <?php } ?>
+
+            <?php } ?>
+
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="overlay" id="sendConfirmationOverlay">
+        <div class="confirmation" id="sendConfirmation">
+
+            <?php if ($_SESSION['role'] == 'Buyer') {?>
+
+            <?php }else if($_SESSION['role'] == 'Seller') {?>
+
+                <?php if($state == 'Requested') { ?>
+
+                    <p>Are you sure want to continue with this order?</p>
+                    <div class="buttons">
+                        <button onclick="handleConfirmation('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleConfirmation('accept request', 'no', '', '', '')">No</button>
+                    </div>
+
+                <?php } ?> 
+            
+            <?php } ?>
+
+        </div>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
