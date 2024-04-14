@@ -150,17 +150,22 @@ header{
 .orderDetails .row{
     display: flex;
     gap: 16px;
+    padding: 0px !important;
 }
 .buttonType-1{
     width: 100%;
     padding: 8px;
     font-weight: 500;
     font-size: 18px;
+    text-align: center;
     color: #fff;
     border-radius: 8px;
     border: none;
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
+}
+a {
+    text-decoration: none;
 }
 .buttonType-1:hover{
     color: #333;

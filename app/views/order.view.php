@@ -270,8 +270,10 @@
                                         
                             <!-- Accepted State / Paid/ Running-->
                             <?php } else if($order['order_state'] == 'Running') { ?>
-                                    
-                                <button class="buttonType-1" >View Share Point</button>
+                                
+                                <div class="row">
+                                    <a href="sharePoint" class="buttonType-1">View Share Point</a>
+                                </div>
 
                             <?php } ?>
 
@@ -320,7 +322,7 @@
                             <?php } else if($order['order_state'] == 'Running') { ?>
 
                                 <div class="row">
-                                    <button class="buttonType-1" >Deliver</button>
+                                    <a href="sharePoint" class="buttonType-1">Deliver</a>
                                     <button class="buttonType-2" >Deadline Extension</button>
                                 </div>
 
