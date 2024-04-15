@@ -52,7 +52,6 @@ class JobProposals extends Controller
             $this->view('jobProposals',$data);
             show($data);
         }
-        
     }
 
     // viewing a single job proposal.

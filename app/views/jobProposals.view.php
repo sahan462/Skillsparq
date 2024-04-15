@@ -2,18 +2,18 @@
 include "components/buyerSimpleHeader.component.php";
 ?>
 
-    <div class="displayJobContainer">
-        <?php
-            if ($_SESSION['role'] === "seller") {
+<div class="displayJobContainer">
+    <?php
+        if ($_SESSION['role'] === "seller") {
 
-            } else if ($_SESSION['role'] === "buyer") {
+        } else if ($_SESSION['role'] === "buyer") {
 
-            }
-        ?>
-        <div class="displayJobHeader">
-            <?php echo "All Proposals"; ?>
-        </div>
+        }
+    ?>
+    <div class="displayJobHeader">
+        <?php echo "All Proposals"; ?>
     </div>
+</div>
 
 
-<?php include "/xampp/htdocs/skillsparq/app/views/components/footer.component.php";?>
+<?php //include "/xampp/htdocs/skillsparq/app/views/components/footer.component.php";?>
