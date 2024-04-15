@@ -54,7 +54,7 @@ header{
 
 /* Left Container*/
 .userActivity{
-    width: 60%;
+    width: 56%;
     background-color: #fff;
     margin-top: 16px;
     border: 1px solid #c5c6c9;
@@ -66,7 +66,7 @@ header{
     height: 500px;
 }
 .userActivity .tabContent{
-    padding: 16px 32px;
+    padding: 16px 16px 16px 0;
 }
 .userActivity p{
     text-align: justify;
@@ -92,7 +92,7 @@ header{
 .orderContent .orderDetails{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 44%;
     margin-top: 16px;
     gap: 16px;
     height: auto;
@@ -132,13 +132,13 @@ header{
     line-height: 120%;
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-.orderDetails .orderStatus{
+.orderDetails .orderState{
     height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.orderDetails .orderStatusHeader{
+.orderDetails .orderStateHeader{
     background-color: #c5c6c9;
     border-radius: 8px;
     height: fit-content;

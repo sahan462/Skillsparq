@@ -3,24 +3,26 @@
 document.getElementById("defaultOpen").click();
 
 function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabContent, tablinks;
-  
-    // Get all elements with class="tabContent" and hide them
-    tabContent = document.getElementsByClassName("tabContent");
-    for (i = 0; i < tabContent.length; i++) {
-      tabContent[i].style.display = "none";
-    }
-  
-    //Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+
+  // Declare all variables
+  var i, tabContent, tablinks;
+
+  // Get all elements with class="tabContent" and hide them
+  tabContent = document.getElementsByClassName("tabContent");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].style.display = "none";
+  }
+
+  //Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+
 }
 
 
@@ -61,10 +63,9 @@ var x = setInterval(function() {
 // ---------------------------------------modals--------------------------------------------------------
 
 function confirmAction(action) {
+
   if (action === 'send') {
   
-    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-    document.getElementById('cancelConfirmation').style.display = 'none';
     document.getElementById('sendConfirmationOverlay').style.display = 'flex';
     document.getElementById('sendConfirmation').style.display = 'block';
   
@@ -74,29 +75,41 @@ function confirmAction(action) {
     document.getElementById('cancelConfirmation').style.display = 'block';
   
   } 
+
 }
 
-function handleConfirmation(action, orderId, orderType, buyerId, sellerId) {
-    if(action === 'cancelNo'){
+function handleConfirmation(event, action, orderId, orderType, buyerId, sellerId) {
+    
+  if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
+    
+    document.getElementById('cancelConfirmation').style.display = 'none';
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 
-        document.getElementById('cancelConfirmation').style.display = 'none';
-        document.getElementById('cancelConfirmationOverlay').style.display = 'none';
+    if(action === 'yes'){
 
-    }else{
-
-      document.getElementById('cancelConfirmationOverlay').style.display = 'none';
-      document.getElementById('cancelConfirmation').style.display = 'none';
-
-      cancelOrder(orderId, orderType, buyerId, sellerId);
+        cancelOrder(orderId, orderType, buyerId, sellerId);
 
     }
+
+  }else if(event === 'accept request'){
+    
+    document.getElementById('sendConfirmation').style.display = 'none';
+    document.getElementById('sendConfirmationOverlay').style.display = 'none';
+
+    if(action === 'yes'){
+
+      acceptOrderRequest(orderId, orderType, buyerId, sellerId);
+
+    }
+
+  }
 
 }
 
 
 // ---------------------------------------Payment Form submission--------------------------------------------------------
 
-function submitForm(){
+function submitpaymentForm(){
   const paymentForm = document.getElementById('paymentForm');
   paymentForm.submit();
 }
@@ -105,7 +118,7 @@ function submitForm(){
 // ---------------------------------------Cancel an order--------------------------------------------------------
 
 async function cancelOrder(orderId, orderType, buyerId, sellerId) {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
 
   try {
       const response = await fetch('order/cancelOrder', {
@@ -121,12 +134,36 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId) {
       }
 
       alert("Order cancelled successfully");
-      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
   }
 }
 
+// ---------------------------------------Accept an order request--------------------------------------------------------
+
+async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
+
+  try {
+      const response = await fetch('order/acceptOrderRequest', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
+      });
+      
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      alert("Order cancelled successfully");
+      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
 
 
 

@@ -390,6 +390,38 @@ input[type = "text"], textarea, select{
     opacity: 1;
 }
 
+/* modal1 content */
+.modal1 .row{
+    display: flex;
+    flex-direction: column !important;
+}
+.modal1 .buttons, .confirmation .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+.modal1 .buttons button, .confirmation button{
+    width: 50%;
+    padding: 8px;
+    margin-top: 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    transition: ease-in-out 0.3s;
+    background-color: #f81d00;
+    cursor: pointer;
+}
+
+.modal1 .buttons button:hover{
+    color: #333;
+    background-color: rgb(241, 241, 241);
+    font-weight: 600;
+}
+
 /*User Info*/
 .profile-container .profile .user-info{
     padding-top: 16px;
