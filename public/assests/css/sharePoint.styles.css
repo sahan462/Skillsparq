@@ -9,17 +9,12 @@ body{
 .sharePointContainer{
     padding: 16px 32px;
     width: 100%;
-    min-height: calc(100vh - 60px);
-    height: auto;
-    box-sizing: border-box;
-    border: 1px solid black;
 }
 
 /* Header */
 .sharePointHeader{
     min-height: 24px;
     margin-top: 24px;
-    margin-bottom: 48px;
     font-size: 32px;
     font-weight: 700;
     color: #222325;
@@ -31,35 +26,18 @@ body{
 .sharePointContainer .container{
     display: flex;
     justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
     margin-right: 32px;
     margin-left: 32px;
     padding: 0px 16px;
     height: 100%;
 }
 
-/* left container */
-.sharePointContainer .leftContainer{
-    width: 45%
-}
-
-.sharePointContainer .leftUpperContainer{
-    height: 90%;
-} 
-
-.sharePointContainer .leftBottomContainer{
-    height: 10%;
-}
-
-/* right container */
-.rightContainer{
-    width: 45%;
-}
-
 .title{
     font-size: medium;
     color: #333;
     font-weight: 500;
+    margin-bottom: 16px;
 }
 
 .darkTitle{
@@ -67,184 +45,39 @@ body{
     font-size: 20px;
 }
 
-
-
-
-
-
-
-.file {
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px 1px #c9c9c9;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    gap: 10px;
-    grid-auto-rows: repeat(3, 1fr);
-    background-color: rgb(255, 255, 255);
-}
-.name {
-    font-weight: 500;
-    margin-top: 10px;
-    grid-column: 2;
-    grid-row: 1;
-    text-align: left;
-}
-.size {
-    grid-column: 2/3;
-    grid-row: 2;
-    font-size: small;
-}
-.big {
-    color: #007bff;
-    font-weight: 600;
-    font-size: large;
-}
-
-.download {
-    grid-column: 3;
-    grid-row: 1/3;
-    padding-top: 10px;
-    margin-right: 10px;
-    float: right;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.downloadimg {
-    float: right;
-    width: 50px;
-    height: 50px;
-}
-.time {
-    margin-right: 10px;
-    margin-bottom: 5px;
-    grid-column: 1/4;
-    grid-row: 3;
-    text-align: right;
-    font-size: small;
-    color: #333;
-}
-.fileimg {
-    grid-column: 1;
-    grid-row: 1/4;
-    width: 50px;
-    height: 50px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 15px;
-}
-
-/* GRID START */
-.container-upper {
-    margin-left: 50px;
-    grid-area: left-up;
-}
-
-.rightside {
-    grid-area: right-up;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-.main-grid {
-    display: grid;
-    grid-template-areas:
-        "left-up right-up"
-        "left-down right-up";
-}
-
-/* GRID END */
-.filecontainer {
-    padding: 5px;
-    padding-left: 10px;
-}
-.uploadbtn {
-    float: right;
-    background-color: #00ad2b;
-    border: none;
+/* left container */
+.sharePointContainer .leftContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 32px);
+    width: 44%;
+    background-color: #fff;
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #c5c6c9;
     border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    transition: ease-in-out 0.3s;
-}
-.uploadbtn:hover {
-    background-color: #ffffff;
-    color: #00ad2b;
-    box-shadow: 1px 1px 5px 0px #ffffff;
 }
 
-.filebtn {
-    color: transparent;
+.sharePointContainer .leftUpperContainer{
+} 
+
+.sharePointContainer .leftBottomContainer{
 }
-.filebtn::-webkit-file-upload-button {
-    visibility: hidden;
-}
-.filebtn::before {
-    content: "Select files";
-    color: black;
-    display: inline-block;
-    background-color: #007bff;
+
+/* right container */
+.sharePointContainer .rightContainer{
+    height: fit-content;
+    width: 56%;
+    background-color: #fff;
+    margin-top: 16px;
+    padding: 16px;
+    padding: 16px;
+    border: 1px solid #c5c6c9;
     border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-}
-.filebtn::before:hover {
-    background-color: #ffffff;
-    color: #007bff;
-    box-shadow: 1px 1px 5px 0px #c9c9c9;
-}
-.upload_background {
-    background-color: #dadada;
-    padding: 10px;
-    border-radius: 7px;
-    margin-top: 10px;
-}
-.scrollable {
-    overflow-y: auto;
-    height: 65vh;
-    margin-bottom: 20px;
-}
-.scrollable-empty {
-    overflow-y: auto;
-    height: 65vh;
-    margin-bottom: 20px;
-    background-image: url(../img/sharepointbg.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.scrollable::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(63, 63, 63, 0.3);
-    border-radius: 6px;
-    background-color: #f3f3f3;
 }
 
-.scrollable::-webkit-scrollbar {
-    width: 7px;
-    background-color: #f3f3f3;
-}
-.scrollable::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    -webkit-box-shadow: inset 0 0 6px rgba(82, 82, 82, 0.3);
-    background-color: #555;
-}
-.textbox {
-    width: 100%;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    border-radius: 7px;
-    background-color: #ececec;
-}
+
 /* Rate Section */
 .title {
     font-size: medium;
@@ -442,6 +275,204 @@ body{
     margin-bottom: 10px;
 }
 
+/* subsection */
+
+.subsection {
+    background-color: #ececec;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 7px;
+}
+.subsection-title {
+    color: #007bff;
+    padding-top: 16px;
+}
+.uploadbtnx {
+    float: right;
+    pointer-events: none;
+    background-color: rgb(85, 85, 85);
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 150px;
+}
+.image-container img {
+    width: 500px;
+}
+
+
+
+
+
+
+
+.file {
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px #c9c9c9;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+    grid-auto-rows: repeat(3, 1fr);
+    background-color: rgb(255, 255, 255);
+}
+.name {
+    font-weight: 500;
+    margin-top: 10px;
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+}
+.size {
+    grid-column: 2/3;
+    grid-row: 2;
+    font-size: small;
+}
+
+
+.download {
+    grid-column: 3;
+    grid-row: 1/3;
+    padding-top: 10px;
+    margin-right: 10px;
+    float: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.downloadimg {
+    float: right;
+    width: 50px;
+    height: 50px;
+}
+.time {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    grid-column: 1/4;
+    grid-row: 3;
+    text-align: right;
+    font-size: small;
+    color: #333;
+}
+.fileimg {
+    grid-column: 1;
+    grid-row: 1/4;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 15px;
+}
+
+/* GRID START */
+
+
+/* GRID END */
+.filecontainer {
+    padding: 5px;
+    padding-left: 10px;
+}
+.uploadbtn {
+    float: right;
+    background-color: #00ad2b;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+.uploadbtn:hover {
+    background-color: #ffffff;
+    color: #00ad2b;
+    box-shadow: 1px 1px 5px 0px #ffffff;
+}
+
+.filebtn {
+    color: transparent;
+}
+.filebtn::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.filebtn::before {
+    content: "Select files";
+    color: black;
+    display: inline-block;
+    background-color: #007bff;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+.filebtn::before:hover {
+    background-color: #ffffff;
+    color: #007bff;
+    box-shadow: 1px 1px 5px 0px #c9c9c9;
+}
+.upload_background {
+    background-color: #dadada;
+    padding: 10px;
+    border-radius: 7px;
+}
+.scrollable {
+    overflow-y: auto;
+    height: 65vh;
+    margin-bottom: 20px;
+}
+.scrollable-empty {
+    overflow-y: auto;
+    height: 65vh;
+    margin-bottom: 20px;
+    background-image: url(../img/sharepointbg.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.scrollable::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(63, 63, 63, 0.3);
+    border-radius: 6px;
+    background-color: #f3f3f3;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 7px;
+    background-color: #f3f3f3;
+}
+.scrollable::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 0 6px rgba(82, 82, 82, 0.3);
+    background-color: #555;
+}
+.textbox {
+    width: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    border-radius: 7px;
+    background-color: #ececec;
+}
+
+
+
 /* Safari */
 @-webkit-keyframes spin {
 0% {
@@ -541,77 +572,4 @@ body{
     text-align: right;
     font-size: small;
     color: white;
-}
-.subsection {
-    background-color: #ececec;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    padding-bottom: 20px;
-    border-radius: 7px;
-}
-.subsection-title {
-    color: #007bff;
-    padding-top: 10px;
-}
-.uploadbtnx {
-    float: right;
-    pointer-events: none;
-    background-color: rgb(85, 85, 85);
-    border: none;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    transition: ease-in-out 0.3s;
-}
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin-top: 150px;
-}
-.image-container img {
-    width: 500px;
-}
-.backbtn
-{
-    float: right;
-    margin-right: 5px;
-    padding: 10px 20px;
-    padding-bottom: 11px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    width: 80px;
-    transition: ease-in-out 0.3s;
-    font-size: small;
-}
-.backbtn:hover
-{
-    background-color: rgb(240, 240, 240);
-    color: #007bff;
-
-}
-.bkbtn
-{
-    float: right;
-    padding: 10px 20px;
-    padding-bottom: 11px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    width: 150px;
-    transition: ease-in-out 0.3s;
-    font-size: small;
-    margin-top: 10px;
-}
-.bkbtn:hover
-{
-    background-color: rgb(240, 240, 240);
-    color: #007bff;
 }

@@ -20,27 +20,27 @@ $files=$data['files'];
     </div>
 
     <div class="container">
-
         <div class="leftContainer">
-
             <div class="leftUpperContainer">
 
                 <p class="title">
-                    Resource
-                    <span class="darkTitle"> Files</span>
+                    <span class="darkTitle">Resource</span>
+                    Files
                 </p>
 
+                <div class="files">
+
+                </div>
             </div>
 
             <div class="leftBottomContainer">
 
                 <p class="title">
-                    Add New
-                    <span class="darkTitle"> Files</span>
+                    <span class="darkTitle">Add New</span>
+                    Files
                 </p>
 
                 <div class="uploadSec">
-
                     <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
 
                         <span>File must be compressed into .zip , .rar or .tar format.</span>
@@ -49,13 +49,9 @@ $files=$data['files'];
                         </div>
 
                     </form>
-
                 </div>
 
             </div>
-
-
-
         </div>
 
         <div class="rightContainer">
@@ -63,21 +59,19 @@ $files=$data['files'];
             <?php if($_SESSION['role'] == 'Buyer'){ ?>
 
                 <!-- fnish order Section -->
-                <p class="title"><span class="big">Complete </span>The Order</p>
-
                 <form action="<?php echo BASEURL.'/sharePointBuyer/uploadFile';?>" method="post" enctype="multipart/form-data">
-
-                    Give a review for this adverticement
-                    <textarea class="textbox" name="dis" rows="4" cols="50"></textarea>
     
                     <div id="rateSec">
 
-                        <p class="title"><span class="big">Rate </span>The Seller</p>
+                        <p class="title">
+                            <span class="darkTitle">Rate </span>
+                            The Seller
+                        </p>
 
                         <div class="subsection">
                             
-                            Considering overoll expression about the seller's communication and respoding to your messages give him a<br>
-                            <span class="subsection-title">Communication rate</span>
+                            Considering overoll expression about the seller's communication and respoding to your messages<br>
+                            <span class="subsection-title">Communication Rate</span>
 
                             <div class="rate">
                                 <input type="radio" id="star5" name="communicationRate" value="5" />
@@ -94,9 +88,11 @@ $files=$data['files'];
 
                         </div>
                     
-                        <div class="subsection">Considering overall expression about the delivery time give him a<br>
-
-                            <span class="subsection-title">Delivery rate</span>
+                        <div class="subsection">
+                            
+                            Considering overall expression about the delivery time<br>
+                            <span class="subsection-title">Delivery Rate</span>
+                            
                             <div class="rate2">
                                 <input type="radio" id="star25" name="deliveryRate" value="5" />
                                 <label for="star25" title="text">5 stars</label>
@@ -112,9 +108,11 @@ $files=$data['files'];
 
                         </div>
                     
-                        <div class="subsection">Considering overall expression about the seller give him a<br>
+                        <div class="subsection">
+                            
+                            Considering overall expression about the seller<br>
+                            <span class="subsection-title">Seller Rate</span>
 
-                            <span class="subsection-title">Seller rate</span>
                             <div class="rate3">
                                 <input type="radio" id="star35" name="mainRate" value="5" />
                                 <label for="star35" title="text">5 stars</label>
@@ -132,12 +130,16 @@ $files=$data['files'];
 
                     </div>
 
+                    Give a review for this adverticement
+                    <textarea class="textbox" name="dis" rows="4" cols="50"></textarea>
+
                     <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
-                    <div class="submitSec"><button type="submit" name="finalsave" id="btnx" class="uploadbtnx">Complete The Job</button></div>
-                    <a href="<?php echo BASEURL ?>/job"><div class="backbtn">Back</div></a>
+
+                    <div class="submitSec">
+                        <button type="submit" name="finalsave" id="btnx" class="buttonType-1">Complete The Job</button>
+                    </div>
 
                 </form>
-
 
 
 
@@ -160,23 +162,23 @@ $files=$data['files'];
                     <br>
 
                     <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
-                    <a href="<?php echo BASEURL.'/sellerJobHandler' ?>"><div name="z" class="bkbtn" >Back To Countdown Page</div></a> 
+
                     <div id="rateSec" style="display:none">
 
-                    <p class="title"><span class="big">Rate </span>The Buyer</p>
-                    Give your rate to buyer
-                    <div class="rate">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" title="text">5 stars</label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" title="text">4 stars</label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" title="text">3 stars</label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">2 stars</label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">1 star</label>
-                    </div>
+                        <p class="title"><span class="big">Rate </span>The Buyer</p>
+                        Give your rate to buyer
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
                     
                     </div>
 
@@ -186,9 +188,7 @@ $files=$data['files'];
             <?php } ?>
 
         </div>
-
     </div>
-
 </div>
 
 <script src="./assests/js/sharePoint.script.js"></script>

@@ -20,9 +20,9 @@ class Order extends Controller
         $userRole = $_SESSION['role'];
 
         $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-        // print_r($data['order']);
-        // print_r($data['buyer']);
-        // print_r($data['seller']);
+        print_r($data['order']);
+        print_r($data['buyer']);
+        print_r($data['seller']);
         $this->view('order', $data);
     }
 
@@ -108,7 +108,27 @@ class Order extends Controller
         ";
         }
 
-}
+    }
+
+    public function sendNewMessage(){
+        // Read the JSON data sent via POST and decode it into a PHP associative array
+        $jsonData = file_get_contents('php://input');
+        $messageData = json_decode($jsonData, true);
+
+        // Extract the message fields from the associative array
+        $senderId = $messageData['senderId'];
+        $receiverId = $messageData['receiverId'];
+        $message = $messageData['message'];
+        $date = date("Y-m-d H:i:s");
+
+        $isSent = $this->OrderHandlerModel->sendNewMessage($senderId, $receiverId, $message, $date);
+
+        // Perform any necessary processing
+        // For example, you can save the message to a database, send it to another user, etc.
+
+        // Respond with a confirmation message
+        echo "Message received: " . $message;
+    }
 
 
 

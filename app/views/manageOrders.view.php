@@ -27,7 +27,7 @@
             <div class="tab">
                 <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Requests</button>
                 <button class="tablinks" onclick="openCity(event, 'Accepted')">Accepted</button>
-                <button class="tablinks" onclick="openCity(event, 'Active')">Active</button>
+                <button class="tablinks" onclick="openCity(event, 'Running')">Running</button>
                 <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
                 <button class="tablinks" onclick="openCity(event, 'Late')">Late</button>
                 <button class="tablinks" onclick="openCity(event, 'Cancelled')">Cancelled</button>
@@ -130,7 +130,7 @@
             </div>
 
             <!-- running orders -->
-            <div id="Active" class="tabcontent">
+            <div id="Running" class="tabcontent">
                 <div class="outerTable">
                     <table>
                         <div class="thead">

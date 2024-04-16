@@ -20,7 +20,7 @@ function openTab(evt, tabName) {
   }
 
   // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(tabName).style.display = "block";
+  document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 
 }
@@ -165,6 +165,53 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
   }
 }
 
+// ---------------------------------------Chat functionality--------------------------------------------------------
 
+var chatArea = document.getElementById('activity');
 
+function sendMessage(senderId, receiverId){
+  
+  var newMessage = document.getElementById('newMessage').value.trim();
+  
+  if(senderId == null ){
+    alert("sender not found");
+    return;
+  }
+
+  if(receiverId == null){
+    alert("receiver not found");
+    return;
+  }
+
+  if(newMessage == ""){
+    alert("Please type something to send");
+    return;
+  }
+
+  var ajax = new XMLHttpRequest();
+  ajax.onload = function(){
+
+    if(ajax.status == 200 || ajax.readyState == 4){
+      alert(ajax.responseText);
+    }
+
+  }
+
+  ajax.open('POST', 'order/sendNewMessage', true);
+  // Set the Content-Type header to specify that the data being sent is JSON
+  ajax.setRequestHeader("Content-Type", "application/json");
+
+  // Create a JavaScript object to hold the message data
+  var messageData = {
+    senderId: senderId,
+    receiverId: receiverId,
+    message: newMessage
+  };
+
+  // Stringify the messageData object to JSON format
+  var jsonData = JSON.stringify(messageData);
+
+  // Send the JSON data in the request body
+  ajax.send(jsonData);
+}
 
