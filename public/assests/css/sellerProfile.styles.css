@@ -109,6 +109,7 @@ body{
     cursor: pointer;
 }
 
+
 /*
     #########################################################################
     Modal 1 Update Profile Form Modal 
@@ -197,24 +198,6 @@ body{
 */
 
 /* Add Button for Languages Styles For the profile */
-.addProfLang button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 16px;
-    color: #333 !important;
-    /* border: 2px solid #333 !important; */
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.addProfLang button:hover{
-    color: #fff !important;
-    background: #31d65a !important;
-    /* border: 2px solid #333 !important; */
-    box-shadow: none !important;
-}
-
 #overlayAddLanguages{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -234,8 +217,47 @@ body{
 
 /*
     #########################################################################
-    Modal   Form Modal 
+    Modal 4 Add Skills Profile Form Modal 
 */
+/* Add Button for Skills Styles For the profile */
+#overlayAddSkills{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalAddSkills{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+/*
+    #########################################################################
+    Modal 5 Add Education Profile Form Modal 
+*/
+/* Add Button for Education Styles For the profile */
+#overlayAddEduc{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalAddEduc{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 

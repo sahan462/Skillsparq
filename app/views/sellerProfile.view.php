@@ -117,8 +117,8 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" onclick="confirmActionProfDelete(action)">Cancel Delete</button>
-                    <button type="button" onclick="confirmActionProfDelete(action)">Delete Profile</button>
+                    <button type="button" onclick="confirmActionProfDelete('cancelDelete')">Cancel Delete</button>
+                    <button type="button" onclick="confirmActionProfDelete('sendDelete')">Delete Profile</button>
                 </div>
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
@@ -153,7 +153,7 @@
     <!-- Modal 3 Language Profile Form Modal (Sub) -->
     <div class="overlay" id="overlayAddLanguages">
         <div class="modal" id="ModalAddLanguages">
-            <form id="languageForm" method="post" action="./sellerProfile">
+            <form id="languageForm" method="post" action="./sellerProfile/addProfileLanguages">
                 <div class="seller-profile-picture">
                     <!-- <div class="updateSellerProfilePicture">
                         <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
@@ -173,8 +173,8 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" onclick="confirmActionProfAddLang('Cancel')">Cancel</button>
-                    <button type="button" onclick="confirmActionProfAddLang('Add')">Add Languages</button>
+                    <button type="button" onclick="confirmActionProfAddLang('cancelAddLang')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddLang('addLang')">Add Languages</button>
                 </div>
 
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
@@ -199,8 +199,122 @@
         <div class="confirmation" id="sendConfirmProfAddLang">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
-                <button onclick="handleConfirmProfAddLan('sendDeleteNo')">No</button>
-                <button onclick="handleConfirmProfAddLan('sendDeleteYes')">Yes</button>
+                <button onclick="handleConfirmProfAddLan('sendDeleteLangNo')">No</button>
+                <button onclick="handleConfirmProfAddLan('sendDeleteLangYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################################################################### -->
+
+    <!-- Modal 4 Skills Profile Form Modal (Sub) -->
+    <div class="overlay" id="overlayAddSkills">
+        <div class="modal" id="ModalAddSkills">
+            <form id="skillsForm" method="post" action="./sellerProfile/addProfileSKills">
+                <div class="seller-profile-picture">
+                    <!-- <div class="updateSellerProfilePicture">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="seller-modal-name">
+                        <div class="seller-name">
+                            <?php 
+                                echo $firstname ." ". $lastname;
+                            ?>
+                        </div>
+                        <div class="seller-question">
+                            Add Skills You're familiar with.
+                        </div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" onclick="confirmActionProfAddSkills('cancelAddSkills')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddSkills('addSkills')">Add Skills</button>
+                </div>
+
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 4 Skills Profile Cancel Confirmation Modal (Sub) -->
+    <div class="overlay" id="cancelConfirmProfAddSkillsOverlay">
+        <div class="confirmation" id="cancelConfirmProfAddSkills">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddSkills('cancelAddSkillsNo')">No</button>
+                <button onclick="handleConfirmProfAddSkills('cancelAddSkillsYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 Skills Profile Confirm Proceed Modal (Sub) -->
+    <div class="overlay" id="sendConfirmProfAddSkillsOverlay">
+        <div class="confirmation" id="sendConfirmProfAddSkills">
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddSkills('sendAddSkillsNo')">No</button>
+                <button onclick="handleConfirmProfAddSkills('sendAddSkillsYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################################################################### -->
+
+    <!-- Modal 5 Education Profile Form Modal (Sub) -->
+    <div class="overlay" id="overlayAddEduc">
+        <div class="modal" id="ModalAddEduc">
+            <form id="educationForm" method="post" action="./sellerProfile/addProfileEducation">
+                <div class="seller-profile-picture">
+                    <!-- <div class="updateSellerProfilePicture">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="seller-modal-name">
+                        <div class="seller-name">
+                            <?php 
+                                echo $firstname ." ". $lastname;
+                            ?>
+                        </div>
+                        <div class="seller-question">
+                            Add Your Education here.
+                        </div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" onclick="confirmActionProfAddEduc('cancelAddEducation')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddEduc('addEducation')">Add Education</button>
+                </div>
+
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 5 Education Profile Cancel Confirmation Modal (Sub) -->
+    <div class="overlay" id="cancelConfirmProfAddEducOverlay">
+        <div class="confirmation" id="cancelConfirmProfAddEduc">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddEduc('cancelAddEducNo')">No</button>
+                <button onclick="handleConfirmProfAddEduc('cancelAddEducYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 Education Profile Confirm Proceed Modal (Sub) -->
+    <div class="overlay" id="sendConfirmProfAddEducOverlay">
+        <div class="confirmation" id="sendConfirmProfAddEduc">
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddEduc('sendAddEducNo')">No</button>
+                <button onclick="handleConfirmProfAddEduc('sendAddEducYes')">Yes</button>
             </div>
         </div>
     </div>
@@ -333,7 +447,8 @@
                             <span>Skills</span>
                         </div>
                         <div>
-                            <a href=""><button class="addButton">Add</button></a>
+                            <!-- <a href=""><button class="addButton">Add</button></a> -->
+                            <button class="addButton" onclick="openProfileaddSkillsModal(this)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -356,7 +471,8 @@
                             <span>Education</span>
                         </div>
                         <div>
-                            <a href=""><button class="addButton">Add</button></a>
+                            <!-- <a href=""><button class="addButton">Add</button></a> -->
+                            <button class="addButton" onclick="openProfileAddEducationModal(this)">Add</button>
                         </div>
                     </div>
                     <div class="description-content">

@@ -54,9 +54,57 @@ class SellerHandler extends database
     }
 
     // adding the languages of the profile into seller_profile table
-    public function addLanguages($sellerId)
+    public function addLanguages($sellerId,$userName,$languages)
     {
-        
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,languages) VALUES (?, ?,?)");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "iss", $sellerId,$userName,$languages);
+    
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error inserting data into seller: " . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_close($stmt);
+    }
+
+    // adding the skills of the profile into seller_profile table
+    public function addSkills($sellerId,$userName,$skills)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,education) VALUES (?, ?, ?)");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "iss", $sellerId,$userName,$skills);
+    
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error inserting data into seller: " . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_close($stmt);
+    }
+
+    // adding the education of the profile into seller_profile table
+    public function addEducation($sellerId,$userName,$education)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,education) VALUES (?, ?, ?)");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "iss", $sellerId,$userName,$education);
+    
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error inserting data into seller: " . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_close($stmt);
     }
 
     // 

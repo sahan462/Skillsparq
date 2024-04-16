@@ -179,14 +179,14 @@ function openProfileaddLanguagesModal(button){
 }
 
 function confirmActionProfAddLang(action) {
-    if (action === 'Add') {
+    if (action === 'addLang') {
     
       document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
       document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
       document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'flex';
       document.getElementById('sendConfirmProfAddLang').style.display = 'block';
     
-    } else if(action === 'Cancel') {
+    } else if(action === 'cancelAddLang') {
 
       document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
       document.getElementById('sendConfirmProfAddLang').style.display = 'none';
@@ -199,17 +199,17 @@ function confirmActionProfAddLang(action) {
 // Function to handle actions based on user confirmation
 //handleConfirmProfDelete
 function handleConfirmProfAddLan(action) {
-    if (action === 'sendDeleteYes') {
+    if (action === 'sendDeleteLangYes') {
 
         var profileAddLangForm = document.getElementById('languageForm');
         profileAddLangForm.submit();
 
-    }else if (action === 'sendDeleteNo'){
+    }else if (action === 'sendDeleteLangNo'){
 
         document.getElementById('sendConfirmProfAddLang').style.display = 'none';
         document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
 
-    }else if(action === 'cancelDeleteNo'){
+    }else if(action === 'cancelAddLanNo'){
 
         document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
         document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
@@ -226,6 +226,130 @@ function handleConfirmProfAddLan(action) {
         document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
         document.getElementById('overlayAddLanguages').style.display = 'none';
         document.getElementById('ModalAddLanguages').style.display = 'none';
+
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open Skills modal 
+function openProfileaddSkillsModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayAddSkills').style.display = 'flex';
+    document.getElementById('ModalAddSkills').style.display = 'block';
+}
+
+function confirmActionProfAddSkills(action) {
+    if (action === 'addSkills') {
+    
+      document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+      document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddSkills').style.display = 'block';
+    
+    } else if(action === 'cancelAddSkills') { 
+
+      document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddSkills').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddSkills').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+//handleConfirmProfAddSkills
+function handleConfirmProfAddSkills(action) {
+    if (action === 'sendAddSkillsYes') {
+
+        var profileAddSkillsForm = document.getElementById('skillsForm');
+        profileAddSkillsForm.submit();
+
+    }else if (action === 'sendAddSkillsNo'){
+
+        document.getElementById('sendConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'none';
+
+    }else if(action === 'cancelAddSkillsNo'){
+
+        document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('overlayAddSkills').style.display = 'none';
+        document.getElementById('ModalAddSkills').style.display = 'none';
+
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open Education modal 
+function openProfileAddEducationModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayAddEduc').style.display = 'flex';
+    document.getElementById('ModalAddEduc').style.display = 'block';
+}
+
+function confirmActionProfAddEduc(action) {
+    if (action === 'addEducation') {
+    
+      document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+      document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddEduc').style.display = 'block';
+    
+    } else if(action === 'cancelAddEducation') { 
+
+      document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddEduc').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddEduc').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+//handleConfirmProfAddEduc
+function handleConfirmProfAddEduc(action) {
+    if (action === 'sendAddEducYes') {
+
+        var profileAddSkillsForm = document.getElementById('educationForm');
+        profileAddSkillsForm.submit();
+
+    }else if (action === 'sendAddEducNo'){
+
+        document.getElementById('sendConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'none';
+
+    }else if(action === 'cancelAddEducNo'){
+
+        document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('overlayAddEduc').style.display = 'none';
+        document.getElementById('ModalAddEduc').style.display = 'none';
 
     }
 
