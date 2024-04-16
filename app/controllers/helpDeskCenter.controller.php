@@ -10,16 +10,27 @@ class HelpDeskCenter extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
-        $data['var'] = "HelpDeskCenter";
-        $data['title'] = "SkillSparq";
-        $recentInquiries = $this->inquiryHandlerModel->getRecentUsers();
-        $data['recentInquiries'] = $recentInquiries;
-        $recentRequests = $this->inquiryHandlerModel->getHelpRequests();
-        $data['recentRequests'] = $recentRequests;
-        $recentComplaints = $this->inquiryHandlerModel->getComplaints();
-        $data['recentComplaints'] = $recentComplaints;
+            header("location: loginUser");
+            exit;
+        } else {
 
-        $this->view('helpDeskCenter', $data);
+            $data['var'] = "HelpDeskCenter";
+            $data['title'] = "SkillSparq";
+            $recentUsers = $this->inquiryHandlerModel->getRecentUsers();
+            $data['recentUsers'] = $recentUsers;
+
+            $recentInquiries = $this->inquiryHandlerModel->getInquiries();
+            $data['recentInquiries'] = $recentInquiries;
+
+            $recentRequests = $this->inquiryHandlerModel->getHelpRequests();
+            $data['recentRequests'] = $recentRequests;
+            $recentComplaints = $this->inquiryHandlerModel->getComplaints();
+            $data['recentComplaints'] = $recentComplaints;
+
+
+            $this->view('helpDeskCenter', $data);
+        }
     }
 }

@@ -70,7 +70,7 @@
                     <i class="fa-solid fa-circle"></i>
                 </div>
 
-                <span>Victoria
+                <span><?php echo $_SESSION['firstName'] ?>
                     <i class="fa-solid fa-angle-down"></i>
                 </span>
             </div>
