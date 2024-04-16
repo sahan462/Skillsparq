@@ -29,13 +29,27 @@ class SellerProfile extends Controller
 
             $sellerId = $_SESSION["userId"];
 
-            $data["sellerProfileDetails"] = $this->getSellerProfileDetails($sellerId);
+            $data["profileDetails"] = $this->getProfileDetails($sellerId);
 
-            $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
-            $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
-            $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
+            $sellerProfileDets = $this->SellerHandlerModel->getSellerProfileDets($sellerId);
+            $sellerProfileDets = mysqli_fetch_assoc($sellerProfileDets);
+            $data['sellerProfileDets'] = $sellerProfileDets;
+
+            $_SESSION['firstName'] = $data['profileDetails']['first_name'];
+            $_SESSION['lastName'] = $data['profileDetails']['last_name'];
+            $_SESSION['userName'] = $data['profileDetails']['user_name'];
             
             $data['sellerId'] = $sellerId;
+
+            // set the user_name and user_id to the seller_profile table before start updatings.
+            if(isset($_SESSION['userName']) && isset($_SESSION['userId'])){
+                $this->SellerHandlerModel->addUserNameAndId($_SESSION['userId'],$_SESSION['userName']);
+            }else{
+                echo 
+                "<script>
+                    alert('User Name and User Id have not been set properly !');
+                </script>";
+            }
 
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
@@ -60,8 +74,8 @@ class SellerProfile extends Controller
         } 
     }
 
-    //get profile Details of the Seller
-    public function getSellerProfileDetails($userId)
+    //get profile Details of the Seller/From Profile Table
+    public function getProfileDetails($userId)
     {
         $userProfile = $this->ProfileHandlerModel->getProfileData($userId);
         $userProfile = mysqli_fetch_assoc($userProfile);
@@ -86,19 +100,77 @@ class SellerProfile extends Controller
     // inserting languages of seller profile
     public function addProfileLanguages()
     {
-        
+        $userId = $_POST['userId'];
+        $userName = $_POST['userName'];
+        $languages = $_POST['languages'];
+        $result = $this->SellerHandlerModel->addLanguages($userId,$userName,$languages);
+        if($result){
+            echo "<script>alert('Successfully Added the Languages !')</script>";
+        }else{
+            header("location: sellerProfile");
+            echo "<script>alert('Insertion Unsuccessful !')</script>";
+        }
+    }
+
+    public function updateProfileLanguages()
+    {
+        //
     }
 
     // inserting skills of seller profile
     public function addProfileSkills()
     {
-        
+        $userId = $_POST['userId'];
+        $userName = $_POST['userName'];
+        $skills = $_POST['skills'];
+        $result = $this->SellerHandlerModel->addSkills($userId,$userName,$skills);
+        if($result){
+            echo 
+            "<script>
+                alert('Successfully Added the Skills !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>";
+        }else{
+            echo "
+            <script>
+                alert('Insertion Unsuccessful !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>
+            ";
+        }
+    }
+
+    public function updateProfileSkills()
+    {
+        //
     }
 
     // inserting education of seller profile
     public function addProfileEducation()
     {
-        
+        $userId = $_POST['userId'];
+        $userName = $_POST['userName'];
+        $education = $_POST['education'];
+        $result = $this->SellerHandlerModel->addEducation($userId,$userName,$education);
+        if($result){
+            echo 
+            "<script>
+                alert('Successfully Added the Education Details !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>";
+        }else{
+            echo "
+            <script>
+                alert('Insertion Unsuccessful !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>
+            ";
+        }
+    }
+
+    public function updateProfileEducation()
+    {
+        //
     }
 
     // has to adjust for client.
@@ -111,8 +183,6 @@ class SellerProfile extends Controller
         $about = $_POST['about'];
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
-        $language = "";
-        $skills = "";
 
         print_r($currentProfilePicture);
 
@@ -152,7 +222,7 @@ class SellerProfile extends Controller
             $uniqueprofilePictureName = $currentProfilePicture;
         }
 
-        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
+        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $userId, $userName);
         
         if($updateProfile)
         {

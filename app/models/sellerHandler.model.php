@@ -47,22 +47,41 @@ class SellerHandler extends database
         mysqli_stmt_close($stmt);
     }
 
+    public function getSellerProfileDets($sellerId){
+        $query = "SELECT * FROM seller_profile WHERE user_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     public function sellerId($phoneNumber){
         $query = "SELECT seller_id FROM seller WHERE phone_number = '$phoneNumber'  LIMIT 1";
         $result = mysqli_query($GLOBALS['db'], $query);
         return mysqli_fetch_assoc($result);
     }
 
-    // adding the languages of the profile into seller_profile table
-    public function addLanguages($sellerId,$userName,$languages)
+    // adding the user_name and user_Id of the profile into seller_profile table
+    public function addUserNameAndId($sellerId,$userName)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,languages) VALUES (?, ?,?)");
+        $query = "INSERT INTO seller_profile (user_id, user_name) VALUES (?, ?);";
+        $stmt = mysqli_prepare($GLOBALS['db'],$query);
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
     
-        mysqli_stmt_bind_param($stmt, "iss", $sellerId,$userName,$languages);
+        mysqli_stmt_bind_param($stmt, "is", $sellerId,$userName);
     
         if (!mysqli_stmt_execute($stmt)) {
             throw new Exception("Error inserting data into seller: " . mysqli_error($GLOBALS['db']));
@@ -71,10 +90,28 @@ class SellerHandler extends database
         mysqli_stmt_close($stmt);
     }
 
+    // adding the languages of the profile into seller_profile table
+    public function addLanguages($userId,$userName,$languages)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (languages) VALUES (?) WHERE user_id = ? AND user_name = ?;");
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "iss", $userId,$userName,$languages);
+    
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error inserting data into seller profile: " . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_close($stmt);
+    }
+
     // adding the skills of the profile into seller_profile table
     public function addSkills($sellerId,$userName,$skills)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,education) VALUES (?, ?, ?)");
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller_profile (user_id, user_name,skills) VALUES (?, ?, ?)");
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");

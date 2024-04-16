@@ -1,17 +1,24 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $username = $data['sellerProfileDetails']['user_name'];
-    $profilepicture = $data['sellerProfileDetails']['profile_pic'];
-    $firstname = $data['sellerProfileDetails']['first_name'];
-    $lastname = $data['sellerProfileDetails']['last_name'];
+    $username = $data['profileDetails']['user_name'];
+    $profilepicture = $data['profileDetails']['profile_pic'];
+    $firstname = $data['profileDetails']['first_name'];
+    $lastname = $data['profileDetails']['last_name'];
     $Country = "Sri Lanka";
-    $DateJoined = $data['sellerProfileDetails']['joined_date'];
-    $lastSeen = $data['sellerProfileDetails']['last_seen'];
-    $about = $data['sellerProfileDetails']['about'];
-    $userId = $data['sellerProfileDetails']['user_id'];
+    $DateJoined = $data['profileDetails']['joined_date'];
+    $lastSeen = $data['profileDetails']['last_seen'];
+    $about = $data['profileDetails']['about'];
+    $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = (array) $data['gigs'];
+
+    $languages = $data['sellerProfileDets']['languages'];
+    $skills = $data['sellerProfileDets']['skills'];
+    $education = $data['sellerProfileDets']['education'];
+    $portfolio = $data['sellerProfileDets']['portfolio'];
+    // show($data);
+    // $languages = $data[''];
 ?>
 
 <!-- Main Container for Seller -->
@@ -155,9 +162,6 @@
         <div class="modal" id="ModalAddLanguages">
             <form id="languageForm" method="post" action="./sellerProfile/addProfileLanguages">
                 <div class="seller-profile-picture">
-                    <!-- <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
@@ -169,7 +173,7 @@
                         <div class="seller-question">
                             Add Languages You're familiar with.
                         </div>
-                        <input type="text">
+                        <input type="text" name="languages">
                     </div>
                 </div>
                 <div class="buttons">
@@ -212,9 +216,6 @@
         <div class="modal" id="ModalAddSkills">
             <form id="skillsForm" method="post" action="./sellerProfile/addProfileSKills">
                 <div class="seller-profile-picture">
-                    <!-- <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
@@ -226,7 +227,7 @@
                         <div class="seller-question">
                             Add Skills You're familiar with.
                         </div>
-                        <input type="text">
+                        <input type="text" name="skills">
                     </div>
                 </div>
                 <div class="buttons">
@@ -269,9 +270,6 @@
         <div class="modal" id="ModalAddEduc">
             <form id="educationForm" method="post" action="./sellerProfile/addProfileEducation">
                 <div class="seller-profile-picture">
-                    <!-- <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
@@ -283,7 +281,7 @@
                         <div class="seller-question">
                             Add Your Education here.
                         </div>
-                        <input type="text">
+                        <input type="text" name="education">
                     </div>
                 </div>
                 <div class="buttons">

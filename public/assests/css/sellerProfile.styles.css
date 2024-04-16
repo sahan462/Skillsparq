@@ -394,9 +394,9 @@ input[type = "text"], textarea, select{
     justify-content: space-between;
 }
 
-.seller-modal-name{
+/* .seller-modal-name{
 
-}
+} */
 
 .seller-name{
     font-size:32px;

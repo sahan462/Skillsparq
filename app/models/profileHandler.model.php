@@ -114,7 +114,7 @@ class ProfileHandler extends database
     
 
     // update fields of profile
-    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $languages, $skills, $userId, $userName){
+    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $userId, $userName){
         $query = "UPDATE Profile 
                  SET 
                  profile_pic = ?, 
