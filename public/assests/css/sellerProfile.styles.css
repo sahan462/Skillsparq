@@ -12,7 +12,10 @@ body{
     padding: 16px 32px;
 }
 
-/* Modal */
+/*
+    #########################################################################
+    Main Class Selector for all Modals 
+*/
 .overlay{
     z-index: 1;
     display: none;
@@ -26,79 +29,8 @@ body{
     align-items: center;
 
 }
-#overlay{
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
 
-/* Languages modal */
-.overlayLanguages{
-
-}
-
-#overlayLanguages{
-
-}
-
-.modalLanguages{
-
-}
-
-#ModalLanguages{
-    
-}
-
-/* Delete Modal */
-/* .overlay1{
-    z-index: 1;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-
-}
-#overlay1{
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-} */
-
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-  }
-  
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-#Modal {
-    display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto;
-    height: auto;
-}
-
-#Modal1 {
-    display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 600px;
-    height: auto;
-}
+/* Main Class Selector for all confirmation Modals */
 .confirmation{
     display: none;
     background: #fff;
@@ -107,16 +39,15 @@ body{
     width: 300px;
     text-align: center;
 }
+
+/* Form Modal Styles content */
+
 .modal .confirmation button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
 }
-.topRightContainer .fade {
-    opacity: 1;
-}
 
-/* modal content */
 .modal form {
     display: flex;
     flex-direction: column;
@@ -125,6 +56,9 @@ body{
 .modal input, textarea{
     margin-bottom: 16px;
     border-radius: 8px;
+    /* padding: 8px;
+    height:25%;
+    cursor: auto; */
 }
 .modal .type-1{
     font-weight: 600;
@@ -132,13 +66,16 @@ body{
     color: #404145;
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
+
 .type-2{
     font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #62646a;
 }
+
 .modal .row{
     display: flex;
     flex-direction: column !important;
+    /* text-align: left; */
 }
 .modal .buttons, .confirmation .buttons{
     display: flex;
@@ -164,6 +101,154 @@ body{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 600;
+}
+
+.modal .confirmation button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/*
+    #########################################################################
+    Modal 1 Update Profile Form Modal 
+*/
+
+/* Update Profile Button Styles For the profile*/
+.edit-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+
+.edit-profile button:hover{
+    color: #fff;
+    background: #31d65a;
+    border: 2px solid #333;
+    box-shadow: none !important;
+}
+
+#overlayUpdate{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalUpdate{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+/*
+    #########################################################################
+    Modal 2 Delete Profile Form Modal 
+*/
+
+/* Delete Profile Button Styles For the profile */
+.delete-profile button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.delete-profile button:hover{
+    color: #fff;
+    background: #f81d00;
+    border: 2px solid #333;
+}
+
+#overlayDelete{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalDelete{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+/*
+    #########################################################################
+    Modal 3 Add Languages Profile Form Modal 
+*/
+
+/* Add Button for Languages Styles For the profile */
+.addProfLang button{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 16px;
+    color: #333 !important;
+    /* border: 2px solid #333 !important; */
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: ease-in-out 0.3s;
+}
+.addProfLang button:hover{
+    color: #fff !important;
+    background: #31d65a !important;
+    /* border: 2px solid #333 !important; */
+    box-shadow: none !important;
+}
+
+#overlayAddLanguages{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalAddLanguages{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+/*
+    #########################################################################
+    Modal   Form Modal 
+*/
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.topRightContainer .fade {
+    opacity: 1;
 }
 
 .sellerProfileHeader{
@@ -287,81 +372,6 @@ input[type = "text"], textarea, select{
     justify-content: space-between;
 }
 
-/**/
-/*preview-profile*/
-.preview-profile button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 8px;
-    color: #333;
-    border: 2px solid #333;
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.preview-profile button:hover{
-    color: #fff;
-    background: #31d65a;
-    border: 2px solid #333;
-}
-
-/*edit-profile*/
-.edit-profile button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 16px;
-    color: #333;
-    border: 2px solid #333;
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.edit-profile button:hover{
-    color: #fff;
-    background: #31d65a;
-    border: 2px solid #333;
-    box-shadow: none !important;
-}
-
-/*addProfLang*/
-.addProfLang button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 16px;
-    color: #333 !important;
-    /* border: 2px solid #333 !important; */
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.addProfLang button:hover{
-    color: #fff !important;
-    background: #31d65a !important;
-    /* border: 2px solid #333 !important; */
-    box-shadow: none !important;
-}
-
-/*Delete Profile*/
-.delete-profile button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 16px;
-    color: #333;
-    border: 2px solid #333;
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.delete-profile button:hover{
-    color: #fff;
-    background: #f81d00;
-    border: 2px solid #333;
-}
-
 .seller-modal-name{
 
 }
@@ -376,11 +386,6 @@ input[type = "text"], textarea, select{
     font-size:24px;
 }
 
-.modal .confirmation button {
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-}
 .topRightContainer .fade {
     opacity: 1;
 }
@@ -440,11 +445,6 @@ input[type = "text"], textarea, select{
     align-items: center;
 }
 
-/*education-skills-certificates-languages*/
-/* .profile .education ,.profile .skills, .profile .certificates, .profile .languages{
-    border-bottom: 2px solid #dadbdd;
-    text-align: justify;
-} */
 .profile .topic{
     display: flex;
     align-items: center;
@@ -538,8 +538,6 @@ a{
     margin-bottom: 16px;
 }
 
-
-
 /*reviews*/
 .sellerProfileContainer .sub-container .sellerUser-contribution .reviews{
     width: 100%;
@@ -574,9 +572,6 @@ a{
     height: 100px;
     width: 100px;
 }
-
-
-
 
 @media only screen and (max-width: 600px) {
     .sellerProfileContainer{
