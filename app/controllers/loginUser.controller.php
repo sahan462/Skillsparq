@@ -41,6 +41,7 @@ class LoginUser extends Controller
 
                 $row = $this->loginHandler->userCheck($email, $password);
 
+
                 if ($row) {
 
                     $_SESSION["userId"] = $row['user_id'];
@@ -62,7 +63,7 @@ class LoginUser extends Controller
                         $data['profile'] = $profile;
 
                         if ($role == 'Buyer') {
-                            header("location: /skillsparq/public/buyerdashboard");
+                            header("location: /skillsparq/public/helpdeskCenter");
                         } else if ($role == "Admin") {
                             header("location: /skillsparq/public/adminDashboard");
                         } else if ($role == "csa") {

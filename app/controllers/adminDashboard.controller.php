@@ -21,7 +21,5 @@ class AdminDashboard extends Controller
         $this->view('adminDashboard', $data);
         $recentGigs = $this->GigHandlerModel->getRecentGigs();
         $data['recentGigs'] = $recentGigs;
-        $recentComplaints = $this->inquiryHandlerModel->getComplaints();
-        $data['recentComplaints'] = $recentComplaints;
     }
 }

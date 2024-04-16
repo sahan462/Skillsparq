@@ -1,8 +1,57 @@
 <?php
-$count = 0;
+$count1 = 0;
+$count2 = 0;
+$countCurrentMonth = 0;
+$countPreviousMonth = 0;
+$countCurrentMonth1 = 0;
+$countPreviousMonth1 = 0;
+$monthData = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+$countCurrentMonth2 = 0;
+$countPreviousMonth2 = 0;
+$currentMonth = date('m');
+$previousMonth = ($currentMonth == 1) ? 12 : $currentMonth - 1;
+$currentYear = date('Y');
+$previousYear = $currentYear - 1;
+
 foreach ($recentInquiries as $row) {
-    $count++;
+    $date = new DateTime($row['created_at']);
+    $inquiryMonth = $date->format('m');
+    $inquiryYear = $date->format('Y');
+
+    if (($inquiryYear == $previousYear && $inquiryMonth > $currentMonth) || $inquiryYear == $currentYear && $inquiryMonth <= $currentMonth) {
+        $monthData[$inquiryMonth - 1]++;
+    }
+    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
+        $countCurrentMonth++;
+    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
+        $countPreviousMonth++;
+    }
 }
+
+foreach ($recentRequests as $row) {
+    $date = new DateTime($row['created_at']);
+    $inquiryMonth = $date->format('m');
+    $inquiryYear = $date->format('Y');
+
+    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
+        $countCurrentMonth1++;
+    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
+        $countPreviousMonth1++;
+    }
+}
+
+foreach ($recentComplaints as $row) {
+    $date = new DateTime($row['created_at']);
+    $inquiryMonth = $date->format('m');
+    $inquiryYear = $date->format('Y');
+    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
+        $countCurrentMonth2++;
+    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
+        $countPreviousMonth2++;
+    }
+}
+
+
 $solved = 0;
 $unsolved = 0;
 foreach ($recentRequests as $row) {
@@ -21,6 +70,21 @@ foreach ($recentComplaints as $row) {
         $unsolved1++;
     }
 }
+
+
+$currentMonthIndex = date('n') - 1; // Subtract 1 to convert 1-based index to 0-based index
+
+// Create an array of months
+$months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Rearrange the months array
+$monthsSorted = array_merge(
+    array_slice($monthData, $currentMonthIndex + 1), // Get the months from current month to end
+    array_slice($monthData, 0, $currentMonthIndex + 1) // Get the months from beginning to current month
+);
+
+array_reverse($monthsSorted)
+
 ?>
 
 <!DOCTYPE html>
@@ -56,28 +120,36 @@ foreach ($recentComplaints as $row) {
             <div class="boxes">
                 <div class="box box1">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="text">Total Users</span>
-                    <span class="number"><?php echo $count ?></span>
+                    <span class="text">Total Inquiries this month</span>
+                    <span class="number"><?php echo $countCurrentMonth ?></span>
 
                 </div>
                 <div class="box box2">
                     <i class="uil uil-comments"></i>
-                    <span class="text">Comments</span>
-                    <span class="number">20,120</span>
+                    <span class="text">Total help requests this month</span>
+                    <span class="number"><?php echo $countCurrentMonth1 ?></span>
 
                 </div>
                 <div class="box box3">
                     <i class="uil uil-share"></i>
-                    <span class="text">Total Share</span>
-                    <span class="number">10,120</span>
+                    <span class="text">Total Complaints this month</span>
+                    <span class="number"><?php echo $countCurrentMonth2 ?></span>
                 </div>
             </div>
+
+
             <div class="boxes">
                 <div class="subChart">
                     <canvas id="pieChart"></canvas>
                 </div>
                 <div class="subChart">
                     <canvas id="pieChartComplaints"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="barchartHelpRequests"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="pieChart"></canvas>
                 </div>
             </div>
         </div>
@@ -90,13 +162,13 @@ foreach ($recentComplaints as $row) {
 
             <table class="content-table">
                 <thead>
-                    <th>user_id</th>
+                    <th><? echo $profile['userId'] ?></th>
                     <th>user_email</th>
                     <th>role</th>
                     <th>View</th>
                 </thead>
                 <tbody>
-                    <?php foreach ($recentInquiries as $row) { ?>
+                    <?php foreach ($recentUsers as $row) { ?>
                         <tr>
                             <td><?php echo $row['user_id']; ?></td>
                             <td><?php echo $row['user_email']; ?></td>
@@ -160,6 +232,47 @@ foreach ($recentComplaints as $row) {
                 title: {
                     display: true,
                     text: "Complaints"
+                }
+            }
+        });
+
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var currentDate = new Date();
+        var currentMonthIndex = currentDate.getMonth();
+        var rearrangedMonths = months.slice(currentMonthIndex + 1).concat(months.slice(0, currentMonthIndex + 1));
+
+        var monthsy = [];
+
+        <?php
+        foreach ($monthsSorted as $month) {
+            echo "monthsy.push('$month');"; // Use push to add each month to the JavaScript array
+        }
+
+        ?>
+
+
+
+
+
+
+
+        new Chart("barchartHelpRequests", {
+            type: "bar",
+            data: {
+                labels: rearrangedMonths,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: monthsy
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "new Inquiries"
                 }
             }
         });

@@ -279,4 +279,22 @@ class InquiryHandler extends database
             $stmt->close();
         }
     }
+
+
+    public function getInquiries()
+    {
+        $query = "SELECT * from inquiries;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
