@@ -55,6 +55,7 @@ header{
 /* Left Container*/
 .userActivity{
     width: 56%;
+    height: calc(100vh - 56px);
     background-color: #fff;
     margin-top: 16px;
     border: 1px solid #c5c6c9;
@@ -62,15 +63,180 @@ header{
 }
 
 /* Tab 1 */
-.userActivity #activity{
-    height: 500px;
-}
 .userActivity .tabContent{
     padding: 16px 16px 16px 0;
 }
 .userActivity p{
     text-align: justify;
 }
+
+/* Chat Section */
+
+#activity{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/*chat header*/
+#activity .header{
+    height: 5%;
+    border-bottom: 2px solid #333;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+#activity .receiver{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#activity .receiver .dot{
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    margin-right: 6px;
+}
+#activity .receiver img{
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 2px;
+    margin-right: 6px;
+}
+.receiver .receiverActive{
+    background-color: #1dbf73;
+}
+.receiver .receiverOffline{
+    background-color: crimson;
+}
+.receiver .upperSection{
+    display: flex;
+    align-items: center;
+}
+.receiver .rightSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.receiver h1{
+    font-size: 18px;
+    line-height: 100%;
+
+} 
+.receiver a{
+    color: #404145;
+    text-decoration: underline;
+}
+
+/*Messages*/
+#activity .innerContainer{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 16px 16px 32px 16px;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.innerContainer::-webkit-scrollbar { 
+    display: none;  
+}
+.messageContainer {
+    width: fit-content;
+    max-width: 70%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.darker {
+    float: right;
+    border-color: #ccc;
+    background-color: #ddd;
+}
+P{
+    display: flex;
+    flex-direction: column;
+}
+.innerContainer .senderContent{
+    display: flex;
+    align-items: center;
+}
+.innerContainer .senderContent img{
+    margin-right: 16px;
+
+}
+.innerContainer .receiverContent{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.innerContainer .receiverContent img{
+    margin-left: 16px;
+}
+.messageContainer::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.messageContainer img {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.time-right {
+    color: #aaa;
+}
+.time-left {
+    display: flex;
+    justify-content: end;
+    color: #999;
+}
+
+
+/*chat footer*/
+#activity .chatFooter{
+    height: 8%;
+    border-top: 2px solid #333;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.chatFooter .attachement input{
+    display: none;
+}
+.chatFooter .attachement label{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+.chatFooter .attachement svg{
+    height: 20px;
+    width: 20px;
+    color: #333;
+}
+.chatFooter .inputMessage{
+    width: 90%;
+}
+.chatFooter .inputMessage input{
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
 
 /* Tab 2 */
 
@@ -92,6 +258,7 @@ header{
 .orderContent .orderDetails{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 44%;
     margin-top: 16px;
     gap: 16px;
@@ -150,17 +317,22 @@ header{
 .orderDetails .row{
     display: flex;
     gap: 16px;
+    padding: 0px !important;
 }
 .buttonType-1{
     width: 100%;
     padding: 8px;
     font-weight: 500;
     font-size: 18px;
+    text-align: center;
     color: #fff;
     border-radius: 8px;
     border: none;
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
+}
+a {
+    text-decoration: none;
 }
 .buttonType-1:hover{
     color: #333;

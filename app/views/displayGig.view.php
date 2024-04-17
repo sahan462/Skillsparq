@@ -20,7 +20,7 @@
     <!-- Modal 1  -->
     <div class="overlay" name="packageOverlay" id="overlay">
         <div class="modal" name="packageModal" id="modal">
-            <form id="packageRequestForm" method="post" action="manageOrders/createPackageOrder" enctype="multipart/form-data">
+            <form id="packageRequestForm" method="post" action="order/createPackageOrder" enctype="multipart/form-data">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
                     <label for="requestDescription" class="type-2">Please provide a concise overview of the task you would like to accomplish.</label>
@@ -80,7 +80,7 @@
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
             
-            <form id="milestoneRequestForm"  method="post" action="manageOrders/createMilestoneOrder" enctype="multipart/form-data">
+            <form id="milestoneRequestForm"  method="post" action="order/createMilestoneOrder" enctype="multipart/form-data">
 
                 <!-- New milestone appends here -->
                 <div id="inputContainer" >
