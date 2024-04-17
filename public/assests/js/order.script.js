@@ -219,5 +219,6 @@ function sendMessage(chatId, senderId, receiverId){
 
   // Send the JSON data in the request body
   ajax.send(jsonData);
+  
 }
 
