@@ -169,8 +169,8 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
 
 var chatArea = document.getElementById('activity');
 
-function sendMessage(senderId, receiverId){
-  
+function sendMessage(chatId, senderId, receiverId){
+
   var newMessage = document.getElementById('newMessage').value.trim();
   
   if(senderId == null ){
@@ -190,22 +190,28 @@ function sendMessage(senderId, receiverId){
 
   var ajax = new XMLHttpRequest();
   ajax.onload = function(){
-
     if(ajax.status == 200 || ajax.readyState == 4){
-      alert(ajax.responseText);
-    }
-
+        var response = JSON.parse(ajax.responseText);
+        if(response.success){
+            document.getElementById('newMessage').value = "";
+        } else {
+            alert("Failed to send message: " + response.error);
+        }
+    } else {
+        alert("Error: " + ajax.status);
+    } 
   }
 
-  ajax.open('POST', 'order/sendNewMessage', true);
+  ajax.open('POST', 'chat/sendNewTextMessage', true);
   // Set the Content-Type header to specify that the data being sent is JSON
   ajax.setRequestHeader("Content-Type", "application/json");
 
   // Create a JavaScript object to hold the message data
   var messageData = {
+    message: newMessage,
+    chatId: chatId,
     senderId: senderId,
     receiverId: receiverId,
-    message: newMessage
   };
 
   // Stringify the messageData object to JSON format

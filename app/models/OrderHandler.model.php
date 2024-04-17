@@ -1,7 +1,8 @@
 <?php
-class OrderHandler extends database
+class OrderHandler extends database 
 {
 
+    
     //create new order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
@@ -52,11 +53,14 @@ class OrderHandler extends database
             }
 
             mysqli_stmt_bind_param($stmt, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
-            mysqli_stmt_execute($stmt);
-            $stmt->close();
+            if (mysqli_stmt_execute($stmt)) {
+                $stmt->close();
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+            }
 
         }else{
-
+            throw new Exception("Invalid Order Type");
         }
 
         return $orderId;
@@ -105,7 +109,7 @@ class OrderHandler extends database
         //retrive order details
         if($orderType == 'package'){
 
-            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id where orders.order_id = ?";
+            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
 
         }else if($orderType == 'milestone'){
 
@@ -170,6 +174,7 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
+
         return $data;
 
     }
@@ -196,44 +201,6 @@ class OrderHandler extends database
 
     }
 
-    //create new payment
-    public function createPayment($paymentId, $payerId, $payeeId, $amount, $paymentDate, $paymentDescription, $paymentState, $orderId, $refundReceiverId, $refundIssuerId, $refundCause, $refundDate,  $milestoneId)
-    {
-        //add values to payments table
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO payments 
-        (
-            payment_id, 
-            payer_id, 
-            payee_id,  
-            amount,
-            payment_date,
-            payment_description,
-            payment_state,
-            order_id
-        ) 
-        VALUES 
-        (
-            ?, ?, ?, ?, ?, ?, ?, ?
-        )");
-    
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
-        }
-
-        mysqli_stmt_bind_param($stmt, "iiidsssi", $paymentId,  $payerId, $payeeId, $amount, $paymentDate, $paymentDescription, $paymentState, $orderId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            $orderId = mysqli_insert_id($GLOBALS['db']);
-            $stmt->close();
-        } else {
-            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
-        }
-
-        
-
-
-
-    }
 
 
 
