@@ -113,11 +113,11 @@ class UserHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, $parameterString,$param1,$userId);
-        
+        mysqli_stmt_bind_param($stmt, $parameterString, $param1, $userId);
+
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            return true; 
+            return true;
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
         }
@@ -157,10 +157,33 @@ class UserHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            return true; 
+            return true;
         } else {
             throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
+    public function getAllUsers()
+    {
+        $query = "SELECT
+        (SELECT COUNT(*) FROM user) AS users,
+        (SELECT COUNT(*) FROM user WHERE role='seller') AS seller,
+        (SELECT COUNT(*) FROM user WHERE role='buyer') AS buyer,
+        (SELECT COUNT(*) FROM user WHERE role='csa') AS csa,
+        (SELECT COUNT(*) FROM user WHERE role='admin') AS admin;
+    ";
 
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $data = $result->fetch_assoc(); // Fetch the first (and only) row as an associative array
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

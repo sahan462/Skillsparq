@@ -1,6 +1,6 @@
 <?php
 
-class AdminDashboard extends Controller
+class generateReport extends Controller
 {
     private $inquiryHandlerModel;
     private $JobHandlerModel;
@@ -22,7 +22,7 @@ class AdminDashboard extends Controller
     public function index()
     {
 
-        $data['var'] = "admin Dashboard";
+        $data['var'] = "generateReport";
         $data['title'] = "SkillSparq";
 
         $recentGigs = $this->GigHandlerModel->getRecentGigs();
@@ -77,6 +77,6 @@ class AdminDashboard extends Controller
         $userType = $this->userHandlerModel->getAllUsers();
         $data['userType'] = $userType;
 
-        $this->view('adminDashboard', $data);
+        $this->view('generateReport', $data);
     }
 }
