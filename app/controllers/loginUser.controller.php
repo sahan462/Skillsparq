@@ -63,7 +63,7 @@ class LoginUser extends Controller
                         $data['profile'] = $profile;
 
                         if ($role == 'Buyer') {
-                            header("location: /skillsparq/public/helpdeskCenter");
+                            header("location: /skillsparq/public/buyerDashboard");
                         } else if ($role == "Admin") {
                             header("location: /skillsparq/public/adminDashboard");
                         } else if ($role == "csa") {

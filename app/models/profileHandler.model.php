@@ -2,32 +2,32 @@
 class ProfileHandler extends database
 {
 
-    public function userNameCheck($userName){
+    public function userNameCheck($userName)
+    {
 
-        $userName=mysqli_real_escape_string($GLOBALS['db'],$userName);
+        $userName = mysqli_real_escape_string($GLOBALS['db'], $userName);
         $userCheck = "SELECT * FROM profile WHERE user_name='$userName'  LIMIT 1";
         $result = mysqli_query($GLOBALS['db'], $userCheck);
         return mysqli_fetch_assoc($result);
-
     }
 
     //create new profile
     public function addNewProfile($userName, $firstName, $lastName, $user_id)
     {
         $query = "INSERT INTO profile (user_name, first_name, last_name, profile_pic, joined_date, user_id) VALUES (?, ? , ?, ?, ?, ?)";
-        $stmt = mysqli_prepare($GLOBALS['db'],$query);
-    
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
         $joinedDate = date('Y-m-d');
         $profilePic = 'dummyprofile.jpg';
         mysqli_stmt_bind_param($stmt, "sssssi", $userName, $firstName, $lastName, $profilePic, $joinedDate, $user_id);
-    
+
         if (!mysqli_stmt_execute($stmt)) {
             throw new Exception("Error inserting data into profile: " . mysqli_error($GLOBALS['db']));
         }
-    
+
         mysqli_stmt_close($stmt);
     }
 
@@ -35,9 +35,9 @@ class ProfileHandler extends database
     public function getUserProfile($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";
-        
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -55,9 +55,9 @@ class ProfileHandler extends database
     public function lastSeenUpdate($lastSeen, $userId)
     {
         $query = "UPDATE profile SET last_seen = ? WHERE user_id = ?";
-        
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -76,9 +76,9 @@ class ProfileHandler extends database
     public function getProfPic($userId)
     {
         $query = "SELECT profile_pic FROM profile WHERE user_id = ? ";
-        
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -96,9 +96,9 @@ class ProfileHandler extends database
     public function getProfileData($userId)
     {
         $query = "SELECT * FROM profile WHERE user_id = ? ";
-        
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -111,10 +111,11 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    
+
 
     // update fields of profile
-    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $languages, $skills, $userId, $userName){
+    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $languages, $skills, $userId, $userName)
+    {
         $query = "UPDATE Profile 
                  SET 
                  profile_pic = ?, 
@@ -125,24 +126,40 @@ class ProfileHandler extends database
                  WHERE user_id = ? 
                  and user_name = ?";
 
-        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-    
+
         mysqli_stmt_bind_param($stmt, "sssssis", $profilePic, $firstName, $lastName, $country, $about, $userId, $userName);
-    
+
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            return true; 
+            return true;
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
         }
     }
 
-    public function deleteProfile($userId){
-        
+    public function deleteProfile($userId)
+    {
     }
 
+    public function getAllProfiles()
+    {
+        $query = "SELECT * from profile";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

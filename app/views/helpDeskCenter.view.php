@@ -1,92 +1,3 @@
-<?php
-$count1 = 0;
-$count2 = 0;
-$countCurrentMonth = 0;
-$countPreviousMonth = 0;
-$countCurrentMonth1 = 0;
-$countPreviousMonth1 = 0;
-$monthData = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-$countCurrentMonth2 = 0;
-$countPreviousMonth2 = 0;
-$currentMonth = date('m');
-$previousMonth = ($currentMonth == 1) ? 12 : $currentMonth - 1;
-$currentYear = date('Y');
-$previousYear = $currentYear - 1;
-
-foreach ($recentInquiries as $row) {
-    $date = new DateTime($row['created_at']);
-    $inquiryMonth = $date->format('m');
-    $inquiryYear = $date->format('Y');
-
-    if (($inquiryYear == $previousYear && $inquiryMonth > $currentMonth) || $inquiryYear == $currentYear && $inquiryMonth <= $currentMonth) {
-        $monthData[$inquiryMonth - 1]++;
-    }
-    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
-        $countCurrentMonth++;
-    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
-        $countPreviousMonth++;
-    }
-}
-
-foreach ($recentRequests as $row) {
-    $date = new DateTime($row['created_at']);
-    $inquiryMonth = $date->format('m');
-    $inquiryYear = $date->format('Y');
-
-    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
-        $countCurrentMonth1++;
-    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
-        $countPreviousMonth1++;
-    }
-}
-
-foreach ($recentComplaints as $row) {
-    $date = new DateTime($row['created_at']);
-    $inquiryMonth = $date->format('m');
-    $inquiryYear = $date->format('Y');
-    if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
-        $countCurrentMonth2++;
-    } elseif ($inquiryMonth == $previousMonth && $inquiryYear == $previousYear) {
-        $countPreviousMonth2++;
-    }
-}
-
-
-$solved = 0;
-$unsolved = 0;
-foreach ($recentRequests as $row) {
-    if ($row['inquiry_status'] == "solved") {
-        $solved++;
-    } else {
-        $unsolved++;
-    }
-}
-$solved1 = 0;
-$unsolved1 = 0;
-foreach ($recentComplaints as $row) {
-    if ($row['inquiry_status'] == "solved") {
-        $solved1++;
-    } else {
-        $unsolved1++;
-    }
-}
-
-
-$currentMonthIndex = date('n') - 1; // Subtract 1 to convert 1-based index to 0-based index
-
-// Create an array of months
-$months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-// Rearrange the months array
-$monthsSorted = array_merge(
-    array_slice($monthData, $currentMonthIndex + 1), // Get the months from current month to end
-    array_slice($monthData, 0, $currentMonthIndex + 1) // Get the months from beginning to current month
-);
-
-array_reverse($monthsSorted)
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,6 +46,8 @@ array_reverse($monthsSorted)
                     <span class="text">Total Complaints this month</span>
                     <span class="number"><?php echo $countCurrentMonth2 ?></span>
                 </div>
+
+
             </div>
 
 
@@ -149,39 +62,89 @@ array_reverse($monthsSorted)
                     <canvas id="barchartHelpRequests"></canvas>
                 </div>
                 <div class="subChart">
-                    <canvas id="pieChart"></canvas>
+                    <canvas id="barchartComplaints"></canvas>
                 </div>
             </div>
         </div>
+        <div>
+            <div class=" title">
 
-        <div class="activity">
-            <div class="title">
-                <i class="uil uil-clock-three"></i>
-                <span class="text">Recent inquiries</span>
             </div>
 
+        </div>
+
+        <div>
+
             <table class="content-table">
+                <caption style="font-weight: bold; height:30px; font-size :18px; background-color:#009879 ; color:white">
+
+                    <i class=" uil uil-clock-three"></i>
+                    <span class="text">Recent Requests</span>
+
+                </caption>
                 <thead>
-                    <th><? echo $profile['userId'] ?></th>
-                    <th>user_email</th>
-                    <th>role</th>
+                    <th>InquiryID</th>
+                    <th>Subject</th>
                     <th>View</th>
                 </thead>
                 <tbody>
-                    <?php foreach ($recentUsers as $row) { ?>
+                    <?php
+                    $count = 0;
+                    foreach ($recentRequests as $row) { ?>
                         <tr>
-                            <td><?php echo $row['user_id']; ?></td>
-                            <td><?php echo $row['user_email']; ?></td>
-                            <td><?php echo $row['role']; ?></td>
-                            <td><a href="#">View</a></td>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
+
+                            <td>
+                                <a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><button>View</button>
+                            </td>
                         </tr>
-                    <?php } ?>
+                    <?php
+                        $count++;
+                        if ($count == 5) {
+                            break;
+                        }
+                    } ?>
+                </tbody>
+            </table>
+
+
+
+            <table class=" content-table">
+                <caption style="font-weight: bold; height:30px; font-size :18px; background-color:#009879 ; color:white">
+                    <i class=" uil uil-clock-three"></i>
+                    <span class="text">Recent Complaints</span>
+
+                </caption>
+                <thead>
+                    <th>InquiryID</th>
+                    <th>Subject</th>
+                    <th>View</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $count = 0;
+                    foreach ($recentComplaints as $row) { ?>
+                        <tr>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
+
+                            <td>
+                                <a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><button>View</button>
+                            </td>
+                        </tr>
+                    <?php
+                        $count++;
+                        if ($count == 5) {
+                            break;
+                        }
+                    } ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="../public/assests/js/helpDeskCenter.js"></script>
+    <script src=" ../public/assests/js/helpDeskCenter.js"></script>
     <script>
         var solved = <?php echo $solved; ?>;
         var unsolved = <?php echo $unsolved; ?>;
@@ -216,8 +179,19 @@ array_reverse($monthsSorted)
         var yValues = [solved, unsolved];
         var barColors = [
             "#00aba9",
-            "#b91d47"
+            "#b91d47",
+            "#f2711c",
+            "#fbca04",
+            "#a333c8",
+            "#6435c9",
+            "#2185d0",
+            "#00b5ad",
+            "#a5673f",
+            "#767676",
+            "#1b1c1d",
+            "#e03997"
         ];
+
 
         new Chart("pieChartComplaints", {
             type: "pie",
@@ -242,11 +216,15 @@ array_reverse($monthsSorted)
         var currentMonthIndex = currentDate.getMonth();
         var rearrangedMonths = months.slice(currentMonthIndex + 1).concat(months.slice(0, currentMonthIndex + 1));
 
-        var monthsy = [];
+        var monthRequests = [];
+        var monthComplaints = [];
 
         <?php
-        foreach ($monthsSorted as $month) {
-            echo "monthsy.push('$month');"; // Use push to add each month to the JavaScript array
+        foreach ($monthsSortedRequests as $month) {
+            echo "monthRequests.push('$month');"; // Use push to add each month to the JavaScript array
+        }
+        foreach ($monthsSortedComplaints as $month) {
+            echo "monthComplaints.push('$month');"; // Use push to add each month to the JavaScript array
         }
 
         ?>
@@ -258,12 +236,13 @@ array_reverse($monthsSorted)
 
 
         new Chart("barchartHelpRequests", {
-            type: "bar",
+            type: "line",
             data: {
                 labels: rearrangedMonths,
                 datasets: [{
-                    backgroundColor: barColors,
-                    data: monthsy
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    data: monthRequests
                 }]
             },
             options: {
@@ -272,7 +251,28 @@ array_reverse($monthsSorted)
                 },
                 title: {
                     display: true,
-                    text: "new Inquiries"
+                    text: "Requests"
+                }
+            }
+        });
+
+        new Chart("barchartComplaints", {
+            type: "line",
+            data: {
+                labels: rearrangedMonths,
+                datasets: [{
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    data: monthComplaints
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Complaints"
                 }
             }
         });

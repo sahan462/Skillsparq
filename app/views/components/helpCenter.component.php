@@ -53,6 +53,7 @@
             </li>
         </ul>
     </div>
+
 </nav>
 
 <section class="dashboard">
@@ -113,13 +114,17 @@
                 </li>
                 <hr />
 
-                <li class="profile-dropdown-list-item">
-                    <a href="#">
+                <li class="profile-dropdown-list-item" onclick="logout()">
+                    <a href="loginUser/logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        Log out
+                        LogOut
                     </a>
                 </li>
+
             </ul>
+
+
+
         </div>
     </div>
 
@@ -168,4 +173,10 @@
                 localStorage.setItem("status", "open");
             }
         });
+
+        function logout() {
+
+            document.getElementById("logout").click()
+
+        }
     </script>

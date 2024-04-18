@@ -9,7 +9,7 @@
   <!----===== Iconscout CSS ===== -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <title>Admin Dashboard Panel</title>
 </head>
 
@@ -24,42 +24,52 @@
         <span class="text">Dashboard</span>
       </div>
 
-      <div class="boxes">
-        <div class="box box1">
-          <i class="uil uil-thumbs-up"></i>
-          <span class="text">Total Likes</span>
-          <span class="number">50,120</span>
+
+
+      <div id="invoice1">
+
+        <div class="boxes">
+          <div class="box box1">
+            <i class="uil uil-thumbs-up"></i>
+            <span class="text">Total Users</span>
+            <span class="number"><?php echo $userType['users']; ?></span>
+          </div>
+          <div class="box box2">
+            <i class="uil uil-comments"></i>
+            <span class="text">Total Orders</span>
+            <span class="number"><?php echo $order['orders'] ?></span>
+          </div>
+          <div class="box box3">
+            <i class="uil uil-share"></i>
+            <span class="text">Total Share</span>
+            <span class="number"><?php print_r($orderStateLastYear) ?></span>
+          </div>
         </div>
-        <div class="box box2">
-          <i class="uil uil-comments"></i>
-          <span class="text">Comments</span>
-          <span class="number">20,120</span>
+        <div class="boxes">
+          <div class="subChart">
+            <canvas id="monthlyUsers"></canvas>
+          </div>
+          <div class=" subChart">
+            <canvas id="totalOrders"></canvas>
+          </div>
+          <div class="subChart">
+            <canvas id="orderState"></canvas>
+          </div>
+          <div class=" subChart">
+            <canvas id="orderStatePrev"></canvas>
+          </div>
+          <div class=" subChart">
+            <canvas id="userType"></canvas>
+          </div>
+
+
         </div>
-        <div class="box box3">
-          <i class="uil uil-share"></i>
-          <span class="text">Total Share</span>
-          <span class="number">10,120</span>
-        </div>
+
+
+
+
       </div>
-      <div class="boxes">
-
-        <div class="subChart">
-          <canvas id="myChart"></canvas>
-        </div>
-        <div class="subChart">
-          <canvas id="pieChart"></canvas>
-        </div>
-
-
-        <div class=" subChart">
-          <canvas id="barChart"></canvas>
-        </div>
-
-
-      </div>
-
-
-
+      <button onclick="generatePDF()">Download</button>
 
 
 
@@ -130,59 +140,30 @@
   </section>
 
   <script>
-    const myChart = new Chart("myChart", {
-      type: "scatter",
-      data: {},
-      options: {}
-    });
-  </script>
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  <script>
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
-    var barColors = [
-      "#b91d47",
-      "#00aba9",
-      "#2b5797",
-      "#e8c3b9",
-      "#1e7145"
-    ];
+    var currentDate = new Date();
+    var currentMonthIndex = currentDate.getMonth();
+    var rearrangedMonths = months.slice(currentMonthIndex + 1).concat(months.slice(0, currentMonthIndex + 1));
 
-    new Chart("pieChart", {
-      type: "pie",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        title: {
-          display: true,
-          text: "World Wide Wine Production 2018"
-        }
-      }
-    });
-  </script>
-  <!DOCTYPE html>
-  <html>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    var monthlyUsers = [];
+    var monthComplaints = [];
 
+    <?php
+    foreach ($monthlyUsers as $month) {
+      echo "monthlyUsers.push('$month');"; // Use push to add each month to the JavaScript array
+    } ?>
 
-
-  <script>
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
     var barColors = ["red", "green", "blue", "orange", "brown"];
 
-    new Chart("myChart", {
-      type: "bar",
+    new Chart("monthlyUsers", {
+      type: "line",
       data: {
-        labels: xValues,
+        labels: rearrangedMonths,
         datasets: [{
-          backgroundColor: barColors,
-          data: yValues
+          fill: false,
+          borderColor: 'green',
+          data: monthlyUsers
         }]
       },
       options: {
@@ -191,11 +172,148 @@
         },
         title: {
           display: true,
-          text: "World Wine Production 2018"
+          text: "New Users Joined"
         }
       }
     });
+    <?php
+
+    $orderNumbers = [
+      $order['accepted_count'],
+      $order['running_count'],
+      $order['requested_count'],
+      $order['cancelled_count'],
+      $order['late_count'],
+      $order['completed_count']
+    ];
+
+    $orderJSON = json_encode($orderNumbers);
+    ?>
+    var orderArray = <?php echo $orderJSON ?>
+
+
+    new Chart("orderState", {
+      type: "pie",
+      data: {
+        labels: ['accepted', 'running', 'requested', 'cancelled', 'late', 'completed'],
+        datasets: [{
+          backgroundColor: barColors,
+          data: orderArray
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "orderState This Month (<?php echo date('m') . " 20" . date('y') ?>)"
+        }
+      }
+    });
+    <?php
+    $orderNumbers = [
+      $orderprev['accepted_count'],
+      $orderprev['running_count'],
+      $orderprev['requested_count'],
+      $orderprev['cancelled_count'],
+      $orderprev['late_count'],
+      $orderprev['completed_count']
+    ];
+
+    $orderJSON = json_encode($orderNumbers); ?>
+    var orderArrayprev = <?php echo $orderJSON ?>
+
+
+    new Chart("orderStatePrev", {
+      type: "pie",
+      data: {
+        labels: ['accepted', 'running', 'requested', 'cancelled', 'late', 'completed'],
+        datasets: [{
+          backgroundColor: barColors,
+          data: orderArrayprev
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "orderState Previous Month (0<?php echo (date('m') == 1) ? 12 : date('m') - 1; ?>  <?php echo (date('m') == 1) ? date('Y') - 1 : date('Y'); ?>)"
+
+        }
+      }
+    });
+
+    <?php
+    $datachart4 = [
+      $userType['seller'], $userType['buyer'], $userType['csa'], $userType['admin']
+    ];
+
+    $orderJson = json_encode($datachart4);
+
+    ?>
+
+    var userType = <?php echo $orderJson ?>;
+    new Chart("userType", {
+      type: "bar",
+      data: {
+        labels: ['seller', 'buyer', 'csa', 'admin'],
+        datasets: [{
+          backgroundColor: barColors,
+          data: userType
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "User Types"
+        }
+      }
+    });
+
+    var totalOrders = [];
+
+    <?php
+    foreach ($orderStateLastYear as $row) {
+      echo "totalOrders.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalOrders", {
+      type: "line",
+      data: {
+        labels: rearrangedMonths,
+        datasets: [{
+          fill: false,
+          borderColor: 'green',
+          data: totalOrders
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "total Orders"
+        }
+      }
+    });
+
+
+
+
+    function generatePDF() {
+      const element = document.getElementById("invoice1")
+      html2pdf()
+        .from(element)
+        .save();
+    }
   </script>
+
+
+
+
+
+
+
 
   <script>
     function getLastSevenDays() {
@@ -212,10 +330,25 @@
       return result;
     }
 
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    var currentDate = new Date();
+    var currentMonthIndex = currentDate.getMonth();
+    var rearrangedMonths = months.slice(currentMonthIndex + 1).concat(months.slice(0, currentMonthIndex + 1));
+
+    var monthlyUsers = [];
+    var monthComplaints = [];
+
+    <?php
+    foreach ($monthDataUsers as $month) {
+      echo "monthlyUsers.push('$month');"; // Use push to add each month to the JavaScript array
+    } ?>
+
+
     var xValues = getLastSevenDays();
 
-    // Assuming `$sevenDaysCounts` is the PHP array containing the counts for each of the last seven days
-    var yValues = <?php echo json_encode($sevenDaysCounts); ?>;
+
+
 
     var barColors = ["red", "green", "blue", "orange", "brown"];
 
@@ -225,7 +358,7 @@
         labels: xValues,
         datasets: [{
           backgroundColor: barColors,
-          data: yValues
+          data: monthlyUsers
         }]
       },
       options: {
