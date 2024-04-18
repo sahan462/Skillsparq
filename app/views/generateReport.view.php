@@ -10,30 +10,89 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://parall.ax/parallax/js/jspdf.js"></script>
     <title>Admin Dashboard Panel</title>
 </head>
 
 <body>
     <div>
         <div id="makepdf">
+            <div id="users">
+                <span style="font-size: 30px; font-weight:bold;">User Report </span><br>
+                <span>Total Users: </span>
+                <span><?php echo $userType['users']; ?></span><br>
+                <span>New Users this Month:</span>
 
+                <span id="newUsers"></span>
+
+
+
+                <div class="subChart">
+                    <canvas id="monthlyUsers"></canvas>
+                </div><br>
+                <span style="margin-left:50%; margin-bottom:30px"> Users by role:</span>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>New Users This Month</th>
+                            <th>Total Users</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr>
+                            <td>Seller:</td>
+                            <td><?php echo $userType['sellerc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['seller']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>Buyer:</td>
+                            <td><?php echo $userType['buyerc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['buyer']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>Admin:</td>
+                            <td><?php echo $userType['adminc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['admin']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>CSA:</td>
+                            <td><?php echo $userType['csac']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['csa']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <!-- Add more rows for other user types if needed -->
+                    </tbody>
+                </table>
+
+                <div class=" subChart">
+                    <canvas id="userTypeCurrent"></canvas>
+                </div>
+                <div class=" subChart">
+                    <canvas id="userType"></canvas>
+                </div>
+
+
+
+
+
+            </div>
+            <br><br><br>
             <div class="boxes">
-                <div class="box box1">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="text">Total Users</span>
-                    <span class="number"><?php echo $userType['users']; ?></span>
-                </div>
-                <div class="box box2">
-                    <i class="uil uil-comments"></i>
-                    <span class="text">Total Orders</span>
-                    <span class="number"><?php echo $order['orders'] ?></span>
-                </div>
-                <div class="box box3">
-                    <i class="uil uil-share"></i>
-                    <span class="text">Total Share</span>
-                    <span class="number">10,120</span>
-                </div>
+
+                <i class="uil uil-thumbs-up"></i>
+                <span>Total Users</span>
+                <span><?php echo $userType['users']; ?></span><br>
+
+                <i class="uil uil-comments"></i>
+                <span>Total Orders</span>
+                <span><?php echo $order['orders'] ?> </span><br>
+
+
+
+                <span class="text">Total Share</span>
+                <span>10,120</span><br>
+
             </div>
             <div class="boxes">
                 <div class="subChart">
@@ -56,7 +115,7 @@
 
 
         </div>
-        <button onclick="generatePDF">Download</button>
+        <button onclick="generatePDF()">Download</button>
 
 
 
@@ -69,135 +128,20 @@
 
 <script>
     function generatePDF() {
-        var pdfObject = jsPDFInvoiceTemplate.default(props);
-        console.log("object created:", pdfObject);
+        var element = document.getElementById('users')
+
+        var opt = {
+            filename: 'myfile.pdf',
+            html2canvas: {
+                scale: 1,
+                scrollY: 8
+            }
+        };
+        html2pdf().set(opt).from(element).save();
+
+
     }
 
-
-    var props = {
-        outputType: jsPDFInvoiceTemplate.OutputType.Save,
-        returnJsPDFDocObject: true,
-        fileName: "Invoice 2021",
-        orientationLandscape: false,
-        compress: true,
-        logo: {
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-            type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 53.33, //aspect ratio = width/height
-            height: 26.66,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        stamp: {
-            inAllPages: true, //by default = false, just in the last page
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-            type: 'JPG', //optional, when src= data:uri (nodejs case)
-            width: 20, //aspect ratio = width/height
-            height: 20,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        business: {
-            name: "Business Name",
-            address: "Albania, Tirane ish-Dogana, Durres 2001",
-            phone: "(+355) 069 11 11 111",
-            email: "email@example.com",
-            email_1: "info@example.al",
-            website: "www.example.al",
-        },
-        contact: {
-            label: "Invoice issued for:",
-            name: "Client Name",
-            address: "Albania, Tirane, Astir",
-            phone: "(+355) 069 22 22 222",
-            email: "client@website.al",
-            otherInfo: "www.website.al",
-        },
-        invoice: {
-            label: "Invoice #: ",
-            num: 19,
-            invDate: "Payment Date: 01/01/2021 18:12",
-            invGenDate: "Invoice Date: 02/02/2021 10:17",
-            headerBorder: false,
-            tableBodyBorder: false,
-            header: [{
-                    title: "#",
-                    style: {
-                        width: 10
-                    }
-                },
-                {
-                    title: "Title",
-                    style: {
-                        width: 30
-                    }
-                },
-                {
-                    title: "Description",
-                    style: {
-                        width: 80
-                    }
-                },
-                {
-                    title: "Price"
-                },
-                {
-                    title: "Quantity"
-                },
-                {
-                    title: "Unit"
-                },
-                {
-                    title: "Total"
-                }
-            ],
-            table: Array.from(Array(10), (item, index) => ([
-                index + 1,
-                "There are many variations ",
-                "Lorem Ipsum is simply dummy text dummy text ",
-                200.5,
-                4.5,
-                "m2",
-                400.5
-            ])),
-            additionalRows: [{
-                    col1: 'Total:',
-                    col2: '145,250.50',
-                    col3: 'ALL',
-                    style: {
-                        fontSize: 14 //optional, default 12
-                    }
-                },
-                {
-                    col1: 'VAT:',
-                    col2: '20',
-                    col3: '%',
-                    style: {
-                        fontSize: 10 //optional, default 12
-                    }
-                },
-                {
-                    col1: 'SubTotal:',
-                    col2: '116,199.90',
-                    col3: 'ALL',
-                    style: {
-                        fontSize: 10 //optional, default 12
-                    }
-                }
-            ],
-            invDescLabel: "Invoice Note",
-            invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
-        },
-        footer: {
-            text: "The invoice is created on a computer and is valid without the signature and stamp.",
-        },
-        pageEnable: true,
-        pageLabel: "Page ",
-    };
 
 
 
@@ -214,6 +158,8 @@
     foreach ($monthlyUsers as $month) {
         echo "monthlyUsers.push('$month');"; // Use push to add each month to the JavaScript array
     } ?>
+
+    document.getElementById("newUsers").innerHTML = monthlyUsers[11] + " ( +" + (monthlyUsers[11] - monthlyUsers[10]) + " users than the previous month)"
 
     var barColors = ["red", "green", "blue", "orange", "brown"];
 
@@ -327,6 +273,35 @@
             title: {
                 display: true,
                 text: "User Types"
+            }
+        }
+    });
+
+    <?php
+    $datachart4 = [
+        $userType['sellerc'], $userType['buyerc'], $userType['csac'], $userType['adminc']
+    ];
+
+    $userTypeCurrent = json_encode($datachart4);
+
+    ?>
+    var userTypeCurrent = <?php echo $userTypeCurrent ?>;
+    new Chart("userTypeCurrent", {
+        type: "bar",
+        data: {
+            labels: ['seller', 'buyer', 'csa', 'admin'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: userTypeCurrent
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "User Type Current Month"
             }
         }
     });

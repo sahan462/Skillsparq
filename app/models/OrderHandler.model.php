@@ -274,4 +274,34 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function orderStateLastYear()
+    {
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $previousMonthsData = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $month = ($currentMonth - $i) < 1 ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+            $year = ($currentMonth - $i) < 1 ? $currentYear - 1 : $currentYear;
+
+            $query = "SELECT COUNT(*) AS orders FROM orders WHERE MONTH(order_created_date) = $month AND YEAR(order_created_date) = $year";
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc(); // Fetch the first row as an associative array
+                $previousMonthsData[] = $data['orders'];
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+
+        return $previousMonthsData;
+    }
 }

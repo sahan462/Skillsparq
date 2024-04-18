@@ -64,6 +64,17 @@ class AdminDashboard extends Controller
         array_reverse($monthlyUsers);
 
         $data['monthlyUsers'] = $monthlyUsers;
+        $orderStateLastYear = $this->OrderHandlerModel->orderStateLastYear();
+        $data['orderStateLastYear'] = $orderStateLastYear;
+
+
+
+
+
+
+        $orderStateLastYear = $this->OrderHandlerModel->orderStateLastYear();
+        $data['orderStateLastYear'] = $orderStateLastYear;
+
 
 
 

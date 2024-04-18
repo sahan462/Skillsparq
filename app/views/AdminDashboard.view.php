@@ -42,12 +42,15 @@
           <div class="box box3">
             <i class="uil uil-share"></i>
             <span class="text">Total Share</span>
-            <span class="number">10,120</span>
+            <span class="number"><?php print_r($orderStateLastYear) ?></span>
           </div>
         </div>
         <div class="boxes">
           <div class="subChart">
             <canvas id="monthlyUsers"></canvas>
+          </div>
+          <div class=" subChart">
+            <canvas id="totalOrders"></canvas>
           </div>
           <div class="subChart">
             <canvas id="orderState"></canvas>
@@ -58,7 +61,13 @@
           <div class=" subChart">
             <canvas id="userType"></canvas>
           </div>
+
+
         </div>
+
+
+
+
       </div>
       <button onclick="generatePDF()">Download</button>
 
@@ -260,6 +269,36 @@
         }
       }
     });
+
+    var totalOrders = [];
+
+    <?php
+    foreach ($orderStateLastYear as $row) {
+      echo "totalOrders.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalOrders", {
+      type: "line",
+      data: {
+        labels: rearrangedMonths,
+        datasets: [{
+          fill: false,
+          borderColor: 'green',
+          data: totalOrders
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "total Orders"
+        }
+      }
+    });
+
+
+
 
     function generatePDF() {
       const element = document.getElementById("invoice1")

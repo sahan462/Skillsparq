@@ -164,13 +164,22 @@ class UserHandler extends database
     }
     public function getAllUsers()
     {
-        $query = "SELECT
-        (SELECT COUNT(*) FROM user) AS users,
-        (SELECT COUNT(*) FROM user WHERE role='seller') AS seller,
-        (SELECT COUNT(*) FROM user WHERE role='buyer') AS buyer,
-        (SELECT COUNT(*) FROM user WHERE role='csa') AS csa,
-        (SELECT COUNT(*) FROM user WHERE role='admin') AS admin;
-    ";
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+
+        $query = "
+        SELECT
+            (SELECT COUNT(*) FROM user) AS users,
+            (SELECT COUNT(*) FROM user WHERE role='seller') AS seller,
+            (SELECT COUNT(*) FROM user JOIN profile ON profile.user_id = user.user_id WHERE user.role='seller' AND MONTH(profile.joined_date)=$currentMonth AND YEAR(profile.joined_date)=$currentYear) AS sellerc,
+            (SELECT COUNT(*) FROM user WHERE role='buyer') AS buyer,
+            (SELECT COUNT(*) FROM user JOIN profile ON profile.user_id = user.user_id WHERE user.role='buyer' AND MONTH(profile.joined_date)=$currentMonth AND YEAR(profile.joined_date)=$currentYear) AS buyerc,
+            (SELECT COUNT(*) FROM user WHERE role='csa') AS csa,
+            (SELECT COUNT(*) FROM user JOIN profile ON profile.user_id = user.user_id WHERE user.role='csa' AND MONTH(profile.joined_date)=$currentMonth AND YEAR(profile.joined_date)=$currentYear) AS csac,
+            (SELECT COUNT(*) FROM user WHERE role='admin') AS admin,
+            (SELECT COUNT(*) FROM user JOIN profile ON profile.user_id = user.user_id WHERE user.role='admin' AND MONTH(profile.joined_date)=$currentMonth AND YEAR(profile.joined_date)=$currentYear) AS adminc
+        FROM user;
+        ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
