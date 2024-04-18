@@ -37,7 +37,7 @@ class App
     }
 
     private function getURL() {
-        $url = isset($_GET['url']) ? $_GET['url'] : "not found";
+        $url = isset($_GET['url']) ? $_GET['url'] : "home";
         $arr = explode("/", $url);
         return $arr;
     }

@@ -8,109 +8,189 @@
 
 <?php 
 $data["profilePic"]="dilan.png";
+$data['files'] = array();
 $files=$data['files'];
 ?>
 
-<!-- File Share -->
-<div class="main-grid">
+<!-- Main Container -->
+<div class="sharePointContainer">
 
-<div class="container-upper">
-    <p class="title"><span class="big">Resources</span> Files</p>
-    <?php if(count($files)>0){ ?>
-    <div class="scrollable" id="style-1">
-    <?php }else{?>
-    <div class="scrollable-empty" id="style-1">
-    <?php } foreach ($files as $file): ?>
-    <?php if($file['final']=='0'){ ?>
-    <div class="filecontainer">
-        <div class="file">
-        <img class="fileimg" src="<?php echo BASEURL.'/public/assets/img/icons/file.png?'?>">
-        <div class="name">File Name :
-            <?php echo $file['name']; ?>
-        </div>
-        <div class="time">
-            <?php echo $file['time']; ?>
-        </div>
-        <div class="size">File Size :
-            <?php echo floor($file['size'] / 1000) . ' KB'; ?>
-        </div>
-        <div class="download"><a href="<?php echo BASEURL."/public/assets/uploads/".$file['name']?>">
-            <img class="downloadimg" src="<?php echo BASEURL.'/public/assets/img/icons/download.png?'?>"></a></div>
-        </div>
+    <div class="sharePointHeader">
+        SharePoint
     </div>
-    <?php } else { ?>
-        <div class="productcontainer">
-        <div class="product">
-        <img class="productimg" src="<?php echo BASEURL.'/public/assets/img/icons/file.png?'?>">
-        <div class="name">
-        Product Delivery <br> 
+
+    <div class="container">
+        <div class="leftContainer">
+            <div class="leftUpperContainer">
+
+                <p class="title">
+                    <span class="darkTitle">Resource</span>
+                    Files
+                </p>
+
+                <div class="files">
+
+                </div>
+            </div>
+
+            <div class="leftBottomContainer">
+
+                <p class="title">
+                    <span class="darkTitle">Add New</span>
+                    Files
+                </p>
+
+                <div class="uploadSec">
+                    <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
+
+                        <span>File must be compressed into .zip , .rar or .tar format.</span>
+                        <div class="upload_background"><input type="file" name="myfile" onchange="showName()" id="file" class="filebtn"><span id='filename'></span>
+                            <button type="submit" name="save" class="uploadbtn">Upload And Send</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
         </div>
-        <div class="producttime">
+
+        <div class="rightContainer">
             
-            <?php echo $file['time']; ?>
-        </div>
-        <div class="size">
-        File Name :
-            <?php echo $file['name']; ?><br>  
-        File Size :
-            <?php echo floor($file['size'] / 1000) . ' KB'; ?>
-            <br>
-            Description :
-            <?php echo $file['description']; ?>
-        </div>
-        <div class="download"><a href="<?php echo BASEURL."/public/assets/uploads/".$file['name']?>">
-            <img class="downloadimg" src="<?php echo BASEURL.'/public/assets/img/icons/download2.png?'?>"></a></div>
-        </div>
-    </div>
-    <?php } ?>
-    <?php endforeach;?>
-    </div>
-</div>
+            <?php if($_SESSION['role'] == 'Buyer'){ ?>
 
-<!-- Upload Section -->
-<div class="upload-sec">
-    <p class="title"><span class="big">Send </span>Resources Files</p>
-    <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
-    File must be compressed into .zip , .rar or .tar format.<br>
-    <div class="upload_background"><input type="file" name="myfile" onchange="showName()" id="file" class="filebtn"><span id='filename'></span>
-        <button type="submit" name="save" class="uploadbtn">Upload And Send</button>
-    </div>
-    </form>
-</div>
-<div class="rightside">
-
-<!-- Product Upload Section -->
-<p class="title"><span class="big">Deliver </span>The Finished Product</p>
-    <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
-    Discription of deliver 
-    <br><textarea class="textbox" name="dis" rows="4" cols="50"></textarea><br><br>
-    File must be compressed into .zip , .rar or .tar format.<br>
-    <div class="upload_background"><input type="file" id="productf" onchange="showProductName()" name="filex" class="filebtn"><span id='productname'></span>
-        <button type="submit" name="finalsave" class="uploadbtn">Upload And Send</button>
-    </div>
-    <br>
-    <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
-    <a href="<?php echo BASEURL.'/sellerJobHandler' ?>"><div name="z" class="bkbtn" >Back To Countdown Page</div></a> 
-    <div id="rateSec" style="display:none">
-    <p class="title"><span class="big">Rate </span>The Buyer</p>
-    Give your rate to buyer
-    <div class="rate">
-        <input type="radio" id="star5" name="rate" value="5" />
-        <label for="star5" title="text">5 stars</label>
-        <input type="radio" id="star4" name="rate" value="4" />
-        <label for="star4" title="text">4 stars</label>
-        <input type="radio" id="star3" name="rate" value="3" />
-        <label for="star3" title="text">3 stars</label>
-        <input type="radio" id="star2" name="rate" value="2" />
-        <label for="star2" title="text">2 stars</label>
-        <input type="radio" id="star1" name="rate" value="1" />
-        <label for="star1" title="text">1 star</label>
-    </div>
+                <!-- fnish order Section -->
+                <form action="<?php echo BASEURL.'/sharePointBuyer/uploadFile';?>" method="post" enctype="multipart/form-data">
     
+                    <div id="rateSec">
+
+                        <p class="title">
+                            <span class="darkTitle">Rate </span>
+                            The Seller
+                        </p>
+
+                        <div class="subsection">
+                            
+                            Considering overoll expression about the seller's communication and respoding to your messages<br>
+                            <span class="subsection-title">Communication Rate</span>
+
+                            <div class="rate">
+                                <input type="radio" id="star5" name="communicationRate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="communicationRate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="communicationRate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="communicationRate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="communicationRate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+
+                        </div>
+                    
+                        <div class="subsection">
+                            
+                            Considering overall expression about the delivery time<br>
+                            <span class="subsection-title">Delivery Rate</span>
+                            
+                            <div class="rate2">
+                                <input type="radio" id="star25" name="deliveryRate" value="5" />
+                                <label for="star25" title="text">5 stars</label>
+                                <input type="radio" id="star24" name="deliveryRate" value="4" />
+                                <label for="star24" title="text">4 stars</label>
+                                <input type="radio" id="star23" name="deliveryRate" value="3" />
+                                <label for="star23" title="text">3 stars</label>
+                                <input type="radio" id="star22" name="deliveryRate" value="2" />
+                                <label for="star22" title="text">2 stars</label>
+                                <input type="radio" id="star21" name="deliveryRate" value="1" />
+                                <label for="star21" title="text">1 star</label>
+                            </div>
+
+                        </div>
+                    
+                        <div class="subsection">
+                            
+                            Considering overall expression about the seller<br>
+                            <span class="subsection-title">Seller Rate</span>
+
+                            <div class="rate3">
+                                <input type="radio" id="star35" name="mainRate" value="5" />
+                                <label for="star35" title="text">5 stars</label>
+                                <input type="radio" id="star34" name="mainRate" value="4" />
+                                <label for="star34" title="text">4 stars</label>
+                                <input type="radio" id="star33" name="mainRate" value="3" />
+                                <label for="star33" title="text">3 stars</label>
+                                <input type="radio" id="star32" name="mainRate" value="2" />
+                                <label for="star32" title="text">2 stars</label>
+                                <input type="radio" id="star31" name="mainRate" value="1" />
+                                <label for="star31" title="text">1 star</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    Give a review for this adverticement
+                    <textarea class="textbox" name="dis" rows="4" cols="50"></textarea>
+
+                    <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
+
+                    <div class="submitSec">
+                        <button type="submit" name="finalsave" id="btnx" class="buttonType-1">Complete The Job</button>
+                    </div>
+
+                </form>
+
+
+
+            <?php } else if($_SESSION['role'] == 'Seller'){ ?>
+
+                <p class="title">
+                    <span class="big">Deliver </span>The Finished Product
+                </p>
+
+                <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
+
+                    Discription of deliver 
+                    <br><textarea class="textbox" name="dis" rows="4" cols="50"></textarea><br><br>
+                    
+                    File must be compressed into .zip , .rar or .tar format.<br>
+                    <div class="upload_background"><input type="file" id="productf" onchange="showProductName()" name="filex" class="filebtn"><span id='productname'></span>
+                        <button type="submit" name="finalsave" class="uploadbtn">Upload And Send</button>
+                    </div>
+
+                    <br>
+
+                    <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
+
+                    <div id="rateSec" style="display:none">
+
+                        <p class="title"><span class="big">Rate </span>The Buyer</p>
+                        Give your rate to buyer
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    
+                    </div>
+
+                </form>
+
+                
+            <?php } ?>
+
+        </div>
     </div>
-    </form>
 </div>
 
+<script src="./assests/js/sharePoint.script.js"></script>
 
-</div>
-<?php linkJS('sharePoint'); ?>
+<?php include "components/footer.component.php"; ?>

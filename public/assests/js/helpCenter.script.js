@@ -10,6 +10,21 @@ function openPackageModal(button) {
   document.getElementById('packageModal').style.display = 'block';
 }
 
+function confirmAction(action) {
+  var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
+  var sendConfirmationModal = document.getElementById("sendConfirmationModal");
+  var cancelConfirmationOverlay = document.getElementById("cancelConfirmationOverlay");
+  var cancelConfirmationModal = document.getElementById("cancelConfirmationModal");
+
+  if (action === "send") {
+    sendConfirmationOverlay.style.display = "flex";
+    sendConfirmationModal.style.display = "block";
+  } else if (action === "cancel") {
+    cancelConfirmationOverlay.style.display = "flex";
+    cancelConfirmationModal.style.display = "block";
+  }
+}
+
 
 // Function to handle actions based on user confirmation
 function handleConfirmation(action) {
