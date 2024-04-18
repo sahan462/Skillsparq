@@ -167,6 +167,27 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
 
 // ---------------------------------------Chat functionality--------------------------------------------------------
 
+var conn = new WebSocket('ws://localhost:8080');
+conn.onopen = function(e) {
+    console.log("Connection established!");
+};
+
+conn.onopen = function(e) {
+    console.log("Connection established!");
+};
+
+conn.onmessage = function(e) {
+    console.log(e.data);
+};
+
+
+
+
+
+
+
+
+
 var chatArea = document.getElementById('activity');
 
 function sendMessage(chatId, senderId, receiverId){
@@ -219,5 +240,6 @@ function sendMessage(chatId, senderId, receiverId){
 
   // Send the JSON data in the request body
   ajax.send(jsonData);
+
 }
 

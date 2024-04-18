@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../app/vendor/phpmailer/src/Exception.php';
-require '../app/vendor/phpmailer/src/PHPmailer.php';
-require '../app/vendor/phpmailer/src/SMTP.php';
+require '../vendor/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/src/PHPmailer.php';
+require '../vendor/phpmailer/src/SMTP.php';
 
 
 class Controller
@@ -153,7 +153,7 @@ class Controller
     public function sendVerificationMessage($receiverPhoneNumber, $receiverFirstName, $receiverLastName, $body)
     {
 
-        require_once('../app/vendor/nofity/autoload.php');
+        require_once('../../vendor/nofity/autoload.php');
 
         $api_instance = new NotifyLk\Api\SmsApi();
 

@@ -82,7 +82,7 @@ class ChatHandler extends database
 
 
         //read Messages
-        public function readMessages($chat_id, $sender_id, $receiver_id)
+        public function readAllMessages($chat_id, $sender_id, $receiver_id)
         {
             $query = "SELECT * FROM messages where chat_id = ? and sender_id = ? and receiver_id = ?";
 
