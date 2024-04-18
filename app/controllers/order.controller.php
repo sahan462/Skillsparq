@@ -26,6 +26,7 @@ class Order extends Controller
         print_r($data['buyer']);
         print_r($data['seller']);
         $this->view('order', $data);
+        
     }
 
 
