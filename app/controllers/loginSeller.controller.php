@@ -52,9 +52,19 @@ class LoginSeller extends Controller
                     $profile = mysqli_fetch_assoc($this->profileHandler->getProfPic($row['user_id']));
                     $_SESSION['profilePicture'] = $profile['profile_pic'];
 
-                    header("location: /skillsparq/public/sellerdashboard");
-        
+                    $lastSeenUpdate = $this->profileHandler->lastSeenUpdate("online", $row['user_id']);
 
+                    if($lastSeenUpdate){
+
+                        header("location: /skillsparq/public/sellerdashboard");
+
+                    }else{
+
+                        echo "<script> alert('Error updating last seen'); </script>";
+                        header("location: /skillsparq/public/login");
+                    }
+
+        
                 }else{
 
                     $errors["password"] = "Incorrect password";
@@ -91,13 +101,27 @@ class LoginSeller extends Controller
 
 
     public function logout(){
-        session_destroy();
-        echo "
-        <script>
-            alert('Logged Out Successfully');
-            window.location.href = '" . BASEURL . "home';
-        </script>
-    ";
+
+        date_default_timezone_set('UTC');
+        $dateTime = new DateTime();
+        $currentDateTime = $dateTime->format('m/d/Y h:i:s a');
+
+        $lastSeenUpdate = $this->profileHandler->lastSeenUpdate($currentDateTime, $_SESSION['userId']);
+
+        if ($lastSeenUpdate) {
+
+            session_destroy();
+            echo "
+            <script>
+                alert('Logged Out Successfully');
+                window.location.href = '" . BASEURL . "home';
+            </script>
+        ";
+        } else {
+
+            echo "<script> alert('Error updating last seen'); </script>";
+            header("location: /skillsparq/public/helpCenter");
+        }
         
     }
 

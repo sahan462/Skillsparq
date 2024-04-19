@@ -52,8 +52,6 @@ class OrderHandler extends database
                 throw new Exception("Failed to create prepared statement.");
             }
 
-        } else {
-          
             mysqli_stmt_bind_param($stmt, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
@@ -61,7 +59,8 @@ class OrderHandler extends database
                 throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
             }
 
-        }else{
+        } else{
+
             throw new Exception("Invalid Order Type");
         }
 
@@ -107,7 +106,7 @@ class OrderHandler extends database
         //retrive order details
         if ($orderType == 'package') {
           
-            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id where orders.order_id = ?";
+            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
           
         } else if ($orderType == 'milestone') {
           
@@ -116,6 +115,9 @@ class OrderHandler extends database
         }else if ($orderType == 'job') {
           
         } else {
+
+            throw new Exception("Invalid Order Type: " . $orderType);
+
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

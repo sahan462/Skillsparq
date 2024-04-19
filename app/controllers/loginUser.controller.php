@@ -101,7 +101,6 @@ class LoginUser extends Controller
 
     public function logout()
     {
-
         date_default_timezone_set('UTC');
         $dateTime = new DateTime();
         $currentDateTime = $dateTime->format('m/d/Y h:i:s a');

@@ -14,33 +14,34 @@ conn.onmessage = function(e) {
     {
         var messageComponent = 
         `
+        <div class="receiver-container">
+            <div class="messageContainer darker">
+                <div class="receiverContent">
+                    <img src="<?php echo $data["senderProfilePicture"] ?>" alt="Avatar" class="right">
+                    <p class="receiver" >
+                        ${data.newMessage}
+                        <span class="time-left">11:01</span>
+                    </p>
+                </div>
+            </div>
+        </div>`;
+
+    }else{
+
+        var messageComponent = 
+        `
         <div class="sender-container">
             <div class="messageContainer">
                 <div class="senderContent">
                     <img src="<?php echo $data["receiverProfilePicture"] ?>" alt="Avatar">
                     <p class="P" >
-                    ${data.from}
+                    ${data.newMessage}
                     <span class="time-right">11:00</span>
                     </p>
                 </div>
             </div>
         </div>
         `;
-    }else{
-
-        var messageComponent = 
-        `
-        <div class="receiver-container">
-            <div class="messageContainer darker">
-                <div class="receiverContent">
-                    <img src="<?php echo $data["senderProfilePicture"] ?>" alt="Avatar" class="right">
-                    <p class="receiver" >
-                        ${data.from}
-                        <span class="time-left">11:01</span>
-                    </p>
-                </div>
-            </div>
-        </div>`;
 
     }
 
