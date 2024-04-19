@@ -41,7 +41,10 @@ class displayGig extends Controller
 
                 } else {
     
-                    echo "<script>alert('Gig function is not Accessible!')</script>";
+                    echo "<script>
+                        alert('Gig function is not Accessible!');
+                        window.location.href = '" . BASEURL . "sellerProfile';
+                        </script>";
                 
                 }
             }
@@ -77,7 +80,9 @@ class displayGig extends Controller
     
                 } else {
     
-                    echo "<script>alert('Gig is not Accessible!')</script>";
+                    echo "<script>
+                            alert('Gig is not Accessible!');
+                          </script>";
                 
                 }
             }       

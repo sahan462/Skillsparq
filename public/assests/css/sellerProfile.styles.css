@@ -109,6 +109,7 @@ body{
     cursor: pointer;
 }
 
+
 /*
     #########################################################################
     Modal 1 Update Profile Form Modal 
@@ -197,24 +198,6 @@ body{
 */
 
 /* Add Button for Languages Styles For the profile */
-.addProfLang button{
-    width: 100%;
-    height: 32px;
-    margin-bottom: 16px;
-    color: #333 !important;
-    /* border: 2px solid #333 !important; */
-    background: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: ease-in-out 0.3s;
-}
-.addProfLang button:hover{
-    color: #fff !important;
-    background: #31d65a !important;
-    /* border: 2px solid #333 !important; */
-    box-shadow: none !important;
-}
-
 #overlayAddLanguages{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -232,10 +215,85 @@ body{
     height: auto;
 }
 
+  .sellerAddLang ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7px;
+    margin: 12px 0;
+    border-radius: 5px;
+    border: 1px solid #a6a6a6;
+  }
+  .sellerAddLang ul li{
+    color: #333;
+    margin: 4px 3px;
+    list-style: none;
+    border-radius: 5px;
+    background: #F2F2F2;
+    padding: 5px 8px 5px 10px;
+    border: 1px solid #e3e1e1;
+  }
+  .sellerAddLang ul li i{
+    height: 20px;
+    width: 20px;
+    color: #808080;
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #dfdfdf;
+    justify-content: center;
+  }
+  .sellerAddLang ul input{
+    flex: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+
 /*
     #########################################################################
-    Modal   Form Modal 
+    Modal 4 Add Skills Profile Form Modal 
 */
+/* Add Button for Skills Styles For the profile */
+#overlayAddSkills{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalAddSkills{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+/*
+    #########################################################################
+    Modal 5 Add Education Profile Form Modal 
+*/
+/* Add Button for Education Styles For the profile */
+#overlayAddEduc{
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+#ModalAddEduc{
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
@@ -372,9 +430,9 @@ input[type = "text"], textarea, select{
     justify-content: space-between;
 }
 
-.seller-modal-name{
+/* .seller-modal-name{
 
-}
+} */
 
 .seller-name{
     font-size:32px;
@@ -478,6 +536,32 @@ input[type = "text"], textarea, select{
     background-color: #1dbf73;
     text-decoration: none;
     border-radius: 5px;
+    text-anchor: #fff;
+}
+
+.profile .addButton1{
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: #0e0e0f;
+    background:none;
+    border: 2px solid #fff;
+    padding: 14px;
+    font-size: 14px;
+    width: auto;
+}
+
+.profile .addButton1:hover{
+    text-decoration: none;
+    color: #fff;
+    background-color: #1dbf73;
+    text-decoration: none;
+    border-radius: 5px;
+    text-anchor: #fff;
+}
+
+.addButton1:hover .addButtonAnchor{
+    color: #fff;
 }
 
 a{

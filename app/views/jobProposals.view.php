@@ -1,18 +1,12 @@
 <?php
-include "components/buyerSimpleHeader.component.php";
+        include "components/buyerSimpleHeader.component.php";
 ?>
 
 <div class="displayJobContainer">
-    <?php
-        if ($_SESSION['role'] === "seller") {
-
-        } else if ($_SESSION['role'] === "buyer") {
-
-        }
-    ?>
-    <div class="displayJobHeader">
-        <?php echo "All Proposals"; ?>
-    </div>
+            <div class="displayJobHeader">
+                <?php echo "All Proposals for {$data['jobDets']['title']}"; ?>
+            </div>
+            <h1>hellow there</h1>
 </div>
 
 

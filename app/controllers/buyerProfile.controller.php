@@ -75,12 +75,10 @@ class BuyerProfile extends Controller
         $about = $_POST['about'];
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
-        $language = "";
-        $skills = "";
 
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
-        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
+        $uniqueprofilePictureName =  time() . '_' . $userName . '_' . uniqid($profilePictureName, true) . $profilePictureName; //generate a unique filename 
         $targetFilePath = $targetDir . $uniqueprofilePictureName; 
         $currentFilePath = $targetDir . $currentProfilePicture;
 
@@ -115,7 +113,7 @@ class BuyerProfile extends Controller
             $uniqueprofilePictureName = $currentProfilePicture;
         }
 
-        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $language, $skills, $userId, $userName);
+        $updateProfile = $this->ProfileHandlerModel->updateProfileTable($uniqueprofilePictureName, $firstName, $lastName, $country, $about, $userId, $userName);
         
         if($updateProfile)
         {

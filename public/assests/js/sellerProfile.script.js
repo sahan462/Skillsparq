@@ -27,8 +27,6 @@ var currentLastName = lastName.value;
 
 var about = document.getElementById('about');
 var currentAbout = about.innerHTML;
-    
-// var languages = document.getElementById('');
 
 //dynamically render profile picture
 function renderImage() {
@@ -179,14 +177,14 @@ function openProfileaddLanguagesModal(button){
 }
 
 function confirmActionProfAddLang(action) {
-    if (action === 'Add') {
+    if (action === 'addLang') {
     
       document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
       document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
       document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'flex';
       document.getElementById('sendConfirmProfAddLang').style.display = 'block';
     
-    } else if(action === 'Cancel') {
+    } else if(action === 'cancelAddLang') {
 
       document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
       document.getElementById('sendConfirmProfAddLang').style.display = 'none';
@@ -196,20 +194,19 @@ function confirmActionProfAddLang(action) {
     } 
 }
 
-// Function to handle actions based on user confirmation
-//handleConfirmProfDelete
+//handleConfirmProfAddLang
 function handleConfirmProfAddLan(action) {
-    if (action === 'sendDeleteYes') {
+    if (action === 'sendDeleteLangYes') {
 
         var profileAddLangForm = document.getElementById('languageForm');
         profileAddLangForm.submit();
 
-    }else if (action === 'sendDeleteNo'){
+    }else if (action === 'sendDeleteLangNo'){
 
         document.getElementById('sendConfirmProfAddLang').style.display = 'none';
         document.getElementById('sendConfirmProfAddLangOverlay').style.display = 'none';
 
-    }else if(action === 'cancelDeleteNo'){
+    }else if(action === 'cancelAddLanNo'){
 
         document.getElementById('cancelConfirmProfAddLang').style.display = 'none';
         document.getElementById('cancelConfirmProfAddLangOverlay').style.display = 'none';
@@ -231,28 +228,227 @@ function handleConfirmProfAddLan(action) {
 
 }
 
+const ul = document.querySelector("ul"),
+input = document.getElementById("inputAddLang"),
+// input = document.getElementsByClassName("inputAddLang"),
+tagNumb = document.querySelector(".details span");
+
+let maxTags = 10,
+// tags = ["coding", "nepal"];
+tags = [];
+
+countTags();
+createTag();
+
+function countTags(){
+    input.focus();
+    tagNumb.innerText = maxTags - tags.length;
+}
+
+function countTags1(){
+    input.focus();
+    tagNumb.innerText = maxTags - tags.length;
+    return maxTags - tags.length;
+}
+
+function createTag(){
+    ul.querySelectorAll("li").forEach(li => li.remove());
+    tags.slice().reverse().forEach(tag =>{
+        let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
+        ul.insertAdjacentHTML("afterbegin", liTag);
+    });
+    countTags();
+}
+
+function remove(element, tag){
+    let index  = tags.indexOf(tag);
+    tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    element.parentElement.remove();
+    countTags();
+}
+
+// function addTag(e){
+//     if(e.key === " "){
+//         let tag = e.target.value.replace(/\s+/g, '');
+//         if(tag.length > 1 && !tags.includes(tag)){
+//             if(tags.length < 10){
+//                 tag.split(',').forEach(tag => {
+//                     tags.push(tag);
+//                     createTag();
+//                 });
+//             }
+//         }
+//         e.target.value = "";
+//     }
+// }
+
+function addTag(e) {
+    if (e.key === " ") {
+        let tag = e.target.value.trim(); // Trim leading and trailing whitespace
+        if (tag.length > 0) { // Check if tag is not empty
+            let tagsToAdd = tag.split(/\s+/); // Split tag by whitespace
+            tagsToAdd.forEach(tag => {
+                if (!tags.includes(tag) && tags.length < 10) { // Check if tag is not already added and tags limit is not reached
+                    tags.push(tag);
+                    createTag();
+                }
+            });
+        }
+        if (countTags1() > 10) {
+            e.target.value = "";
+        }
+        // e.target.value = ""; // Clear input value
+    }
+}
+
+// input.addEventListener("keyup", addTag);
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open Skills modal 
+function openProfileaddSkillsModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayAddSkills').style.display = 'flex';
+    document.getElementById('ModalAddSkills').style.display = 'block';
+}
+
+function confirmActionProfAddSkills(action) {
+    if (action === 'addSkills') {
+    
+      document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+      document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddSkills').style.display = 'block';
+    
+    } else if(action === 'cancelAddSkills') { 
+
+      document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddSkills').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddSkills').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+//handleConfirmProfAddSkills
+function handleConfirmProfAddSkills(action) {
+    if (action === 'sendAddSkillsYes') {
+
+        var profileAddSkillsForm = document.getElementById('skillsForm');
+        profileAddSkillsForm.submit();
+
+    }else if (action === 'sendAddSkillsNo'){
+
+        document.getElementById('sendConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('sendConfirmProfAddSkillsOverlay').style.display = 'none';
+
+    }else if(action === 'cancelAddSkillsNo'){
+
+        document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfAddSkillsOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddSkills').style.display = 'none';
+        document.getElementById('overlayAddSkills').style.display = 'none';
+        document.getElementById('ModalAddSkills').style.display = 'none';
+
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+//open Education modal 
+function openProfileAddEducationModal(button){
+    deleteForm = button.id;
+    document.getElementById('overlayAddEduc').style.display = 'flex';
+    document.getElementById('ModalAddEduc').style.display = 'block';
+}
+
+function confirmActionProfAddEduc(action) {
+    if (action === 'addEducation') {
+    
+      document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+      document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'flex';
+      document.getElementById('sendConfirmProfAddEduc').style.display = 'block';
+    
+    } else if(action === 'cancelAddEducation') { 
+
+      document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'none';
+      document.getElementById('sendConfirmProfAddEduc').style.display = 'none';
+      document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'flex';
+      document.getElementById('cancelConfirmProfAddEduc').style.display = 'block';
+    
+    } 
+}
+
+// Function to handle actions based on user confirmation
+//handleConfirmProfAddEduc
+function handleConfirmProfAddEduc(action) {
+    if (action === 'sendAddEducYes') {
+
+        var profileAddSkillsForm = document.getElementById('educationForm');
+        profileAddSkillsForm.submit();
+
+    }else if (action === 'sendAddEducNo'){
+
+        document.getElementById('sendConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('sendConfirmProfAddEducOverlay').style.display = 'none';
+
+    }else if(action === 'cancelAddEducNo'){
+
+        document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+
+    }else{
+        
+        deleteForm = "";
+        preview.src = currentProfilePicture;
+        firstName.value = currentFirstName;
+        lastName.value = currentLastName;
+        about.value = currentAbout;
+
+        document.getElementById('cancelConfirmProfAddEducOverlay').style.display = 'none';
+        document.getElementById('cancelConfirmProfAddEduc').style.display = 'none';
+        document.getElementById('overlayAddEduc').style.display = 'none';
+        document.getElementById('ModalAddEduc').style.display = 'none';
+
+    }
+
+}
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-const languageInput = document.getElementById('languageInput');
-const languageTags = document.getElementById('languageTags');
+// const languageInput = document.getElementById('languageInput');
+// const languageTags = document.getElementById('languageTags');
 
-languageInput.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter' || event.keyCode === 13) {
-    addLanguageTag(this.value);
-    this.value = '';
-    event.preventDefault();
-  }
-});
+// languageInput.addEventListener('keydown', function(event) {
+//   if (event.key === 'Enter' || event.keyCode === 13) {
+//     addLanguageTag(this.value);
+//     this.value = '';
+//     event.preventDefault();
+//   }
+// });
 
-function addLanguageTag(language) {
-  if (language.trim() !== '') {
-    const tag = document.createElement('div');
-    tag.classList.add('languageTag');
-    tag.textContent = language;
-    tag.addEventListener('click', function() {
-      this.remove();
-    });
-    languageTags.appendChild(tag);
-  }
-}
+// function addLanguageTag(language) {
+//   if (language.trim() !== '') {
+//     const tag = document.createElement('div');
+//     tag.classList.add('languageTag');
+//     tag.textContent = language;
+//     tag.addEventListener('click', function() {
+//       this.remove();
+//     });
+//     languageTags.appendChild(tag);
+//   }
+// }
