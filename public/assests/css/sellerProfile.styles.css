@@ -536,6 +536,32 @@ input[type = "text"], textarea, select{
     background-color: #1dbf73;
     text-decoration: none;
     border-radius: 5px;
+    text-anchor: #fff;
+}
+
+.profile .addButton1{
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: #0e0e0f;
+    background:none;
+    border: 2px solid #fff;
+    padding: 14px;
+    font-size: 14px;
+    width: auto;
+}
+
+.profile .addButton1:hover{
+    text-decoration: none;
+    color: #fff;
+    background-color: #1dbf73;
+    text-decoration: none;
+    border-radius: 5px;
+    text-anchor: #fff;
+}
+
+.addButton1:hover .addButtonAnchor{
+    color: #fff;
 }
 
 a{

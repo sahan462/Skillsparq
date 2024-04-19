@@ -22,7 +22,7 @@
     $education = $data['sellerProfileDets']['education'];
     $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
-    print_r($_SESSION);
+    // print_r($_SESSION);
 ?>
 
 <!-- Main Container for Seller -->
@@ -437,28 +437,27 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($languages)){
-                                
+                            // if(isset($languages)){
                         ?>
                                     <div>
                                         <ol>
                         <?php
-                                foreach($languages as $lang){
+                                // foreach($languages as $lang){
                         ?>
                                             <li>
                                                 <?php 
-                                                    echo $lang;
+                                                    // echo $lang;
                                                 ?>
                                             </li>
                         <?php 
-                                }
+                                // }
                         ?>
                                         </ol>
                                     </div>
                         <?php  
-                            }else{
-                                echo "Add languages that you're proficient with!";
-                            }
+                            // }else{
+                            //     echo "Add languages that you're proficient with!";
+                            // }
                         ?>
                     </div>
                 </div>
@@ -519,8 +518,8 @@
                             <span>View Send Proposals</span>
                         </div>
                         <div>
-                            <button class="addButton">
-                                <a href="jobProposals/viewSendJobProposals">View</a>
+                            <button class="addButton1">
+                                <a href="sentJobProposals" class="addButtonAnchor">View</a>
                             </button>
                         </div>
                     </div>
