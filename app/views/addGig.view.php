@@ -242,7 +242,8 @@
                         <div class="slideimg1">
                             <label for="coverImage">Cover Image:</label>
                             <input type="file" id="coverImage" name="coverImage" onchange="load_img_name(this.files[0],1)" required/>
-                            <div id="filename1"></div>
+                            <!-- <input type="file" id="coverImage" name="coverImage" onchange="get_focus(this.files[0],'coverImage',1)" required/>
+                            <div id="filename1"></div> -->
                         </div>
 
                         <div class="slideimg1">

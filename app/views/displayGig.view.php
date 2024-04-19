@@ -4,6 +4,7 @@
 ?>
 
 <?php
+
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
     $profileData = $data['profileData'];

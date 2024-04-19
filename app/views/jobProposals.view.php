@@ -7,7 +7,7 @@ include "components/buyerSimpleHeader.component.php";
         if ($_SESSION['role'] === "seller") {
 
         } else if ($_SESSION['role'] === "buyer") {
-
+            
         }
     ?>
     <div class="displayJobHeader">

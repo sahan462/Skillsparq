@@ -230,12 +230,14 @@ function handleConfirmProfAddLan(action) {
 
 }
 
-const ul = document.getElementById("addLangList"),
+const ul = document.querySelector("ul"),
 input = document.getElementById("inputAddLang"),
+// input = document.getElementsByClassName("inputAddLang"),
 tagNumb = document.querySelector(".details span");
 
 let maxTags = 10,
-tags = ["coding", "nepal"];
+// tags = ["coding", "nepal"];
+tags = [];
 
 countTags();
 createTag();
@@ -243,6 +245,12 @@ createTag();
 function countTags(){
     input.focus();
     tagNumb.innerText = maxTags - tags.length;
+}
+
+function countTags1(){
+    input.focus();
+    tagNumb.innerText = maxTags - tags.length;
+    return maxTags - tags.length;
 }
 
 function createTag(){
@@ -261,29 +269,41 @@ function remove(element, tag){
     countTags();
 }
 
-function addTag(e){
-    if(e.key == "Enter"){
-        let tag = e.target.value.replace(/\s+/g, ' ');
-        if(tag.length > 1 && !tags.includes(tag)){
-            if(tags.length < 10){
-                tag.split(',').forEach(tag => {
+// function addTag(e){
+//     if(e.key === " "){
+//         let tag = e.target.value.replace(/\s+/g, '');
+//         if(tag.length > 1 && !tags.includes(tag)){
+//             if(tags.length < 10){
+//                 tag.split(',').forEach(tag => {
+//                     tags.push(tag);
+//                     createTag();
+//                 });
+//             }
+//         }
+//         e.target.value = "";
+//     }
+// }
+
+function addTag(e) {
+    if (e.key === " ") {
+        let tag = e.target.value.trim(); // Trim leading and trailing whitespace
+        if (tag.length > 0) { // Check if tag is not empty
+            let tagsToAdd = tag.split(/\s+/); // Split tag by whitespace
+            tagsToAdd.forEach(tag => {
+                if (!tags.includes(tag) && tags.length < 10) { // Check if tag is not already added and tags limit is not reached
                     tags.push(tag);
                     createTag();
-                });
-            }
+                }
+            });
         }
-        e.target.value = "";
+        if (countTags1() > 10) {
+            e.target.value = "";
+        }
+        // e.target.value = ""; // Clear input value
     }
 }
 
 input.addEventListener("keyup", addTag);
-
-const removeBtn = document.querySelector(".details button");
-removeBtn.addEventListener("click", () =>{
-    tags.length = 0;
-    ul.querySelectorAll("li").forEach(li => li.remove());
-    countTags();
-});
 
 //////////////////////////////////////////////////////////////////////////////////////
 

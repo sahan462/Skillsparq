@@ -14,12 +14,14 @@
     $Gigs = (array) $data['gigs'];
 
     $languages = $data['sellerProfileDets']['languages'];
+    $languages = explode(" ", $languages);
+    
+    // print_r($languages);
+
     $skills = $data['sellerProfileDets']['skills'];
     $education = $data['sellerProfileDets']['education'];
     $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
-    // $languages = $data[''];
-    // show($languages);
 ?>
 
 <!-- Main Container for Seller -->
@@ -171,13 +173,15 @@
                                 echo $firstname ." ". $lastname;
                             ?>
                         </div>
-                        <div class="seller-question">
+                        <div class="sellerAddLang">
                             <p>Add Languages You're familiar with.</p>
-                            <ul id="addLangList"><input type="text" name="languages" spellcheck="false" id="inputAddLang"></ul>
+                            <ul id="addLangList">
+                                <input type="text" name="languages" spellcheck="false" id="inputAddLang" class="inputAddLang" >
+                            </ul>
                         </div>
                         <div class="details">
                             <p><span>10</span> tags are remaining</p>
-                            <button>Remove All</button>
+                            <!-- <button>Remove All</button> -->
                         </div>
                     </div>
                 </div>
@@ -433,7 +437,24 @@
                     <div class="description-content">
                         <?php 
                             if(isset($languages)){
-                                echo $languages;    
+                                
+                        ?>
+                                    <div>
+                                        <ol>
+                        <?php
+                                foreach($languages as $lang){
+                        ?>
+                                            <li>
+                                                <?php 
+                                                    echo $lang;
+                                                ?>
+                                            </li>
+                        <?php 
+                                }
+                        ?>
+                                        </ol>
+                                    </div>
+                        <?php  
                             }else{
                                 echo "Add languages that you're proficient with!";
                             }
