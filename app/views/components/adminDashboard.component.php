@@ -17,9 +17,9 @@
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Generate Report</span>
                 </a></li>
-            <li><a href="">
+            <li><a href="IssueRefunds">
                     <i class="uil uil-chart"></i>
-                    <span class="link-name">Help Requests</span>
+                    <span class="link-name">Issue Refunds</span>
                 </a></li>
             <li><a href="adminManageCSA">
                     <i class="uil uil-thumbs-up"></i>
