@@ -61,21 +61,17 @@
                         <button id="closeChatBtnSeller" style="width: 25px;"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="chat-messages">
-                        <?php
-                        foreach ($viewComplaint as $row) {
-                        ?>
-                            <ul>
-                                <li>Inquiry_ID <span><?php echo $row['inquiry_id']; ?></span></li>
-                                <li>Subject: <span><?php echo $row['subject']; ?></span></li>
-                                <li>Description: <span><?php echo $row['description']; ?></span></li>
-                                <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
-                                <li>Response: <span><?php echo $row['response']; ?></span></li>
-                                <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
-                                <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
-                            </ul>
-                        <?php
-                        }
-                        ?>
+
+                        <ul>
+                            <li>Inquiry_ID <span><?php echo $row['inquiry_id']; ?></span></li>
+                            <li>Subject: <span><?php echo $row['subject']; ?></span></li>
+                            <li>Description: <span><?php echo $row['description']; ?></span></li>
+                            <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
+                            <li>Response: <span><?php echo $row['response']; ?></span></li>
+                            <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
+                            <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
+                        </ul>
+
                     </div>
                     <div class="chat-input">
                         <input type="text" placeholder="Type your message here...">
@@ -137,6 +133,9 @@
                 </select>
             </div>
             <div style="margin-top: 15px;">
+                <button id="refund" onclick="refund()">Ask for Refund</button>
+            </div>
+            <div style="margin-top: 15px;">
                 <button id="updateUserBlacklistBuyer" onclick="updateUserBlacklistBuyer()">Black List Buyer</button>
                 <button id="updateUserBlacklistSeller" onclick="updateUserBlacklistSeller()">Black List Seller</button>
 
@@ -145,22 +144,22 @@
 
 
 
+
         </div>
 
 
     </div>
 
-    <div class="grid" style="position: fixed;">
-        <div style="display: flex; justify-content:space-between; margin-bottom: 2%; width:250px">
-            <span>
-                Seller details:
-            </span>
-            <button onclick="viewSeller()">View</button>
-        </div>
-        <div id="viewSeller" style="display: none;">
-            <?php
-            foreach ($viewComplaint as $row) {
-            ?>
+    <div class="grid">
+        <div>
+            <div style=" display: flex; justify-content:space-between; margin-bottom: 2%; width:250px">
+                <span>
+                    Seller details:
+                </span>
+                <button onclick="viewSeller()">View</button>
+            </div>
+            <div id="viewSeller" style="display: none;">
+
                 <ul>
                     <li>User_ID <span><?php echo $row['seller_id']; ?></span></li>
                     <li>Seller_email: <span><?php echo $row['seller_email']; ?></span></li>
@@ -169,139 +168,79 @@
                     <li> </li>
 
                 </ul>
-            <?php
-            }
-            ?>
-        </div>
 
-        <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%;">
-            <span>
-                Buyer details:
-            </span>
-            <button onclick="viewBuyer()" style="margin-left:11px ;">View</button>
-            <p id="isBuyerBlocked"></p>
-        </div>
+            </div>
 
-        <div id="viewBuyer" style="display: none;">
-            <?php
+            <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%;">
+                <span>
+                    Buyer details:
+                </span>
+                <button onclick="viewBuyer()" style="margin-left:63px ;">View</button>
+                <p id="isBuyerBlocked"></p>
+            </div>
 
-            foreach ($viewComplaint as $row) {
-            ?>
+            <div id="viewBuyer" style="display: none;">
+
                 <ul>
                     <li>Buyer ID <span><?php echo $row['buyer_id']; ?></span></li>
                     <li>Buyer email: <span><?php echo $row['buyer_email']; ?></span></li>
                     <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
 
                 </ul>
-            <?php
-            }
 
-            ?>
-        </div>
+            </div>
 
-        <div style="display: flex; justify-content:space-between; width:250px ;">
-            <span>
-                Order details:
-            </span>
-            <button onclick="viewOrders()" style="margin-left:11px ;">View</button>
+            <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%; ;">
+                <span>
+                    Order details:
+                </span>
+                <button onclick="viewOrders()" style="margin-left:11px ;">View</button>
 
-        </div>
+            </div>
 
-        <div id="viewOrders" style="display: none;">
-            <?php
+            <div id="viewOrders" style="display: none;">
 
-            foreach ($viewComplaint as $row) {
-            ?>
                 <ul>
                     <li>Order_ID <span><?php echo $row['order_id']; ?></span></li>
                     <li>Order Status: <span><?php echo $row['order_state']; ?></span></li>
                     <li>Order Type: <span><?php echo $row['order_type']; ?></span></li>
                     <li>Order Created at: <span><?php echo $row['order_created_date']; ?></span></li>
                 </ul>
-            <?php
-            }
 
-            ?>
+            </div>
+
+            <div style="display: flex; justify-content:space-between; width:250px ;">
+                <span>
+                    Payment details:
+                </span>
+                <button onclick="viewPayments()" style="margin-left:11px ;">View</button>
+
+            </div>
+
+            <div id="viewPayments" style="display: none;">
+
+                <ul>
+                    <li>Payment ID : <span><?php echo $row['payment_id']; ?></span></li>
+                    <li>amount: <span><?php echo $row['amount']; ?></span></li>
+                    <li>payment_date: <span><?php echo $row['payment_date']; ?></span></li>
+                    <li>payment_description: <span><?php echo $row['payment_description']; ?></span></li>
+                    <li>payment_status: <span><?php echo $row['payment_status']; ?></span></li>
+                </ul>
+
+            </div>
         </div>
-    </div>
 
+        <form id="blacklistForm" method="post" style="display: none;">
+            <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
+            <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
 
+        </form>
 
-    <!-- Button to toggle the reply text box -->
-    <!-- <button onclick="toggleReplyBox()">Reply</button> -->
+        <form id="refundForm" method="post" style="display: none;">
+            <input type="hidden" id="sendRefund" name="sendRefund" value="">
+            <input type="hidden" id="payment_id" name="payment_id" value="">
 
-
-
-
-
-
-
-    <!-- Add more options as needed -->
-    </select>
-    <?php /*
-        $conn = mysqli_connect("localhost", "root", "", "skillsparq");
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $user_id_to_blacklist = $_POST['user_id_to_blacklist'];
-            $blacklist_until_days = $_POST['blacklistUntil'];
-
-
-            // Use a prepared statement to prevent SQL injection
-            $update_sql = "UPDATE user SET black_list = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?";
-            $stmt = $conn->prepare($update_sql);
-
-            // Bind parameters
-            $stmt->bind_param("ii", $blacklist_until_days, $user_id_to_blacklist);
-
-            if ($stmt->execute()) {
-                echo "User with ID $user_id_to_blacklist blacklisted successfully for $blacklist_until_days days ";
-            } else {
-                echo "Error updating user: " . $stmt->error;
-            }
-
-            $stmt->close();
-        }
-
-        $conn->close();*/
-    ?>
-
-
-
-    <!-- Form to submit the user_id for updating the blacklist -->
-    <form id="blacklistForm" method="post" style="display: none;">
-        <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
-        <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
-
-    </form>
-
-
-    <!-- Text box for reply -->
-    <!-- <div id="replyBox">
-                <textarea rows="4" cols="50" placeholder="Type your reply here..."></textarea>
-                <button onclick="submitReply()">Submit</button>
-            </div> -->
-
-
-    <!-- <script>
-                // Function to toggle the visibility of the reply text box
-                // function toggleReplyBox() {
-                //     var replyBox = document.getElementById('replyBox');
-                //     replyBox.style.display = (replyBox.style.display === 'none') ? 'block' : 'none';
-                // }
-
-                // Function to handle reply submission (you can customize this as needed)
-                function submitReply() {
-                    var replyText = document.querySelector('#replyBox textarea').value;
-                    alert('Reply submitted: ' + replyText);
-                    // Add logic for handling the reply submission here
-                    toggleReplyBox(); // Optionally hide the reply box after submission
-                }
-            </script> -->
-
-
-
+        </form>
 
     </div>
     </section>
@@ -362,6 +301,20 @@
             }
         }
 
+        function refund() {
+
+            var confirmation = confirm('Are you sure that you want to send a refund request to the admin')
+
+            if (confirmation) {
+
+                document.getElementById("refundForm").elements['sendRefund'].value = 1
+                document.getElementById("refundForm").elements['payment_id'].value = 1
+                document.getElementById("refundForm").submit()
+
+            }
+
+        }
+
         function updateUserBlacklistSeller() {
             var selectedDays = document.getElementById('blacklistUntil').value;
             var confirmAction = confirm("Are you sure you want to blackList Seller ID <?php echo $row['seller_id'] ?> for" + selectedDays + " days");
@@ -405,6 +358,13 @@
 
         function viewOrders() {
             var selectedDays = document.getElementById('viewOrders');
+            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+        }
+
+
+        function viewPayments() {
+            var selectedDays = document.getElementById('viewPayments');
             selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
 
         }
@@ -458,12 +418,3 @@
             document.getElementById("chatBoxBuyer").style.display = "none";
         });
     </script>
-
-
-
-
-
-
-    < /body>
-
-        < /html>

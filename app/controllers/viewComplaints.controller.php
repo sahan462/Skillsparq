@@ -20,12 +20,18 @@ class viewComplaints extends Controller
         $data['inquiryId'] = $inquiry_id;
         $viewComplaint = $this->inquiryHandlerModel->viewComplaints($inquiry_id);
         $data['viewComplaint'] = $viewComplaint;
-        $this->view('viewComplaints', $data);
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $userIdToBlacklist = $_POST['user_id_to_blacklist'];
-            $blacklistUntilDays = $_POST['blacklistUntil'];
-            $this->inquiryHandlerModel->blackListBuyer($userIdToBlacklist);
+            if (isset($_POST['user_id_to_blacklist'])) {
+
+                $this->inquiryHandlerModel->blackListBuyer();
+            }
+            if (isset($_POST['payment_id'])) {
+                $payment_id = $_POST['payment_id'];
+                $this->inquiryHandlerModel->refund();
+            }
         }
+        $this->view('viewComplaints', $data);
     }
 }
