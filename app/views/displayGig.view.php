@@ -176,8 +176,8 @@
                     <div class="package-tabs">
                         <div class="tab">
                             <button class="tablinks" onclick="openCity(event, 'London')" id = "defaultOpen" style="border-radius: 8px 0 0 0;">Basic</button>
-                            <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
-                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button>
+                            <!-- <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button> -->
                         </div>
                     
                         <!-- package 1 -->
