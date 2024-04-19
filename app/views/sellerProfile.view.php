@@ -19,6 +19,7 @@
     $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // $languages = $data[''];
+    // show($languages);
 ?>
 
 <!-- Main Container for Seller -->
@@ -171,9 +172,13 @@
                             ?>
                         </div>
                         <div class="seller-question">
-                            Add Languages You're familiar with.
+                            <p>Add Languages You're familiar with.</p>
+                            <ul id="addLangList"><input type="text" name="languages" spellcheck="false" id="inputAddLang"></ul>
                         </div>
-                        <input type="text" name="languages">
+                        <div class="details">
+                            <p><span>10</span> tags are remaining</p>
+                            <button>Remove All</button>
+                        </div>
                     </div>
                 </div>
                 <div class="buttons">

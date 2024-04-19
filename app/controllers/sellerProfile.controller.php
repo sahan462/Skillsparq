@@ -42,14 +42,14 @@ class SellerProfile extends Controller
             $data['sellerId'] = $sellerId;
 
             // set the user_name and user_id to the seller_profile table before start updatings.
-            if(isset($_SESSION['userName']) && isset($_SESSION['userId'])){
-                $this->SellerHandlerModel->addUserNameAndId($_SESSION['userId'],$_SESSION['userName']);
-            }else{
-                echo 
-                "<script>
-                    alert('User Name and User Id have not been set properly !');
-                </script>";
-            }
+            // if(isset($_SESSION['userName']) && isset($_SESSION['userId'])){
+            //     $this->SellerHandlerModel->addUserNameAndId($_SESSION['userId'],$_SESSION['userName']);
+            // }else{
+            //     echo 
+            //     "<script>
+            //         alert('User Name and User Id have not been set properly !');
+            //     </script>";
+            // }
 
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
@@ -97,24 +97,26 @@ class SellerProfile extends Controller
         return $retrievedSellerId;
     }
 
-    // inserting languages of seller profile
+    // insert/update languages of seller profile
     public function addProfileLanguages()
     {
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
         $languages = $_POST['languages'];
-        $result = $this->SellerHandlerModel->addLanguages($userId,$userName,$languages);
+        $result = $this->SellerHandlerModel->addLanguages($userName,$languages);
         if($result){
-            echo "<script>alert('Successfully Added the Languages !')</script>";
+            echo "
+            <script>
+                alert('Successfully Added the Languages !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>";
         }else{
-            header("location: sellerProfile");
-            echo "<script>alert('Insertion Unsuccessful !')</script>";
+            echo "
+            <script>
+                alert('Insertion Unsuccessful !');
+                window.location.href = '" . BASEURL . "sellerProfile';
+            </script>";
         }
-    }
-
-    public function updateProfileLanguages()
-    {
-        //
     }
 
     // inserting skills of seller profile
@@ -123,7 +125,7 @@ class SellerProfile extends Controller
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
         $skills = $_POST['skills'];
-        $result = $this->SellerHandlerModel->addSkills($userId,$userName,$skills);
+        $result = $this->SellerHandlerModel->addSkills($userName,$skills);
         if($result){
             echo 
             "<script>
@@ -140,18 +142,13 @@ class SellerProfile extends Controller
         }
     }
 
-    public function updateProfileSkills()
-    {
-        //
-    }
-
     // inserting education of seller profile
     public function addProfileEducation()
     {
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
         $education = $_POST['education'];
-        $result = $this->SellerHandlerModel->addEducation($userId,$userName,$education);
+        $result = $this->SellerHandlerModel->addEducation($userName,$education);
         if($result){
             echo 
             "<script>
@@ -166,11 +163,6 @@ class SellerProfile extends Controller
             </script>
             ";
         }
-    }
-
-    public function updateProfileEducation()
-    {
-        //
     }
 
     // has to adjust for client.
