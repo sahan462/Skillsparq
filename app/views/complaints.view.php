@@ -45,7 +45,7 @@
                         <td><?php echo $row['subject']; ?></td>
                         <td><?php echo $row['description']; ?></td>
                         <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                <button>View1</button>
+                                <button>View</button>
                             </a></td>
                     </tr>
                 <?php

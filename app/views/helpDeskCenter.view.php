@@ -1,28 +1,3 @@
-<?php
-$count = 0;
-foreach ($recentInquiries as $row) {
-    $count++;
-}
-$solved = 0;
-$unsolved = 0;
-foreach ($recentRequests as $row) {
-    if ($row['inquiry_status'] == "solved") {
-        $solved++;
-    } else {
-        $unsolved++;
-    }
-}
-$solved1 = 0;
-$unsolved1 = 0;
-foreach ($recentComplaints as $row) {
-    if ($row['inquiry_status'] == "solved") {
-        $solved1++;
-    } else {
-        $unsolved1++;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,22 +31,26 @@ foreach ($recentComplaints as $row) {
             <div class="boxes">
                 <div class="box box1">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="text">Total Users</span>
-                    <span class="number"><?php echo $count ?></span>
+                    <span class="text">Total Inquiries this month</span>
+                    <span class="number"><?php echo $countCurrentMonth ?></span>
 
                 </div>
                 <div class="box box2">
                     <i class="uil uil-comments"></i>
-                    <span class="text">Comments</span>
-                    <span class="number">20,120</span>
+                    <span class="text">Total help requests this month</span>
+                    <span class="number"><?php echo $countCurrentMonth1 ?></span>
 
                 </div>
                 <div class="box box3">
                     <i class="uil uil-share"></i>
-                    <span class="text">Total Share</span>
-                    <span class="number">10,120</span>
+                    <span class="text">Total Complaints this month</span>
+                    <span class="number"><?php echo $countCurrentMonth2 ?></span>
                 </div>
+
+
             </div>
+
+
             <div class="boxes">
                 <div class="subChart">
                     <canvas id="pieChart"></canvas>
@@ -79,37 +58,93 @@ foreach ($recentComplaints as $row) {
                 <div class="subChart">
                     <canvas id="pieChartComplaints"></canvas>
                 </div>
+                <div class="subChart">
+                    <canvas id="barchartHelpRequests"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="barchartComplaints"></canvas>
+                </div>
             </div>
         </div>
+        <div>
+            <div class=" title">
 
-        <div class="activity">
-            <div class="title">
-                <i class="uil uil-clock-three"></i>
-                <span class="text">Recent inquiries</span>
             </div>
 
+        </div>
+
+        <div>
+
             <table class="content-table">
+                <caption style="font-weight: bold; height:30px; font-size :18px; background-color:#009879 ; color:white">
+
+                    <i class=" uil uil-clock-three"></i>
+                    <span class="text">Recent Requests</span>
+
+                </caption>
                 <thead>
-                    <th>user_id</th>
-                    <th>user_email</th>
-                    <th>role</th>
+                    <th>InquiryID</th>
+                    <th>Subject</th>
                     <th>View</th>
                 </thead>
                 <tbody>
-                    <?php foreach ($recentInquiries as $row) { ?>
+                    <?php
+                    $count = 0;
+                    foreach ($recentRequests as $row) { ?>
                         <tr>
-                            <td><?php echo $row['user_id']; ?></td>
-                            <td><?php echo $row['user_email']; ?></td>
-                            <td><?php echo $row['role']; ?></td>
-                            <td><a href="#">View</a></td>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
+
+                            <td>
+                                <a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><button>View</button>
+                            </td>
                         </tr>
-                    <?php } ?>
+                    <?php
+                        $count++;
+                        if ($count == 5) {
+                            break;
+                        }
+                    } ?>
+                </tbody>
+            </table>
+
+
+
+            <table class=" content-table">
+                <caption style="font-weight: bold; height:30px; font-size :18px; background-color:#009879 ; color:white">
+                    <i class=" uil uil-clock-three"></i>
+                    <span class="text">Recent Complaints</span>
+
+                </caption>
+                <thead>
+                    <th>InquiryID</th>
+                    <th>Subject</th>
+                    <th>View</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $count = 0;
+                    foreach ($recentComplaints as $row) { ?>
+                        <tr>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
+
+                            <td>
+                                <a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><button>View</button>
+                            </td>
+                        </tr>
+                    <?php
+                        $count++;
+                        if ($count == 5) {
+                            break;
+                        }
+                    } ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="../public/assests/js/helpDeskCenter.js"></script>
+    <script src=" ../public/assests/js/helpDeskCenter.js"></script>
     <script>
         var solved = <?php echo $solved; ?>;
         var unsolved = <?php echo $unsolved; ?>;
@@ -144,8 +179,19 @@ foreach ($recentComplaints as $row) {
         var yValues = [solved, unsolved];
         var barColors = [
             "#00aba9",
-            "#b91d47"
+            "#b91d47",
+            "#f2711c",
+            "#fbca04",
+            "#a333c8",
+            "#6435c9",
+            "#2185d0",
+            "#00b5ad",
+            "#a5673f",
+            "#767676",
+            "#1b1c1d",
+            "#e03997"
         ];
+
 
         new Chart("pieChartComplaints", {
             type: "pie",
@@ -157,6 +203,73 @@ foreach ($recentComplaints as $row) {
                 }]
             },
             options: {
+                title: {
+                    display: true,
+                    text: "Complaints"
+                }
+            }
+        });
+
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var currentDate = new Date();
+        var currentMonthIndex = currentDate.getMonth();
+        var rearrangedMonths = months.slice(currentMonthIndex + 1).concat(months.slice(0, currentMonthIndex + 1));
+
+        var monthRequests = [];
+        var monthComplaints = [];
+
+        <?php
+        foreach ($monthsSortedRequests as $month) {
+            echo "monthRequests.push('$month');"; // Use push to add each month to the JavaScript array
+        }
+        foreach ($monthsSortedComplaints as $month) {
+            echo "monthComplaints.push('$month');"; // Use push to add each month to the JavaScript array
+        }
+
+        ?>
+
+
+
+
+
+
+
+        new Chart("barchartHelpRequests", {
+            type: "line",
+            data: {
+                labels: rearrangedMonths,
+                datasets: [{
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    data: monthRequests
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Requests"
+                }
+            }
+        });
+
+        new Chart("barchartComplaints", {
+            type: "line",
+            data: {
+                labels: rearrangedMonths,
+                datasets: [{
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    data: monthComplaints
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
                 title: {
                     display: true,
                     text: "Complaints"

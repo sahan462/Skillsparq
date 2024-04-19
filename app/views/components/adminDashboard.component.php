@@ -13,9 +13,9 @@
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-            <li><a href="">
+            <li><a href="generateReport">
                     <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Complaints</span>
+                    <span class="link-name">Generate Report</span>
                 </a></li>
             <li><a href="">
                     <i class="uil uil-chart"></i>
@@ -70,7 +70,7 @@
                     <i class="fa-solid fa-circle"></i>
                 </div>
 
-                <span>Victoria
+                <span>
                     <i class="fa-solid fa-angle-down"></i>
                 </span>
             </div>

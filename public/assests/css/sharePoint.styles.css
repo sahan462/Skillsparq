@@ -1,32 +1,324 @@
-body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
     margin: 0;
-  }
-  .navbar {
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* Main Container */
+.sharePointContainer{
+    padding: 16px 32px;
     width: 100%;
-    height: 50px;
-    margin: 0;
-    background-color: #007bff;
+}
+
+/* Header */
+.sharePointHeader{
+    min-height: 24px;
+    margin-top: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222325;
+    line-height: 140%;
+    padding: 0 32px;
+}
+
+/* Inner container */
+.sharePointContainer .container{
     display: flex;
-    align-items: center;
-  }
-  .navbar .head {
-    font-weight: 600;
-    margin-left: 10px;
-    color: white;
-  }
-  .navbar .userimg {
-    flex-grow: 1;
-  }
-  .navbar .profile-pic {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    justify-content: space-between;
+    gap: 16px;
+    margin-right: 32px;
+    margin-left: 32px;
+    padding: 0px 16px;
+    height: 100%;
+}
+
+.title{
+    font-size: medium;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.darkTitle{
+    color: #4b4b4b;
+    font-size: 20px;
+}
+
+/* left container */
+.sharePointContainer .leftContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 32px);
+    width: 44%;
+    background-color: #fff;
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+}
+
+.sharePointContainer .leftUpperContainer{
+} 
+
+.sharePointContainer .leftBottomContainer{
+}
+
+/* right container */
+.sharePointContainer .rightContainer{
+    height: fit-content;
+    width: 56%;
+    background-color: #fff;
+    margin-top: 16px;
+    padding: 16px;
+    padding: 16px;
+    border: 1px solid #c5c6c9;
+    border-radius: 5px;
+}
+
+
+/* Rate Section */
+.title {
+    font-size: medium;
+    color: #333;
+    font-weight: 500;
+}
+.rate {
     float: right;
-    margin-right: 10px;
-  }
-  
-  .file {
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate > input:checked ~ label {
+    color: #ffd900;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #ffd900;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #ffd900;
+}
+/* rate2 */
+.rate2 {
+    float: right;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate2:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate2:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate2:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate2 > input:checked ~ label {
+    color: #ffd900;
+}
+.rate2:not(:checked) > label:hover,
+.rate2:not(:checked) > label:hover ~ label {
+    color: #ffd900;
+}
+.rate2 > input:checked + label:hover,
+.rate2 > input:checked + label:hover ~ label,
+.rate2 > input:checked ~ label:hover,
+.rate2 > input:checked ~ label:hover ~ label,
+.rate2 > label:hover ~ input:checked ~ label {
+    color: #ffd900;
+}
+/* rate3 */
+.rate3 {
+    float: right;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate3:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate3:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate3:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate3 > input:checked ~ label {
+    color: #ffd900;
+}
+.rate3:not(:checked) > label:hover,
+.rate3:not(:checked) > label:hover ~ label {
+    color: #ffd900;
+}
+.rate3 > input:checked + label:hover,
+.rate3 > input:checked + label:hover ~ label,
+.rate3 > input:checked ~ label:hover,
+.rate3 > input:checked ~ label:hover ~ label,
+.rate3 > label:hover ~ input:checked ~ label {
+    color: #ffd900;
+}
+
+/* rate4 */
+.rate4 {
+    float: right;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate4:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate4:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate4:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate4 > input:checked ~ label {
+    color: #ffd900;
+}
+.rate4:not(:checked) > label:hover,
+.rate4:not(:checked) > label:hover ~ label {
+    color: #ffd900;
+}
+.rate4 > input:checked + label:hover,
+.rate4 > input:checked + label:hover ~ label,
+.rate4 > input:checked ~ label:hover,
+.rate4 > input:checked ~ label:hover ~ label,
+.rate4 > label:hover ~ input:checked ~ label {
+    color: #ffd900;
+}
+/* rate5 */
+.rate5 {
+    float: right;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate5:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate5:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate5:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate5 > input:checked ~ label {
+    color: #ffd900;
+}
+.rate5:not(:checked) > label:hover,
+.rate5:not(:checked) > label:hover ~ label {
+    color: #ffd900;
+}
+.rate5 > input:checked + label:hover,
+.rate5 > input:checked + label:hover ~ label,
+.rate5 > input:checked ~ label:hover,
+.rate5 > input:checked ~ label:hover ~ label,
+.rate5 > label:hover ~ input:checked ~ label {
+    color: #ffd900;
+}
+.loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #007bff;
+    width: 70px;
+    height: 70px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin-bottom: 10px;
+}
+
+/* subsection */
+
+.subsection {
+    background-color: #ececec;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 7px;
+}
+.subsection-title {
+    color: #007bff;
+    padding-top: 16px;
+}
+.uploadbtnx {
+    float: right;
+    pointer-events: none;
+    background-color: rgb(85, 85, 85);
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 150px;
+}
+.image-container img {
+    width: 500px;
+}
+
+
+
+
+
+
+
+.file {
     border-radius: 10px;
     box-shadow: 1px 1px 5px 1px #c9c9c9;
     display: grid;
@@ -34,26 +326,22 @@ body {
     gap: 10px;
     grid-auto-rows: repeat(3, 1fr);
     background-color: rgb(255, 255, 255);
-  }
-  .name {
+}
+.name {
     font-weight: 500;
     margin-top: 10px;
     grid-column: 2;
     grid-row: 1;
     text-align: left;
-  }
-  .size {
+}
+.size {
     grid-column: 2/3;
     grid-row: 2;
     font-size: small;
-  }
-  .big {
-    color: #007bff;
-    font-weight: 600;
-    font-size: large;
-  }
-  
-  .download {
+}
+
+
+.download {
     grid-column: 3;
     grid-row: 1/3;
     padding-top: 10px;
@@ -62,13 +350,13 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-  }
-  .downloadimg {
+}
+.downloadimg {
     float: right;
     width: 50px;
     height: 50px;
-  }
-  .time {
+}
+.time {
     margin-right: 10px;
     margin-bottom: 5px;
     grid-column: 1/4;
@@ -76,8 +364,8 @@ body {
     text-align: right;
     font-size: small;
     color: #333;
-  }
-  .fileimg {
+}
+.fileimg {
     grid-column: 1;
     grid-row: 1/4;
     width: 50px;
@@ -86,33 +374,17 @@ body {
     top: 50%;
     transform: translateY(-50%);
     margin-left: 15px;
-  }
-  /* GRID START */
-  .container-upper {
-    margin-left: 50px;
-    grid-area: left-up;
-  }
-  .upload-sec {
-    margin-left: 50px;
-    grid-area: left-down;
-  }
-  .rightside {
-    grid-area: right-up;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  .main-grid {
-    display: grid;
-    grid-template-areas:
-      "left-up right-up"
-      "left-down right-up";
-  }
-  /* GRID END */
-  .filecontainer {
+}
+
+/* GRID START */
+
+
+/* GRID END */
+.filecontainer {
     padding: 5px;
     padding-left: 10px;
-  }
-  .uploadbtn {
+}
+.uploadbtn {
     float: right;
     background-color: #00ad2b;
     border: none;
@@ -123,20 +395,20 @@ body {
     padding-bottom: 10px;
     color: white;
     transition: ease-in-out 0.3s;
-  }
-  .uploadbtn:hover {
+}
+.uploadbtn:hover {
     background-color: #ffffff;
     color: #00ad2b;
     box-shadow: 1px 1px 5px 0px #ffffff;
-  }
-  
-  .filebtn {
+}
+
+.filebtn {
     color: transparent;
-  }
-  .filebtn::-webkit-file-upload-button {
+}
+.filebtn::-webkit-file-upload-button {
     visibility: hidden;
-  }
-  .filebtn::before {
+}
+.filebtn::before {
     content: "Select files";
     color: black;
     display: inline-block;
@@ -151,24 +423,23 @@ body {
     white-space: nowrap;
     -webkit-user-select: none;
     cursor: pointer;
-  }
-  .filebtn::before:hover {
+}
+.filebtn::before:hover {
     background-color: #ffffff;
     color: #007bff;
     box-shadow: 1px 1px 5px 0px #c9c9c9;
-  }
-  .upload_background {
+}
+.upload_background {
     background-color: #dadada;
     padding: 10px;
     border-radius: 7px;
-    margin-top: 10px;
-  }
-  .scrollable {
+}
+.scrollable {
     overflow-y: auto;
     height: 65vh;
     margin-bottom: 20px;
-  }
-  .scrollable-empty {
+}
+.scrollable-empty {
     overflow-y: auto;
     height: 65vh;
     margin-bottom: 20px;
@@ -176,250 +447,56 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-  }
-  .scrollable::-webkit-scrollbar-track {
+}
+.scrollable::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(63, 63, 63, 0.3);
     border-radius: 6px;
     background-color: #f3f3f3;
-  }
-  
-  .scrollable::-webkit-scrollbar {
+}
+
+.scrollable::-webkit-scrollbar {
     width: 7px;
     background-color: #f3f3f3;
-  }
-  .scrollable::-webkit-scrollbar-thumb {
+}
+.scrollable::-webkit-scrollbar-thumb {
     border-radius: 6px;
     -webkit-box-shadow: inset 0 0 6px rgba(82, 82, 82, 0.3);
     background-color: #555;
-  }
-  .textbox {
+}
+.textbox {
     width: 100%;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     border: none;
     border-radius: 7px;
     background-color: #ececec;
-  }
-  /* Rate Section */
-  .title {
-    font-size: medium;
-    color: #333;
-    font-weight: 500;
-  }
-  .rate {
-    float: right;
-    height: 46px;
-    padding: 0 10px;
-  }
-  .rate:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-  }
-  .rate:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-  }
-  .rate:not(:checked) > label:before {
-    content: "★ ";
-  }
-  .rate > input:checked ~ label {
-    color: #ffd900;
-  }
-  .rate:not(:checked) > label:hover,
-  .rate:not(:checked) > label:hover ~ label {
-    color: #ffd900;
-  }
-  .rate > input:checked + label:hover,
-  .rate > input:checked + label:hover ~ label,
-  .rate > input:checked ~ label:hover,
-  .rate > input:checked ~ label:hover ~ label,
-  .rate > label:hover ~ input:checked ~ label {
-    color: #ffd900;
-  }
-  /* rate2 */
-  .rate2 {
-    float: right;
-    height: 46px;
-    padding: 0 10px;
-  }
-  .rate2:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-  }
-  .rate2:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-  }
-  .rate2:not(:checked) > label:before {
-    content: "★ ";
-  }
-  .rate2 > input:checked ~ label {
-    color: #ffd900;
-  }
-  .rate2:not(:checked) > label:hover,
-  .rate2:not(:checked) > label:hover ~ label {
-    color: #ffd900;
-  }
-  .rate2 > input:checked + label:hover,
-  .rate2 > input:checked + label:hover ~ label,
-  .rate2 > input:checked ~ label:hover,
-  .rate2 > input:checked ~ label:hover ~ label,
-  .rate2 > label:hover ~ input:checked ~ label {
-    color: #ffd900;
-  }
-  /* rate3 */
-  .rate3 {
-    float: right;
-    height: 46px;
-    padding: 0 10px;
-  }
-  .rate3:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-  }
-  .rate3:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-  }
-  .rate3:not(:checked) > label:before {
-    content: "★ ";
-  }
-  .rate3 > input:checked ~ label {
-    color: #ffd900;
-  }
-  .rate3:not(:checked) > label:hover,
-  .rate3:not(:checked) > label:hover ~ label {
-    color: #ffd900;
-  }
-  .rate3 > input:checked + label:hover,
-  .rate3 > input:checked + label:hover ~ label,
-  .rate3 > input:checked ~ label:hover,
-  .rate3 > input:checked ~ label:hover ~ label,
-  .rate3 > label:hover ~ input:checked ~ label {
-    color: #ffd900;
-  }
-  
-  /* rate4 */
-  .rate4 {
-    float: right;
-    height: 46px;
-    padding: 0 10px;
-  }
-  .rate4:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-  }
-  .rate4:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-  }
-  .rate4:not(:checked) > label:before {
-    content: "★ ";
-  }
-  .rate4 > input:checked ~ label {
-    color: #ffd900;
-  }
-  .rate4:not(:checked) > label:hover,
-  .rate4:not(:checked) > label:hover ~ label {
-    color: #ffd900;
-  }
-  .rate4 > input:checked + label:hover,
-  .rate4 > input:checked + label:hover ~ label,
-  .rate4 > input:checked ~ label:hover,
-  .rate4 > input:checked ~ label:hover ~ label,
-  .rate4 > label:hover ~ input:checked ~ label {
-    color: #ffd900;
-  }
-  /* rate5 */
-  .rate5 {
-    float: right;
-    height: 46px;
-    padding: 0 10px;
-  }
-  .rate5:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-  }
-  .rate5:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-  }
-  .rate5:not(:checked) > label:before {
-    content: "★ ";
-  }
-  .rate5 > input:checked ~ label {
-    color: #ffd900;
-  }
-  .rate5:not(:checked) > label:hover,
-  .rate5:not(:checked) > label:hover ~ label {
-    color: #ffd900;
-  }
-  .rate5 > input:checked + label:hover,
-  .rate5 > input:checked + label:hover ~ label,
-  .rate5 > input:checked ~ label:hover,
-  .rate5 > input:checked ~ label:hover ~ label,
-  .rate5 > label:hover ~ input:checked ~ label {
-    color: #ffd900;
-  }
-  .loader {
-    border: 10px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 10px solid #007bff;
-    width: 70px;
-    height: 70px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-    margin-bottom: 10px;
-  }
-  
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .progress {
+}
+
+
+
+/* Safari */
+@-webkit-keyframes spin {
+0% {
+    -webkit-transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+}
+}
+
+@keyframes spin {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+.progress {
     font-size: medium;
     font-weight: 600;
     color: #007bff;
-  }
-  .fullpage {
+}
+.fullpage {
     margin: 0;
     width: 100vw;
     height: 100vh;
@@ -431,27 +508,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .sucess {
+}
+.sucess {
     width: 200px;
     height: 200px;
-  }
-  .sucess-text {
+}
+.sucess-text {
     font-size: medium;
     text-align: center;
     font-weight: 600;
     color: #089c21;
-  }
-  .faild-text {
+}
+.faild-text {
     font-size: medium;
     text-align: center;
     font-weight: 600;
     color: #c02d09;
-  }
-  .backlink {
+}
+.backlink {
     text-decoration: none;
-  }
-  .back {
+}
+.back {
     padding: 10px;
     color: white;
     background-color: #00ad2b;
@@ -461,13 +538,13 @@ body {
     border-radius: 5px;
     margin-top: 5px;
     text-align: center;
-  }
-  .productcontainer {
+}
+.productcontainer {
     padding: 5px;
     padding-left: 10px;
     color: white;
-  }
-  .product {
+}
+.product {
     border-radius: 10px;
     box-shadow: 1px 1px 5px 1px #c9c9c9;
     display: grid;
@@ -476,8 +553,8 @@ body {
     grid-auto-rows: repeat(3, 1fr);
     background-color: #63d471;
     background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
-  }
-  .productimg {
+}
+.productimg {
     grid-column: 1;
     grid-row: 1/4;
     width: 50px;
@@ -486,8 +563,8 @@ body {
     top: 50%;
     transform: translateY(-50%);
     margin-left: 15px;
-  }
-  .producttime {
+}
+.producttime {
     margin-right: 10px;
     margin-bottom: 5px;
     grid-column: 1/4;
@@ -495,78 +572,4 @@ body {
     text-align: right;
     font-size: small;
     color: white;
-  }
-  .subsection {
-    background-color: #ececec;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    padding-bottom: 20px;
-    border-radius: 7px;
-  }
-  .subsection-title {
-    color: #007bff;
-    padding-top: 10px;
-  }
-  .uploadbtnx {
-    float: right;
-    pointer-events: none;
-    background-color: rgb(85, 85, 85);
-    border: none;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    transition: ease-in-out 0.3s;
-  }
-  .image-container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin-top: 150px;
-  }
-  .image-container img {
-    width: 500px;
-  }
-  .backbtn
-  {
-    float: right;
-    margin-right: 5px;
-    padding: 10px 20px;
-    padding-bottom: 11px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    width: 80px;
-    transition: ease-in-out 0.3s;
-    font-size: small;
-  }
-  .backbtn:hover
-  {
-    background-color: rgb(240, 240, 240);
-    color: #007bff;
-  
-  }
-  .bkbtn
-  {
-    float: right;
-    padding: 10px 20px;
-    padding-bottom: 11px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    width: 150px;
-    transition: ease-in-out 0.3s;
-    font-size: small;
-    margin-top: 10px;
-  }
-  .bkbtn:hover
-  {
-    background-color: rgb(240, 240, 240);
-    color: #007bff;
-    
-  }
+}

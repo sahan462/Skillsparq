@@ -1,7 +1,8 @@
 <?php
-class OrderHandler extends database
+class OrderHandler extends database 
 {
 
+    
     //create new order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
@@ -17,7 +18,7 @@ class OrderHandler extends database
         (
             ?, ?, ?, ?, ?
         )");
-    
+
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
@@ -32,7 +33,7 @@ class OrderHandler extends database
         }
 
         //insert data to package order table    
-        if($orderType == "package"){
+        if ($orderType == "package") {
 
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
             (
@@ -46,46 +47,47 @@ class OrderHandler extends database
             (
                 ?, ?, ?, ?, ?
             )");
-        
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
 
+        } else {
+          
             mysqli_stmt_bind_param($stmt, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
-            mysqli_stmt_execute($stmt);
-            $stmt->close();
+            if (mysqli_stmt_execute($stmt)) {
+                $stmt->close();
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+            }
 
         }else{
-
+            throw new Exception("Invalid Order Type");
         }
 
         return $orderId;
-
     }
 
     //create milestone order
-    
+
     public function createMilestoneOrder()
     {
-        
     }
 
 
     //get orders
     public function getOrders($userId, $userRole)
     {
-        if($userRole == 'Buyer'){
+        if ($userRole == 'Buyer') {
 
             $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
-
-        }else{
+        } else {
 
             $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
-
         }
-        
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-        
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -103,18 +105,17 @@ class OrderHandler extends database
     public function getOrderDetails($orderId, $orderType, $buyerId, $sellerId, $userRole)
     {
         //retrive order details
-        if($orderType == 'package'){
-
+        if ($orderType == 'package') {
+          
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id where orders.order_id = ?";
+          
+        } else if ($orderType == 'milestone') {
+          
+            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
 
-        }else if($orderType == 'milestone'){
-
-            $query = "SELECT * FROM orders inner join milestone_orders on orders.order_id = milestone_orders.milestone_order_id inner join milestones on milestones.milestone_order_id = milestone_orders.milestone_order_id where orders.order_id = ?";
-
-        }else if($orderType == 'job'){
-
-        }else{
-
+        }else if ($orderType == 'job') {
+          
+        } else {
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -170,8 +171,8 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
-        return $data;
 
+        return $data;
     }
 
 
@@ -193,7 +194,6 @@ class OrderHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
-
     }
 
     //create new payment
@@ -215,7 +215,7 @@ class OrderHandler extends database
         (
             ?, ?, ?, ?, ?, ?, ?, ?
         )");
-    
+
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
@@ -228,13 +228,93 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
+    }
 
-        
+    public function orderStateCurrentMonth()
+    {
+        $currentMonth = date('m');
+        $currentYear = date('Y');
 
+        $query = "SELECT
+                        (SELECT COUNT(*) FROM orders) AS orders,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'accepted' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS accepted_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'running' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS running_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'requested' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS requested_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'cancelled' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS cancelled_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'late' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS late_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'completed' AND MONTH(order_created_date) = $currentMonth AND YEAR(order_created_date) = $currentYear) AS completed_count";
 
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            return $result->fetch_assoc(); // Fetch the first row as an associative array
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function orderStatePreviousMonth()
+    {
+        $currentMonth = date('m');
+        $previousMonth = ($currentMonth == 1) ? 12 : $currentMonth - 1;
+        $PreviousYear = ($currentMonth == 1) ? date('Y') - 1 : date('Y');
+
+        $query = "SELECT
+                        
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'accepted' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS accepted_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'running' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS running_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'requested' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS requested_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'cancelled' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS cancelled_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'late' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS late_count,
+                        (SELECT COUNT(*) FROM orders WHERE order_state = 'completed' AND MONTH(order_created_date) = $previousMonth AND YEAR(order_created_date) = $PreviousYear) AS completed_count";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            return $result->fetch_assoc(); // Fetch the first row as an associative array
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
 
 
+    public function orderStateLastYear()
+    {
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $previousMonthsData = [];
 
+        for ($i = 11; $i >= 0; $i--) {
+            $month = ($currentMonth - $i) < 1 ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+            $year = ($currentMonth - $i) < 1 ? $currentYear - 1 : $currentYear;
+
+            $query = "SELECT COUNT(*) AS orders FROM orders WHERE MONTH(order_created_date) = $month AND YEAR(order_created_date) = $year";
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc(); // Fetch the first row as an associative array
+                $previousMonthsData[] = $data['orders'];
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+
+        return $previousMonthsData;
+    }
 }
