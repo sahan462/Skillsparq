@@ -114,7 +114,7 @@
                 </li>
                 <hr />
 
-                <li class="profile-dropdown-list-item" onclick="logout()">
+                <li class="profile-dropdown-list-item">
                     <a href="loginUser/logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         LogOut
