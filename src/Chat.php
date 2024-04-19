@@ -14,6 +14,9 @@ class Chat implements MessageComponentInterface {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
 
+        $querystring = $conn->httpRequest->getUri()->getQuery();
+        parse_str($querystring, $queryarray);
+
         echo "New connection! ({$conn->resourceId})\n";
     }
 
