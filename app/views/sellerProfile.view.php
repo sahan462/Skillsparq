@@ -22,6 +22,7 @@
     $education = $data['sellerProfileDets']['education'];
     $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
+    print_r($_SESSION);
 ?>
 
 <!-- Main Container for Seller -->
@@ -64,7 +65,7 @@
                     <!-- <label for="attachments" class="type-1">Country:</label> -->
                 </div>
                 <div class="row">
-                    <label for="attachments" class="type-1">About:</label>
+                    <label for="about" class="type-1">About:</label>
                     <textarea rows="5" id="about" name="about"><?php echo $about; ?></textarea>
                 </div>
                 <div class="buttons">
@@ -507,6 +508,21 @@
                                 echo "Add your education";
                             }
                         ?>
+                    </div>
+                </div>
+            </div>
+            <div class="profile">
+                <div class="description">
+                    <div class="profileAdditionals">
+                        <div class="topic">
+                            <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>send-email</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-568.000000, -254.000000)" fill="#000000"> <path d="M584,283 C584,283 580.872,276.976 580,275 L596.075,259.779 L584,283 L584,283 Z M572,270 L595,259 L579,274 C578.996,273.996 572,270 572,270 L572,270 Z M599,255 C597.844,255.563 568,270 568,270 C568,270 578.052,276.059 578,276 C577.983,275.981 584,287 584,287 C584,287 599.75,256.5 600,256 C600.219,255.375 599.75,254.688 599,255 L599,255 Z" id="send-email" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+                            <span>View Send Proposals</span>
+                        </div>
+                        <div>
+                            <button class="addButton">
+                                <a href="jobProposals/viewSendJobProposals">View</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

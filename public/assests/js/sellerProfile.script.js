@@ -27,8 +27,6 @@ var currentLastName = lastName.value;
 
 var about = document.getElementById('about');
 var currentAbout = about.innerHTML;
-    
-// var languages = document.getElementById('');
 
 //dynamically render profile picture
 function renderImage() {
@@ -303,7 +301,7 @@ function addTag(e) {
     }
 }
 
-input.addEventListener("keyup", addTag);
+// input.addEventListener("keyup", addTag);
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -432,25 +430,25 @@ function handleConfirmProfAddEduc(action) {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-const languageInput = document.getElementById('languageInput');
-const languageTags = document.getElementById('languageTags');
+// const languageInput = document.getElementById('languageInput');
+// const languageTags = document.getElementById('languageTags');
 
-languageInput.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter' || event.keyCode === 13) {
-    addLanguageTag(this.value);
-    this.value = '';
-    event.preventDefault();
-  }
-});
+// languageInput.addEventListener('keydown', function(event) {
+//   if (event.key === 'Enter' || event.keyCode === 13) {
+//     addLanguageTag(this.value);
+//     this.value = '';
+//     event.preventDefault();
+//   }
+// });
 
-function addLanguageTag(language) {
-  if (language.trim() !== '') {
-    const tag = document.createElement('div');
-    tag.classList.add('languageTag');
-    tag.textContent = language;
-    tag.addEventListener('click', function() {
-      this.remove();
-    });
-    languageTags.appendChild(tag);
-  }
-}
+// function addLanguageTag(language) {
+//   if (language.trim() !== '') {
+//     const tag = document.createElement('div');
+//     tag.classList.add('languageTag');
+//     tag.textContent = language;
+//     tag.addEventListener('click', function() {
+//       this.remove();
+//     });
+//     languageTags.appendChild(tag);
+//   }
+// }

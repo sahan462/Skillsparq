@@ -63,7 +63,7 @@
                             $_SESSION['jobId'] = $jobId;
                         ?>
                         <button class = "sendProposalButton">
-                            <a class="proposalButtonLink" href="jobproposals">See Proposals</a>
+                            <a class="proposalButtonLink" href="jobproposals/viewAppliedJobProposals">See Proposals</a>
                         </button>
                     </div>
                 <?php }?>

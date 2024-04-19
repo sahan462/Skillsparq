@@ -43,12 +43,19 @@ class JobProposals extends Controller
                 $proposalId = $this->JobHandlerModel->createProposal($description,NULL,$uniqueAttachmentFileName,$jobId,$buyerId, $sellerId);
             }
             $data['proposalId'] = $proposalId;
+            extract($data);
+            echo "
+                <script>
+                    window.location.href = '" . BASEURL . "sellerDashboard';
+                </script>
+            ";
 
-            header("Location:sellerProfile");
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
             $data['buyerId'] = $_SESSION['userId'];
             $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+            $Job = $this->JobHandlerModel->getJobName($data['jobId']);
+            $data['jobDets'] = mysqli_fetch_assoc($Job);
             $this->view('jobProposals',$data);
             show($data);
         }
@@ -60,6 +67,36 @@ class JobProposals extends Controller
         $proposalDets = $this->JobHandlerModel->getSingleJobProposal($proposalId);
         $proposalInfo = mysqli_fetch_assoc($proposalDets);
         return $proposalInfo;
+    }
+
+    public function viewSendJobProposals()
+    {
+        $data['var'] = "JobProposal Page";
+        $data['title'] = "SkillSparq";
+        $sellerId = $_SESSION['userId'];
+        $myProposals = $this->JobHandlerModel->getSendJobProposals($sellerId);
+        $data['myProposals'] = $myProposals;
+        $this->view('jobProposals', $data);
+        echo "
+            <script>
+                window.location.href = '" . BASEURL . "jobProposals';
+            </script>
+        ";
+    }
+
+    public function viewAppliedJobProposals()
+    {
+        $data['jobId'] = $_SESSION['jobId'];
+        $data['buyerId'] = $_SESSION['userId'];
+        $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+        $Job = $this->JobHandlerModel->getJobName($data['jobId']);
+        $data['jobDets'] = mysqli_fetch_assoc($Job);
+        // $this->view('jobProposals',$data);
+        echo "
+            <script>
+                window.location.href = '" . BASEURL . "jobProposals';
+            </script>
+        ";
     }
 
     // viewing all job proposals for a particular job created .

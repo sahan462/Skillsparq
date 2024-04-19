@@ -154,6 +154,25 @@ class JobHandler extends database
         }
     }
 
+    public function getJobName($jobId)
+    {
+        $query = "SELECT title FROM Jobs WHERE job_id = ? ";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get auction details
     public function getAuction($jobId,$userId){
 
@@ -323,6 +342,33 @@ class JobHandler extends database
         }
     
         mysqli_stmt_bind_param($stmt, "ii", $jobId,$buyerId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    public function getSendJobProposals($sellerId)
+    {
+        $query = "SELECT * FROM job_proposals WHERE seller_id=?;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
     
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
