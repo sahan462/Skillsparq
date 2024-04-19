@@ -53,7 +53,7 @@ body{
   padding: 16px;
   box-sizing: border-box;
   border-radius: 5px;
-  height: 100%;
+  height: calc(100vh);
   width: 100%;
   background-color: #ffffff;
 }
@@ -79,7 +79,7 @@ input.invalid {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbbbbb;
+  background-color: #31d65a;
   border: none;
   border-radius: 100%;
   display: inline-block;
@@ -90,7 +90,7 @@ input.invalid {
 }
 
 .addGigContainer .step.finish {
-  background-color: #bbbbbb;
+  background-color: #31d65a;
 }
 
 .addGigContainer .tab .sideImages{
@@ -114,15 +114,6 @@ input.invalid {
   display: block;
 }
 
-.addGigContainer .rightContainer select{
-  margin-bottom: 32px;
-  height: 40px;
-  width: 200px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid #c5c6c9;
-  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
 
 .addGigContainer .rightContainer button{
     display: inline-block;
@@ -166,13 +157,11 @@ input.invalid {
 
 /*tab 1*/
 .rightContainer input[type="text"], .rightContainer textarea {
-  margin: 0;
-  padding:16px !important;
-  height: 40px;
   font-size: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 0 !important;
   border-radius: 4px !important;
   width: 100%;
+  height: 40px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -181,9 +170,33 @@ input.invalid {
 }
 
 .rightContainer input[type="number"]{
+  height: 40px;
+  width: 100%;
   font-size: 16px;
   border: 1px solid #c5c6c9;
   border-radius: 4px !important;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.addGigContainer .rightContainer select{
+  height: 40px;
+  width: 200px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #c5c6c9;
+  font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.rightContainer textarea {
+  font-size: 16px;
+  margin-bottom: 0 !important;
+  border-radius: 4px !important;
+  width: 100%;
+  height: 100% !important;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 1px solid #c5c6c9;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
@@ -272,6 +285,7 @@ input.invalid {
 
 .images{
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 16px;
@@ -291,6 +305,28 @@ input.invalid {
   width: 150px;
   border: 1px solid #c5c6c9;
   border-radius: 4px;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #31d65a;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #31d65a;
 }
 
 @media only screen and (max-width: 900px) {
