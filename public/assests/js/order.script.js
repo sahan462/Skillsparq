@@ -165,9 +165,10 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
   }
 }
 
-// ---------------------------------------Chat functionality - Web Socket--------------------------------------------------------
+// ---------------------------------------Chat functionality - Web Socket--------------------------------------------------------log
 
-var conn = new WebSocket('ws://localhost:8080');
+var conn = new WebSocket(`ws://localhost:8080?chatId=${chatId}`);
+
 conn.onopen = function(e) {
     console.log("Connection established!");
 };
@@ -176,6 +177,7 @@ conn.onmessage = function(e) {
     console.log(e.data);
 
     var data = JSON.parse(e.data);
+    var messageComponent = "";
 
     if(data.from == "Me")
     {
@@ -185,9 +187,9 @@ conn.onmessage = function(e) {
       <div class="receiver-container">
           <div class="messageContainer darker">
               <div class="receiverContent">
-                  <img src="<?php echo $data["senderProfilePicture"] ?>" alt="Avatar" class="right">
+                  <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Avatar" class="right">
                   <p class="receiver" >
-                      ${data.from}
+                      ${data.newMessage}
                       <span class="time-left">11:01</span>
                   </p>
               </div>
@@ -201,11 +203,11 @@ conn.onmessage = function(e) {
       <div class="sender-container">
           <div class="messageContainer">
               <div class="senderContent">
-                  <img src="<?php echo $data["receiverProfilePicture"] ?>" alt="Avatar">
-                  <p class="P" >
-                  ${data.from}
+                <img src="./assests/images/profilePictures/${receiverProfilePicture}" alt="Avatar" class="right">
+                <p class="P" >
+                  ${data.newMessage}
                   <span class="time-right">11:00</span>
-                  </p>
+                </p>
               </div>
           </div>
       </div>
@@ -213,15 +215,18 @@ conn.onmessage = function(e) {
 
     }
 
-
-
     document.getElementById('chatContainer').innerHTML += messageComponent;
+    
+};
 
+
+conn.onclose = function(e){
+
+  console.log("Connection closed!");
 
 };
 
 
-// ---------------------------------------Chat functionality - AJAX--------------------------------------------------------
 
 var chatForm = document.getElementById('chatForm');
 
@@ -244,9 +249,7 @@ chatForm.addEventListener('submit', function(e) {
 
 
 
-
-
-
+// ---------------------------------------Chat functionality - AJAX--------------------------------------------------------
 
 
 var chatArea = document.getElementById('activity');
