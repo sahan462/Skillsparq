@@ -8,6 +8,7 @@
     $Country = "Sri Lanka";
     $DateJoined = $data['profileDetails']['joined_date'];
     $lastSeen = $data['profileDetails']['last_seen'];
+    // $lastSeen = $_SESSION['status'];
     $about = $data['profileDetails']['about'];
     $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
@@ -338,7 +339,7 @@
         <div class="profile-container">
             <div class="profile">
 
-                <?php if($lastSeen == 'online') {?>
+                <?php if($lastSeen === 'online' || $_SESSION['status'] === "online") {?>
 
                 <div class="online">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>
