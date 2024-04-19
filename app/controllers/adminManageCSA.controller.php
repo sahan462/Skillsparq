@@ -109,9 +109,11 @@ class adminManageCSA extends Controller
 
 
 
-            $user_id = $this->userHandlerModel->addNewUser($user_email, $user_password, $role, $agreement);
+            $user_id = $this->userHandlerModel->addNewUser($user_email, password_hash($user_password . "skillsparq", PASSWORD_DEFAULT), $role, $agreement);
+
             $this->profileHandlerModel->addNewProfile($userName, $firstName, $lastName, $user_id);
             $this->sendVerificationMail($user_email, $firstName . " " . $lastName, "Welcome $firstName $lastName", $Body, 'he he');
+            $this->profileHandlerModel->lastSeenUpdate(date('Y-m-d H:i:s'), $user_id);
         }
 
 

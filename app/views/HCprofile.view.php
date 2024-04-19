@@ -35,12 +35,12 @@
                                     <div class="card shadow-sm">
                                         <div class="card-header bg-transparent text-center">
                                             <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
-                                            <h3>Ishmam Ahasan Samin</h3>
+                                            <h3><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h3>
                                         </div>
                                         <div class="card-body">
-                                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>321000001</p>
-                                            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
-                                            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+                                            <p class="mb-0"><strong class="pr-1">User ID:</strong><?php echo $_SESSION['userId'] ?></p>
+                                            <p class="mb-0"><strong class="pr-1">User Name:</strong><?php echo $_SESSION['userName'] ?></p>
+                                            <p class="mb-0"><strong class="pr-1">User Email:</strong><br><?php echo $_SESSION['email'] ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -54,28 +54,20 @@
                                                 <tr>
                                                     <th width="30%">Roll</th>
                                                     <td width="2%">:</td>
-                                                    <td>125</td>
+                                                    <td><?php echo $_SESSION['role'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <th width="30%">Academic Year </th>
+                                                    <?php foreach ($profile as $row) ?>
+                                                    <th width="30%">Country </th>
                                                     <td width="2%">:</td>
-                                                    <td>2020</td>
+                                                    <td><?php echo $row['country'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <th width="30%">Gender</th>
+                                                    <th width="30%">Joined DATE</th>
                                                     <td width="2%">:</td>
-                                                    <td>Male</td>
+                                                    <td><?php echo $row['joined_date'] ?></td>
                                                 </tr>
-                                                <tr>
-                                                    <th width="30%">Religion</th>
-                                                    <td width="2%">:</td>
-                                                    <td>Group</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="30%">blood</th>
-                                                    <td width="2%">:</td>
-                                                    <td>B+</td>
-                                                </tr>
+
                                             </table>
                                         </div>
                                     </div>
@@ -85,13 +77,19 @@
                                             <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
                                         </div>
                                         <div class="card-body pt-0">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            <?php echo $row['about'] ?>
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+                    <div> <button style="margin-left: 25%;">Update </button></div>
                     <!-- partial -->
 
                 </div>

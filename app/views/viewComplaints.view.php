@@ -214,7 +214,7 @@
             ?>
                 <ul>
                     <li>Order_ID <span><?php echo $row['order_id']; ?></span></li>
-                    <li>Order Status: <span><?php echo $row['order_status']; ?></span></li>
+                    <li>Order Status: <span><?php echo $row['order_state']; ?></span></li>
                     <li>Order Type: <span><?php echo $row['order_type']; ?></span></li>
                     <li>Order Created at: <span><?php echo $row['order_created_date']; ?></span></li>
                 </ul>

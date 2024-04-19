@@ -23,28 +23,41 @@ class JobProposals extends Controller
             $jobId = $_POST['jobId'];
             $description = $_POST['descriptionJobProposal'];
 
-            $attachment = ''; // do the file handling part 
+            // directory where attachment resides.
+            $targetDir = "../public/assests/images/jobProposalAttachments/";
+
+            $attachmentFile = basename($_FILES["attachment"]["name"]);
+            $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
+            $extension = pathinfo($attachmentFile, PATHINFO_EXTENSION);
+            $attachmentFile = pathinfo($attachmentFile, PATHINFO_FILENAME);
+            $uniqueAttachmentFileName = uniqid($attachmentFile, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+
+            $targetFilePath = $targetDir . $uniqueAttachmentFileName; 
+            // $isMoved = move_uploaded_file($_FILES["attachment"]["tmp_name"], $targetFilePath); // uncomment this line in order to save the file in the server.
             
-
-            if($jobMode == "Auction"){
+            if($jobMode === "Auction"){
                 $bidAmnt = $_POST['biddingAmnt'];
-                $proposalId = $this->JobHandlerModel->createProposal($description,$bidAmnt,$attachment,$jobId,$buyerId, $sellerId);
+                // $givenBidValue = $_POST['givenBid'];
+                $proposalId = $this->JobHandlerModel->createProposal($description,$bidAmnt,$uniqueAttachmentFileName,$jobId,$buyerId, $sellerId);
             }else{
-                $proposalId = $this->JobHandlerModel->createProposal($description,NULL,$attachment,$jobId,$buyerId, $sellerId);
+                $proposalId = $this->JobHandlerModel->createProposal($description,NULL,$uniqueAttachmentFileName,$jobId,$buyerId, $sellerId);
             }
-            // $data['proposalId'] = $proposalId;
+            $data['proposalId'] = $proposalId;
+            echo "
+                <script>
+                    window.location.href = '" . BASEURL . "sellerDashboard';
+                </script>
+            ";
 
-            header("Location:sellerProfile");
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
             $data['buyerId'] = $_SESSION['userId'];
-            // $data['proposalDets'] = $this->viewAllProposalsForAJob($data['jobId'],$data['buyerId']);
             $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
-            // $data['proposalDetails'] = $allProposals;
+            $Job = $this->JobHandlerModel->getJobName($data['jobId']);
+            $data['jobDets'] = mysqli_fetch_assoc($Job);
             $this->view('jobProposals',$data);
             show($data);
         }
-        
     }
 
     // viewing a single job proposal.

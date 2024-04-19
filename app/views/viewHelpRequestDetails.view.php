@@ -23,7 +23,7 @@
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Complaint no: <?php echo $data['inquiryId']
+                <span class="text">Help Request no: <?php echo $data['inquiryId']
                                                     ?></span>
 
             </div>

@@ -112,7 +112,7 @@ class InquiryHandler extends database
 
     public function getComplaints()
     {
-        $query = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description,c.inquiry_status,c.created_at from complaints i join inquiries c ON i.complaint_id = c.inquiry_id";;
+        $query = "SELECT i.complaint_id,i.order_id,c.inquiry_id,c.subject,c.description,c.inquiry_status,c.created_at from complaints i join inquiries c ON i.complaint_id = c.inquiry_id order by c.inquiry_id desc";;
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -129,7 +129,7 @@ class InquiryHandler extends database
 
     public function getHelpRequests()
     {
-        $query = "SELECT i.request_id,c.inquiry_id,c.subject,c.description,c.attachements,c.response,c.inquiry_status,c.created_at from help_requests i join inquiries c ON i.request_id = c.inquiry_id";;
+        $query = "SELECT i.request_id,c.inquiry_id,c.subject,c.description,c.attachements,c.response,c.inquiry_status,c.created_at from help_requests i join inquiries c ON i.request_id = c.inquiry_id order by c.inquiry_id DESC";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -277,6 +277,24 @@ class InquiryHandler extends database
 
             // Close the statement
             $stmt->close();
+        }
+    }
+
+
+    public function getInquiries()
+    {
+        $query = "SELECT * from inquiries ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 }

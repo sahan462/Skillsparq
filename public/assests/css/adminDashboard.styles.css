@@ -9,15 +9,15 @@
 
 :root{
     /* ===== Colors ===== */
-    --primary-color: #0E4BF1;
+    --primary-color: #06f686;
     --panel-color: #FFF;
-    --text-color: #000;
+    --text-color: #FFF;
     --black-light-color: #707070;
     --border-color: #e6e5e5;
     --toggle-color: #DDD;
-    --box1-color: #4DA3FF;
-    --box2-color: #FFE6AC;
-    --box3-color: #E7D1FC;
+    --box1-color: #1dbf73;
+    --box2-color: #1dbf73;
+    --box3-color: #1dbf73;
     --title-icon-color: #fff;
     
     /* ====== Transition ====== */

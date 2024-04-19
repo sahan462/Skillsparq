@@ -130,7 +130,8 @@
                                         <div class="text">
                                             Your Bidding Amount : 
                                         </div>
-                                        <input type="number" id="bidValue" name="biddingAmnt" min="<?php echo $givenStartingBid?>" max="1000" required>
+                                        <input type="number" id="bidValue" name="biddingAmnt" required>
+                                        <input type="hidden" value="<?php echo $givenStartingBid?>" name="givenBid" id="startBidAmnt">
                                         <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
                                         <input type="hidden" value="<?php echo $buyerId?>" name="buyerId">
                                         <input type="hidden" value="<?php echo $jobId?>" name="jobId">
@@ -163,6 +164,7 @@
                             <div class="buttons">
                                 <button onclick="handleConfirmAuc('sendNo')">No</button>
                                 <button onclick="handleConfirmAuc('sendYes')">Yes</button>
+                                
                             </div>
                         </div>
                     </div>
