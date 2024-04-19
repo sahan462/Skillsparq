@@ -43,12 +43,18 @@ class JobProposals extends Controller
                 $proposalId = $this->JobHandlerModel->createProposal($description,NULL,$uniqueAttachmentFileName,$jobId,$buyerId, $sellerId);
             }
             $data['proposalId'] = $proposalId;
+            echo "
+                <script>
+                    window.location.href = '" . BASEURL . "sellerDashboard';
+                </script>
+            ";
 
-            header("Location:sellerProfile");
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
             $data['buyerId'] = $_SESSION['userId'];
             $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+            $Job = $this->JobHandlerModel->getJobName($data['jobId']);
+            $data['jobDets'] = mysqli_fetch_assoc($Job);
             $this->view('jobProposals',$data);
             show($data);
         }

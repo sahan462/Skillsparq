@@ -1,17 +1,28 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $username = $data['sellerProfileDetails']['user_name'];
-    $profilepicture = $data['sellerProfileDetails']['profile_pic'];
-    $firstname = $data['sellerProfileDetails']['first_name'];
-    $lastname = $data['sellerProfileDetails']['last_name'];
+    $username = $data['profileDetails']['user_name'];
+    $profilepicture = $data['profileDetails']['profile_pic'];
+    $firstname = $data['profileDetails']['first_name'];
+    $lastname = $data['profileDetails']['last_name'];
     $Country = "Sri Lanka";
-    $DateJoined = $data['sellerProfileDetails']['joined_date'];
-    $lastSeen = $data['sellerProfileDetails']['last_seen'];
-    $about = $data['sellerProfileDetails']['about'];
-    $userId = $data['sellerProfileDetails']['user_id'];
+    $DateJoined = $data['profileDetails']['joined_date'];
+    $lastSeen = $data['profileDetails']['last_seen'];
+    $about = $data['profileDetails']['about'];
+    $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = (array) $data['gigs'];
+
+    $languages = $data['sellerProfileDets']['languages'];
+    $languages = explode(" ", $languages);
+    
+    // print_r($languages);
+
+    $skills = $data['sellerProfileDets']['skills'];
+    $education = $data['sellerProfileDets']['education'];
+    $portfolio = $data['sellerProfileDets']['portfolio'];
+    // show($data);
+    // print_r($_SESSION);
 ?>
 
 <!-- Main Container for Seller -->
@@ -54,7 +65,7 @@
                     <!-- <label for="attachments" class="type-1">Country:</label> -->
                 </div>
                 <div class="row">
-                    <label for="attachments" class="type-1">About:</label>
+                    <label for="about" class="type-1">About:</label>
                     <textarea rows="5" id="about" name="about"><?php echo $about; ?></textarea>
                 </div>
                 <div class="buttons">
@@ -117,8 +128,8 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" onclick="confirmActionProfDelete(action)">Cancel Delete</button>
-                    <button type="button" onclick="confirmActionProfDelete(action)">Delete Profile</button>
+                    <button type="button" onclick="confirmActionProfDelete('cancelDelete')">Cancel Delete</button>
+                    <button type="button" onclick="confirmActionProfDelete('sendDelete')">Delete Profile</button>
                 </div>
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
@@ -153,11 +164,8 @@
     <!-- Modal 3 Language Profile Form Modal (Sub) -->
     <div class="overlay" id="overlayAddLanguages">
         <div class="modal" id="ModalAddLanguages">
-            <form id="languageForm" method="post" action="./sellerProfile">
+            <form id="languageForm" method="post" action="./sellerProfile/addProfileLanguages">
                 <div class="seller-profile-picture">
-                    <!-- <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php //echo $profilepicture?>" alt="pro-pic">
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
@@ -166,15 +174,21 @@
                                 echo $firstname ." ". $lastname;
                             ?>
                         </div>
-                        <div class="seller-question">
-                            Add Languages You're familiar with.
+                        <div class="sellerAddLang">
+                            <p>Add Languages You're familiar with.</p>
+                            <ul id="addLangList">
+                                <input type="text" name="languages" spellcheck="false" id="inputAddLang" class="inputAddLang" >
+                            </ul>
                         </div>
-                        <input type="text">
+                        <div class="details">
+                            <p><span>10</span> tags are remaining</p>
+                            <!-- <button>Remove All</button> -->
+                        </div>
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" onclick="confirmActionProfAddLang('Cancel')">Cancel</button>
-                    <button type="button" onclick="confirmActionProfAddLang('Add')">Add Languages</button>
+                    <button type="button" onclick="confirmActionProfAddLang('cancelAddLang')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddLang('addLang')">Add Languages</button>
                 </div>
 
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
@@ -199,8 +213,116 @@
         <div class="confirmation" id="sendConfirmProfAddLang">
             <p>Are you sure want to continue?</p>
             <div class="buttons">
-                <button onclick="handleConfirmProfAddLan('sendDeleteNo')">No</button>
-                <button onclick="handleConfirmProfAddLan('sendDeleteYes')">Yes</button>
+                <button onclick="handleConfirmProfAddLan('sendDeleteLangNo')">No</button>
+                <button onclick="handleConfirmProfAddLan('sendDeleteLangYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################################################################### -->
+
+    <!-- Modal 4 Skills Profile Form Modal (Sub) -->
+    <div class="overlay" id="overlayAddSkills">
+        <div class="modal" id="ModalAddSkills">
+            <form id="skillsForm" method="post" action="./sellerProfile/addProfileSKills">
+                <div class="seller-profile-picture">
+                </div>
+                <div class="row">
+                    <div class="seller-modal-name">
+                        <div class="seller-name">
+                            <?php 
+                                echo $firstname ." ". $lastname;
+                            ?>
+                        </div>
+                        <div class="seller-question">
+                            Add Skills You're familiar with.
+                        </div>
+                        <input type="text" name="skills">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" onclick="confirmActionProfAddSkills('cancelAddSkills')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddSkills('addSkills')">Add Skills</button>
+                </div>
+
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 4 Skills Profile Cancel Confirmation Modal (Sub) -->
+    <div class="overlay" id="cancelConfirmProfAddSkillsOverlay">
+        <div class="confirmation" id="cancelConfirmProfAddSkills">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddSkills('cancelAddSkillsNo')">No</button>
+                <button onclick="handleConfirmProfAddSkills('cancelAddSkillsYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 Skills Profile Confirm Proceed Modal (Sub) -->
+    <div class="overlay" id="sendConfirmProfAddSkillsOverlay">
+        <div class="confirmation" id="sendConfirmProfAddSkills">
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddSkills('sendAddSkillsNo')">No</button>
+                <button onclick="handleConfirmProfAddSkills('sendAddSkillsYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################################################################### -->
+
+    <!-- Modal 5 Education Profile Form Modal (Sub) -->
+    <div class="overlay" id="overlayAddEduc">
+        <div class="modal" id="ModalAddEduc">
+            <form id="educationForm" method="post" action="./sellerProfile/addProfileEducation">
+                <div class="seller-profile-picture">
+                </div>
+                <div class="row">
+                    <div class="seller-modal-name">
+                        <div class="seller-name">
+                            <?php 
+                                echo $firstname ." ". $lastname;
+                            ?>
+                        </div>
+                        <div class="seller-question">
+                            Add Your Education here.
+                        </div>
+                        <input type="text" name="education">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" onclick="confirmActionProfAddEduc('cancelAddEducation')">Cancel</button>
+                    <button type="button" onclick="confirmActionProfAddEduc('addEducation')">Add Education</button>
+                </div>
+
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 5 Education Profile Cancel Confirmation Modal (Sub) -->
+    <div class="overlay" id="cancelConfirmProfAddEducOverlay">
+        <div class="confirmation" id="cancelConfirmProfAddEduc">
+            <p>Are you sure want to cancel?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddEduc('cancelAddEducNo')">No</button>
+                <button onclick="handleConfirmProfAddEduc('cancelAddEducYes')">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 Education Profile Confirm Proceed Modal (Sub) -->
+    <div class="overlay" id="sendConfirmProfAddEducOverlay">
+        <div class="confirmation" id="sendConfirmProfAddEduc">
+            <p>Are you sure want to continue?</p>
+            <div class="buttons">
+                <button onclick="handleConfirmProfAddEduc('sendAddEducNo')">No</button>
+                <button onclick="handleConfirmProfAddEduc('sendAddEducYes')">Yes</button>
             </div>
         </div>
     </div>
@@ -315,11 +437,27 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($languages)){
-                                echo $languages;    
-                            }else{
-                                echo "Add languages that you're proficient with!";
-                            }
+                            // if(isset($languages)){
+                        ?>
+                                    <div>
+                                        <ol>
+                        <?php
+                                // foreach($languages as $lang){
+                        ?>
+                                            <li>
+                                                <?php 
+                                                    // echo $lang;
+                                                ?>
+                                            </li>
+                        <?php 
+                                // }
+                        ?>
+                                        </ol>
+                                    </div>
+                        <?php  
+                            // }else{
+                            //     echo "Add languages that you're proficient with!";
+                            // }
                         ?>
                     </div>
                 </div>
@@ -333,7 +471,8 @@
                             <span>Skills</span>
                         </div>
                         <div>
-                            <a href=""><button class="addButton">Add</button></a>
+                            <!-- <a href=""><button class="addButton">Add</button></a> -->
+                            <button class="addButton" onclick="openProfileaddSkillsModal(this)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -356,7 +495,8 @@
                             <span>Education</span>
                         </div>
                         <div>
-                            <a href=""><button class="addButton">Add</button></a>
+                            <!-- <a href=""><button class="addButton">Add</button></a> -->
+                            <button class="addButton" onclick="openProfileAddEducationModal(this)">Add</button>
                         </div>
                     </div>
                     <div class="description-content">
@@ -367,6 +507,21 @@
                                 echo "Add your education";
                             }
                         ?>
+                    </div>
+                </div>
+            </div>
+            <div class="profile">
+                <div class="description">
+                    <div class="profileAdditionals">
+                        <div class="topic">
+                            <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>send-email</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-568.000000, -254.000000)" fill="#000000"> <path d="M584,283 C584,283 580.872,276.976 580,275 L596.075,259.779 L584,283 L584,283 Z M572,270 L595,259 L579,274 C578.996,273.996 572,270 572,270 L572,270 Z M599,255 C597.844,255.563 568,270 568,270 C568,270 578.052,276.059 578,276 C577.983,275.981 584,287 584,287 C584,287 599.75,256.5 600,256 C600.219,255.375 599.75,254.688 599,255 L599,255 Z" id="send-email" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+                            <span>View Send Proposals</span>
+                        </div>
+                        <div>
+                            <button class="addButton1">
+                                <a href="sentJobProposals" class="addButtonAnchor">View</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
