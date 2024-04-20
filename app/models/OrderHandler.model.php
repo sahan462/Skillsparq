@@ -61,8 +61,6 @@ class OrderHandler extends database
                 throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
             }
 
-        }else{
-            throw new Exception("Invalid Order Type");
         }
 
         return $orderId;

@@ -41,7 +41,7 @@
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description"  rows="10" spellcheck="false" oninput="this.className = ''"  value="chamal"></textarea>
+                        <textarea name="description"  rows="10" spellcheck="false" oninput="this.className = ''"  value="chamal" style="height: 300px"></textarea>
                     </div>
 
                     <div class="category" style="margin-top: 16px">
@@ -95,7 +95,7 @@
                                     <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" >
                                 </td>
                                 <td>
-                                <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" >
+                                    <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" >
                                 </td>
                                 <td>
                                     <input type="number" name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" >
@@ -212,20 +212,6 @@
                     <span class="type-2">add cover image and other slider images</span>
 
                     <div class="images">
-
-                        <table>
-
-                            <tr>
-
-                            </tr>
-
-                            <tr>
-
-                            </tr>
-
-                            <tr>
-
-                            </tr>
 
                         </table>
 
