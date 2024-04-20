@@ -142,6 +142,13 @@
             </div>
 
 
+            <form>
+                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+                <br>
+
+            </form>
+
+
 
 
 
@@ -217,6 +224,7 @@
 
             </div>
 
+
             <div id="viewPayments" style="display: none;">
 
                 <ul>
@@ -237,9 +245,9 @@
         </form>
 
         <form id="refundForm" method="post" style="display: none;">
-            <input type="hidden" id="sendRefund" name="sendRefund" value="">
             <input type="hidden" id="payment_id" name="payment_id" value="">
-
+            <input type="hidden" id="sendResponse" name="sendResponse" value="">
+            <input type="hidden" id="buyerID" name="buyerID" value="">
         </form>
 
     </div>
@@ -302,17 +310,17 @@
         }
 
         function refund() {
-
-            var confirmation = confirm('Are you sure that you want to send a refund request to the admin')
+            var response = document.getElementById("response").value;
+            var confirmation = confirm('Are you sure that you want to send a refund request to the admin?');
+            var buyerID = <?php echo $row['buyer_id']; ?>
 
             if (confirmation) {
-
-                document.getElementById("refundForm").elements['sendRefund'].value = 1
-                document.getElementById("refundForm").elements['payment_id'].value = 1
-                document.getElementById("refundForm").submit()
-
+                var paymentId = 1; // Set the payment ID here
+                document.getElementById("payment_id").value = paymentId;
+                document.getElementById("sendResponse").value = response;
+                document.getElementById("buyerID").value = buyerID
+                document.getElementById("refundForm").submit();
             }
-
         }
 
         function updateUserBlacklistSeller() {

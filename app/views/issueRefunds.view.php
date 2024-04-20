@@ -20,6 +20,8 @@
 
             <div>
 
+                <p class="heading">Complaints</p>
+
                 <table class="content-table">
                     <thead>
                         <th>order_id
@@ -31,10 +33,11 @@
                         <tr>
 
                             <?php foreach ($refund as $row) { ?>
-                                <td><?php echo $row['order_id'] ?></td>
-                                <td><?php echo $row['amount'] ?></td>
-
-                            <?php } ?>
+                                <td><?php echo $row['payment_id'] ?></td>
+                                <td><?php echo $row['responseCSA'] ?></td>
+                                <td><a href='viewRefunds?payment_id=<?php echo $row["payment_id"]; ?>'>
+                                        <button>View</button>
+                                    </a></td> <?php } ?>
 
                         </tr>
 

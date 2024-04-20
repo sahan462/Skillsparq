@@ -8,6 +8,7 @@ class AdminDashboard extends Controller
     private $userHandlerModel;
     private $profileHandlerModel;
     private $OrderHandlerModel;
+    private $paymentHandlerModel;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class AdminDashboard extends Controller
         $this->userHandlerModel = $this->model('userHandler');
         $this->profileHandlerModel = $this->model('profileHandler');
         $this->OrderHandlerModel = $this->model('OrderHandler');
+        $this->paymentHandlerModel = $this->model('paymentHandler');
     }
 
     public function index()
@@ -87,6 +89,10 @@ class AdminDashboard extends Controller
         $data['orderprev'] = $orderprev;
         $userType = $this->userHandlerModel->getAllUsers();
         $data['userType'] = $userType;
+        $paymentStats = $this->paymentHandlerModel->getPaymentStats();
+        $data['paymentStats'] = $paymentStats;
+        $totalPayments = $this->paymentHandlerModel->totalPayments();
+        $data['totalPayments'] = $totalPayments;
 
         $this->view('adminDashboard', $data);
     }
