@@ -8,19 +8,20 @@
     $Country = "Sri Lanka";
     $DateJoined = $data['profileDetails']['joined_date'];
     $lastSeen = $data['profileDetails']['last_seen'];
+    // $lastSeen = $_SESSION['status'];
     $about = $data['profileDetails']['about'];
     $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
     $Gigs = (array) $data['gigs'];
 
-    $languages = $data['sellerProfileDets']['languages'];
-    $languages = explode(" ", $languages);
+    // $languages = $data['sellerProfileDets']['languages'];
+    // $languages = explode(" ", $languages);
     
     // print_r($languages);
 
-    $skills = $data['sellerProfileDets']['skills'];
-    $education = $data['sellerProfileDets']['education'];
-    $portfolio = $data['sellerProfileDets']['portfolio'];
+    // $skills = $data['sellerProfileDets']['skills'];
+    // $education = $data['sellerProfileDets']['education'];
+    // $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // print_r($_SESSION);
 ?>
@@ -177,7 +178,7 @@
                         <div class="sellerAddLang">
                             <p>Add Languages You're familiar with.</p>
                             <ul id="addLangList">
-                                <input type="text" name="languages" spellcheck="false" id="inputAddLang" class="inputAddLang" >
+                                <!-- <input type="text" name="languages" spellcheck="false" id="inputAddLang" class="inputAddLang" > -->
                             </ul>
                         </div>
                         <div class="details">
@@ -338,7 +339,7 @@
         <div class="profile-container">
             <div class="profile">
 
-                <?php if($lastSeen == 'online') {?>
+                <?php if($lastSeen === 'online' || $_SESSION['status'] === "online") {?>
 
                 <div class="online">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>

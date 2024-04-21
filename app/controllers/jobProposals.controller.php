@@ -3,10 +3,12 @@
 class JobProposals extends Controller
 {
     private $JobHandlerModel;
+    private $OrderHandlerModel;
     
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('JobHandler');
+        $this->OrderHandlerModel = $this->model('OrderHandler');;
     }
 
     public function index()
@@ -52,11 +54,11 @@ class JobProposals extends Controller
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
             $data['buyerId'] = $_SESSION['userId'];
-            $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
-            $Job = $this->JobHandlerModel->getJobName($data['jobId']);
-            $data['jobDets'] = mysqli_fetch_assoc($Job);
+            // $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+            $data['jobDets'] = $this->JobHandlerModel->getJob($data['jobId']);
+            $data['proposal&SellerDets'] = $this->JobHandlerModel->getSellerDetailsOfJobProposals($data['jobId']);
             $this->view('jobProposals',$data);
-            show($data);
+            // show($data);
         }
     }
 
@@ -68,16 +70,52 @@ class JobProposals extends Controller
         return $proposalInfo;
     }
 
-    // viewing all job proposals for a particular job created .
-    public function viewAllProposalsForAJob($jobId,$buyerId)
+    // rejecting a single job proposal.
+    public function rejectJobProposal()
     {
-        // $proposalCount = $this->JobHandlerModel->getProposalCountForAJob($jobId,$buyerId);
-        // $proposalCount = mysqli_fetch_assoc($proposalCount);
-        // $count = $proposalCount['count'];
-        // print_r($count);
-        // $proposalDets = $this->JobHandlerModel->getJobProposals($jobId,$buyerId);
-        // $proposalDets = mysqli_fetch_assoc($proposalDets);
-        // return $proposalDets;
+        $proposalId = $_GET['proposalId'];
+        $orderStatus = $_GET['Status'];
+
+        if(isset($proposalId) && $orderStatus === "pending"){
+            $orderStatus = "Rejected";
+            $result = $this->JobHandlerModel->changeProposalStatus($orderStatus,$proposalId);
+            if($result){
+                echo "
+                 <script>
+                    window.alert('Order Rejected');
+                    window.location.href = '" . BASEURL . "jobproposals';
+                 </script>
+                ";
+            }
+        }
     }
 
+    public function acceptJobProposal()
+    {
+        $proposalId = $_GET['proposalId'];
+        $orderStatus = $_GET['Status'];
+        $jobId = $_GET['jobId'];
+        $sellerId = $_GET['sellerId'];
+        $buyerId = $_GET['buyerId'];
+
+
+        if(isset($proposalId) && $orderStatus === "pending"){
+            $orderStatus = "Accepted";
+            $result = $this->JobHandlerModel->changeProposalStatus($orderStatus,$proposalId);
+            if($result){
+                $isRejectedProps = $this->JobHandlerModel->setRejectPropStatus($jobId);
+                if($isRejectedProps){
+                    $orderState = "pending";
+                    $orderType = "Job";
+                    $currentDateTime = date('Y-m-d H:i:s');
+                    // echo "
+                    // <script>
+                    //     window.alert('Order Accepted');
+                    //     window.location.href = '" . BASEURL . "jobproposals';
+                    // </script>
+                    // ";
+                }
+            }
+        }
+    }
 }

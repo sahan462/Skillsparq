@@ -118,11 +118,17 @@ body{
 }
 
 /*Active Status*/
-.dashboard-container .profile .active-status{
-    position: absolute; 
-    right: 0px; 
-    height: 20px; 
-    left: 0px;
+.dashboard-container .profile .online{
+    color: #31d65a;
+    border-bottom: 4px solid #31d65a;
+    margin-bottom: 8px;
+}
+
+.dashboard-container .profile .onlineindc{
+    height: 8px;
+    width: 8px;
+    background-color: #31d65a;
+    border-radius: 100%;
 }
 
 /*Profile Pic upload*/
@@ -132,6 +138,7 @@ body{
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
+    margin-top: 8px;
 }
 .dashboard-container .profile .profile-picture img{
     width: 140px;
