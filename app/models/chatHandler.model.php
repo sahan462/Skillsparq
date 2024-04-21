@@ -49,11 +49,12 @@ class ChatHandler extends database
         }
 
         //send new message
-        public function sendNewTextMessage($meesage, $date, $chatId, $senderId, $receiverId)
+        public function sendNewTextMessage($message, $file, $date, $chatId, $senderId, $receiverId)
         {
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO messages 
             (
-                message, 
+                message,
+                file, 
                 date, 
                 chat_id,
                 sender_id,   
@@ -61,14 +62,14 @@ class ChatHandler extends database
             ) 
             VALUES 
             (
-                ?, ?, ?, ?, ?
+                ?, ?, ?, ?, ?, ?
             )");
         
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
     
-            mysqli_stmt_bind_param($stmt, "ssiii", $meesage, $date, $chatId, $senderId, $receiverId);
+            mysqli_stmt_bind_param($stmt, "sssiii", $message, $file, $date, $chatId, $senderId, $receiverId);
     
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
@@ -82,9 +83,9 @@ class ChatHandler extends database
 
 
         //read Messages
-        public function readAllMessages($chat_id, $sender_id, $receiver_id)
+        public function readAllMessages($chat_id)
         {
-            $query = "SELECT * FROM messages where chat_id = ? and sender_id = ? and receiver_id = ?";
+            $query = "SELECT * FROM messages where chat_id = ? order by message_id asc";
 
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -92,7 +93,7 @@ class ChatHandler extends database
                 die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
             }
     
-            mysqli_stmt_bind_param($stmt, "iii", $chat_id, $sender_id, $receiver_id);
+            mysqli_stmt_bind_param($stmt, "i", $chat_id);
     
             if (mysqli_stmt_execute($stmt)) {
                 return $stmt->get_result();
