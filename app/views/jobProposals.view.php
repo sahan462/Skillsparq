@@ -2,8 +2,8 @@
         include "components/buyerSimpleHeader.component.php";
         $propCardDets = $data['proposal&SellerDets'];
         $jobDetails = $data['jobDets'];
-        // show($propCardDets);
-        print_r($propCardDets);
+        show($propCardDets);
+        // print_r($propCardDets);
         // print_r($data);
         // show($data);
 ?>
@@ -22,6 +22,8 @@
 				<div class="jobPropCardContainer">
 						<?php
 								foreach($propCardDets as $proposals){
+                                    if(!empty($proposals)){
+                                        if($proposals['Status'] !== "Accepted" && $proposals['Status'] === "pending"){
 						?>
 						<div class="jobPropCardDetails">
 								<div class="propCollapsBtnDiv">
@@ -43,14 +45,23 @@
                                                 <a href=""><button class="profile">Seller Profile</button></a>
                                             </div>
                                             <div>
-                                                <button class="accept" onclick=""><a href="#">Accept</a></button>
-                                                <button class="reject" onclick=""><a href="jobProposal/rejectProposal">Reject</a></button>
+                                                <button class="accept" onclick=""><a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>&amp;jobId=<?php echo $proposals['job_id']?>&amp;sellerId=<?php echo $proposals['seller_id']?>&amp;BuyerId=<?php echo $proposals['buyer_id']?>">Accept</a></button>
+
+                                                <button class="reject" onclick=""><a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>">Reject</a></button>
                                             </div>   
                                         </div>
                                 </div>
 							<!-- </div> -->
 						</div>
 						<?php
+                                        }
+                                    }else if(empty($proposals)){
+                        ?>
+                        <div class="jobPropCardDetails">
+                            <h1>Oops There are no such proposals yet</h1>
+                        </div>
+                        <?php
+                                    }
 								}
 						?>
 				</div> 

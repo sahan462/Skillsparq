@@ -15,8 +15,8 @@
     $senderId = '';
     $receiverId = '';
 
-    $data['lastSeen'] = 'online';
-    $data['receiverName'] = 'Damitha Sahan';
+    // $data['lastSeen'] = 'online';
+    // $data['receiverName'] = 'Damitha Sahan';
     print_r($_SESSION['userId']);
 ?>
 

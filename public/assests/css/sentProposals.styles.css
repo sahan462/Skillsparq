@@ -61,7 +61,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 100px;
-    height: 32px;
+    /* height: 32px; */
     font-size: 16px;
     background-color: inherit;
     float: left;
@@ -123,10 +123,10 @@ table, th, td{
     border-bottom: 1px solid #c5c6c9 !important;
 }
 Tbody tr{
-    cursor: pointer;
+    cursor:auto;
 }
 Tbody tr:hover{
-    background-color: #f1f1f1;
+    background-color: #fff!important;
 }
 Tbody th {
     font-size: 16px;
@@ -135,6 +135,10 @@ Tbody td{
     justify-content: center;
     text-align: center;
     padding: 8px;
+}
+
+.clearAllAnc{
+    color: #e41f11;
 }
 
 /*buyer column*/
@@ -147,6 +151,10 @@ Tbody td{
     height: 48px;
     border-radius: 100%;
     object-fit: cover;
+}
+
+.tablinks{
+
 }
 
 @media only screen and (max-width: 900px) {

@@ -17,9 +17,9 @@
         <div class="leftContainer">
             <!-- Tab links -->
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Pending</button>
-                <button class="tablinks" onclick="openCity(event, 'Accepted')" id="accepted">Accepted</button>
-                <button class="tablinks" onclick="openCity(event, 'Cancelled')" id="cancelled">Cancelled</button>
+                <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Pending Acceptance</button>
+                <button class="tablinks" onclick="openCity(event, 'Accepted')" id="accepted">Proposal Accepted</button>
+                <button class="tablinks" onclick="openCity(event, 'Cancelled')" id="cancelled">Cancelled Proposal</button>
             </div>
 
             <!-- Tab content -->
@@ -32,9 +32,9 @@
                             <tr>
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
-                                <th style="width: 28%;">Job</th>
-                                <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 28%;">Job Title</th>
+                                <th style="width: 10%;">Job Due On</th>
+                                <th style="width: 10%;">Amount</th>
                                 <th style="width: 10%;">Status</th>
                             </tr>
                         </div>
@@ -71,9 +71,9 @@
                             <tr style="position: sticky">
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
-                                <th style="width: 28%;">Job</th>
-                                <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 28%;">Job Title</th>
+                                <th style="width: 10%;">Job Due On</th>
+                                <th style="width: 10%;">Amount</th>
                                 <th style="width: 10%;">Status</th>
                             </tr>
                         </div>
@@ -111,10 +111,10 @@
                             <tr style="position: sticky">
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
-                                <th style="width: 28%;">Job</th>
-                                <th style="width: 10%;">Due On</th>
-                                <th style="width: 10%;">Total Amount</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 28%;">Job Title</th>
+                                <th style="width: 10%;">Job Due On</th>
+                                <th style="width: 10%;">Amount</th>
+                                <th style="width: 10%;"><a href="" class="clearAllAnc">Clear All</a></th>
                             </tr>
                         </div>
                         <div class="Tbody">
@@ -133,7 +133,7 @@
                                         <td>I will create wordpress websites</td>
                                         <td>5 Sep</td>
                                         <td>$5000</td>
-                                        <td>Package Order</td>
+                                        <td><button>Delete</button></td>
                                     </tr>
                             <?php 
                                     }

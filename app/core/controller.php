@@ -153,12 +153,13 @@ class Controller
     public function sendVerificationMessage($receiverPhoneNumber, $receiverFirstName, $receiverLastName, $body)
     {
 
-        require_once('../../vendor/nofity/autoload.php');
+        // require_once('../../vendor/nofity/autoload.php');
+        require_once('/xampp/htdocs/skillsparq/vendor/autoload.php');
 
         $api_instance = new NotifyLk\Api\SmsApi();
 
-        $user_id = "26484";
-        $api_key = "6pzDO0QcxbJ0CcR3DH6W";
+        $user_id = "27002";
+        $api_key = "buY7KcksNwDdJzEJvCZL";
         $message = $body;
         $to = $receiverPhoneNumber;
         $sender_id = "NotifyDEMO";
