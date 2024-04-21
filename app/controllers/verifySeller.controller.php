@@ -107,8 +107,8 @@ class VerifySeller extends Controller
             
                 $user_id = $this->userHandlerModel->addNewSeller($password, $role, $agreement);
                 $this->sellerHandlerModel->addNewSeller($user_id, $phoneNumber);
-                $this->sellerHandlerModel->addUserNameAndId($user_id, $userName);
                 $this->profileHandlerModel->addNewProfile($userName, $fisrtName, $lastName, $user_id);
+                $this->sellerHandlerModel->addUserNameAndId($user_id, $userName);
 
                 $otp_confirmation = false;
 
