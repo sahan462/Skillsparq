@@ -31,10 +31,10 @@ class DisplayJob extends Controller
         $buyerJobCount = $this->jobController->getBuyerJobCount($buyerId);
         $data['jobCount'] = $buyerJobCount['COUNT(*)'];
        
-        $standardJob = $this->jobHandlerModel->getJob($jobId);
+        $job = $this->jobHandlerModel->getJob($jobId);
 
-        if ($standardJob) {
-            $job = mysqli_fetch_assoc($standardJob);
+        if ($job) {
+            // $job = mysqli_fetch_assoc($standardJob);
             if ($job['publish_mode'] == 'Auction Mode') {
 
                 $auction = $this->jobHandlerModel->getAuction($job['job_id'], $buyerId);

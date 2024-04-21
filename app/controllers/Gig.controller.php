@@ -11,8 +11,8 @@ class Gig extends Controller
 
     public function publishGig()
     {
-        print_r($_POST);
-        print_r($_FILES);
+        // print_r($_POST);
+        // print_r($_FILES);
 
         if (isset($_POST['btnSubmit']))
         {
@@ -167,6 +167,7 @@ class Gig extends Controller
     {
         
         if(isset($_POST["update"])){
+            
             // For gigs table
             $gigId = $_POST['gigId'];
             $title = $_POST['title'];

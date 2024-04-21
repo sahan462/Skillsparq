@@ -2,6 +2,8 @@
 
 class Order extends Controller
 {
+    private $OrderHandlerModel;
+    private $ChatHandlerModel;
 
     public function __construct(){
         $this->OrderHandlerModel = $this->model('orderHandler');
@@ -35,139 +37,159 @@ class Order extends Controller
 
         // Get form data
         $orderState = "Requested";
-        $orderType = $_POST['orderType'];
-        $buyerId = $_POST['buyerId'];    
-        $sellerId = $_POST['sellerId'];
+        // Modal #1 - form #1
         $requestDescription = $_POST['requestDescription'];
-        $attachment = $_FILES['attachments'];
+        // $attachment = $_FILES['attachments'];
+        $attachment = "Hithere";
         $gigId = $_POST['gigId'];
+        $sellerId = $_POST['sellerId'];
+        $orderType = $_POST['orderType'];
+        $buyerId = $_POST['buyerId'];  
+        
         $packageId = $_POST['packageId'];
     
         // Set current datetime and user name
         date_default_timezone_set('UTC');
         $currentDateTime = date('Y-m-d H:i:s');
         $userName = $_SESSION['userName'];
-        $attachmentName = basename($attachment["name"]);
+        // $attachmentName = basename($attachment["name"]);
+        $attachmentName = "Hithere";
     
         // Create order and handle attachment
         $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
-        
+
         if($orderId){
-            $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
-        }else{
-            echo "
-            <script>
-                alert('Error Crearing package order');
-            </script>
-            ";
-        }
-
-        $orderFileName = "Order" . "_" . $orderId;
-        $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
-
-        //open a new order file
-        mkdir($targetDir, 0777, true);
-
-        $upload = 0;
-
-        // Upload attachment if provided
-        if($attachmentName != ""){
-            $targetFilePath = $targetDir . $attachmentName;
-            $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
-        }else{
-            $attachmentName = "";
-        }
-    
-        // Handle success or failure
-        if($upload || $chatId){
-
-            if(isset($_SESSION['email'])){
-
-                //notify the seller using an email
-                $newOrderRequestEmail = `
-                
-                            <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>New Order Request</title>
-                <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f4;
-                    margin: 0;
-                    padding: 0;
-                }
-                .container {
-                    max-width: 600px;
-                    margin: 20px auto;
-                    padding: 20px;
-                    background-color: #fff;
-                    border-radius: 10px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                }
-                h1 {
-                    color: #333;
-                }
-                p {
-                    color: #666;
-                    line-height: 1.6;
-                }
-                .button {
-                    display: inline-block;
-                    padding: 10px 20px;
-                    background-color: #007bff;
-                    color: #fff;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }
-                </style>
-                </head>
-                <body>
-                <div class="container">
-                    <h1>New Order Request</h1>
-                    <p>Hello [Seller Name],</p>
-                    <p>You have received a new order request from a buyer. Please review the details and take necessary action.</p>
-                    <p><strong>Order Details:</strong></p>
-                    <ul>
-                    <li><strong>Order ID:</strong> [Order ID]</li>
-                    <li><strong>Buyer Name:</strong> [Buyer Name]</li>
-                    <li><strong>Product/Service:</strong> [Product/Service Name]</li>
-                    <li><strong>Order Amount:</strong> [Order Amount]</li>
-                    </ul>
-                    <p>You can view and manage your orders by logging into your account.</p>
-                    <p>If you have any questions or need assistance, feel free to contact our support team.</p>
-                    <a href="[Your Website URL]" class="button">Login to Your Account</a>
-                    <p>Thank you,</p>
-                    <p>[Your Company Name]</p>
-                </div>
-                </body>
-                </html>
-                `;
-
-            }
-
-            //send notification to seller
-            
-
-
-
             echo "
             <script>
                 alert('Order created successfully');
                 window.location.href = '" . BASEURL . 'manageOrders' . "';
             </script>
             ";
-
-
-        } else {
+        }else{
             echo "
             <script>
-                alert('Error Crearing package order');
+                alert('Error occured creating Package Order');
+                window.location.href = '" . BASEURL . 'manageOrders' . "';
             </script>
             ";
         }
+        
+        // if($orderId){
+        //     $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
+        // }else{
+        //     echo "
+        //     <script>
+        //         alert('Error Crearing package order');
+        //     </script>
+        //     ";
+        // }
+
+        // $orderFileName = "Order" . "_" . $orderId;
+        // $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
+
+        // //open a new order file
+        // mkdir($targetDir, 0777, true);
+
+        // $upload = 0;
+
+        // // Upload attachment if provided
+        // if($attachmentName != ""){
+        //     $targetFilePath = $targetDir . $attachmentName;
+        //     $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
+        // }else{
+        //     $attachmentName = "";
+        // }
+    
+        // // Handle success or failure
+        // if($upload || $chatId){
+
+        //     if(isset($_SESSION['email'])){
+
+        //         //notify the seller using an email
+        //         $newOrderRequestEmail = `
+                
+        //                     <!DOCTYPE html>
+        //         <html lang="en">
+        //         <head>
+        //         <meta charset="UTF-8">
+        //         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        //         <title>New Order Request</title>
+        //         <style>
+        //         body {
+        //             font-family: Arial, sans-serif;
+        //             background-color: #f4f4f4;
+        //             margin: 0;
+        //             padding: 0;
+        //         }
+        //         .container {
+        //             max-width: 600px;
+        //             margin: 20px auto;
+        //             padding: 20px;
+        //             background-color: #fff;
+        //             border-radius: 10px;
+        //             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        //         }
+        //         h1 {
+        //             color: #333;
+        //         }
+        //         p {
+        //             color: #666;
+        //             line-height: 1.6;
+        //         }
+        //         .button {
+        //             display: inline-block;
+        //             padding: 10px 20px;
+        //             background-color: #007bff;
+        //             color: #fff;
+        //             text-decoration: none;
+        //             border-radius: 5px;
+        //         }
+        //         </style>
+        //         </head>
+        //         <body>
+        //         <div class="container">
+        //             <h1>New Order Request</h1>
+        //             <p>Hello [Seller Name],</p>
+        //             <p>You have received a new order request from a buyer. Please review the details and take necessary action.</p>
+        //             <p><strong>Order Details:</strong></p>
+        //             <ul>
+        //             <li><strong>Order ID:</strong> [Order ID]</li>
+        //             <li><strong>Buyer Name:</strong> [Buyer Name]</li>
+        //             <li><strong>Product/Service:</strong> [Product/Service Name]</li>
+        //             <li><strong>Order Amount:</strong> [Order Amount]</li>
+        //             </ul>
+        //             <p>You can view and manage your orders by logging into your account.</p>
+        //             <p>If you have any questions or need assistance, feel free to contact our support team.</p>
+        //             <a href="[Your Website URL]" class="button">Login to Your Account</a>
+        //             <p>Thank you,</p>
+        //             <p>[Your Company Name]</p>
+        //         </div>
+        //         </body>
+        //         </html>
+        //         `;
+
+        //     }
+
+        //     //send notification to seller
+            
+
+
+
+        //     echo "
+        //     <script>
+        //         alert('Order created successfully');
+        //         window.location.href = '" . BASEURL . 'manageOrders' . "';
+        //     </script>
+        //     ";
+
+
+        // } else {
+        //     echo "
+        //     <script>
+        //         alert('Error Creating package order');
+        //     </script>
+        //     ";
+        // }
     }
     
 

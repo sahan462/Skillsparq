@@ -17,6 +17,7 @@ class SentJobProposals extends Controller
         $sellerId = $_SESSION['userId'];
         $myProposals = $this->JobHandlerModel->getSendJobProposals($sellerId);
         $data['myProposals'] = $myProposals;
+        // show($data['myProposals']);
         $this->view('sentJobProposals', $data);
     }
 }

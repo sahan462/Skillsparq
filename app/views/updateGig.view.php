@@ -333,7 +333,7 @@
 
             </div>
 
-            <input type="hidden" name="gigId" value="<?php echo $gig_id?>">
+            <input type="hidden" name="gigId" value="<?php echo $gigId;?>">
             <input type="hidden" name="packageId1" value="<?php echo $gigDetails[0]["package_id"]?>">
             <input type="hidden" name="packageId2" value="<?php echo $gigDetails[1]["package_id"]?>">
             <input type="hidden" name="packageId3" value="<?php echo $gigDetails[2]["package_id"]?>">

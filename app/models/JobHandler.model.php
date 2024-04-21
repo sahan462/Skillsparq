@@ -148,16 +148,18 @@ class JobHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $jobId);
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $fetchVal = $stmt->get_result();
+            $result = mysqli_fetch_assoc($fetchVal);
+            return $result;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 
-    public function getJobName($jobId)
+    public function getSellerDetailsOfJobProposals($jobId)
     {
-        $query = "SELECT title FROM Jobs WHERE job_id = ? ";
-        
+        $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = ? ORDER BY bid_amount ASC";
+
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
         if (!$stmt) {
@@ -167,11 +169,41 @@ class JobHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $jobId);
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function changeProposalStatus($jobId,$status)
+    {
+
+    }
+
+    // public function getJobName($jobId)
+    // {
+    //     $query = "SELECT title FROM Jobs WHERE job_id = ? ";
+        
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
 
     //get auction details
     public function getAuction($jobId,$userId){

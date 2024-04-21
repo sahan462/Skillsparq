@@ -3,6 +3,7 @@
 //change the class name
 class ManageOrders extends Controller
 {
+    private $OrderHandlerModel;
 
     public function __construct(){
         $this->OrderHandlerModel = $this->model('orderHandler');
@@ -12,9 +13,8 @@ class ManageOrders extends Controller
 
         $data['var'] = "Manage Orders Page";
         $data['title'] = "SkillSparq";
-
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
-
+        // show($data['myOrders']);
         $this->view('manageOrders', $data); 
     }
 
