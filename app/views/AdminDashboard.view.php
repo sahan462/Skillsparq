@@ -45,7 +45,7 @@
           <div class="box box3">
             <i class="uil uil-share"></i>
             <span class="text">Total Share</span>
-            <span class="number"><?php print_r($orderStateLastYear) ?></span>
+            <span class="number"><?php print_r($paymentStats) ?></span>
           </div>
         </div>
         <div class="boxes">
@@ -64,7 +64,12 @@
           <div class=" subChart">
             <canvas id="userType"></canvas>
           </div>
-
+          <div class=" subChart">
+            <canvas id="paymentStatusCurrent"></canvas>
+          </div>
+          <div class="subChart">
+            <canvas id="totalPayments"></canvas>
+          </div>
 
         </div>
 
@@ -210,7 +215,11 @@
           text: "orderState This Month (<?php echo date('m') . " 20" . date('y') ?>)"
         }
       }
+
+
     });
+
+
     <?php
     $orderNumbers = [
       $orderprev['accepted_count'],
@@ -299,6 +308,63 @@
         }
       }
     });
+    var totalPayments = []
+    <?php
+    foreach ($totalPayments as $row) {
+      echo "totalPayments.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalPayments", {
+      type: "line",
+      data: {
+        labels: rearrangedMonths,
+        datasets: [{
+          fill: false,
+          borderColor: 'green',
+          data: totalPayments
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "total Orders"
+        }
+      }
+    });
+
+    var paymentStatusCurrent = [];
+
+    <?php
+    $paymentStatusCurrent = [
+      $paymentStats['completed'],
+      $paymentStats['refunded'],
+      $paymentStats['onhold'],
+      $paymentStats['holdForRefund']
+    ];
+
+    $paymentStatsCurrentJSON = json_encode($paymentStatusCurrent);
+    ?>
+
+    paymentStatusCurrent = <?php echo $paymentStatsCurrentJSON; ?>;
+    new Chart("paymentStatusCurrent", {
+      type: "pie",
+      data: {
+        labels: ['completed', 'onhold', 'refunded', 'holdForRefund'],
+        datasets: [{
+          backgroundColor: barColors,
+          data: paymentStatusCurrent
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "payment Status Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+        }
+      }
+    });
+
 
 
 
