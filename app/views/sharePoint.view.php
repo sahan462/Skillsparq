@@ -146,20 +146,18 @@ $files=$data['files'];
             <?php } else if($_SESSION['role'] == 'Seller'){ ?>
 
                 <p class="title">
-                    <span class="big">Deliver </span>The Finished Product
+                    <span class="darkTitle">Deliver </span>The Finished Product
                 </p>
 
-                <form action="<?php echo BASEURL.'/sharePoint/uploadFile';?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo BASEURL.'/sharePoint/uploadDeliveries';?>" method="post" enctype="multipart/form-data">
 
-                    Discription of deliver 
+                    Description of deliver 
                     <br><textarea class="textbox" name="dis" rows="4" cols="50"></textarea><br><br>
                     
                     File must be compressed into .zip , .rar or .tar format.<br>
                     <div class="upload_background"><input type="file" id="productf" onchange="showProductName()" name="filex" class="filebtn"><span id='productname'></span>
                         <button type="submit" name="finalsave" class="uploadbtn">Upload And Send</button>
                     </div>
-
-                    <br>
 
                     <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
 

@@ -21,10 +21,20 @@ class Order extends Controller
         $sellerid = $_GET['sellerId'];
         $userRole = $_SESSION['role'];
 
+        // get order, buyer and seller information
         $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
+
+        $order = $data['order'];
+        $chatId = $order['chat_id'];
+
+        //retrieve the chat from the database
+        $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
         // print_r($data['order']);
         // print_r($data['buyer']);
         // print_r($data['seller']);
+        // print_r($chatId);
+        // print_r($data['chat']);
+
         $this->view('order', $data);
         
     }
