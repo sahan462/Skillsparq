@@ -120,7 +120,10 @@
 
                     <form method="post" id="chatForm"> 
                     
-                        <input type="hidden" value="<?php echo $_SESSION['userId'] ?>" id="userId">
+                        <input type="hidden" value="<?php echo $senderId ?>" id="senderId">
+                        <input type="hidden" value="<?php echo $receiverId?>" id="receiverId">
+                        <input type="hidden" value="<?php echo $chatId?>" id="chatId">
+
                         <div class="attachement">
                             <input type="file" name="messageAttachement" id="messageAttachement">
                             <label for="messageAttachement">

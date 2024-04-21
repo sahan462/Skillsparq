@@ -286,25 +286,40 @@ class InquiryHandler extends database
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $payment_id = $_POST['payment_id'];
+            $response = $_POST['sendResponse'];
+            $buyerID = $_POST['buyerID'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE payments SET payment_status = 'holdForRefund' WHERE payment_id = ?");
-            if (!$stmt) {
+            $stmt1 = $GLOBALS['db']->prepare("UPDATE payments SET payment_status = 'holdForRefund' WHERE payment_id = ?");
+            $stmt2 = $GLOBALS['db']->prepare("INSERT INTO refunds (refund_issuer_id, refund_receiver_id, refund_date, refund_cause, responseCSA, payment_id, refund_state) VALUES (?, 3, NOW(), 'na', ?, ?, 'onHold')");
+
+            if (!$stmt1 || !$stmt2) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);
             }
 
-            // Bind parameters
-            $stmt->bind_param("i", $payment_id);
+            // Bind parameters for the first statement
+            $stmt1->bind_param("i", $payment_id);
 
-            // Execute the query
-            if (!$stmt->execute()) {
-                die('Error executing query: ' . $stmt->error);
+            // Execute the first query
+            if (!$stmt1->execute()) {
+                die('Error executing query: ' . $stmt1->error);
             }
 
-            // Close the statement
-            $stmt->close();
+            // Bind parameters for the second statement
+            $stmt2->bind_param("iss", $buyerID, $response, $payment_id);
+
+            // Execute the second query
+            if (!$stmt2->execute()) {
+                die('Error executing query: ' . $stmt2->error);
+            }
+
+            // Close the statements
+            $stmt1->close();
+            $stmt2->close();
         }
     }
+
+
 
 
 

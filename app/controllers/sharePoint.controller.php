@@ -16,6 +16,22 @@ class SharePoint extends Controller
 
     }
 
+    //upload deliveries
+    public function uploadDeliveries()
+    {
+
+        if(isset($_POST['submit'])){
+
+            
+
+        }else{
+
+        }
+
+
+
+    }
+
 }
 
 ?>
