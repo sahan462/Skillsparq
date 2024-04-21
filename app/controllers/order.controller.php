@@ -24,9 +24,9 @@ class Order extends Controller
         $userRole = $_SESSION['role'];
 
         $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-        print_r($data['order']);
-        print_r($data['buyer']);
-        print_r($data['seller']);
+        // print_r($data['order']);
+        // print_r($data['buyer']);
+        // print_r($data['seller']);
         $this->view('order', $data);
         
     }
@@ -79,7 +79,7 @@ class Order extends Controller
         }else{
             echo "
             <script>
-                alert('Error Crearing package order');
+                alert('Invalid Order Id');
             </script>
             ";
         }

@@ -165,23 +165,91 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
   }
 }
 
-// ---------------------------------------Chat functionality--------------------------------------------------------
+// ---------------------------------------Chat functionality - Web Socket--------------------------------------------------------log
 
-var conn = new WebSocket('ws://localhost:8080');
+var conn = new WebSocket(`ws://localhost:8080?chatId=${chatId}`);
+
 conn.onopen = function(e) {
     console.log("Connection established!");
 };
 
 conn.onmessage = function(e) {
     console.log(e.data);
+
+    var data = JSON.parse(e.data);
+    var messageComponent = "";
+
+    if(data.from == "Me")
+    {
+
+      var messageComponent = 
+      `
+      <div class="receiver-container">
+          <div class="messageContainer darker">
+              <div class="receiverContent">
+                  <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Avatar" class="right">
+                  <p class="receiver" >
+                      ${data.newMessage}
+                      <span class="time-left">11:01</span>
+                  </p>
+              </div>
+          </div>
+      </div>`;
+
+    }else{
+
+      var messageComponent = 
+      `
+      <div class="sender-container">
+          <div class="messageContainer">
+              <div class="senderContent">
+                <img src="./assests/images/profilePictures/${receiverProfilePicture}" alt="Avatar" class="right">
+                <p class="P" >
+                  ${data.newMessage}
+                  <span class="time-right">11:00</span>
+                </p>
+              </div>
+          </div>
+      </div>
+      `;
+
+    }
+
+    document.getElementById('chatContainer').innerHTML += messageComponent;
+    
+};
+
+
+conn.onclose = function(e){
+
+  console.log("Connection closed!");
+
 };
 
 
 
+var chatForm = document.getElementById('chatForm');
+
+chatForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+    
+    var userId = document.getElementById('userId').value;
+    var newMessage = document.getElementById('newMessage').value;
+    var attachment = document.getElementById('messageAttachement').files[0];
+
+    var data = {
+        senderId: userId,
+        newMessage: newMessage
+    };
+
+    conn.send(JSON.stringify(data));
+    
+    // Your further logic here (e.g., sending the user ID to the server)
+});
 
 
 
-
+// ---------------------------------------Chat functionality - AJAX--------------------------------------------------------
 
 
 var chatArea = document.getElementById('activity');
