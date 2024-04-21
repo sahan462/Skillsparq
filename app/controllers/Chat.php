@@ -91,7 +91,7 @@ class Chat implements MessageComponentInterface {
                 // The sender is not the receiver, send to each client connected
                 $data['from'] = $client->resourceId;
             }else{
-                $data['from'] = 'Me';0
+                $data['from'] = 'Me';
             }
 
             $client->send(json_encode($data));
