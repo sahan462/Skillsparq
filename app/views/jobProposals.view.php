@@ -2,7 +2,7 @@
         include "components/buyerSimpleHeader.component.php";
         $propCardDets = $data['proposal&SellerDets'];
         $jobDetails = $data['jobDets'];
-        show($propCardDets);
+        // show($propCardDets);
         // print_r($propCardDets);
         // print_r($data);
         // show($data);
@@ -32,7 +32,7 @@
 							<!-- <div class="jobPropCardContent"> -->
                                 <div class="propCont">
                                         <p class="paraDescription"><?php echo $proposals['description']?></p>
-                                        <div class="content">
+                                        <div class="contentPropCard">
                                                 <div class="bidamnt">
                                                         Bid Amount of Seller : <b><?php echo $proposals['bid_amount']?></b>
                                                 </div> 

@@ -15,10 +15,11 @@ class SentJobProposals extends Controller
         $data['title'] = "SkillSparq";
 
         $sellerId = $_SESSION['userId'];
-        $myPropWholeDetails = $this->JobHandlerModel->getBuyerDetailsOfJobProposals($sellerId);
-        $myProposals = $this->JobHandlerModel->getSendJobProposals($sellerId);
-        $data['myProposals'] = $myProposals;
-        // show($data['myProposals']);
+        $myPropWholeDetails = $this->JobHandlerModel->getBuyerDetailsProposalDetailsOfJob($sellerId);
+        $data['sentPropDets'] = $myPropWholeDetails;
+        // $myProposals = $this->JobHandlerModel->getSendJobProposals($sellerId);
+        // $data['myProposals'] = $myProposals;
+        // show($data);
         $this->view('sentJobProposals', $data);
     }
 }

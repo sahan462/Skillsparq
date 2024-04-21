@@ -156,9 +156,29 @@ class JobHandler extends database
         }
     }
 
-    public function getBuyerDetailsOfJobProposals()
+    public function getBuyerDetailsProposalDetailsOfJob($sellerId)
     {
+        $retrieveQuery = "SELECT * FROM job_proposals jps INNER JOIN profile p ON jps.buyer_id = p.user_id INNER JOIN jobs jbs ON jbs.job_id = jps.job_id WHERE jps.seller_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
         
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
 
     public function getSellerDetailsOfJobProposals($jobId)
