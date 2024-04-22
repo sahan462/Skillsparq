@@ -23,7 +23,8 @@
 						<?php
 								foreach($propCardDets as $proposals){
                                     if(!empty($proposals)){
-                                        if($proposals['Status'] !== "Accepted" && $proposals['Status'] === "pending"){
+                                        // if($proposals['Status'] !== "Accepted" && $proposals['Status'] === "pending"&&$proposals['Status'] !== "Rejected"){
+                                        if($proposals['Status'] === "pending"){
 						?>
 						<div class="jobPropCardDetails">
 								<div class="propCollapsBtnDiv">
@@ -45,7 +46,7 @@
                                                 <a href=""><button class="profile">Seller Profile</button></a>
                                             </div>
                                             <div>
-                                                <button class="accept" onclick=""><a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>&amp;jobId=<?php echo $proposals['job_id']?>&amp;sellerId=<?php echo $proposals['seller_id']?>&amp;BuyerId=<?php echo $proposals['buyer_id']?>">Accept</a></button>
+                                                <button class="accept" onclick=""><a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>&amp;jobId=<?php echo $proposals['job_id']?>&amp;sellerId=<?php echo $proposals['seller_id']?>&amp;buyerId=<?php echo $proposals['buyer_id']?>">Accept</a></button>
 
                                                 <button class="reject" onclick=""><a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>">Reject</a></button>
                                             </div>   

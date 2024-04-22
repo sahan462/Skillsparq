@@ -76,6 +76,39 @@ class OrderHandler extends database
         
     }
 
+    // create Job Order 
+    public function createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    {
+        $insertQuery = "INSERT INTO orders 
+        (
+            order_state,
+            order_type, 
+            order_created_date,
+            buyer_id,
+            seller_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "ssdii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+        return $orderId;
+    }
+
 
     //get orders
     public function getOrders($userId, $userRole)
@@ -122,6 +155,7 @@ class OrderHandler extends database
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
         } else if ($orderType == 'job') {
+            
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);

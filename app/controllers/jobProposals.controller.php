@@ -4,11 +4,13 @@ class JobProposals extends Controller
 {
     private $JobHandlerModel;
     private $OrderHandlerModel;
+    private $OrderController;
     
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('JobHandler');
-        $this->OrderHandlerModel = $this->model('OrderHandler');;
+        $this->OrderHandlerModel = $this->model('OrderHandler');
+        $this->OrderController = $this->controller('Order');
     }
 
     public function index()
@@ -92,29 +94,62 @@ class JobProposals extends Controller
 
     public function acceptJobProposal()
     {
-        $proposalId = $_GET['proposalId'];
+        $jobProposalId = $_GET['proposalId'];
         $orderStatus = $_GET['Status'];
         $jobId = $_GET['jobId'];
         $sellerId = $_GET['sellerId'];
         $buyerId = $_GET['buyerId'];
 
+        date_default_timezone_set('UTC');
+        $orderCreatedAt = date('Y-m-d H:i:s');
 
-        if(isset($proposalId) && $orderStatus === "pending"){
-            $orderStatus = "Accepted";
-            $result = $this->JobHandlerModel->changeProposalStatus($orderStatus,$proposalId);
-            if($result){
-                $isRejectedProps = $this->JobHandlerModel->setRejectPropStatus($jobId);
-                if($isRejectedProps){
-                    $orderState = "pending";
-                    $orderType = "Job";
-                    $currentDateTime = date('Y-m-d H:i:s');
-                    // echo "
-                    // <script>
-                    //     window.alert('Order Accepted');
-                    //     window.location.href = '" . BASEURL . "jobproposals';
-                    // </script>
-                    // ";
+        if(empty($jobProposalId) || empty($orderStatus) || empty($jobId) || empty($sellerId) || empty($buyerId)){
+            echo "
+            <script>
+                window.alert('An Error Occured !');
+            </script>
+            ";
+        }else{
+            if($orderStatus === "pending"){
+                $orderStatus = "Accepted";
+                $result = $this->JobHandlerModel->changeProposalStatus($orderStatus,$jobProposalId);
+                if($result){
+                    echo "
+                    <script>
+                        window.alert('Job Order Request sent to Seller #{$sellerId} to Accept');
+                    </script>
+                    ";
+                    $orderType = "job";
+                    $orderState = "Requested";
+                    $isOrderSend = $this->OrderController->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+                    
+                    if($isOrderSend){
+                        $orderId = $isOrderSend;
+                        $isIdCreated = $this->JobHandlerModel->createJobOrdersTableRecord($orderId,$jobId,$jobProposalId);
+                        // if($isIdCreated){
+                            echo "
+                                <script>
+                                    window.alert('Congratulations !!! You've Successfully placed a Job Order ');
+                                    window.location.href = '" . BASEURL . "manageOrders';
+                                </script>
+                            ";
+                        // }
+                    }else{
+                        echo "
+                        <script>
+                            window.alert('Error Creating the Order');
+                            window.location.href = '" . BASEURL . "jobproposals';
+                        </script>
+                        ";
+                    }
                 }
+            }else{
+                echo "
+                    <script>
+                        window.alert('Proposal Already Accepted');
+                        window.location.href = '" . BASEURL . "jobproposals';
+                    </script>
+                ";
             }
         }
     }

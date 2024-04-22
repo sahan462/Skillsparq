@@ -226,10 +226,10 @@ class JobHandler extends database
         }
     }
 
-    // After change the status of accepted proposal all other proposals related to that job will be rejected.
+    // After Successfully place the order all other proposals related to that job will be rejected.
     public function setRejectPropStatus($jobId)
     {
-        $updateQuery = "UPDATE job_proposals SET Status = Rejected WHERE job_id = ?";
+        $updateQuery = "UPDATE job_proposals SET Status = 'Rejected' WHERE job_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
                 
@@ -247,9 +247,32 @@ class JobHandler extends database
         }
     }
 
-    public function createJobOrder()
+    public function createJobOrdersTableRecord($orderId,$jobId,$jobProposalId)
     {
+        $insertQuery = "INSERT INTO job_orders 
+        (
+            job_order_id,
+            job_id, 
+            job_proposal_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?
+        )";
 
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "iii",$orderId,$jobId,$jobProposalId);
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+        return $orderId;
     }
 
     // public function getJobName($jobId)
