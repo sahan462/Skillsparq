@@ -89,6 +89,7 @@ class JobProposals extends Controller
                     window.location.href = '" . BASEURL . "jobproposals';
                  </script>
                 ";
+                // $this->redirect('jobproposals');
             }
         }
     }
@@ -130,7 +131,7 @@ class JobProposals extends Controller
                         // if($isIdCreated){
                             echo "
                                 <script>
-                                    window.alert('Congratulations !!! You've Successfully placed a Job Order ');
+                                    window.alert('Job Proposal Accepted & Requested to Order ');
                                     window.location.href = '" . BASEURL . "manageOrders';
                                 </script>
                             ";

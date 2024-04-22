@@ -16,6 +16,7 @@ class ManageOrders extends Controller
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
 
         // show($data['myOrders']);
+        // show($_SESSION);
         $this->view('manageOrders', $data); 
     }
 

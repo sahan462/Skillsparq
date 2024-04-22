@@ -75,6 +75,7 @@
                                 <th style="width: 10%;">Due On</th>
                                 <th style="width: 10%;">Total Amount</th>
                                 <th style="width: 10%;">Order Type</th>
+                                <th style="width: 10%;">Accept/Cancel</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -97,7 +98,7 @@
                                         ?>
                                         <td> - </td>
                                         <?php 
-                                            }else if($row['order_type'] === "jobOrders"){
+                                            }else if($row['order_type'] === "job"){
                                         ?>
                                         <td>job ending date</td>
                                         <?php 

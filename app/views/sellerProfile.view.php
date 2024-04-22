@@ -429,6 +429,21 @@
                 <div class="description">
                     <div class="profileAdditionals">
                         <div class="topic">
+                            <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>send-email</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-568.000000, -254.000000)" fill="#000000"> <path d="M584,283 C584,283 580.872,276.976 580,275 L596.075,259.779 L584,283 L584,283 Z M572,270 L595,259 L579,274 C578.996,273.996 572,270 572,270 L572,270 Z M599,255 C597.844,255.563 568,270 568,270 C568,270 578.052,276.059 578,276 C577.983,275.981 584,287 584,287 C584,287 599.75,256.5 600,256 C600.219,255.375 599.75,254.688 599,255 L599,255 Z" id="send-email" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+                            <span>View Send Proposals</span>
+                        </div>
+                        <div>
+                            <button class="addButton1">
+                                <a href="sentJobProposals" class="addButtonAnchor">View</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile">
+                <div class="description">
+                    <div class="profileAdditionals">
+                        <div class="topic">
                             <svg fill="#231515" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#231515"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M28.969 20.771v1.38c0 2.339-1.859 4.234-4.13 4.234h-1.208l-5.438 5.615v-5.615h-11.031c-2.271 0-4.13-1.896-4.13-4.24v-1.375zM3.031 13.953h25.766v5.302h-25.766zM3.031 7.094h25.766v5.307h-25.766zM24.766 0c2.245 0 4.031 1.896 4.031 4.24v1.375h-25.766v-1.375c0-2.344 1.865-4.24 4.135-4.24z"></path></g></svg>
                             <span>Languages</span>
                         </div>
@@ -508,21 +523,6 @@
                                 echo "Add your education";
                             }
                         ?>
-                    </div>
-                </div>
-            </div>
-            <div class="profile">
-                <div class="description">
-                    <div class="profileAdditionals">
-                        <div class="topic">
-                            <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>send-email</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-568.000000, -254.000000)" fill="#000000"> <path d="M584,283 C584,283 580.872,276.976 580,275 L596.075,259.779 L584,283 L584,283 Z M572,270 L595,259 L579,274 C578.996,273.996 572,270 572,270 L572,270 Z M599,255 C597.844,255.563 568,270 568,270 C568,270 578.052,276.059 578,276 C577.983,275.981 584,287 584,287 C584,287 599.75,256.5 600,256 C600.219,255.375 599.75,254.688 599,255 L599,255 Z" id="send-email" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
-                            <span>View Send Proposals</span>
-                        </div>
-                        <div>
-                            <button class="addButton1">
-                                <a href="sentJobProposals" class="addButtonAnchor">View</a>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
