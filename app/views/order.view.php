@@ -592,6 +592,7 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./assests/js/chat.script.js"></script>
 <script src="./assests/js/order.script.js"></script>
 
 <?php include "components/footer.component.php"; ?>

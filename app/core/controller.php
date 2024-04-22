@@ -144,6 +144,7 @@ class Controller
 
             // Email sent successfully
             return true;
+            
         } catch (Exception $e) {
             // Email could not be sent
             return false;
@@ -154,7 +155,7 @@ class Controller
     {
 
         // require_once('../../vendor/autoload.php');
-        require_once('/xampp/htdocs/skillsparq/vendor/nofity/autoload.php');
+        require_once('/skillsparq/vendor/nofity/autoload.php');
 
         $api_instance = new NotifyLk\Api\SmsApi();
 

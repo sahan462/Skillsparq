@@ -10,7 +10,7 @@
     <div class="error-container">
     <div class="errornum">505</div>
     <div class="head"> Internal Server Error !</div>
-    <div class="text"> <a class="text"href="<?php BASEURL?>">Click here</a> to go to the Homepage of EXL-Exchange</div>
+    <div class="text"> <a class="text" href="<?php echo BASEURL?>">Click here</a> to go to the Homepage</div>
 </div>
 </body>
 </html>

@@ -2,10 +2,6 @@
         include "components/buyerSimpleHeader.component.php";
         $propCardDets = $data['proposal&SellerDets'];
         $jobDetails = $data['jobDets'];
-        show($propCardDets);
-        // print_r($propCardDets);
-        // print_r($data);
-        // show($data);
 ?>
 
 <div class="jobPropMainContainer">

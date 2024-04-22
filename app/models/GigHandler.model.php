@@ -22,9 +22,10 @@ class GigHandler extends database
             mysqli_stmt_close($stmt);
 
             if ($gigId) {
-                $packages = $this->addNewPackages($packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1, $packageDescription_1, $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3, $packageName_3, $noOfRevisions_3, $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $gigId);
-
-                $images = $this->insertSliderImages($uniquesliderImage1Name, $uniquesliderImage2Name, $uniquesliderImage3Name, $uniquesliderImage4Name, $gigId);
+                $packages = $this->addNewPackages($packagePrice_1,$packageName_1,$noOfRevisions_1,$noOfDeliveryDays_1, $timePeriod_1, $packageDescription_1, $packagePrice_2,$packageName_2,$noOfRevisions_2,$noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3,$packageName_3, $noOfRevisions_3,$noOfDeliveryDays_3, $timePeriod_3,$packageDescription_3,$gigId);
+                $images = $this->insertSliderImages($uniquesliderImage1Name,$uniquesliderImage2Name,$uniquesliderImage3Name,$uniquesliderImage4Name,$gigId);
+            }else{
+                throw new Exception("Order is not Accessible" . mysqli_error($GLOBALS['db']));
             }
 
             return [$gigId, $packages, $images];
@@ -35,13 +36,11 @@ class GigHandler extends database
 
     //create new packages
     public function addNewPackages($packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1, $packageDescription_1, $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3, $packageName_3, $noOfRevisions_3, $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $gigId)
-    {
-
-
-        $currentDateTime = date("Y-m-d H:i:s");
-        $insertedIds = [];
-
-        $query = "INSERT INTO packages (package_price,package_name,no_of_delivery_days,time_period,no_of_revisions,package_description,created_at,gig_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    {    
+        $currentDateTime = date("Y-m-d H:i:s"); 
+        $insertedIds = [];  
+    
+        $query = "INSERT INTO packages (package_name, package_price, no_of_delivery_days, time_period, no_of_revisions, package_description, created_at, gig_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         /////////////////////////////////////  inserting details of package 1
         $stmt1 = mysqli_prepare($GLOBALS['db'], $query);
@@ -49,8 +48,8 @@ class GigHandler extends database
         if ($stmt1 === false) {
             throw new Exception("Failed to create prepared statement1.");
         }
-
-        mysqli_stmt_bind_param($stmt1, "ississdi", $packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1, $packageDescription_1, $currentDateTime, $gigId);
+        
+        mysqli_stmt_bind_param($stmt1, "siisisdi", $packageName_1, $packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $currentDateTime, $gigId);
 
         if (mysqli_stmt_execute($stmt1)) {
             $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
@@ -60,43 +59,48 @@ class GigHandler extends database
 
         mysqli_stmt_close($stmt1);
 
-
         /////////////////////////////////////  inserting details of package 2
-        $stmt2 = mysqli_prepare($GLOBALS['db'], $query);
+        if($packagePrice_2 > 0){
 
-        if ($stmt2 === false) {
-            throw new Exception("Failed to create prepared statement2.");
+            $stmt2 = mysqli_prepare($GLOBALS['db'],$query);
+    
+            if ($stmt2 === false) {
+                throw new Exception("Failed to create prepared statement2.");
+            }
+            
+            mysqli_stmt_bind_param($stmt2, "ississdi",$packagePrice_2, $packageName_2, $noOfRevisions_2,$noOfDeliveryDays_2, $timePeriod_2, $packageDescription_2, $currentDateTime, $gigId);
+    
+            if (mysqli_stmt_execute($stmt2)) {
+                $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
+            } else {
+                throw new Exception("Error inserting data to package 2: " . mysqli_error($GLOBALS['db']));
+            }
+    
+            mysqli_stmt_close($stmt2);
+
         }
-
-        mysqli_stmt_bind_param($stmt2, "ississdi", $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2, $packageDescription_2, $currentDateTime, $gigId);
-
-        if (mysqli_stmt_execute($stmt2)) {
-            $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
-        } else {
-            throw new Exception("Error inserting data to package 2: " . mysqli_error($GLOBALS['db']));
-        }
-
-        mysqli_stmt_close($stmt2);
-
 
         /////////////////////////////////////  inserting details of package 3
-        $stmt3 = mysqli_prepare($GLOBALS['db'], $query);
+        if($packagePrice_3 > 0){
 
-        if ($stmt3 === false) {
-            throw new Exception("Failed to create prepared statement3.");
+            $stmt3 = mysqli_prepare($GLOBALS['db'],$query);
+    
+            if ($stmt3 === false) {
+                throw new Exception("Failed to create prepared statement3.");
+            }
+            
+            mysqli_stmt_bind_param($stmt3, "ississdi",$packagePrice_3, $packageName_3, $noOfRevisions_3,$noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $gigId);
+    
+            if (mysqli_stmt_execute($stmt3)) {
+                $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
+            } else {
+                throw new Exception("Error inserting data to package 3: " . mysqli_error($GLOBALS['db']));
+            }
+    
+            mysqli_stmt_close($stmt3);
+
         }
-
-        mysqli_stmt_bind_param($stmt3, "ississdi", $packagePrice_3, $packageName_3, $noOfRevisions_3, $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $gigId);
-
-        if (mysqli_stmt_execute($stmt3)) {
-            $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
-        } else {
-            throw new Exception("Error inserting data to package 3: " . mysqli_error($GLOBALS['db']));
-        }
-
-        mysqli_stmt_close($stmt3);
-
-
+ 
         return $insertedIds;
     }
 
@@ -223,17 +227,45 @@ class GigHandler extends database
 
             $packageDetails = $this->getPackages($gigId);
 
-            return $gigDetails + $packageDetails;
+            $gig = [
+                "gigDetails" => $gigDetails,
+                "packageDetails" => $packageDetails
+            ];
+            return $gig;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 
+    //get package details
+    public function getPackages($gigId)
+    {
+        $query = "SELECT * FROM packages WHERE gig_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $stmt->close();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        return $result;
+  
+    }
+        
     //get Gig Id based on seller id
     public function getGigId($sellerId)
     {
         $query = "SELECT gig_id FROM gigs WHERE seller_id = ?";
-
+        
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if (!$stmt) {
@@ -253,7 +285,6 @@ class GigHandler extends database
     public function getOngoingOrderCount($sellerId)
     {
         $query = "SELECT ongoing_order_count FROM gigs WHERE seller_id = ?";
-
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if (!$stmt) {
@@ -268,38 +299,6 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-
-    //get package details
-    public function getPackages($gigId)
-    {
-        $query = "SELECT * FROM packages WHERE gig_id = ?";
-
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
-
-        if (!$stmt) {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-
-        mysqli_stmt_bind_param($stmt, "i", $gigId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-
-            $rows = array();
-
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-
-            $result->free();
-            $stmt->close();
-
-            return $rows;
-        } else {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-    }
-
 
     //update gigs. Should call at the last in controller.
     public function updateGig($gigId, $title, $description, $category, $coverImage)
