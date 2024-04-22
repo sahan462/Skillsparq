@@ -112,6 +112,31 @@ body{
     height: 100%;
     overflow: auto;
 }
+
+.notFound{
+    margin-top: 24px;
+    display: flex;
+    text-align:center;
+    justify-content: center;
+    line-height: 72px;
+    font-size:4vw;
+}
+
+.lottieAnim{
+    display: flex;
+    justify-content: center;
+}
+
+.notFound h1{
+    font-size: 64px;
+}
+
+.containerNotFound{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 table{
     margin-top: 16px;
     background-color: #fff;

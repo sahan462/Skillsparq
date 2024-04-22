@@ -13,7 +13,20 @@
     </div>
     <!-- Content -->
     <div class="sentJobPropContent">
-
+        <?php
+            if(empty($allProposals)){
+        ?>
+        <div class="containerNotFound">
+            <div class="notFound">
+                You Haven't send any Job Proposal yet !
+            </div>
+            <div class="lottieAnim">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+            </div>
+        </div>
+        <?php
+            }else{
+        ?>
         <div class="leftContainer">
             <!-- Tab links -->
             <div class="tab">
@@ -26,6 +39,7 @@
 
             <!-- Sent Proposals -->
             <div id="Requests" class="tabcontent">
+                
                 <div class="outerTable">
                     <table>
                         <div class="thead">
@@ -38,29 +52,33 @@
                                 <th style="width: 10%;">Type</th>
                             </tr>
                         </div>
-                        <div class="Tbody">
-                            <?php 
-                                if(!empty($row)){
-                                    foreach($allProposals  as $row){
-                                        if($row['Status'] === "pending"){
+                            <?php
+                                foreach($allProposals  as $row){
+                                    if(($row['Status'] === "pending") ||($row['Status'] === "Rejected")){
                             ?>
-                                    <tr>
-                                        <td><?php echo $row['proposal_id'] ?></td>
-                                        <td><a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a></td>
-                                        <td><?php echo $row['title'];?></td>
-                                        <td><?php echo $row['deadline'];?></td>
-                                        <td><?php echo $row['amount'];?></td>
-                                        <td>Job Order</td>
-                                    </tr>
+                        <div class="Tbody">
+                            <tr>
+                                <td><?php echo $row['proposal_id'] ?></td>
+                                <td>
+                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                </td>
+                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo $row['amount'];?></td>
+                                <td>Job Order</td>
+                            </tr>
                                 <?php
-                                        }
-                                    }
-                                }else if(empty($row)){
+                                    }else if($row['Status'] != "pending" && ($row['Status'] != "Rejected")){
                                 ?>
-                                        <div>
-                                            <h1>Oops You Haven't yet send any Job Proposals To a Potential Buyer !</h1>
+                                        <div class="notFound">
+                                            Oops! You Don't Have any pending for acceptance Job Proposals !
+                                        </div>
+                                        <div class="lottieAnim">
+                                            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
                                         </div>
                                 <?php
+                                        break;
+                                    }
                                 }
                                 ?>
                         </div>
@@ -79,75 +97,47 @@
                                 <th style="width: 28%;">Job Title</th>
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Type</th>
                             </tr>
                         </div>
-                        <div class="Tbody">
                             <?php 
                                 foreach($allProposals  as $row){
                                     if($row['Status'] === "Accepted"){
                             ?>
-                                    <!-- <tr onclick="window.location='manageJobOrders&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'"> -->
-                                    <tr>
-                                        <td><?php echo $row['proposal_id'] ?></td>
-                                        <td class="Buyer">
-                                            <span>Kumar Sanagakkara</span>
-                                        </td>
-                                        <td>I will architect your hotel</td>
-                                        <td>5 Sep</td>
-                                        <td>$5000</td>
-                                        <td>Package Order</td>
-                                    </tr>
-                            <?php 
+                        <div class="Tbody">
+                            <tr>
+                                <td><?php echo $row['proposal_id'] ?></td>
+                                <td class="Buyer">
+                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                </td>
+                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo $row['amount'];?></td>
+                                <td>Job Order</td>
+                            </tr>
+                                <?php
+                                    }
+                                    if(($row['Status'] !== "Accepted")){
+                                ?>
+                                        <div class="notFound">
+                                            Oops! You Don't Have any Accepted Job Proposals from a Potential Buyer !
+                                        </div>
+                                        <div class="lottieAnim">
+                                            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+                                        </div>
+                                <?php
+                                        break;
                                     }
                                 }
-                            ?>
+                                ?>
                         </div>
-                    </table>
+                    </table> 
                 </div>
             </div>
-
-            <!-- Cancelled Proposals -->
-            <!-- <div id="Cancelled" class="tabcontent">
-                <div class="outerTable">
-                    <table>
-                        <div class="thead">
-                            <tr style="position: sticky">
-                                <th style="width: 6%;">Proposal Id</th>
-                                <th style="width: 26%;">Buyer</th>
-                                <th style="width: 28%;">Job Title</th>
-                                <th style="width: 10%;">Job Due On</th>
-                                <th style="width: 10%;">Amount</th>
-                                <th style="width: 10%;"><a href="" class="clearAllAnc">Clear All</a></th>
-                            </tr>
-                        </div>
-                        <div class="Tbody">
-                            <?php 
-                                // $allProposals['Status'] === "Cancelled";
-                                //foreach($allProposals  as $row){
-                                    // if($allProposals['Status'] === "Cancelled"){
-                            ?>
-                                     <tr onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'"> 
-                                    <tr>
-                                        <td><?php //echo $row['proposal_id'] ?></td>
-                                        <td class="Buyer">
-                                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
-                                            <span>Ann Perera</span>
-                                        </td>
-                                        <td>I will create wordpress websites</td>
-                                        <td>5 Sep</td>
-                                        <td>$5000</td>
-                                        <td><button>Delete</button></td>
-                                    </tr>
-                            <?php 
-                                    //}
-                                // }
-                            ?>
-                        </div>
-                    </table>
-                </div>
-            </div> -->
         </div>
+        <?php
+            }
+        ?>
     </div>
 </div>
 
