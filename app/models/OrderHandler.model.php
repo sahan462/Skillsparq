@@ -143,7 +143,7 @@ class OrderHandler extends database
         }
     }
 
-    //get order details
+    //get order details for manageOrders view and controller.
     public function getOrderDetails($orderId, $orderType, $buyerId, $sellerId, $userRole)
     {
         //retrive order details
@@ -155,7 +155,7 @@ class OrderHandler extends database
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
         } else if ($orderType == 'job') {
-            
+
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);

@@ -206,6 +206,82 @@ class JobHandler extends database
         }
     }
 
+    public function getCountAcceptedProps($jobId)
+    {
+        $retrieveQuery = "SELECT COUNT(*) AS count FROM job_proposals  WHERE job_id=? AND Status = 'Accepted';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i",$jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByAcceptedStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'Accepted';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByPendingStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'pending';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByRejectedStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'Rejected';" ;
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     public function changeProposalStatus($Status,$proposalId)
     {
         $updateQuery = "UPDATE job_proposals SET Status = ? WHERE proposal_id = ?";

@@ -59,6 +59,7 @@ class JobProposals extends Controller
             // $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
             $data['jobDets'] = $this->JobHandlerModel->getJob($data['jobId']);
             $data['proposal&SellerDets'] = $this->JobHandlerModel->getSellerDetailsOfJobProposals($data['jobId']);
+            $data['countAccepted'] = $this->JobHandlerModel->getCountAcceptedProps($data['jobId']);
             $this->view('jobProposals',$data);
             // show($data);
         }

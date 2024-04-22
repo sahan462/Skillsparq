@@ -17,8 +17,9 @@ class SentJobProposals extends Controller
         $sellerId = $_SESSION['userId'];
         $myPropWholeDetails = $this->JobHandlerModel->getBuyerDetailsProposalDetailsOfJob($sellerId);
         $data['sentPropDets'] = $myPropWholeDetails;
-        // $myProposals = $this->JobHandlerModel->getSendJobProposals($sellerId);
-        // $data['myProposals'] = $myProposals;
+        $data['AcceptedCount'] = $this->JobHandlerModel->getPropCountByAcceptedStatus($sellerId);
+        $data['PendingCount'] = $this->JobHandlerModel->getPropCountByPendingStatus($sellerId);
+        $data['RejectedCount'] = $this->JobHandlerModel->getPropCountByRejectedStatus($sellerId);
         // show($data);
         $this->view('sentJobProposals', $data);
     }

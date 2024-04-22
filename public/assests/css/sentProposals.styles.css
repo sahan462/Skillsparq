@@ -78,12 +78,12 @@ body{
     color: #ffffff;
 }
 
-#defaultOpen:hover{
+#pending:hover{
     background-color: #ddeb18;
     color: #222325;
 }
 
-#accepted:hover{
+#defaultOpen:hover{
     background-color: #22cf27;
 }
 
@@ -167,7 +167,7 @@ Tbody td{
 }
 
 /*buyer column*/
-.Buyer{
+/* .Buyer{
     display: flex;
     align-items: center;
 }
@@ -176,7 +176,7 @@ Tbody td{
     height: 48px;
     border-radius: 100%;
     object-fit: cover;
-}
+} */
 
 .tablinks{
 
