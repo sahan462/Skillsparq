@@ -7,9 +7,10 @@
 ?>
 
 <?php 
-    $data["profilePic"]="dilan.png";
+
     $data['deliveries'] = array();
-    $deliveries=$data['deliveries'];
+    $deliveries = $data['deliveries'];
+
 ?>
 
 <!-- Main Container -->
@@ -34,35 +35,7 @@
 
                 <div class="deliveryFiles">
 
-                    <?php if(!isset($data['deliveries'])){ ?>
 
-                        <div class="animation">
-                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-                            <dotlottie-player src="https://lottie.host/d9e3e447-09c8-4c2c-a3e1-bebebc93d43f/Fq7uTTiU0m.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-                            <span class="darkTitle">You have Not Made Any Deliveries Yet !!!</span>
-                        </div>
-
-                    <?php }else { ?>
-
-                        <div class="filecontainer">
-                            <div class="file">
-                                <img class="fileimg" src="<?php echo BASEURL.'/public/assets/img/icons/file.png?'?>">
-                                <div class="name">File Name :
-                                    <?php echo $file['name']; ?>
-                                </div>
-                                <div class="time">
-                                    <?php echo $file['time']; ?>
-                                </div>
-                                <div class="size">File Size :
-                                    <?php echo floor($file['size'] / 1000) . ' KB'; ?>
-                                </div>
-                                <div class="download"><a href="<?php echo BASEURL."/public/assets/uploads/".$file['name']?>">
-                                    <img class="downloadimg" src="<?php echo BASEURL.'/public/assets/img/icons/download.png?'?>"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php } ?>
 
                 </div>
 
@@ -136,45 +109,38 @@
                     
                     <!-- File Uploading -->
                     <label class="type-2">File must be compressed into .zip , .rar or .tar format.</label>
-                    <div class="upload_background">
-                        <div class="row">
-                            <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
-                                <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                                <span class="fileName" id="fileName"></span>
+                    <form id="packageRequestForm" method="post" action="order/createPackageOrder" enctype="multipart/form-data">
+
+                        <div class="upload_background">
+                            <div class="row">
+                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
+                                    <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                                    <span class="fileName" id="fileName"></span>
+                                </div>
+                                <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
                             </div>
-                            <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
+                            <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
                         </div>
-                        <button type="submit" name="finalsave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
-                    </div>
 
-                    <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
+                        <!-- Rate buyer -->
+                        <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
                     
-                    <!-- Rate buyer -->
-                    <div id="rateSec" style="display:none"><br><br>
+                        <div id="rateSec" style="display:none"><br><br>
 
-                        <!-- sub topic -->
-                        <p class="title">
-                            <span class="darkTitle big">Rate </span>The Buyer
-                        </p>
+                            <!-- sub topic -->
+                            <p class="title">
+                                <span class="darkTitle big">Rate </span>The Buyer
+                            </p>
+                            
+                            <!-- star rating -->
+                            <div id="rateYo">
+
+                            </div>
                         
-                        <!-- star rating -->
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
                         </div>
-                    
-                    </div>
 
-                </form>
+                    </form>
 
             <?php } ?>
 
@@ -183,6 +149,15 @@
     </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+<script>
+
+
+
+</script>
 
 <script src="./assests/js/sharePoint.script.js"></script>
 

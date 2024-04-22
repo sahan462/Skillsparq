@@ -149,7 +149,7 @@ class Order extends Controller
                 }
     
                 //send notification to seller
-                $this->sendVerificationMail();
+                // $this->sendVerificationMail();
     
     
     
@@ -177,18 +177,6 @@ class Order extends Controller
             echo 'An error occurred during creation of package order: ' . $e->getMessage();
 
         }
-
-
-    
-
-
-
-
-
-
-
-
-        // Handle success or failure
 
     }
     
