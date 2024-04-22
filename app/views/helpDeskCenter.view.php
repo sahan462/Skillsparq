@@ -14,6 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
     <title>Admin Dashboard Panel</title>
+    <style>
+
+
+    </style>
+
 </head>
 
 <body>
@@ -30,25 +35,51 @@
 
             <div class="boxes">
                 <div class="box box1">
-                    <i class="uil uil-thumbs-up"></i>
+
                     <span class="text">Total Inquiries this month</span>
                     <span class="number"><?php echo $countCurrentMonth ?></span>
 
+                    <div class="container">
+                        <div class="circular-progress">
+                            <div class="value-container" style="font-size: 50px;">0%</div>
+                        </div>
+                    </div>
+                    <b>Completed</b>
+
+
                 </div>
                 <div class="box box2">
-                    <i class="uil uil-comments"></i>
+
                     <span class="text">Total help requests this month</span>
                     <span class="number"><?php echo $countCurrentMonth1 ?></span>
+                    <div class="container">
+                        <div class="circular-progress" style="font-size: 50px;">
+                            <div class="value-container">0%</div>
+                        </div>
+                    </div>
+                    <b>Completed</b>
+
 
                 </div>
                 <div class="box box3">
-                    <i class="uil uil-share"></i>
+
                     <span class="text">Total Complaints this month</span>
                     <span class="number"><?php echo $countCurrentMonth2 ?></span>
+                    <div class="container">
+                        <div class="circular-progress">
+                            <div class="value-container" style="font-size: 50px;">0%</div>
+                        </div>
+                    </div>
+                    <b>Completed</b>
+
                 </div>
 
 
             </div>
+
+
+
+
 
 
             <div class="boxes">
@@ -84,7 +115,7 @@
                 </caption>
                 <thead>
                     <th>InquiryID</th>
-                    <th>Subject</th>
+                    <th>Created At</th>
                     <th>View</th>
                 </thead>
                 <tbody>
@@ -118,7 +149,7 @@
                 </caption>
                 <thead>
                     <th>InquiryID</th>
-                    <th>Subject</th>
+                    <th>Created At</th>
                     <th>View</th>
                 </thead>
                 <tbody>
@@ -276,6 +307,30 @@
                 }
             }
         });
+    </script>
+    <script>
+        let valueContainers = document.querySelectorAll(".value-container");
+
+        // Define an array of end values
+        let progressEndValues = [<?php echo floor($inquiriesCompleted) ?>, <?php echo floor($requestsCompleted) ?>, <?php echo floor($complaintsCompleted) ?>]; // Example values
+
+        for (let i = 0; i < valueContainers.length; i++) {
+            let valueContainer = valueContainers[i];
+            let progressValue = 0;
+            let progressEndValue = progressEndValues[i]; // Access the end value for this progress bar
+            let speed = 100;
+            if (progressEndValue == 0) {
+                break;
+            }
+            let progress = setInterval(() => {
+                progressValue++;
+                valueContainer.textContent = `${progressValue}%`;
+
+                if (progressValue >= progressEndValue) {
+                    clearInterval(progress);
+                }
+            }, speed);
+        }
     </script>
 
 </body>
