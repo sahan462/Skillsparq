@@ -319,6 +319,22 @@ class InquiryHandler extends database
         }
     }
 
+    public function updateRefund($payment_id, $response)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE refunds SET refund_cause= ?, refund_state = 'refunded' WHERE payment_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement: " . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $response, $payment_id);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error updating data: " . mysqli_stmt_error($stmt));
+        }
+
+        mysqli_stmt_close($stmt);
+    }
 
 
 

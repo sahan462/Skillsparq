@@ -112,6 +112,37 @@ class PaymentHandler extends database
 
         return $previousMonthsData;
     }
+
+    public function totalSales()
+    {
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $previousMonthsData = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $month = ($currentMonth - $i) < 1 ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+            $year = ($currentMonth - $i) < 1 ? $currentYear - 1 : $currentYear;
+
+            $query = "SELECT SUM(amount) AS payments FROM payments WHERE MONTH(payment_date) = ? AND YEAR(payment_date) = ?";
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            mysqli_stmt_bind_param($stmt, "ii", $month, $year);
+            if (mysqli_stmt_execute($stmt)) {
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc(); // Fetch the first row as an associative array
+                $previousMonthsData[] = $data['payments'];
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+
+        return $previousMonthsData;
+    }
+
     public function viewRefundDetails($payment_id)
     {
         $query = "SELECT 
@@ -154,5 +185,69 @@ class PaymentHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+    }
+    public function noOfRefunds()
+    {
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $previousMonthsData = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $month = ($currentMonth - $i) < 1 ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+            $year = ($currentMonth - $i) < 1 ? $currentYear - 1 : $currentYear;
+
+            $query = "SELECT COUNT(*) AS payments FROM refunds WHERE MONTH(refund_date) = $month AND YEAR(refund_date) = $year AND refund_state = 'refunded'";
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc(); // Fetch the first row as an associative array
+                $previousMonthsData[] = $data['payments'];
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+
+        return $previousMonthsData;
+    }
+
+    public function totalRefunds()
+    {
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $previousMonthsData = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $month = ($currentMonth - $i) < 1 ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+            $year = ($currentMonth - $i) < 1 ? $currentYear - 1 : $currentYear;
+
+            $query = "SELECT SUM(p.amount) AS refunds 
+                  FROM refunds r
+                  INNER JOIN payments p ON r.payment_id = p.payment_id
+                  WHERE MONTH(r.refund_date) = ? 
+                  AND YEAR(r.refund_date) = ? 
+                  AND r.refund_state = 'refunded'";
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            mysqli_stmt_bind_param($stmt, "ii", $month, $year);
+            if (mysqli_stmt_execute($stmt)) {
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc(); // Fetch the first row as an associative array
+                $previousMonthsData[] = $data['refunds'] ?: 0; // Use 0 if there are no refunds
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+
+        return $previousMonthsData;
     }
 }
