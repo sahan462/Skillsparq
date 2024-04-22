@@ -121,7 +121,11 @@ class OrderHandler extends database
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'job') {
+
+            
+
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);

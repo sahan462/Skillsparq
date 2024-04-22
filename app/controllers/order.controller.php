@@ -31,175 +31,165 @@ class Order extends Controller
 
         //retrieve the chat from the database
         $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-        // print_r($data['order']);
-        // print_r($data['buyer']);
-        // print_r($data['seller']);
-        // print_r($chatId);
-        // print_r($data['chat']);
-
         $this->view('order', $data);
         
     }
 
 
     //create a package order
-    public function createPackageOrder() {
+    public function createPackageOrder() 
+    {
 
-        // Get form data
-        $orderState = "Requested";
-        // Modal #1 - form #1
-        $requestDescription = $_POST['requestDescription'];
-        // $attachment = $_FILES['attachments'];
-        $attachment = "Hithere";
-        $gigId = $_POST['gigId'];
-        $sellerId = $_POST['sellerId'];
-        $orderType = $_POST['orderType'];
-        $buyerId = $_POST['buyerId'];  
-        
-        $packageId = $_POST['packageId'];
-    
-        // Set current datetime and user name
-        date_default_timezone_set('UTC');
-        $currentDateTime = date('Y-m-d H:i:s');
-        $userName = $_SESSION['userName'];
-        // $attachmentName = basename($attachment["name"]);
-        $attachmentName = "Hithere";
-    
-        // Create order and handle attachment
-        $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
+        try{
 
-        if($orderId){
-            echo "
-            <script>
-                alert('Order created successfully');
-                window.location.href = '" . BASEURL . 'manageOrders' . "';
-            </script>
-            ";
-        }else{
-            echo "
-            <script>
-                alert('Error occured creating Package Order');
-                window.location.href = '" . BASEURL . 'manageOrders' . "';
-            </script>
-            ";
-        }
-        
-        if($orderId){
-            $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
-        }else{
-            echo "
-            <script>
-                alert('Invalid Order Id');
-            </script>
-            ";
-        }
+            $orderState = "Requested";
+            $requestDescription = $_POST['requestDescription'];
+            $gigId = $_POST['gigId'];
+            $sellerId = $_POST['sellerId'];
+            $orderType = $_POST['orderType'];
+            $buyerId = $_POST['buyerId'];  
+            $packageId = $_POST['packageId'];
+            $currentDateTime = date('Y-m-d H:i:s');
+            $attachment = $_FILES['attachments'];
+            $attachmentName = basename($attachment["name"]);
 
-        $orderFileName = "Order" . "_" . $orderId;
-        $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
+            // Create order
+            $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
 
-        //open a new order file
-        mkdir($targetDir, 0777, true);
-
-        $upload = 0;
-
-        // Upload attachment if provided
-        if($attachmentName != ""){
-            $targetFilePath = $targetDir . $attachmentName;
-            $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
-        }else{
-            $attachmentName = "";
-        }
-    
-        // Handle success or failure
-        if($upload || $chatId){
-
-            if(isset($_SESSION['email'])){
-
-                //notify the seller using an email
-                $newOrderRequestEmail = `
-                
-                            <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>New Order Request</title>
-                <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f4;
-                    margin: 0;
-                    padding: 0;
-                }
-                .container {
-                    max-width: 600px;
-                    margin: 20px auto;
-                    padding: 20px;
-                    background-color: #fff;
-                    border-radius: 10px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                }
-                h1 {
-                    color: #333;
-                }
-                p {
-                    color: #666;
-                    line-height: 1.6;
-                }
-                .button {
-                    display: inline-block;
-                    padding: 10px 20px;
-                    background-color: #007bff;
-                    color: #fff;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }
-                </style>
-                </head>
-                <body>
-                <div class="container">
-                    <h1>New Order Request</h1>
-                    <p>Hello [Seller Name],</p>
-                    <p>You have received a new order request from a buyer. Please review the details and take necessary action.</p>
-                    <p><strong>Order Details:</strong></p>
-                    <ul>
-                    <li><strong>Order ID:</strong> [Order ID]</li>
-                    <li><strong>Buyer Name:</strong> [Buyer Name]</li>
-                    <li><strong>Product/Service:</strong> [Product/Service Name]</li>
-                    <li><strong>Order Amount:</strong> [Order Amount]</li>
-                    </ul>
-                    <p>You can view and manage your orders by logging into your account.</p>
-                    <p>If you have any questions or need assistance, feel free to contact our support team.</p>
-                    <a href="[Your Website URL]" class="button">Login to Your Account</a>
-                    <p>Thank you,</p>
-                    <p>[Your Company Name]</p>
-                </div>
-                </body>
-                </html>
-                `;
-
+            //get chat
+            if($orderId){
+                $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
+            }else{
+                $this->view("505");
             }
 
-            //send notification to seller
-            
+            //create directory for the new attachment
+            $orderFileName = "Order" . "_" . $orderId;
+            $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
+            mkdir($targetDir, 0777, true);
+
+            $upload = 0;
+            if($attachmentName != ""){
+                $targetFilePath = $targetDir . $attachmentName;
+                $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
+            }else{
+                $attachmentName = "";
+            }
+
+            //handle success of failure
+            if($upload || $chatId){
+                if(isset($_SESSION['email'])){
+    
+                    //notify the seller using an email
+                    $sellerEmail = $this->getSession('email');
+                    
+
+                    $newOrderRequestEmail = `
+                    
+                                <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>New Order Request</title>
+                    <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f4;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 20px auto;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+                    h1 {
+                        color: #333;
+                    }
+                    p {
+                        color: #666;
+                        line-height: 1.6;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #007bff;
+                        color: #fff;
+                        text-decoration: none;
+                        border-radius: 5px;
+                    }
+                    </style>
+                    </head>
+                    <body>
+                    <div class="container">
+                        <h1>New Order Request</h1>
+                        <p>Hello [Seller Name],</p>
+                        <p>You have received a new order request from a buyer. Please review the details and take necessary action.</p>
+                        <p><strong>Order Details:</strong></p>
+                        <ul>
+                        <li><strong>Order ID:</strong> [Order ID]</li>
+                        <li><strong>Buyer Name:</strong> [Buyer Name]</li>
+                        <li><strong>Product/Service:</strong> [Product/Service Name]</li>
+                        <li><strong>Order Amount:</strong> [Order Amount]</li>
+                        </ul>
+                        <p>You can view and manage your orders by logging into your account.</p>
+                        <p>If you have any questions or need assistance, feel free to contact our support team.</p>
+                        <a href="[Your Website URL]" class="button">Login to Your Account</a>
+                        <p>Thank you,</p>
+                        <p>[Your Company Name]</p>
+                    </div>
+                    </body>
+                    </html>
+                    `;
+    
+                }
+    
+                //send notification to seller
+                $this->sendVerificationMail();
+    
+    
+    
+                echo "
+                <script>
+                    alert('Order created successfully');
+                    window.location.href = '" . BASEURL . 'manageOrders' . "';
+                </script>
+                ";
+    
+    
+            } else {
+                echo "
+                <script>
+                    alert('Error Creating package order');
+                </script>
+                ";
+            }
 
 
 
-            echo "
-            <script>
-                alert('Order created successfully');
-                window.location.href = '" . BASEURL . 'manageOrders' . "';
-            </script>
-            ";
 
+        }catch(Exception $e){
 
-        } else {
-            echo "
-            <script>
-                alert('Error Creating package order');
-            </script>
-            ";
+            echo 'An error occurred during creation of package order: ' . $e->getMessage();
+
         }
+
+
+    
+
+
+
+
+
+
+
+
+        // Handle success or failure
+
     }
     
 
@@ -207,7 +197,6 @@ class Order extends Controller
     public function createMilestoneOrder(){
 
         $milestones = $_POST['milestone'];
-
         $subjects = $milestones['subject'];
         $revisions = $milestones['revisions'];
         $deliveryQuantities = $milestones['deliveryQuantity'];
@@ -265,8 +254,10 @@ class Order extends Controller
             if($isUpdatedOrderState){
                 return $isUpdatedOrderState;
             }
+
         } else {
-            echo "Invalid request method";
+            $this->view("505");
+            // echo "Invalid request method";
         }
 
     }
@@ -286,56 +277,69 @@ class Order extends Controller
             }
 
         } else {
-            echo "Invalid request method";
-        }
 
+            $this->view("505");
+
+        }
     }
 
     //Payment Handling
     public function verifyPayment()
     {
-        print_r($_POST);
-        //look for authorize api, capture api and refund api
-        $merchantId = $_POST['merchant_id'];
-        $orderId = $_POST['order_id'];
-        $payhereAmount = $_POST['payhere_amount'];
-        $payhereCurrency = $_POST['payhere_currency'];
-        $statusCode = $_POST['status_code'];
-        $md5sig = $_POST['md5sig'];
+        try{
 
-        $merchant_secret = 'MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ=='; // Replace with your Merchant Secret
+            print_r($_POST);
+            //look for authorize api, capture api and refund api
+            $merchantId = $_POST['merchant_id'];
+            $orderId = $_POST['order_id'];
+            $payhereAmount = $_POST['payhere_amount'];
+            $payhereCurrency = $_POST['payhere_currency'];
+            $statusCode = $_POST['status_code'];
+            $md5sig = $_POST['md5sig'];
+    
+            $merchant_secret = 'MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ=='; // Replace with your Merchant Secret
+    
+            $local_md5sig = strtoupper(
+                md5(
+                    $merchantId . 
+                    $orderId . 
+                    $payhereAmount . 
+                    $payhereCurrency . 
+                    $statusCode . 
+                    strtoupper(md5($merchant_secret)) 
+                ) 
+            );
+                
+            if (($local_md5sig === $md5sig) AND ($statusCode == 2) ){
+                    //TODO: Update your database as payment success
+            }
+    
+            $state = "Running";
+            $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+    
+            if($isUpdatedOrderState){
+                echo "
+                <script>
+                    alert('Payment done successfully');
+                    window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=" . $_POST['order_type'] . "&buyerId=".$_POST['buyer_id'] . "&sellerId=". $_POST['seller_id'] ."';
+                </script>
+            ";
+            }else{
 
-        $local_md5sig = strtoupper(
-            md5(
-                $merchantId . 
-                $orderId . 
-                $payhereAmount . 
-                $payhereCurrency . 
-                $statusCode . 
-                strtoupper(md5($merchant_secret)) 
-            ) 
-        );
-            
-        if (($local_md5sig === $md5sig) AND ($statusCode == 2) ){
-                //TODO: Update your database as payment success
+                $this->view("505");
+
+            }
+
+        }catch(Exception $e){
+
+            echo 'An error occurred: ' . $e->getMessage();
+
         }
-
-        $state = "Running";
-            
-        $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
-
-        if($isUpdatedOrderState){
-            echo "
-            <script>
-                alert('Payment done successfully');
-                window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=" . $_POST['order_type'] . "&buyerId=".$_POST['buyer_id'] . "&sellerId=". $_POST['seller_id'] ."';
-            </script>
-        ";
-        }
-
     }
 
 
-}
 
+
+
+}
 ?>

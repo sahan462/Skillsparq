@@ -35,7 +35,7 @@
                     <span class="type-2">The most crucial area to put keywords that customers are likely to use when looking for a service similar to yours is in the title of your gig shop.</span>
                     
                     <div class="title">
-                        <p><input type="text" name="title" placeholder="I will create WordPress websites" oninput="this.className = ''"></p>
+                        <p><input type="text" name="title" placeholder="I will create WordPress websites" class="required"></p>
                     </div>
 
                     <div class="description">
@@ -80,32 +80,32 @@
                             <tr>
                                 <td style="text-align:left">Package Name</td>
                                 <td>
-                                    <input type="text" name ="packageName_1" oninput="this.className = ''"  >
+                                    <input type="text" value="Basic"name ="packageName_1" class="required" >
                                 </td>
                                 <td>
-                                    <input type="text" name ="packageName_2" oninput="this.className = ''"  >
+                                    <input type="text" value="Standard" name ="packageName_2" >
                                 </td>
                                 <td>
-                                    <input type="text" name ="packageName_3" oninput="this.className = ''" >
+                                    <input type="text" value="Premium" name ="packageName_3">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align:left">Package Price</td>
                                 <td>
-                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" >
+                                    <input type="number" name ="packagePrice_1" class="required" min="5" max="1000" >
                                 </td>
                                 <td>
-                                    <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" >
+                                    <input type="number" name ="packagePrice_2" min="5" max="1000" >
                                 </td>
                                 <td>
-                                    <input type="number" name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" >
+                                    <input type="number" name ="packagePrice_3" min="5" max="1000" >
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align:left">Revision Count</td>
                                 <td>
                                     <div class="noOfRevisions">
-                                        <select style="width:100%" name="noOfRevisions_1"  class="categories">
+                                        <select style="width:100%" name="noOfRevisions_1"  class="categories required">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -150,8 +150,8 @@
                                 <td style="text-align:left">Delivery Time</td>
                                 <td>
                                     <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
-                                        <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
-                                        <select name="timePeriod_1" class="categories" >
+                                        <input type="number" name="noOfDeliveryDays_1" id="quantity"  class="required" min="1" max="5">
+                                        <select name="timePeriod_1" class="categories required" >
                                             <option value="Days">Day(s)</option>
                                             <option value="Weeks">Week(s)</option>
                                             <option value="Months">Month(s)</option>
@@ -186,17 +186,17 @@
                                 <td style="text-align:left">Description</td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_1" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
+                                    <textarea name="packageDescription_1" placeholder="I will.." rows="6" spellcheck="false" class="required"></textarea>
                                 </div>
                                 </td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_2" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
+                                    <textarea name="packageDescription_2" placeholder="I will.." rows="6" spellcheck="false" ></textarea>
                                 </div>
                                 </td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_3" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
+                                    <textarea name="packageDescription_3" placeholder="I will.." rows="6" spellcheck="false" ></textarea>
                                 </div>
                                 </td>
                             </tr>
@@ -217,7 +217,7 @@
 
                         <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="coverImage">Cover Image:</label>
-                            <input type="file" id="coverImage" name="coverImage" onchange="load_img_name(this.files[0],1)"/>
+                            <input type="file" id="coverImage" class="required" name="coverImage" onchange="load_img_name(this.files[0],1)" />
                             <div id="filename1"></div>
                         </div>
 

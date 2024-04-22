@@ -22,11 +22,11 @@
     align-items: center;
 }
 
-.propSubLeftCont{
+.jobPropMainContainer .propSubLeftCont{
     width:35%;
 }
 
-.propSubLeftCont .animationImg{
+.jobPropMainContainer .propSubLeftCont .animationImg{
     height: 85%;
     width: 100%;
     display: flex;
@@ -34,60 +34,60 @@
     align-items: center;
 }
 
-.propSubRightCont{
+.jobPropMainContainer .propSubRightCont{
     width: 65%;
 }
 
-.jobPropCardContainer{
+.jobPropMainContainer .jobPropCardContainer{
     justify-content: center;
     align-items: center;
 }
 
-.jobPropCardDetails{
+.jobPropMainContainer .jobPropCardDetails{
     justify-content: center;
     margin-right: 112px;
 }
 
-.jobPropCardContent{
+.jobPropMainContainer .jobPropCardContent{
     padding: 0 18px;
     display: none;
     overflow: hidden;
 }
 
-.propCont p{
+.jobPropMainContainer .propCont p{
     margin-left: 24px;
     width: 90%;
     border-radius: 5px;
 }
 
-.paraDescription{
+.jobPropMainContainer .paraDescription{
     width: 100%;
     overflow-wrap: break-word;
 }
 
-.content{
+.jobPropMainContainer .content{
     margin-left: 24px;
     width: 90%;
 }
 
-.bidamnt{
+.jobPropMainContainer .bidamnt{
     color: #222325;
 }
 
-.propCont{
+.jobPropMainContainer .propCont{
     background-color: #e4ede6;
     padding: 8px 16px 0 16px;
     display: flex;
     flex-direction: column;
 }
 
-.buttonContainer{
+.jobPropMainContainer .buttonContainer{
     margin-top: 8px;
     display: flex;
     justify-content:space-around;
 }
 
-.buttonContainer button{
+.jobPropMainContainer .buttonContainer button{
     background-color: #777;
     border: none;
     border-radius: 5px;
@@ -97,29 +97,29 @@
     cursor: pointer;
 }
 
-.buttonContainer .profile{
+.jobPropMainContainer .buttonContainer .profile{
     color: #fff;
 }
 
-.buttonContainer .reject:hover{
+.jobPropMainContainer .buttonContainer .reject:hover{
     background-color: #ff0000;
 }
 
-.buttonContainer .accept:hover{
+.jobPropMainContainer .buttonContainer .accept:hover{
     background-color: #31d65a;
     color: white;
 }
 
-a{
+.jobPropMainContainer a{
     text-decoration: none!important;
     color: #fff;
 }
 
-.propCollapsBtnDiv{
+.jobPropMainContainer .propCollapsBtnDiv{
     /* width: 100%; */
 }
 
-.collapsable {
+.jobPropMainContainer .collapsable {
     background-color: #777;
     color: white;
     cursor: pointer;
@@ -133,11 +133,11 @@ a{
     border-radius:8px!important;
 }
 
-.active, .collapsable:hover {
+.jobPropMainContainer .active, .collapsable:hover {
     cursor:auto;   
 }
 
-.collapsable:after {
+.jobPropMainContainer .collapsable:after {
     font-size: 13px;
     color: white;
     float: right;
