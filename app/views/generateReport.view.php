@@ -5,98 +5,122 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assests/css/adminDashboard.styles.css" />
+
     <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://parall.ax/parallax/js/jspdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        /* Reset default styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Page layout */
+        #makepdf {
+            width: 800px;
+            /* Adjust as needed */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Charts */
+        canvas {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+            margin-left: 12%;
+
+        }
+
+
+
+        /* Footer */
+        .page-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #888;
+        }
+    </style>
+
     <title>Admin Dashboard Panel</title>
 </head>
 
 <body>
     <div>
         <div id="makepdf">
-            <div id="users">
-                <span style="font-size: 30px; font-weight:bold;">User Report </span><br>
-                <span>Total Users: </span>
-                <span><?php echo $userType['users']; ?></span><br>
-                <span>New Users this Month:</span>
 
-                <span id="newUsers"></span>
+            <span style="font-size: 30px; font-weight:bold;">User Report </span><br>
+            <span>Total Users: </span>
+            <span><?php echo $userType['users']; ?></span><br>
+            <span>New Users this Month:</span>
 
-
-
-                <div class="subChart">
-                    <canvas id="monthlyUsers"></canvas>
-                </div><br>
-                <span style="margin-left:50%; margin-bottom:30px"> Users by role:</span>
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>New Users This Month</th>
-                            <th>Total Users</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align: center;">
-                        <tr>
-                            <td>Seller:</td>
-                            <td><?php echo $userType['sellerc']; ?></td> <!-- Placeholder value for new users this month -->
-                            <td> <?php echo $userType['seller']; ?></td> <!-- Total number of seller users -->
-                        </tr>
-                        <tr>
-                            <td>Buyer:</td>
-                            <td><?php echo $userType['buyerc']; ?></td> <!-- Placeholder value for new users this month -->
-                            <td> <?php echo $userType['buyer']; ?></td> <!-- Total number of seller users -->
-                        </tr>
-                        <tr>
-                            <td>Admin:</td>
-                            <td><?php echo $userType['adminc']; ?></td> <!-- Placeholder value for new users this month -->
-                            <td> <?php echo $userType['admin']; ?></td> <!-- Total number of seller users -->
-                        </tr>
-                        <tr>
-                            <td>CSA:</td>
-                            <td><?php echo $userType['csac']; ?></td> <!-- Placeholder value for new users this month -->
-                            <td> <?php echo $userType['csa']; ?></td> <!-- Total number of seller users -->
-                        </tr>
-                        <!-- Add more rows for other user types if needed -->
-                    </tbody>
-                </table>
-
-                <div class=" subChart">
-                    <canvas id="userTypeCurrent"></canvas>
-                </div>
-                <div class=" subChart">
-                    <canvas id="userType"></canvas>
-                </div>
+            <span id="newUsers"></span>
 
 
 
+            <div class="subChart">
+                <canvas id="monthlyUsers"></canvas>
+            </div><br>
+            <span style="margin-left:50%; margin-bottom:30px"> Users by role:</span>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>New Users</th>
+                        <th>Total Users</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr>
+                        <td>Seller:</td>
+                        <td><?php echo $userType['sellerc']; ?></td> <!-- Placeholder value for new users this month -->
+                        <td> <?php echo $userType['seller']; ?></td> <!-- Total number of seller users -->
+                    </tr>
+                    <tr>
+                        <td>Buyer:</td>
+                        <td><?php echo $userType['buyerc']; ?></td> <!-- Placeholder value for new users this month -->
+                        <td> <?php echo $userType['buyer']; ?></td> <!-- Total number of seller users -->
+                    </tr>
+                    <tr>
+                        <td>Admin:</td>
+                        <td><?php echo $userType['adminc']; ?></td> <!-- Placeholder value for new users this month -->
+                        <td> <?php echo $userType['admin']; ?></td> <!-- Total number of seller users -->
+                    </tr>
+                    <tr>
+                        <td>CSA:</td>
+                        <td><?php echo $userType['csac']; ?></td> <!-- Placeholder value for new users this month -->
+                        <td> <?php echo $userType['csa']; ?></td> <!-- Total number of seller users -->
+                    </tr>
+                    <!-- Add more rows for other user types if needed -->
+                </tbody>
+            </table>
 
-
+            <div class=" subChart">
+                <canvas id="userTypeCurrent"></canvas>
             </div>
-            <br><br><br>
-            <div class="boxes">
-
-                <i class="uil uil-thumbs-up"></i>
-                <span>Total Users</span>
-                <span><?php echo $userType['users']; ?></span><br>
-
-                <i class="uil uil-comments"></i>
-                <span>Total Orders</span>
-                <span><?php echo $order['orders'] ?> </span><br>
-
-
-
-                <span class="text">Total Share</span>
-                <span>10,120</span><br>
-
+            <div class=" subChart">
+                <canvas id="userType"></canvas>
             </div>
+
+
+            <span style="font-size: 30px; font-weight:bold;">Orders </span><br>
             <div class="boxes">
-                <div class="subChart">
-                    <canvas id="monthlyUsers"></canvas>
+                <div class=" subChart">
+                    <canvas id="totalOrders"></canvas>
                 </div>
                 <div class="subChart">
                     <canvas id="orderState"></canvas>
@@ -104,18 +128,47 @@
                 <div class=" subChart">
                     <canvas id="orderStatePrev"></canvas>
                 </div>
-                <div class=" subChart">
-                    <canvas id="userType"></canvas>
-                </div>
-
-
             </div>
 
+            <span style="font-size: 30px; font-weight:bold;">Payments </span><br>
+            <div class="boxes">
+                <div class=" subChart">
+                    <canvas id="paymentStatusCurrent"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="totalPayments"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="Sales"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="noOfRefunds"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="totalRefunds"></canvas>
+                </div>
+            </div>
 
-
+            <span style="font-size: 30px; font-weight:bold;">GIGS </span><br>
+            <div class="boxes">
+                <div class="subChart">
+                    <canvas id="noOfGigs"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="gigState"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="gigStateCurrentMonth"></canvas>
+                </div>
+            </div>
 
         </div>
-        <button onclick="generatePDF()">Download</button>
+
+
+
+
+    </div>
+    <button onclick="generatePDF()">Download</button>
 
 
 
@@ -128,20 +181,13 @@
 
 <script>
     function generatePDF() {
-        var element = document.getElementById('users')
+        var element = document.getElementById('makepdf');
 
-        var opt = {
-            filename: 'myfile.pdf',
-            html2canvas: {
-                scale: 1,
-                scrollY: 8
-            }
-        };
-        html2pdf().set(opt).from(element).save();
 
+        // Open the print dialog
+        window.print();
 
     }
-
 
 
 
@@ -244,6 +290,7 @@
                 text: "orderState Previous Month (0<?php echo (date('m') == 1) ? 12 : date('m') - 1; ?>  <?php echo (date('m') == 1) ? date('Y') - 1 : date('Y'); ?>)"
 
             }
+
         }
     });
 
@@ -302,6 +349,270 @@
             title: {
                 display: true,
                 text: "User Type Current Month"
+            }
+        }
+    });
+    var totalOrders = []
+    <?php
+    foreach ($totalOrders as $row) {
+        echo "totalOrders.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalOrders", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: totalOrders
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "total Orders"
+            }
+        }
+    });
+
+    var paymentStatusCurrent = [];
+
+    <?php
+    $paymentStatusCurrent = [
+        $paymentStats['completed'],
+        $paymentStats['refunded'],
+        $paymentStats['onhold'],
+        $paymentStats['holdForRefund']
+    ];
+
+    $paymentStatsCurrentJSON = json_encode($paymentStatusCurrent);
+    ?>
+
+    paymentStatusCurrent = <?php echo $paymentStatsCurrentJSON; ?>;
+    new Chart("paymentStatusCurrent", {
+        type: "pie",
+        data: {
+            labels: ['completed', 'onhold', 'refunded', 'holdForRefund'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: paymentStatusCurrent
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "payment Status Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+            }
+        }
+    });
+
+    var totalSales = []
+    <?php
+    foreach ($totalSales as $row) {
+        echo "totalSales.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+
+    new Chart("Sales", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: totalSales
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "total Sales ($)"
+            }
+        }
+    });
+
+    var totalPayments = []
+    <?php
+    foreach ($totalPayments as $row) {
+        echo "totalPayments.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalPayments", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: totalPayments
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "total Payments Completed"
+            }
+        }
+    });
+
+    var noOfRefunds = []
+    <?php
+    foreach ($noOfRefunds as $row) {
+        echo "noOfRefunds.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("noOfRefunds", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: noOfRefunds
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "no of Refunds Issued"
+            }
+        }
+    });
+
+    var totalRefunds = []
+    <?php
+    foreach ($totalRefunds as $row) {
+        echo "totalRefunds.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("totalRefunds", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: totalRefunds
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "total refunds ($)"
+            }
+        }
+    });
+
+    var noOfGigs = []
+    <?php
+    foreach ($noOfGigs as $row) {
+        echo "noOfGigs.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("noOfGigs", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: noOfGigs
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "New Gigs Created"
+            }
+        }
+    });
+
+    var gigStateCurrentMonth = [];
+
+    <?php
+    $gigStateCurrentMonth1 = [
+        $gigStateCurrentMonth['Graphics & Design'],
+        $gigStateCurrentMonth['Programming & Tech'],
+        $gigStateCurrentMonth['Digital Marketing'],
+        $gigStateCurrentMonth['Video & Animation'],
+        $gigStateCurrentMonth['Writing & Translation'],
+        $gigStateCurrentMonth['Music & Audio'],
+        $gigStateCurrentMonth['Business'],
+        $gigStateCurrentMonth['Data'],
+        $gigStateCurrentMonth['Photography'],
+        $gigStateCurrentMonth['AI Services']
+
+
+    ];
+
+    $gigStatsCurrentJSON = json_encode($gigStateCurrentMonth1);
+    ?>
+    gigStateCurrentMonth = <?php echo $gigStatsCurrentJSON; ?>;
+
+    new Chart("gigStateCurrentMonth", {
+        type: "pie",
+        data: {
+            labels: ['Graphics & Design', 'Programming & Tech', 'Digital Marketing', 'Video & Animation', 'Music & Audio', 'Business', 'Data', 'Photography', 'AI Services'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: gigStateCurrentMonth
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "gig Categories Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+            }
+        }
+    });
+    var gigState = [];
+
+    <?php
+    $gigState1 = [
+        $gigState['Graphics & Design'],
+        $gigState['Programming & Tech'],
+        $gigState['Digital Marketing'],
+        $gigState['Video & Animation'],
+        $gigState['Writing & Translation'],
+        $gigState['Music & Audio'],
+        $gigState['Business'],
+        $gigState['Data'],
+        $gigState['Photography'],
+        $gigState['AI Services']
+
+
+    ];
+
+    $gigStatsCurrentJSON = json_encode($gigState1);
+    ?>
+    gigState = <?php echo $gigStatsCurrentJSON; ?>;
+
+    new Chart("gigState", {
+        type: "pie",
+        data: {
+            labels: ['Graphics & Design', 'Programming & Tech', 'Digital Marketing', 'Video & Animation', 'Music & Audio', 'Business', 'Data', 'Photography', 'AI Services'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: gigState
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "gig Categories all time "
             }
         }
     });
