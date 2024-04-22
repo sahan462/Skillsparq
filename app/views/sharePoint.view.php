@@ -30,7 +30,7 @@
                 
                 <!-- sub topic -->
                 <p class="title">
-                    <span class="darkTitle">Delivered Files</span>
+                    <span class="darkTitle">Delivered</span>Files
                 </p>
 
                 <div class="deliveryFiles">
@@ -97,7 +97,7 @@
 
                 <!-- sub topic -->
                 <p class="title">
-                    <span class="darkTitle">Deliver The Finished Products</span>
+                    <span class="darkTitle">Deliver</span>Your Work
                 </p><br>
 
                 <!-- upload a deliver -->
@@ -134,10 +134,9 @@
                             </p>
                             
                             <!-- star rating -->
-                            <div id="rateYo">
-
-                            </div>
-                        
+                            <div id="rateYo"></div>
+                            <div class="rateValue"></div>
+                            
                         </div>
 
                     </form>
@@ -152,13 +151,6 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-
-<script>
-
-
-
-</script>
-
 <script src="./assests/js/sharePoint.script.js"></script>
 
 <?php include "components/footer.component.php"; ?>
