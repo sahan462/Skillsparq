@@ -66,16 +66,15 @@ class AdminDashboard extends Controller
         array_reverse($monthlyUsers);
 
         $data['monthlyUsers'] = $monthlyUsers;
-        $orderStateLastYear = $this->OrderHandlerModel->orderStateLastYear();
-        $data['orderStateLastYear'] = $orderStateLastYear;
 
 
 
 
 
 
-        $orderStateLastYear = $this->OrderHandlerModel->orderStateLastYear();
-        $data['orderStateLastYear'] = $orderStateLastYear;
+
+        $totalOrders = $this->OrderHandlerModel->totalOrders();
+        $data['totalOrders'] = $totalOrders;
 
 
 
@@ -93,6 +92,8 @@ class AdminDashboard extends Controller
         $data['paymentStats'] = $paymentStats;
         $totalPayments = $this->paymentHandlerModel->totalPayments();
         $data['totalPayments'] = $totalPayments;
+        $totalSales = $this->paymentHandlerModel->totalSales();
+        $data['totalSales'] = $totalSales;
 
         $this->view('adminDashboard', $data);
     }

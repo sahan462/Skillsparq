@@ -17,13 +17,13 @@
 </head>
 
 <body>
-    <?php include "components/helpCenter.component.php"; ?>
+    <?php include "components/adminDashboard.component.php"; ?>
 
     <div class="dash-content">
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Help Request no: <?php echo $data['payment_id']
+                <span class="text">payment ID no: <?php echo $data['payment_id']
                                                     ?></span>
 
             </div>
@@ -69,3 +69,19 @@
                 }
                 ?>
             </div>
+        </div>
+
+        <form method="post">>
+            <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+            <br>
+            <input class="submit" type="submit" value="Reply">
+        </form>
+    </div>
+    </div>
+
+
+</html>
+
+<script>
+
+</script>

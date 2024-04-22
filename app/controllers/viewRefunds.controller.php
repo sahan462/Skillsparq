@@ -24,6 +24,14 @@ class viewRefunds extends Controller
         $viewrefund = $this->paymentHandlerModel->viewRefundDetails($payment_id);
         $data['viewrefund'] = $viewrefund;
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $response = $_POST['response'];
+            $this->inquiryHandlerModel->updateRefund($payment_id, $response);
+            // Optionally, redirect to a different page after adding the response
+
+        }
+
+
 
         $this->view('viewRefunds', $data);
     }

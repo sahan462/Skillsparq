@@ -70,6 +70,9 @@
           <div class="subChart">
             <canvas id="totalPayments"></canvas>
           </div>
+          <div class="subChart">
+            <canvas id="Sales"></canvas>
+          </div>
 
         </div>
 
@@ -285,7 +288,7 @@
     var totalOrders = [];
 
     <?php
-    foreach ($orderStateLastYear as $row) {
+    foreach ($totalOrders as $row) {
       echo "totalOrders.push('$row');"; // Use push to add each month to the JavaScript array
     } ?>
     new Chart("totalOrders", {
@@ -329,7 +332,7 @@
         },
         title: {
           display: true,
-          text: "total Orders"
+          text: "total Payments Completed"
         }
       }
     });
@@ -361,6 +364,33 @@
         title: {
           display: true,
           text: "payment Status Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+        }
+      }
+    });
+
+    var totalSales = []
+    <?php
+    foreach ($totalSales as $row) {
+      echo "totalSales.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+
+    new Chart("Sales", {
+      type: "line",
+      data: {
+        labels: rearrangedMonths,
+        datasets: [{
+          fill: false,
+          borderColor: 'green',
+          data: totalSales
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "total Sales"
         }
       }
     });
