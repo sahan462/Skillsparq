@@ -9,6 +9,7 @@
     <!----===== Iconscout CSS ===== -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://parall.ax/parallax/js/jspdf.js"></script>
@@ -34,10 +35,14 @@
 
         /* Charts */
         canvas {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             margin-bottom: 20px;
+            margin-left: 12%;
+
         }
+
+
 
         /* Footer */
         .page-footer {
@@ -144,6 +149,18 @@
                 </div>
             </div>
 
+            <span style="font-size: 30px; font-weight:bold;">GIGS </span><br>
+            <div class="boxes">
+                <div class="subChart">
+                    <canvas id="noOfGigs"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="gigState"></canvas>
+                </div>
+                <div class="subChart">
+                    <canvas id="gigStateCurrentMonth"></canvas>
+                </div>
+            </div>
 
         </div>
 
@@ -165,34 +182,11 @@
 <script>
     function generatePDF() {
         var element = document.getElementById('makepdf');
-        var opt = {
-            margin: 10,
-            filename: 'myfile.pdf',
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 1 // Adjust scale based on your content
-            },
-            jsPDF: {
-                unit: 'mm',
-                format: 'a4',
-                orientation: 'portrait'
-            }
-        };
 
-        html2pdf().set(opt).from(element).toPdf().get('pdf').then(function(pdf) {
-            var totalPages = pdf.internal.getNumberOfPages();
-            for (var i = 1; i <= totalPages; i++) {
-                pdf.setPage(i);
-                pdf.setFontSize(10);
-                pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10);
-            }
 
-            // Open the print dialog
-            window.print();
-        });
+        // Open the print dialog
+        window.print();
+
     }
 
 
@@ -516,6 +510,109 @@
             title: {
                 display: true,
                 text: "total refunds ($)"
+            }
+        }
+    });
+
+    var noOfGigs = []
+    <?php
+    foreach ($noOfGigs as $row) {
+        echo "noOfGigs.push('$row');"; // Use push to add each month to the JavaScript array
+    } ?>
+    new Chart("noOfGigs", {
+        type: "line",
+        data: {
+            labels: rearrangedMonths,
+            datasets: [{
+                fill: false,
+                borderColor: 'green',
+                data: noOfGigs
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "New Gigs Created"
+            }
+        }
+    });
+
+    var gigStateCurrentMonth = [];
+
+    <?php
+    $gigStateCurrentMonth1 = [
+        $gigStateCurrentMonth['Graphics & Design'],
+        $gigStateCurrentMonth['Programming & Tech'],
+        $gigStateCurrentMonth['Digital Marketing'],
+        $gigStateCurrentMonth['Video & Animation'],
+        $gigStateCurrentMonth['Writing & Translation'],
+        $gigStateCurrentMonth['Music & Audio'],
+        $gigStateCurrentMonth['Business'],
+        $gigStateCurrentMonth['Data'],
+        $gigStateCurrentMonth['Photography'],
+        $gigStateCurrentMonth['AI Services']
+
+
+    ];
+
+    $gigStatsCurrentJSON = json_encode($gigStateCurrentMonth1);
+    ?>
+    gigStateCurrentMonth = <?php echo $gigStatsCurrentJSON; ?>;
+
+    new Chart("gigStateCurrentMonth", {
+        type: "pie",
+        data: {
+            labels: ['Graphics & Design', 'Programming & Tech', 'Digital Marketing', 'Video & Animation', 'Music & Audio', 'Business', 'Data', 'Photography', 'AI Services'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: gigStateCurrentMonth
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "gig Categories Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+            }
+        }
+    });
+    var gigState = [];
+
+    <?php
+    $gigState1 = [
+        $gigState['Graphics & Design'],
+        $gigState['Programming & Tech'],
+        $gigState['Digital Marketing'],
+        $gigState['Video & Animation'],
+        $gigState['Writing & Translation'],
+        $gigState['Music & Audio'],
+        $gigState['Business'],
+        $gigState['Data'],
+        $gigState['Photography'],
+        $gigState['AI Services']
+
+
+    ];
+
+    $gigStatsCurrentJSON = json_encode($gigState1);
+    ?>
+    gigState = <?php echo $gigStatsCurrentJSON; ?>;
+
+    new Chart("gigState", {
+        type: "pie",
+        data: {
+            labels: ['Graphics & Design', 'Programming & Tech', 'Digital Marketing', 'Video & Animation', 'Music & Audio', 'Business', 'Data', 'Photography', 'AI Services'],
+            datasets: [{
+                backgroundColor: barColors,
+                data: gigState
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "gig Categories all time "
             }
         }
     });

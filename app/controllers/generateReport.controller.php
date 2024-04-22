@@ -9,6 +9,7 @@ class generateReport extends Controller
     private $profileHandlerModel;
     private $OrderHandlerModel;
     private $paymentHandlerModel;
+    private $gigHandlerModel;
     public function __construct()
     {
         $this->JobHandlerModel = $this->model('jobHandler');
@@ -18,6 +19,7 @@ class generateReport extends Controller
         $this->profileHandlerModel = $this->model('profileHandler');
         $this->OrderHandlerModel = $this->model('OrderHandler');
         $this->paymentHandlerModel = $this->model('paymentHandler');
+        $this->gigHandlerModel = $this->model('gigHandler');
     }
 
     public function index()
@@ -90,6 +92,13 @@ class generateReport extends Controller
         $data['noOfRefunds'] = $noOfRefunds;
         $totalRefunds = $this->paymentHandlerModel->totalRefunds();
         $data['totalRefunds'] = $totalRefunds;
+        $noOfGigs = $this->gigHandlerModel->noOfGigs();
+        $data['noOfGigs'] = $noOfGigs;
+        $gigStateCurrentMonth = $this->gigHandlerModel->gigStateCurrentMonth();
+        $data['gigStateCurrentMonth'] = $gigStateCurrentMonth;
+        $gigState = $this->gigHandlerModel->gigState();
+        $data['gigState'] = $gigState;
+
 
 
 
