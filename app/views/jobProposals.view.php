@@ -6,7 +6,7 @@
         // show($propCardDets);
         // print_r($propCardDets);
         // print_r($data);
-        show($data);
+        // show($data);
 ?>
 
 <div class="jobPropMainContainer">
@@ -25,7 +25,7 @@
 								foreach($propCardDets as $proposals){
                                     if(!empty($proposals)){
                                         // if($proposals['Status'] !== "Accepted" && $proposals['Status'] === "pending"&&$proposals['Status'] !== "Rejected"){
-                                        if($proposals['Status'] === "pending"){
+                                        if($proposals['Status'] === "pending" || $proposals['Status'] === "Accepted"){
 						?>
 						<div class="jobPropCardDetails">
 								<div class="propCollapsBtnDiv">
@@ -53,11 +53,17 @@
                                                 <button class="accept" onclick=""><a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>&amp;jobId=<?php echo $proposals['job_id']?>&amp;sellerId=<?php echo $proposals['seller_id']?>&amp;buyerId=<?php echo $proposals['buyer_id']?>">Accept</a></button>
                                             <?php
                                                 }else{
+                                                    if($proposals['Status'] === "Accepted"){
                                             ?>
                                                 <!-- Can't accept other proposals if a single proposal has accepted. -->
+                                                <button class="accept" onclick="window.alert('You have accepted a Job Proposal Already! ')">Accepted</a></button>
+                                            <?php
+                                                    }else{
+                                            ?>
                                                 <button class="accept" onclick="window.alert('You have accepted a Job Proposal Already! ')">Accept</a></button>
                                             <?php
-                                                }
+                                                    }
+                                                }   
                                             ?>
                                                 <button class="reject" onclick=""><a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposals['proposal_id'];?>&amp;Status=<?php echo $proposals['Status']?>">Reject</a></button>
                                             </div>   

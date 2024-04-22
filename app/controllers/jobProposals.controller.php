@@ -85,7 +85,7 @@ class JobProposals extends Controller
             if($result){
                 echo "
                  <script>
-                    window.alert('Order Rejected');
+                    window.alert('Job Proposal Rejected');
                     window.location.href = '" . BASEURL . "jobproposals';
                  </script>
                 ";

@@ -605,4 +605,42 @@ class JobHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function deleteSingleRejectedProp($proposalId)
+    {
+        $deleteQuery = "DELETE FROM job_proposals WHERE proposal_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $proposalId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deleteAllRejectedProps($sellerId,$status)
+    {
+        $deleteQuery = "DELETE FROM job_proposals WHERE seller_id = ? AND Status = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "is", $sellerId,$status);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

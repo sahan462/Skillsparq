@@ -2,7 +2,6 @@
     include "components/sellerHeader.component.php";
     $allProposals = $data['sentPropDets'];
     // show($allProposals);
-
     $accepted = $data['AcceptedCount'];
     $pending = $data['PendingCount'];
     $rejected = $data['RejectedCount'];
@@ -167,6 +166,9 @@
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
                                 <th style="width: 10%;">Type</th>
+                                <th style="width: 10%; color:#e41f11">
+                                    <button onclick="window.location=('sentJobProposals/deleteAllRejProps&sellerId=<?php echo $data['sellerId']?>')">Delete All</button>
+                                </th>
                             </tr>
                         </div>
                             <?php
@@ -183,6 +185,7 @@
                                 <td><?php echo $row['deadline'];?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
+                                <td><button onclick="window.location=('sentJobProposals/deleteSingleRejProp&propId=<?php echo $row['proposal_id']?>')">Delete</button></td>
                             </tr>
                                 <?php
                                     }
