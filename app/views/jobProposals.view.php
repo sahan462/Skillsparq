@@ -56,7 +56,7 @@
                                                     if($proposals['Status'] === "Accepted"){
                                             ?>
                                                 <!-- Can't accept other proposals if a single proposal has accepted. -->
-                                                <button class="accept" onclick="window.alert('You have accepted a Job Proposal Already! ')">Accepted</a></button>
+                                                <button class="accept" onclick="window.alert('You have accepted a Job Proposal Already! ')">Accepted </a></button>
                                             <?php
                                                     }else{
                                             ?>

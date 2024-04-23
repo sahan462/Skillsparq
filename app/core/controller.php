@@ -100,25 +100,6 @@ class Controller
         header("location:" . BASEURL . $path);
     }
 
-    public function redirectWind($path)
-    {
-        echo "
-            <script>
-                window.location.href = '" . BASEURL . "$path';
-            </script>
-        ";
-    }
-
-    public function msgWithRedirect($path,$msg)
-    {
-        echo "
-            <script>
-                window.alert($msg);
-                window.location.href = '" . BASEURL . "$path';
-            </script>
-        ";
-    }
-
     //send mail
     public function sendVerificationMail($receiver_email, $receiver_name, $subject, $body, $AltBody)
     {
