@@ -17,16 +17,32 @@
             <!--header-->
             <div class = "upperHeader">
                 <div class="logo">
-                    <a href="#">SKILLSPARQ</a>
+                    <a href="home">SKILLSPARQ</a>
                 </div>
                 <div class="navbar">
                     <nav>
                         <ul class="nav-links">
                             <li class="wordLink" id="wordLink-1"><a href="registerSeller">Become a Seller</a></li>
                             <li class="wordLink" id="wordLink-2"><a href="loginUser">LogIn</a></li>
+                            <?php
+                                if(!empty($_SESSION)){
+                                    if($_SESSION['role'] == "Buyer"){
+                            ?>
+                                <a href="buyerProfile"><button >profile</button></a>
+                            <?php
+                                    }else if($_SESSION['role'] == "Seller"){
+                            ?>
+                                <a href="sellerProfile"><button >profile</button></a>
+                            <?php
+                                    }
+                                }else{
+                            ?>
                             <li>
                                 <a href="register"><button>Join</button></a>
                             </li>
+                            <?php
+                                }
+                            ?>
                         </ul>
                     </nav>
                 </div>

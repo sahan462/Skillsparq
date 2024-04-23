@@ -31,7 +31,7 @@
     <header>
         <div class="upperHeader" style="justify-content: space-between;">
             <div class="logo">
-                <a href="#">SKILLSPARQ</a>
+                <a href="home">SKILLSPARQ</a>
             </div>
             <div class="searchBar">
                 <form action="">

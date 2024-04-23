@@ -228,6 +228,22 @@ class Order extends Controller
         
     }
 
+    // method to create a job order for successfully accepted job proposal
+    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    {
+        $isCreated = $this->OrderHandlerModel->createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+        if(is_numeric($isCreated)){
+            return $isCreated;
+        }else{
+            echo "
+                    <script>
+                        window.alert('Error Occured when inserting the order data !');
+                        window.location.href = '" . BASEURL . "jobproposals';
+                    </script>
+                ";
+        }
+    }
+
 
     //Cancelling an Order
     public function cancelOrder()
