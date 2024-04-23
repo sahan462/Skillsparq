@@ -199,8 +199,8 @@ function openLanguage(btn)
 function confirmLang(action)
 {
     if (action === 'ad') {
-        var addEmailForm = document.getElementById('lnForm');
-        addEmailForm.submit();
+        var addLangForm = document.getElementById('lnForm');
+        addLangForm.submit();
     
         document.getElementById('modallang').style.display = 'none';
         document.getElementById('overlaylang').style.display = 'none';

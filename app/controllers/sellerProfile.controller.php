@@ -89,6 +89,7 @@ class SellerProfile extends Controller
                 </script>
                 ";
             }
+            // show($_FILES);
             // show($data);
             // print_r($_SESSION);
             $this->view('sellerProfile', $data);
@@ -121,8 +122,8 @@ class SellerProfile extends Controller
     // insert/update user email of seller profile
     public function addEmail()
     {
-        $email = $_GET['email'];
-        $userId = $_GET['userId'];
+        $email = $_POST['Email'];
+        $userId = $_POST['UserId'];
 
         if(!empty($email) && !empty($userId)){
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -159,18 +160,26 @@ class SellerProfile extends Controller
     {
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
-        $languages = $_POST['languages'];
-        $result = $this->SellerHandlerModel->addLanguages($userName,$languages);
-        if($result){
-            echo "
-            <script>
-                alert('Successfully Added the Languages !');
-                window.location.href = '" . BASEURL . "sellerProfile';
-            </script>";
+        $languages = $_POST['Languages'];
+        if(!empty($languages) && !empty($userId) && !empty($userName)){
+            $result = $this->SellerHandlerModel->addLanguages($languages,$userName,$userId);
+            if($result){
+                echo "
+                <script>
+                    alert('Successfully Added the Languages !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }else{
+                echo "
+                <script>
+                    alert('Insertion Unsuccessful !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }
         }else{
             echo "
             <script>
-                alert('Insertion Unsuccessful !');
+                alert('Invalid Data Passing while updating!');
                 window.location.href = '" . BASEURL . "sellerProfile';
             </script>";
         }
@@ -181,21 +190,28 @@ class SellerProfile extends Controller
     {
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
-        $skills = $_POST['skills'];
-        $result = $this->SellerHandlerModel->addSkills($userName,$skills);
-        if($result){
-            echo 
-            "<script>
-                alert('Successfully Added the Skills !');
-                window.location.href = '" . BASEURL . "sellerProfile';
-            </script>";
+        $skills = $_POST['Skills'];
+        if(!empty($skills) && !empty($userId) && !empty($userName)){
+            $result = $this->SellerHandlerModel->addSkills($skills,$userName,$userId);
+            if($result){
+                echo "
+                <script>
+                    alert('Successfully Added the Skills !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }else{
+                echo "
+                <script>
+                    alert('Insertion Unsuccessful !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }
         }else{
             echo "
             <script>
-                alert('Insertion Unsuccessful !');
+                alert('Invalid Data Passing while updating!');
                 window.location.href = '" . BASEURL . "sellerProfile';
-            </script>
-            ";
+            </script>";
         }
     }
 
@@ -204,22 +220,192 @@ class SellerProfile extends Controller
     {
         $userId = $_POST['userId'];
         $userName = $_POST['userName'];
-        $education = $_POST['education'];
-        $result = $this->SellerHandlerModel->addEducation($userName,$education);
-        if($result){
-            echo 
-            "<script>
-                alert('Successfully Added the Education Details !');
-                window.location.href = '" . BASEURL . "sellerProfile';
-            </script>";
+        $education = $_POST['Educations'];
+        if(!empty($education) && !empty($userId) && !empty($userName)){
+            $result = $this->SellerHandlerModel->addEducation($education,$userName,$userId);
+            if($result){
+                echo "
+                <script>
+                    alert('Successfully Added the Education !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }else{
+                echo "
+                <script>
+                    alert('Insertion Unsuccessful !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>";
+            }
         }else{
             echo "
             <script>
-                alert('Insertion Unsuccessful !');
+                alert('Invalid Data Passing while updating!');
                 window.location.href = '" . BASEURL . "sellerProfile';
-            </script>
-            ";
+            </script>";
         }
+    }
+
+    public function addPortfolioImgsToProfile()
+    {
+        // Check if form was submitted
+        if(isset($_POST['submit']) && isset($_POST['userId']) && isset($_POST['userName'])) {
+
+            $userId = $_POST['userId'];
+            $userName = $_POST['userName'];
+
+            $upload_dir = "../public/assests/images/sellerPortfolioImgs/";
+
+            // Configure upload directory and allowed file types
+            // $upload_dir = '\xampp\htdocs\skillsparq\public\assests\images\sellerPortfolioImgs'.DIRECTORY_SEPARATOR; // specifically for local host
+
+            $allowed_types = array('jpg', 'png', 'jpeg', 'gif');
+            
+            // Define maxsize for files i.e 2MB
+            $maxsize = 2 * 1024 * 1024; 
+
+            // Checks if user sent an empty form 
+            if(!empty(array_filter($_FILES['files']['name']))) {
+
+                // values whether the size is valid or not
+                $violateFiles = array();
+                // values whether the extension is valid or not
+                $violateFileExt = array();
+                // to store the names of the files
+                $uploadFiles = array();
+
+                // $targetDir = "../public/assests/images/profilePictures/";
+                // $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
+                // $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
+                // $targetFilePath = $targetDir . $uniqueprofilePictureName; 
+                // $currentFilePath = $targetDir . $currentProfilePicture;
+
+                // show($_FILES);
+                $fileCount = count($_FILES['files']['name']);
+                // Loop through each file in files[] array
+                foreach ($_FILES['files']['tmp_name'] as $key => $value) {
+                    
+                    $file_tmpname = $_FILES['files']['tmp_name'][$key];
+                    $file_name = basename($_FILES['files']['name'][$key]);
+                    $file_size = $_FILES['files']['size'][$key];
+                    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+                    // create a unique name for the file without extension
+                    $uniqueImgName = time().'_'.random_int(0,9999999) . "_" . $file_name ;
+                    // append the created unique name with the relevant file extension.
+                    $uniqueImgNameWithExt = $uniqueImgName . $file_ext;
+                    // append the file with extension to the given path to reside the file in the folder structure.
+                    $targetedFilePath = $upload_dir.$uniqueImgNameWithExt;
+
+                    // get each an every created path to an array.
+                    $pathArr[] = $targetedFilePath;
+                    show($pathArr);
+                    // get each an every created path to an array.
+                    $uploadFiles[] = $uniqueImgName;
+                    show($uploadFiles);
+                    // get each an every created temporary file.
+                    $moveTempFiles[] = $file_tmpname;
+                    show($moveTempFiles);
+
+                    // check whether the files are less than the given size.
+                    if($file_size > $maxsize){
+                        $violateFiles[$file_name] = "Maxsize exceed";
+                        // echo $file_name. " ".$violateFiles[$file_name];
+                        echo "
+                        <script>
+                            window.alert('{$file_name} FileSize Exceed !');
+                            window.location('sellerProfile');
+                        </script>
+                        ";
+                    }
+                    // else{
+                        // check whether the size checked file names have the relevant extensions given above. 
+                    if(in_array(strtolower($file_ext), $allowed_types)){
+                        $violateFileExt[$file_name] = "Accept";
+                    }else{
+                        $violateFileExt[$file_name] = "Reject";
+                    }
+                    // }
+
+                }
+
+                // show($uploadFiles);
+
+                // $sizeOk = 0;
+                $statusOk = 0;
+
+                // foreach ($violateFiles as $name => $sizeExceed) {
+                //     if($name === "Maxsize exceed"){
+                //         echo "
+                //         <script>
+                //             window.alert('{$file_name} FileSize Exceed !');
+                //             window.location('sellerProfile');
+                //         </script>
+                //         ";
+                //     }else{
+                //         $sizeOk = 1;
+                //         break;
+                //     }
+                // }
+
+                foreach ($violateFileExt as $name => $status) {
+                    if($status === "Rejected"){
+                        echo "
+                        <script>
+                            window.alert('{$file_name} is not a valid file type !');
+                            window.location('sellerProfile');
+                        </script>
+                        ";
+                    }else{
+                        $statusOk = 1;
+                        // show($name);
+                    }
+                }
+
+                // if($sizeOk && $statusOk){
+                if($statusOk){
+                    $uploadOk = [];
+                    $uploadOkInt = [];
+                    foreach ($uploadFiles as $records) {
+                        // show($uploadFiles);
+                        // show($records);
+                        // show($uploadOk[$records]);
+                        $isInserted = $this->SellerHandlerModel->insertPortfolioImgs($records,$userName,$userId);
+                        if(!$isInserted){
+                            echo "
+                            <script>
+                                window.alert('Error while inserting to the database. !');
+                                window.location('sellerProfile');
+                            </script>
+                            ";
+                        }else{
+                            $uploadOk[$records] = $isInserted;
+                            $uploadOkInt[] = 1;
+                        }
+                    }
+
+                    $isMoved = array();
+                    for($i = 0; $i < $fileCount; $i++) {
+                        if($uploadOkInt[$i] === true){
+                            $isMoved[$i] = move_uploaded_file($moveTempFiles[$i], $pathArr[$i]); //$pathArr[]v$moveTempFiles[]
+                            echo "
+                            <script>
+                                window.alert('Successfully Added to portfolio !');
+                            </script>
+                            ";
+                        }else{
+                            echo "Can't move the files !";
+                        }
+                    }
+                }else{
+                    echo "Either the Size or Type doesn't match the requirement";
+                }
+            }else{
+                echo "The Form is empty";
+            }
+        }else{
+            echo "Error passing data";
+        }
+
     }
 
     // has to adjust for client.

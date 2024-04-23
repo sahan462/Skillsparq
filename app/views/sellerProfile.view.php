@@ -8,21 +8,20 @@
     $Country = "Sri Lanka";
     $DateJoined = $data['profileDetails']['joined_date'];
     $lastSeen = $data['profileDetails']['last_seen'];
-    // $lastSeen = $_SESSION['status'];
+    $lastSeen = $_SESSION['status'];
     $about = $data['profileDetails']['about'];
     $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
     $email = $data['mail']['user_email'];
     $Gigs = (array) $data['gigs'];
 
-    // $languages = $data['sellerProfileDets']['languages'];
-    // $languages = explode(" ", $languages);
+    $languages = $data['sellerProfileDets']['languages'];
     
     // print_r($languages);
 
-    // $skills = $data['sellerProfileDets']['skills'];
-    // $education = $data['sellerProfileDets']['education'];
-    // $portfolio = $data['sellerProfileDets']['portfolio'];
+    $skills = $data['sellerProfileDets']['skills'];
+    $education = $data['sellerProfileDets']['education'];
+    $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // print_r($_SESSION);
 ?>
@@ -163,7 +162,7 @@
     <!-- Modal Add Email -->
     <div class="overlay" id="overlayEmail">
         <div class="modalEmail" id="modalEmail">
-            <form id="emailForm" method="GET" action="sellerProfile/addEmail">
+            <form id="emailForm" method="POST" action="sellerProfile/addEmail">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
@@ -176,6 +175,7 @@
                     <button type="button" onclick="confirmEmail('cancelEmail')">Cancel</button>
                     <button type="button" onclick="confirmEmail('addEmail')">Add Email</button>
                 </div>
+                <input type="hidden" name="UserId" value="<?php echo $_SESSION['userId']?>">
             </form>
         </div>
     </div>
@@ -185,21 +185,19 @@
     <!-- Modal Add Languages -->
     <div class="overlay" id="overlaylang">
         <div class="modalLang" id="modallang">
-        <!-- <form id="languageForm" method="post" action="./sellerProfile/addProfileLanguages"> -->
-            <form id="lnForm" method="GET" action="sellerProfile/ad">
+            <form id="lnForm" method="POST" action="sellerProfile/addProfileLanguages">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
-                            Add Your Languages here.
+                            Add Your Languages here.    
                         </div>
-                        <input type="text" name="Languages">
+                        <input type="text" name="Languages" value="<?php echo $languages?>">
                     </div>
                 </div>
                 <div class="buttons">
                     <button type="button" onclick="confirmLang('canc')">Cancel</button>
                     <button type="button" onclick="confirmLang('ad')">Add</button>
                 </div>
-
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
             </form>
@@ -211,14 +209,13 @@
     <!-- Modal Add Skills -->
     <div class="overlay" id="overlayskill">
         <div class="modalSkill" id="modalskill">
-        <!-- <form id="skillsForm" method="post" action="./sellerProfile/addProfileSKills"> -->
-            <form id="sklForm" method="GET" action="sellerProfile/ad">
+            <form id="sklForm" method="POST" action="sellerProfile/addProfileSkills">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
                             Add Your Skills here.
                         </div>
-                        <input type="text" name="Skills">
+                        <input type="text" name="Skills" value="<?php echo $skills?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -236,14 +233,13 @@
     <!-- Modal Add Education -->
     <div class="overlay" id="overlayeducation">
         <div class="modalEducation" id="modaleducation">
-            <!-- <form id="educationForm" method="post" action="./sellerProfile/addProfileEducation"> -->
-            <form id="educForm" method="GET" action="sellerProfile/ad">
+            <form id="educForm" method="POST" action="sellerProfile/addProfileEducation">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
                             Add Your Education here.
                         </div>
-                        <input type="text" name="Educations">
+                        <input type="text" name="Educations" value="<?php echo $education?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -254,13 +250,7 @@
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
             </form>
         </div>
-    </div>
-
-    <!-- ######################################################################### -->
-
-    <div class="dltIcon">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.5303 9.53033C15.8232 9.23744 15.8232 8.76256 15.5303 8.46967C15.2374 8.17678 14.7625 8.17678 14.4696 8.46967L15.5303 9.53033ZM8.46961 14.4697C8.17672 14.7626 8.17672 15.2374 8.46961 15.5303C8.76251 15.8232 9.23738 15.8232 9.53027 15.5303L8.46961 14.4697ZM9.53039 8.46967C9.2375 8.17678 8.76263 8.17678 8.46973 8.46967C8.17684 8.76256 8.17684 9.23744 8.46973 9.53033L9.53039 8.46967ZM14.4697 15.5303C14.7626 15.8232 15.2375 15.8232 15.5304 15.5303C15.8233 15.2374 15.8233 14.7626 15.5304 14.4697L14.4697 15.5303ZM14.4696 8.46967L8.46961 14.4697L9.53027 15.5303L15.5303 9.53033L14.4696 8.46967ZM8.46973 9.53033L14.4697 15.5303L15.5304 14.4697L9.53039 8.46967L8.46973 9.53033ZM8 4.75H16V3.25H8V4.75ZM19.25 8V16H20.75V8H19.25ZM16 19.25H8V20.75H16V19.25ZM4.75 16V8H3.25V16H4.75ZM8 19.25C6.20507 19.25 4.75 17.7949 4.75 16H3.25C3.25 18.6234 5.37665 20.75 8 20.75V19.25ZM19.25 16C19.25 17.7949 17.7949 19.25 16 19.25V20.75C18.6234 20.75 20.75 18.6234 20.75 16H19.25ZM16 4.75C17.7949 4.75 19.25 6.20507 19.25 8H20.75C20.75 5.37665 18.6234 3.25 16 3.25V4.75ZM8 3.25C5.37665 3.25 3.25 5.37665 3.25 8H4.75C4.75 6.20507 6.20507 4.75 8 4.75V3.25Z" fill="#018347"></path> </g></svg>
-    </div>
+    </div>    
 
     <!-- ######################################################################### -->
 
@@ -408,14 +398,16 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($languages)){
+                            if(!empty($languages)){
+                                // foreach($languages as $lang){
                         ?>
                             <div>
                                 <?php 
-                                    echo $lang;
+                                    echo $languages;
                                 ?>
                             </div>
                         <?php  
+                                // }
                             }else{
                                 echo "Add languages that you're proficient with!";
                             }
@@ -441,7 +433,7 @@
                 </div>
                 <div class="description-content">
                         <?php 
-                            if(isset($skills)){
+                            if(!empty($skills)){
                                 echo $skills;    
                             }else{
                                 echo "Add skills that you're familiar with!";
@@ -471,6 +463,9 @@
                                 echo "Add your education";
                             }
                         ?>
+                    </div>
+                    <div class="dltIcon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.5303 9.53033C15.8232 9.23744 15.8232 8.76256 15.5303 8.46967C15.2374 8.17678 14.7625 8.17678 14.4696 8.46967L15.5303 9.53033ZM8.46961 14.4697C8.17672 14.7626 8.17672 15.2374 8.46961 15.5303C8.76251 15.8232 9.23738 15.8232 9.53027 15.5303L8.46961 14.4697ZM9.53039 8.46967C9.2375 8.17678 8.76263 8.17678 8.46973 8.46967C8.17684 8.76256 8.17684 9.23744 8.46973 9.53033L9.53039 8.46967ZM14.4697 15.5303C14.7626 15.8232 15.2375 15.8232 15.5304 15.5303C15.8233 15.2374 15.8233 14.7626 15.5304 14.4697L14.4697 15.5303ZM14.4696 8.46967L8.46961 14.4697L9.53027 15.5303L15.5303 9.53033L14.4696 8.46967ZM8.46973 9.53033L14.4697 15.5303L15.5304 14.4697L9.53039 8.46967L8.46973 9.53033ZM8 4.75H16V3.25H8V4.75ZM19.25 8V16H20.75V8H19.25ZM16 19.25H8V20.75H16V19.25ZM4.75 16V8H3.25V16H4.75ZM8 19.25C6.20507 19.25 4.75 17.7949 4.75 16H3.25C3.25 18.6234 5.37665 20.75 8 20.75V19.25ZM19.25 16C19.25 17.7949 17.7949 19.25 16 19.25V20.75C18.6234 20.75 20.75 18.6234 20.75 16H19.25ZM16 4.75C17.7949 4.75 19.25 6.20507 19.25 8H20.75C20.75 5.37665 18.6234 3.25 16 3.25V4.75ZM8 3.25C5.37665 3.25 3.25 5.37665 3.25 8H4.75C4.75 6.20507 6.20507 4.75 8 4.75V3.25Z" fill="#018347"></path> </g></svg>
                     </div>
                 </div>
             </div>
@@ -502,19 +497,42 @@
                     <span>No feedbacks available</span>
                 </div>
             </div>
-            <!-- <div class="reviews"> -->
+            <div class="reviews">
                 <div class="sellerUser-content">
                     <div class="sellerheader">
                         <span>My Portfolio</span>
                         <a href=""><button>Add to Portfolio</button></a>
                     </div>
+                    <div class="portfolioAdd">
+                        <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
+                                enctype="multipart/form-data">
+                    
+                            <h2>Upload Files</h2>
+                            
+                            <p>
+                                Select files to upload: 
+                                
+                                <!-- name of the input fields are going to
+                                    be used in our php script-->
+
+                                <input type="file" name="files[]" multiple>
+                                <input type="submit" name="submit" value="Upload" >
+                                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+                            </p>
+
+                        </form>
+                    </div>
                     <div class="review-content">
+                        
+                        lkjflaskdf
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/>
                         </svg>
                         <span>Setup Your Portfolio Right Now !</span>
                     </div>
+                    <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
                 </div>
-            <!-- </div> -->
+            </div>
         </div>  
     </div>
 </div>
