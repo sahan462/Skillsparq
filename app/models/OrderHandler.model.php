@@ -108,40 +108,6 @@ class OrderHandler extends database
         return $orderId;
     }
 
-    // create Job Order 
-    public function createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
-    {
-        $insertQuery = "INSERT INTO orders 
-        (
-            order_state,
-            order_type, 
-            order_created_date,
-            buyer_id,
-            seller_id
-        ) 
-        VALUES 
-        (
-            ?, ?, ?, ?, ?
-        )";
-
-        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
-
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
-        }
-
-        mysqli_stmt_bind_param($stmt, "ssdii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            $orderId = mysqli_insert_id($GLOBALS['db']);
-            $stmt->close();
-        } else {
-            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
-        }
-        return $orderId;
-    }
-
-
     //get orders
     public function getOrders($userId, $userRole)
     {
