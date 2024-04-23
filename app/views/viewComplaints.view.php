@@ -315,7 +315,7 @@
             var buyerID = <?php echo $row['buyer_id']; ?>
 
             if (confirmation) {
-                var paymentId = 1; // Set the payment ID here
+                var paymentId = <?php echo $row['payment_id']; ?>; // Set the payment ID here
                 document.getElementById("payment_id").value = paymentId;
                 document.getElementById("sendResponse").value = response;
                 document.getElementById("buyerID").value = buyerID

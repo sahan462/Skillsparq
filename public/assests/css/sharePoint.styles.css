@@ -41,8 +41,8 @@ body{
 }
 
 .darkTitle{
-    color: #4b4b4b;
-    font-size: 20px;
+    color: #222325;
+    font-size: 24px;
 }
 
 /* left container */
@@ -50,7 +50,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100vh - 32px);
+    height: calc(100vh - 150px);
     width: 44%;
     background-color: #fff;
     margin-top: 16px;
@@ -58,9 +58,30 @@ body{
     border: 1px solid #c5c6c9;
     border-radius: 5px;
 }
-
 .sharePointContainer .leftUpperContainer{
-} 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sharePointContainer .leftUpperContainer .title{
+    height: 5%;
+}
+.sharePointContainer .leftUpperContainer .deliveryFiles{
+    border: 1px solid black;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sharePointContainer .deliveryFiles .animation{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .sharePointContainer .leftBottomContainer{
 }
@@ -414,9 +435,11 @@ body{
     box-shadow: 1px 1px 5px 0px #c9c9c9;
 }
 .upload_background {
+    display: flex;
+    justify-content: space-between;
     background-color: #dadada;
-    padding: 10px;
-    border-radius: 7px;
+    padding: 16px;
+    border-radius: 8px;
 }
 .scrollable {
     overflow-y: auto;

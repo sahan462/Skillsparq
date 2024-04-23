@@ -16,21 +16,10 @@
 <div class="manageOrdersContainer">
 
     <!-- Topic -->
-    <?php 
-        if($_SESSION['role'] === "Seller"){
-    ?>
     <div class="manageOrdersHeader">
-        Seller - Manage Orders
+        Manage Orders
     </div>
-    <?php
-        }else if($_SESSION['role'] === "Buyer"){
-    ?>
-    <div class="manageOrdersHeader">
-        Buyer - Manage Orders
-    </div>
-    <?php
-        }
-    ?>
+
     <!-- Content -->
     <div class="manageOrdersContent">
 

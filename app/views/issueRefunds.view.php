@@ -24,22 +24,28 @@
 
                 <table class="content-table">
                     <thead>
-                        <th>order_id
+                        <th>payment_id
                         <th>
-                        <th>amount
+                        <th>responseCSA
+                        <th>
+                        <th>view
                         <th>
                     </thead>
                     <tbody>
-                        <tr>
 
-                            <?php foreach ($refund as $row) { ?>
+
+                        <?php foreach ($refund as $row) { ?>
+                            <tr>
                                 <td><?php echo $row['payment_id'] ?></td>
+                                <td></td>
                                 <td><?php echo $row['responseCSA'] ?></td>
+                                <td></td>
                                 <td><a href='viewRefunds?payment_id=<?php echo $row["payment_id"]; ?>'>
                                         <button>View</button>
-                                    </a></td> <?php } ?>
+                            </tr>
+                            </a></td> <?php } ?>
 
-                        </tr>
+
 
 
                     </tbody>

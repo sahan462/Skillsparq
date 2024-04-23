@@ -18,7 +18,7 @@ class OrderHandler extends database
         (
             ?, ?, ?, ?, ?
         )";
-        $stmt = mysqli_prepare($GLOBALS['db'],$query);
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -48,17 +48,17 @@ class OrderHandler extends database
             ?, ?, ?, ?, ?
         )");
 
-            if ($stmt === false) {
-                throw new Exception("Failed to create prepared statement.");
-            }
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
 
 
-            mysqli_stmt_bind_param($stmt, "issii", $orderId , $requestDescription, $attachement, $gigId, $packageId);
-            if (mysqli_stmt_execute($stmt)) {
-                $stmt->close();
-            } else {
-                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
-            }
+        mysqli_stmt_bind_param($stmt, "issii", $orderId, $requestDescription, $attachement, $gigId, $packageId);
+        if (mysqli_stmt_execute($stmt)) {
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
 
 
         // } else{
@@ -73,7 +73,39 @@ class OrderHandler extends database
 
     public function createMilestoneOrder()
     {
-        
+    }
+
+    // create Job Order 
+    public function createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    {
+        $insertQuery = "INSERT INTO orders 
+        (
+            order_state,
+            order_type, 
+            order_created_date,
+            buyer_id,
+            seller_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "ssdii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+        return $orderId;
     }
 
     // create Job Order 
@@ -148,18 +180,20 @@ class OrderHandler extends database
     {
         //retrive order details
         if ($orderType == 'package') {
-          
+
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-          
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'job') {
+
+            
+
 
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
-
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -332,7 +366,7 @@ class OrderHandler extends database
     }
 
 
-    public function orderStateLastYear()
+    public function totalOrders()
     {
         $currentYear = date('Y');
         $currentMonth = date('m');
