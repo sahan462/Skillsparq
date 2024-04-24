@@ -29,14 +29,14 @@
         </div>
 
         <div class="row">
-        <label for="attachments" class="type-1">Attachments:</label>
-        <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
-        <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-          <label for="inquiryAttachment" id="attachment" style="margin-right: 4px;">Attachements</label>
-          <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-          <span id="fileName"></span>
-        </div>
-        <input type="file" class="fileInput" id="inquiryAttachment" name="inquiryAttachment" multiple onchange="displayFileName(this)">
+          <label for="attachments" class="type-1">Attachments:</label>
+          <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+          <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+            <label for="inquiryAttachment" id="attachment" style="margin-right: 4px;">Attachements</label>
+            <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+            <span id="fileName"></span>
+          </div>
+          <input type="file" class="fileInput" id="inquiryAttachment" name="inquiryAttachment" multiple onchange="displayFileName(this)">
         </div>
 
         <div class="buttons">
@@ -108,7 +108,7 @@
       Through a help request you can ask any question related to platform and our moderators will assits you to solve your problem.
 
       <div class="btncontainer">
-        <button class="createbtn" onclick="openHelpRequestModal(this)">Get Customer Support Assistant Help</button>
+        <button class="buttonType-1" style="width:400px;" onclick="openHelpRequestModal(this)">Get Customer Support Assistant Help</button>
       </div>
 
       <br>

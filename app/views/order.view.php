@@ -630,9 +630,12 @@
 
                     <?php elseif (($order['order_state'] == 'Running') ) :?>
 
-                        <button class="buttonType-3" style="margin-bottom:8px;width:75%;">Request Revision</button>
+                        <!-- <button class="buttonType-3" style="margin-bottom:8px;width:75%;">Request Revision</button> -->
                         <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="openComplaintModal(this)">File a Complaint</button>
                         <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+
+                        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                        <dotlottie-player src="https://lottie.host/6eb8f278-00ec-4955-a597-3401b5e01df9/LuQeqHZb2l.json" background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay></dotlottie-player>
 
                     <?php endif; ?>
 

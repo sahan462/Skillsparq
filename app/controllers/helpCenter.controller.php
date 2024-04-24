@@ -64,6 +64,8 @@ class HelpCenter extends Controller
             $this->redirect("_505");
         }
     }
+
+    
 }
 
 ?>
