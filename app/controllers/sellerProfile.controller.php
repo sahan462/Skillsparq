@@ -255,9 +255,6 @@ class SellerProfile extends Controller
 
             $upload_dir = "../public/assests/images/sellerPortfolioImgs/";
 
-            // Configure upload directory and allowed file types
-            // $upload_dir = '\xampp\htdocs\skillsparq\public\assests\images\sellerPortfolioImgs'.DIRECTORY_SEPARATOR; // specifically for local host
-
             $allowed_types = array('jpg', 'png', 'jpeg', 'gif');
             
             // Define maxsize for files i.e 2MB
@@ -279,8 +276,8 @@ class SellerProfile extends Controller
                 // $targetFilePath = $targetDir . $uniqueprofilePictureName; 
                 // $currentFilePath = $targetDir . $currentProfilePicture;
 
-                // show($_FILES);
                 $fileCount = count($_FILES['files']['name']);
+
                 // Loop through each file in files[] array
                 foreach ($_FILES['files']['tmp_name'] as $key => $value) {
                     
@@ -294,7 +291,7 @@ class SellerProfile extends Controller
                     // append the created unique name with the relevant file extension.
                     $uniqueImgNameWithExt = $uniqueImgName . $file_ext;
                     // append the file with extension to the given path to reside the file in the folder structure.
-                    $targetedFilePath = $upload_dir.$uniqueImgNameWithExt;
+                    $targetedFilePath = $upload_dir.$uniqueImgName;
 
                     // get each an every created path to an array.
                     $pathArr[] = $targetedFilePath;
@@ -316,6 +313,7 @@ class SellerProfile extends Controller
                             window.location('sellerProfile');
                         </script>
                         ";
+                        break;
                     }
                     // else{
                         // check whether the size checked file names have the relevant extensions given above. 
@@ -369,7 +367,7 @@ class SellerProfile extends Controller
                         // show($uploadFiles);
                         // show($records);
                         // show($uploadOk[$records]);
-                        $isInserted = $this->SellerHandlerModel->insertPortfolioImgs($records,$userName,$userId);
+                        $isInserted = $this->SellerHandlerModel->insertPortfolioImgs($userId,$records);
                         if(!$isInserted){
                             echo "
                             <script>
@@ -385,13 +383,16 @@ class SellerProfile extends Controller
 
                     $isMoved = array();
                     for($i = 0; $i < $fileCount; $i++) {
-                        if($uploadOkInt[$i] === true){
-                            $isMoved[$i] = move_uploaded_file($moveTempFiles[$i], $pathArr[$i]); //$pathArr[]v$moveTempFiles[]
-                            echo "
-                            <script>
-                                window.alert('Successfully Added to portfolio !');
-                            </script>
-                            ";
+                        show($uploadOkInt);
+                        if($uploadOkInt[$i]){
+                            if(move_uploaded_file($moveTempFiles[$i], $pathArr[$i])){
+                                echo "
+                                <script>
+                                    window.alert('Successfully Added to portfolio !');
+                                    window.location('sellerProfile');
+                                </script>
+                                ";
+                            }
                         }else{
                             echo "Can't move the files !";
                         }
@@ -400,12 +401,38 @@ class SellerProfile extends Controller
                     echo "Either the Size or Type doesn't match the requirement";
                 }
             }else{
-                echo "The Form is empty";
+                $this->redirect('sellerProfile');
             }
         }else{
             echo "Error passing data";
         }
 
+    }
+
+    public function deletePortfolioImgs($userId,$imgId)
+    {
+        $_POST['userId'];
+        $_POST['portfolioImgId'];
+
+        if(isset($_POST['userId']) && isset($_POST['portfolioImgId'])){
+            $isDeleted = $this->SellerHandlerModel->deletePortfolioImgs($userId,$imgId);
+            if($isDeleted){
+                echo "
+                <script>
+                    window.alert('Successfully Deleted the Image');
+                    window.location('sellerprofile');
+                </script>
+                ";
+            }
+        }else{
+            echo "
+            <script>
+                window.alert('Error Occured While Deleting');
+                window.location('sellerprofile');
+            </script>
+            ";
+        }
+        
     }
 
     // has to adjust for client.

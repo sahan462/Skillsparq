@@ -53,6 +53,7 @@ class DisplayJob extends Controller
                   alert('getJob function is not Accessible!');
                   </script>";
         }
+        // show($data);
         $this->view('displayJob', $data);
     }
 

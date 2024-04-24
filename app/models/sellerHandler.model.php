@@ -151,23 +151,58 @@ class SellerHandler extends database
         }
     }
 
-    public function insertPortfolioImgs($imgContent,$userName,$userId)
+    public function insertPortfolioImgs($userId,$imgContent)
     {
-        $updateQuery = "UPDATE seller_profile  SET portfolio = ? WHERE user_name = ? AND user_id = ?;";
-
-        $stmt = mysqli_prepare($GLOBALS['db'],$updateQuery);
+        // Give an insert query for this instead of using an update query. 
+        $insertQuery = "INSERT INTO portfolio_images (User_Id, Image) VALUES ( ? , ? );";
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
     
-        mysqli_stmt_bind_param($stmt, "ssi",$imgContent,$userName,$userId);
+        mysqli_stmt_bind_param($stmt, "is",$userId,$imgContent);
     
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
             return true;
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPortfolioImgs($userId,$imgId)
+    {
+        $getQuery = "SELECT Image FROM portfolio_images WHERE User_Id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$getQuery);
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i",$userId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deletePortfolioImgs($userId,$imgId)
+    {
+        $deleteQuery = "DELETE FROM portfolio_images WHERE User_Id = ? AND Image_Id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "ii", $userId,$imgId);
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 

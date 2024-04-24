@@ -21,7 +21,7 @@
 
     $skills = $data['sellerProfileDets']['skills'];
     $education = $data['sellerProfileDets']['education'];
-    $portfolio = $data['sellerProfileDets']['portfolio'];
+    // $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // print_r($_SESSION);
 ?>
@@ -500,27 +500,17 @@
             <div class="reviews">
                 <div class="sellerUser-content">
                     <div class="sellerheader">
-                        <span>My Portfolio</span>
-                        <a href=""><button>Add to Portfolio</button></a>
-                    </div>
-                    <div class="portfolioAdd">
-                        <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
+                    <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
                                 enctype="multipart/form-data">
-                    
-                            <h2>Upload Files</h2>
-                            
-                            <p>
-                                Select files to upload: 
-                                
-                                <!-- name of the input fields are going to
-                                    be used in our php script-->
-
-                                <input type="file" name="files[]" multiple>
-                                <input type="submit" name="submit" value="Upload" >
+                            <p>Select files to upload: 
+                                <div>
+                                    <input type="file" name="files[]" multiple required>
+                                </div>
+                                <div>
+                                    <input type="submit" name="submit" value="Upload" required>
+                                </div>
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
-                            </p>
-
                         </form>
                     </div>
                     <div class="review-content">

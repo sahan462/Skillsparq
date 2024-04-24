@@ -14,7 +14,7 @@
             <div class="profile-pic">
                 <!-- <img src="/assests/images/profilePictures/<?php //echo $row['profile_pic']?>" alt="propic-1"> -->
                 <img src="./assests/images/profilePictures/dummyprofile.jpg" alt="propic-1">
-            </div>
+            </div> 
             <div class="cardRow" style="flex-direction: column;">
                 <div class="username">
                     <span><?php echo $_SESSION['firstName']." ".$_SESSION['lastName']?></span>
