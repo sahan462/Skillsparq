@@ -129,7 +129,8 @@ class UserHandler extends database
     }
     public function getUsers()
     {
-        $query = "SELECT user_id,user_email,role FROM user ";
+        $query = "SELECT user_id, user_email, role FROM user ORDER BY user_id DESC";
+
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

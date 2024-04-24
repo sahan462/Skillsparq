@@ -16,6 +16,15 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <style>
+        #form-container {
+            margin-left: 35%;
+            border-style: solid;
+            width: 50%;
+            padding-left: 17%;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -38,9 +47,12 @@
                                             <h3><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h3>
                                         </div>
                                         <div class="card-body">
-                                            <p class="mb-0"><strong class="pr-1">User ID:</strong><?php echo $_SESSION['userId'] ?></p>
-                                            <p class="mb-0"><strong class="pr-1">User Name:</strong><?php echo $_SESSION['userName'] ?></p>
-                                            <p class="mb-0"><strong class="pr-1">User Email:</strong><br><?php echo $_SESSION['email'] ?></p>
+                                            <p class="mb-0"><strong class="pr-1">User ID:</strong><?php echo $_SESSION['userId'] ?>
+                                            </p>
+                                            <p class="mb-0"><strong class="pr-1">User Name:</strong><?php echo $_SESSION['userName'] ?>
+                                            </p>
+                                            <p class="mb-0"><strong class="pr-1">User Email:</strong><br><?php echo $_SESSION['email'] ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +101,26 @@
                         </div>
 
                     </div>
-                    <div> <button style="margin-left: 25%;">Update </button></div>
+
+                    <button style="margin-left: 25%; display:block" onclick="update()" id="update">Update </button>
+                    <button id="close" onclick="close()" style="width: 25px; margin-bottom:15px; margin-left: 80%; display:none"><i class="fa-solid fa-xmark"></i></button>
+                    <div id="form-container" style="display: none;">
+                        <form id="sendForm" name="sendForm">
+                            <label for="profilePicture" class="label">Profile Picture:</label><br>
+                            <input type="file" id="profilePicture" name="profilePicture" accept="image/*"><br>
+                            <label for="firstName" class="label">First Name</label><br>
+                            <input type="text" name="firstName" id="firstName" autocomplete="off" required><br>
+                            <label for="lastName" class="label">Last Name</label><br>
+                            <input type="text" name="lastName" id="lastName" autocomplete="off"><br>
+                            <label for="Country" class="label">Country</label><br>
+                            <input type="text" name="Country" id="Country" autocomplete="off" required><br>
+                            <label for="about">About</label><br>
+                            <input type="text" id="about" name="about"><br>
+
+                            <button style="margin-left: 70%;" id=" save" onclick="submitForm()">Save</button>
+                        </form>
+                    </div>
+
                     <!-- partial -->
 
                 </div>
@@ -98,9 +129,70 @@
     </section>
 
 
+    <form id="sendForm" name="sendForm" method="post" style="display: none;">
+        <input type="hidden" id="firstName" name="firstName" value="">
+        <input type="hidden" id="lastName" name="lastName" value="">
+        <input type="hidden" id="about" name="about" value="">
+        <input type="hidden" id="country" name="country" value="">
 
-    <!-- Analytics -->
 
+
+    </form>
+    <script>
+        function update() {
+
+            document.getElementById("form-container").style.display = "block";
+            document.getElementById("update").style.display = "none";
+            document.getElementById("close").style.display = "block";
+            document.getElementById("save").style.display = "block";
+
+
+
+
+        }
+
+        function close() {
+            document.getElementById("form-container").style.display = "none";
+            document.getElementById("update").style.display = "block";
+            document.getElementById("close").style.display = "none";
+            document.getElementById("save").style.display = "none";
+
+        }
+
+        function submitForm() {
+
+            var about = document.getElementById('about').value;
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var Country = document.getElementById('Country').value;
+
+
+
+
+            var confirmAction = confirm("Are you sure ");
+
+            if (confirmAction) {
+
+
+
+
+                // Set the selected value in the hidden field
+                document.getElementById('sendForm').elements['firstName'].value = firsName;
+                document.getElementById('sendForm').elements['lastName'].value = lastName;
+                document.getElementById('sendForm').elements['about'].value = about;
+                document.getElementById('sendForm').elements['Country'].value = Country;
+
+
+
+
+                // Submit the form
+                document.getElementById('sendForm').submit();
+                alert("User ID blocked successfully until " + selectedDays + " days.");
+            } else {
+                alert("Operation canceled.");
+            }
+        }
+    </script>
 </body>
 
 </html>
