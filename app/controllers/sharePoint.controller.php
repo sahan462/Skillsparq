@@ -6,12 +6,24 @@ class SharePoint extends Controller
     public function __construct()
     {
         $this->ProfileHandlerModel = $this->model('profileHandler');
+        $this->OrderHandlerModel = $this->model('orderHandler');
     }
 
-    public function index(){
-
+    public function index()
+    {
         $data['var'] = "share Point";
         $data['title'] = "SkillSparq";
+
+        $orderId = $_GET['orderId'];
+        $orderType = $_GET['orderType'];
+        if(isset($_GET['milestoneId'])){
+            $milestoneId = $_GET['milestoneId'];
+        }else{
+            $milestoneId = null;
+        }
+
+        $data['deliveries'] = $this->OrderHandlerModel->getDeliveries($orderType, $orderId, $milestoneId);;
+
         $this->view('sharePoint', $data);
 
     }
