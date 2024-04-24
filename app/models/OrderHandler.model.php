@@ -365,8 +365,7 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-    }
-
+  
 
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)
@@ -414,6 +413,24 @@ class OrderHandler extends database
 
         return $deliveries;
 
+    }
+
+    public function getAllOrders()
+    {
+        $query = "SELECT * FROM orders ORDER BY order_id DESC";
+
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
 
 }
