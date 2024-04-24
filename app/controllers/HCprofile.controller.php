@@ -20,6 +20,19 @@ class HCprofile extends Controller
         $profile =  $this->profileHandlerModel->getUserProfile($userId);
         $data['profile'] = $profile;
 
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            $profilePic = "sfee";
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $country = $_POST['Country'];
+            $about = $_POST['about'];
+            $userId = $_SESSION['userId'];
+            $userName = $_SESSION['userName'];
+            $this->profileHandlerModel = $this->profileHandlerModel->updateCSA();
+        }
+
         $this->view('HCprofile', $data);
     }
 }

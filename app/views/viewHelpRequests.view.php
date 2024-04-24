@@ -22,7 +22,7 @@
 
 <body>
     <?php
-    $rowsPerPage = 5; // Number of rows per page
+    $rowsPerPage = 2; // Number of rows per page
     $totalRows = 14; // Total number of rows
     $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
