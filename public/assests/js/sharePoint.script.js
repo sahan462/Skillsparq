@@ -79,10 +79,8 @@ function displayFileName(index)
 
 $(function () {
   $("#rateYo").rateYo({
-    rating: 0, // Initial rating
     maxValue: 5,
     numStars: 5,
-    precision: 0 // Set precision to 0 for whole numbers
   }).on("rateyo.change", function (e, data) {
     var rating = data.rating;
     $(this).next('.rateValue').text("Rating: " + rating);
