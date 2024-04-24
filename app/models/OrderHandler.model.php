@@ -148,6 +148,7 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
@@ -160,7 +161,7 @@ class OrderHandler extends database
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
-            
+
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -275,6 +276,7 @@ class OrderHandler extends database
         }
     }
 
+
     public function orderStateCurrentMonth()
     {
         $currentMonth = date('m');
@@ -302,6 +304,7 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
 
     public function orderStatePreviousMonth()
     {
@@ -333,6 +336,7 @@ class OrderHandler extends database
     }
 
 
+    // get total number of orders
     public function totalOrders()
     {
         $currentYear = date('Y');
@@ -362,4 +366,54 @@ class OrderHandler extends database
 
         return $previousMonthsData;
     }
+
+
+    //deliver and order
+    public function makeDelivery($orderType, $orderId, $milestoneId)
+    {
+
+
+
+    }
+
+    //retrieve delivered order files
+    public function getDeliveries($orderType, $orderId, $milestoneId)
+    {
+        if ($orderType == 'package' || $orderType == 'job'):
+
+            $query = "SELECT * FROM deliveries WHERE deliveries.order_id = ?";
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+    
+            mysqli_stmt_bind_param($stmt, "i", $orderId);
+            
+        elseif ($orderType == 'milestone'):
+
+            $query = "SELECT * FROM deliveries inner join milestone_order_deliveries on deliveries.delivery_id = milestone_order_deliveries.delivery_id where orders.order_id = ? and milestone_order_deliveries.milestone_id = ?";
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+    
+            mysqli_stmt_bind_param($stmt, "ii", $orderId, $milestoneId);
+
+        endif;
+
+        if (mysqli_stmt_execute($stmt)) {
+            $deliveries = $stmt->get_result();
+            $stmt->close();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        return $deliveries;
+
+    }
+
 }

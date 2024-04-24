@@ -62,30 +62,30 @@ var x = setInterval(function()
 
 // ---------------------------------------modals--------------------------------------------------------
 
-function confirmAction(action) 
+function confirmStateChange(action) 
 {
 
   if (action === 'send') {
   
-    document.getElementById('sendComplaintOverlay').style.display = 'flex';
+    document.getElementById('sendConfirmationOverlay').style.display = 'flex';
     document.getElementById('sendConfirmation').style.display = 'block';
   
   } else if(action === 'cancel') {
 
-    document.getElementById('cancelComplaintOverlay').style.display = 'flex';
+    document.getElementById('cancelConfirmationOverlay').style.display = 'flex';
     document.getElementById('cancelConfirmation').style.display = 'block';
   
   } 
 
 }
 
-function handleConfirmation(event, action, orderId, orderType, buyerId, sellerId) 
+function handleStateChange(event, action, orderId, orderType, buyerId, sellerId) 
 {
     
   if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
     
     document.getElementById('cancelConfirmation').style.display = 'none';
-    document.getElementById('cancelComplaintOverlay').style.display = 'none';
+    document.getElementById('cancelConfirmationOverlay').style.display = 'none';
 
     if(action === 'yes'){
 
@@ -96,7 +96,7 @@ function handleConfirmation(event, action, orderId, orderType, buyerId, sellerId
   }else if(event === 'accept request'){
     
     document.getElementById('sendConfirmation').style.display = 'none';
-    document.getElementById('sendComplaintOverlay').style.display = 'none';
+    document.getElementById('sendConfirmationOverlay').style.display = 'none';
 
     if(action === 'yes'){
 
