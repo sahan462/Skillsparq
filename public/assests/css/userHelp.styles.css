@@ -7,7 +7,8 @@
     font-size: 20px;
 }
 .btn-group{
-    display: flex;/*make button side by side */flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 .buyerHelpContainer, .sellerHelpContainer{
     padding: 16px 32px;
@@ -20,7 +21,6 @@
 }
 .buyerHelpContainer .leftContainer, .sellerHelpContainer .leftContainer{
     width: 70%;
-
 }
 .buyerHelpContainer .container, .sellerHelpContainer .container{
     display: flex;
@@ -37,6 +37,14 @@
     color: #222325;
     line-height: 140%;
     padding: 0 32px;
+}
+.buyerHelpContainer textarea, .sellerHelpContainer textarea{
+    font: 16px Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px;
+    height: 25%;
+    cursor: auto;
 }
 
 

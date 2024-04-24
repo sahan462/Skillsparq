@@ -4,7 +4,6 @@ body{
     padding: 0;
 }
 
-
 /* Display Gig Container */
 .displayGigContainer{
     padding: 16px 32px;
@@ -35,7 +34,7 @@ body{
 /* Modal Stylings */
 
 /* modal behaviour */
-.overlay{
+.displayGigContainer .overlay{
     display: none;
     position: fixed;
     top: 0;
@@ -137,16 +136,16 @@ body{
 }
 
 /* modal content */
-.milestoneModal form,.modal form {
+.displayGigContainer .milestoneModal form,.modal form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.milestoneModal, .modal input, textarea{
+.displayGigContainer .milestoneModal,.displayGigContainer .modal input, .displayGigContainer textarea{
     margin-bottom: 16px;
     border-radius: 8px;
 }
-.milestoneModal .type-1, .modal .type-1{
+.displayGigContainer .milestoneModal .type-1, .modal .type-1{
     margin-top: 8px;
     font-weight: 600;
     font-size: 16px;
@@ -279,7 +278,7 @@ body{
     min-height: 150px;
     border-radius: 8px;
 }
-textarea {
+.displayGigContainer textarea {
     padding: 0;
     font-size: 16px;
     /* margin-bottom: 0 !important;

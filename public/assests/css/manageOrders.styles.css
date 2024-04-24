@@ -48,6 +48,7 @@ body{
 
 /* Style the tab */
 .manageOrdersContainer .tab {
+    border-radius: 8px 8px 0px 0px;
     width: 100%;
     overflow: hidden;
     border: none !important;

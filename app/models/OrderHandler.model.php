@@ -160,6 +160,7 @@ class OrderHandler extends database
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
+            
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

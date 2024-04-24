@@ -222,7 +222,7 @@ body{
 }
 
 /* change full name */
-input[type = "text"], textarea, select{
+input[type = "text"],.buyerProfileContainer textarea, select{
     height: 40px;
     font-size: 16px;
     border-radius: 4px;
