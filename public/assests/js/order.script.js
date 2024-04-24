@@ -26,8 +26,6 @@ function openTab(evt, tabName) {
 }
 
 
-
-
 // ---------------------------------------Timer--------------------------------------------------------
 
 // Set the date we're counting down to
@@ -158,10 +156,91 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
           throw new Error('Network response was not ok');
       }
 
-      alert("Order cancelled successfully");
+      alert("Order Accepted successfully");
       window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
   }
 }
 
+
+// --------------------------------Complaint Handling--------------------------------
+
+//declare variable to keep track of the clicked button
+var button = "";
+
+// Function to open the modal
+function openComplaintModal(button) {
+  packageForm = button.id;
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('packageModal').style.display = 'block';
+}
+
+function confirmAction(action) {
+  var sendConfirmationOverlay = document.getElementById("sendComplaintOverlay");
+  var sendConfirmationModal = document.getElementById("sendComplaint");
+  var cancelConfirmationOverlay = document.getElementById("cancelComplaintOverlay");
+  var cancelConfirmationModal = document.getElementById("cancelComplaint");
+
+  if (action === "send") {
+    sendConfirmationOverlay.style.display = "flex";
+    sendConfirmationModal.style.display = "block";
+  } else if (action === "cancel") {
+    cancelConfirmationOverlay.style.display = "flex";
+    cancelConfirmationModal.style.display = "block";
+  }
+}
+
+
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) {
+  if (action === 'sendYes') {
+
+      var warningMessage = document.getElementsByClassName('warningMessage');
+      var complaintSubject = document.getElementById('complaintSubject').value; // Replace 'inputField' with the actual ID of your input field
+      var complaintDescription = document.getElementById('complaintDescription').value;
+
+      // Check if the input field is not empty
+      if (complaintSubject.trim() === '') { // Trim whitespace and check if empty
+          warningMessage[0].textContent = "Please fill in the subject field before submitting.";
+
+          document.getElementById('sendComplaint').style.display = 'none';
+          document.getElementById('sendComplaintOverlay').style.display = 'none';
+
+          return; // Prevent form submission
+      }
+
+      if(complaintDescription.trim() === '') { 
+          warningMessage[1].textContent = "Please fill in the description field before submitting.";
+          return;
+      }
+
+      var sendRequestForm = document.getElementById('sendRequestForm');
+      sendRequestForm.submit();
+
+  }else if (action === 'sendNo'){
+
+      document.getElementById('sendComplaint').style.display = 'none';
+      document.getElementById('sendComplaintOverlay').style.display = 'none';
+
+  }else if(action === 'cancelNo'){
+
+      document.getElementById('cancelComplaint').style.display = 'none';
+      document.getElementById('cancelComplaintOverlay').style.display = 'none';
+
+  }else{
+
+    packageForm = "";
+
+    var fileNameSpan = document.getElementById('fileName');
+
+    document.getElementById('cancelComplaintOverlay').style.display = 'none';
+    document.getElementById('cancelComplaint').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('packageModal').style.display = 'none';
+    document.getElementById('warningMessage').style.display = 'none';
+
+    fileNameSpan.textContent = '';
+  }
+
+}

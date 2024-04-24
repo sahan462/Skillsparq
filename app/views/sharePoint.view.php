@@ -98,45 +98,50 @@
                 <!-- sub topic -->
                 <p class="title">
                     <span class="darkTitle">Deliver</span>Your Work
-                </p><br>
+                </p>
 
                 <!-- upload a deliver -->
                 <form action="<?php echo BASEURL.'/sharePoint/uploadDeliveries';?>" method="post" enctype="multipart/form-data">
-
-                    <!-- add a description to the delivery-->
-                    <label class="type-2">Delivery Description<label>
-                    <br><textarea class="textbox" name="dis" rows="4" cols="50"></textarea><br><br>
                     
-                    <!-- File Uploading -->
-                    <label class="type-2">File must be compressed into .zip , .rar or .tar format.</label>
                     <form id="packageRequestForm" method="post" action="order/createPackageOrder" enctype="multipart/form-data">
 
-                        <div class="upload_background">
-                            <div class="row">
-                                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
-                                    <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                                    <span class="fileName" id="fileName"></span>
-                                </div>
-                                <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
+                        <!-- upload attachments -->
+                        <label class="type-1" style="margin-top:8px;">File must be compressed into .zip , .rar or .tar format.</label>
+                        <div class="row" style="margin-bottom:32px;">
+                            <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                                <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
+                                <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                                <span class="fileName" id="fileName"></span>
                             </div>
-                            <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
+                            <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
                         </div>
+
+                        <!-- add a description to the delivery-->
+                        <label class="type-1">Delivery Description</label>
+                        <textarea  name="dis" rows="4" cols="50" style="margin-bottom:32px !important;"></textarea>
 
                         <!-- Rate buyer -->
                         <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
                     
-                        <div id="rateSec" style="display:none"><br><br>
+                        <div id="rateSec" style="display:none">
 
-                            <!-- sub topic -->
-                            <p class="title">
-                                <span class="darkTitle big">Rate </span>The Buyer
-                            </p>
-                            
-                            <!-- star rating -->
-                            <div id="rateYo"></div>
-                            <div class="rateValue"></div>
-                            
+                            <!-- rate buyer -->
+                            <label class="type-2">Your Thoughts about Buyer</label>
+                            <div class="subsection">
+                                <div class="row">
+                                    <textarea></textarea>
+                                    <div class="row">
+                                        <div id="rateYo"></div>
+                                        <div class="rateValue"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- submit form -->
+                        <div class="row" style="float:right;">
+                            <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
                         </div>
 
                     </form>

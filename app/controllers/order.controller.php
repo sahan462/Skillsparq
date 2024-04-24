@@ -25,7 +25,6 @@ class Order extends Controller
 
         // get order, buyer and seller information
         $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-
         $order = $data['order'];
         $chatId = $order['chat_id'];
 
