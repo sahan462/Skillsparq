@@ -1,8 +1,6 @@
 <nav>
     <div class="logo-name">
-        <div class="logo-image">
-            <img src="images/logo.png" alt="">
-        </div>
+
 
         <span class="logo_name">Skillsparq</span>
     </div>
@@ -23,7 +21,7 @@
                 </a></li>
             <li><a href="#">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">Like</span>
+                    <span class="link-name">Ratings & Reviews</span>
                 </a></li>
             <li><a href="#">
                     <i class="uil uil-comments"></i>
@@ -67,8 +65,9 @@
         <div class="profile-dropdown">
             <div onclick="toggle()" class="profile-dropdown-btn">
                 <div class="profile-img">
-
-                    <i class="fa-solid fa-circle"></i>
+                    <img style="height: 50px; width: 45px; border-radius: 50%;" class="profile_img" src="./assests/images/profilePictures/<?php echo $_SESSION['profilePicture'];
+                                                                                                                                            ?>" alt=" student dp">
+                    <i class=" fa-solid fa-circle"></i>
                 </div>
 
                 <span><?php echo $_SESSION['firstName'] ?>
@@ -87,8 +86,8 @@
                 <li class="profile-dropdown-list-item">
                     <a href="#">
                         <i class="fa-regular fa-envelope"></i>
-                        Inbox
 
+                        <?php echo $_SESSION['profilePicture'] ?>
                     </a>
                 </li>
 

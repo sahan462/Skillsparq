@@ -15,6 +15,10 @@ class viewHelpRequests extends Controller
         $data['title'] = "SkillSparq";
         $recentRequests = $this->inquiryHandlerModel->getHelpRequests();
         $data['recentRequests'] = $recentRequests;
+        $totalInquiries = $this->inquiryHandlerModel->totalInquiries();
+        $data['totalInquiries'] = $totalInquiries;
+        $getUnsolvedRequests = $this->inquiryHandlerModel->getUnsolvedRequests();
+        $data['getUnsolvedRequests'] = $getUnsolvedRequests;
 
         $this->view('viewHelpRequests', $data);
     }
