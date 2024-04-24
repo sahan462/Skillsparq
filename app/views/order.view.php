@@ -742,44 +742,46 @@
     <!-- Modal 3 / Modal for Send Complaints -->
     <div class="overlay" id="overlay">
         <div class="modal" id="packageModal">
-        <form id="sendRequestForm" method="post" action="helpCenter/createInquiry" enctype="multipart/form-data">
+            <form id="sendRequestForm" method="post" action="helpCenter/createInquiry" enctype="multipart/form-data">
 
-            <div class="row">
-                <label for="requestDescription" class="type-1">Complaint Subject:</label>
-                <label for="requestDescription" class="type-2">Please provide a suitable overview for your complaint.</label>
-                <input type="text" id="complaintSubject" name="requestSubject" required></textarea>
-                <div class="warningMessage" style="color: red;"></div>
-            </div>
+                <div class="row">
+                    <label for="inquirySubject" class="type-1">Complaint Subject:</label>
+                    <label for="inquirySubject" class="type-2">Please provide a suitable overview for your complaint.</label>
+                    <input type="text" id="inquirySubject" name="inquirySubject" required></textarea>
+                    <div class="warningMessage" style="color: red;margin-bottom: 16px !important;"></div>
+                </div>
 
-            <div class="row">
-                <label for="requestDescription" class="type-1">Complaint Description:</label>
-                <label for="requestDescription" class="type-2">Please provide a concise description of the task you would like to accomplish.</label>
-                <textarea styles="margin-bottom: 16px !important;" id="complaintDescription" name="requestDescription" rows="10" required></textarea>
-                <div class="warningMessage" style="color: red;"></div>
-            </div>
+                <div class="row">
+                    <label for="inquiryDescription" class="type-1">Complaint Description:</label>
+                    <label for="inquiryDescription" class="type-2">Please provide a concise description of the task you would like to accomplish.</label>
+                    <textarea id="inquiryDescription" name="inquiryDescription" rows="10" required></textarea>
+                    <div class="warningMessage" style="color: red;margin-bottom: 16px !important;"></div>
+                </div>
 
-            <div class="row">
-            <label for="attachments" class="type-1">Attachments:</label>
-            <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
-            <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                <label for="inquiryAttachment" id="attachment" style="margin-right: 4px;">Attachements</label>
-                <div id="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                <span id="fileName"></span>
-            </div>
-            <input type="file" class="fileInput" id="inquiryAttachment" name="inquiryAttachment" multiple onchange="displayFileName(this)">
-            </div>
+                <div class="row">
+                <label for="attachments" class="type-1">Attachments:</label>
+                <label for="attachments" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+                <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                    <label for="inquiryAttachment" id="attachment" style="margin-right: 4px;">Attachements</label>
+                    <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                    <span id="fileName"></span>
+                </div>
+                <input type="file" class="fileInput" id="inquiryAttachment" name="inquiryAttachment" multiple onchange="displayFileName(this)">
+                </div>
 
-            <div class="buttons">
-            <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
-            <button type="button" onclick="confirmAction('send')">Send Request</button>
-            </div>
+                <div class="buttons">
+                <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
+                <button type="button" onclick="confirmAction('send')">Send Request</button>
+                </div>
 
-            <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-            <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
-            <input type="hidden" name="role" value="<?php echo $_SESSION['role']?>">
-            <input type="hidden" name="inquiryType" value="help request">
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+                <input type="hidden" name="role" value="<?php echo $_SESSION['role']?>">
+                <input type="hidden" name="orderId" value="<?php echo $order['order_id']?>">
+                <input type="hidden" name="inquiryType" value="complaint">
+                <input type="hidden" name="inquirySubmit" value="submit">
 
-        </form>
+            </form>
         </div>
     </div>
 

@@ -29,6 +29,14 @@ header{
     font: 400 16px / 24px Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
     color: #62646a;
 }
+.orderContainer textarea{
+    font: 16px Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px;
+    height: 25%;
+    cursor: auto;
+}
 
 /* Tab Section */
 .orderContainerHeader{

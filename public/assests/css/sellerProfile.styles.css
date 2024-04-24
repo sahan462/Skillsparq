@@ -44,7 +44,7 @@ body{
 /* Form Modal Styles content */
 /* Styles for all modal including update,delete,email,language,skills,education */
 
-.modal button,
+.sellerProfileContainer .modal button,
 .modalEmail button,
 .modalLang button,
 .modalSkill button,
@@ -138,7 +138,7 @@ body{
     font-weight: 600;
 }
 
-.modal button,
+.sellerProfileContainer .modal button,
 .modalEmail button,
 .modalLang button,
 .modalSkill button,
@@ -382,7 +382,7 @@ body{
 /* change full name */
 /* what is this used for ?? select */
 input[type = "text"],
-textarea
+.sellerProfileContainer textarea
 {
     height: 40px;
     font-size: 16px;
