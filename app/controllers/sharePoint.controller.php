@@ -22,6 +22,9 @@ class SharePoint extends Controller
             $milestoneId = null;
         }
       
+        $data['orderId'] = $orderId;
+        $data['orderType'] = $orderType;
+
         $deliveris = $this->OrderHandlerModel->getDeliveries($orderType, $orderId, $milestoneId);
 
         if($deliveris){
@@ -39,7 +42,20 @@ class SharePoint extends Controller
     {
         try{
 
-            if(isset($_POST['submit'])){
+            if(isset($_POST['uploadDelivery'])){
+
+                $orderType = $_POST['orderType'];
+                $orderId = $_POST['orderId'];
+                if(isset($_POST['milestoneId'])){
+                    $milestoneId = $_POST['$milestoneId'];
+                }else{
+                    $milestoneId = null;
+                }
+                $deliveryDescription = $_POST['deliveryDescription'];
+                $currentDateTime = date('Y-m-d H:i:s');
+                $attachment = $_FILES['attachments'];
+                $attachmentName = basename($attachment["name"]);
+    
 
                 $orderFileName = "Order" . "_" . $orderId;
                 $targetMainDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
@@ -54,26 +70,49 @@ class SharePoint extends Controller
                 if (!file_exists($targetSubDir)) {
                     mkdir($targetSubDir, 0777, true);
                 }
-                
+
                 $upload = 0;
         
                 // Upload attachment if provided
                 if($attachmentName != ""){
-                    $targetFilePath = $targetDir . $attachmentName;
+                    $targetFilePath = $targetSubDir . $attachmentName;
                     $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
                 }else{
                     $attachmentName = "";
                 }
+
+                if($upload){
+                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime);
+                    if($isInserted){
+                        if($orderType == 'milestone'){
+                            echo "
+                            <script>
+                                alert('Payment done successfully');
+                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
+                            </script>
+                        ";
+                        }else{
+                            echo "
+                            <script>
+                                alert('Payment done successfully');
+                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ."';
+                            </script>
+                        ";
+                        }
+
+                    }
+
+                }else{
+                    throw new Exception("Unable to upload");
+                }
     
             }else{
-
                 throw new Exception("Error submitting delivery");
-    
             }
 
         }catch(Exception $e){
 
-            echo "Error uploading deliveries" , $e->getMessage();
+            echo "Error uploading deliveries: " , $e->getMessage();
 
         }
     }

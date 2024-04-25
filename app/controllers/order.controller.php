@@ -40,6 +40,7 @@ class Order extends Controller
     public function createPackageOrder() 
     {
         try{
+            
             $orderState = "Requested";
             $requestDescription = $_POST['requestDescription'];
             $gigId = $_POST['gigId'];
