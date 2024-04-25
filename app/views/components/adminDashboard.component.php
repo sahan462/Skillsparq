@@ -25,7 +25,7 @@
                     <i class="uil uil-thumbs-up"></i>
                     <span class="link-name">Manage CSA</span>
                 </a></li>
-            <li><a href="#">
+            <li><a href="adminviewDetails">
                     <i class="uil uil-comments"></i>
                     <span class="link-name">Comment</span>
                 </a></li>
@@ -99,7 +99,7 @@
                 </li>
 
                 <li class="profile-dropdown-list-item">
-                    <a href="#">
+                    <a href="">
                         <i class="fa-solid fa-sliders"></i>
                         Settings
                     </a>
