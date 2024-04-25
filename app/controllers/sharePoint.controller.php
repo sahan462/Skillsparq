@@ -75,26 +75,28 @@ class SharePoint extends Controller
         
                 // Upload attachment if provided
                 if($attachmentName != ""){
-                    $targetFilePath = $targetSubDir . $attachmentName;
+                    $uniqueAttachmentName = date('YmdHis') . "_" . $attachmentName;
+                    $targetFilePath = $targetSubDir . $uniqueAttachmentName;
                     $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
                 }else{
+                    $uniqueAttachmentName = "";
                     $attachmentName = "";
                 }
 
                 if($upload){
-                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime);
+                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $uniqueAttachmentName, $currentDateTime);
                     if($isInserted){
                         if($orderType == 'milestone'){
                             echo "
                             <script>
-                                alert('Payment done successfully');
+                                alert('deliver sent successfully');
                                 window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
                             </script>
                         ";
                         }else{
                             echo "
                             <script>
-                                alert('Payment done successfully');
+                                alert('deliver sent  successfully');
                                 window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ."';
                             </script>
                         ";
