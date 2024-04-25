@@ -48,6 +48,7 @@ body{
 
 /* Style the tab */
 .sentJobPropContainer .tab {
+    height:50px;
     width: 100%;
     overflow: hidden;
     border: none !important;
@@ -60,8 +61,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    /* height: 32px; */
+    width: 33.3%;
+    height: 50px;
     font-size: 16px;
     background-color: inherit;
     float: left;
@@ -78,18 +79,18 @@ body{
     color: #ffffff;
 }
 
-#pending:hover{
+/* #pending:hover{
     background-color: #ddeb18;
     color: #222325;
-}
-
+} */
+/* 
 #defaultOpen:hover{
     background-color: #22cf27;
 }
 
 #cancelled:hover{
     background-color: #e41f11;
-}
+} */
 
 /* Create an active/current tablink class */
 .sentJobPropContainer .tab button.active {
@@ -167,19 +168,37 @@ Tbody td{
 }
 
 /*buyer column*/
-/* .Buyer{
+.Buyer{
     display: flex;
-    align-items: center;
+    align-items:center;
+    justify-content:space-between;
+    padding-left: 64px;
+    padding-right: 64px;
 }
-.Buyer img{
+
+.BuyerImg{
+
+}
+
+.BuyerText{
+    /* font-size: 16px; */
+}
+
+/* .Buyer img{
     width: 48px;
     height: 48px;
     border-radius: 100%;
     object-fit: cover;
 } */
 
-.tablinks{
+.buyerImgsentJobProps{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+}
 
+.tablinks{
+    height:100%;
 }
 
 @media only screen and (max-width: 900px) {

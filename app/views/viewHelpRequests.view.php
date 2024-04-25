@@ -22,8 +22,8 @@
 
 <body>
     <?php
-    $rowsPerPage = 2; // Number of rows per page
-    $totalRows = 14; // Total number of rows
+    $rowsPerPage = 5; // Number of rows per page
+    $totalRows = $totalInquiries['helpRequests']; // Total number of rows
     $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
 
@@ -50,39 +50,52 @@
             <i class="uil uil-tachometer-fast-alt"></i>
             <span class="text">HelpRequests</span>
         </div>
-        <div style="margin-left: 40%; margin-bottom:16px;">
-            <button onclick="clickbtn()" id="solved">Unsolved</button>
-            <button onclick="clickbtn()" id="unsolved" style="color: black; background: white">Solved</button>
-        </div>
+
         <div id="tableUnsolved">
             <table class="content-table">
                 <thead>
                     <tr>
-                        <th>inquiry_ID</th>
-                        <th>Subject</th>
-                        <th>inquiry_status</th>
-                        <th>created_at</th>
-                        <th>view</th>
+                        <th><a href="?page=<?php echo $currentPage; ?>&sort=inquiry_id">inquiry_ID <i class="fas fa-sort-down"></i></a></th>
+                        <th>Subject </i></a></th>
+                        <th><a href="?page=<?php echo $currentPage; ?>&sort=inquiry_status">inquiry_status <i class="fas fa-sort-down"></i></a></th>
+                        <th><a href="?page=<?php echo $currentPage; ?>&sort=created_at">created_at <i class="fas fa-sort-down"></i></a></th>
+                        <th>view </th>
+                        <th>delete</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
                     <?php
                     $i = $start;
                     while ($i < $end && $i < count($recentRequestsArray)) {
                         $row = $recentRequestsArray[$i];
-                        if ($row['inquiry_status'] == "unsolved") {
+
                     ?>
-                            <tr>
-                                <td><?php echo $row['inquiry_id']; ?></td>
-                                <td><?php echo $row['subject']; ?></td>
-                                <td><?php echo $row['inquiry_status']; ?></td>
-                                <td><?php echo $row['created_at']; ?></td>
-                                <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                        <button>View</button>
-                                    </a></td>
-                            </tr>
+                        <tr>
+                            <td><?php echo $row['inquiry_id']; ?></td>
+                            <td><?php echo $row['subject']; ?></td>
+                            <td>
+                                <div class="<?php echo $row['inquiry_status']; ?>"><?php echo $row['inquiry_status']; ?></div>
+                            </td>
+                            <td><?php echo $row['created_at']; ?></td>
+                            <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                                    <i class="fas fa-eye"></i> </a>
+                            </td>
+                            <td>
+
+                                <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                    <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                        <i class="fa fa-trash" style="color: red;"></i>
+                                    </button>
+                                    <input type="hidden" name="inquiry_id" value="<?php echo $row['inquiry_id']; ?>">
+                                </form>
+
+
+                            </td>
+                        </tr>
                     <?php
-                        }
+
                         $i++;
                     }
                     ?>
@@ -91,42 +104,7 @@
 
         </div>
 
-        <div id="tableSolved" style="display: none;">
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>inquiry_ID</th>
-                        <th>Subject</th>
-                        <th>inquiry_status</th>
-                        <th>created_at</th>
-                        <th>view</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = $start;
-                    while ($i < $end && $i < count($recentRequestsArray)) {
-                        $row = $recentRequestsArray[$i];
-                        if ($row['inquiry_status'] == "solved") {
-                    ?>
-                            <tr>
-                                <td><?php echo $row['inquiry_id']; ?></td>
-                                <td><?php echo $row['subject']; ?></td>
-                                <td><?php echo $row['inquiry_status']; ?></td>
-                                <td><?php echo $row['created_at']; ?></td>
-                                <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                        <button>View</button>
-                                    </a></td>
-                            </tr>
-                    <?php
-                        }
-                        $i++;
-                    }
-                    ?>
-                </tbody>
-            </table>
 
-        </div>
     </div>
     <div class="pagination">
         <?php

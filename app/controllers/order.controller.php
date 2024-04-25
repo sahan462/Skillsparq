@@ -31,6 +31,7 @@ class Order extends Controller
 
         //retrieve the chat from the database
         $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
+        // show($data);
         $this->view('order', $data);
         
     }
@@ -228,17 +229,17 @@ class Order extends Controller
     }
 
     // method to create a job order for successfully accepted job proposal
-    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrder($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
     {
-        $isCreated = $this->OrderHandlerModel->createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+        $isCreated = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
         if(is_numeric($isCreated)){
             return $isCreated;
         }else{
             echo "
-                    <script>
-                        window.alert('Error Occured when inserting the order data !');
-                        window.location.href = '" . BASEURL . "jobproposals';
-                    </script>
+                <script>
+                    window.alert('Error Occured when inserting the order data !');
+                    window.location.href = '" . BASEURL . "jobproposals';
+                </script>
                 ";
         }
     }

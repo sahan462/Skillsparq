@@ -33,7 +33,7 @@ class InquiryHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
 
-        if($inquiryType == 'help request'):
+        if ($inquiryType == 'help request') :
 
             // help request table
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO help_requests (request_id) VALUES ( ?)");
@@ -50,7 +50,7 @@ class InquiryHandler extends database
                 throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
             }
 
-        elseif ($inquiryType == 'complaint'):
+        elseif ($inquiryType == 'complaint') :
 
             // complaint table
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO complaints (complaint_id, order_id) VALUES(?,?)");
@@ -70,7 +70,6 @@ class InquiryHandler extends database
         endif;
 
         return true;
-
     }
 
     //read recently added gigs
@@ -151,7 +150,13 @@ class InquiryHandler extends database
     // read help requestS
     public function getHelpRequests()
     {
-        $query = "SELECT i.request_id,c.inquiry_id,c.subject,c.description,c.attachements,c.response,c.inquiry_status,c.created_at from help_requests i join inquiries c ON i.request_id = c.inquiry_id order by c.inquiry_id DESC";
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'inquiry_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT i.request_id, c.inquiry_id, c.subject, c.description, c.attachements, c.response, c.inquiry_status, c.created_at 
+              FROM help_requests i 
+              JOIN inquiries c ON i.request_id = c.inquiry_id 
+              ORDER BY $sortBy DESC ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -165,6 +170,7 @@ class InquiryHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
 
     public function viewComplaints($inquiry_id)
     {
@@ -377,4 +383,72 @@ class InquiryHandler extends database
         }
     }
 
+    public function getUnsolvedRequests()
+    {
+        $query = "SELECT * from inquiries i 
+        join help_requests r
+        where i.inquiry_id = r.request_id ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function totalInquiries()
+    {
+        $query = "
+        SELECT
+            (SELECT COUNT(*) FROM help_requests) AS helpRequests,
+            (SELECT COUNT(*) FROM complaints) AS complaints;
+    ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $data = $result->fetch_assoc(); // Fetch the first (and only) row as an associative array
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
+    public function deleteFromRequests($inquiryId)
+    {
+        $query = "DELETE FROM help_requests WHERE request_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        if (!$stmt) {
+            throw new Exception("Failed to create prepared statement for : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $inquiryId);
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error deleting data from : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_close($stmt);
+    }
+    public function deleteFromInquiries($inquiryId)
+    {
+        $query = "DELETE FROM inquiries WHERE inquiry_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        if (!$stmt) {
+            throw new Exception("Failed to create prepared statement for : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $inquiryId);
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error deleting data from : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_close($stmt);
+    }
 }

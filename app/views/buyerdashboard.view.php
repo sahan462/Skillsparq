@@ -1,8 +1,11 @@
 <?php include "components/buyerHeader.component.php"; ?>
 
 <?php
-    $recentGigs = $data['recentGigs'];
+    // $recentGigs = $data['recentGigs'];
+    $recentGigs = $data['ALLABOUTRECENTGIGS'];
     // print_r($_SESSION);
+    // show($data['recentGigs']);
+    // show($data['ALLABOUTRECENTGIGS']);
 ?>
 
 <div class="buyerDashboardContent">

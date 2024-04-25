@@ -167,36 +167,60 @@ class ProfileHandler extends database
     }
 
     // 
-    public function updateCSA()
+    public function updateCSA($profilePic, $firstName, $lastName, $country, $about, $userId)
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Validate and sanitize input data
-            $profilePic = "sfee"; // Placeholder for now
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $country = $_POST['Country'];
-            $about = $_POST['about'];
-            $userId = $_SERVER['userId'];
-            $userName = $_SERVER['userName'];
+        $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profile_pic = ?, first_name = ?, last_name = ?, country = ?, about = ? WHERE user_id = ?");
+        if (!$stmt) {
+            die('MySQL Error: ' . $GLOBALS['db']->error);
+        }
 
-            // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profilePic = ?, firstName = ?, lastName = ?, country = ?, about = ? WHERE user_id = ?");
+        $stmt->bind_param("sssssi", $profilePic, $firstName, $lastName, $country, $about, $userId);
 
-            if (!$stmt) {
-                die('MySQL Error: ' . $GLOBALS['db']->error);
-            }
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-            // Bind parameters
-            $stmt->bind_param("sssssi", $profilePic, $firstName, $lastName, $country, $about, $userId);
+    public function getAllFeedbacks()
+    {
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
 
-            if ($stmt->execute()) {
-                echo "Profile updated successfully";
-            } else {
-                echo "Error updating profile: " . $stmt->error;
-            }
+        // Execute the query and fetch the results
+        $query = "SELECT * 
+              FROM feedbacks
+            
+              ORDER BY $sortBy DESC ";
 
-            // Close the statement
-            $stmt->close();
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function deleteFeedback($feedback)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM feedbacks
+            WHERE feedback_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $feedback);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

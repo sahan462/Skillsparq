@@ -19,7 +19,7 @@
     <?php include "components/helpCenter.component.php"; ?>
     <?php
     $rowsPerPage = 5; // Number of rows per page
-    $totalRows = $totalInquiries['complaints']; // Total number of rows
+    $totalRows = mysqli_num_rows($feedbacks); // Total number of rows
     $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
 
@@ -30,7 +30,7 @@
 
     $recentComplaintsArray = [];
     // Assuming $recentComplaints is the correct array name
-    while ($row = $recentComplaints->fetch_assoc()) {
+    while ($row = $feedbacks->fetch_assoc()) {
         $recentComplaintsArray[] = $row;
     }
     ?>
@@ -39,20 +39,21 @@
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Complaints</span>
+                <span class="text">Ratings and reviews</span>
             </div>
         </div>
 
-        <p class="heading">Complaints</p>
+        <p class="heading"></p>
         <table class="content-table">
             <thead>
                 <tr>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=inquiry_id">inquiry_ID</a></th>
-                    <th style="width:250px"><a href="?page=<?php echo $currentPage; ?>&sort=subject">Subject</a></th>
-                    <th style="width:250px"><a href="?page=<?php echo $currentPage; ?>&sort=description">Description</a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=inquiry_status">Status</a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=created_at">Created At</a></th>
-                    <th>View</th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_id&dir=<?php echo $data['sortDirection']; ?>">feedback_id <i class="fa fa-sort"></i> </a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=sender_user_id&dir=<?php echo $data['sortDirection']; ?>">SenderID <i class="fa fa-sort"></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=receiver_user_id&dir=<?php echo $data['sortDirection']; ?>">ReceiverId <i class="fa fa-sort"></a></th>
+                    <th style="width: 350px;"><a href="?page=<?php echo $currentPage; ?>&sort=feedback_text&dir=<?php echo $data['sortDirection']; ?>">feedback_text <?php echo $data['sortBy'] === 'feedback_text' ? '<i class="fa fa-sort-' . ($data['sortDirection'] === 'asc' ? 'up' : 'down') . '"></i>' : ''; ?></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=rating&dir=<?php echo $data['sortDirection']; ?>">rating<i class="fa fa-sort"></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_date&dir=<?php echo $data['sortDirection']; ?>">feedback_date <i class="fa fa-sort"> </a></th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,19 +63,32 @@
                     $row = $recentComplaintsArray[$i];
                 ?>
                     <tr>
-                        <td><?php echo $row['inquiry_id']; ?></td>
-                        <td><?php echo $row['subject']; ?></td>
-                        <td><?php echo $row['description']; ?></td>
+                        <td><?php echo $row['feedback_id']; ?></td>
+                        <td><?php echo $row['sender_user_id']; ?></td>
+                        <td><?php echo $row['receiver_user_id']; ?></td>
+                        <td><?php echo $row['feedback_text']; ?></td>
                         <td>
-                            <div class="<?php echo $row['inquiry_status']; ?>"><?php echo $row['inquiry_status']; ?></div>
+                            <div class="<?php echo $row['rating']; ?>"><?php echo $row['rating']; ?></div>
                         </td>
-                        <td><?php echo $row['created_at']; ?></td>
-                        <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><i class="fa fa-eye"></i></a></td>
+                        <td><?php echo $row['feedback_date']; ?></td>
+                        <td>
+
+                            <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                    <i class="fa fa-trash" style="color: red;"></i>
+                                </button>
+                                <input type="hidden" name="feedback_id" value="<?php echo $row['feedback_id']; ?>">
+                            </form>
+
+                        </td>
                     </tr>
                 <?php
                 }
                 ?>
             </tbody>
+
+
+
         </table>
 
         <div class="pagination">
