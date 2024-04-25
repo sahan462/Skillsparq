@@ -21,6 +21,16 @@ class ratingCSA extends Controller
             }
         }
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['inquiry_id'])) {
+                $inquiry_id = $_POST['inquiry_id'];
+                $this->profileHandlerModel->deleteInquiryAndHelpRequest($inquiry_id);
+                header("Location: viewHelpRequests"); // Ensure this is the correct URL
+                exit;
+            }
+        }
+
+
         // Retrieve sort field and direction from query parameters
         $allowedSortFields = ['feedback_id', 'sender_user_id', 'receiver_user_id', 'feedback_text', 'rating', 'feedback_date'];
         $sortBy = isset($_GET['sort']) && in_array($_GET['sort'], $allowedSortFields) ? $_GET['sort'] : 'feedback_id';

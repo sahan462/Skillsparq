@@ -35,16 +35,16 @@
 
                     <?php if (mysqli_num_rows($deliveries) > 0) {
 
-                        while ($row = $result->fetch_assoc()) { ?>
+                        while ($row = $deliveries->fetch_assoc()) { ?>
 
                             <div class="filecontainer">
                                 <div class="file">
                                     <img class="fileimg" src="<?php echo BASEURL.'/public/assets/img/icons/file.png?'?>">
                                     <div class="name">File Name :
-                                        <?php echo $deliveries['name']; ?>
+                                        <?php echo $row['attachements']; ?>
                                     </div>
                                     <div class="time">
-                                        <?php echo $deliveries['time']; ?>
+                                        <?php echo $row['date']; ?>
                                     </div>
                                     <div class="size">File Size :
                                         <?php echo floor($file['size'] / 1000) . ' KB'; ?>
@@ -147,7 +147,7 @@
                     <!-- add a description to the delivery-->
                     <label class="type-1">Delivery Description</label>
                     <label class="type-2">Please add a suitable description for your work</label>
-                    <textarea  name="dis" rows="4" cols="50" style="margin-bottom:32px !important;"></textarea>
+                    <textarea  name="deliveryDescription" rows="4" cols="50" style="margin-bottom:32px !important;"></textarea>
 
                     <!-- Rate buyer -->
                     <!-- <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
@@ -167,10 +167,14 @@
                         </div>
 
                     </div> -->
-
+                    <input type="hidden" name="orderId" value="<?php echo $data['orderId'] ?>">
+                    <input type="hidden" name="orderType" value="<?php echo $data['orderType']?>">
+                    <?php if($data['orderType'] == 'milestone') { ?>
+                        <input type="hidden" name="orderType" value="<?php echo $data['milestoneId']?>">
+                    <?php } ?>
                     <!-- submit form -->
                     <div class="row" style="float:right;">
-                        <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
+                        <button type="submit" name="uploadDelivery" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
                     </div>
 
                 </form>

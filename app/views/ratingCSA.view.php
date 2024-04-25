@@ -19,7 +19,7 @@
     <?php include "components/helpCenter.component.php"; ?>
     <?php
     $rowsPerPage = 5; // Number of rows per page
-    $totalRows = 10; // Total number of rows
+    $totalRows = mysqli_num_rows($feedbacks); // Total number of rows
     $totalPages = ceil($totalRows / $rowsPerPage); // Total number of pages
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page, default is 1
 
@@ -53,7 +53,7 @@
                     <th style="width: 350px;"><a href="?page=<?php echo $currentPage; ?>&sort=feedback_text&dir=<?php echo $data['sortDirection']; ?>">feedback_text <?php echo $data['sortBy'] === 'feedback_text' ? '<i class="fa fa-sort-' . ($data['sortDirection'] === 'asc' ? 'up' : 'down') . '"></i>' : ''; ?></a></th>
                     <th><a href="?page=<?php echo $currentPage; ?>&sort=rating&dir=<?php echo $data['sortDirection']; ?>">rating<i class="fa fa-sort"></a></th>
                     <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_date&dir=<?php echo $data['sortDirection']; ?>">feedback_date <i class="fa fa-sort"> </a></th>
-                    <th>View</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@
                         </td>
                         <td><?php echo $row['feedback_date']; ?></td>
                         <td>
-                            <a href="/feedback/view/<?php echo $row['feedback_id']; ?>"><i class="fa fa-eye" style="color: green;"></i></a>
+
                             <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
                                 <button type="submit" style="border: none; background: none; cursor: pointer;">
                                     <i class="fa fa-trash" style="color: red;"></i>
