@@ -2,6 +2,7 @@
 class ProfileHandler extends database
 {
 
+    // check if the user name is already exists or not
     public function userNameCheck($userName)
     {
 
@@ -142,10 +143,12 @@ class ProfileHandler extends database
         }
     }
 
+    // delete a profile
     public function deleteProfile($userId)
     {
     }
 
+    // get all profiles
     public function getAllProfiles()
     {
         $query = "SELECT * from profile";
@@ -162,6 +165,8 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    // 
     public function updateCSA()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

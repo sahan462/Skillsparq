@@ -33,6 +33,7 @@ $(function () {
   }).on("rateyo.change", function (e, data) {
     var rating = data.rating;
     $(this).next('.rateValue').text("Rating: " + rating);
+    $('#ratingInput').val(rating);
   });
 });
 
@@ -57,25 +58,30 @@ function handleConfirmation(action)
   var sendConfirmationModal = document.getElementById("sendConfirmationModal");
   var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
 
-  if (action === "sendYes") {
+  if (action === "sendDelivery") {
 
-      var input = document.getElementsByClassName("fileInput")[0];
-      var files = input.files;
+    var input = document.getElementsByClassName("fileInput")[0];
+    var files = input.files;
 
-      if (files.length <= 0) {     
-        document.getElementsByClassName("warningMessage")[0].textContent = "Please select a file";
-        document.getElementsByClassName("warningMessage")[0].style.display = "block";
+    if (files.length <= 0) {     
+      document.getElementsByClassName("warningMessage")[0].textContent = "Please select a file";
+      document.getElementsByClassName("warningMessage")[0].style.display = "block";
 
-        sendConfirmationModal.style.display = "none";
-        sendConfirmationOverlay.style.display = "none";
+      sendConfirmationModal.style.display = "none";
+      sendConfirmationOverlay.style.display = "none";
 
-        return false;
-      }
+      return false;
+    }
 
-      var form = document.getElementById("deliveryUploadForm");
-      form.submit();
+    var form = document.getElementById("deliveryUploadForm");
+    form.submit();
       
-  } else if (action === "sendNo") {
+  }else if (action === "completeOrder") {
+
+    var form = document.getElementById("orderCompletionForm");
+    form.submit();
+
+  }else if (action === "sendNo") {
 
     sendConfirmationModal.style.display = "none";
     sendConfirmationOverlay.style.display = "none";
@@ -83,3 +89,24 @@ function handleConfirmation(action)
   } 
 
 }
+
+//-----------------------------------active order completetion--------------------------------
+function activeSubmit()
+{
+  // Get the checkbox
+  var checkBox = document.getElementById("check");
+  // Get the output text
+  var btn = document.getElementById("btnx");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true) {
+    btn.style.pointerEvents='auto';
+    btn.style.backgroundColor='#31d65a';
+    btn.style.color = "white";
+  } else {
+    btn.style.pointerEvents='none';
+    btn.style.backgroundColor='#333';
+    btn.style.color = "white";
+  }
+} 
+
+window.onload = activeSubmit;

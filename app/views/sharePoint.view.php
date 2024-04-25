@@ -27,8 +27,13 @@
             <div class="confirmation" name="sendConfirmationModal" id="sendConfirmationModal">
                 <p>Are you sure want to continue?</p>
                 <div class="buttons">
-                    <button onclick="handleConfirmation('sendNo')">No</button>
-                    <button onclick="handleConfirmation('sendYes')">Yes</button>
+                    <?php if($_SESSION['role'] == 'Buyer') :?>
+                        <button onclick="handleConfirmation('sendNo')">No</button>
+                        <button onclick="handleConfirmation('completeOrder')">Yes</button>
+                    <?php elseif($_SESSION['role'] == 'Seller'): ?>
+                        <button onclick="handleConfirmation('sendNo')">No</button>
+                        <button onclick="handleConfirmation('sendDelivery')">Yes</button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -133,7 +138,7 @@
             <?php if($_SESSION['role'] == 'Buyer'){ ?>
 
                 <!-- fnish order Section -->
-                <form action="<?php echo BASEURL.'/sharePointBuyer/uploadFile';?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo BASEURL.'order/completeOrder';?>" method="post" enctype="multipart/form-data" id="orderCompletionForm">
     
                     <div id="rateSec">
 
@@ -143,31 +148,28 @@
                             The Seller
                         </p>
 
-                        <!-- Complete Order -->
-                        <div class="subsection">
+                        <!-- Feedback -->
+                        <div class="row">
+                            <div class="type-1">Your Thoughts</div>
+                            <div class="type-2">Give your feedback about this seller</div>
 
-                            Considering overall expression about the seller<br>
-                            <span class="subsection-title">Seller Rate</span>
+                            <textarea class="textbox" rows="4" cols="50" style="width:100%;margin-bottom: 32px !important;" name="feedback" value=""></textarea>
+                        </div>
 
-                            <div class="rate3">
-                                <input type="radio" id="star35" name="mainRate" value="5" />
-                                <label for="star35" title="text">5 stars</label>
-                                <input type="radio" id="star34" name="mainRate" value="4" />
-                                <label for="star34" title="text">4 stars</label>
-                                <input type="radio" id="star33" name="mainRate" value="3" />
-                                <label for="star33" title="text">3 stars</label>
-                                <input type="radio" id="star32" name="mainRate" value="2" />
-                                <label for="star32" title="text">2 stars</label>
-                                <input type="radio" id="star31" name="mainRate" value="1" />
-                                <label for="star31" title="text">1 star</label>
+                        <!-- Star Rating -->
+                        <div class="row" style="margin-bottom: 32px !important;">
+                            <div class="type-1">Overall Experience</div>
+                            <div class="type-2">Considering overall expression about the seller</div>
+
+                            <div class="innerRow" style="display:flex;align-items:center">
+                                <div id="rateYo"></div>
+                                <div class="rateValue"></div>
+                                <input type="hidden" id="ratingInput" name="rating" value="">
                             </div>
-
                         </div>
 
                     </div>
-
-                    Give a review for this adverticement
-                    <textarea class="textbox" name="dis" rows="4" cols="50"></textarea>
+                    <input type="hidden" name="completeOrder" value="uploadDelivery">
                     <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
 
                     <div class="submitSec">
