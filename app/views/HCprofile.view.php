@@ -43,7 +43,8 @@
                                 <div class="col-lg-4">
                                     <div class="card shadow-sm">
                                         <div class="card-header bg-transparent text-center">
-                                            <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
+                                            <img class="profile_img" src="./assests/images/profilePictures/<?php echo $_SESSION['profilePicture'];
+                                                                                                            ?>" alt=" student dp">
                                             <h3><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h3>
                                         </div>
                                         <div class="card-body">
@@ -105,9 +106,14 @@
                     <button style="margin-left: 25%; display:block" onclick="update()" id="update">Update </button>
                     <button id="close" onclick="close()" style="width: 25px; margin-bottom:15px; margin-left: 80%; display:none"><i class="fa-solid fa-xmark"></i></button>
                     <div id="form-container" style="display: none;">
-                        <form id="sendForm" name="sendForm">
-                            <label for="profilePicture" class="label">Profile Picture:</label><br>
-                            <input type="file" id="profilePicture" name="profilePicture" accept="image/*"><br>
+                        <form id="sendForm" name="sendForm" method="post" enctype="multipart/form-data">
+                            <div class="custom-file-upload">
+                                <input type="file" name="fileToUpload" class="fileToUpload">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                                </svg>
+                                <span class="type-1" id="fileName">Attachements</span>
+                            </div>
                             <label for="firstName" class="label">First Name</label><br>
                             <input type="text" name="firstName" id="firstName" autocomplete="off" required><br>
                             <label for="lastName" class="label">Last Name</label><br>
@@ -117,7 +123,7 @@
                             <label for="about">About</label><br>
                             <input type="text" id="about" name="about"><br>
 
-                            <button style="margin-left: 70%;" id=" save" onclick="submitForm()">Save</button>
+                            <button style="margin-left: 70%;" id="save" onclick="submitForm(event)">Save</button>
                         </form>
                     </div>
 
@@ -130,6 +136,7 @@
 
 
     <form id="sendForm" name="sendForm" method="post" style="display: none;">
+        <input type="file" name="newProfilePicture" id="newProfilePicture" style="display:none" accept="image/*" onchange="renderImage()" />
         <input type="hidden" id="firstName" name="firstName" value="">
         <input type="hidden" id="lastName" name="lastName" value="">
         <input type="hidden" id="about" name="about" value="">
@@ -159,37 +166,36 @@
 
         }
 
-        function submitForm() {
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
 
+            var form = document.getElementById('sendForm');
             var about = document.getElementById('about').value;
             var firstName = document.getElementById('firstName').value;
             var lastName = document.getElementById('lastName').value;
             var Country = document.getElementById('Country').value;
 
-
-
-
             var confirmAction = confirm("Are you sure ");
 
             if (confirmAction) {
-
-
-
-
-                // Set the selected value in the hidden field
-                document.getElementById('sendForm').elements['firstName'].value = firsName;
-                document.getElementById('sendForm').elements['lastName'].value = lastName;
-                document.getElementById('sendForm').elements['about'].value = about;
-                document.getElementById('sendForm').elements['Country'].value = Country;
-
-
-
-
                 // Submit the form
-                document.getElementById('sendForm').submit();
-                alert("User ID blocked successfully until " + selectedDays + " days.");
+                form.submit();
             } else {
                 alert("Operation canceled.");
+            }
+        }
+
+        function renderImage() {
+            var input = document.getElementById('newProfilePicture');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
             }
         }
     </script>

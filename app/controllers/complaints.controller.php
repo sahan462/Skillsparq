@@ -16,6 +16,8 @@ class complaints extends Controller
         $data['title'] = "SkillSparq";
         $recentComplaints = $this->inquiryHandlerModel->getComplaints();
         $data['recentComplaints'] = $recentComplaints;
+        $totalInquiries = $this->inquiryHandlerModel->totalInquiries();
+        $data['totalInquiries'] = $totalInquiries;
 
         $this->view('complaints', $data);
     }

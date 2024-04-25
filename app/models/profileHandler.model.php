@@ -162,36 +162,19 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    public function updateCSA()
+    public function updateCSA($profilePic, $firstName, $lastName, $country, $about, $userId)
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Validate and sanitize input data
-            $profilePic = "sfee"; // Placeholder for now
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $country = $_POST['Country'];
-            $about = $_POST['about'];
-            $userId = $_SERVER['userId'];
-            $userName = $_SERVER['userName'];
+        $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profile_pic = ?, first_name = ?, last_name = ?, country = ?, about = ? WHERE user_id = ?");
+        if (!$stmt) {
+            die('MySQL Error: ' . $GLOBALS['db']->error);
+        }
 
-            // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profilePic = ?, firstName = ?, lastName = ?, country = ?, about = ? WHERE user_id = ?");
+        $stmt->bind_param("sssssi", $profilePic, $firstName, $lastName, $country, $about, $userId);
 
-            if (!$stmt) {
-                die('MySQL Error: ' . $GLOBALS['db']->error);
-            }
-
-            // Bind parameters
-            $stmt->bind_param("sssssi", $profilePic, $firstName, $lastName, $country, $about, $userId);
-
-            if ($stmt->execute()) {
-                echo "Profile updated successfully";
-            } else {
-                echo "Error updating profile: " . $stmt->error;
-            }
-
-            // Close the statement
-            $stmt->close();
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

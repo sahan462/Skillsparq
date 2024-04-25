@@ -151,7 +151,13 @@ class InquiryHandler extends database
     // read help requestS
     public function getHelpRequests()
     {
-        $query = "SELECT i.request_id,c.inquiry_id,c.subject,c.description,c.attachements,c.response,c.inquiry_status,c.created_at from help_requests i join inquiries c ON i.request_id = c.inquiry_id order by c.inquiry_id DESC";
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'inquiry_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT i.request_id, c.inquiry_id, c.subject, c.description, c.attachements, c.response, c.inquiry_status, c.created_at 
+              FROM help_requests i 
+              JOIN inquiries c ON i.request_id = c.inquiry_id 
+              ORDER BY $sortBy DESC ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -165,6 +171,7 @@ class InquiryHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
 
     public function viewComplaints($inquiry_id)
     {
@@ -372,6 +379,47 @@ class InquiryHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getUnsolvedRequests()
+    {
+        $query = "SELECT * from inquiries i 
+        join help_requests r
+        where i.inquiry_id = r.request_id ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function totalInquiries()
+    {
+        $query = "
+        SELECT
+            (SELECT COUNT(*) FROM help_requests) AS helpRequests,
+            (SELECT COUNT(*) FROM complaints) AS complaints;
+    ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $data = $result->fetch_assoc(); // Fetch the first (and only) row as an associative array
+            return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
