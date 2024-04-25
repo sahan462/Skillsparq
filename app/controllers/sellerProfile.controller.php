@@ -41,6 +41,10 @@ class SellerProfile extends Controller
             
             $data['sellerId'] = $sellerId;
 
+            // get the user email to notify seller if the field is empty.
+            $email = $this->UserHandlerModel->getEmail($sellerId);
+            $data['mail'] = $email;
+
             // set the user_name and user_id to the seller_profile table before start updatings.
             // if(isset($_SESSION['userName']) && isset($_SESSION['userId'])){
             //     $this->SellerHandlerModel->addUserNameAndId($_SESSION['userId'],$_SESSION['userName']);
@@ -58,7 +62,7 @@ class SellerProfile extends Controller
 
             $Gigs = array();
 
-
+            
             if ($GigsOfSeller) {
                 while ($Gig = mysqli_fetch_assoc($GigsOfSeller)) {
                     $Gigs[] = $Gig;
@@ -68,6 +72,23 @@ class SellerProfile extends Controller
             }
             
             $data['gigs'] = $Gigs;
+
+            //check if the email is NULL or not.
+            if(is_null($email)){
+                $emailNotSet = true;
+                
+            }else{
+                $emailNotSet = false;
+            }
+            $data['emailStatus'] = $emailNotSet;
+
+            if(!empty($_SESSION) && $emailNotSet){
+                echo "
+                <script>
+                    alert('Setting up your email would attract more customers!')
+                </script>
+                ";
+            }
             // show($data);
             // print_r($_SESSION);
             $this->view('sellerProfile', $data);
@@ -95,6 +116,42 @@ class SellerProfile extends Controller
     {
         $retrievedSellerId = $this->SellerHandlerModel->sellerId($phoneNum);
         return $retrievedSellerId;
+    }
+
+    // insert/update user email of seller profile
+    public function addEmail()
+    {
+        $email = $_GET['email'];
+        $userId = $_GET['userId'];
+
+        if(!empty($email) && !empty($userId)){
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $isUpdated = $this->UserHandlerModel->setEmail($userId,$email);
+                if($isUpdated){
+                    echo "
+                        <script>
+                            window.alert('Email successfully updated !!')
+                            window.location.href = '" . BASEURL . "sellerProfile';
+                        </script>
+                    ";
+                }
+            } else {
+                echo "
+                    <script>
+                        window.alert('Email is not a valid Email !!')
+                        window.location.href = '" . BASEURL . "sellerProfile';
+                    </script>
+                ";
+            }
+            
+        }else{
+            echo "
+                <script>
+                    window.alert('Email not Detected !!')
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>
+            ";
+        }
     }
 
     // insert/update languages of seller profile

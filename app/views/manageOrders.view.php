@@ -16,21 +16,10 @@
 <div class="manageOrdersContainer">
 
     <!-- Topic -->
-    <?php 
-        if($_SESSION['role'] === "Seller"){
-    ?>
     <div class="manageOrdersHeader">
-        Seller - Manage Orders
+        Manage Orders
     </div>
-    <?php
-        }else if($_SESSION['role'] === "Buyer"){
-    ?>
-    <div class="manageOrdersHeader">
-        Buyer - Manage Orders
-    </div>
-    <?php
-        }
-    ?>
+
     <!-- Content -->
     <div class="manageOrdersContent">
 
@@ -75,6 +64,7 @@
                                 <th style="width: 10%;">Due On</th>
                                 <th style="width: 10%;">Total Amount</th>
                                 <th style="width: 10%;">Order Type</th>
+                                <th style="width: 10%;">Accept/Cancel</th>
                             </tr>
                         </div>
                         <div class="tbody">
@@ -97,7 +87,7 @@
                                         ?>
                                         <td> - </td>
                                         <?php 
-                                            }else if($row['order_type'] === "jobOrders"){
+                                            }else if($row['order_type'] === "job"){
                                         ?>
                                         <td>job ending date</td>
                                         <?php 
@@ -234,11 +224,11 @@
                             <?php 
                                 foreach($myOrders as $row){
 
-                                    if($row['order_state'] == 'completed'){
+                                    if($row['order_state'] == 'Completed'){
 
                             ?>
                                     <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
-                                        <td><?php echo $i+1 ?></td>
+                                        <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
                                             <span>Ann Perera</span>

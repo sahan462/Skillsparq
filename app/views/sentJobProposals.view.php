@@ -1,7 +1,11 @@
 <?php
     include "components/sellerHeader.component.php";
-    $allProposals = $data['myProposals'];
+    $allProposals = $data['sentPropDets'];
     // show($allProposals);
+    $accepted = $data['AcceptedCount'];
+    $pending = $data['PendingCount'];
+    $rejected = $data['RejectedCount'];
+    // show($data);
 ?>
 
 <!-- Main Container -->
@@ -13,21 +17,96 @@
     </div>
     <!-- Content -->
     <div class="sentJobPropContent">
-
+        <?php
+            if(empty($allProposals)){
+        ?>
+        <div class="containerNotFound">
+            <div class="notFound">
+                You Haven't send any Job Proposal yet !
+            </div>
+            <div class="lottieAnim">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+            </div>
+        </div>
+        <?php
+            }else{
+        ?>
         <div class="leftContainer">
             <!-- Tab links -->
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Pending Acceptance</button>
-                <button class="tablinks" onclick="openCity(event, 'Accepted')" id="accepted">Proposal Accepted</button>
-                <button class="tablinks" onclick="openCity(event, 'Cancelled')" id="cancelled">Cancelled Proposal</button>
+                <button class="tablinks" onclick="openCity(event, 'Accepted')" id="defaultOpen">Proposals Accepted</button>
+                <button class="tablinks" onclick="openCity(event, 'Pending')" id = "pending">Pending Proposals for Acceptance</button>
+                <button class="tablinks" onclick="openCity(event, 'Rejected')" id="cancelled">Rejected Proposals</button>
             </div>
 
             <!-- Tab content -->
 
-            <!-- Sent Proposals -->
-            <div id="Requests" class="tabcontent">
+            <!-- Accepted Proposals -->
+            <div id="Accepted" class="tabcontent">
                 <div class="outerTable">
                     <table>
+                        <?php
+                            if($accepted['count'] != 0){
+                        ?>
+                        <div class="thead">
+                            <tr style="position: sticky">
+                                <th style="width: 6%;">Proposal Id</th>
+                                <th style="width: 26%;">Buyer</th>
+                                <th style="width: 28%;">Job Title</th>
+                                <th style="width: 10%;">Job Due On</th>
+                                <th style="width: 10%;">Amount</th>
+                                <th style="width: 10%;">Type</th>
+                                <!-- <th style="width: 10%;">Accept/Reject Order</th> -->
+                            </tr>
+                        </div>
+                            <?php 
+                                foreach($allProposals  as $row){
+                                    if($row['Status'] === "Accepted"){
+                            ?>
+                        <div class="Tbody">
+                            <tr>
+                                <td><?php echo $row['proposal_id'] ?></td>
+                                <td class="Buyer">
+                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                </td>
+                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo $row['amount'];?></td>
+                                <td>Job Order</td>
+                                <td>
+                                    <div>
+                                        <!-- <button onclick="window.location='manageOrders&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Accept</button>
+                                        <button onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Reject</button> -->
+                                    </div>
+                                </td>
+                            </tr>
+                                <?php
+                                    }
+                                }
+                            }else{
+                                ?>
+                                <div class="notFound">
+                                    Oops! You Don't Have any Accepted Job Proposals from a Potential Buyer !
+                                </div>
+                                <div class="lottieAnim">
+                                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+                                </div>
+                                <?php
+                            }
+                                ?>
+                        </div>
+                    </table> 
+                </div>
+            </div>
+
+            <!-- Sent Proposals -->
+            <div id="Pending" class="tabcontent">
+                
+                <div class="outerTable">
+                    <table>
+                        <?php
+                            if($pending['count'] != 0 ){
+                        ?>
                         <div class="thead">
                             <tr>
                                 <th style="width: 6%;">Proposal Id</th>
@@ -35,118 +114,104 @@
                                 <th style="width: 28%;">Job Title</th>
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Type</th>
                             </tr>
                         </div>
-                        <div class="Tbody">
-                            <?php 
-                            // $allProposals['Status'] = "pending";
+                            <?php
                                 foreach($allProposals  as $row){
-                                    // if($allProposals['Status'] === "pending"){
+                                    if(($row['Status'] === "pending")){
                             ?>
-                                    <!-- <tr onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo $row['seller_id']?>'"> -->
-                                    <tr>
-                                        <td><?php echo $row['proposal_id'] ?></td>
-                                        <td></td>
-                                        <td>I will create wordpress websites</td>
-                                        <td>job ending date</td>
-                                        <td>$5000</td>
-                                        <td>Package Order</td>
-
-                                    </tr>
+                        <div class="Tbody">
+                            <tr>
+                                <td><?php echo $row['proposal_id'] ?></td>
+                                <td>
+                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                </td>
+                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo $row['amount'];?></td>
+                                <td>Job Order</td>
+                            </tr>
                                 <?php
                                     }
-                                // }
+                                }
+                            }else{
+                                ?>
+                                <div class="notFound">
+                                    Oops! You Don't Have any pending for acceptance Job Proposals !
+                                </div>
+                                <div class="lottieAnim">
+                                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/01489c27-adf9-4ed6-a209-46b0fc0585ac/hkaxKhmNSq.json" background="#f7f7f7" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+                                </div>
+                            <?php
+                            }
                             ?>
                         </div>
                     </table>
                 </div>
             </div>
 
-            <!-- Accepted Proposals -->
-            <div id="Accepted" class="tabcontent">
+            <!-- Rejected Proposals -->
+            <div id="Rejected" class="tabcontent">
                 <div class="outerTable">
                     <table>
+                        <?php
+                            if($rejected['count'] != 0){
+                        ?>
                         <div class="thead">
-                            <tr style="position: sticky">
+                            <tr>
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
                                 <th style="width: 28%;">Job Title</th>
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
-                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Type</th>
+                                <th style="width: 10%; color:#e41f11">
+                                    <button onclick="window.location=('sentJobProposals/deleteAllRejProps&sellerId=<?php echo $data['sellerId']?>')">Delete All</button>
+                                </th>
                             </tr>
                         </div>
-                        <div class="Tbody">
-                            <?php 
-                                // $allProposals['Status'] == "Accepted";
+                            <?php
                                 foreach($allProposals  as $row){
-                                    // if($allProposals['Status'] === "Accepted"){
+                                    if(($row['Status'] === "Rejected")){
                             ?>
-                                    <!-- <tr onclick="window.location='manageJobOrders&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'"> -->
-                                    <tr>
-                                        <td><?php echo $row['proposal_id'] ?></td>
-                                        <td class="Buyer">
-                                            <span>Kumar Sanagakkara</span>
-                                        </td>
-                                        <td>I will architect your hotel</td>
-                                        <td>5 Sep</td>
-                                        <td>$5000</td>
-                                        <td>Package Order</td>
-                                    </tr>
-                            <?php 
-                                    }
-                                // }
-                            ?>
-                        </div>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Cancelled Proposals -->
-            <div id="Cancelled" class="tabcontent">
-                <div class="outerTable">
-                    <table>
-                        <div class="thead">
-                            <tr style="position: sticky">
-                                <th style="width: 6%;">Proposal Id</th>
-                                <th style="width: 26%;">Buyer</th>
-                                <th style="width: 28%;">Job Title</th>
-                                <th style="width: 10%;">Job Due On</th>
-                                <th style="width: 10%;">Amount</th>
-                                <th style="width: 10%;"><a href="" class="clearAllAnc">Clear All</a></th>
+                        <div class="Tbody">
+                            <tr>
+                                <td><?php echo $row['proposal_id'] ?></td>
+                                <td>
+                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                </td>
+                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo $row['amount'];?></td>
+                                <td>Job Order</td>
+                                <td><button onclick="window.location=('sentJobProposals/deleteSingleRejProp&propId=<?php echo $row['proposal_id']?>')">Delete</button></td>
                             </tr>
-                        </div>
-                        <div class="Tbody">
-                            <?php 
-                                // $allProposals['Status'] === "Cancelled";
-                                foreach($allProposals  as $row){
-                                    // if($allProposals['Status'] === "Cancelled"){
-                            ?>
-                                    <!-- <tr onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'"> -->
-                                    <tr>
-                                        <td><?php echo $row['proposal_id'] ?></td>
-                                        <td class="Buyer">
-                                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
-                                            <span>Ann Perera</span>
-                                        </td>
-                                        <td>I will create wordpress websites</td>
-                                        <td>5 Sep</td>
-                                        <td>$5000</td>
-                                        <td><button>Delete</button></td>
-                                    </tr>
-                            <?php 
+                                <?php
                                     }
-                                // }
+                                }
+                            }else{
+                                ?>
+                                <div class="notFound">
+                                    You Don't Have any Rejected Job Proposals !
+                                </div>
+                                <div class="lottieAnim">
+                                    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/d36ff7e3-11cd-4d55-880f-beae1474004f/cuP15vcYMI.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+                                </div>
+                            <?php
+                            }
                             ?>
                         </div>
                     </table>
                 </div>
             </div>
         </div>
+        <?php
+            }
+        ?>
     </div>
 </div>
 
-<script src="/skillsparq/public/assests/js/manageOrders.script.js"></script>
+<script src="/skillsparq/public/assests/js/sentJobProposals.script.js"></script>
 
 <?php include "components/footer.component.php";?>

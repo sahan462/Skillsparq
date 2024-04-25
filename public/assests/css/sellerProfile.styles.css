@@ -31,6 +31,7 @@ body{
 }
 
 /* Main Class Selector for all confirmation Modals */
+/* this will be in tobe deleted modals */
 .confirmation{
     display: none;
     background: #fff;
@@ -41,26 +42,42 @@ body{
 }
 
 /* Form Modal Styles content */
+/* Styles for all modal including update,delete,email,language,skills,education */
 
-.modal .confirmation button {
+.sellerProfileContainer .modal button,
+.modalEmail button,
+.modalLang button,
+.modalSkill button,
+.modalEducation button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
 }
 
-.modal form {
+.modal form,
+.modalEmail form,
+.modalLang form,
+.modalSkill form,
+.modalEducation form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.modal input, textarea{
+.modal textarea input,
+.modalEmail input,
+.modalLang input,
+.modalSkill input,
+.modalEducation input
+{
     margin-bottom: 16px;
     border-radius: 8px;
     /* padding: 8px;
     height:25%;
     cursor: auto; */
 }
-.modal .type-1{
+
+.modal .type-1
+{
     font-weight: 600;
     font-size: 16px;
     color: #404145;
@@ -72,18 +89,32 @@ body{
     color: #62646a;
 }
 
-.modal .row{
+.modal,
+.modalEmail,
+.modalLang,
+.modalSkill,
+.modalEducation .row{
     display: flex;
     flex-direction: column !important;
     /* text-align: left; */
 }
-.modal .buttons, .confirmation .buttons{
+.modal .buttons,
+.modalEmail .buttons,
+.modalLang .buttons,
+.modalSkill .buttons,
+.modalEducation .buttons
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
 }
-.modal .buttons button, .confirmation button{
+.modal .buttons button,
+.modalEmail .buttons button,
+.modalLang .buttons button,
+.modalSkill .buttons button,
+.modalEducation .buttons button
+{
     width: 50%;
     padding: 8px;
     margin-top: 16px;
@@ -97,18 +128,51 @@ body{
     background-color: #31d65a;
     cursor: pointer;
 }
-.modal .buttons button:hover{
+.modal .buttons button:hover,
+.modalEmail .buttons button:hover,
+.modalLang .buttons button:hover,
+.modalSkill .buttons button:hover,
+.modalEducation .buttons button:hover{
     color: #333;
     background-color: rgb(241, 241, 241);
     font-weight: 600;
 }
 
-.modal .confirmation button {
+.sellerProfileContainer .modal button,
+.modalEmail button,
+.modalLang button,
+.modalSkill button,
+.modalEducation button{
     padding: 10px;
     margin: 5px;
     cursor: pointer;
 }
 
+.modalEmail,
+.modalLang,
+.modalSkill,
+.modalEducation
+{
+    display: none;
+    position:absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius:8px;
+    width: 500px;
+    height: fit-content;
+}
+
+.modalLang input[type = "text"],
+.modalSkill input[type = "text"],
+.modalEducation input[type = "text"]
+{
+    width: 420px;
+}
+
+.modalEmail input[type = "text"]
+{
+    width: 400px;
+}
 
 /*
     #########################################################################
@@ -183,109 +247,6 @@ body{
 }
 
 #ModalDelete{
-    display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto;
-    height: auto;
-}
-
-/*
-    #########################################################################
-    Modal 3 Add Languages Profile Form Modal 
-*/
-
-/* Add Button for Languages Styles For the profile */
-#overlayAddLanguages{
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
-#ModalAddLanguages{
-    display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto;
-    height: auto;
-}
-
-  .sellerAddLang ul{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 7px;
-    margin: 12px 0;
-    border-radius: 5px;
-    border: 1px solid #a6a6a6;
-  }
-  .sellerAddLang ul li{
-    color: #333;
-    margin: 4px 3px;
-    list-style: none;
-    border-radius: 5px;
-    background: #F2F2F2;
-    padding: 5px 8px 5px 10px;
-    border: 1px solid #e3e1e1;
-  }
-  .sellerAddLang ul li i{
-    height: 20px;
-    width: 20px;
-    color: #808080;
-    margin-left: 8px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #dfdfdf;
-    justify-content: center;
-  }
-  .sellerAddLang ul input{
-    flex: 1;
-    padding: 5px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-  }
-
-/*
-    #########################################################################
-    Modal 4 Add Skills Profile Form Modal 
-*/
-/* Add Button for Skills Styles For the profile */
-#overlayAddSkills{
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
-#ModalAddSkills{
-    display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto;
-    height: auto;
-}
-
-/*
-    #########################################################################
-    Modal 5 Add Education Profile Form Modal 
-*/
-/* Add Button for Education Styles For the profile */
-#overlayAddEduc{
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
-#ModalAddEduc{
     display: none;
     position: absolute;
     background: #fff;
@@ -382,7 +343,10 @@ body{
     color: #fff;
     margin: 4px;
     cursor: pointer;
+    height: 30px!important;
+    width: 30px!important;
 }
+
 .seller-profile-picture .editIcon{
     width: 48px;
     height: 48px;
@@ -394,6 +358,7 @@ body{
     margin-bottom: 2px;
     margin-right: 2px;
 }
+
 .seller-profile-picture img{
     width: 150px;
     height: 150px;
@@ -415,24 +380,29 @@ body{
 }
 
 /* change full name */
-input[type = "text"], textarea, select{
+/* what is this used for ?? select */
+input[type = "text"],
+.sellerProfileContainer textarea
+{
     height: 40px;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius: 4px!important;
     width: 100%;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
     border: 1px solid #c5c6c9;
+    padding: 8px!important;
 }
+
 .seller-full-name{
     display: flex;
     justify-content: space-between;
 }
 
-/* .seller-modal-name{
-
-} */
+.seller-modal-name{
+    padding: 12px;
+}
 
 .seller-name{
     font-size:32px;
@@ -442,42 +412,15 @@ input[type = "text"], textarea, select{
 
 .seller-question{
     font-size:24px;
+    margin-bottom: 16px;
 }
 
 .topRightContainer .fade {
     opacity: 1;
 }
 
-/* modal1 content */
-.modal1 .row{
-    display: flex;
-    flex-direction: column !important;
-}
-.modal1 .buttons, .confirmation .buttons{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-.modal1 .buttons button, .confirmation button{
-    width: 50%;
-    padding: 8px;
-    margin-top: 16px;
-    width: 100%;
-    font-weight: 600;
-    font-size: 18px;
-    color: #fff;
-    border-radius: 8px;
-    border: none;
-    transition: ease-in-out 0.3s;
-    background-color: #f81d00;
-    cursor: pointer;
-}
-
-.modal1 .buttons button:hover{
-    color: #333;
-    background-color: rgb(241, 241, 241);
-    font-weight: 600;
+#emailForm{
+    margin: 20px;
 }
 
 /*User Info*/
@@ -503,6 +446,55 @@ input[type = "text"], textarea, select{
     align-items: center;
 }
 
+.email{
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+
+.emailSvg{
+    display: flex;
+    justify-content: space-between;
+}
+
+.updtIcon{
+    /* margin-bottom: 16px; */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dltIcon{
+    cursor: pointer;
+}
+
+.AlertButton{
+    text-align: center;
+    padding: 20px;
+    background-color: #1dbf73;
+    color: white;
+    margin-left: 48px;
+    margin-right: 48px;
+    box-shadow: 10px 10px 5px rgb(127, 117, 112);
+    border-radius: 16px;
+    /* height: 36px; */
+}
+  
+.closeAlertBtn {
+margin-left: 15px;
+color: white;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+}
+  
+.closeAlertBtn:hover {
+color: black;
+}
+
 .profile .topic{
     display: flex;
     align-items: center;
@@ -515,53 +507,20 @@ input[type = "text"], textarea, select{
 .profile .profileAdditionals {
     display: flex;
     justify-content: space-between;
-    align-items:flex-end;
 }
 
-.profile .addButton{
-    justify-content: center;
+.viewContainer{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
-    color: #0e0e0f;
-    background:none;
-    border: 2px solid #fff;
-    padding: 14px;
-    font-size: 14px;
-    width: auto;
 }
 
-.profile .addButton:hover{
-    text-decoration: none;
-    color: #fff;
-    background-color: #1dbf73;
-    text-decoration: none;
-    border-radius: 5px;
-    text-anchor: #fff;
+.viewContainer svg{
+    cursor: pointer;
 }
 
-.profile .addButton1{
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    color: #0e0e0f;
-    background:none;
-    border: 2px solid #fff;
-    padding: 14px;
-    font-size: 14px;
-    width: auto;
-}
-
-.profile .addButton1:hover{
-    text-decoration: none;
-    color: #fff;
-    background-color: #1dbf73;
-    text-decoration: none;
-    border-radius: 5px;
-    text-anchor: #fff;
-}
-
-.addButton1:hover .addButtonAnchor{
-    color: #fff;
+.viewContainer .topic{
+    padding-top: 8px;
 }
 
 a{
@@ -644,6 +603,7 @@ a{
     padding-bottom: 32px;
     border-bottom: 2px solid #dadbdd;
 }
+
 /*reviews-review-content*/
 .review-content{
     display: flex;

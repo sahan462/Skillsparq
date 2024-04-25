@@ -2,7 +2,8 @@
 
 document.getElementById("defaultOpen").click();
 
-function openTab(evt, tabName) {
+function openTab(evt, tabName) 
+{
 
   // Declare all variables
   var i, tabContent, tablinks;
@@ -26,15 +27,14 @@ function openTab(evt, tabName) {
 }
 
 
-
-
 // ---------------------------------------Timer--------------------------------------------------------
 
 // Set the date we're counting down to
 var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
-var x = setInterval(function() {
+var x = setInterval(function() 
+{
 
   // Get today's date and time
   var now = new Date().getTime();
@@ -62,7 +62,8 @@ var x = setInterval(function() {
 
 // ---------------------------------------modals--------------------------------------------------------
 
-function confirmAction(action) {
+function confirmStateChange(action) 
+{
 
   if (action === 'send') {
   
@@ -78,7 +79,8 @@ function confirmAction(action) {
 
 }
 
-function handleConfirmation(event, action, orderId, orderType, buyerId, sellerId) {
+function handleStateChange(event, action, orderId, orderType, buyerId, sellerId) 
+{
     
   if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
     
@@ -117,7 +119,8 @@ function submitpaymentForm(){
 
 // ---------------------------------------Cancel an order--------------------------------------------------------
 
-async function cancelOrder(orderId, orderType, buyerId, sellerId) {
+async function cancelOrder(orderId, orderType, buyerId, sellerId) 
+{
   var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
 
   try {
@@ -141,8 +144,8 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId) {
 }
 
 // ---------------------------------------Accept an order request--------------------------------------------------------
-
-async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
+async function acceptOrderRequest(orderId, orderType, buyerId, sellerId)
+{
   var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
 
   try {
@@ -158,253 +161,141 @@ async function acceptOrderRequest(orderId, orderType, buyerId, sellerId) {
           throw new Error('Network response was not ok');
       }
 
-      alert("Order cancelled successfully");
+      alert("Order Accepted successfully");
       window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
   }
 }
 
-// ---------------------------------------Chat functionality - Web Socket--------------------------------------------------------log
 
-// create a connection 
-var conn = new WebSocket(`ws://localhost:8080?chatId=${chatId}`);
-
-// onopen method
-conn.onopen = function(e) {
-    console.log("Connection established!");
-};
-
-// onmessage method
-conn.onmessage = function(e) {
-  console.log(e.data);
-
-  var data = JSON.parse(e.data);
-  var messageComponent = "";
-
-  const from = data.from;
-
-  if (from == "Me") {
-    console.log("Its me");
-    if (data.attachment) {
-        if (isBase64Image(data.attachment)) {
-            messageComponent = `
-                <div class="receiver-container">
-                    <div class="messageContainer darker">
-                        <div class="receiverContent">
-                            <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Attachment" class="attachment-image">
-                            <p class="receiver" >
-                                ${data.newMessage}
-                                <img src="${data.attachment}" alt="Attachment" class="attachment-image">
-                                <span class="time-left">11:01</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>`;
-        } else {
-            messageComponent = `
-                <div class="receiver-container">
-                    <div class="messageContainer darker">
-                        <div class="receiverContent">
-                            ${data.newMessage} (Attachment: <a href="${data.attachment}" download>Download Attachment</a>)
-                            <span class="time-left">11:01</span>
-                        </div>
-                    </div>
-                </div>`;
-        }
-    } else {
-        messageComponent = `
-            <div class="receiver-container">
-                <div class="messageContainer darker">
-                    <div class="receiverContent">
-                        <p class="receiver" >
-                            ${data.newMessage}
-                            <span class="time-left">11:01</span>
-                        </p>
-                    </div>
-                </div>
-            </div>`;
-    }
-  } else {
-    console.log("another user");
-    if (data.attachment) {
-        if (isBase64Image(data.attachment)) {
-            messageComponent = `
-                <div class="sender-container">
-                    <div class="messageContainer">
-                        <div class="senderContent">
-                          <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Attachment" class="attachment-image">
-                          <p class="receiver" >
-                            ${data.newMessage}
-                            <img src="${data.attachment}" alt="Attachment" class="attachment-image">
-                            <span class="time-right">11:00</span>
-                          </p>
-                        </div>
-                    </div>
-                </div>`;
-        } else {
-            messageComponent = `
-                <div class="sender-container">
-                    <div class="messageContainer">
-                        <div class="senderContent">
-                            ${data.newMessage} (Attachment: <a href="${data.attachment}" download>Download Attachment</a>)
-                            <span class="time-right">11:00</span>
-                        </p>
-                    </div>
-                </div>
-            </div>`;
-        }
-    } else {
-        messageComponent = `
-            <div class="sender-container">
-                <div class="messageContainer">
-                    <div class="senderContent">
-                        <p class="P" >
-                            ${data.newMessage}
-                            <span class="time-right">11:00</span>
-                        </p>
-                    </div>
-                </div>
-            </div>`;
-    }
-  }
-
-  document.getElementById('chatContainer').innerHTML += messageComponent;
-
-};
-
-
-// check whether the attachement is an image or not
-function isBase64Image(base64) {
-  return /^data:image\/(png|jpg|jpeg|gif);base64,/.test(base64);
+// --------------------------------Complaint Handling--------------------------------
+// Function to open the modal
+function openComplaintModal(button) 
+{
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('packageModal').style.display = 'block';
 }
 
+function confirmAction(action) 
+{
+  var sendComplaintOverlay = document.getElementById("sendComplaintOverlay");
+  var sendComplaint = document.getElementById("sendComplaint");
+  var cancelComplaintOverlay = document.getElementById("cancelComplaintOverlay");
+  var cancelComplaint = document.getElementById("cancelComplaint");
 
+  if (action === "send") {
 
-// onclose method
-conn.onclose = function(e){
-  console.log("Connection closed!");
-};
+    sendComplaintOverlay.style.display = "flex";
+    sendComplaint.style.display = "block";
 
+  } else if (action === "cancel") {
 
-// function which is get executed when a new message is sent
-var chatForm = document.getElementById('chatForm');
-chatForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission behavior
-    
-    var senderId = document.getElementById('senderId').value;
-    var receiverId = document.getElementById('receiverId').value;
-    var chatId = document.getElementById('chatId').value;
-    var newMessage = document.getElementById('newMessage').value;
-    var attachmentInput = document.getElementById('messageAttachement');
-    var attachment = attachmentInput.files.length > 0 ? attachmentInput.files[0] : null;
-    
-    var reader = new FileReader();
-    reader.onload = function(event) 
-    {
-        var data = {
-            senderId: senderId,
-            receiverId: receiverId,
-            chatId: chatId,
-            newMessage: newMessage,
-            attachment: event.target.result, // Convert attachment to base64 and send
-            command: 'private'
-          };
-        conn.send(JSON.stringify(data));
-    };
-    
-    if (attachment){
-        reader.readAsDataURL(attachment); // Convert attachment to base64
-    } else {
-        var data = {
-            senderId: senderId,
-            receiverId: receiverId,
-            chatId: chatId,
-            newMessage: newMessage,
-            command: 'private'
-        };
-        conn.send(JSON.stringify(data));
-    }
-});
+    cancelComplaintOverlay.style.display = "flex";
+    cancelComplaint.style.display = "block";
 
+  }
+}
 
+// Function to handle actions based on user confirmation
+function handleConfirmation(action) 
+{
+  var warningMessage = document.getElementsByClassName('warningMessage');
+  var complaintSubject = document.getElementById('inquirySubject'); 
+  var complaintDescription = document.getElementById('inquiryDescription');
+  const overlay = document.getElementById('overlay');
+  const packageModal = document.getElementById('packageModal');
+  const sendComplaint = document.getElementById('sendComplaint');
+  const sendComplaintOverlay = document.getElementById('sendComplaintOverlay');
+  const cancelComplaint = document.getElementById('cancelComplaint');
+  const cancelComplaintOverlay = document.getElementById('cancelComplaintOverlay');
+  var fileNameSpan = document.getElementById('fileName');
 
-// var chatForm = document.getElementById('chatForm');
+  if (action === 'sendYes') {
 
-// chatForm.addEventListener('submit', function(e) {
-//     e.preventDefault(); // Prevent the default form submission behavior
-    
-//     var userId = document.getElementById('userId').value;
-//     var newMessage = document.getElementById('newMessage').value;
-//     var attachment = document.getElementById('messageAttachement').files[0];
+      // Check if the input field is not empty
+      if (complaintSubject.value.trim() === '') { 
+        
+          warningMessage[0].textContent = "Please fill in the subject field before submitting.";
+          sendComplaint.style.display = 'none';
+          sendComplaintOverlay.style.display = 'none';
+          return; 
 
-//     var data = {
-//         senderId: userId,
-//         newMessage: newMessage
-//     };
+      }else{
 
-//     conn.send(JSON.stringify(data));
-    
-//     // Your further logic here (e.g., sending the user ID to the server)
-// });
+          warningMessage[0].textContent = ""; 
 
+      }
 
+      if(complaintDescription.value.trim() === '') { 
 
-// ---------------------------------------Chat functionality - AJAX--------------------------------------------------------
+          warningMessage[1].textContent = "Please fill in the description field before submitting.";
+          sendComplaint.style.display = 'none';
+          sendComplaintOverlay.style.display = 'none';
+          return;
 
+      }else{
 
-// var chatArea = document.getElementById('activity');
+        warningMessage[1].textContent = "";
 
-// function sendMessage(chatId, senderId, receiverId){
+      }
 
-//   var newMessage = document.getElementById('newMessage').value.trim();
+      var sendRequestForm = document.getElementById('sendRequestForm');
+      sendRequestForm.submit();
+
+  }else if (action === 'sendNo'){
+
+      sendComplaint.style.display = 'none';
+      sendComplaintOverlay.style.display = 'none';
+
+  }else if(action === 'cancelNo'){
+
+      cancelComplaintOverlay.style.display = 'none';
+      cancelComplaint.style.display = 'none';
+
+  }else{
+
+      fileNameSpan.textContent = '';
+      cancelComplaintOverlay.style.display = 'none';
+      cancelComplaint.style.display = 'none';
+      overlay.style.display = 'none';
+      packageModal.style.display = 'none';
+      warningMessage[0].textContent = "";
+      warningMessage[1].textContent = "";
+      warningMessage[2].style.display = 'none';
+
+  }
+}
+
+// -------------------file attachements --------------------------------
+function displayFileName(input) 
+{
+  var fileNameSpan = document.getElementById('fileName');
+  var files = input.files;
+
+  if (files.length > 0) {
+    var file = input.files[0];
   
-//   if(senderId == null ){
-//     alert("sender not found");
-//     return;
-//   }
+    if (file) {
+        var allowedExtensions = ['zip'];
+        var fileExtension = file.name.split('.').pop().toLowerCase();
+  
+        if (allowedExtensions.indexOf(fileExtension) !== -1) {
 
-//   if(receiverId == null){
-//     alert("receiver not found");
-//     return;
-//   }
+            fileNameSpan.textContent = files[0].name;
+            document.getElementById('warningMessage').style.display = 'none';
 
-//   if(newMessage == ""){
-//     alert("Please type something to send");
-//     return;
-//   }
+        } else {
 
-//   var ajax = new XMLHttpRequest();
-//   ajax.onload = function(){
-//     if(ajax.status == 200 || ajax.readyState == 4){
-//         var response = JSON.parse(ajax.responseText);
-//         if(response.success){
-//             document.getElementById('newMessage').value = "";
-//         } else {
-//             alert("Failed to send message: " + response.error);
-//         }
-//     } else {
-//         alert("Error: " + ajax.status);
-//     } 
-//   }
+            document.getElementById('warningMessage').style.display = 'block';  
+            input.value = '';
 
-//   ajax.open('POST', 'chat/sendNewTextMessage', true);
-//   // Set the Content-Type header to specify that the data being sent is JSON
-//   ajax.setRequestHeader("Content-Type", "application/json");
+        }
+    }
+  } else {
 
-//   // Create a JavaScript object to hold the message data
-//   var messageData = {
-//     message: newMessage,
-//     chatId: chatId,
-//     senderId: senderId,
-//     receiverId: receiverId,
-//   };
-
-//   // Stringify the messageData object to JSON format
-//   var jsonData = JSON.stringify(messageData);
-
-//   // Send the JSON data in the request body
-//   ajax.send(jsonData);
-
-// }
-
+    fileNameSpan.textContent = '';
+    
+  }
+}
+  

@@ -78,12 +78,12 @@ body{
     color: #ffffff;
 }
 
-#defaultOpen:hover{
+#pending:hover{
     background-color: #ddeb18;
     color: #222325;
 }
 
-#accepted:hover{
+#defaultOpen:hover{
     background-color: #22cf27;
 }
 
@@ -112,6 +112,31 @@ body{
     height: 100%;
     overflow: auto;
 }
+
+.notFound{
+    margin-top: 24px;
+    display: flex;
+    text-align:center;
+    justify-content: center;
+    line-height: 72px;
+    font-size:4vw;
+}
+
+.lottieAnim{
+    display: flex;
+    justify-content: center;
+}
+
+.notFound h1{
+    font-size: 64px;
+}
+
+.containerNotFound{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 table{
     margin-top: 16px;
     background-color: #fff;
@@ -142,7 +167,7 @@ Tbody td{
 }
 
 /*buyer column*/
-.Buyer{
+/* .Buyer{
     display: flex;
     align-items: center;
 }
@@ -151,7 +176,7 @@ Tbody td{
     height: 48px;
     border-radius: 100%;
     object-fit: cover;
-}
+} */
 
 .tablinks{
 

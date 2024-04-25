@@ -30,8 +30,8 @@ body{
     margin-right: 32px;
     margin-left: 32px;
     padding: 0px 16px;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
     margin-top: 32px;
     height: calc(100vh - 180px);
 }  
@@ -48,6 +48,7 @@ body{
 
 /* Style the tab */
 .manageOrdersContainer .tab {
+    border-radius: 8px 8px 0px 0px;
     width: 100%;
     overflow: hidden;
     border: none !important;

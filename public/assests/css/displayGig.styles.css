@@ -4,7 +4,6 @@ body{
     padding: 0;
 }
 
-
 /* Display Gig Container */
 .displayGigContainer{
     padding: 16px 32px;
@@ -35,7 +34,7 @@ body{
 /* Modal Stylings */
 
 /* modal behaviour */
-.overlay{
+.displayGigContainer .overlay{
     display: none;
     position: fixed;
     top: 0;
@@ -137,16 +136,16 @@ body{
 }
 
 /* modal content */
-.milestoneModal form,.modal form {
+.displayGigContainer .milestoneModal form,.modal form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.milestoneModal, .modal input, textarea{
+.displayGigContainer .milestoneModal,.displayGigContainer .modal input, .displayGigContainer textarea{
     margin-bottom: 16px;
     border-radius: 8px;
 }
-.milestoneModal .type-1, .modal .type-1{
+.displayGigContainer .milestoneModal .type-1, .modal .type-1{
     margin-top: 8px;
     font-weight: 600;
     font-size: 16px;
@@ -279,7 +278,7 @@ body{
     min-height: 150px;
     border-radius: 8px;
 }
-textarea {
+.displayGigContainer textarea {
     padding: 0;
     font-size: 16px;
     /* margin-bottom: 0 !important;
@@ -445,15 +444,16 @@ textarea {
     width: 100%;
     margin-left: 16px;
 }
-.tab {
+.topRightContainer .tab {
     width: 100%;
     overflow: hidden;
     display: flex;
+    justify-content: space-between;
     background-color: #f1f1f1;
     border-radius: 8px 8px 0 0;
 }
-.tab button {
-    width: calc(100% / 3);
+.topRightContainer .tab button {
+    width: 100%;
     background-color: #f7f7f7;
     border: 0.3px solid rgb(226, 226, 226);
     cursor: pointer;
@@ -462,21 +462,21 @@ textarea {
     font-weight: 600;
     font-size: 16px;
 }
-.tab button:hover {
+.topRightContainer .tab button:hover {
     background-color: #000000;
     color: #fff;
 }
-.tab button.active {
+.topRightContainer .tab button.active {
     background-color: #000000;
     color: white;
 }
-.tabcontent {
+.topRightContainer .tabcontent {
     display: none;
     border: 1px solid #dedddd;
     border-top: none;
     border-radius: 0 0 8px 8px;
 }
-.tabcontent:first-child{
+.topRightContainer .tabcontent:first-child{
     display: block;
 }
 .columns {

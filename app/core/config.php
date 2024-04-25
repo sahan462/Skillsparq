@@ -14,6 +14,11 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
 
 }else{ 
     // database connection for live server
+    define('DBHOSTNAME', 'localhost');
+    define('DBNAME', 'skillsparq');
+    define('DBUSER', 'root');
+    define('DBPASS', '');
+    define('DBDRIVER', 'mysql');
 }
 
 ?>
