@@ -381,7 +381,7 @@ class OrderHandler extends database
     {
         if ($orderType == 'package' || $orderType == 'job'):
 
-            $query = "SELECT * FROM deliveries WHERE deliveries.order_id = ?";
+            $query = "SELECT * FROM deliveries WHERE order_id = ?";
 
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

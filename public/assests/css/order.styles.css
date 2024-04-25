@@ -346,6 +346,7 @@ P{
     border: none;
     transition: ease-in-out 0.3s;
     background-color: #31d65a;
+    cursor: pointer;
 }
 a {
     text-decoration: none;

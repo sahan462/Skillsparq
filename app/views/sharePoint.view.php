@@ -7,10 +7,8 @@
 ?>
 
 <?php 
-
-    $data['deliveries'] = array();
     $deliveries = $data['deliveries'];
-
+    print_r($deliveries);
 ?>
 
 <!-- Main Container -->
@@ -35,12 +33,42 @@
 
                 <div class="deliveryFiles">
 
+                    <?php if (mysqli_num_rows($deliveries) > 0) {
 
+                        while ($row = $result->fetch_assoc()) { ?>
+
+                            <div class="filecontainer">
+                                <div class="file">
+                                    <img class="fileimg" src="<?php echo BASEURL.'/public/assets/img/icons/file.png?'?>">
+                                    <div class="name">File Name :
+                                        <?php echo $deliveries['name']; ?>
+                                    </div>
+                                    <div class="time">
+                                        <?php echo $deliveries['time']; ?>
+                                    </div>
+                                    <div class="size">File Size :
+                                        <?php echo floor($file['size'] / 1000) . ' KB'; ?>
+                                    </div>
+                                    <div class="download"><a href="<?php echo BASEURL."/public/assets/uploads/".$file['name']?>">
+                                        <img class="downloadimg" src="<?php echo BASEURL.'/public/assets/img/icons/download.png?'?>"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php } 
+
+                    }else { ?>
+
+                        <div class="animation">
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                            <dotlottie-player src="https://lottie.host/d9e3e447-09c8-4c2c-a3e1-bebebc93d43f/Fq7uTTiU0m.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+                            <span class="darkTitle">You have Not Made Any Deliveries Yet !!!</span>
+                        </div>
+
+                    <?php } ?>
 
                 </div>
-
             </div>
-
         </div>
 
         <div class="rightContainer">
@@ -103,48 +131,49 @@
                 <!-- upload a deliver -->
                 <form action="<?php echo BASEURL.'/sharePoint/uploadDeliveries';?>" method="post" enctype="multipart/form-data">
                     
-                    <form id="packageRequestForm" method="post" action="order/createPackageOrder" enctype="multipart/form-data">
+                    <!-- upload attachments -->
+                    <label class="type-1" style="margin-top:8px;">Upload Files</label>
+                    <label class="type-2">File must be compressed into .zip , .rar or .tar format.</label>
 
-                        <!-- upload attachments -->
-                        <label class="type-1" style="margin-top:8px;">File must be compressed into .zip , .rar or .tar format.</label>
-                        <div class="row" style="margin-bottom:32px;">
-                            <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                                <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
-                                <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                                <span class="fileName" id="fileName"></span>
-                            </div>
-                            <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
+                    <div class="row" style="margin-bottom:32px;">
+                        <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                            <label for="packageAttachement" id="attachment" style="margin-right: 4px;font-weight: 500;border-radius:8px;background-color: #fff;font-size: 18px;">Attachments</label>
+                            <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                            <span class="fileName" id="fileName"></span>
                         </div>
+                        <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
+                    </div>
 
-                        <!-- add a description to the delivery-->
-                        <label class="type-1">Delivery Description</label>
-                        <textarea  name="dis" rows="4" cols="50" style="margin-bottom:32px !important;"></textarea>
+                    <!-- add a description to the delivery-->
+                    <label class="type-1">Delivery Description</label>
+                    <label class="type-2">Please add a suitable description for your work</label>
+                    <textarea  name="dis" rows="4" cols="50" style="margin-bottom:32px !important;"></textarea>
 
-                        <!-- Rate buyer -->
-                        <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
-                    
-                        <div id="rateSec" style="display:none">
+                    <!-- Rate buyer -->
+                    <!-- <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
+                
+                    <div id="rateSec" style="display:none">
 
-                            <!-- rate buyer -->
-                            <label class="type-2">Your Thoughts about Buyer</label>
-                            <div class="subsection">
+                        rate buyer -->
+                        <!-- <label class="type-2">Your Thoughts about Buyer</label>
+                        <div class="subsection">
+                            <div class="row">
+                                <textarea></textarea>
                                 <div class="row">
-                                    <textarea></textarea>
-                                    <div class="row">
-                                        <div id="rateYo"></div>
-                                        <div class="rateValue"></div>
-                                    </div>
+                                    <div id="rateYo"></div>
+                                    <div class="rateValue"></div>
                                 </div>
                             </div>
-
                         </div>
 
-                        <!-- submit form -->
-                        <div class="row" style="float:right;">
-                            <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
-                        </div>
+                    </div> -->
 
-                    </form>
+                    <!-- submit form -->
+                    <div class="row" style="float:right;">
+                        <button type="submit" name="finalSave" class="buttonType-1" style = "width:200px;height: 40px;">Upload And Send</button>
+                    </div>
+
+                </form>
 
             <?php } ?>
 
