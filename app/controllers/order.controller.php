@@ -289,7 +289,6 @@ class Order extends Controller
     public function verifyPayment()
     {
         try{
-
             print_r($_POST);
             //look for authorize api, capture api and refund api
             $merchantId = $_POST['merchant_id'];
