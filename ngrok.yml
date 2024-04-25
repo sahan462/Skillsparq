@@ -1,0 +1,9 @@
+version: "2"
+authtoken: 2VL10hXSxP8dzYEKs2btfHmgCvY_kfishBGjhiKXK5VW3Cry
+web_addr: C:\xampp_new\htdocs\skillsparq\public\
+
+tunnels:
+  web:
+    addr: 5501
+    proto: http
+    inspect: true

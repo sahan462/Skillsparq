@@ -14,7 +14,9 @@ class ManageOrders extends Controller
         $data['var'] = "Manage Orders Page";
         $data['title'] = "SkillSparq";
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
+
         // show($data['myOrders']);
+        // show($_SESSION);
         $this->view('manageOrders', $data); 
     }
 

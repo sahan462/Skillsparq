@@ -1,17 +1,19 @@
-// Image Slider
-
+//-------------------------------------- Image Slider-----------------------------------------------
 var slideIndex = 1;
 displaySlides(slideIndex);
 
-function nextSlide(n) {
+function nextSlide(n) 
+{
   displaySlides((slideIndex += n));
 }
 
-function currentSlide(n) {
+function currentSlide(n) 
+{
   displaySlides((slideIndex = n));
 }
 
-function displaySlides(n) {
+function displaySlides(n) 
+{
   var i;
   var slides = document.getElementsByClassName("showSlide");
   if (n > slides.length) {
@@ -26,13 +28,14 @@ function displaySlides(n) {
   slides[slideIndex - 1].style.display = "initial";
 }
 
-setInterval(function () {
+setInterval(function () 
+{
   nextSlide(1);
 }, 5000);
 
-// Package Tabs
-
-function openCity(evt, cityName) {
+//------------------------------------ Package Tabs-------------------------------------------
+function openCity(evt, cityName) 
+{
   var i, tabcontent, tablinks;
 
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -51,8 +54,7 @@ function openCity(evt, cityName) {
 
 document.getElementById("defaultOpen").click();
 
-// Modals
-
+//------------------------Modals--------------------------------------------------
 var packageForm = "";
 var orderType = "";
 var orderType = "";
@@ -68,7 +70,8 @@ const inputContainer = document.getElementById("inputContainer");
 let count = 0;//count variable to keep track of the number of milestones
 
 
-function openModal(button) {
+function openModal(button) 
+{
   packageForm = button.id;
   orderType = button.name;
 
@@ -81,7 +84,8 @@ function openModal(button) {
   }
 }
 
-function confirmAction(action) {
+function confirmAction(action)
+{
   var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
   var sendConfirmationModal = document.getElementById("sendConfirmationModal");
   var cancelConfirmationOverlay = document.getElementById("cancelConfirmationOverlay");
@@ -96,7 +100,8 @@ function confirmAction(action) {
   }
 }
 
-function handleConfirmation(action) {
+function handleConfirmation(action) 
+{
   var sendConfirmationModal = document.getElementById("sendConfirmationModal");
   var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
   var cancelConfirmationModal = document.getElementById("cancelConfirmationModal");
@@ -176,9 +181,9 @@ function handleConfirmation(action) {
   }
 }
 
-// File Attachments
-
-function displayFileName(index) {
+//------------------------------------------- File Attachments-----------------------------------------------
+function displayFileName(index) 
+{
   var fileNameSpan = document.getElementsByClassName("fileName")[index];
   var input = document.getElementsByClassName("fileInput")[index];
   var files = input.files;
@@ -211,7 +216,8 @@ animation.innerHTML = `
 
 const frame = document.getElementById("collapsibleTemplate");
 
-function addCollapsible() {
+function addCollapsible() 
+{
   // Increment count if it's already declared and initialized elsewhere
   count++;
 
@@ -299,7 +305,8 @@ function addCollapsible() {
 }
 
 //remove milestones
-function removeCollapsible(button) {
+function removeCollapsible(button) 
+{
   var container = button.parentElement.parentElement;
 
   if (container) {
@@ -312,7 +319,8 @@ function removeCollapsible(button) {
 }
 
 //update numbering of the milestones
-function updateMilestoneNumbering() {
+function updateMilestoneNumbering() 
+{
   count--;
 
   if (count === 0) {
@@ -338,7 +346,8 @@ function updateMilestoneNumbering() {
 }
 
 //update count value for file attachements
-function updateCountForAttachments() {
+function updateCountForAttachments() 
+{
   const attachmentsLabels = Array.from(document.querySelectorAll('.milestoneAttachmentLabel'));
   const attachmentsInputs = Array.from(document.querySelectorAll('.fileInput'));
 
@@ -356,10 +365,9 @@ function updateCountForAttachments() {
   });
 }
 
-
-
 // Collapsible
-function expand(button) {
+function expand(button) 
+{
   button.classList.toggle("collapsibleActive");
   var content = button.nextElementSibling;
   if (content.style.maxHeight) {

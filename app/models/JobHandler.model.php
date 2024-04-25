@@ -156,9 +156,29 @@ class JobHandler extends database
         }
     }
 
-    public function getBuyerDetailsOfJobProposals()
+    public function getBuyerDetailsProposalDetailsOfJob($sellerId)
     {
+        $retrieveQuery = "SELECT * FROM job_proposals jps INNER JOIN profile p ON jps.buyer_id = p.user_id INNER JOIN jobs jbs ON jbs.job_id = jps.job_id WHERE jps.seller_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
         
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
     }
 
     public function getSellerDetailsOfJobProposals($jobId)
@@ -186,6 +206,82 @@ class JobHandler extends database
         }
     }
 
+    public function getCountAcceptedProps($jobId)
+    {
+        $retrieveQuery = "SELECT COUNT(*) AS count FROM job_proposals  WHERE job_id=? AND Status = 'Accepted';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i",$jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByAcceptedStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'Accepted';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByPendingStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'pending';";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPropCountByRejectedStatus($sellerId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM job_proposals  WHERE seller_id=? AND Status = 'Rejected';" ;
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     public function changeProposalStatus($Status,$proposalId)
     {
         $updateQuery = "UPDATE job_proposals SET Status = ? WHERE proposal_id = ?";
@@ -206,10 +302,10 @@ class JobHandler extends database
         }
     }
 
-    // After change the status of accepted proposal all other proposals related to that job will be rejected.
+    // After Successfully place the order all other proposals related to that job will be rejected.
     public function setRejectPropStatus($jobId)
     {
-        $updateQuery = "UPDATE job_proposals SET Status = Rejected WHERE job_id = ?";
+        $updateQuery = "UPDATE job_proposals SET Status = 'Rejected' WHERE job_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
                 
@@ -227,9 +323,32 @@ class JobHandler extends database
         }
     }
 
-    public function createJobOrder()
+    public function createJobOrdersTableRecord($orderId,$jobId,$jobProposalId)
     {
+        $insertQuery = "INSERT INTO job_orders 
+        (
+            job_order_id,
+            job_id, 
+            job_proposal_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?
+        )";
 
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "iii",$orderId,$jobId,$jobProposalId);
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+        return $orderId;
     }
 
     // public function getJobName($jobId)
@@ -484,6 +603,44 @@ class JobHandler extends database
             }
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deleteSingleRejectedProp($proposalId)
+    {
+        $deleteQuery = "DELETE FROM job_proposals WHERE proposal_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "i", $proposalId);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deleteAllRejectedProps($sellerId,$status)
+    {
+        $deleteQuery = "DELETE FROM job_proposals WHERE seller_id = ? AND Status = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "is", $sellerId,$status);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

@@ -102,6 +102,23 @@ class HelpDeskCenter extends Controller
                     $unsolved1++;
                 }
             }
+            $solved2 = 0;
+            $unsolved2 = 0;
+            foreach ($recentInquiries as $row) {
+                if ($row['inquiry_status'] == "solved") {
+                    $solved2++;
+                } else {
+                    $unsolved2++;
+                }
+            }
+            $inquiriesCompleted = ($unsolved2 + $solved2 == 0) ? 0 : ($solved2 / ($unsolved2 + $solved2)) * 100;
+            $data['inquiriesCompleted'] = $inquiriesCompleted;
+
+            $complaintsCompleted = ($unsolved1 + $solved1 == 0) ? 0 : ($solved1 / ($unsolved1 + $solved1)) * 100;
+            $data['complaintsCompleted'] = $complaintsCompleted;
+
+            $requestsCompleted = ($unsolved + $solved == 0) ? 0 : ($solved / ($unsolved + $solved)) * 100;
+            $data['requestsCompleted'] = $requestsCompleted;
 
 
             $currentMonthIndex = date('n') - 1; // Subtract 1 to convert 1-based index to 0-based index
@@ -133,6 +150,7 @@ class HelpDeskCenter extends Controller
             $data['unsolved'] = $unsolved;
             $data['solved1'] = $solved1;
             $data['unsolved1'] = $unsolved1;
+
 
 
 

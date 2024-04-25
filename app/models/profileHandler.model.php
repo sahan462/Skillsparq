@@ -114,7 +114,8 @@ class ProfileHandler extends database
 
 
     // update fields of profile
-    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $userId, $userName){
+    public function updateProfileTable($profilePic, $firstName, $lastName, $country, $about, $userId, $userName)
+    {
         $query = "UPDATE Profile 
                  SET 
                  profile_pic = ?, 
@@ -159,6 +160,21 @@ class ProfileHandler extends database
             return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function updateCSA($profilePic, $firstName, $lastName, $country, $about, $userId)
+    {
+        $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profile_pic = ?, first_name = ?, last_name = ?, country = ?, about = ? WHERE user_id = ?");
+        if (!$stmt) {
+            die('MySQL Error: ' . $GLOBALS['db']->error);
+        }
+
+        $stmt->bind_param("sssssi", $profilePic, $firstName, $lastName, $country, $about, $userId);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

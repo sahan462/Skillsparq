@@ -104,6 +104,26 @@ class UserHandler extends database
         return $returnedResult;
     }
 
+    // Retrieve the Email
+    public function getEmail($userId)
+    {
+        $retrieveQuery = "SELECT user_email FROM user WHERE user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'],$retrieveQuery);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_close($stmt);
+    }
+
     // common repeatable code for update with two parameters
     public function updateQueryPrepStmtExecTwoParams($query, $parameterString, $param1, $userId)
     {
@@ -129,7 +149,8 @@ class UserHandler extends database
     }
     public function getUsers()
     {
-        $query = "SELECT user_id,user_email,role FROM user ";
+        $query = "SELECT user_id, user_email, role FROM user ORDER BY user_id DESC";
+
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

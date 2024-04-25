@@ -21,7 +21,6 @@ body{
 .addGigContainer .leftContainer{
   width: 40%;
 }
-
 .addGigContainer .leftContainer .addGigHeader{
   height: 20%;
   width: 75%;
@@ -30,7 +29,6 @@ body{
   font-weight: 700;
   color: #404145;;
 }
-
 .addGigContainer .leftContainer .addGigAnimation{
   height: 80%;
   width: 100%;
@@ -45,7 +43,6 @@ body{
   min-height: calc(100vh - 60px);
   height: auto;
 }
-
 .addGigContainer .rightContainer #regForm {
   display: flex;
   flex-direction: column;
@@ -57,24 +54,19 @@ body{
   width: 100%;
   background-color: #ffffff;
 }
-
 .addGigContainer .rightContainer #regForm .addGigContent{
   height: 80%;
 }
-
 .addGigContainer .rightContainer #regForm .navigation{
   margin-top: 16px;
   height: 20%;
 }
-
 input.invalid {
   background-color: #ffdddd;
 }
-
 .addGigContainer .tab {
   display: none;
 }
-
 .addGigContainer .step {
   height: 15px;
   width: 15px;
@@ -84,19 +76,15 @@ input.invalid {
   border-radius: 100%;
   display: inline-block;
 }
-
 .addGigContainer .step.tabActive {
   background-color: #1dbf73;
 }
-
 .addGigContainer .step.finish {
   background-color: #31d65a;
 }
-
 .addGigContainer .tab .sideImages{
   display: flex;
 }
-
 .addGigContainer .type-1{
   font-weight: 600;
   font-size: 16px;
@@ -104,16 +92,13 @@ input.invalid {
   color: #404145;
   font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .addGigContainer .type-2{
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
   color: #62646a;
 }
-
 .addGigContainer .type-1, .type-2{
   display: block;
 }
-
 .addGigContainer .rightContainer button{
     display: inline-block;
     border-radius: 4px;
@@ -128,14 +113,12 @@ input.invalid {
     transition: all 0.5s;
     cursor: pointer;
 }
-
 .addGigContainer .rightContainer button span{
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
-
 .addGigContainer .rightContainer button span::after{
   content: '\00bb';
   position: absolute;
@@ -144,7 +127,6 @@ input.invalid {
   right: -20px;
   transition: 0.5s;
 }
-
 .addGigContainer .rightContainer button .next::after{
   content: '\00bb';
   position: absolute;
@@ -167,7 +149,6 @@ input.invalid {
   border: 1px solid #c5c6c9;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .rightContainer input[type="number"]{
   height: 40px;
   width: 100%;
@@ -176,7 +157,6 @@ input.invalid {
   border-radius: 4px !important;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .addGigContainer .rightContainer select{
   height: 40px;
   width: 200px;
@@ -185,7 +165,6 @@ input.invalid {
   border: 1px solid #c5c6c9;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .rightContainer textarea {
   font-size: 16px;
   margin-bottom: 0 !important;
@@ -205,13 +184,11 @@ input.invalid {
   height: 300px ;
   margin-bottom: 32px;
 }
-
-.row{
+.addGigContainer .row{
   padding: 4px 0;
   display: flex;
   align-items: center;
 }
-
 .Tab {
   border: 1px solid #c5c6c9;
   border-radius: 4px !important;
@@ -220,7 +197,6 @@ input.invalid {
   min-height: 300px;
   height: 100% !important;
 }
-
 .Tab button {
   display: block !important;
   background-color: inherit !important;
@@ -232,17 +208,14 @@ input.invalid {
   cursor: pointer;
   transition: 0.3s;
 }
-
 .Tab button:hover {
   background-color: #404145 !important;
   color: #ffffff !important;
 }
-
 .Tab button.active {
   background-color: #404145 !important;
   color: #ffffff !important;
 }
-
 .tabcontent {
   padding: 0px 12px;
   border: 1px solid #ccc;
@@ -251,14 +224,12 @@ input.invalid {
   height: 100%;
   overflow-y: auto;
 }
-
-.tabcontent input{
+content input{
   margin-bottom: 0 !important;
   border-radius: 0 !important;
   width: auto;
   height: auto !important;
 }
-
 .tabcontent textarea{
   padding: 0;
   font-size: 16px;
@@ -271,7 +242,6 @@ input.invalid {
   justify-content: space-between;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .tabcontent select{
   font-size: 16px;
   margin-bottom: 0 !important;
@@ -281,7 +251,6 @@ input.invalid {
   cursor: pointer;
   font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
 .images{
   display: flex;
   flex-direction: column;
@@ -289,11 +258,9 @@ input.invalid {
   flex-wrap: wrap;
   gap: 16px;
 }
-
 .images input{
   display: none;
 }
-
 .images label{
   display: flex;
   flex-direction: row;

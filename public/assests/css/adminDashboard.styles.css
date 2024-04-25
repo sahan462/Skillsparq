@@ -124,13 +124,6 @@ nav .menu-items{
     text-decoration: none;
     position: relative;
 }
-
-.nav-links li a:hover i,
-.nav-links li a:hover .link-name{
-    color: var(--primary-color);
-    border: solid 1px black;
-}
-
 .nav-links li a:hover:before{
     content: "";
     position: absolute;
@@ -166,6 +159,17 @@ nav.close li a .link-name{
 .nav-links li a:hover .link-name{
     color: var(--primary-color);
 }
+
+.nav-links li a i:hover,
+.nav-links li a .link-name:hover{
+    color: var(--primary-color);
+    border: 1px solid #000;
+}
+
+.title{
+    border: 1px solid #000;
+}
+
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
     color: var(--text-color);
