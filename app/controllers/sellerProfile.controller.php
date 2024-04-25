@@ -41,37 +41,30 @@ class SellerProfile extends Controller
             
             $data['sellerId'] = $sellerId;
 
-            // get the user email to notify seller if the field is empty.
-            $email = $this->UserHandlerModel->getEmail($sellerId);
-            $data['mail'] = $email;
-
-            // set the user_name and user_id to the seller_profile table before start updatings.
-            // if(isset($_SESSION['userName']) && isset($_SESSION['userId'])){
-            //     $this->SellerHandlerModel->addUserNameAndId($_SESSION['userId'],$_SESSION['userName']);
-            // }else{
-            //     echo 
-            //     "<script>
-            //         alert('User Name and User Id have not been set properly !');
-            //     </script>";
-            // }
-
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
 
-            // not the recent gigs have to get the specific gigs which would be created by the seller.
-
-            $Gigs = array();
-
+            // not the recent gigs have to get the specific gigs which would be created by the seller.          
             
             if ($GigsOfSeller) {
-                while ($Gig = mysqli_fetch_assoc($GigsOfSeller)) {
-                    $Gigs[] = $Gig;
-                }
+                $data['gigs'] = $GigsOfSeller;
             } else {
                 echo "<script>alert('getGig function is not Accessible!')</script>";
             }
-            
-            $data['gigs'] = $Gigs;
+
+            // Get Gig Details along with the relevant Seller using Seller Id
+            $AllDetAboutGig = $this->GigHandlerModel->getGigAndSeller($sellerId);
+            if($AllDetAboutGig){
+                $data['ALLABOUTGIG'] = $AllDetAboutGig;
+            }else{
+                echo "<script>
+                    alert('getGig function is not Accessible!')
+                </script>";
+            }
+
+            // get the user email to notify seller if the field is empty.
+            $email = $this->UserHandlerModel->getEmail($sellerId);
+            $data['mail'] = $email;
 
             //check if the email is NULL or not.
             if(is_null($email)){
@@ -450,7 +443,8 @@ class SellerProfile extends Controller
 
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
-        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName; //generate a unique filename 
+
+        $profilePicExt = pathinfo($profilePictureName,PATHINFO_EXTENSION);        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName.$profilePicExt; //generate a unique filename 
         $targetFilePath = $targetDir . $uniqueprofilePictureName; 
         $currentFilePath = $targetDir . $currentProfilePicture;
 

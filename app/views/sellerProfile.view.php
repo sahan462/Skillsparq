@@ -13,17 +13,23 @@
     $userId = $data['profileDetails']['user_id'];
     $status = $data['activeStatus'];
     $email = $data['mail']['user_email'];
-    $Gigs = (array) $data['gigs'];
+
+    // $Gigs = (array) $data['gigs'];
+    $Gigs = (array) $data['ALLABOUTGIG'];
 
     $languages = $data['sellerProfileDets']['languages'];
     
     // print_r($languages);
-
+    $Gigs['sellerFirstaName'] = $firstname;
+    $Gigs['sellerLastName'] = $lastname;
     $skills = $data['sellerProfileDets']['skills'];
     $education = $data['sellerProfileDets']['education'];
     // $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // print_r($_SESSION);
+    // show($Gigs);
+
+
 ?>
 
 <!-- Main Container for Seller -->
@@ -168,7 +174,7 @@
                         <div class="seller-question">
                             Add Your Email here.
                         </div>
-                        <input type="text" name="Email">
+                        <input type="text" name="Email" id="Email" value="<?php echo $email?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -191,7 +197,7 @@
                         <div class="seller-question">
                             Add Your Languages here.    
                         </div>
-                        <input type="text" name="Languages" value="<?php echo $languages?>">
+                        <input type="text" name="Languages" value="<?php echo $languages?>" id="Language">
                     </div>
                 </div>
                 <div class="buttons">
@@ -215,7 +221,7 @@
                         <div class="seller-question">
                             Add Your Skills here.
                         </div>
-                        <input type="text" name="Skills" value="<?php echo $skills?>">
+                        <input type="text" name="Skills" value="<?php echo $skills?>" id="Skill">
                     </div>
                 </div>
                 <div class="buttons">
@@ -292,7 +298,7 @@
 
                 <div class="seller-profile-picture">
                     <img src="../public/assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
-                    <div class="full-name">
+                    <div class="seller-full-name">
                         <?php echo $firstname. " " . $lastname; ?>
                     </div>
                     <div class="user-name">
@@ -307,7 +313,7 @@
                         <span>(0)</span>
                     </div>
                 </div>
-                <div class="edit-profile">
+                <div class="editSellerProfile">
                     <button onclick="openProfileUpdateModal(this)">Edit Profile</button>
                 </div>
                 <div class="delete-profile">
@@ -464,9 +470,12 @@
                             }
                         ?>
                     </div>
-                    <div class="dltIcon">
+                    <!-- <div class="dltIcon">
+                        <button>
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.5303 9.53033C15.8232 9.23744 15.8232 8.76256 15.5303 8.46967C15.2374 8.17678 14.7625 8.17678 14.4696 8.46967L15.5303 9.53033ZM8.46961 14.4697C8.17672 14.7626 8.17672 15.2374 8.46961 15.5303C8.76251 15.8232 9.23738 15.8232 9.53027 15.5303L8.46961 14.4697ZM9.53039 8.46967C9.2375 8.17678 8.76263 8.17678 8.46973 8.46967C8.17684 8.76256 8.17684 9.23744 8.46973 9.53033L9.53039 8.46967ZM14.4697 15.5303C14.7626 15.8232 15.2375 15.8232 15.5304 15.5303C15.8233 15.2374 15.8233 14.7626 15.5304 14.4697L14.4697 15.5303ZM14.4696 8.46967L8.46961 14.4697L9.53027 15.5303L15.5303 9.53033L14.4696 8.46967ZM8.46973 9.53033L14.4697 15.5303L15.5304 14.4697L9.53039 8.46967L8.46973 9.53033ZM8 4.75H16V3.25H8V4.75ZM19.25 8V16H20.75V8H19.25ZM16 19.25H8V20.75H16V19.25ZM4.75 16V8H3.25V16H4.75ZM8 19.25C6.20507 19.25 4.75 17.7949 4.75 16H3.25C3.25 18.6234 5.37665 20.75 8 20.75V19.25ZM19.25 16C19.25 17.7949 17.7949 19.25 16 19.25V20.75C18.6234 20.75 20.75 18.6234 20.75 16H19.25ZM16 4.75C17.7949 4.75 19.25 6.20507 19.25 8H20.75C20.75 5.37665 18.6234 3.25 16 3.25V4.75ZM8 3.25C5.37665 3.25 3.25 5.37665 3.25 8H4.75C4.75 6.20507 6.20507 4.75 8 4.75V3.25Z" fill="#018347"></path> </g></svg>
-                    </div>
+                        </button>
+                        
+                    </div> -->
                 </div>
             </div>
         </div>

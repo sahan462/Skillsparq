@@ -365,7 +365,7 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-  
+    }
 
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)

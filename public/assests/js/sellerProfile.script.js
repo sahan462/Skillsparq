@@ -159,6 +159,8 @@ function handleConfirmProfDelete(action) {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+var Email = document.getElementById('Email');
+var currentEmail = Email.value;
 
 function openEmailUpdate(btn)
 {
@@ -177,6 +179,8 @@ function confirmEmail(action)
         document.getElementById('overlayEmail').style.display = 'none';
       
       } else if(action === 'cancelEmail') { 
+        emailForm = "";
+        Email.value = currentEmail
   
         document.getElementById('overlayEmail').style.display = 'none';
         document.getElementById('overlayEmail').style.display = 'none';
@@ -188,6 +192,9 @@ function confirmEmail(action)
 //////////////////////////////////////////////////////////////////////////////////////
 
 //open languages modal
+
+var Language = document.getElementById('Language');
+var currentLanguage = Language.value;
 
 function openLanguage(btn)
 {
@@ -207,6 +214,8 @@ function confirmLang(action)
       
       } else if(action === 'canc') { 
   
+        langForm = '';
+        Language.value = currentLanguage
         document.getElementById('overlaylang').style.display = 'none';
         document.getElementById('modallang').style.display = 'none';
       
@@ -217,6 +226,9 @@ function confirmLang(action)
 //////////////////////////////////////////////////////////////////////////////////////
 
 //open Skills modal 
+
+var Skill = document.getElementById('Skill');
+var currentSkill = Skill.value;
 
 function openSkill(btn)
 {
@@ -236,6 +248,8 @@ function confirmSkill(action)
       
       } else if(action === 'canc') { 
   
+        skillForm = '';
+        Skill.value = currentSkill
         document.getElementById('overlayskill').style.display = 'none';
         document.getElementById('modalskill').style.display = 'none';
       
@@ -246,6 +260,9 @@ function confirmSkill(action)
 //////////////////////////////////////////////////////////////////////////////////////
 
 //open Education modal 
+
+var Skill = document.getElementById('Skill');
+var currentSkill = Skill.value;
 
 function openEducation(btn)
 {
@@ -265,6 +282,8 @@ function confirmEducation(action)
       
       } else if(action === 'canc') { 
   
+        educForm = ''
+        Skill.value = 
         document.getElementById('overlayeducation').style.display = 'none';
         document.getElementById('modaleducation').style.display = 'none';
       
@@ -273,44 +292,44 @@ function confirmEducation(action)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-const ul = document.querySelector("ul"),
-input = document.getElementById("inputAddLang"),
-// input = document.getElementsByClassName("inputAddLang"),
-tagNumb = document.querySelector(".details span");
+// const ul = document.querySelector("ul"),
+// input = document.getElementById("inputAddLang"),
+// // input = document.getElementsByClassName("inputAddLang"),
+// tagNumb = document.querySelector(".details span");
 
-let maxTags = 10,
-// tags = ["coding", "nepal"];
-tags = [];
+// let maxTags = 10,
+// // tags = ["coding", "nepal"];
+// tags = [];
 
-countTags();
-createTag();
+// countTags();
+// createTag();
 
-function countTags(){
-    input.focus();
-    tagNumb.innerText = maxTags - tags.length;
-}
+// function countTags(){
+//     input.focus();
+//     tagNumb.innerText = maxTags - tags.length;
+// }
 
-function countTags1(){
-    input.focus();
-    tagNumb.innerText = maxTags - tags.length;
-    return maxTags - tags.length;
-}
+// function countTags1(){
+//     input.focus();
+//     tagNumb.innerText = maxTags - tags.length;
+//     return maxTags - tags.length;
+// }
 
-function createTag(){
-    ul.querySelectorAll("li").forEach(li => li.remove());
-    tags.slice().reverse().forEach(tag =>{
-        let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
-        ul.insertAdjacentHTML("afterbegin", liTag);
-    });
-    countTags();
-}
+// function createTag(){
+//     ul.querySelectorAll("li").forEach(li => li.remove());
+//     tags.slice().reverse().forEach(tag =>{
+//         let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
+//         ul.insertAdjacentHTML("afterbegin", liTag);
+//     });
+//     countTags();
+// }
 
-function remove(element, tag){
-    let index  = tags.indexOf(tag);
-    tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
-    element.parentElement.remove();
-    countTags();
-}
+// function remove(element, tag){
+//     let index  = tags.indexOf(tag);
+//     tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+//     element.parentElement.remove();
+//     countTags();
+// }
 
 // function addTag(e){
 //     if(e.key === " "){
@@ -327,52 +346,52 @@ function remove(element, tag){
 //     }
 // }
 
-function addTag(e) {
-    if (e.key === " ") {
-        let tag = e.target.value.trim(); // Trim leading and trailing whitespace
-        if (tag.length > 0) { // Check if tag is not empty
-            let tagsToAdd = tag.split(/\s+/); // Split tag by whitespace
-            tagsToAdd.forEach(tag => {
-                if (!tags.includes(tag) && tags.length < 10) { // Check if tag is not already added and tags limit is not reached
-                    tags.push(tag);
-                    createTag();
-                }
-            });
-        }
-        if (countTags1() > 10) {
-            e.target.value = "";
-        }
-        // e.target.value = ""; // Clear input value
-    }
-}
+// function addTag(e) {
+//     if (e.key === " ") {
+//         let tag = e.target.value.trim(); // Trim leading and trailing whitespace
+//         if (tag.length > 0) { // Check if tag is not empty
+//             let tagsToAdd = tag.split(/\s+/); // Split tag by whitespace
+//             tagsToAdd.forEach(tag => {
+//                 if (!tags.includes(tag) && tags.length < 10) { // Check if tag is not already added and tags limit is not reached
+//                     tags.push(tag);
+//                     createTag();
+//                 }
+//             });
+//         }
+//         if (countTags1() > 10) {
+//             e.target.value = "";
+//         }
+//         // e.target.value = ""; // Clear input value
+//     }
+// }
 
 // input.addEventListener("keyup", addTag);
 
 //------------------------------------------- File Attachments-----------------------------------------------
 
 
-function displayFileName(index) 
-{
-  var fileNameSpan = document.getElementsByClassName("fileName")[index];
-  var input = document.getElementsByClassName("fileInput")[index];
-  var files = input.files;
+// function displayFileName(index) 
+// {
+//   var fileNameSpan = document.getElementsByClassName("fileName")[index];
+//   var input = document.getElementsByClassName("fileInput")[index];
+//   var files = input.files;
 
-  if (files.length > 0) {
-    var file = input.files[0];
+//   if (files.length > 0) {
+//     var file = input.files[0];
 
-    if (file) {
-      var allowedExtensions = ["zip"];
-      var fileExtension = file.name.split(".").pop().toLowerCase();
+//     if (file) {
+//       var allowedExtensions = ["zip"];
+//       var fileExtension = file.name.split(".").pop().toLowerCase();
 
-      if (allowedExtensions.indexOf(fileExtension) !== -1) {
-        fileNameSpan.textContent = files[0].name;
-        document.getElementsByClassName("warningMessage")[index].style.display = "none";
-      } else {
-        document.getElementsByClassName("warningMessage")[index].style.display = "block";
-        input.value = "";
-      }
-    }
-  } else {
-    fileNameSpan.textContent = "";
-  }
-}
+//       if (allowedExtensions.indexOf(fileExtension) !== -1) {
+//         fileNameSpan.textContent = files[0].name;
+//         document.getElementsByClassName("warningMessage")[index].style.display = "none";
+//       } else {
+//         document.getElementsByClassName("warningMessage")[index].style.display = "block";
+//         input.value = "";
+//       }
+//     }
+//   } else {
+//     fileNameSpan.textContent = "";
+//   }
+// }

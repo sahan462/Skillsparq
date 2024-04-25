@@ -181,12 +181,64 @@ class GigHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 
+    // read the recent gigs with the seller Details
+    public function getRecentGigWithRelevantSellerDets()
+    {
+        // $query = "SELECT * FROM Gigs ORDER BY gig_id DESC";
+        $query = "SELECT * FROM GIGS INNER JOIN PROFILE ON PROFILE.USER_ID = GIGS.SELLER_ID ORDER BY gig_id DESC";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // public function getGigWithGIG_PACKAGE_SLIDERIMAGE_TABLES($userId)
+    // {
+    //     $retrieveQuery = "SELECT * FROM GIGS INNER JOIN PACKAGES ON GIGS.GIG_ID = PACKAGES.GIG_ID INNER JOIN SLIDE_IMAGES ON PACKAGES.GIG_ID = SLIDE_IMAGES.GIG_ID WHERE GIGS.SELLER_ID = ?";
+
+    //     $stmt = mysqli_prepare($GLOBALS['db'],  $retrieveQuery);
+
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, "i", $userId);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         $result = $stmt->get_result();
+    //         $data = [];
+    //         while ($row = $result->fetch_assoc()) {
+    //             $data[] = $row;
+    //         }
+    //         return $data;
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
 
     //read gigs based on seller id
     public function getGig($sellerId)
@@ -202,11 +254,42 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function getGigAndSeller($sellerId)
+    {
+        $query = "SELECT * FROM GIGS INNER JOIN PROFILE ON PROFILE.USER_ID = GIGS.SELLER_ID WHERE SELLER_ID = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
 
     //display a specific gig
     public function displayGig($gigId)
@@ -252,12 +335,14 @@ class GigHandler extends database
     
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
-            $stmt->close();
+            $packages = [];
+            while ($row = $result->fetch_assoc()) {
+                $packages[] = $row;
+            }
+            return $packages;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
-
-        return $result;
   
     }
         

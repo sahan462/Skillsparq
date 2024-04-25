@@ -56,7 +56,6 @@
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
                                 <th style="width: 10%;">Type</th>
-                                <!-- <th style="width: 10%;">Accept/Reject Order</th> -->
                             </tr>
                         </div>
                             <?php 
@@ -73,12 +72,6 @@
                                 <td><?php echo $row['deadline'];?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
-                                <td>
-                                    <div>
-                                        <!-- <button onclick="window.location='manageOrders&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Accept</button>
-                                        <button onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Reject</button> -->
-                                    </div>
-                                </td>
                             </tr>
                                 <?php
                                     }

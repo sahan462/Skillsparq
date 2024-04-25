@@ -180,10 +180,10 @@ body{
 */
 
 /* Update Profile Button Styles For the profile*/
-.edit-profile button{
+.editSellerProfile button{
     width: 100%;
     height: 32px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     color: #333;
     border: 2px solid #333;
     background: none;
@@ -192,7 +192,7 @@ body{
     transition: ease-in-out 0.3s;
 }
 
-.edit-profile button:hover{
+.editSellerProfile button:hover{
     color: #fff;
     background: #31d65a;
     border: 2px solid #333;
@@ -464,11 +464,6 @@ input[type = "text"],
     justify-content: center;
 }
 
-.dltIcon{
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-}
 
 .AlertButton{
     text-align: center;
