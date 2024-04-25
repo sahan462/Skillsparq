@@ -504,10 +504,12 @@
                                 enctype="multipart/form-data">
                             <p>Select files to upload: 
                                 <div>
-                                    <input type="file" name="files[]" multiple required>
+                                    <label for="multipleImagesUpload">Add To Portfolio</label>
+                                    <input type="file" name="files[]" multiple id="multipleImagesUpload" required>
                                 </div>
                                 <div>
-                                    <input type="submit" name="submit" value="Upload" required>
+                                    <label for="Submit">Submit</label>
+                                    <input type="submit" name="submit" id="Submit" required>
                                 </div>
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">

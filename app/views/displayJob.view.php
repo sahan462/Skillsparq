@@ -17,8 +17,6 @@
         $givenStartingBid = substr($job['starting_bid'],1);
         // echo $givenStartingBid;
     }
-    // print_r($data['job']['start_time']);
-    // print_r(date("Y-m-d H:i:s", time()));
 ?>
 
     <div class="displayJobContainer">
@@ -146,6 +144,7 @@
                                         </div>
                                         <textarea name="descriptionJobProposal" id="descriptionJobProposalAuc" cols="30" rows="10" required></textarea>
                                     </div>
+
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
                                         <input name="attachment" type="file" id="inputFile" required>
                                     </div>
