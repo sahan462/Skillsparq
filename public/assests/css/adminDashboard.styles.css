@@ -163,12 +163,12 @@ nav.close li a .link-name{
 .nav-links li a i:hover,
 .nav-links li a .link-name:hover{
     color: var(--primary-color);
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
-.title{
+/* .title{
     border: 1px solid #000;
-}
+} */
 
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
