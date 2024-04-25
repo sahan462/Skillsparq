@@ -19,7 +19,7 @@
                     <i class="uil uil-chart"></i>
                     <span class="link-name">Help Requests</span>
                 </a></li>
-            <li><a href="#">
+            <li><a href="ratingCSA">
                     <i class="uil uil-thumbs-up"></i>
                     <span class="link-name">Ratings & Reviews</span>
                 </a></li>

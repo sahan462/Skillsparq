@@ -33,7 +33,7 @@ class InquiryHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
 
-        if($inquiryType == 'help request'):
+        if ($inquiryType == 'help request') :
 
             // help request table
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO help_requests (request_id) VALUES ( ?)");
@@ -50,7 +50,7 @@ class InquiryHandler extends database
                 throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
             }
 
-        elseif ($inquiryType == 'complaint'):
+        elseif ($inquiryType == 'complaint') :
 
             // complaint table
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO complaints (complaint_id, order_id) VALUES(?,?)");
@@ -70,7 +70,6 @@ class InquiryHandler extends database
         endif;
 
         return true;
-
     }
 
     //read recently added gigs
@@ -425,4 +424,31 @@ class InquiryHandler extends database
         }
     }
 
+
+    public function deleteFromRequests($inquiryId)
+    {
+        $query = "DELETE FROM help_requests WHERE request_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        if (!$stmt) {
+            throw new Exception("Failed to create prepared statement for : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $inquiryId);
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error deleting data from : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_close($stmt);
+    }
+    public function deleteFromInquiries($inquiryId)
+    {
+        $query = "DELETE FROM inquiries WHERE inquiry_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        if (!$stmt) {
+            throw new Exception("Failed to create prepared statement for : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $inquiryId);
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Error deleting data from : " . mysqli_error($GLOBALS['db']));
+        }
+        mysqli_stmt_close($stmt);
+    }
 }

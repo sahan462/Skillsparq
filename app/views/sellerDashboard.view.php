@@ -2,19 +2,19 @@
 
 <?php
 
-    $firstName = $data['sellerProfileDetails']['first_name'];
-    $lastName = $data['sellerProfileDetails']['last_name'];
-    $profilePicture = $data['sellerProfileDetails']['profile_pic'];
-    $userName = $data["sellerProfileDetails"]['user_name'];
-    
-    $data["activeStatus"] = "display: block";
-    $data['ongoingOrders'] = 0;
-    $data["completedOrders"] = 0;
-    $data["earningsThisMonth"] = "$0";
-    $data["lastDelivery"] = "July 2023";
-    $data["expertise"] = "Tech";
+$firstName = $data['sellerProfileDetails']['first_name'];
+$lastName = $data['sellerProfileDetails']['last_name'];
+$profilePicture = $data['sellerProfileDetails']['profile_pic'];
+$userName = $data["sellerProfileDetails"]['user_name'];
 
-    $jobs = $data['AllJobs'];
+$data["activeStatus"] = "display: block";
+$data['ongoingOrders'] = 0;
+$data["completedOrders"] = 0;
+$data["earningsThisMonth"] = "$0";
+$data["lastDelivery"] = "July 2023";
+$data["expertise"] = "Tech";
+
+$jobs = $data['AllJobs'];
 
 ?>
 
@@ -28,9 +28,10 @@
         <div class="seller-details">
             <div class="profile">
                 <?php
-                    if($_SESSION['status'] === "online"){
+                if ($_SESSION['status'] === "online") {
                 ?>
-                    <!-- <div class="active-status" style="<?php //echo $data["activeStatus"] ?>">
+                    <!-- <div class="active-status" style="<?php //echo $data["activeStatus"] 
+                                                            ?>">
                         <i class="dot">.</i>
                         Online
                     </div> -->
@@ -41,7 +42,7 @@
                         </span>
                     </div>
                 <?php
-                    }else{
+                } else {
                 ?>
                     <div class="online" style="display:none">
                         <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end; color:#31d65a">
@@ -50,7 +51,7 @@
                         </span>
                     </div>
                 <?php
-                    }
+                }
                 ?>
                 <div class="profile-picture">
                     <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">

@@ -177,4 +177,45 @@ class ProfileHandler extends database
             return false;
         }
     }
+
+    public function getAllFeedbacks()
+    {
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT * 
+              FROM feedbacks
+            
+              ORDER BY $sortBy DESC ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function deleteFeedback($feedback)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM feedbacks
+            WHERE feedback_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $feedback);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
