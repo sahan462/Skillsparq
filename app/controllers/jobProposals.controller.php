@@ -85,11 +85,17 @@ class JobProposals extends Controller
             if($result){
                 echo "
                  <script>
-                    window.alert('Job Proposal Rejected');
+                    window.alert('Job Proposal Rejected!');
                     window.location.href = '" . BASEURL . "jobproposals';
                  </script>
                 ";
-                // $this->redirect('jobproposals');
+            }else{
+                echo "
+                 <script>
+                    window.alert('Error Occured, Job Proposal Rejection Failed.');
+                    window.location.href = '" . BASEURL . "jobproposals';
+                 </script>
+                ";
             }
         }
     }
@@ -113,8 +119,8 @@ class JobProposals extends Controller
             ";
         }else{
             if($orderStatus === "pending"){
-                $orderStatus = "Accepted";
-                $result = $this->JobHandlerModel->changeProposalStatus($orderStatus,$jobProposalId);
+                $proposalStatus = "Accepted";
+                $result = $this->JobHandlerModel->changeProposalStatus($proposalStatus,$jobProposalId);
                 if($result){
                     echo "
                     <script>
@@ -123,19 +129,26 @@ class JobProposals extends Controller
                     ";
                     $orderType = "job";
                     $orderState = "Requested";
-                    $isOrderSend = $this->OrderController->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+                    $isOrderSend = $this->OrderController->createJobOrder($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
                     
                     if($isOrderSend){
                         $orderId = $isOrderSend;
                         $isIdCreated = $this->JobHandlerModel->createJobOrdersTableRecord($orderId,$jobId,$jobProposalId);
-                        // if($isIdCreated){
+                        if($isIdCreated){
+                            echo "
+                                <script>
+                                    window.alert('Error Occured when Creating Job Order Record!');
+                                    window.location.href = '" . BASEURL . "manageOrders';
+                                </script>
+                            ";
+                        }else{
                             echo "
                                 <script>
                                     window.alert('Job Proposal Accepted & Requested to Order ');
                                     window.location.href = '" . BASEURL . "manageOrders';
                                 </script>
                             ";
-                        // }
+                        }
                     }else{
                         echo "
                         <script>
@@ -144,6 +157,13 @@ class JobProposals extends Controller
                         </script>
                         ";
                     }
+                }else{
+                    echo "
+                    <script>
+                        window.alert('Error Occured when accepting Job Proposal!');
+                        window.location.href = '" . BASEURL . "jobproposals';
+                    </script>
+                ";
                 }
             }else{
                 echo "

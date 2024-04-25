@@ -168,16 +168,34 @@ Tbody td{
 }
 
 /*buyer column*/
-/* .Buyer{
+.Buyer{
     display: flex;
-    align-items: center;
+    align-items:center;
+    justify-content:space-between;
+    padding-left: 64px;
+    padding-right: 64px;
 }
-.Buyer img{
+
+.BuyerImg{
+
+}
+
+.BuyerText{
+    /* font-size: 16px; */
+}
+
+/* .Buyer img{
     width: 48px;
     height: 48px;
     border-radius: 100%;
     object-fit: cover;
 } */
+
+.buyerImgsentJobProps{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+}
 
 .tablinks{
     height:100%;

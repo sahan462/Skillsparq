@@ -49,7 +49,8 @@
                             if($accepted['count'] != 0){
                         ?>
                         <div class="thead">
-                            <tr style="position: sticky">
+                            <!-- <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'"> -->
+                            <tr style="position: sticky" onclick="window.location='manageOrders&'">
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
                                 <th style="width: 28%;">Job Title</th>
@@ -66,7 +67,10 @@
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
                                 <td class="Buyer">
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>
@@ -117,8 +121,11 @@
                         <div class="Tbody">
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
-                                <td>
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                <td class="Buyer">
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>
@@ -171,8 +178,11 @@
                         <div class="Tbody">
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
-                                <td>
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                <td class="Buyer">
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>

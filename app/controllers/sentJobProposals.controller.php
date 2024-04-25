@@ -22,6 +22,9 @@ class SentJobProposals extends Controller
         $data['PendingCount'] = $this->JobHandlerModel->getPropCountByPendingStatus($sellerId);
         $data['RejectedCount'] = $this->JobHandlerModel->getPropCountByRejectedStatus($sellerId);
 
+        if(isset($data['AcceptedCount'])){
+
+        }
         // show($data);
         $this->view('sentJobProposals', $data);
     }
