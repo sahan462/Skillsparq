@@ -76,7 +76,7 @@ class OrderHandler extends database
     }
 
     // create Job Order 
-    public function createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrderRec($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
     {
         $insertQuery = "INSERT INTO orders 
         (
@@ -91,7 +91,7 @@ class OrderHandler extends database
             ?, ?, ?, ?, ?
         )";
 
-        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+        $stmt = mysqli_prepare($GLOBALS['db'], $insertQuery);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -148,20 +148,13 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'job') {
-
-            
-
-
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
-
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -365,20 +358,16 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-  
-
+    }
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)
     {
-
-
-
     }
 
     //retrieve delivered order files
     public function getDeliveries($orderType, $orderId, $milestoneId)
     {
-        if ($orderType == 'package' || $orderType == 'job'):
+        if ($orderType == 'package' || $orderType == 'job') :
 
             $query = "SELECT * FROM deliveries WHERE order_id = ?";
 
@@ -387,10 +376,10 @@ class OrderHandler extends database
             if (!$stmt) {
                 die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
             }
-    
+
             mysqli_stmt_bind_param($stmt, "i", $orderId);
-            
-        elseif ($orderType == 'milestone'):
+
+        elseif ($orderType == 'milestone') :
 
             $query = "SELECT * FROM deliveries inner join milestone_order_deliveries on deliveries.delivery_id = milestone_order_deliveries.delivery_id where orders.order_id = ? and milestone_order_deliveries.milestone_id = ?";
 
@@ -399,7 +388,7 @@ class OrderHandler extends database
             if (!$stmt) {
                 die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
             }
-    
+
             mysqli_stmt_bind_param($stmt, "ii", $orderId, $milestoneId);
 
         endif;
@@ -412,7 +401,6 @@ class OrderHandler extends database
         }
 
         return $deliveries;
-
     }
 
     public function getAllOrders()
@@ -432,5 +420,4 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-
 }
