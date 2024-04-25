@@ -1,16 +1,22 @@
 
 <?php 
-    include "components/buyerSimpleHeader.component.php";
+    if($_SESSION['role'] === "Buyer"){
+        include "components/buyerSimpleHeader.component.php";
+    }else if($_SESSION['role'] === "Seller"){
+        include "components/sellerHeader.component.php";
+    }
 ?>
 
 <?php
+
     $gig = $data['gig'];
     $feedbacks = $data['feedbacks'];
     $profileData = $data['profileData'];
-    $seller["profilePicture"] = "avishka.jpg";
-    $seller["sellerName"] = "Avishka Idunil";
+    // $seller["profilePicture"] = "avishka.jpg";
+    // $seller["sellerName"] = "Avishka Idunil";
     $sliderPics = $data['sliderImgs'];
-    $gig['price'] = 200;
+    // $gig['price'] = 200;
+    // show($gig);
     // show($data);
 ?>
 
@@ -20,6 +26,7 @@
     <!-- Modal 1  -->
     <div class="overlay" name="packageOverlay" id="overlay">
         <div class="modal" name="packageModal" id="modal">
+            <!-- form #1 -->
             <form id="packageRequestForm" method="post" action="order/createPackageOrder" enctype="multipart/form-data">
                 <div class="row">
                     <label for="requestDescription" class="type-1">Request Description:</label>
@@ -35,7 +42,7 @@
                         <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
                         <span class="fileName" id="fileName"></span>
                     </div>
-                    <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)">
+                    <!-- <input type="file" class="fileInput" id="packageAttachement" name="attachments" multiple onchange="displayFileName(0)"> -->
                 </div>
 
                 <div class="buttons">
@@ -77,9 +84,9 @@
     <div class="milestoneOverlay" name="milestoneOverlay" id="milestoneOverlay">
         <div class="milestoneModal" name="milestoneModal" id="milestoneModal" style="width: 600px;">
             
+            <!-- form #2 -->
             <!-- button to add new milestone -->
             <button type="button" class="createNewMileStone" onclick="addCollapsible()">Create New MileStone</button>
-            
             <form id="milestoneRequestForm"  method="post" action="order/createMilestoneOrder" enctype="multipart/form-data">
 
                 <!-- New milestone appends here -->
@@ -126,9 +133,21 @@
                     <span class="type-2">Active Orders : <?php echo $gig['ongoing_order_count']; ?></span>
                 </div>
                 <div class="seller">
+                    <?php
+                        if(!empty($profileData['profile_pic'])){
+                    ?>
                     <div class="image">
                         <img src="../public/assests/images/profilePictures/<?php echo $profileData['profile_pic']?>" loading="lazy">
                     </div>
+                    <?php
+                        }else{
+                    ?>
+                    <div class="image">
+                        <img src="../public/assests/images/profilePictures/dummyprofile.jpg" loading="lazy">
+                    </div>
+                    <?php
+                        }
+                    ?>
                     <div class="sellerName">
                         <a href="">
                             <?php echo $profileData["first_name"]."   ".$profileData['last_name']; ?>
@@ -139,26 +158,48 @@
 
                     <div class="sliderContainer">
 
+                    <?php 
+                        if(!empty($gig["cover_image"])){
+                    ?>
                         <div class="showSlide fade">
                             <img src="../public/assests/images/gigImages/coverImages/<?php echo $gig["cover_image"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
+                    <?php
+                        }
+                        if(!empty($sliderPics["side_image_1"])){
+                    ?>
                         <div class="showSlide fade">
                             <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_1"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
+                    <?php
+                        }
+                        if(!empty($sliderPics["side_image_2"])){
+                    ?>
                         <div class="showSlide fade">
                             <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_2"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
+                    <?php
+                        }
+                        if(!empty($sliderPics["side_image_3"])){
+                    ?>
                         <div class="showSlide fade">
                             <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_3"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
+                    <?php
+                        }
+                        if(!empty($sliderPics["side_image_4"])){
+                    ?>
                         <div class="showSlide fade">
                             <img src="../public/assests/images/gigImages/pckgImages/<?php echo $sliderPics["side_image_4"]?>" loading="lazy">
                             <div class="content"></div>
                         </div>
+                    <?php
+                        }
+                    ?>
                         <!-- Navigation arrows -->
                         <div class="navigationArrows">
                             <a class="left" onclick="nextSlide(-1)">&#10094;</a>
@@ -175,9 +216,9 @@
                 <div class="packageDetails" >
                     <div class="package-tabs">
                         <div class="tab">
-                            <button class="tablinks" onclick="openCity(event, 'London')" id = "defaultOpen" style="border-radius: 8px 0 0 0;">Basic</button>
-                            <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
-                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;">Premium</button>
+                            <button class="tablinks" onclick="openCity(event, 'London')" id = "defaultOpen" style="border-radius: 8px 0 0 0;"><?php $gig[0]['package_name']?></button>
+                            <button class="tablinks" onclick="openCity(event, 'Paris')"><?php $gig[1]['package_name']?></button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="border-radius: 0 8px 0 0;"><?php $gig[2]['package_name']?></button>
                         </div>
                     
                         <!-- package 1 -->
@@ -211,7 +252,13 @@
                                         <input type="hidden" name = "packageId" value = "<?php echo $gig[0]['package_id']; ?>">
                                     </form>
 
+                            <?php
+                                if($_SESSION['role'] === "Buyer"){
+                            ?>
                                     <a href="#"><button id="package_1" name="packageOrder" onclick="openModal(this)">Request to Order</button></a>
+                            <?php
+                                }
+                            ?>
                                 </ul>
                             </div>
                         </div>
@@ -290,6 +337,9 @@
                     </div>                    
                 </div>
 
+                <?php 
+                    if($_SESSION['role'] === "Buyer"){
+                ?>
                 <!-- Milestones-->
                 <div class="milestoneApproach">
                     <div class="type-1">
@@ -308,6 +358,10 @@
                         </div>
                     </button>
                 </div>
+
+                <?php 
+                    }
+                ?>
             </div>
         </div>
 

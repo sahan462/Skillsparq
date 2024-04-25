@@ -151,6 +151,7 @@ body.dark li a:hover:before{
     color: var(--black-light-color);    
     transition: var(--tran-05);
 }
+
 nav.close li a .link-name{
     opacity: 0;
     pointer-events: none;
@@ -158,6 +159,7 @@ nav.close li a .link-name{
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
     color: var(--primary-color);
+    border: solid 1px black;
 }
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
@@ -182,6 +184,11 @@ body.dark .nav-links li a:hover .link-name{
     justify-content: center;
     cursor: pointer;
 }
+
+.link-name:hover{
+    border: 1px solid #000;
+}
+
 .mode-toggle .switch{
     position: relative;
     display: inline-block;

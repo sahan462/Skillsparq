@@ -41,13 +41,13 @@
                     <div class="description">
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 150px" value="chamal" required></textarea>
+                        <textarea name="description"  rows="10" spellcheck="false" oninput="this.className = ''"  value="chamal" style="height: 300px"></textarea>
                     </div>
 
-                    <div class="category">
+                    <div class="category" style="margin-top: 16px">
                         <span class="type-1">Which category best fits your project?</span>
                         <span class="type-2">Choose from the list</span>
-                        <select name="category" class="categories" required>
+                        <select name="category" class="categories">
                             <option value="Graphics & Design">Graphics & Design</option>
                             <option value="Programming & Tech">Programming & Tech</option>
                             <option value="Digital Marketing">Digital Marketing</option>
@@ -70,202 +70,178 @@
 
                     <div class="outerTab">
 
-                        <div class="Tab">
-                            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Basic</button>
-                            <button class="tablinks" onclick="openCity(event, 'Paris')">Standard</button>
-                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Premium</button>
-                            <!--id="defaultOpen"-->
-                        </div>
-
-                        <div id="London" class="tabcontent">
-
-                            <div class="row">
-
-                                <span>Package Price : </span>
-                                <div class="customName">
-
-                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" required>
-
+                        <table>
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:30%">Package 1</th>
+                                <th style="width:30%">Package 2</th>
+                                <th style="width:30%">Package 3</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Package Name</td>
+                                <td>
+                                    <input type="text" name ="packageName_1" oninput="this.className = ''"  >
+                                </td>
+                                <td>
+                                    <input type="text" name ="packageName_2" oninput="this.className = ''"  >
+                                </td>
+                                <td>
+                                    <input type="text" name ="packageName_3" oninput="this.className = ''" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Package Price</td>
+                                <td>
+                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" >
+                                </td>
+                                <td>
+                                    <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" >
+                                </td>
+                                <td>
+                                    <input type="number" name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Revision Count</td>
+                                <td>
+                                    <div class="noOfRevisions">
+                                        <select style="width:100%" name="noOfRevisions_1"  class="categories">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="Unlimited">Unlimited</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="noOfRevisions">
+                                        <select style="width:100%" name="noOfRevisions_2"  class="categories">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="Unlimited">Unlimited</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="noOfRevisions">
+                                        <select style="width:100%" name="noOfRevisions_3"  class="categories">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="Unlimited">Unlimited</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Delivery Time</td>
+                                <td>
+                                    <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
+                                        <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                        <select name="timePeriod_1" class="categories" >
+                                            <option value="Days">Day(s)</option>
+                                            <option value="Weeks">Week(s)</option>
+                                            <option value="Months">Month(s)</option>
+                                            <option value="Years">Year(s)</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
+                                        <input type="number" style="width:50%" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                        <select style="width:50%" name="timePeriod_2" class="categories" >
+                                            <option value="Days">Day(s)</option>
+                                            <option value="Weeks">Week(s)</option>
+                                            <option value="Months">Month(s)</option>
+                                            <option value="Years">Year(s)</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
+                                        <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
+                                        <select name="timePeriod_3" class="categories" >
+                                            <option value="Days">Day(s)</option>
+                                            <option value="Weeks">Week(s)</option>
+                                            <option value="Months">Month(s)</option>
+                                            <option value="Years">Year(s)</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Description</td>
+                                <td>
+                                <div class="packageDescription">
+                                    <textarea name="packageDescription_1" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
-                                <span>How long will it take to Deliver: </span>
-                                <div class="noOfDeliveryDays">
-                                    <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5">
-                                    <select name="timePeriod_1" class="categories" >
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
-                                    </select>
+                                </td>
+                                <td>
+                                <div class="packageDescription">
+                                    <textarea name="packageDescription_2" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <span>Number of Revisions You Provide: </span>
-                                <div class="noOfRevisions">
-                                    <select name="noOfRevisions_1"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
-                                    </select>
+                                </td>
+                                <td>
+                                <div class="packageDescription">
+                                    <textarea name="packageDescription_3" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"></textarea>
                                 </div>
-                            </div>
+                                </td>
+                            </tr>
+                        </table>
 
-
-                            <span>Describe your offer and the service you provide on this package: </span>
-                            <div class="packageDescription">
-                                <textarea name="packageDescription_1" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
-                            </div>
-
-                        </div>
-
-                        <div id="Paris" class="tabcontent">
-
-                            <div class="row">
-
-                                <span>Package Price : </span>
-                                <div class="customName">
-
-                                    <input type="number"  name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000">
-
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <span>How long will it take to Deliver: </span>
-                                <div class="noOfDeliveryDays">
-                                    <input type="number" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5">
-                                    <select name="timePeriod_2" class="categories" required>
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <span>Number of Revisions You Provide: </span>
-                                <div class="noOfRevisions">
-                                    <select name="noOfRevisions_2"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <span>Describe your offer and the service you provide on this package: </span>
-                            <div class="packageDescription">
-                                <textarea name="packageDescription_2" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
-                            </div>
-                        </div>
-
-                        <div id="Tokyo" class="tabcontent">
-
-                            <div class="row">
-
-                                <span>Package Price : </span>
-                                <div class="customName">
-
-                                    <input type="number"  name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000">
-
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-
-                                <span>How long will it take to Deliver: </span>
-                                <div class="noOfDeliveryDays">
-
-                                    <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5">
-                                    <select name="timePeriod_3" class="categories" required>
-
-                                        <option value="Days">Day(s)</option>
-                                        <option value="Weeks">Week(s)</option>
-                                        <option value="Months">Month(s)</option>
-                                        <option value="Years">Year(s)</option>
-
-                                    </select>
-
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-
-                                <span>Number of Revisions You Provide: </span>
-                                <div class="noOfRevisions">
-
-                                    <select name="noOfRevisions_3"  class="categories" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="Unlimited">Unlimited</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <span>Describe your offer and the service you provide on this package: </span>
-                            <div class="packageDescription">
-                                <textarea name="packageDescription_3" placeholder="I need.." rows="6" spellcheck="false" oninput="this.className = ''" required></textarea>
-                            </div>
-                            
-                        </div>
                     </div>
+
+                </div>
+
+                <div class="tab">
 
                     <span class="type-1">Upload Images</span>
                     <span class="type-2">add cover image and other slider images</span>
 
                     <div class="images">
 
-                        <div class="slideimg1">
+                        </table>
+
+                        <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="coverImage">Cover Image:</label>
-                            <input type="file" id="coverImage" name="coverImage" onchange="load_img_name(this.files[0],1)" required/>
+                            <input type="file" id="coverImage" name="coverImage" onchange="load_img_name(this.files[0],1)"/>
                             <div id="filename1"></div>
                         </div>
 
-                        <div class="slideimg1">
+                        <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="sliderImage1">Slider Image 1:</label>
-                            <input type=" file" id="sliderImage1" name="sliderImage1" onchange="load_img_name(this.files[0],2)" required/>
+                            <input type="file" id="sliderImage1" name="sliderImage1" onchange="load_img_name(this.files[0],2)"/>
                             <div id="filename2"></div>
                         </div>
-
-                        <div class="slideimg1">
+ 
+                        <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="sliderImage2">Slider Image 2:</label>
-                            <input type="file" id="sliderImage2" name="sliderImage2" onchange="load_img_name(this.files[0],3)" required/>
+                            <input type="file" id="sliderImage2" name="sliderImage2" onchange="load_img_name(this.files[0],3)"/>
                             <div id="filename3"></div>
                         </div>
 
-                        <div class="slideimg1">
+                        <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="sliderImage3">Slider Image 3:</label>
-                            <input type="file" id="sliderImage3" name="sliderImage3" onchange="load_img_name(this.files[0],4)" required/>
+                            <input type="file" id="sliderImage3" name="sliderImage3" onchange="load_img_name(this.files[0],4)"/>
                             <div id="filename4"></div>
                         </div>
 
-                        <div class="slideimg1">
+                        <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="sliderImage4">Slider Image 4:</label>
-                            <input type="file" id="sliderImage4" name="sliderImage4" onchange="load_img_name(this.files[0],5)" required/>
+                            <input type="file" id="sliderImage4" name="sliderImage4" onchange="load_img_name(this.files[0],5)"/>
                             <div id="filename5"></div>
                         </div>
 
@@ -278,12 +254,14 @@
             <div class="navigation">
                 <div>
                     <div style="float:right;">
+                        <input type="hidden" name="btnSubmit" value="submit">
                         <button type="button" id="prevBtn" onclick="nextPrev(-1)"><span class="previous">Previous</span></button>
-                        <button type="submit" id="nextBtn" name="submit" onclick="nextPrev(1)"><span class="next">Next</span></button>
+                        <button type="button" id="nextBtn" name = "btnSubmit" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div>
 
                 <div style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
                 </div>

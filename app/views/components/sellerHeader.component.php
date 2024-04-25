@@ -13,19 +13,22 @@
     <title>SKILLSPARQ</title>
     <link rel="stylesheet" href="./assests/css/sellerHeader.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/sellerDashboard.styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css">
+    <link rel="stylesheet" href="./assests/css/sellerProfile.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/editSellerProfile.styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assests/css/jobCard.styles.css">
+    <link rel="stylesheet" href="./assests/css/jobCard.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/addGig.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/displayJob.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/updateGig.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/earnings.styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assests/css/order.styles.css">
+    <link rel="stylesheet" href="./assests/css/order.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/gigCard.styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assests/css/manageOrders.styles.css">
+    <link rel="stylesheet" href="./assests/css/manageOrders.styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assests/css/sentProposals.styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/help.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
+    <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
+    <link rel="stylesheet" href="./assests/css/userHelp.styles.css">
     <link rel="stylesheet" href="./assests/css/sharePoint.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />

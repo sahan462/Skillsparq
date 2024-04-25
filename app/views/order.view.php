@@ -7,6 +7,7 @@
 ?>
 
 <?php 
+
     $order = $data['order'];
     $buyer = $data['buyer'];
     $seller = $data['seller'];
@@ -14,10 +15,8 @@
     $state = '';
     $senderId = '';
     $receiverId = '';
+    $chatId = $order['chat_id'];
 
-    $data['lastSeen'] = 'online';
-    $data['receiverName'] = 'Damitha Sahan';
-    print_r($_SESSION['userId']);
 ?>
 
 <!-- Main Container -->
@@ -40,153 +39,114 @@
             <div id="activity" style="padding:16px;" class="tabContent" >
 
                 <?php if($_SESSION['userId'] == $buyer['user_id']) {
+
                     $senderId = $buyer['user_id'];
+                    $senderProfilePicture = $buyer['profile_pic'];
+                    $senderName = $buyer['first_name'] . ' ' . $buyer['last_name'];
+                    $senderLastSeen = $buyer['last_seen'];
+
                     $receiverId = $seller['user_id'];
+                    $receiverProfilePicture = $seller['profile_pic'];
+                    $receiverName = $seller['first_name'] . ' ' . $seller['last_name'];
+                    $receiverLastSeen = $seller['last_seen'];
+
                 } else{
+
                     $senderId = $seller['user_id'];
-                    $receiverId = $buyer['user_id'];               
+                    $senderProfilePicture = $seller['profile_pic'];
+                    $senderName = $seller['first_name'] . ' ' . $seller['last_name'];
+                    $senderLastSeen = $seller['last_seen'];
+
+                    $receiverId = $buyer['user_id'];   
+                    $receiverProfilePicture = $buyer['profile_pic'];
+                    $receiverName = $buyer['first_name'] . ' ' . $buyer['last_name'];
+                    $receiverLastSeen = $buyer['last_seen'];
+
                 } ?>
 
                 <!-- chat header -->
                 <div class="header">
 
+                    <!-- Receiver Details (Name and Online Status) -->
                     <div class="receiver">
+
                         <div class="upperSection">
-                            <?php if($data["lastSeen"] == "online") { ?>
+
+                            <?php if($receiverLastSeen == "online") { ?>
+
                                 <div class="dot receiverActive"></div>
+
                             <?php }else{ ?>
+
                                 <div class="dot receiverOffline"></div>
+
                             <?php } ?>
+
                             <h1>
-                                <a href=""><?php echo $data['receiverName']?></a>
+                                <a href=""><?php echo $receiverName?></a>
                             </h1>
+
                         </div>
+
                         <div class="lowerSection">
+
                             <small>
-                                <?php if($data["lastSeen"] == "online") { ?>
-                                    <?php echo $data['lastSeen']; ?>
+
+                                <?php if($receiverLastSeen == "online") { ?>
+
+                                    <?php echo $receiverLastSeen; ?>
+
                                 <?php }else{ ?>
-                                    Last Seen:<?php echo $data['lastSeen']; ?>
+
+                                    Last Seen:<?php echo $receiverLastSeen; ?>
+
                                 <?php } ?>
+
                             </small>
                         </div>
+
                     </div>
 
                 </div>
 
                 <!-- Messages -->
-                <div class="innerContainer">
+                <div class="innerContainer" id="chatContainer">
 
-                    <!-- <div class="receiver-container">
-                        <div class="messageContainer">
-                            <div class="senderContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar">
-                                <p class="P" >
-                                    Hello. How are you today?
-                                    <span class="time-right">11:00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sender-container">
-                        <div class="messageContainer darker">
-                            <div class="receiverContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar" class="right">
-                                <p class="receiver" >
-                                    Hey! I'm fine. Thanks for asking!
-                                    <span class="time-left">11:01</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="receiver-container">
-                        <div class="messageContainer">
-                            <div class="senderContent">
-                                <img src="<?php echo $seller["profile_pic"] ?>" alt="Avatar">
-                                <p class="P" >
-                                    Sweet! So, what do you wanna do today?
-                                    <span class="time-right">11:00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sender-container">
-                        <div class="messageContainer darker">
-                            <div class="receiverContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar" class="right">
-                                <p class="receiver" >
-                                    Nah, I dunno. Play soccer.. or learn more coding perhaps?
-                                    <span class="time-left">11:01</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sender-container">
-                        <div class="messageContainer darker">
-                            <div class="receiverContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar" class="right">
-                                <p class="receiver" >
-                                    Nah, I dunno. Play soccer.. or learn more coding perhaps?
-                                    <span class="time-left">11:01</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sender-container">
-                        <div class="messageContainer darker">
-                            <div class="receiverContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar" class="right">
-                                <p class="receiver" >
-                                    Nah, I dunno. Play soccer.. or learn more coding perhaps?
-                                    <span class="time-left">11:01</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sender-container">
-                        <div class="messageContainer darker">
-                            <div class="receiverContent">
-                                <img src="<?php echo $buyer["profile_pic"] ?>" alt="Avatar" class="right">
-                                <p class="receiver" >
-                                    Nah, I dunno. Play soccer.. or learn more coding perhaps?
-                                    <span class="time-left">11:01</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
 
                 <!-- chat footer  -->
                 <div class="chatFooter">
 
-                    <div class="attachement">
-                        <input type="file" name="messageAttachement" id="messageAttachement">
-                        <label for="messageAttachement">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
-                            </svg>
-                        </label>
-                    </div>
+                    <form method="post" id="chatForm"> 
+                    
+                        <input type="hidden" value="<?php echo $senderId ?>" id="senderId">
+                        <input type="hidden" value="<?php echo $receiverId?>" id="receiverId">
+                        <input type="hidden" value="<?php echo $chatId?>" id="chatId">
 
-                    <div class="inputMessage">
-                        <input type="text" name="message" id="newMessage">
-                    </div>
+                        <div class="attachement">
+                            <input type="file" name="messageAttachement" id="messageAttachement">
+                            <label for="messageAttachement">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
+                                </svg>
+                            </label>
+                        </div>
 
-                    <div class="sendButton">
-                    <input type="submit" value="send" id="sendButton" onclick="sendMessage('<?php echo $order['chat_id']; ?>', '<?php echo $senderId; ?>', '<?php echo $receiverId; ?>')">
-                        <!-- <label for="sendButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                            </svg>
-                        </label> -->
-                    </div>
+                        <div class="inputMessage">
+                            <input type="text" name="message" id="newMessage">
+                        </div>
+
+                        <div class="sendButton">
+                        <input type="submit" value="send" id="sendButton">
+                            <!-- <label for="sendButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                                </svg>
+                            </label> -->
+                        </div>
+
+                    </form>
 
                 </div>
 
@@ -624,6 +584,12 @@
     </div>
 
 </div>
+
+<script>
+    const senderProfilePicture = "<?php echo $senderProfilePicture; ?>";
+    const receiverProfilePicture = "<?php echo $receiverProfilePicture; ?>";
+    const chatId = "<?php echo $chatId; ?>";
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./assests/js/order.script.js"></script>

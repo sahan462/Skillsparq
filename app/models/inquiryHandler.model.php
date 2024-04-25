@@ -150,6 +150,7 @@ class InquiryHandler extends database
         i.*, 
         c.*, 
         o.*, 
+        p.*,
         u1.user_id as seller_id, 
         u1.user_email as seller_email,
         u1.role as seller_role,
@@ -167,6 +168,7 @@ class InquiryHandler extends database
     JOIN orders o ON o.order_id = c.order_id
     JOIN user u1 ON o.seller_id = u1.user_id
     JOIN user u2 ON o.buyer_id = u2.user_id
+    JOIN payments p on p.order_id = o.order_id
     WHERE i.inquiry_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -253,7 +255,7 @@ class InquiryHandler extends database
 
         mysqli_stmt_close($stmt);
     }
-    public function blackListBuyer($userId)
+    public function blackListBuyer()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user_id_to_blacklist = $_POST['user_id_to_blacklist'];
@@ -279,6 +281,46 @@ class InquiryHandler extends database
             $stmt->close();
         }
     }
+
+    public function refund()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $payment_id = $_POST['payment_id'];
+            $response = $_POST['sendResponse'];
+            $buyerID = $_POST['buyerID'];
+
+            // Use a prepared statement to prevent SQL injection
+            $stmt1 = $GLOBALS['db']->prepare("UPDATE payments SET payment_status = 'holdForRefund' WHERE payment_id = ?");
+            $stmt2 = $GLOBALS['db']->prepare("INSERT INTO refunds (refund_issuer_id, refund_receiver_id, refund_date, refund_cause, responseCSA, payment_id, refund_state) VALUES (?, 3, NOW(), 'na', ?, ?, 'onHold')");
+
+            if (!$stmt1 || !$stmt2) {
+                die('MySQL Error: ' . $GLOBALS['db']->error);
+            }
+
+            // Bind parameters for the first statement
+            $stmt1->bind_param("i", $payment_id);
+
+            // Execute the first query
+            if (!$stmt1->execute()) {
+                die('Error executing query: ' . $stmt1->error);
+            }
+
+            // Bind parameters for the second statement
+            $stmt2->bind_param("iss", $buyerID, $response, $payment_id);
+
+            // Execute the second query
+            if (!$stmt2->execute()) {
+                die('Error executing query: ' . $stmt2->error);
+            }
+
+            // Close the statements
+            $stmt1->close();
+            $stmt2->close();
+        }
+    }
+
+
+
 
 
     public function getInquiries()

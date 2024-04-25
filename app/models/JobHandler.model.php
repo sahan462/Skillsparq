@@ -148,11 +148,108 @@ class JobHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $jobId);
 
         if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
+            $fetchVal = $stmt->get_result();
+            $result = mysqli_fetch_assoc($fetchVal);
+            return $result;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function getBuyerDetailsOfJobProposals()
+    {
+        
+    }
+
+    public function getSellerDetailsOfJobProposals($jobId)
+    {
+        $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = ? ORDER BY bid_amount ASC";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function changeProposalStatus($Status,$proposalId)
+    {
+        $updateQuery = "UPDATE job_proposals SET Status = ? WHERE proposal_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
+                
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "si",$Status,$proposalId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // After change the status of accepted proposal all other proposals related to that job will be rejected.
+    public function setRejectPropStatus($jobId)
+    {
+        $updateQuery = "UPDATE job_proposals SET Status = Rejected WHERE job_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
+                
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i",$jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function createJobOrder()
+    {
+
+    }
+
+    // public function getJobName($jobId)
+    // {
+    //     $query = "SELECT title FROM Jobs WHERE job_id = ? ";
+        
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
 
     //get auction details
     public function getAuction($jobId,$userId){
@@ -323,6 +420,33 @@ class JobHandler extends database
         }
     
         mysqli_stmt_bind_param($stmt, "ii", $jobId,$buyerId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    public function getSendJobProposals($sellerId)
+    {
+        $query = "SELECT * FROM job_proposals WHERE seller_id=?;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
     
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();

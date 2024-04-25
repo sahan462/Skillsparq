@@ -11,89 +11,134 @@ class Gig extends Controller
 
     public function publishGig()
     {
+        // print_r($_POST);
+        // print_r($_FILES);
 
-        if (isset($_POST['submit']))
+        if (isset($_POST['btnSubmit']))
         {
             // For gigs table
             $title = $_POST['title'];
             $description = $_POST['description'];
             $category = $_POST['category'];
 
-            // package 1 details (Basic)
+            // package 1 details
             $packagePrice_1 = $_POST['packagePrice_1'];
+            $packageName_1 = $_POST['packageName_1'];
+            $noOfRevisions_1 = $_POST['noOfRevisions_1'];
             $noOfDeliveryDays_1 = $_POST['noOfDeliveryDays_1'];
             $timePeriod_1 = $_POST['timePeriod_1'];
-            $noOfRevisions_1 = $_POST['noOfRevisions_1'];
             $packageDescription_1 = $_POST['packageDescription_1'];
 
+            // package 2 details
             $packagePrice_2 = $_POST['packagePrice_2'];
+            $packageName_2 = $_POST['packageName_2'];
+            $noOfRevisions_2 = $_POST['noOfRevisions_2'];
             $noOfDeliveryDays_2 = $_POST['noOfDeliveryDays_2'];
             $timePeriod_2 = $_POST['timePeriod_2'];
-            $noOfRevisions_2 = $_POST['noOfRevisions_2'];
             $packageDescription_2 = $_POST['packageDescription_2'];
 
+            // package 3 details
             $packagePrice_3 = $_POST['packagePrice_3'];
+            $packageName_3 = $_POST['packageName_3'];
+            $noOfRevisions_3 = $_POST['noOfRevisions_3'];
             $noOfDeliveryDays_3 = $_POST['noOfDeliveryDays_3'];
             $timePeriod_3 = $_POST['timePeriod_3'];
-            $noOfRevisions_3 = $_POST['noOfRevisions_3'];
             $packageDescription_3 = $_POST['packageDescription_3'];
 
             $currentDateTime = date('Y-m-d H:i:s');
             $sellerId = $_SESSION['userId'];
 
-            // directory where gig slider images resides.
-            $targetDir = "../public/assests/images/gigImages/coverImages/";
+            // directory where gig cover image resides.
+            $targetDirCover = "../public/assests/images/gigImages/coverImages/";
 
+
+            // cover image file details. 
             $coverImage = basename($_FILES["coverImage"]["name"]);
-            $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
-            $extension = pathinfo($coverImage, PATHINFO_EXTENSION);
-            $coverImage = pathinfo($coverImage, PATHINFO_FILENAME);
-            $uniqueCoverImageName = uniqid($coverImage, true) . '_' . time() . '_' .$randomNumber.".".$extension;
+            $coverImageTmp = $_FILES["coverImage"]["tmp_name"];
 
-            $targetFilePath = $targetDir . $uniqueCoverImageName; 
-            $upload = move_uploaded_file($_FILES["coverImage"]["tmp_name"], $targetFilePath);
+            $isSaveCover = false;
 
-            $targetDirectory = "../public/assests/images/gigImages/pckgImages/";
+            if(!empty($coverImage) && !empty($coverImageTmp)){
+                $randomNumber = random_int(10000, 99999); // Generate a random number
+                $fileExtension = pathinfo($coverImage, PATHINFO_EXTENSION);
+                $coverImageName = pathinfo($coverImage, PATHINFO_FILENAME);
+                $uniqueCoverImageName = uniqid($coverImageName, true) . '_' . time() . '_' .$randomNumber.".".$fileExtension;
+                $targetCoverFilePath = $targetDirCover . $uniqueCoverImageName; 
+                $isSaveCover = move_uploaded_file($coverImageTmp, $targetCoverFilePath);
+            }
+            
+            // directory where All Gig sliderImages resides.
+            $targetDirSldImg = "../public/assests/images/gigImages/pckgImages/";
 
-            $arrayImagesString = [];
-            $arrayImageUploads = [];
 
-            for ($i = 1; $i < 5; $i++)
-            {
+            // Gig sliderImage1 file details. 
+            $sliderImage1 = basename($_FILES["sliderImage1"]["name"]);
+            $sliderImage1Tmp = $_FILES["sliderImage1"]["tmp_name"];
+            $uploadSlideImg1 = false;
 
-                $newSliderImageName = '';
-                $targetFilePath= '';
-                $uniqueImageName = '';
-                $upload = false;
-                $fieldName = "sliderImage" . $i;
-
-                $newSliderImageName = basename($_FILES[$fieldName]["name"]);
-
-                $randomNumber = random_int(10000, 99999); // Generate a random number between 10000 and 99999
-                $extension = pathinfo($newSliderImageName, PATHINFO_EXTENSION);
-                $newSliderImageName = pathinfo($newSliderImageName, PATHINFO_FILENAME);
-                $uniqueImageName = uniqid($newSliderImageName, true) . '_' . time() . '_' .$randomNumber.".".$extension;
-
-                $arrayImagesString[] = $uniqueImageName;
-
-                $targetFilePath = $targetDirectory . $uniqueImageName; 
-                $upload = move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFilePath);
-                $arrayImageUploads[] = $upload;
-
+            if(!empty($sliderImage1) && !empty($sliderImage1Tmp)){
+                $randomNumber1 = random_int(10000, 99999); // Generate a random number
+                $fileExtension1 = pathinfo($sliderImage1, PATHINFO_EXTENSION);
+                $sliderImage1Name = pathinfo($sliderImage1, PATHINFO_FILENAME);
+                $uniquesliderImage1Name = uniqid($sliderImage1Name, true) . '_' . time() . '_' .$randomNumber1.".".$fileExtension1;
+                $targetsliderImage1Path1 = $targetDirSldImg . $uniquesliderImage1Name; 
+                $uploadSlideImg1 = move_uploaded_file($sliderImage1Tmp, $targetsliderImage1Path1);
+            }else{
+                $uniquesliderImage1Name = NULL;
             }
 
-            $sliderImage1 = $arrayImagesString[0];
-            $sliderImage2 = $arrayImagesString[1];
-            $sliderImage3 = $arrayImagesString[2];
-            $sliderImage4 = $arrayImagesString[3];
+            // Gig sliderImage2 file details.
+            $sliderImage2 = basename($_FILES["sliderImage2"]["name"]);
+            $sliderImage2Tmp = $_FILES["sliderImage2"]["tmp_name"];
+            $uploadSlideImg2 = false;
 
-            $upload1 = $arrayImageUploads[0];
-            $upload2 = $arrayImageUploads[1];
-            $upload3 = $arrayImageUploads[2];
-            $upload4 = $arrayImageUploads[3];
+            if(!empty($sliderImage2) && !empty($sliderImage2Tmp)){
+                $randomNumber2 = random_int(10000, 99999); // Generate a random number
+                $fileExtension2 = pathinfo($sliderImage2, PATHINFO_EXTENSION);
+                $sliderImage2Name = pathinfo($sliderImage2, PATHINFO_FILENAME);
+                $uniquesliderImage2Name = uniqid($sliderImage2Name, true) . '_' . time() . '_' .$randomNumber2.".".$fileExtension2;
+                $targetsliderImage2Path2 = $targetDirSldImg . $uniquesliderImage2Name; 
+                $uploadSlideImg2 = move_uploaded_file($sliderImage2Tmp, $targetsliderImage2Path2);
+            }else{
+                $uniquesliderImage2Name = NULL;
+            }
 
-            if($upload && $upload1 && $upload2 && $upload3 && $upload4){
-                $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $uniqueCoverImageName,$packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId);
+            // Gig sliderImage3 file details.
+            $sliderImage3 = basename($_FILES["sliderImage3"]["name"]);
+            $sliderImage3Tmp = $_FILES["sliderImage3"]["tmp_name"];
+            $uploadSlideImg3 = false;
+
+            if(!empty($sliderImage3) && !empty($sliderImage3Tmp)){
+                $randomNumber3 = random_int(10000, 99999); // Generate a random number
+                $fileExtension3 = pathinfo($sliderImage3, PATHINFO_EXTENSION);
+                $sliderImage3Name = pathinfo($sliderImage3, PATHINFO_FILENAME);
+                $uniquesliderImage3Name = uniqid($sliderImage3Name, true) . '_' . time() . '_' .$randomNumber3.".".$fileExtension3;
+                $targetsliderImage3Path3 = $targetDirSldImg . $uniquesliderImage3Name; 
+                $uploadSlideImg3 = move_uploaded_file($sliderImage3Tmp, $targetsliderImage3Path3);
+            }else{
+                $uniquesliderImage3Name = NULL;
+            }
+
+            // Gig sliderImage4 file details.
+            $sliderImage4 = basename($_FILES["sliderImage4"]["name"]);
+            $sliderImage4Tmp = $_FILES["sliderImage4"]["tmp_name"];
+            $uploadSlideImg4 = false;
+
+            if(!empty($sliderImage4) && !empty($sliderImage4Tmp)){
+                $randomNumber4 = random_int(10000, 99999); // Generate a random number
+                $fileExtension4 = pathinfo($sliderImage4, PATHINFO_EXTENSION);
+                $sliderImage4Name = pathinfo($sliderImage4, PATHINFO_FILENAME);
+                $uniquesliderImage4Name = uniqid($sliderImage4Name, true) . '_' . time() . '_' .$randomNumber4.".".$fileExtension4;
+                $targetsliderImage4Path4 = $targetDirSldImg . $uniquesliderImage4Name; 
+                $uploadSlideImg4 = move_uploaded_file($sliderImage4Tmp, $targetsliderImage4Path4);
+            }else{
+                $uniquesliderImage4Name = NULL;
+            }
+
+            $gig = $this->GigHandlerModel->addNewGig($title, $description, $category, $uniqueCoverImageName,$packagePrice_1,$packageName_1,$noOfRevisions_1,$noOfDeliveryDays_1, $timePeriod_1,  $packageDescription_1, $packagePrice_2,$packageName_2,$noOfRevisions_2,$noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3,$packageName_3, $noOfRevisions_3,  $noOfDeliveryDays_3, $timePeriod_3,$packageDescription_3, $currentDateTime, $uniquesliderImage1Name,$uniquesliderImage2Name,$uniquesliderImage3Name,$uniquesliderImage4Name,$sellerId);
+
+            if($isSaveCover || $uploadSlideImg1 || $uploadSlideImg2 || $uploadSlideImg3 || $uploadSlideImg4){
+                
                 if($gig[0]){
                     echo "
                         <script>
@@ -122,6 +167,7 @@ class Gig extends Controller
     {
         
         if(isset($_POST["update"])){
+            
             // For gigs table
             $gigId = $_POST['gigId'];
             $title = $_POST['title'];

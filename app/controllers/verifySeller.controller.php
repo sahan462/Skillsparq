@@ -2,6 +2,9 @@
 
 class VerifySeller extends Controller
 {
+    private $userHandlerModel;
+    private $sellerHandlerModel;
+    private $profileHandlerModel;
 
     private function initializeData() {
         // Initialize data with common values
@@ -105,6 +108,7 @@ class VerifySeller extends Controller
                 $user_id = $this->userHandlerModel->addNewSeller($password, $role, $agreement);
                 $this->sellerHandlerModel->addNewSeller($user_id, $phoneNumber);
                 $this->profileHandlerModel->addNewProfile($userName, $fisrtName, $lastName, $user_id);
+                $this->sellerHandlerModel->addUserNameAndId($user_id, $userName);
 
                 $otp_confirmation = false;
 

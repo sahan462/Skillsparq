@@ -2,6 +2,8 @@
 
 class Order extends Controller
 {
+    private $OrderHandlerModel;
+    private $ChatHandlerModel;
 
     public function __construct(){
         $this->OrderHandlerModel = $this->model('orderHandler');
@@ -21,10 +23,20 @@ class Order extends Controller
         $sellerid = $_GET['sellerId'];
         $userRole = $_SESSION['role'];
 
+        // get order, buyer and seller information
         $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-        print_r($data['order']);
-        print_r($data['buyer']);
-        print_r($data['seller']);
+
+        $order = $data['order'];
+        $chatId = $order['chat_id'];
+
+        //retrieve the chat from the database
+        $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
+        // print_r($data['order']);
+        // print_r($data['buyer']);
+        // print_r($data['seller']);
+        // print_r($chatId);
+        // print_r($data['chat']);
+
         $this->view('order', $data);
         
     }
@@ -35,29 +47,49 @@ class Order extends Controller
 
         // Get form data
         $orderState = "Requested";
-        $orderType = $_POST['orderType'];
-        $buyerId = $_POST['buyerId'];    
-        $sellerId = $_POST['sellerId'];
+        // Modal #1 - form #1
         $requestDescription = $_POST['requestDescription'];
-        $attachment = $_FILES['attachments'];
+        // $attachment = $_FILES['attachments'];
+        $attachment = "Hithere";
         $gigId = $_POST['gigId'];
+        $sellerId = $_POST['sellerId'];
+        $orderType = $_POST['orderType'];
+        $buyerId = $_POST['buyerId'];  
+        
         $packageId = $_POST['packageId'];
     
         // Set current datetime and user name
         date_default_timezone_set('UTC');
         $currentDateTime = date('Y-m-d H:i:s');
         $userName = $_SESSION['userName'];
-        $attachmentName = basename($attachment["name"]);
+        // $attachmentName = basename($attachment["name"]);
+        $attachmentName = "Hithere";
     
         // Create order and handle attachment
         $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
+
+        if($orderId){
+            echo "
+            <script>
+                alert('Order created successfully');
+                window.location.href = '" . BASEURL . 'manageOrders' . "';
+            </script>
+            ";
+        }else{
+            echo "
+            <script>
+                alert('Error occured creating Package Order');
+                window.location.href = '" . BASEURL . 'manageOrders' . "';
+            </script>
+            ";
+        }
         
         if($orderId){
             $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
         }else{
             echo "
             <script>
-                alert('Error Crearing package order');
+                alert('Invalid Order Id');
             </script>
             ";
         }
@@ -164,7 +196,7 @@ class Order extends Controller
         } else {
             echo "
             <script>
-                alert('Error Crearing package order');
+                alert('Error Creating package order');
             </script>
             ";
         }
@@ -233,7 +265,6 @@ class Order extends Controller
             if($isUpdatedOrderState){
                 return $isUpdatedOrderState;
             }
-
         } else {
             echo "Invalid request method";
         }

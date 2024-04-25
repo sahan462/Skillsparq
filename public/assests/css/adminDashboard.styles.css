@@ -124,6 +124,13 @@ nav .menu-items{
     text-decoration: none;
     position: relative;
 }
+
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--primary-color);
+    border: solid 1px black;
+}
+
 .nav-links li a:hover:before{
     content: "";
     position: absolute;

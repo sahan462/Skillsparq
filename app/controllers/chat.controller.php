@@ -1,14 +1,5 @@
 <?php
 
-require  '../vendor/autoload.php';
-
-use Ratchet\MessageComponentInterface;
-use Ratchet\ConnectionInterface;
-use Ratchet\Server\IoServer;
-use Ratchet\Http\HttpServer;
-use Ratchet\WebSocket\WsServer;
-
-
 class Chat extends Controller
 {
 
@@ -35,12 +26,13 @@ class Chat extends Controller
     
             // Extract the message fields from the associative array
             $message = $messageData['message'];
+            $attachement = $messageData['attachment'];
             $date = date("Y-m-d H:i:s");
             $chatId = $messageData['chatId'];
             $senderId = $messageData['senderId'];
             $receiverId = $messageData['receiverId'];
 
-            $isSent = $this->ChatHandlerModel->sendNewTextMessage($message, $date, $chatId, $senderId, $receiverId);
+            $isSent = $this->ChatHandlerModel->sendNewTextMessage($message, $attachement, $date, $chatId, $senderId, $receiverId);
     
             // Return JSON response
             header('Content-Type: application/json');
@@ -54,8 +46,38 @@ class Chat extends Controller
     
         }
     }
-    
 
+    function saveMessage(){
+
+        try{    
+            // Extract the message fields from the associative array
+            $message = $_POST['newMessage'];
+            if(isset($_POST['attachement'])){
+                $attachement = $_POST['attachement'];
+            }else{
+                $attachement = "";
+            }
+            $date = date("Y-m-d H:i:s");
+            $chatId = $_POST['chatId'];
+            $senderId = $_POST['senderId'];
+            $receiverId = $_POST['receiverId'];
+  
+            $isSent = $this->ChatHandlerModel->sendNewTextMessage($message, $attachement, $date, $chatId, $senderId, $receiverId);
+            if($isSent){
+                return true;
+            }
+            return true;
+    
+        } catch(Exception $e){
+    
+            // Handle exception
+            header('Content-Type: application/json');
+            echo json_encode(array('error' => $e->getMessage()));
+    
+        }
+
+    }
+    
 }
 
 ?>

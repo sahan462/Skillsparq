@@ -7,7 +7,7 @@
     $profilePicture = $data['sellerProfileDetails']['profile_pic'];
     $userName = $data["sellerProfileDetails"]['user_name'];
     
-    $data["activeStatus"] = "display: none";
+    $data["activeStatus"] = "display: block";
     $data['ongoingOrders'] = 0;
     $data["completedOrders"] = 0;
     $data["earningsThisMonth"] = "$0";
@@ -27,10 +27,31 @@
     <div class="dashboard-container">
         <div class="seller-details">
             <div class="profile">
-                <div class="active status" style="<?php echo $data["activeStatus"] ?>">
-                    <i class="dot">.</i>
-                    Online
-                </div>
+                <?php
+                    if($_SESSION['status'] === "online"){
+                ?>
+                    <!-- <div class="active-status" style="<?php //echo $data["activeStatus"] ?>">
+                        <i class="dot">.</i>
+                        Online
+                    </div> -->
+                    <div class="online">
+                        <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end; color:#31d65a">
+                            <div class="onlineindc">
+                            </div>Online
+                        </span>
+                    </div>
+                <?php
+                    }else{
+                ?>
+                    <div class="online" style="display:none">
+                        <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end; color:#31d65a">
+                            <div class="onlineindc">
+                            </div>Online
+                        </span>
+                    </div>
+                <?php
+                    }
+                ?>
                 <div class="profile-picture">
                     <img src="../public/assests/images/profilePictures/<?php echo $profilePicture ?>" alt="pro-pic" loading="lazy">
                     <div class="full-name">

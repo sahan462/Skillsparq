@@ -6,7 +6,7 @@
     }
 ?>
 
-<div class="sellerHelpContainer">
+<div class="buyerHelpContainer">
 
     <!-- Send Request Modal -->
     <div class="overlay" id="overlay">
