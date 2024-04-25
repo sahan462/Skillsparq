@@ -752,3 +752,23 @@ box-shadow: var(--shadow); */
     border: #000;
     border-radius: 10px;
 }
+
+th a{
+    text-decoration: none;
+    color: white;
+
+}
+.solved {
+    background-color: green;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+.unsolved {
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    text-align: center;
+}

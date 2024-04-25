@@ -5,7 +5,8 @@ class Order extends Controller
     private $OrderHandlerModel;
     private $ChatHandlerModel;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->OrderHandlerModel = $this->model('orderHandler');
         $this->ChatHandlerModel = $this->model('chatHandler');
     }
@@ -38,9 +39,7 @@ class Order extends Controller
     //create a package order
     public function createPackageOrder() 
     {
-
         try{
-
             $orderState = "Requested";
             $requestDescription = $_POST['requestDescription'];
             $gigId = $_POST['gigId'];
@@ -290,7 +289,6 @@ class Order extends Controller
     public function verifyPayment()
     {
         try{
-
             print_r($_POST);
             //look for authorize api, capture api and refund api
             $merchantId = $_POST['merchant_id'];
