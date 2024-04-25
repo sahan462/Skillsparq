@@ -43,6 +43,10 @@ class SellerProfile extends Controller
 
             //get recently added Gigs
             $GigsOfSeller = $this->GigHandlerModel->getGig($sellerId);
+            $gigCountOfSeller = $this->GigHandlerModel->getGigCount($sellerId);
+            if(isset($gigCountOfSeller)){
+                $data['gigCount'] = $gigCountOfSeller;
+            }
 
             // not the recent gigs have to get the specific gigs which would be created by the seller.          
             
@@ -59,7 +63,6 @@ class SellerProfile extends Controller
             if($AllDetAboutGig){
                 $data['ALLABOUTGIG'] = $AllDetAboutGig;
             }else{
-                $data['gigCount'] = sizeof($AllDetAboutGig);
                 echo "<script>
                     alert('getGig function is not Accessible!')
                 </script>";

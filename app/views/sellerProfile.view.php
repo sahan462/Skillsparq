@@ -457,7 +457,7 @@
                     <span>My Gigs(
                         <?php 
                             if(isset($data['gigCount'])){
-                                echo sizeof($data['gigCount']);
+                                echo $data['gigCount']['GIGCOUNT'];
                             }else{
                                 echo 0;
                             }   

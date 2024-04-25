@@ -30,11 +30,6 @@
     <div class="coverImg">
         <img src="./assests/images/gigImages/coverImages/<?php echo $row['cover_image']?>" alt="card-1">
     </div>
-    
-
-    <div class="title">
-        <?php //echo $row['title']?>
-    </div>
 
     <!-- User Details -->
     <div class="user-details">

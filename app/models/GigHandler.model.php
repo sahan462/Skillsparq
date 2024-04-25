@@ -4,9 +4,7 @@ class GigHandler extends database
 {
 
     //create new gigs
-    public function addNewGig
-    // ($title, $description, $category, $coverImage, $packagePrice_1, $noOfDeliveryDays_1, $timePeriod_1, $noOfRevisions_1, $packageDescription_1, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime,$sliderImage1,$sliderImage2,$sliderImage3,$sliderImage4,$sellerId)
-    ($title, $description, $category, $uniqueCoverImageName, $packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1,  $packageDescription_1, $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3, $packageName_3, $noOfRevisions_3,  $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $uniquesliderImage1Name, $uniquesliderImage2Name, $uniquesliderImage3Name, $uniquesliderImage4Name, $sellerId)
+    public function addNewGig($title, $description, $category, $uniqueCoverImageName, $packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1,  $packageDescription_1, $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3, $packageName_3, $noOfRevisions_3,  $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $uniquesliderImage1Name, $uniquesliderImage2Name, $uniquesliderImage3Name, $uniquesliderImage4Name, $sellerId)
     {
         $query = "INSERT INTO gigs (title,description,category,cover_image,created_at,seller_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -195,7 +193,6 @@ class GigHandler extends database
     // read the recent gigs with the seller Details
     public function getRecentGigWithRelevantSellerDets()
     {
-        // $query = "SELECT * FROM Gigs ORDER BY gig_id DESC";
         $query = "SELECT * FROM GIGS INNER JOIN PROFILE ON PROFILE.USER_ID = GIGS.SELLER_ID ORDER BY gig_id DESC";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -216,29 +213,23 @@ class GigHandler extends database
         }
     }
 
-    // public function getGigWithGIG_PACKAGE_SLIDERIMAGE_TABLES($userId)
-    // {
-    //     $retrieveQuery = "SELECT * FROM GIGS INNER JOIN PACKAGES ON GIGS.GIG_ID = PACKAGES.GIG_ID INNER JOIN SLIDE_IMAGES ON PACKAGES.GIG_ID = SLIDE_IMAGES.GIG_ID WHERE GIGS.SELLER_ID = ?";
+    public function getGigCount($sellerId)
+    {
+        $retrieveQuery = "SELECT COUNT(*) AS GIGCOUNT FROM GIGS WHERE SELLER_ID = ?;";
 
-    //     $stmt = mysqli_prepare($GLOBALS['db'],  $retrieveQuery);
+        $stmt = mysqli_prepare($GLOBALS['db'],$retrieveQuery);
 
-    //     if (!$stmt) {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
 
-    //     mysqli_stmt_bind_param($stmt, "i", $userId);
-
-    //     if (mysqli_stmt_execute($stmt)) {
-    //         $result = $stmt->get_result();
-    //         $data = [];
-    //         while ($row = $result->fetch_assoc()) {
-    //             $data[] = $row;
-    //         }
-    //         return $data;
-    //     } else {
-    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-    //     }
-    // }
+        mysqli_stmt_bind_param($stmt, "i", $sellerId);
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
     //read gigs based on seller id
     public function getGig($sellerId)
