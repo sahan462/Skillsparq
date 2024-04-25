@@ -376,7 +376,7 @@ class OrderHandler extends database
         $query = "INSERT INTO deliveries 
         (
             delivery_description, 
-            attachements, 
+            attachments, 
             date,
             order_id
         ) 
@@ -391,7 +391,7 @@ class OrderHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
         
-        mysqli_stmt_bind_param($stmt, "ssdi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
+        mysqli_stmt_bind_param($stmt, "sssi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
 
         if (mysqli_stmt_execute($stmt)) {
             $deliveryId = mysqli_insert_id($GLOBALS['db']);

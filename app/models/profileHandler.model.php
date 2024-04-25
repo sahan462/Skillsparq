@@ -2,6 +2,7 @@
 class ProfileHandler extends database
 {
 
+    // check if the user name is already exists or not
     public function userNameCheck($userName)
     {
 
@@ -142,10 +143,12 @@ class ProfileHandler extends database
         }
     }
 
+    // delete a profile
     public function deleteProfile($userId)
     {
     }
 
+    // get all profiles
     public function getAllProfiles()
     {
         $query = "SELECT * from profile";
@@ -162,6 +165,8 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    // 
     public function updateCSA($profilePic, $firstName, $lastName, $country, $about, $userId)
     {
         $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profile_pic = ?, first_name = ?, last_name = ?, country = ?, about = ? WHERE user_id = ?");
