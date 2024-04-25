@@ -76,7 +76,7 @@ class OrderHandler extends database
     }
 
     // create Job Order 
-    public function createJobOrderRec($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
+    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
     {
         $insertQuery = "INSERT INTO orders 
         (
@@ -152,6 +152,9 @@ class OrderHandler extends database
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
         } else if ($orderType == 'job') {
+
+            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
+
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -360,14 +363,11 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-<<<<<<< HEAD
+
     }
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)
     {
-=======
-  
->>>>>>> 2e54414bd5bef646ca68afe3a4149654eac838b1
     }
 
     //upload a delivery
