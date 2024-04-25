@@ -7,8 +7,6 @@
     }
 
     $myOrders = $data['myOrders'];
-    // show($myOrders);
-
 
 ?>
 
@@ -60,11 +58,10 @@
                                     <th style="width: 26%;">Seller</th>
                                 <?php }?>
                                 
-                                <th style="width: 28%;">Gig</th>
+                                <th style="width: 28%;">Gig / Job</th>
                                 <th style="width: 10%;">Due On</th>
                                 <th style="width: 10%;">Total Amount</th>
                                 <th style="width: 10%;">Order Type</th>
-                                <th style="width: 10%;">Accept/Cancel</th>
                             </tr>
                         </div>
                         <div class="tbody">
