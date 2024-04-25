@@ -246,7 +246,7 @@ class OrderHandler extends database
     public function createPayment($paymentId, $payerId, $payeeId, $amount, $paymentDate, $paymentDescription, $paymentState, $orderId, $refundReceiverId, $refundIssuerId, $refundCause, $refundDate,  $milestoneId)
     {
         //add values to payments table
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO payments 
+        $query = "INSERT INTO payments 
         (
             payment_id, 
             payer_id, 
@@ -260,7 +260,9 @@ class OrderHandler extends database
         VALUES 
         (
             ?, ?, ?, ?, ?, ?, ?, ?
-        )");
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -365,15 +367,95 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
+  
     }
 
-    //deliver and order
-    public function makeDelivery($orderType, $orderId, $milestoneId)
+    //upload a delivery
+    public function uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime)
     {
+        $query = "INSERT INTO deliveries 
+        (
+            delivery_description, 
+            attachements, 
+            date,
+            order_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?
+        )";
 
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ssdi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
 
+        if (mysqli_stmt_execute($stmt)) {
+            $deliveryId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        // regular order deliveries table
+        if ($orderType == 'package' || $orderType == 'job'):
+
+            $query = "INSERT INTO regular_order_deliveries 
+            (
+                delivery_id
+            ) 
+            VALUES 
+            (
+                ?
+            )";
+    
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+            
+            mysqli_stmt_bind_param($stmt, "i", $deliveryId );
+
+            if (mysqli_stmt_execute($stmt)) {
+                $stmt->close();
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+            }
+
+        // milestone order deliveries table
+        elseif ($orderType == 'milestone'):
+
+            $query = "INSERT INTO regular_order_deliveries 
+            (
+                delivery_id, milestone_id
+            ) 
+            VALUES 
+            (
+                ?
+            )";
+    
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+            
+            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId );
+            if (mysqli_stmt_execute($stmt)) {
+                $stmt->close();
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+            }
+
+        endif;
+
+        return $deliveryId;
     }
+
 
     //retrieve delivered order files
     public function getDeliveries($orderType, $orderId, $milestoneId)
@@ -412,9 +494,9 @@ class OrderHandler extends database
         }
 
         return $deliveries;
-
     }
 
+    // retrieve all orders
     public function getAllOrders()
     {
         $query = "SELECT * FROM orders ORDER BY order_id DESC";
