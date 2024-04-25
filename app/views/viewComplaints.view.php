@@ -132,9 +132,7 @@
                     <!-- Add more options as needed -->
                 </select>
             </div>
-            <div style="margin-top: 15px;">
-                <button id="refund" onclick="refund()">Ask for Refund</button>
-            </div>
+
             <div style="margin-top: 15px;">
                 <button id="updateUserBlacklistBuyer" onclick="updateUserBlacklistBuyer()">Black List Buyer</button>
                 <button id="updateUserBlacklistSeller" onclick="updateUserBlacklistSeller()">Black List Seller</button>
@@ -143,10 +141,13 @@
 
 
             <form>
-                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter the reason to ask for refund"></textarea>
                 <br>
 
             </form>
+            <div style="margin-top: 15px;">
+                <button id="refund" onclick="refund()">Ask for Refund</button>
+            </div>
 
 
 

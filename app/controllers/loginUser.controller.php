@@ -41,8 +41,11 @@ class LoginUser extends Controller
 
                 $row = $this->loginHandler->userCheck($email, $password);
 
-
-                if ($row) {
+                if ($row['black_List'] == 1 && $row['role'] == "seller") {
+                    echo "seller is blacklisted";
+                } elseif ($row['black_List'] == 1) {
+                    echo "seller is blacklisted";
+                } elseif ($row) {
 
                     $_SESSION["userId"] = $row['user_id'];
                     $_SESSION["email"] = $row['user_email'];
