@@ -1,30 +1,8 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $username = $data['profileDetails']['user_name'];
-    $profilepicture = $data['profileDetails']['profile_pic'];
-    $firstname = $data['profileDetails']['first_name'];
-    $lastname = $data['profileDetails']['last_name'];
     $Country = "Sri Lanka";
-    $DateJoined = $data['profileDetails']['joined_date'];
-    $lastSeen = $data['profileDetails']['last_seen'];
     $lastSeen = $_SESSION['status'];
-    $about = $data['profileDetails']['about'];
-    $userId = $data['profileDetails']['user_id'];
-    $status = $data['activeStatus'];
-    $email = $data['mail']['user_email'];
-
-    // $Gigs = (array) $data['gigs'];
-    $Gigs = (array) $data['ALLABOUTGIG'];
-
-    $languages = $data['sellerProfileDets']['languages'];
-    
-    // print_r($languages);
-    $Gigs['sellerFirstaName'] = $firstname;
-    $Gigs['sellerLastName'] = $lastname;
-    $skills = $data['sellerProfileDets']['skills'];
-    $education = $data['sellerProfileDets']['education'];
-    // $portfolio = $data['sellerProfileDets']['portfolio'];
     // show($data);
     // print_r($_SESSION);
     // show($Gigs);
@@ -43,7 +21,7 @@
             <form id="profileUpdateForm" method="post" action="./sellerProfile/updateSellerProfile" enctype="multipart/form-data">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
                         <div class="editIcon">
                             <label for="newProfilePicture">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -60,17 +38,17 @@
                     <div class="seller-full-name">
                         <div class="row">
                             <label class="type-1">First Name:</label>
-                            <input type="text" id="firstName" name="firstName" value="<?php echo $firstname ?>" >
+                            <input type="text" id="firstName" name="firstName" value="<?php echo $data['profileDetails']['first_name'] ?>" >
                         </div>
                         <div class="row">
                             <label class="type-1">Last Name:</label>
-                            <input type="text" id="lastName" name="lastName" value="<?php echo $lastname ?>" >
+                            <input type="text" id="lastName" name="lastName" value="<?php echo $data['profileDetails']['last_name'] ?>" >
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <label for="about" class="type-1">About:</label>
-                    <textarea rows="5" id="about" name="about"><?php echo $about; ?></textarea>
+                    <textarea rows="5" id="about" name="about"><?php echo $data['profileDetails']['about']; ?></textarea>
                 </div>
                 <div class="buttons">
                     <button type="button" onclick="confirmActionProfUpdate('cancel')">Cancel Update</button>
@@ -79,7 +57,7 @@
 
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
-                <input type="hidden" name="currentProfilePicture" value="<?php echo $profilepicture?>">
+                <input type="hidden" name="currentProfilePicture" value="<?php echo $data['profileDetails']['profile_pic']?>">
             </form>
         </div>
     </div>
@@ -114,14 +92,14 @@
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
                     </div>
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-name">
                             <?php 
-                                echo $firstname ." ". $lastname;
+                                echo $data['profileDetails']['first_name'] ." ". $data['profileDetails']['last_name'];
                             ?>
                         </div>
                         <div class="seller-question">
@@ -174,7 +152,7 @@
                         <div class="seller-question">
                             Add Your Email here.
                         </div>
-                        <input type="text" name="Email" id="Email" value="<?php echo $email?>">
+                        <input type="text" name="Email" id="Email" value="<?php echo $data['mail']['user_email']?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -197,7 +175,7 @@
                         <div class="seller-question">
                             Add Your Languages here.    
                         </div>
-                        <input type="text" name="Languages" value="<?php echo $languages?>" id="Language">
+                        <input type="text" name="Languages" value="<?php echo $data['sellerProfileDets']['languages']?>" id="Language">
                     </div>
                 </div>
                 <div class="buttons">
@@ -221,7 +199,7 @@
                         <div class="seller-question">
                             Add Your Skills here.
                         </div>
-                        <input type="text" name="Skills" value="<?php echo $skills?>" id="Skill">
+                        <input type="text" name="Skills" value="<?php echo $data['sellerProfileDets']['skills']?>" id="Skill">
                     </div>
                 </div>
                 <div class="buttons">
@@ -245,7 +223,7 @@
                         <div class="seller-question">
                             Add Your Education here.
                         </div>
-                        <input type="text" name="Educations" value="<?php echo $education?>">
+                        <input type="text" name="Educations" value="<?php echo $data['sellerProfileDets']['education']?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -261,7 +239,7 @@
     <!-- ######################################################################### -->
 
     <?php
-        if(is_null($email)){
+        if(is_null($data['mail']['user_email'])){
     ?>
     <div class="AlertButton">
         <span class="closeAlertBtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -279,7 +257,7 @@
         <div class="profile-container">
             <div class="profile">
 
-                <?php if($lastSeen === 'online' || $_SESSION['status'] === "online") {?>
+                <?php if($data['profileDetails']['last_seen'] === 'online' || $_SESSION['status'] === "online") {?>
 
                 <div class="online">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>
@@ -290,19 +268,19 @@
                 <div class="offline">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;">
                         <div class="offlineDot">
-                        </div>Last seen: <?php echo $lastSeen?>
+                        </div>Last seen: <?php echo $data['profileDetails']['last_seen']?>
                     </span>
                 </div>
 
                 <?php } ?>
 
                 <div class="seller-profile-picture">
-                    <img src="../public/assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+                    <img src="../public/assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
                     <div class="seller-full-name">
-                        <?php echo $firstname. " " . $lastname; ?>
+                        <?php echo $data['profileDetails']['first_name']. " " . $data['profileDetails']['last_name']; ?>
                     </div>
                     <div class="user-name">
-                        <?php echo '@'.$username ?>
+                        <?php echo '@'.$data['profileDetails']['user_name'] ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -340,7 +318,7 @@
                             </svg>
                             Member Since
                         </span>
-                        <span><b><?php echo $DateJoined;?></b></span>
+                        <span><b><?php echo $data['profileDetails']['joined_date'];?></b></span>
                     </div>
                     <div class="info1">
                         <div class="emailSvg">
@@ -352,7 +330,7 @@
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
                         </div>  
                         <div class="email">
-                            <span><b><?php echo $email;?></b></span>
+                            <span><b><?php echo $data['mail']['user_email'];?></b></span>
                         </div>
                     </div>
                 </div>
@@ -367,8 +345,8 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(!empty($about)){
-                                echo $about;    
+                            if(!empty($data['profileDetails']['about'])){
+                                echo $data['profileDetails']['about'];    
                             }else{
                         ?>
                             <div>Please click <b>Edit Profile</b> to edit the about!</div>
@@ -404,12 +382,12 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(!empty($languages)){
+                            if(!empty($data['sellerProfileDets']['languages'])){
                                 // foreach($languages as $lang){
                         ?>
                             <div>
                                 <?php 
-                                    echo $languages;
+                                    echo $data['sellerProfileDets']['languages'];
                                 ?>
                             </div>
                         <?php  
@@ -439,8 +417,8 @@
                 </div>
                 <div class="description-content">
                         <?php 
-                            if(!empty($skills)){
-                                echo $skills;    
+                            if(!empty($data['sellerProfileDets']['skills'])){
+                                echo $data['sellerProfileDets']['skills'];    
                             }else{
                                 echo "Add skills that you're familiar with!";
                             }
@@ -463,32 +441,35 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($education)){
-                                echo $education;    
+                            if(isset($data['sellerProfileDets']['education'])){
+                                echo $data['sellerProfileDets']['education'];    
                             }else{
                                 echo "Add your education";
                             }
                         ?>
                     </div>
-                    <!-- <div class="dltIcon">
-                        <button>
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.5303 9.53033C15.8232 9.23744 15.8232 8.76256 15.5303 8.46967C15.2374 8.17678 14.7625 8.17678 14.4696 8.46967L15.5303 9.53033ZM8.46961 14.4697C8.17672 14.7626 8.17672 15.2374 8.46961 15.5303C8.76251 15.8232 9.23738 15.8232 9.53027 15.5303L8.46961 14.4697ZM9.53039 8.46967C9.2375 8.17678 8.76263 8.17678 8.46973 8.46967C8.17684 8.76256 8.17684 9.23744 8.46973 9.53033L9.53039 8.46967ZM14.4697 15.5303C14.7626 15.8232 15.2375 15.8232 15.5304 15.5303C15.8233 15.2374 15.8233 14.7626 15.5304 14.4697L14.4697 15.5303ZM14.4696 8.46967L8.46961 14.4697L9.53027 15.5303L15.5303 9.53033L14.4696 8.46967ZM8.46973 9.53033L14.4697 15.5303L15.5304 14.4697L9.53039 8.46967L8.46973 9.53033ZM8 4.75H16V3.25H8V4.75ZM19.25 8V16H20.75V8H19.25ZM16 19.25H8V20.75H16V19.25ZM4.75 16V8H3.25V16H4.75ZM8 19.25C6.20507 19.25 4.75 17.7949 4.75 16H3.25C3.25 18.6234 5.37665 20.75 8 20.75V19.25ZM19.25 16C19.25 17.7949 17.7949 19.25 16 19.25V20.75C18.6234 20.75 20.75 18.6234 20.75 16H19.25ZM16 4.75C17.7949 4.75 19.25 6.20507 19.25 8H20.75C20.75 5.37665 18.6234 3.25 16 3.25V4.75ZM8 3.25C5.37665 3.25 3.25 5.37665 3.25 8H4.75C4.75 6.20507 6.20507 4.75 8 4.75V3.25Z" fill="#018347"></path> </g></svg>
-                        </button>
-                        
-                    </div> -->
                 </div>
             </div>
         </div>
         <div class="sellerUser-contribution">
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php echo sizeof($Gigs)?>)</span>
+                    <span>My Gigs(
+                        <?php 
+                            if(isset($data['gigCount'])){
+                                echo sizeof($data['gigCount']);
+                            }else{
+                                echo 0;
+                            }   
+                        ?>
+                    )
+                    </span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
                     <?php
-                        if(!empty($Gigs)){ 
-                            foreach($Gigs as $row){
+                        if(!empty($data['ALLABOUTGIG'])){ 
+                            foreach($data['ALLABOUTGIG'] as $row){
                                 include "components/GigCard.component.php";
                             }
                         }

@@ -285,6 +285,7 @@ body{
     gap: 64px;
     margin-right: 32px;
     margin-left: 32px;
+    margin-bottom: 32px;
     padding: 0px 16px;
 }
 .sub-container .profile-container{
@@ -573,6 +574,7 @@ a{
 /* Seller User-content-content */
 .sellerProfileContainer .sub-container .sellerUser-contribution .Gig-content{
     width: 100%;
+    /* height: 100%; */
     display: flex;
     flex-wrap: wrap;
     gap: 20px;

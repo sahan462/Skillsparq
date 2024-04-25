@@ -40,7 +40,7 @@
     <div class="user-details">
         <div class="cardRow" style="align-items: center;">
             <div class="profile-pic">
-                <img src="./assests/images/gigImages/profilePictures/<?php echo $row['profile_pic']?>" alt="propic-1">
+                <img src="./assests/images/profilePictures/<?php echo $row['profile_pic']?>" alt="propic-1">
             </div> 
             <div class="cardRow" style="flex-direction: column;">
                 <div class="username">
@@ -110,8 +110,5 @@
                 }
             ?>
         </div>
-
-        
-
     </div>
 </div>

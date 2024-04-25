@@ -49,7 +49,9 @@ class SellerProfile extends Controller
             if ($GigsOfSeller) {
                 $data['gigs'] = $GigsOfSeller;
             } else {
-                echo "<script>alert('getGig function is not Accessible!')</script>";
+                echo "<script>
+                    alert('getGig function is not Accessible!')
+                </script>";
             }
 
             // Get Gig Details along with the relevant Seller using Seller Id
@@ -57,6 +59,7 @@ class SellerProfile extends Controller
             if($AllDetAboutGig){
                 $data['ALLABOUTGIG'] = $AllDetAboutGig;
             }else{
+                $data['gigCount'] = sizeof($AllDetAboutGig);
                 echo "<script>
                     alert('getGig function is not Accessible!')
                 </script>";
@@ -444,7 +447,7 @@ class SellerProfile extends Controller
         $targetDir = "../public/assests/images/profilePictures/";
         $profilePictureName = basename($_FILES["newProfilePicture"]["name"]); 
 
-        $profilePicExt = pathinfo($profilePictureName,PATHINFO_EXTENSION);        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName.$profilePicExt; //generate a unique filename 
+        $profilePicExt = pathinfo($profilePictureName,PATHINFO_EXTENSION);        $uniqueprofilePictureName = uniqid($profilePictureName, true) . '_' . time() . '_' . $userName.".".$profilePicExt; //generate a unique filename 
         $targetFilePath = $targetDir . $uniqueprofilePictureName; 
         $currentFilePath = $targetDir . $currentProfilePicture;
 
