@@ -49,14 +49,14 @@
                             if($accepted['count'] != 0){
                         ?>
                         <div class="thead">
-                            <tr style="position: sticky">
+                            <!-- <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'"> -->
+                            <tr style="position: sticky" onclick="window.location='manageOrders&'">
                                 <th style="width: 6%;">Proposal Id</th>
                                 <th style="width: 26%;">Buyer</th>
                                 <th style="width: 28%;">Job Title</th>
                                 <th style="width: 10%;">Job Due On</th>
                                 <th style="width: 10%;">Amount</th>
                                 <th style="width: 10%;">Type</th>
-                                <!-- <th style="width: 10%;">Accept/Reject Order</th> -->
                             </tr>
                         </div>
                             <?php 
@@ -67,18 +67,15 @@
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
                                 <td class="Buyer">
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
-                                <td>
-                                    <div>
-                                        <!-- <button onclick="window.location='manageOrders&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Accept</button>
-                                        <button onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'" style="cursor:pointer">Reject</button> -->
-                                    </div>
-                                </td>
                             </tr>
                                 <?php
                                     }
@@ -124,8 +121,11 @@
                         <div class="Tbody">
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
-                                <td>
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                <td class="Buyer">
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>
@@ -178,8 +178,11 @@
                         <div class="Tbody">
                             <tr>
                                 <td><?php echo $row['proposal_id'] ?></td>
-                                <td>
-                                    <a href=""><?php echo $row['first_name']."  ".$row['last_name'];?></a>
+                                <td class="Buyer">
+                                    <div class="BuyerImg">
+                                        <img class="buyerImgsentJobProps" src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="">
+                                    </div>
+                                    <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
                                 <td><?php echo $row['deadline'];?></td>

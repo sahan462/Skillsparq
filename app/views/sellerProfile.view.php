@@ -1,30 +1,13 @@
 <?php include "components/sellerHeader.component.php"; ?>
 
 <?php
-    $username = $data['profileDetails']['user_name'];
-    $profilepicture = $data['profileDetails']['profile_pic'];
-    $firstname = $data['profileDetails']['first_name'];
-    $lastname = $data['profileDetails']['last_name'];
     $Country = "Sri Lanka";
-    $DateJoined = $data['profileDetails']['joined_date'];
-    $lastSeen = $data['profileDetails']['last_seen'];
-    // $lastSeen = $_SESSION['status'];
-    $about = $data['profileDetails']['about'];
-    $userId = $data['profileDetails']['user_id'];
-    $status = $data['activeStatus'];
-    $email = $data['mail']['user_email'];
-    $Gigs = (array) $data['gigs'];
-
-    // $languages = $data['sellerProfileDets']['languages'];
-    // $languages = explode(" ", $languages);
-    
-    // print_r($languages);
-
-    // $skills = $data['sellerProfileDets']['skills'];
-    // $education = $data['sellerProfileDets']['education'];
-    // $portfolio = $data['sellerProfileDets']['portfolio'];
+    $lastSeen = $_SESSION['status'];
     // show($data);
     // print_r($_SESSION);
+    // show($Gigs);
+
+
 ?>
 
 <!-- Main Container for Seller -->
@@ -38,7 +21,7 @@
             <form id="profileUpdateForm" method="post" action="./sellerProfile/updateSellerProfile" enctype="multipart/form-data">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
                         <div class="editIcon">
                             <label for="newProfilePicture">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -55,17 +38,17 @@
                     <div class="seller-full-name">
                         <div class="row">
                             <label class="type-1">First Name:</label>
-                            <input type="text" id="firstName" name="firstName" value="<?php echo $firstname ?>" >
+                            <input type="text" id="firstName" name="firstName" value="<?php echo $data['profileDetails']['first_name'] ?>" >
                         </div>
                         <div class="row">
                             <label class="type-1">Last Name:</label>
-                            <input type="text" id="lastName" name="lastName" value="<?php echo $lastname ?>" >
+                            <input type="text" id="lastName" name="lastName" value="<?php echo $data['profileDetails']['last_name'] ?>" >
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <label for="about" class="type-1">About:</label>
-                    <textarea rows="5" id="about" name="about"><?php echo $about; ?></textarea>
+                    <textarea rows="5" id="about" name="about"><?php echo $data['profileDetails']['about']; ?></textarea>
                 </div>
                 <div class="buttons">
                     <button type="button" onclick="confirmActionProfUpdate('cancel')">Cancel Update</button>
@@ -74,7 +57,7 @@
 
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
-                <input type="hidden" name="currentProfilePicture" value="<?php echo $profilepicture?>">
+                <input type="hidden" name="currentProfilePicture" value="<?php echo $data['profileDetails']['profile_pic']?>">
             </form>
         </div>
     </div>
@@ -109,14 +92,14 @@
             <form id="profileDeleteForm" method="post" action="./sellerProfile/deleteSellerProfile">
                 <div class="seller-profile-picture">
                     <div class="updateSellerProfilePicture">
-                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
+                        <img id="previewImage" src="./assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
                     </div>
                 </div>
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-name">
                             <?php 
-                                echo $firstname ." ". $lastname;
+                                echo $data['profileDetails']['first_name'] ." ". $data['profileDetails']['last_name'];
                             ?>
                         </div>
                         <div class="seller-question">
@@ -163,19 +146,20 @@
     <!-- Modal Add Email -->
     <div class="overlay" id="overlayEmail">
         <div class="modalEmail" id="modalEmail">
-            <form id="emailForm" method="GET" action="sellerProfile/addEmail">
+            <form id="emailForm" method="POST" action="sellerProfile/addEmail">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
                             Add Your Email here.
                         </div>
-                        <input type="text" name="Email">
+                        <input type="text" name="Email" id="Email" value="<?php echo $data['mail']['user_email']?>">
                     </div>
                 </div>
                 <div class="buttons">
                     <button type="button" onclick="confirmEmail('cancelEmail')">Cancel</button>
                     <button type="button" onclick="confirmEmail('addEmail')">Add Email</button>
                 </div>
+                <input type="hidden" name="UserId" value="<?php echo $_SESSION['userId']?>">
             </form>
         </div>
     </div>
@@ -185,21 +169,19 @@
     <!-- Modal Add Languages -->
     <div class="overlay" id="overlaylang">
         <div class="modalLang" id="modallang">
-        <!-- <form id="languageForm" method="post" action="./sellerProfile/addProfileLanguages"> -->
-            <form id="lnForm" method="GET" action="sellerProfile/ad">
+            <form id="lnForm" method="POST" action="sellerProfile/addProfileLanguages">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
-                            Add Your Languages here.
+                            Add Your Languages here.    
                         </div>
-                        <input type="text" name="Languages">
+                        <input type="text" name="Languages" value="<?php echo $data['sellerProfileDets']['languages']?>" id="Language">
                     </div>
                 </div>
                 <div class="buttons">
                     <button type="button" onclick="confirmLang('canc')">Cancel</button>
                     <button type="button" onclick="confirmLang('ad')">Add</button>
                 </div>
-
                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
             </form>
@@ -211,14 +193,13 @@
     <!-- Modal Add Skills -->
     <div class="overlay" id="overlayskill">
         <div class="modalSkill" id="modalskill">
-        <!-- <form id="skillsForm" method="post" action="./sellerProfile/addProfileSKills"> -->
-            <form id="sklForm" method="GET" action="sellerProfile/ad">
+            <form id="sklForm" method="POST" action="sellerProfile/addProfileSkills">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
                             Add Your Skills here.
                         </div>
-                        <input type="text" name="Skills">
+                        <input type="text" name="Skills" value="<?php echo $data['sellerProfileDets']['skills']?>" id="Skill">
                     </div>
                 </div>
                 <div class="buttons">
@@ -236,14 +217,13 @@
     <!-- Modal Add Education -->
     <div class="overlay" id="overlayeducation">
         <div class="modalEducation" id="modaleducation">
-            <!-- <form id="educationForm" method="post" action="./sellerProfile/addProfileEducation"> -->
-            <form id="educForm" method="GET" action="sellerProfile/ad">
+            <form id="educForm" method="POST" action="sellerProfile/addProfileEducation">
                 <div class="row">
                     <div class="seller-modal-name">
                         <div class="seller-question">
                             Add Your Education here.
                         </div>
-                        <input type="text" name="Educations">
+                        <input type="text" name="Educations" value="<?php echo $data['sellerProfileDets']['education']?>">
                     </div>
                 </div>
                 <div class="buttons">
@@ -254,18 +234,12 @@
                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
             </form>
         </div>
-    </div>
-
-    <!-- ######################################################################### -->
-
-    <div class="dltIcon">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.5303 9.53033C15.8232 9.23744 15.8232 8.76256 15.5303 8.46967C15.2374 8.17678 14.7625 8.17678 14.4696 8.46967L15.5303 9.53033ZM8.46961 14.4697C8.17672 14.7626 8.17672 15.2374 8.46961 15.5303C8.76251 15.8232 9.23738 15.8232 9.53027 15.5303L8.46961 14.4697ZM9.53039 8.46967C9.2375 8.17678 8.76263 8.17678 8.46973 8.46967C8.17684 8.76256 8.17684 9.23744 8.46973 9.53033L9.53039 8.46967ZM14.4697 15.5303C14.7626 15.8232 15.2375 15.8232 15.5304 15.5303C15.8233 15.2374 15.8233 14.7626 15.5304 14.4697L14.4697 15.5303ZM14.4696 8.46967L8.46961 14.4697L9.53027 15.5303L15.5303 9.53033L14.4696 8.46967ZM8.46973 9.53033L14.4697 15.5303L15.5304 14.4697L9.53039 8.46967L8.46973 9.53033ZM8 4.75H16V3.25H8V4.75ZM19.25 8V16H20.75V8H19.25ZM16 19.25H8V20.75H16V19.25ZM4.75 16V8H3.25V16H4.75ZM8 19.25C6.20507 19.25 4.75 17.7949 4.75 16H3.25C3.25 18.6234 5.37665 20.75 8 20.75V19.25ZM19.25 16C19.25 17.7949 17.7949 19.25 16 19.25V20.75C18.6234 20.75 20.75 18.6234 20.75 16H19.25ZM16 4.75C17.7949 4.75 19.25 6.20507 19.25 8H20.75C20.75 5.37665 18.6234 3.25 16 3.25V4.75ZM8 3.25C5.37665 3.25 3.25 5.37665 3.25 8H4.75C4.75 6.20507 6.20507 4.75 8 4.75V3.25Z" fill="#018347"></path> </g></svg>
-    </div>
+    </div>    
 
     <!-- ######################################################################### -->
 
     <?php
-        if(is_null($email)){
+        if(is_null($data['mail']['user_email'])){
     ?>
     <div class="AlertButton">
         <span class="closeAlertBtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -283,7 +257,7 @@
         <div class="profile-container">
             <div class="profile">
 
-                <?php if($lastSeen === 'online' || $_SESSION['status'] === "online") {?>
+                <?php if($data['profileDetails']['last_seen'] === 'online' || $_SESSION['status'] === "online") {?>
 
                 <div class="online">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>
@@ -294,19 +268,19 @@
                 <div class="offline">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;">
                         <div class="offlineDot">
-                        </div>Last seen: <?php echo $lastSeen?>
+                        </div>Last seen: <?php echo $data['profileDetails']['last_seen']?>
                     </span>
                 </div>
 
                 <?php } ?>
 
                 <div class="seller-profile-picture">
-                    <img src="../public/assests/images/profilePictures/<?php echo $profilepicture?>" alt="pro-pic">
-                    <div class="full-name">
-                        <?php echo $firstname. " " . $lastname; ?>
+                    <img src="../public/assests/images/profilePictures/<?php echo $data['profileDetails']['profile_pic']?>" alt="pro-pic">
+                    <div class="seller-full-name">
+                        <?php echo $data['profileDetails']['first_name']. " " . $data['profileDetails']['last_name']; ?>
                     </div>
                     <div class="user-name">
-                        <?php echo '@'.$username ?>
+                        <?php echo '@'.$data['profileDetails']['user_name'] ?>
                     </div>
                     <div class="star-rating">
                         <span class="fa fa-star checked"></span>
@@ -317,7 +291,7 @@
                         <span>(0)</span>
                     </div>
                 </div>
-                <div class="edit-profile">
+                <div class="editSellerProfile">
                     <button onclick="openProfileUpdateModal(this)">Edit Profile</button>
                 </div>
                 <div class="delete-profile">
@@ -344,7 +318,7 @@
                             </svg>
                             Member Since
                         </span>
-                        <span><b><?php echo $DateJoined;?></b></span>
+                        <span><b><?php echo $data['profileDetails']['joined_date'];?></b></span>
                     </div>
                     <div class="info1">
                         <div class="emailSvg">
@@ -356,7 +330,7 @@
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
                         </div>  
                         <div class="email">
-                            <span><b><?php echo $email;?></b></span>
+                            <span><b><?php echo $data['mail']['user_email'];?></b></span>
                         </div>
                     </div>
                 </div>
@@ -371,8 +345,8 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(!empty($about)){
-                                echo $about;    
+                            if(!empty($data['profileDetails']['about'])){
+                                echo $data['profileDetails']['about'];    
                             }else{
                         ?>
                             <div>Please click <b>Edit Profile</b> to edit the about!</div>
@@ -408,14 +382,16 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($languages)){
+                            if(!empty($data['sellerProfileDets']['languages'])){
+                                // foreach($languages as $lang){
                         ?>
                             <div>
                                 <?php 
-                                    echo $lang;
+                                    echo $data['sellerProfileDets']['languages'];
                                 ?>
                             </div>
                         <?php  
+                                // }
                             }else{
                                 echo "Add languages that you're proficient with!";
                             }
@@ -441,8 +417,8 @@
                 </div>
                 <div class="description-content">
                         <?php 
-                            if(isset($skills)){
-                                echo $skills;    
+                            if(!empty($data['sellerProfileDets']['skills'])){
+                                echo $data['sellerProfileDets']['skills'];    
                             }else{
                                 echo "Add skills that you're familiar with!";
                             }
@@ -465,8 +441,8 @@
                     </div>
                     <div class="description-content">
                         <?php 
-                            if(isset($education)){
-                                echo $education;    
+                            if(isset($data['sellerProfileDets']['education'])){
+                                echo $data['sellerProfileDets']['education'];    
                             }else{
                                 echo "Add your education";
                             }
@@ -478,13 +454,22 @@
         <div class="sellerUser-contribution">
             <div class="sellerUser-content">
                 <div class="sellerheader">
-                    <span>My Gigs(<?php echo sizeof($Gigs)?>)</span>
+                    <span>My Gigs(
+                        <?php 
+                            if(isset($data['gigCount'])){
+                                echo $data['gigCount']['GIGCOUNT'];
+                            }else{
+                                echo 0;
+                            }   
+                        ?>
+                    )
+                    </span>
                     <a href="addGig"><button>Create A New Gig</button></a>
                 </div>
                 <div class="Gig-content">
                     <?php
-                        if(!empty($Gigs)){ 
-                            foreach($Gigs as $row){
+                        if(!empty($data['ALLABOUTGIG'])){ 
+                            foreach($data['ALLABOUTGIG'] as $row){
                                 include "components/GigCard.component.php";
                             }
                         }
@@ -502,19 +487,34 @@
                     <span>No feedbacks available</span>
                 </div>
             </div>
-            <!-- <div class="reviews"> -->
+            <div class="reviews">
                 <div class="sellerUser-content">
                     <div class="sellerheader">
-                        <span>My Portfolio</span>
-                        <a href=""><button>Add to Portfolio</button></a>
+                    <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
+                                enctype="multipart/form-data">
+                            <p>Select files to upload: 
+                                <div>
+                                    <label for="multipleImagesUpload">Add To Portfolio</label>
+                                    <input type="file" name="files[]" multiple id="multipleImagesUpload" required>
+                                </div>
+                                <div>
+                                    <label for="Submit">Submit</label>
+                                    <input type="submit" name="submit" id="Submit" required>
+                                </div>
+                                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+                        </form>
                     </div>
                     <div class="review-content">
+                        
+                        lkjflaskdf
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/>
                         </svg>
                         <span>Setup Your Portfolio Right Now !</span>
                     </div>
+                    <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
                 </div>
-            <!-- </div> -->
+            </div>
         </div>  
     </div>
 </div>

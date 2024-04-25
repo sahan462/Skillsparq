@@ -15,11 +15,10 @@ class ManageOrders extends Controller
         $data['title'] = "SkillSparq";
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
 
-        // show($data['myOrders']);
+        show($data['myOrders']);
         // show($_SESSION);
         $this->view('manageOrders', $data); 
     }
-
 
     //read orders
     public function getOrders($userId, $userRole){
@@ -32,7 +31,9 @@ class ManageOrders extends Controller
 
         }else{
 
-            echo "<script>alert('getOrders function is not Accessible!')</script>";
+            echo "<script>
+                alert('getOrders function is not Accessible!')
+            </script>";
 
         }
     }

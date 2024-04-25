@@ -14,8 +14,8 @@
     $feedbacks = $data['feedbacks'];
     $profileDetails = $data['profileDetails'];
     $sliderPics = $data['sliderImgs'];
-    print_r($gig);
-    print_r($profileDetails);
+    // print_r($gig);
+    // print_r($profileDetails);
     print_r($packages);
 
 ?>

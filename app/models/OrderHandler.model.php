@@ -76,7 +76,7 @@ class OrderHandler extends database
     }
 
     // create Job Order 
-    public function createJobOrderRec($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
     {
         $insertQuery = "INSERT INTO orders 
         (
@@ -155,8 +155,7 @@ class OrderHandler extends database
 
         } else if ($orderType == 'job') {
 
-            
-
+            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
 
         } else {
 
