@@ -16,6 +16,29 @@ class SharePoint extends Controller
 
         $orderId = $_GET['orderId'];
         $orderType = $_GET['orderType'];
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['sellerId'])){
+            $data['sellerId'] = $_GET['sellerId'];
+        }
+
+        if(isset($_GET['buyerId'])){
+            $data['buyerId'] = $_GET['buyerId'];
+        }
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['orderState'])){
+            $data['orderState'] = $_GET['orderState'];
+        }else{
+            $data['orderState'] = null;
+        }
+
         if(isset($_GET['milestoneId'])){
             $milestoneId = $_GET['milestoneId'];
         }else{
@@ -75,26 +98,28 @@ class SharePoint extends Controller
         
                 // Upload attachment if provided
                 if($attachmentName != ""){
-                    $targetFilePath = $targetSubDir . $attachmentName;
+                    $uniqueAttachmentName = date('YmdHis') . "_" . $attachmentName;
+                    $targetFilePath = $targetSubDir . $uniqueAttachmentName;
                     $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
                 }else{
+                    $uniqueAttachmentName = "";
                     $attachmentName = "";
                 }
 
                 if($upload){
-                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime);
+                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $uniqueAttachmentName, $currentDateTime);
                     if($isInserted){
                         if($orderType == 'milestone'){
                             echo "
                             <script>
-                                alert('Payment done successfully');
+                                alert('deliver sent successfully');
                                 window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
                             </script>
                         ";
                         }else{
                             echo "
                             <script>
-                                alert('Payment done successfully');
+                                alert('deliver sent  successfully');
                                 window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ."';
                             </script>
                         ";

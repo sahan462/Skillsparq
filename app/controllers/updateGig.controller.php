@@ -26,12 +26,16 @@ class updateGig extends Controller
 
             if($userId === $_SESSION['userId']){
 
+
+                // $ALLDETAILS = $this->GigHandlerModel->getGigWithGIG_PACKAGE_SLIDERIMAGE_TABLES($userId);
+
                 $gig = $this->GigHandlerModel->displayGig($gigId);
                 $slideImages = $this->GigHandlerModel->retrieveSliderImages($gigId);
                 
                 if ($gig !== null) {
-                    $data['gigDetails'] = $gig;
+                    $data['GIG'] = $gig;
                     $data['slideImages'] = $slideImages;
+                    // show($data);
                     $this->view('UpdateGig', $data); 
                 } else {
                     echo "<script>alert('Gig update is not Accessible!')</script>";

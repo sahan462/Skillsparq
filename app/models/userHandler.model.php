@@ -2,6 +2,7 @@
 class UserHandler extends database
 {
 
+    // create new user
     public function addNewUser($user_email, $user_password, $role, $agreement)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO User (user_email, user_password,  role, agreement) VALUES (?, ?, ?, ?)");
@@ -21,6 +22,7 @@ class UserHandler extends database
         }
     }
 
+    // register seller
     public function addNewSeller($user_password, $role, $agreement)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO User (user_password,  role, agreement) VALUES (?, ?, ?)");

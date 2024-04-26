@@ -1,5 +1,4 @@
 // -----------------------------tab function------------------------------------------------
-
 document.getElementById("defaultOpen").click();
 
 function openTab(evt, tabName) 
@@ -28,7 +27,6 @@ function openTab(evt, tabName)
 
 
 // ---------------------------------------Timer--------------------------------------------------------
-
 // Set the date we're counting down to
 var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
 
@@ -61,7 +59,6 @@ var x = setInterval(function()
 
 
 // ---------------------------------------modals--------------------------------------------------------
-
 function confirmStateChange(action) 
 {
 
@@ -110,7 +107,6 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId)
 
 
 // ---------------------------------------Payment Form submission--------------------------------------------------------
-
 function submitpaymentForm(){
   const paymentForm = document.getElementById('paymentForm');
   paymentForm.submit();
@@ -118,7 +114,6 @@ function submitpaymentForm(){
 
 
 // ---------------------------------------Cancel an order--------------------------------------------------------
-
 async function cancelOrder(orderId, orderType, buyerId, sellerId) 
 {
   var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;

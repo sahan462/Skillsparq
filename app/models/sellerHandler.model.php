@@ -15,7 +15,8 @@ class SellerHandler extends database
     //add new seller
     public function addNewSeller($user_id, $phoneNumber)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO seller (seller_id, phone_number) VALUES (?, ?)");
+        $insertQuery = "INSERT INTO seller (seller_id, phone_number) VALUES (?, ?)";
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
@@ -91,16 +92,16 @@ class SellerHandler extends database
     }
 
     // adding the languages of the profile into seller_profile table
-    public function addLanguages($userName,$languages)
+    public function addLanguages($languages,$userName,$userId)
     {
-        $query = "UPDATE seller_profile  SET languages = ? WHERE user_name = ?;";
+        $query = "UPDATE seller_profile  SET languages = ? WHERE user_name = ? AND user_id = ?;";
         $stmt = mysqli_prepare($GLOBALS['db'] , $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "ss",$languages,$userName);
+        mysqli_stmt_bind_param($stmt, "ssi",$languages,$userName,$userId);
 
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
@@ -111,16 +112,16 @@ class SellerHandler extends database
     }
 
     // adding the skills of the profile into seller_profile table
-    public function addSkills($userName,$skills)
+    public function addSkills($skills,$userName,$userId)
     {
-        $query = "UPDATE seller_profile  SET skills = ? WHERE user_name = ?;";
+        $query = "UPDATE seller_profile  SET skills = ? WHERE user_name = ? AND user_id = ?;";
         $stmt = mysqli_prepare($GLOBALS['db'] , $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "ss",$skills,$userName);
+        mysqli_stmt_bind_param($stmt, "ssi",$skills,$userName,$userId);
 
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
@@ -131,22 +132,77 @@ class SellerHandler extends database
     }
 
     // adding the education of the profile into seller_profile table
-    public function addEducation($userName,$education)
+    public function addEducation($education,$userName,$userId)
     {
-        $query = "UPDATE seller_profile  SET education = ? WHERE user_name = ?;";
+        $query = "UPDATE seller_profile  SET education = ? WHERE user_name = ? AND user_id = ?;";
         $stmt = mysqli_prepare($GLOBALS['db'] , $query);
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "ss",$education,$userName);
+        mysqli_stmt_bind_param($stmt, "ssi",$education,$userName,$userId);
 
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
             return true; 
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function insertPortfolioImgs($userId,$imgContent)
+    {
+        // Give an insert query for this instead of using an update query. 
+        $insertQuery = "INSERT INTO portfolio_images (User_Id, Image) VALUES ( ? , ? );";
+        $stmt = mysqli_prepare($GLOBALS['db'],$insertQuery);
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "is",$userId,$imgContent);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getPortfolioImgs($userId,$imgId)
+    {
+        $getQuery = "SELECT Image FROM portfolio_images WHERE User_Id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$getQuery);
+    
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i",$userId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function deletePortfolioImgs($userId,$imgId)
+    {
+        $deleteQuery = "DELETE FROM portfolio_images WHERE User_Id = ? AND Image_Id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'],$deleteQuery);
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "ii", $userId,$imgId);
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true; 
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 
