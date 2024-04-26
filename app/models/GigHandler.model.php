@@ -325,12 +325,9 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $gigId);
     
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $packages = [];
-            while ($row = $result->fetch_assoc()) {
-                $packages[] = $row;
-            }
+            $packages = $stmt->get_result();
             return $packages;
+            
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
