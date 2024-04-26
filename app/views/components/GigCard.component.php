@@ -18,7 +18,11 @@
     <?php
             }else{
     ?>  
-        <!-- visibility Hidden -->
+    <div class="deleteContainer">
+        <div class="dltIcon">
+            <!-- visibility Hidden Only for the Button Icon -->
+        </div>
+    </div>
     <?php
             }
         }else if($_SESSION['role'] == "Buyer"){

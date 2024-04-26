@@ -30,7 +30,6 @@ class Search extends Controller
                 echo "
                     <script>
                         window.alert('Search not Found !!')
-                        window.location.href = '" . BASEURL . "home';
                     </script>
                 ";
             }

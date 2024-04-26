@@ -7,7 +7,10 @@
 
     }
 
-    $search = $data['SEARCH'];
+    if(isset($data)){
+        $search = $data['SEARCH'];
+    }
+    
 ?>
 
 
@@ -21,14 +24,18 @@
             <?php
 
                 // $rowIndex = 0;
-                if(mysqli_num_rows($search) > 0){
-                    while ($row = mysqli_fetch_assoc($search)) {
-                        // $rowIndex++;
-                        $searchResults[] = $row;
+                if(isset($search)){
+                    if(mysqli_num_rows($search) > 0){
+                        while ($row = mysqli_fetch_assoc($search)) {
+                            // $rowIndex++;
+                            $searchResults[] = $row;
+                        }
+                        // print_r($searchResults);
                     }
-                    // print_r($searchResults);
+                    print_r($searchResults);
+                }else{
+                    print_r("Search Not Found");
                 }
-                print_r($searchResults);
             ?>
         </div>
     </div>
