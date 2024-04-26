@@ -129,23 +129,53 @@ $jobs = $data['AllJobs'];
             </div>
             <div class="jobs">
                 <div class="job-header">
-                    <h3>Most Recent Jobs You Might Like</h3>
-                    <select onchange="" name="SellerDashSelectJobType" id="SellerDashSelectJobType">
-                        <span>Publish Mode</span>
-                        <option value="">Select Mode</option>
-                        <option value="Auction Mode">Auction Mode</option>
-                        <option value="Standard Mode">Standard Mode</option>
-                    </select>
+                <h3>Most Recent Jobs You Might Like</h3>
+                    <div class="SellerDashFilterContainer">
+                        <form action="" method="GET">
+                            <div class="SellerDashFilterSelect"> 
+                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType">
+                                    <span>Publish Mode</span>
+                                    <option value="" disabled="" selected="">Select Mode</option>
+                                    <option value="Auction Mode"
+                                        <?php isset($_GET['SellerDashSelectJobType']) == true ? ($_GET['SellerDashSelectJobType'] == 'Auction Mode' ? 'selected':''):''?>
+                                    >Auction Mode
+                                    </option>
+                                    <option value="Standard Mode"
+                                        <?php isset($_GET['SellerDashSelectJobType']) == true ? ($_GET['SellerDashSelectJobType'] == 'Standard Mode' ? 'selected':''):''?>
+                                    >Standard Mode
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="TYPE-1">
+                                <button type="submit">Filter</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <?php
+                    // if(isset($_GET['SellerDashSelectJobType']) && $_GET['SellerDashSelectJobType'] != ''){
+
+                        // $jobType = $_GET['SellerDashSelectJobType'];
+                        // $jobs = mysqli_query($_GLOBALS['db'],"SELECT * FROM JOBS WHERE PUBLISH_MODE ='$jobType' ORDER BY CREATED_AT DESC");
+
+                    // }
+                ?>
                 <div class="jobContent">
                     <?php
+                    if(!empty($data['filter'])){
+                        $jobs = $data['filter'];
                         if ($jobs->num_rows > 0) {
-
-                        while ($job = $jobs->fetch_assoc()) {
-
+                            while ($job = $jobs->fetch_assoc()) {
                                 include "components/jobCard.component.php";
                             } 
                         }
+                    }else{
+                        if ($jobs->num_rows > 0) {
+                            while ($job = $jobs->fetch_assoc()) {
+                                include "components/jobCard.component.php";
+                            } 
+                        }
+                    }
                     ?>
 
                         <?php 

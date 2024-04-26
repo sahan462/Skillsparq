@@ -100,6 +100,24 @@ body{
     background-color: #fff;
     border-radius: 10px 10px 0 0;
 }
+
+.SellerDashFilterContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sellerDashboard-content
+.TYPE-1{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
 .jobs .content{
     width: 100%;
 }
@@ -173,9 +191,9 @@ body{
     width: 100%;
     height: 32px;
     margin-bottom: 8px;
-    color: #fff;
-    border: 2px solid #1dbf73;
-    background: #1dbf73;
+    color: #333;
+    border: 2px solid #333;
+    background: none;
     border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
@@ -183,8 +201,8 @@ body{
 .preview-profile button:hover{
     color: #fff;
     background: #1dbf73;
-    border: 2px solid #fff;
-    box-shadow: 5px 5px 20px #333;
+    border: 2px solid #333;
+    box-shadow: none !important;
 }
 .edit-profile button{
     width: 100%;

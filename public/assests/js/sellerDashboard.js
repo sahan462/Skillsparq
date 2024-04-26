@@ -15,22 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Wait for the DOM content to be loaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Get all job cards
-    const jobCards = document.querySelectorAll('.job-card');
+// // Wait for the DOM content to be loaded
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Get all job cards
+//     const jobCards = document.querySelectorAll('.job-card');
 
-    // Iterate over each job card
-    jobCards.forEach(jobCard => {
-        // Check if the job card contains the job data auction div
-        const jobDataAuction = jobCard.querySelector('.job-data-auction');
+//     // Iterate over each job card
+//     jobCards.forEach(jobCard => {
+//         // Check if the job card contains the job data auction div
+//         const jobDataAuction = jobCard.querySelector('.job-data-auction');
 
-        if (jobDataAuction) {
-            // If the job data auction div is present, hide the entire job card
-            jobCard.style.display = 'none';
-        }
-    });
-});
+//         if (jobDataAuction) {
+//             // If the job data auction div is present, hide the entire job card
+//             jobCard.style.display = 'none';
+//         }
+//     });
+// });
 
 
 // let selectMenu = document.querySelector("#SellerDashSelectJobType");
@@ -47,47 +47,47 @@ document.addEventListener("DOMContentLoaded", function() {
 //     http.send("category="+categoryName)
 // })
 
-$(document).ready(function(){
+$(document).ready(() => {
     $('#SellerDashSelectJobType').on('change',function(){
         var value = $(this).val();
-        // alert(value);
+        alert(value);
 
-        $.ajax({
-            url:"fetch.php",
-            type:"GET",
-            data:"request="+value;
-            beforeSend:function(){
-                $('.jobContent').html("<span>Working...</span>")
-            },
-            success:function(){
-                $(".jobContent").html(data);
-            }
-        });
+        // $.ajax({
+        //     url:"fetch.php",
+        //     type:"GET",
+        //     data:"request=" + value,
+        //     beforeSend:function(){
+        //         $('.jobContent').html("<span>Working...</span>")
+        //     },
+        //     success:function(){
+        //         $(".jobContent").html(data);
+        //     }
+        // });
     })
 })
 
 
 // ---------------------------------------Change the Publish Mode--------------------------------------------------------
-async function changeMode(jobId,buyerId) 
-{
-  var requestBody = 'jobId=' + encodeURIComponent(jobId) + '&buyerId=' + encodeURIComponent(buyerId) ;
+// async function changeMode(jobId,buyerId) 
+// {
+//   var requestBody = 'jobId=' + encodeURIComponent(jobId) + '&buyerId=' + encodeURIComponent(buyerId) ;
 
-  try {
-      const response = await fetch('order/cancelOrder', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: requestBody,
-      });
+//   try {
+//       const response = await fetch('order/cancelOrder', {
+//           method: 'GET',
+//           headers: {
+//               'Content-Type': 'application/x-www-form-urlencoded',
+//           },
+//           body: requestBody,
+//       });
       
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
+//       if (!response.ok) {
+//           throw new Error('Network response was not ok');
+//       }
 
-      alert("Order cancelled successfully");
-      window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
+//       alert("Order cancelled successfully");
+//       window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
+//   } catch (error) {
+//       console.error('Error:', error);
+//   }
+// }
