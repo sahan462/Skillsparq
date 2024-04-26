@@ -6,8 +6,7 @@
     }
     
     // $job = $data['job'];
-    // print_r($data);
-    // show($data);
+    print_r($data);
     $buyerId = $data['buyerDetails']['user_id'];
     if($_SESSION['role'] !== "Buyer"){
         $sellerId = $data['sellerDetails']['user_id'];
@@ -97,9 +96,31 @@
                             </div>
                         </div>
                         <div class="auctionDetialsButton">
-                            <button class = "sendProposalButton" onclick="openJobProposalModalAuc(this)">
-                                <a class="proposalButtonLink" href="#">Send & Bid</a>
+                            <?php 
+                                
+                                if( ($data['job']['start_time'] >= date("Y-m-d H:i:s", time())) 
+                                // && ($data['job']['end_time'] = date("Y-m-d H:i:s", time()))
+                                ){
+                            ?>
+                            <button class = "sendProposalButton">
+                                <a class="proposalButtonLink" >Starting Soon</a>
                             </button>
+                            <?php
+                                }else if(($data['job']['end_time'] <= date("Y-m-d H:i:s", time()))){
+                            ?>
+                            <button class = "sendProposalButton">
+                                <a class="proposalButtonLink" >Ended</a>
+                            </button>
+                            <?php
+                                }else{
+                            ?>
+                            <button class = "sendProposalButton" style="cursor: pointer;">
+                                <a class="proposalButtonLink" onclick="openJobProposalModalAuc(this)">Send & Bid</a>
+                            </button>
+                            <?php
+                                }
+                            ?>
+                            
                         </div>
                     </div>
                 </div>
@@ -123,6 +144,7 @@
                                         </div>
                                         <textarea name="descriptionJobProposal" id="descriptionJobProposalAuc" cols="30" rows="10" required></textarea>
                                     </div>
+
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
                                         <input name="attachment" type="file" id="inputFile" required>
                                     </div>

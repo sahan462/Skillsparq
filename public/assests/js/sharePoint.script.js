@@ -1,54 +1,4 @@
-function showrate() {
-    // Get the checkbox
-    var checkBox = document.getElementById("final");
-    // Get the output text
-    var rateSec = document.getElementById("rateSec");
-  
-    // If the checkbox is checked, display the output text
-    if (checkBox.checked == true) {
-      rateSec.style.display = "block";
-    } else {
-      rateSec.style.display = "none";
-    }
-  }
-  
-function showProductName()
-{
-  var fileInput = document.getElementById('productf');   
-  var filename = fileInput.files[0].name;
-  var filesize =fileInput.files[0].filesize;
-  var text=document.getElementById('productname');
-  text.innerHTML="<b>File Name : </b>"+filename;
-}
-
-function showName()
-{
-  var fileInput = document.getElementById('file');   
-  var filename = fileInput.files[0].name;
-  var filesize =fileInput.files[0].filesize;
-  var text=document.getElementById('filename');
-  text.innerHTML="<b>File Name : </b>"+filename;
-}
-
-function activeSubmit()
-{
-  // Get the checkbox
-  var checkBox = document.getElementById("check");
-  // Get the output text
-  var btn = document.getElementById("btnx");
-  // If the checkbox is checked, display the output text
-  if (checkBox.checked == true) {
-    btn.style.pointerEvents='auto';
-    btn.style.backgroundColor='#00ad2b';
-  } else {
-    btn.style.pointerEvents='none';
-    btn.style.backgroundColor='rgb(85, 85, 85)';
-  }
-}
-
-
 //-----------------------------------------File Attachments------------------------------------------------------
-
 function displayFileName(index) 
 {
   var fileNameSpan = document.getElementsByClassName("fileName")[index];
@@ -76,13 +26,89 @@ function displayFileName(index)
 }
 
 //-------------------------------------------Star Rating----------------------------------------
-
 $(function () {
-  $("#rateYo").rateYo({
-    maxValue: 5,
-    numStars: 5,
-  }).on("rateyo.change", function (e, data) {
-    var rating = data.rating;
-    $(this).next('.rateValue').text("Rating: " + rating);
+  $(".rateYo").each(function () {
+      $(this).rateYo({
+          maxValue: 5,
+          numStars: 5,
+      }).on("rateyo.change", function (e, data) {
+          var rating = data.rating;
+          $(this).siblings('.rateValue').text("Rating: " + rating);
+          $(this).siblings('.ratingInput').val(rating);
+      });
   });
 });
+
+//------------------------------------handle delivery uploading--------------------------------
+function confirmAction(action)
+{
+  var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
+  var sendConfirmationModal = document.getElementById("sendConfirmationModal");
+
+  if (action === "send") {
+    sendConfirmationOverlay.style.display = "flex";
+    sendConfirmationModal.style.display = "block";
+  } else if (action === "cancel") {
+    cancelConfirmationOverlay.style.display = "flex";
+    cancelConfirmationModal.style.display = "block";
+  }
+
+}
+
+function handleConfirmation(action) 
+{
+  var sendConfirmationModal = document.getElementById("sendConfirmationModal");
+  var sendConfirmationOverlay = document.getElementById("sendConfirmationOverlay");
+
+  if (action === "sendDelivery") {
+
+    var input = document.getElementsByClassName("fileInput")[0];
+    var files = input.files;
+
+    if (files.length <= 0) {     
+      document.getElementsByClassName("warningMessage")[0].textContent = "Please select a file";
+      document.getElementsByClassName("warningMessage")[0].style.display = "block";
+
+      sendConfirmationModal.style.display = "none";
+      sendConfirmationOverlay.style.display = "none";
+
+      return false;
+    }
+
+    var form = document.getElementById("deliveryUploadForm");
+    form.submit();
+      
+  }else if (action === "completeOrder") {
+
+    var form = document.getElementById("orderCompletionForm");
+    form.submit();
+
+  }else if (action === "sendNo") {
+
+    sendConfirmationModal.style.display = "none";
+    sendConfirmationOverlay.style.display = "none";
+
+  } 
+
+}
+
+//-----------------------------------active order completetion--------------------------------
+function activeSubmit()
+{
+  // Get the checkbox
+  var checkBox = document.getElementById("check");
+  // Get the output text
+  var btn = document.getElementById("btnx");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true) {
+    btn.style.pointerEvents='auto';
+    btn.style.backgroundColor='#31d65a';
+    btn.style.color = "white";
+  } else {
+    btn.style.pointerEvents='none';
+    btn.style.backgroundColor='#333';
+    btn.style.color = "white";
+  }
+} 
+
+window.onload = activeSubmit;

@@ -16,12 +16,38 @@ class SharePoint extends Controller
 
         $orderId = $_GET['orderId'];
         $orderType = $_GET['orderType'];
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['sellerId'])){
+            $data['sellerId'] = $_GET['sellerId'];
+        }
+
+        if(isset($_GET['buyerId'])){
+            $data['buyerId'] = $_GET['buyerId'];
+        }
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['orderState'])){
+            $data['orderState'] = $_GET['orderState'];
+        }else{
+            $data['orderState'] = null;
+        }
+
         if(isset($_GET['milestoneId'])){
             $milestoneId = $_GET['milestoneId'];
         }else{
             $milestoneId = null;
         }
       
+        $data['orderId'] = $orderId;
+        $data['orderType'] = $orderType;
+
         $deliveris = $this->OrderHandlerModel->getDeliveries($orderType, $orderId, $milestoneId);
 
         if($deliveris){
@@ -39,7 +65,20 @@ class SharePoint extends Controller
     {
         try{
 
-            if(isset($_POST['submit'])){
+            if(isset($_POST['uploadDelivery'])){
+
+                $orderType = $_POST['orderType'];
+                $orderId = $_POST['orderId'];
+                if(isset($_POST['milestoneId'])){
+                    $milestoneId = $_POST['$milestoneId'];
+                }else{
+                    $milestoneId = null;
+                }
+                $deliveryDescription = $_POST['deliveryDescription'];
+                $currentDateTime = date('Y-m-d H:i:s');
+                $attachment = $_FILES['attachments'];
+                $attachmentName = basename($attachment["name"]);
+    
 
                 $orderFileName = "Order" . "_" . $orderId;
                 $targetMainDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
@@ -54,26 +93,51 @@ class SharePoint extends Controller
                 if (!file_exists($targetSubDir)) {
                     mkdir($targetSubDir, 0777, true);
                 }
-                
+
                 $upload = 0;
         
                 // Upload attachment if provided
                 if($attachmentName != ""){
-                    $targetFilePath = $targetDir . $attachmentName;
+                    $uniqueAttachmentName = date('YmdHis') . "_" . $attachmentName;
+                    $targetFilePath = $targetSubDir . $uniqueAttachmentName;
                     $upload = move_uploaded_file($attachment["tmp_name"], $targetFilePath);
                 }else{
+                    $uniqueAttachmentName = "";
                     $attachmentName = "";
+                }
+
+                if($upload){
+                    $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $uniqueAttachmentName, $currentDateTime);
+                    if($isInserted){
+                        if($orderType == 'milestone'){
+                            echo "
+                            <script>
+                                alert('deliver sent successfully');
+                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
+                            </script>
+                        ";
+                        }else{
+                            echo "
+                            <script>
+                                alert('deliver sent  successfully');
+                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ."';
+                            </script>
+                        ";
+                        }
+
+                    }
+
+                }else{
+                    throw new Exception("Unable to upload");
                 }
     
             }else{
-
                 throw new Exception("Error submitting delivery");
-    
             }
 
         }catch(Exception $e){
 
-            echo "Error uploading deliveries" , $e->getMessage();
+            echo "Error uploading deliveries: " , $e->getMessage();
 
         }
     }

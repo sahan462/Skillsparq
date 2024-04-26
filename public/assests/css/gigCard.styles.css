@@ -10,13 +10,14 @@
 
 .sellerProfileContainer .sub-container .sellerUser-contribution .Gig-content .gigCard{
     width: calc(100% / 3 - 16px);
-    height: 360px;
+    height: 100%;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
+
 .gigCard .user-details img{
     width: 48px;
     height: 48px;
@@ -24,11 +25,34 @@
     object-fit: cover;
     margin-right: 4px;
 }
-.gigCard .coverImg img{
+
+.deleteContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    cursor:auto;
+}
+
+.deleteContainer 
+.dltIcon{
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.gigCard 
+.coverImg img{
     width: 100%;
     height: 160px;
     border-radius: 8px 8px 0 0;
     margin-bottom: 4px;
+}
+.gigCard
+.coverImg
+{
+    display: flex; 
+         align-items: end;
+    /* justify-content: center */
 }
 .gigCard .rating{
     display: flex;
@@ -89,11 +113,27 @@
     color: black !important;
 }
 .gigCard .buttonType-1{
-    border-radius: 0 0 0 8px !important;
+    border-radius: 0 0 8px 8px !important;
 }
 .gigCard .buttonType-2{
     border-radius: 0 0 8px 0 !important;
 }
+
+.deleteContainer
+.dltIcon
+button
+a
+{
+    text-decoration: none;
+}
+
+.deleteContainer
+.dltIcon
+button
+{
+    border: none;
+}
+
 @media only screen and (max-width: 1200px) {
     .gigCard{
         width: calc(100% / 2 - 16px);

@@ -20,7 +20,6 @@ class ManageOrders extends Controller
         $this->view('manageOrders', $data); 
     }
 
-
     //read orders
     public function getOrders($userId, $userRole){
 
@@ -32,7 +31,9 @@ class ManageOrders extends Controller
 
         }else{
 
-            echo "<script>alert('getOrders function is not Accessible!')</script>";
+            echo "<script>
+                alert('getOrders function is not Accessible!')
+            </script>";
 
         }
     }

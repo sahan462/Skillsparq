@@ -104,3 +104,51 @@
 .content-table tbody {
     font-weight: 400; 
 }
+
+.container-five, .container-six, .container-seven{
+    margin-top: 25px;
+    border: 1px solid #c3c3c3;
+    border-radius: 7px;
+}
+
+.sub-container-five, .sub-container-six, .sub-container-seven{
+    margin-top: 10px;
+}
+
+.heading-three, .heading-four, .heading-five{
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.button-section{
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.button{
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: white;
+    font-weight: 500;
+    color: #1dbf73;
+    border: 2px solid #1dbf73;
+    border-radius: 5px;
+    letter-spacing: 0.7px;
+}
+
+.button:hover{
+    background-color: #1dbf73;
+    color: white;
+    border: 2px solid #1dbf73;
+    cursor: pointer;
+}

@@ -1,63 +1,5 @@
 <?php include "components/sellerHeader.component.php";?>
 
-<?php 
-    $gigDetails = $data['gigDetails'];
-
-    $gigId = $gigDetails['gig_id'];
-    $title = $gigDetails['title'];
-    $description = $gigDetails['description'];
-    $category = $gigDetails['category'];
-    $coverImage = $gigDetails['cover_image'];
-    $ongoingOrderCount = $gigDetails['ongoing_order_count'];
-    $createdAt = $gigDetails['created_at'];
-    $state = $gigDetails['state'];
-    $sellerId = $gigDetails['seller_id'];
-
-    // Details of package #1
-    $package1 = $gigDetails[0];
-    $packageId1 = $package1['package_id'];
-    $packageName_1 = $package1['package_name'];
-    $packagePrice_1 = $package1['package_price'];
-    $noOfDeliveryDays_1 = $package1['no_of_delivery_days'];
-    $timePeriod_1 = $package1['time_period'];
-    $noOfRevisions_1 = $package1['no_of_revisions'];
-    $packageDescription_1 = $package1['package_description'];
-    $package_1Created = $package1['created_at'];
-    $package_1GigId = $package1['gig_id'];
-
-    // Details of package #2
-    $package2 = $gigDetails[1];
-    $packageId2 = $package2['package_id'];
-    $packageName_2 = $package2['package_name'];
-    $packagePrice_2 = $package2['package_price'];
-    $noOfDeliveryDays_2 = $package2['no_of_delivery_days'];
-    $timePeriod_2 = $package2['time_period'];
-    $noOfRevisions_2 = $package2['no_of_revisions'];
-    $packageDescription_2 = $package2['package_description'];
-    $package_2Created = $package2['created_at'];
-    $package_2GigId = $package2['gig_id'];
-
-    // Details of package #3
-    $package3 = $gigDetails[2];
-    $packageId3 = $package3['package_id'];
-    $packageName_3 = $package3['package_name'];
-    $packagePrice_3 = $package3['package_price'];
-    $noOfDeliveryDays_3 = $package3['no_of_delivery_days'];
-    $timePeriod_3 = $package3['time_period'];
-    $noOfRevisions_3 = $package3['no_of_revisions'];
-    $packageDescription_3 = $package3['package_description'];
-    $package_3Created = $package3['created_at'];
-    $package_3GigId = $package3['gig_id'];
-    
-    $slideImages_id = $data["slideImages"]['side_images_id'];
-    $slideImage_1 = $data["slideImages"]['side_image_1'];
-    $slideImage_2 = $data["slideImages"]['side_image_2'];
-    $slideImage_3 = $data["slideImages"]['side_image_3'];
-    $slideImage_4 = $data["slideImages"]['side_image_4'];
-
-    // show($data);
-?>
-
 <!-- Main Container -->
 <div class="updateGigContainer">
 
@@ -93,7 +35,7 @@
 
                     <div class="title">
 
-                        <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php echo $title;?>" oninput="this.className = ''"></p>
+                        <p><input type="text" name="title" placeholder="I will create WordPress websites" value="<?php echo $data['GIG']['gigDetails']['title'];?>" oninput="this.className = ''"></p>
 
                     </div>
 
@@ -101,7 +43,7 @@
 
                         <span class="type-1"> Description</span>
                         <span class="type-2">Describe your gig and service you provide</span>
-                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 300px"><?php echo $description;?></textarea>
+                        <textarea name="description"  rows="16" spellcheck="false" oninput="this.className = ''" style="height: 300px"><?php echo $data['GIG']['gigDetails']['description'];?></textarea>
                         
                     </div>
 
@@ -112,16 +54,16 @@
 
                         <select name="category" class="categories">
 
-                            <option value="Graphics & Design" <?php echo ($category === 'Graphics & Design') ? 'selected' : '';?>>Graphics & Design</option>
-                            <option value="Programming & Tech" <?php echo ($category === 'Programming & Tech') ? 'selected' : '';?>>Programming & Tech</option>
-                            <option value="Digital Marketing" <?php echo ($category === 'Digital Marketing') ? 'selected' : '';?>>Digital Marketing</option>
-                            <option value="Video & Animation" <?php echo ($category === 'Video & Animation') ? 'selected' : '';?>>Video & Animation</option>
-                            <option value="Writing & Translation" <?php echo ($category === 'Writing & Translation') ? 'selected' : '';?>>Writing & Translation</option>
-                            <option value="Music & Audio" <?php echo ($category === 'Music & Audio') ? 'selected' : '';?>>Music & Audio</option>
-                            <option value="Business" <?php echo ($category === 'Business') ? 'selected' : '';?>>Business</option>
-                            <option value="Data" <?php echo ($category === 'Data') ? 'selected' : '';?>>Data</option>
-                            <option value="Photography" <?php echo ($category === 'Photography') ? 'selected' : '';?>>Photography</option>
-                            <option value="AI Services" <?php echo ($category === 'AI Services') ? 'selected' : '';?>>AI Services</option>
+                            <option value="Graphics & Design" <?php echo ($data['GIG']['gigDetails']['category'] === 'Graphics & Design') ? 'selected' : '';?>>Graphics & Design</option>
+                            <option value="Programming & Tech" <?php echo ($data['GIG']['gigDetails']['category'] === 'Programming & Tech') ? 'selected' : '';?>>Programming & Tech</option>
+                            <option value="Digital Marketing" <?php echo ($data['GIG']['gigDetails']['category'] === 'Digital Marketing') ? 'selected' : '';?>>Digital Marketing</option>
+                            <option value="Video & Animation" <?php echo ($data['GIG']['gigDetails']['category'] === 'Video & Animation') ? 'selected' : '';?>>Video & Animation</option>
+                            <option value="Writing & Translation" <?php echo ($data['GIG']['gigDetails']['category'] === 'Writing & Translation') ? 'selected' : '';?>>Writing & Translation</option>
+                            <option value="Music & Audio" <?php echo ($data['GIG']['gigDetails']['category'] === 'Music & Audio') ? 'selected' : '';?>>Music & Audio</option>
+                            <option value="Business" <?php echo ($data['GIG']['gigDetails']['category'] === 'Business') ? 'selected' : '';?>>Business</option>
+                            <option value="Data" <?php echo ($data['GIG']['gigDetails']['category'] === 'Data') ? 'selected' : '';?>>Data</option>
+                            <option value="Photography" <?php echo ($data['GIG']['gigDetails']['category'] === 'Photography') ? 'selected' : '';?>>Photography</option>
+                            <option value="AI Services" <?php echo ($data['GIG']['gigDetails']['category'] === 'AI Services') ? 'selected' : '';?>>AI Services</option>
 
                         </select>
 
@@ -147,25 +89,44 @@
                             <tr>
                                 <td style="text-align:left">Package Name</td>
                                 <td>
-                                    <input type="text" name ="packageName_1" oninput="this.className = ''" value="<?php echo $packageName_1;?>">
+                                    <input type="text" name ="packageName_1" oninput="this.className = ''" value="<?php 
+                                            if(isset($data['GIG']['packageDetails'][0]['package_name'])){
+                                                echo $data['GIG']['packageDetails'][0]['package_name'];
+                                            }else{
+                                                echo "";
+                                            }
+                                        
+                                    ?>">
                                 </td>
                                 <td>
-                                    <input type="text" name ="packageName_2" oninput="this.className = ''" value='<?php echo $packageName_2?>'>
+                                    <input type="text" name ="packageName_2" oninput="this.className = ''" value='<?php 
+                                            if(isset($data['GIG']['packageDetails'][1]['package_name'])){
+                                                echo $data['GIG']['packageDetails'][1]['package_name'];
+                                            }else{
+                                                echo "";
+                                            }
+                                    ?>'>
                                 </td>
                                 <td>
-                                    <input type="text" name ="packageName_3" oninput="this.className = ''" value="<?php echo $packageName_3;?>">
+                                    <input type="text" name ="packageName_3" oninput="this.className = ''" value="<?php
+                                            if(isset($data['GIG']['packageDetails'][2]['package_name'])){
+                                                echo $data['GIG']['packageDetails'][2]['package_name'];
+                                            }else{
+                                                echo "";
+                                            }
+                                    ?>">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align:left">Package Price</td>
                                 <td>
-                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" value='<?php echo $packagePrice_1;?>'>
+                                    <input type="number" name ="packagePrice_1" oninput="this.className = ''" min="5" max="1000" value='<?php echo $data['GIG']['packageDetails'][0]['package_price'];?>'>
                                 </td>
                                 <td>
-                                    <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" value='<?php echo $packagePrice_2?>'>
+                                    <input type="number" name ="packagePrice_2" oninput="this.className = ''" min="5" max="1000" value='<?php echo $data['GIG']['packageDetails'][1]['package_price'];?>'>
                                 </td>
                                 <td>
-                                    <input type="number" name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" value='<?php echo $packagePrice_3;?>'>
+                                    <input type="number" name ="packagePrice_3" oninput="this.className = ''" min="5" max="1000" value='<?php echo $data['GIG']['packageDetails'][2]['package_price'];?>'>
                                 </td>
                             </tr>
                             <tr>
@@ -173,42 +134,42 @@
                                 <td>
                                     <div class="noOfRevisions">
                                         <select style="width:100%" name="noOfRevisions_1"  class="categories">
-                                            <option value="1"<?php echo ($noOfRevisions_1 === '1') ? 'selected' : '';?>>1</option>
-                                            <option value="2"<?php echo ($noOfRevisions_1 === '2') ? 'selected' : '';?>>2</option>
-                                            <option value="3"<?php echo ($noOfRevisions_1 === '3') ? 'selected' : '';?>>3</option>
-                                            <option value="4"<?php echo ($noOfRevisions_1 === '4') ? 'selected' : '';?>>4</option>
-                                            <option value="5"<?php echo ($noOfRevisions_1 === '5') ? 'selected' : '';?>>5</option>
-                                            <option value="6"<?php echo ($noOfRevisions_1 === '6') ? 'selected' : '';?>>6</option>
-                                            <option value="7"<?php echo ($noOfRevisions_1 === '7') ? 'selected' : '';?>>7</option>
-                                            <option value="Unlimited"<?php echo ($noOfRevisions_1 === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
+                                            <option value="1"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                            <option value="2"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                            <option value="3"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                            <option value="4"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                            <option value="5"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                            <option value="6"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                            <option value="7"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                            <option value="Unlimited"<?php echo ($data['GIG']['packageDetails'][0]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="noOfRevisions">
                                         <select style="width:100%" name="noOfRevisions_2"  class="categories">
-                                            <option value="1"<?php echo ($noOfRevisions_2 === '1') ? 'selected' : '';?>>1</option>
-                                            <option value="2"<?php echo ($noOfRevisions_2 === '2') ? 'selected' : '';?>>2</option>
-                                            <option value="3"<?php echo ($noOfRevisions_2 === '3') ? 'selected' : '';?>>3</option>
-                                            <option value="4"<?php echo ($noOfRevisions_2 === '4') ? 'selected' : '';?>>4</option>
-                                            <option value="5"<?php echo ($noOfRevisions_2 === '5') ? 'selected' : '';?>>5</option>
-                                            <option value="6"<?php echo ($noOfRevisions_2 === '6') ? 'selected' : '';?>>6</option>
-                                            <option value="7"<?php echo ($noOfRevisions_2 === '7') ? 'selected' : '';?>>7</option>
-                                            <option value="Unlimited"<?php echo ($noOfRevisions_2 === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
+                                            <option value="1"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                            <option value="2"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                            <option value="3"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                            <option value="4"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                            <option value="5"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                            <option value="6"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                            <option value="7"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                            <option value="Unlimited"<?php echo ($data['GIG']['packageDetails'][1]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="noOfRevisions">
                                         <select style="width:100%" name="noOfRevisions_3"  class="categories">
-                                            <option value="1"<?php echo ($noOfRevisions_3 === '1') ? 'selected' : '';?>>1</option>
-                                            <option value="2"<?php echo ($noOfRevisions_3 === '2') ? 'selected' : '';?>>2</option>
-                                            <option value="3"<?php echo ($noOfRevisions_3 === '3') ? 'selected' : '';?>>3</option>
-                                            <option value="4"<?php echo ($noOfRevisions_3 === '4') ? 'selected' : '';?>>4</option>
-                                            <option value="5"<?php echo ($noOfRevisions_3 === '5') ? 'selected' : '';?>>5</option>
-                                            <option value="6"<?php echo ($noOfRevisions_3 === '6') ? 'selected' : '';?>>6</option>
-                                            <option value="7"<?php echo ($noOfRevisions_3 === '7') ? 'selected' : '';?>>7</option>
-                                            <option value="Unlimited"<?php echo ($noOfRevisions_3 === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
+                                            <option value="1"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '1') ? 'selected' : '';?>>1</option>
+                                            <option value="2"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '2') ? 'selected' : '';?>>2</option>
+                                            <option value="3"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '3') ? 'selected' : '';?>>3</option>
+                                            <option value="4"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '4') ? 'selected' : '';?>>4</option>
+                                            <option value="5"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '5') ? 'selected' : '';?>>5</option>
+                                            <option value="6"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '6') ? 'selected' : '';?>>6</option>
+                                            <option value="7"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === '7') ? 'selected' : '';?>>7</option>
+                                            <option value="Unlimited"<?php echo ($data['GIG']['packageDetails'][2]['no_of_revisions'] === 'Unlimited') ? 'selected' : '';?>>Unlimited</option>
                                         </select>
                                     </div>
                                 </td>
@@ -217,34 +178,34 @@
                                 <td style="text-align:left">Delivery Time</td>
                                 <td>
                                     <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
-                                        <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $noOfDeliveryDays_1?>'>
+                                        <input type="number" name="noOfDeliveryDays_1" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $data['GIG']['packageDetails'][0]['no_of_delivery_days']?>'>
                                         <select name="timePeriod_1" class="categories" >
-                                            <option value="Days"<?php echo ($timePeriod_1 === "Days") ? 'selected' : '';?>>Day(s)</option>
-                                            <option value="Weeks"<?php echo ($timePeriod_1 === "Weeks") ? 'selected' : '';?>>Week(s)</option>
-                                            <option value="Months"<?php echo ($timePeriod_1 === "Months") ? 'selected' : '';?>>Month(s)</option>
-                                            <option value="Years"<?php echo ($timePeriod_1 === "Years") ? 'selected' : '';?>>Year(s)</option>
+                                            <option value="Days"<?php echo ($data['GIG']['packageDetails'][0]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                            <option value="Weeks"<?php echo ($data['GIG']['packageDetails'][0]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                            <option value="Months"<?php echo ($data['GIG']['packageDetails'][0]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                            <option value="Years"<?php echo ($data['GIG']['packageDetails'][0]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
-                                        <input type="number" style="width:50%" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $noOfDeliveryDays_2?>'>
+                                        <input type="number" style="width:50%" name="noOfDeliveryDays_2" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $data['GIG']['packageDetails'][1]['no_of_delivery_days']?>'>
                                         <select style="width:50%" name="timePeriod_2" class="categories" >
-                                            <option value="Days"<?php echo ($timePeriod_2 === "Days") ? 'selected' : '';?>>Day(s)</option>
-                                            <option value="Weeks"<?php echo ($timePeriod_2 === "Weeks") ? 'selected' : '';?>>Week(s)</option>
-                                            <option value="Months"<?php echo ($timePeriod_2 === "Months") ? 'selected' : '';?>>Month(s)</option>
-                                            <option value="Years"<?php echo ($timePeriod_2 === "Years") ? 'selected' : '';?>>Year(s)</option>
+                                            <option value="Days"<?php echo ($data['GIG']['packageDetails'][1]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                            <option value="Weeks"<?php echo ($data['GIG']['packageDetails'][1]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                            <option value="Months"<?php echo ($data['GIG']['packageDetails'][1]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                            <option value="Years"<?php echo ($data['GIG']['packageDetails'][1]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="noOfDeliveryDays" style="display:flex; justify-content:space-between;">
-                                        <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $noOfDeliveryDays_3?>'>
+                                        <input type="number" name="noOfDeliveryDays_3" oninput="this.className = ''" id="quantity"  min="1" max="5" value='<?php echo $data['GIG']['packageDetails'][2]['no_of_delivery_days']?>'>
                                         <select name="timePeriod_3" class="categories" >
-                                            <option value="Days"<?php echo ($timePeriod_3 === "Days") ? 'selected' : '';?>>Day(s)</option>
-                                            <option value="Weeks"<?php echo ($timePeriod_3 === "Weeks") ? 'selected' : '';?>>Week(s)</option>
-                                            <option value="Months"<?php echo ($timePeriod_3 === "Months") ? 'selected' : '';?>>Month(s)</option>
-                                            <option value="Years"<?php echo ($timePeriod_3 === "Years") ? 'selected' : '';?>>Year(s)</option>
+                                            <option value="Days"<?php echo ($data['GIG']['packageDetails'][2]['time_period'] === "Days") ? 'selected' : '';?>>Day(s)</option>
+                                            <option value="Weeks"<?php echo ($data['GIG']['packageDetails'][2]['time_period'] === "Weeks") ? 'selected' : '';?>>Week(s)</option>
+                                            <option value="Months"<?php echo ($data['GIG']['packageDetails'][2]['time_period'] === "Months") ? 'selected' : '';?>>Month(s)</option>
+                                            <option value="Years"<?php echo ($data['GIG']['packageDetails'][2]['time_period'] === "Years") ? 'selected' : '';?>>Year(s)</option>
                                         </select>
                                     </div>
                                 </td>
@@ -253,17 +214,38 @@
                                 <td style="text-align:left">Description</td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_1" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php echo $packageDescription_1;?></textarea>
+                                    <textarea name="packageDescription_1" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php 
+                                            if(isset($data['GIG']['packageDetails'][0]['package_description'])){
+                                                echo $data['GIG']['packageDetails'][0]['package_description'];
+                                            }else{
+                                                echo "";
+                                            }
+                                        ?>
+                                    </textarea>
                                 </div>
                                 </td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_2" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php echo $packageDescription_2;?></textarea>
+                                    <textarea name="packageDescription_2" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php 
+                                            if(isset($data['GIG']['packageDetails'][1]['package_description'])){
+                                                echo $data['GIG']['packageDetails'][1]['package_description'];
+                                            }else{
+                                                echo "";
+                                            }
+                                        ?>
+                                    </textarea>
                                 </div>
                                 </td>
                                 <td>
                                 <div class="packageDescription">
-                                    <textarea name="packageDescription_3" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php echo $packageDescription_3;?></textarea>
+                                    <textarea name="packageDescription_3" placeholder="I will.." rows="6" spellcheck="false" oninput="this.className = ''"><?php 
+                                        if(isset($data['GIG']['packageDetails'][2]['package_description'])){
+                                            echo $data['GIG']['packageDetails'][2]['package_description'];
+                                        }else{
+                                            echo "";
+                                        }
+                                    ?>
+                                    </textarea>
                                 </div>
                                 </td>
                             </tr>
@@ -283,31 +265,64 @@
                         <div class="slideimg1">
                             <label for="coverImage">Cover Image:</label>
                             <input type="file" id="coverImage" name="newCoverImage" onchange="load_img_name(this.files[0],1)"/>
-                            <div id="filename1"><?php echo $coverImage?></div>
+                            <div id="filename1"><?php echo $data['GIG']['gigDetails']['cover_image']?></div>
                         </div>
 
                         <div class="slideimg1">
                             <label for="sliderImage1">Slider Image 1:</label>
                             <input type="file" id="sliderImage1" name="newSliderImage1"  onchange="load_img_name(this.files[0],2)"/>
-                            <div id="filename2"><?php echo $slideImage_1;?></div>
+                            <div id="filename2">
+                                <?php 
+                                    if(isset($data["slideImages"]['side_image_1'])){
+                                        echo $data["slideImages"]['side_image_1'];
+                                    }else{
+                                        echo "You have not set Slide Image 1 Yet !";
+                                    }
+                                ?>
+                            </div>
                         </div>
 
                         <div class="slideimg1">
                             <label for="sliderImage2">Slider Image 2:</label>
                             <input type="file" id="sliderImage2" name="newSliderImage2" onchange="load_img_name(this.files[0],3)"/>
-                            <div id="filename3"><?php echo $slideImage_2?></div>
+                            <div id="filename3">
+                                <?php 
+                                    if(isset($data["slideImages"]['side_image_2'])){
+                                        echo $data["slideImages"]['side_image_2'];
+                                    }else{
+                                        echo "You have not set Slide Image 2 Yet !";
+                                    }
+                                ?>
+                            </div>
                         </div>
 
                         <div class="slideimg1">
                             <label for="sliderImage3">Slider Image 3:</label>
                             <input type="file" id="sliderImage3" name="newSliderImage3" onchange="load_img_name(this.files[0],4)"/>
-                            <div id="filename4"><?php echo $slideImage_3?></div>
+                            <div id="filename4">
+                                <?php 
+                                    if(isset($data["slideImages"]['side_image_3'])){
+                                        echo $data["slideImages"]['side_image_3'];
+                                    }else{
+                                        echo "You have not set Slide Image 3 Yet !";
+                                    }
+                                ?>
+                            </div>
                         </div>
 
                         <div class="slideimg1">
                             <label for="sliderImage4">Slider Image 4:</label>
                             <input type="file" id="sliderImage4" name="newSliderImage4" onchange="load_img_name(this.files[0],5)"/>
-                            <div id="filename5"><?php echo $slideImage_4?></div>
+                            <div id="filename5">
+                                <?php 
+                                    if(isset($data["slideImages"]['side_image_4'])){
+                                        echo $data["slideImages"]['side_image_4'];
+                                    }else{
+                                        echo "You have not set Slide Image 4 Yet !";
+                                    }
+                                    
+                                ?>
+                            </div>
                         </div>
 
                     </div>
@@ -333,16 +348,16 @@
 
             </div>
 
-            <input type="hidden" name="gigId" value="<?php echo $gigId;?>">
-            <input type="hidden" name="packageId1" value="<?php echo $gigDetails[0]["package_id"]?>">
-            <input type="hidden" name="packageId2" value="<?php echo $gigDetails[1]["package_id"]?>">
-            <input type="hidden" name="packageId3" value="<?php echo $gigDetails[2]["package_id"]?>">
+            <input type="hidden" name="gigId" value="<?php echo $data['GIG']['gigDetails']['gig_id'];?>">
+            <input type="hidden" name="packageId1" value="<?php echo $data['GIG']['packageDetails'][0]['package_id'];?>">
+            <input type="hidden" name="packageId2" value="<?php echo $data['GIG']['packageDetails'][1]['package_id'];?>">
+            <input type="hidden" name="packageId3" value="<?php echo $data['GIG']['packageDetails'][2]['package_id'];?>">
 
             <input type="hidden" name="currentSliderImg1" value="<?php echo $slides["side_image_1"]?>">
             <input type="hidden" name="currentSliderImg2" value="<?php echo $slides["side_image_2"]?>">
             <input type="hidden" name="currentSliderImg3" value="<?php echo $slides["side_image_3"]?>">
             <input type="hidden" name="currentSliderImg4" value="<?php echo $slides["side_image_4"]?>">
-            <input type="hidden" name="currentCoverImage" value="<?php echo $gigDetails["cover_image"]?>">
+            <input type="hidden" name="currentCoverImage" value="<?php echo $data['GIG']['gigDetails']["cover_image"]?>">
 
         </form>
 

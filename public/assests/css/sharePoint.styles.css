@@ -39,13 +39,14 @@ body{
     padding: 8px;
     height: 25%;
     cursor: auto;
+    border: 1px solid #333;
 }
 
 .sharePointContainer .column{
     display: flex;
     flex-direction: column;
 }
-.title{
+.sharePointContainer .title{
     height: 10%;
     font-size: medium;
     /* color: #333; */
@@ -77,13 +78,14 @@ body{
 }
 
 .sharePointContainer .leftUpperContainer .deliveryFiles{
-    border: 1px solid #c5c6c9;
+    /* border: 1px solid #c5c6c9; */
     border-radius: 8px;
     height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
 }
 .sharePointContainer .deliveryFiles .animation{
     height: 100%;
@@ -161,140 +163,48 @@ body{
 .image-container img {
     width: 500px;
 }
+
+/* file card */
 .file {
-    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 8px;
     box-shadow: 1px 1px 5px 1px #c9c9c9;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    gap: 10px;
-    grid-auto-rows: repeat(3, 1fr);
     background-color: rgb(255, 255, 255);
 }
-.name {
-    font-weight: 500;
-    margin-top: 10px;
-    grid-column: 2;
-    grid-row: 1;
-    text-align: left;
+.file .fileIcon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10%;
 }
-.size {
-    grid-column: 2/3;
-    grid-row: 2;
-    font-size: small;
+.file .fileDetails{
+    width: 80%;
 }
-.download {
-    grid-column: 3;
-    grid-row: 1/3;
-    padding-top: 10px;
-    margin-right: 10px;
-    float: right;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+.file .downloadDeleteIcon{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 .downloadimg {
     float: right;
     width: 50px;
     height: 50px;
 }
-.time {
-    margin-right: 10px;
-    margin-bottom: 5px;
-    grid-column: 1/4;
-    grid-row: 3;
-    text-align: right;
-    font-size: small;
-    color: #333;
-}
 .fileimg {
-    grid-column: 1;
-    grid-row: 1/4;
     width: 50px;
     height: 50px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 15px;
 }
 
-/* GRID START */
-
-
-/* GRID END */
+/* file container */
 .filecontainer {
-    padding: 5px;
-    padding-left: 10px;
-}
-.filebtn {
-    color: transparent;
-}
-.filebtn::-webkit-file-upload-button {
-    visibility: hidden;
-}
-.filebtn::before {
-    content: "Select files";
-    color: black;
-    display: inline-block;
-    background-color: #007bff;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-}
-.filebtn::before:hover {
-    background-color: #ffffff;
-    color: #007bff;
-    box-shadow: 1px 1px 5px 0px #c9c9c9;
-}
-.upload_background {
-    display: flex;
-    justify-content: space-between;
-    background-color: #dadada;
-    padding: 16px;
-    border-radius: 8px;
-}
-.scrollable {
-    overflow-y: auto;
-    height: 65vh;
-    margin-bottom: 20px;
-}
-.scrollable-empty {
-    overflow-y: auto;
-    height: 65vh;
-    margin-bottom: 20px;
-    background-image: url(../img/sharepointbg.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.scrollable::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(63, 63, 63, 0.3);
-    border-radius: 6px;
-    background-color: #f3f3f3;
-}
-.scrollable::-webkit-scrollbar {
-    width: 7px;
-    background-color: #f3f3f3;
-}
-.scrollable::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    -webkit-box-shadow: inset 0 0 6px rgba(82, 82, 82, 0.3);
-    background-color: #555;
-}
-.textbox {
     width: 100%;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    border-radius: 7px;
-    background-color: #ececec;
+    padding: 8px;
 }
-
 
 
 /* Safari */

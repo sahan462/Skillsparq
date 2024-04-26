@@ -132,42 +132,54 @@
             </div>
             
             
-
-
-            <span style="font-size: 30px; font-weight:bold;">Orders </span><br>
-            <div class="boxes">
-                <div class=" subChart">
-                    <canvas id="totalOrders"></canvas>
+            <div class="container-five">
+                <div class="sub-container-five">
+                    <span class="heading-three">Orders </span>
                 </div>
-                <div class="subChart">
-                    <canvas id="orderState"></canvas>
-                </div>
-                <div class=" subChart">
-                    <canvas id="orderStatePrev"></canvas>
-                </div>
-            </div>
-
-            <span style="font-size: 30px; font-weight:bold;">Payments </span><br>
-            <div class="boxes">
-                <div class=" subChart">
-                    <canvas id="paymentStatusCurrent"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="totalPayments"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="Sales"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="noOfRefunds"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="totalRefunds"></canvas>
+                
+                <div class="boxes">
+                    <div class=" subChart">
+                        <canvas id="totalOrders"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="orderState"></canvas>
+                    </div>
+                    <div class=" subChart">
+                        <canvas id="orderStatePrev"></canvas>
+                    </div>
                 </div>
             </div>
 
-            <span style="font-size: 30px; font-weight:bold;">GIGS </span><br>
-            <div class="boxes">
+            <div class="container-six">
+                <div class="sub-container-six">
+                    <span class="heading-four">Payments </span>
+                </div>
+                <div class="boxes">
+                    <div class=" subChart">
+                        <canvas id="paymentStatusCurrent"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="totalPayments"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="Sales"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="noOfRefunds"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="totalRefunds"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="container-seven">
+                <div class="sub-container-seven">
+                    <span class="heading-five">GIGS </span>
+                </div>
+
+                <div class="boxes">
                 <div class="subChart">
                     <canvas id="noOfGigs"></canvas>
                 </div>
@@ -179,18 +191,16 @@
                 </div>
             </div>
 
+            </div>
+            
         </div>
-
-
-
-
     </div>
-    <button onclick="generatePDF()">Download</button>
-
-
-
-
-    </div>
+    
+<div class="button-section">
+    <button class="button" onclick="generatePDF()">Download</button>
+</div>
+    
+    <!-- </div> -->
 
 </body>
 
