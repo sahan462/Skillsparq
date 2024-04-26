@@ -149,9 +149,7 @@
             <form id="emailForm" method="POST" action="sellerProfile/addEmail">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
-                            Add Your Email here.
-                        </div>
+                        <label class="TYPE-1">Add Your Email here : </label>
                         <input type="text" name="Email" id="Email" value="<?php echo $data['mail']['user_email']?>">
                     </div>
                 </div>

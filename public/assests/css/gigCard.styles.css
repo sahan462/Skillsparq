@@ -64,7 +64,7 @@
     display: flex;
 }
 .gigCard .gigTitle{
-    /* height: 50px; */
+    height: 50px;
     /* margin: 1px 0; */
     overflow: hidden;
     display: -webkit-box;
@@ -94,10 +94,16 @@
     justify-content: center;
     align-items: center;
 }
+
 .gigCard .links a{
     text-decoration: none;
     color: #fff;
 }
+.gigCard .links a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
 .gigCard button{
     text-decoration: none;
     width: 100% !important;
@@ -115,6 +121,11 @@
 .gigCard .buttonType-1{
     border-radius: 0 0 8px 8px !important;
 }
+
+/* .gigCard .buttonType-1:hover{
+    color: black;
+} */
+
 .gigCard .buttonType-2{
     border-radius: 0 0 8px 0 !important;
 }

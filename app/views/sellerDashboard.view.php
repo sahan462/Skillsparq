@@ -130,14 +130,31 @@ $jobs = $data['AllJobs'];
             <div class="jobs">
                 <div class="job-header">
                     <h3>Most Recent Jobs You Might Like</h3>
+                    <select onchange="" name="SellerDashSelectJobType" id="SellerDashSelectJobType">
+                        <span>Publish Mode</span>
+                        <option value="">Select Mode</option>
+                        <option value="Auction Mode">Auction Mode</option>
+                        <option value="Standard Mode">Standard Mode</option>
+                    </select>
                 </div>
                 <div class="jobContent">
                     <?php
-                    if (!empty($jobs)) {
-                        foreach ($jobs as $job) {
-                            include "components/jobCard.component.php";
+                        if ($jobs->num_rows > 0) {
+
+                        while ($job = $jobs->fetch_assoc()) {
+
+                                include "components/jobCard.component.php";
+                            } 
                         }
-                    }
+                    ?>
+
+                        <?php 
+
+                    // if (!empty($jobs)) {
+                    //     foreach ($jobs as $job) {
+                    //         include "components/jobCard.component.php";
+                    //     }
+                    // }
                     ?>
                 </div>
             </div>

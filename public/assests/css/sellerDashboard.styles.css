@@ -91,6 +91,9 @@ body{
 }
 
 .jobs .job-header{
+    display: flex;
+    justify-content:space-between;
+    /* align-items; */
     border-bottom: 1px solid #c5c6c9;
     padding: 16px;
     color: #333;
@@ -115,6 +118,11 @@ body{
     line-height: 130%;
     margin-bottom: 16px;
     box-sizing: border-box;
+}
+
+.dashboard-container
+{
+
 }
 
 /*Active Status*/

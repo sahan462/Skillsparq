@@ -72,7 +72,7 @@ class JobHandler extends database
     }
 
     public function getJobsForSellerDashBoard(){
-        $query = "SELECT * FROM Jobs";
+        $query = "SELECT * FROM Jobs ORDER BY created_at desc";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -81,13 +81,14 @@ class JobHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // // Fetch associative array
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
 
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
