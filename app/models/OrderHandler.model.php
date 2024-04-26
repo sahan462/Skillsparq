@@ -2,7 +2,6 @@
 class OrderHandler extends database
 {
 
-
     //create new order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {

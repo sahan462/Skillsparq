@@ -370,7 +370,7 @@
                                 }
 
                                 $currency = "USD";
-                                $merchant_secret = "MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ==";
+                                $merchant_secret = "MjQ5MjY4ODcxMDE4NjI5NDMyNzQxNjkwNDQ3NjI3NDIxNjQ4Mjk3NA==";
 
                                 $hash = strtoupper(
                                     md5(
@@ -385,11 +385,11 @@
                             ?>
 
                             <!-- Payment https://sandbox.payhere.lk/pay/authorize -->
-                            <form method="post" action="https://sandbox.payhere.lk/pay/authorize" id="paymentForm">   
+                            <form method="post" action="order/verifyPayment" id="paymentForm">   
                                 <input type="hidden" name="merchant_id" value="1224879">    
-                                <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
-                                <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">
-                                <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
+                                <input type="hidden" name="return_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/public/manageOrders">
+                                <input type="hidden" name="cancel_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/app/controllers/order/verifyPayment">
+                                <input type="hidden" name="notify_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/app/controllers/order/verifyPayment">  
                                 <input type="hidden" name="order_id" value="<?php echo $order_id?>">
                                 <input type="hidden" name="order_type" value="<?php echo $order['order_type']?>">
                                 <input type="hidden" name="buyer_id" value="<?php echo $order['buyer_id']?>">
@@ -405,6 +405,7 @@
                                 <input type="hidden" name="address" value="">
                                 <input type="hidden" name="city" value="">
                                 <input type="hidden" name="hash" value="<?php echo $hash ?>">  
+                                <input type="hidden" value="Authorize">   
                             </form>
 
 

@@ -11,54 +11,60 @@ class SharePoint extends Controller
 
     public function index()
     {
-        $data['var'] = "share Point";
-        $data['title'] = "SkillSparq";
+        if((!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) || (!isset($_SESSION["email"]) && !isset($_SESSION["password"]))){
 
-        $orderId = $_GET['orderId'];
-        $orderType = $_GET['orderType'];
+            header("location: home");
 
-        if(isset($_GET['receiverId'])){
-            $data['receiverId'] = $_GET['receiverId'];
-        }
-
-        if(isset($_GET['senderId'])){
-            $data['senderId'] = $_GET['senderId'];
-        }
-
-        if(isset($_GET['sellerId'])){
-            $data['sellerId'] = $_GET['sellerId'];
-        }
-
-        if(isset($_GET['buyerId'])){
-            $data['buyerId'] = $_GET['buyerId'];
-        }
-
-        if(isset($_GET['orderState'])){
-            $data['orderState'] = $_GET['orderState'];
         }else{
-            $data['orderState'] = null;
+
+            $data['var'] = "share Point";
+            $data['title'] = "SkillSparq";
+
+            $orderId = $_GET['orderId'];
+            $orderType = $_GET['orderType'];
+
+            if(isset($_GET['receiverId'])){
+                $data['receiverId'] = $_GET['receiverId'];
+            }
+
+            if(isset($_GET['senderId'])){
+                $data['senderId'] = $_GET['senderId'];
+            }
+
+            if(isset($_GET['sellerId'])){
+                $data['sellerId'] = $_GET['sellerId'];
+            }
+
+            if(isset($_GET['buyerId'])){
+                $data['buyerId'] = $_GET['buyerId'];
+            }
+
+            if(isset($_GET['orderState'])){
+                $data['orderState'] = $_GET['orderState'];
+            }else{
+                $data['orderState'] = null;
+            }
+
+            if(isset($_GET['milestoneId'])){
+                $milestoneId = $_GET['milestoneId'];
+            }else{
+                $milestoneId = null;
+            }
+        
+            $data['orderId'] = $orderId;
+            $data['orderType'] = $orderType;
+
+            $deliveris = $this->OrderHandlerModel->getDeliveries($orderType, $orderId, $milestoneId);
+
+            if($deliveris){
+                $data['deliveries'] = $deliveris;
+            }else{
+                $this->redirect("_505");
+            }
+
+            $this->view('sharePoint', $data);
+        
         }
-
-        if(isset($_GET['milestoneId'])){
-            $milestoneId = $_GET['milestoneId'];
-        }else{
-            $milestoneId = null;
-        }
-      
-        $data['orderId'] = $orderId;
-        $data['orderType'] = $orderType;
-
-        $deliveris = $this->OrderHandlerModel->getDeliveries($orderType, $orderId, $milestoneId);
-
-        if($deliveris){
-            $data['deliveries'] = $deliveris;
-        }else{
-            $this->redirect("_505");
-        }
-
-        print_r($data);
-
-        $this->view('sharePoint', $data);
 
     }
 

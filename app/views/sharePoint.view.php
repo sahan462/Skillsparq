@@ -8,7 +8,6 @@
 
 <?php 
     $deliveries = $data['deliveries'];
-    print_r($data);
 ?>
 
 <!-- Main Container -->
