@@ -23,21 +23,24 @@
                     <nav>
                         <ul class="nav-links">
                             <li class="wordLink" id="wordLink-1"><a href="registerSeller">Become a Seller</a></li>
-                            <li class="wordLink" id="wordLink-2"><a href="loginUser">LogIn</a></li>
+                            
                             <?php
                                 if(!empty($_SESSION)){
                                     if($_SESSION['role'] == "Buyer"){
                             ?>
+                                <li class="wordLink" id="wordLink-2"><a href="loginUser" hidden>LogIn</a></li>
                                 <a href="buyerProfile"><button >profile</button></a>
                             <?php
                                     }else if($_SESSION['role'] == "Seller"){
                             ?>
+                                <li class="wordLink" id="wordLink-2"><a href="loginUser" hidden>LogIn</a></li>
                                 <a href="sellerProfile"><button >profile</button></a>
                             <?php
                                     }
                                 }else{
                             ?>
                             <li>
+                                <li class="wordLink" id="wordLink-2"><a href="loginUser">LogIn</a></li>
                                 <a href="register"><button>Join</button></a>
                             </li>
                             <?php
@@ -53,8 +56,8 @@
                 <div class="header">
                     <span>Find the best freelance service, right away</span>
                     <div class = "searchBar">
-                        <form action="">
-                            <input type="text" placeholder="Search for any service" name="search">
+                        <form action="search/services">
+                            <input type="text" placeholder="Search for any service" name="searchIn" id="searchIn">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -317,5 +320,6 @@
 
         </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./assests/js/home.script.js"></script>
 <?php include "components/footer.component.php"?>;

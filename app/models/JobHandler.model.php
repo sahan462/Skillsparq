@@ -103,6 +103,26 @@ class JobHandler extends database
         }
     }
 
+    // get job result for any search string.
+    public function getJobsSearch($textToSearch)
+    {
+        $retrieveQuery = "SELECT * FROM JOBS WHERE TITLE LIKE CONCAT('%',?,'%') OR DESCRIPTION LIKE CONCAT('%',?,'%') OR CATEGORY LIKE CONCAT('%',?,'%') OR DEADLINE LIKE CONCAT('%',?,'%') OR PUBLISH_MODE LIKE CONCAT('%',?,'%') OR AMOUNT LIKE CONCAT('%',?,'%') OR CREATED_AT LIKE CONCAT('%',?,'%')";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt,"sssssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get available jobs
     public function getAllJobs($userId)
     {
@@ -360,7 +380,8 @@ class JobHandler extends database
         return $orderId;
     }
 
-    // public function getJobName($jobId)
+    // 
+    // public function searchForJobs($searchName)
     // {
     //     $query = "SELECT title FROM Jobs WHERE job_id = ? ";
         

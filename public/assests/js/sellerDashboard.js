@@ -47,24 +47,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //     http.send("category="+categoryName)
 // })
 
-$(document).ready(() => {
-    $('#SellerDashSelectJobType').on('change',function(){
-        var value = $(this).val();
-        alert(value);
+// $(document).ready(() => {
+//     $('#SellerDashSelectJobType').on('change',function(){
+//         var value = $(this).val();
+//         //alert(value);
 
-        // $.ajax({
-        //     url:"fetch.php",
-        //     type:"GET",
-        //     data:"request=" + value,
-        //     beforeSend:function(){
-        //         $('.jobContent').html("<span>Working...</span>")
-        //     },
-        //     success:function(){
-        //         $(".jobContent").html(data);
-        //     }
-        // });
-    })
-})
+//         $.ajax({
+//             url:"fetch.php",
+//             type:"GET",
+//             data:"request=" + value,
+//             beforeSend:function(){
+//                 $('.jobContent').html("<span>Working...</span>")
+//             },
+//             success:function(){
+//                 $(".jobContent").html(data);
+//             }
+//         });
+//     })
+// })
 
 
 // ---------------------------------------Change the Publish Mode--------------------------------------------------------

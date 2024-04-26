@@ -119,14 +119,18 @@ $jobs = $data['AllJobs'];
             <dotlottie-player src="https://lottie.host/f7447497-2858-429b-b8c5-111d24de9b54/FQJOFIwVkX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
         <div class="job-feed">
+
             <div class="searchBar">
-                <form method="get" action="Job/searchJob">
-                    <input type="text" placeholder="Search for Job" name="search">
-                    <button name="submit" type="submit">
+
+                <form method="GET" action="search/sellerDashboardSearch">
+                    <input type="text" placeholder="Search for Job" name="sellerDashboardSearch">
+                    <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
+
             </div>
+
             <div class="jobs">
                 <div class="job-header">
                 <h3>Most Recent Jobs You Might Like</h3>
@@ -193,6 +197,7 @@ $jobs = $data['AllJobs'];
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>
