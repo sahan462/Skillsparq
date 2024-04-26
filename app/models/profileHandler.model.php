@@ -224,7 +224,7 @@ class ProfileHandler extends database
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
-        if (!$stmt) { 
+        if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
@@ -248,6 +248,28 @@ class ProfileHandler extends database
               FROM feedbacks
             
               ORDER BY $sortBy DESC ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function getUserFeedback()
+    {
+        // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT * 
+              FROM feedbacks
+            
+              ORDER BY rating DESC ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
