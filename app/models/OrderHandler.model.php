@@ -360,14 +360,10 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-<<<<<<< HEAD
     }
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)
     {
-=======
-  
->>>>>>> 2e54414bd5bef646ca68afe3a4149654eac838b1
     }
 
     //upload a delivery
@@ -390,7 +386,7 @@ class OrderHandler extends database
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
+
         mysqli_stmt_bind_param($stmt, "ssdi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
 
         if (mysqli_stmt_execute($stmt)) {
@@ -401,7 +397,7 @@ class OrderHandler extends database
         }
 
         // regular order deliveries table
-        if ($orderType == 'package' || $orderType == 'job'):
+        if ($orderType == 'package' || $orderType == 'job') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -411,14 +407,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "i", $deliveryId );
+
+            mysqli_stmt_bind_param($stmt, "i", $deliveryId);
 
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
@@ -427,7 +423,7 @@ class OrderHandler extends database
             }
 
         // milestone order deliveries table
-        elseif ($orderType == 'milestone'):
+        elseif ($orderType == 'milestone') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -437,14 +433,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId );
+
+            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId);
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
             } else {
