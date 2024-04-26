@@ -205,7 +205,10 @@
                     <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
 
                 </ul>
-
+                <td><a href='userProfile?inquiry_id=<?php echo $row["inquiry_id"]; ?>&user_id=<?php echo $row["buyer_id"]; ?>'>
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </td>
             </div>
 
             <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%; ;">

@@ -46,7 +46,7 @@
           <div class="box box3">
             <i class="uil uil-share"></i>
             <span class="text">Total Share</span>
-            <span class="number"><?php print_r($paymentStats) ?></span>
+            <span class="number"><?php $order['orders']  ?></span>
           </div>
         </div>
         <div class="boxes">

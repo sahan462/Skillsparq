@@ -566,4 +566,27 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+    public function getOrderSeller($user_id)
+    {
+        $query = "SELECT 
+            o.*,  
+            u.*
+        FROM user u
+        JOIN orders o ON o.seller_id = u.user_id
+        WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
