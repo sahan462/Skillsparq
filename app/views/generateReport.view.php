@@ -176,7 +176,7 @@
 
             <div class="container-seven">
                 <div class="sub-container-seven">
-                    <span class="heading-five">GIGS </span>
+                    <span class="heading-five">Gigs </span>
                 </div>
 
                 <div class="boxes">
