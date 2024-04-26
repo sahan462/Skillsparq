@@ -78,7 +78,7 @@ body{
 }
 
 .sharePointContainer .leftUpperContainer .deliveryFiles{
-    border: 1px solid #c5c6c9;
+    /* border: 1px solid #c5c6c9; */
     border-radius: 8px;
     height: 95%;
     display: flex;

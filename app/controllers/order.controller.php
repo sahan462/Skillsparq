@@ -9,6 +9,7 @@ class Order extends Controller
     {
         $this->OrderHandlerModel = $this->model('orderHandler');
         $this->ChatHandlerModel = $this->model('chatHandler');
+        $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
 
@@ -300,15 +301,30 @@ class Order extends Controller
 
             if(isset($_POST['completeOrder'])){
 
+                $senderId = $_POST['senderId'];
+                $receiverId = $_POST['receiverId'];
+                $orderId = $_POST['orderId'];
                 $feedback = $_POST['feedback'];
                 $rating = $_POST['rating'];
+                $currentDateTime = date('Y-m-d H:i:s');
 
-                if($feedback.trim() != "" || $rating > 0){
-                    $this->
+                if(trim($feedback) != "" || $rating > 0){
+                    $this->ProfileHandlerModel->sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime);
                 }
 
-                print_r($_POST);
+                $state = "Completed";
+                $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
 
+                if($isUpdated){
+                    echo "
+                    <script>
+                        window.alert('order completed successfully !');
+                        window.location.href = '" . BASEURL . "manageOrders#Completed';
+                    </script>
+                    ";
+                }else{
+                    throw new Exception("Error updating order state");
+                }
 
             }else{
                 $this->redirect("_505");
@@ -371,10 +387,6 @@ class Order extends Controller
 
         }
     }
-
-
-
-
 
 }
 ?>

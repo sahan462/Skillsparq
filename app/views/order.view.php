@@ -430,18 +430,20 @@
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
                             </div>
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>       
                             
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&senderId=<?php echo $senderId?>" class="buttonType-1">View Share Point</a>
                             </div>
                             
                         <?php elseif ($_SESSION['role'] == 'csa') :?>
 
-
+                            <div class="row">
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
+                            </div>
 
                         <?php endif; ?>
 
@@ -451,13 +453,15 @@
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
                             </div>
-
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
-                            <button class="buttonType-1" >Completed</button>
+                            <div class="row">
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                            </div>                            
+                            
                             <!-- <label class="type-2">Your Thoughts about Buyer</label>
 
                             <div class="subsection">
@@ -570,6 +574,21 @@
 
                         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
                         <dotlottie-player src="https://lottie.host/6eb8f278-00ec-4955-a597-3401b5e01df9/LuQeqHZb2l.json" background="transparent" speed="1" style="width: 250px; height: 230px;" loop autoplay></dotlottie-player>
+
+                    <?php elseif (($order['order_state'] == 'Completed') ) :
+
+                        if($_SESSION['role'] == 'Buyer') : ?>
+                            
+                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="openDeleteOrderModal(this)">Delete Order</button>
+                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                            <dotlottie-player src="https://lottie.host/351b9c50-9b5b-40f3-b3a9-b7b18515bbdd/kDdcbxih46.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
+
+                        <?php elseif ($_SESSION['role'] == 'Seller') : ?>
+
+                        <?php endif; ?>
+
 
                     <?php endif; ?>
 
