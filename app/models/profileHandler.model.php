@@ -2,6 +2,7 @@
 class ProfileHandler extends database
 {
 
+    // check if the user name is already exists or not
     public function userNameCheck($userName)
     {
 
@@ -142,10 +143,12 @@ class ProfileHandler extends database
         }
     }
 
+    // delete a profile
     public function deleteProfile($userId)
     {
     }
 
+    // get all profiles
     public function getAllProfiles()
     {
         $query = "SELECT * from profile";
@@ -162,6 +165,8 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    // 
     public function updateCSA($profilePic, $firstName, $lastName, $country, $about, $userId)
     {
         $stmt = $GLOBALS['db']->prepare("UPDATE profile SET profile_pic = ?, first_name = ?, last_name = ?, country = ?, about = ? WHERE user_id = ?");
@@ -175,6 +180,85 @@ class ProfileHandler extends database
             return true;
         } else {
             return false;
+        }
+    }
+
+    // create new feedback
+    public function sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime)
+    {
+        $query = "INSERT INTO feedbacks 
+        (
+            sender_user_id, 
+            receiver_user_id, 
+            feedback_text,  
+            rating,
+            feedback_date
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "iisds", $senderId,  $receiverId, $feedback, $rating, $currentDateTime);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $feedbackId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        return $feedbackId;
+    }
+
+
+    // retrieve all feedbacks
+    public function getAllFeedbacks()
+    {
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT * 
+              FROM feedbacks
+            
+              ORDER BY $sortBy DESC ";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // delete a feedback
+    public function deleteFeedback($feedback)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM feedbacks
+            WHERE feedback_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $feedback);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

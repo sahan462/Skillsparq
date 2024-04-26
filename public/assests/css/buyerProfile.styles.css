@@ -222,7 +222,7 @@ body{
 }
 
 /* change full name */
-input[type = "text"],.buyerProfileContainer textarea, select{
+input[type = "text"], select{
     height: 40px;
     font-size: 16px;
     border-radius: 4px;
@@ -231,6 +231,15 @@ input[type = "text"],.buyerProfileContainer textarea, select{
     -ms-flex-pack: justify;
     justify-content: space-between;
     border: 1px solid #c5c6c9;
+}
+.buyerProfileContainer textarea{
+    font: 16px Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+    border-radius: 8px !important;
+    font-size: 16px;
+    padding: 8px;
+    height: 25%;
+    cursor: auto;
+    border: 1px solid #333;
 }
 .full-name{
     display: flex;

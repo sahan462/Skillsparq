@@ -9,6 +9,7 @@ class Order extends Controller
     {
         $this->OrderHandlerModel = $this->model('orderHandler');
         $this->ChatHandlerModel = $this->model('chatHandler');
+        $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
 
@@ -41,7 +42,7 @@ class Order extends Controller
     public function createPackageOrder() 
     {
         try{
-            
+
             $orderState = "Requested";
             $requestDescription = $_POST['requestDescription'];
             $gigId = $_POST['gigId'];
@@ -260,7 +261,7 @@ class Order extends Controller
             }
 
         } else {
-            $this->view("505");
+            $this->redirect("_505");
             // echo "Invalid request method";
         }
 
@@ -269,20 +270,69 @@ class Order extends Controller
     //Accept an order request
     public function acceptOrderRequest()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        try{
 
-            $orderId = $_POST['orderId'];
-            $state = "Accepted/Pending Payments";
-            
-            $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                $orderId = $_POST['orderId'];
+                $state = "Accepted/Pending Payments";
+                
+                $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+        
+                if($isUpdatedOrderState){
+                    return $isUpdatedOrderState;
+                }
     
-            if($isUpdatedOrderState){
-                return $isUpdatedOrderState;
+            } else {
+                $this->redirect("_505");
             }
 
-        } else {
+        }catch(Exception $e){
 
-            $this->view("505");
+            echo 'An error occurred during completion: ' . $e->getMessage();
+
+        }
+    }
+
+    // complete order
+    public function completeOrder()
+    {
+        try{
+
+            if(isset($_POST['completeOrder'])){
+
+                $senderId = $_POST['senderId'];
+                $receiverId = $_POST['receiverId'];
+                $orderId = $_POST['orderId'];
+                $feedback = $_POST['feedback'];
+                $rating = $_POST['rating'];
+                $currentDateTime = date('Y-m-d H:i:s');
+
+                if(trim($feedback) != "" || $rating > 0){
+                    $this->ProfileHandlerModel->sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime);
+                }
+
+                $state = "Completed";
+                $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+
+                if($isUpdated){
+                    echo "
+                    <script>
+                        window.alert('order completed successfully !');
+                        window.location.href = '" . BASEURL . "manageOrders#Completed';
+                    </script>
+                    ";
+                }else{
+                    throw new Exception("Error updating order state");
+                }
+
+            }else{
+                $this->redirect("_505");
+            }
+
+        }catch(Exception $e){
+
+            echo 'An error occurred during completion: ' . $e->getMessage();
 
         }
     }
@@ -328,9 +378,7 @@ class Order extends Controller
                 </script>
             ";
             }else{
-
-                $this->view("505");
-
+                $this->redirect("_505");
             }
 
         }catch(Exception $e){
@@ -339,10 +387,6 @@ class Order extends Controller
 
         }
     }
-
-
-
-
 
 }
 ?>

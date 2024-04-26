@@ -59,7 +59,8 @@
                         <th>Subject </i></a></th>
                         <th><a href="?page=<?php echo $currentPage; ?>&sort=inquiry_status">inquiry_status <i class="fas fa-sort-down"></i></a></th>
                         <th><a href="?page=<?php echo $currentPage; ?>&sort=created_at">created_at <i class="fas fa-sort-down"></i></a></th>
-                        <th></th>
+                        <th>view </th>
+                        <th>delete</th>
                     </tr>
                 </thead>
 
@@ -79,7 +80,19 @@
                             </td>
                             <td><?php echo $row['created_at']; ?></td>
                             <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                    <i class="fas fa-eye"></i> </a></td>
+                                    <i class="fas fa-eye"></i> </a>
+                            </td>
+                            <td>
+
+                                <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                    <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                        <i class="fa fa-trash" style="color: red;"></i>
+                                    </button>
+                                    <input type="hidden" name="inquiry_id" value="<?php echo $row['inquiry_id']; ?>">
+                                </form>
+
+
+                            </td>
                         </tr>
                     <?php
 
