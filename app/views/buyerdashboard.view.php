@@ -14,8 +14,9 @@
         <div class="personalizedHeader">
             Hey there, <?php echo $_SESSION['firstName']?>
             <div class = "searchBar">
-                <form action="">
-                    <input type="text" placeholder="Search.." name="search">
+                <!-- Search Bar to Search for the buyer -->
+                <form action="search" method="GET">
+                    <input type="text" placeholder="Search.." name="searchBuyerDash">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>

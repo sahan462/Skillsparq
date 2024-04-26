@@ -660,4 +660,26 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+
+    // get job result for any search string.
+    public function getGigsSearch($textToSearch)
+    {
+        $retrieveQuery = "SELECT * FROM GIGS WHERE TITLE LIKE CONCAT('%',?,'%') OR DESCRIPTION LIKE CONCAT('%',?,'%') OR CATEGORY LIKE CONCAT('%',?,'%') OR CREATED_AT LIKE CONCAT('%',?,'%')";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt,"ssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
 }

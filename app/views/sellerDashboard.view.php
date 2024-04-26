@@ -122,8 +122,8 @@ $jobs = $data['AllJobs'];
 
             <div class="searchBar">
 
-                <form method="GET" action="search/sellerDashboardSearch">
-                    <input type="text" placeholder="Search for Job" name="sellerDashboardSearch">
+                <form method="GET" action="search">
+                    <input type="text" placeholder="Search for Job" name="searchSellerDash">
                     <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>

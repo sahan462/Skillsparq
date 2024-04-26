@@ -19,9 +19,9 @@ class ManageOrders extends Controller
         $packages = $this->OrderHandlerModel->getPackageOrders($_SESSION['userId'], $_SESSION['role']);
         $milestones = $this->OrderHandlerModel->getMilestoneOrders($_SESSION['userId'], $_SESSION['role']);
 
-        $data['MYORDERS'] = array_merge($jobs,$packages,$milestones);
+        // $data['MYORDERS'] = array_merge($jobs,$packages,$milestones);
         
-        // show($data['MYORDERS']);
+        // show($data['myOrders']);
 
         // show($_SESSION);
         $this->view('manageOrders', $data); 

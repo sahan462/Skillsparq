@@ -26,58 +26,54 @@ class Search extends Controller
             $data['var'] = "Search";
             $data['title'] = "SkillSparq";
 
+            if(!isset($_GET[''])){
+                echo "
+                    <script>
+                        window.alert('Search not Found !!')
+                        window.location.href = '" . BASEURL . "home';
+                    </script>
+                ";
+            }
+            
+            if(isset($_GET['searchIn']) && $_GET['searchIn'] != ''){
+                $textToSearch = $_GET['searchIn'];
+
+            }
+
+            // search Jobs
+            // if(isset($_GET[''])){
+
+            // }
+
+            // // search Gigs
+            // if(isset($_GET[''])){
+
+            // }
+
+            if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
+                $textToSearch = $_GET['searchBuyerDash'];
+                $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
+                if(isset($getResult)){
+                    $data['SEARCH'] = $getResult;
+                    // show($data);
+                    $this->view('search',$data);
+                }
+            }
+
+            if(!empty($_GET['searchSellerDash']) && $_GET['searchSellerDash'] != ''){
+                $textToSearch = $_GET['searchSellerDash'];
+                $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
+                if(isset($getResult)){
+                    $data['SEARCH'] = $getResult;
+                    // show($data);
+                    $this->view('search',$data);
+                }
+            }
+
+            
+            
             $this->view('search', $data);
 
-        }
-    }
-
-    public function services()
-    {
-        if(isset($_GET['searchIn'])){
-            $textToSearch = $_GET['searchIn'];
-
-        }
-
-        $data = '';
-
-        $this->view('search',$data);
-    }
-
-    public function searchJobs()
-    {
-        if(isset($_GET[''])){
-
-        }
-    }
-    
-    public function searchGigs()
-    {
-        
-    }
-
-    public function buyerDashboardSearch()
-    {
-        if(!empty($_GET['buyerDashboardSearch'])){
-            $textToSearch = $_GET['buyerDashboardSearch'];
-            $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
-            if(isset($getResult)){
-                $data['buyerGigSearch'] = $getResult;
-                // show($data);
-                $this->view('search',$data);
-            }
-        }
-    }
-
-    public function sellerDashboardSearch()
-    {
-        if(!empty($_GET['sellerDashboardSearch'])){
-            $textToSearch = $_GET['sellerDashboardSearch'];
-            $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
-            if(isset($getResult)){
-                $data['sellerJobSearch'] = $getResult;
-                // show($data);
-                $this->view('search',$data);
-            }
         }
     }
 }

@@ -6,6 +6,8 @@
     }else{
 
     }
+
+    $search = $data['SEARCH'];
 ?>
 
 
@@ -16,7 +18,18 @@
     <div class="SkillsparqSearchDashboardContainer">
         <div class="SkillSparqSearchFeed">
             <p>sdfdsf</p>
-            
+            <?php
+
+                // $rowIndex = 0;
+                if(mysqli_num_rows($search) > 0){
+                    while ($row = mysqli_fetch_assoc($search)) {
+                        // $rowIndex++;
+                        $searchResults[] = $row;
+                    }
+                    // print_r($searchResults);
+                }
+                print_r($searchResults);
+            ?>
         </div>
     </div>
 </div>
