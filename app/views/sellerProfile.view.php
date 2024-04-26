@@ -175,7 +175,13 @@
                         <div class="seller-question">
                             Add Your Languages here.    
                         </div>
-                        <input type="text" name="Languages" value="<?php echo $data['sellerProfileDets']['languages']?>" id="Language">
+                        <input type="text" name="Languages" value="
+                        <?php 
+                            if(isset($data['sellerProfileDets']['languages'])){
+                                echo $data['sellerProfileDets']['languages'];
+                            }
+                        ?>
+                        " id="Language">
                     </div>
                 </div>
                 <div class="buttons">
@@ -199,7 +205,13 @@
                         <div class="seller-question">
                             Add Your Skills here.
                         </div>
-                        <input type="text" name="Skills" value="<?php echo $data['sellerProfileDets']['skills']?>" id="Skill">
+                        <input type="text" name="Skills" value="
+                        <?php 
+                            if(isset($data['sellerProfileDets']['skills'])){
+                                echo $data['sellerProfileDets']['skills'];
+                            }
+                        ?>
+                        " id="Skill">
                     </div>
                 </div>
                 <div class="buttons">
@@ -223,7 +235,13 @@
                         <div class="seller-question">
                             Add Your Education here.
                         </div>
-                        <input type="text" name="Educations" value="<?php echo $data['sellerProfileDets']['education']?>">
+                        <input type="text" name="Educations" value="
+                        <?php 
+                            if(isset($data['sellerProfileDets']['education'])){
+                                echo $data['sellerProfileDets']['education'];
+                            }
+                            ?>
+                            ">
                     </div>
                 </div>
                 <div class="buttons">
@@ -507,13 +525,17 @@
                     <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
                                 enctype="multipart/form-data">
                             <p>Select files to upload: 
-                                <div>
-                                    <label for="multipleImagesUpload">Add To Portfolio</label>
-                                    <input type="file" name="files[]" multiple id="multipleImagesUpload" required>
+                                <div class="addToPortfolioImgs">
+                                    <input type="file" name="files[]" multiple id="multipleImagesUpload" required accept="image/*">
+                                    <label for="multipleImagesUpload" id="labelImageAdd">
+                                        <i class="material-icons">
+
+                                        </i>Add to portfolio
+                                    </label>
                                 </div>
-                                <div>
-                                    <label for="Submit">Submit</label>
+                                <div class="addToPortfolioImgsSubmit">
                                     <input type="submit" name="submit" id="Submit" required>
+                                    <label for="Submit">Submit</label>
                                 </div>
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
                                 <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">

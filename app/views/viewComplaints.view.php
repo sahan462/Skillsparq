@@ -121,9 +121,9 @@
 
 
             <div>
-                <label for="blacklistUntil">BlackList User For:</label>
+                <label for="blacklistDuration">BlackList User For:</label>
 
-                <select id="blacklistUntil" name="blacklistUntil">
+                <select id="blacklistDuration" name="blacklistDuration">
                     <option value="1">1 day</option>
                     <option value="2">2 days</option>
                     <option value="7">7 days</option>
@@ -131,11 +131,15 @@
                     <option value="30">30 days</option>
                     <!-- Add more options as needed -->
                 </select>
+                <form>
+
+                    <textarea id="blackListReason" name="blackListReason" rows="4" cols="50" placeholder="Enter the reason to blacklist" style="margin-top: 5px;"></textarea>
+                    <br>
+
+                </form>
             </div>
-            <div style="margin-top: 15px;">
-                <button id="refund" onclick="refund()">Ask for Refund</button>
-            </div>
-            <div style="margin-top: 15px;">
+
+            <div style=" margin-top: 15px;">
                 <button id="updateUserBlacklistBuyer" onclick="updateUserBlacklistBuyer()">Black List Buyer</button>
                 <button id="updateUserBlacklistSeller" onclick="updateUserBlacklistSeller()">Black List Seller</button>
 
@@ -143,10 +147,17 @@
 
 
             <form>
-                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+
+                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter the reason to ask for refund" style="display: none;"></textarea>
                 <br>
 
             </form>
+            <div style="margin-top: 15px;">
+                <button id="displayRefund" onclick="displayRefund()">Ask for Refund</button>
+            </div>
+            <div style="margin-top: 15px;">
+                <button id="refund" onclick="refund()" style="display:none">Ask for Refund</button>
+            </div>
 
 
 
@@ -163,7 +174,7 @@
                 <span>
                     Seller details:
                 </span>
-                <button onclick="viewSeller()">View</button>
+                <button onclick="toggleDisplay('viewSeller')">View</button>
             </div>
             <div id="viewSeller" style="display: none;">
 
@@ -182,7 +193,7 @@
                 <span>
                     Buyer details:
                 </span>
-                <button onclick="viewBuyer()" style="margin-left:63px ;">View</button>
+                <button onclick="toggleDisplay('viewBuyer')" style="margin-left:63px ;">View</button>
                 <p id="isBuyerBlocked"></p>
             </div>
 
@@ -194,14 +205,17 @@
                     <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
 
                 </ul>
-
+                <td><a href='userProfile?inquiry_id=<?php echo $row["inquiry_id"]; ?>&user_id=<?php echo $row["buyer_id"]; ?>'>
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </td>
             </div>
 
             <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%; ;">
                 <span>
                     Order details:
                 </span>
-                <button onclick="viewOrders()" style="margin-left:11px ;">View</button>
+                <button onclick="toggleDisplay('viewOrders')" style="margin-left:11px ;">View</button>
 
             </div>
 
@@ -220,7 +234,7 @@
                 <span>
                     Payment details:
                 </span>
-                <button onclick="viewPayments()" style="margin-left:11px ;">View</button>
+                <button onclick="toggleDisplay('viewPayments')" style="margin-left:11px ;">View</button>
 
             </div>
 
@@ -237,12 +251,15 @@
 
             </div>
         </div>
-
         <form id="blacklistForm" method="post" style="display: none;">
             <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
+            <input type="hidden" id="user_email_to_blacklist" name="user_email_to_blacklist" value="">
             <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
+            <input type="hidden" id="reason" name="reason" value="">
+            <input type="hidden" id="role" name="role" value="">
 
         </form>
+
 
         <form id="refundForm" method="post" style="display: none;">
             <input type="hidden" id="payment_id" name="payment_id" value="">
@@ -254,175 +271,107 @@
     </section>
 
     <script>
-        const body = document.querySelector("body"),
-            modeToggle = body.querySelector(".mode-toggle");
-        sidebar = body.querySelector("nav");
-        sidebarToggle = body.querySelector(".sidebar-toggle");
-
-        let getMode = localStorage.getItem("mode");
-        if (getMode && getMode === "dark") {
-            body.classList.toggle("dark");
+        // Helper functions to toggle display of elements
+        function toggleDisplay(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = (element.style.display === 'none') ? 'block' : 'none';
         }
 
-        let getStatus = localStorage.getItem("status");
-        if (getStatus && getStatus === "close") {
-            sidebar.classList.toggle("close");
-        }
-
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark");
-            if (body.classList.contains("dark")) {
-                localStorage.setItem("mode", "dark");
-            } else {
-                localStorage.setItem("mode", "light");
-            }
-        });
-
-        sidebarToggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-            if (sidebar.classList.contains("close")) {
-                localStorage.setItem("status", "close");
-            } else {
-                localStorage.setItem("status", "open");
-            }
-        })
-    </script>
-    <script>
-        function updateUserBlacklistBuyer() {
-            var selectedDays = document.getElementById('blacklistUntil').value;
-            var confirmAction = confirm("Are you sure you want to blackList Buyer ID <?php echo $row['buyer_id'] ?> for " + selectedDays + " days");
-
-            if (confirmAction) {
-                document.getElementById('user_id_to_blacklist').value = <?php echo $row['buyer_id']; ?>;
-
-                // Get the selected value from the dropdown
-                var selectedDays = document.getElementById('blacklistUntil').value;
-
-                // Set the selected value in the hidden field
-                document.getElementById('blacklistForm').elements['blacklistUntil'].value = selectedDays;
-
-                // Submit the form
-                document.getElementById('blacklistForm').submit();
-                alert("User ID blocked successfully until " + selectedDays + " days.");
+        // Blacklist and Refund Functionality
+        function confirmAction(message, callback) {
+            if (confirm(message)) {
+                callback();
             } else {
                 alert("Operation canceled.");
             }
         }
 
-        function refund() {
-            var response = document.getElementById("response").value;
-            var confirmation = confirm('Are you sure that you want to send a refund request to the admin?');
-            var buyerID = <?php echo $row['buyer_id']; ?>
-
-            if (confirmation) {
-                var paymentId = <?php echo $row['payment_id']; ?>; // Set the payment ID here
-                document.getElementById("payment_id").value = paymentId;
-                document.getElementById("sendResponse").value = response;
-                document.getElementById("buyerID").value = buyerID
-                document.getElementById("refundForm").submit();
-            }
+        function blacklistUser(userId, userEmail, role, days, reason) {
+            document.getElementById('user_id_to_blacklist').value = userId;
+            document.getElementById('user_email_to_blacklist').value = userEmail;
+            document.getElementById('blacklistUntil').value = days;
+            document.getElementById('reason').value = reason;
+            document.getElementById('role').value = role;
+            document.getElementById('blacklistForm').submit();
         }
 
-        function updateUserBlacklistSeller() {
-            var selectedDays = document.getElementById('blacklistUntil').value;
-            var confirmAction = confirm("Are you sure you want to blackList Seller ID <?php echo $row['seller_id'] ?> for" + selectedDays + " days");
-
-            if (confirmAction) {
-                document.getElementById('user_id_to_blacklist').value = <?php echo $row['seller_id']; ?>;
-
-                // Get the selected value from the dropdown
-                var selectedDays = document.getElementById('blacklistUntil').value;
-
-                // Set the selected value in the hidden field
-                document.getElementById('blacklistForm').elements['blacklistUntil'].value = selectedDays;
-
-                // Submit the form
-                document.getElementById('blacklistForm').submit();
-                alert("User ID blocked successfully until " + selectedDays + " days.");
-            } else {
-                alert("Operation canceled.");
-            }
-        }
-    </script>
-
-
-    </div>
-    </section>
-
-    <script src="../public/assests/js/helpDeskCenter.js"></script>
-    </script>
-    <script>
-        function viewSeller() {
-            var selectedDays = document.getElementById('viewSeller');
-            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
-
+        function submitRefund(paymentId, response, buyerID) {
+            document.getElementById("payment_id").value = paymentId;
+            document.getElementById("sendResponse").value = response;
+            document.getElementById("buyerID").value = buyerID;
+            document.getElementById("refundForm").submit();
         }
 
-        function viewBuyer() {
-            var selectedDays = document.getElementById('viewBuyer');
-            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+        // Event Handlers
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("chatBtnSeller").onclick = function() {
+                toggleDisplay("chatBoxSeller");
+                document.getElementById("chatBoxBuyer").style.display = "none";
+            };
 
-        }
+            document.getElementById("chatBtnBuyer").onclick = function() {
+                toggleDisplay("chatBoxBuyer");
+                document.getElementById("chatBoxSeller").style.display = "none";
+            };
 
-        function viewOrders() {
-            var selectedDays = document.getElementById('viewOrders');
-            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+            document.getElementById("closeChatBtnSeller").onclick = function() {
+                document.getElementById("chatBoxSeller").style.display = "none";
+            };
 
-        }
+            document.getElementById("closeChatBtnBuyer").onclick = function() {
+                document.getElementById("chatBoxBuyer").style.display = "none";
+            };
 
+            document.getElementById("updateUserBlacklistBuyer").onclick = function() {
+                const days = document.getElementById('blacklistDuration').value;
+                const reason = document.getElementById('blackListReason').value;
+                confirmAction(`Are you sure you want to blacklist Buyer ID for ${days} days?`, function() {
+                    blacklistUser('<?php echo $row['buyer_id']; ?>', '<?php echo $row['buyer_email']; ?>', 'Buyer', days, reason);
+                });
+            };
 
-        function viewPayments() {
-            var selectedDays = document.getElementById('viewPayments');
-            selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
-
-        }
-
-        function displayBlackList() {
-            var selectedDays = document.getElementById('blackList');
-            blackList.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
-
-        }
-
-        function blockUser(userId) {
-            var confirmation = confirm("Are you sure you want to proceed further");
-            if (confirmation) {
-
-                var form = document.getElementById('blacklistForm');
-                var userIdInput = document.getElementById('user_id_to_blacklist');
-                var blacklistUntilInput = document.getElementById('blacklistUntil');
-
-                // Set the user ID and other values
-                userIdInput.value = userId;
-                blacklistUntilInput.value = '7'; // Example value, you can set it dynamically if needed
-
-                // Submit the form
-                form.submit();
+            document.getElementById("updateUserBlacklistSeller").onclick = function() {
+                const days = document.getElementById('blacklistDuration').value;
+                const reason = document.getElementById('blackListReason').value;
+                confirmAction(`Are you sure you want to blacklist Seller ID for ${days} days?`, function() {
+                    blacklistUser('<?php echo $row['seller_id']; ?>', '<?php echo $row['seller_email']; ?>', 'Seller', days, reason);
+                });
+            };
 
 
+            document.getElementById("refund").onclick = function() {
+                const response = document.getElementById("response").value;
+                const paymentId = '<?php echo $row['payment_id']; ?>';
+                const buyerID = '<?php echo $row['buyer_id']; ?>';
+                confirmAction('Are you sure that you want to send a refund request to the admin?', function() {
+                    submitRefund(paymentId, response, buyerID);
+                });
+            };
 
 
-            }
 
+            // View toggles
+            document.getElementById("viewSeller").onclick = function() {
+                toggleDisplay('viewSeller');
+            };
 
-        }
-    </script>
-    <script>
-        document.getElementById("chatBtnSeller").addEventListener("click", function() {
-            document.getElementById("chatBoxSeller").style.display = "block";
-            document.getElementById("chatBoxBuyer").style.display = "none";
+            document.getElementById("viewBuyer").onclick = function() {
+                toggleDisplay('viewBuyer');
+            };
 
-        });
+            document.getElementById("viewOrders").onclick = function() {
+                toggleDisplay('viewOrders');
+            };
 
-        document.getElementById("closeChatBtnSeller").addEventListener("click", function() {
-            document.getElementById("chatBoxSeller").style.display = "none";
-        });
+            document.getElementById("viewPayments").onclick = function() {
+                toggleDisplay('viewPayments');
+            };
 
-        document.getElementById("chatBtnBuyer").addEventListener("click", function() {
-            document.getElementById("chatBoxBuyer").style.display = "block";
-            document.getElementById("chatBoxSeller").style.display = "none";
-        });
-
-        document.getElementById("closeChatBtnBuyer").addEventListener("click", function() {
-            document.getElementById("chatBoxBuyer").style.display = "none";
+            document.getElementById("displayRefund").onclick = function() {
+                document.getElementById('response').style.display = 'block';
+                document.getElementById('refund').style.display = 'block';
+                document.getElementById('displayRefund').style.display = 'none';
+                document.getElementById('hideRefund').style.display = 'block';
+            };
         });
     </script>

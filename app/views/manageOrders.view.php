@@ -75,7 +75,7 @@
 
                                         <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
-                                            <img src="<?php echo $row['profile_pic']?>" alt="Avatar">
+                                            <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
                                             <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
                                         </td>
                                         <td>I will create wordpress websites</td>
@@ -86,12 +86,14 @@
                                         <?php 
                                             }else if($row['order_type'] === "job"){
                                         ?>
-                                        <td>job ending date</td>
+                                        <td>
+                                            <?php echo $row['deadline']?>
+                                        </td>
                                         <?php 
                                             }
                                         ?>
-                                        <td>$5000</td>
-                                        <td>Package Order</td>
+                                        <td><?echo $row['amount']?></td>
+                                        <td><?php echo $row['order_type']?></td>
 
                                     </tr>
                             <?php }
@@ -322,7 +324,7 @@
                                     if($row['order_state'] == 'Cancelled'){
                             ?>
                                     <tr>
-                                    <!-- <tr onclick="window.location='order&orderId=<?php //echo $row['order_id'] ?>&orderType=<?php //echo $row['order_type']?>&buyerId=<?php //echo $row['buyer_id']?>&sellerId=<?php //echo  $row['seller_id']?>'"> -->
+                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
                                         <td><?php echo $row['order_id'] ?></td>
                                         <td class="buyer">
                                             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&amp;w=2071&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
