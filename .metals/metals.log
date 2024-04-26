@@ -1,0 +1,22 @@
+2024.04.25 22:05:25 INFO  Started: Metals version 1.3.0 in folders 'C:\xampp\htdocs\skillsparq' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@2ca92ec9]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@6e423636]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@2ca92ec9]
+2024.04.25 22:05:27 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2024.04.25 22:05:27 WARN  no build tool detected in workspace 'C:\xampp\htdocs\skillsparq'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2024.04.25 22:05:28 WARN  Build server is not auto-connectable.
+2024.04.25 22:05:28 INFO  restarted 0 presentation compilers
+2024.04.25 22:53:39 INFO  Shutting down server
+2024.04.25 22:53:39 INFO  shutting down Metals
+2024.04.25 22:53:39 INFO  Exiting server
+2024.04.26 13:38:33 INFO  Started: Metals version 1.3.0 in folders 'C:\xampp\htdocs\skillsparq' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@4e828668]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@2e59ca8]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@4e828668]
+2024.04.26 13:38:34 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2024.04.26 13:38:34 WARN  no build tool detected in workspace 'C:\xampp\htdocs\skillsparq'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2024.04.26 13:38:35 WARN  Build server is not auto-connectable.

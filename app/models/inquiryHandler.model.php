@@ -185,6 +185,22 @@ class InquiryHandler extends database
         u1.agreement as seller_agreement,
         u1.black_List as seller_blackList,
         u1.black_Listed_Until as seller_blackListUntil,
+        p1.user_name as seller_userName,
+        p1.profile_pic as seller_profilePic,
+        p1.first_name as seller_firstName,
+        p1.last_name  as seller_lastnName,
+        p1.country as seller_country,
+        p1.joined_date as seller_joinedDate,
+        p1.last_seen as seller_lastSeen,
+        p1.about as seller_about,
+        p2.user_name as buyer_userName,
+        p2.profile_pic as buyer_profilePic,
+        p2.first_name as buyer_firstName,
+        p2.last_name  as buyer_lastnName,
+        p2.country as buyer_country,
+        p2.joined_date as buyer_joinedDate,
+        p2.last_seen as buyer_lastSeen,
+        p2.about as buyer_about,
         u2.user_id as buyer_id,
         u2.user_email as buyer_email,
         u2.role as buyer_role,
@@ -196,6 +212,8 @@ class InquiryHandler extends database
     JOIN orders o ON o.order_id = c.order_id
     JOIN user u1 ON o.seller_id = u1.user_id
     JOIN user u2 ON o.buyer_id = u2.user_id
+    JOIN profile p1 on u1.user_id = p1.user_id
+    JOIN profile p2 on u2.user_id = p2.user_id
     JOIN payments p on p.order_id = o.order_id
     WHERE i.inquiry_id = ?";
 

@@ -76,7 +76,7 @@ class OrderHandler extends database
     }
 
     // create Job Order 
-    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrderRecord($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
     {
         $insertQuery = "INSERT INTO orders 
         (
@@ -120,7 +120,6 @@ class OrderHandler extends database
             WHERE user_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             $query = "SELECT * 
@@ -161,7 +160,6 @@ class OrderHandler extends database
         if ($userRole == 'Buyer') {
 
             $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
-
         } else {
 
             $query = "SELECT * 
@@ -210,7 +208,6 @@ class OrderHandler extends database
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
-
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -419,7 +416,6 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-
     }
     //deliver and order
     public function makeDelivery($orderType, $orderId, $milestoneId)
@@ -446,7 +442,7 @@ class OrderHandler extends database
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
+
         mysqli_stmt_bind_param($stmt, "sssi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
 
         if (mysqli_stmt_execute($stmt)) {
@@ -457,7 +453,7 @@ class OrderHandler extends database
         }
 
         // regular order deliveries table
-        if ($orderType == 'package' || $orderType == 'job'):
+        if ($orderType == 'package' || $orderType == 'job') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -467,14 +463,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "i", $deliveryId );
+
+            mysqli_stmt_bind_param($stmt, "i", $deliveryId);
 
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
@@ -483,7 +479,7 @@ class OrderHandler extends database
             }
 
         // milestone order deliveries table
-        elseif ($orderType == 'milestone'):
+        elseif ($orderType == 'milestone') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -493,14 +489,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId );
+
+            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId);
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
             } else {
@@ -563,6 +559,29 @@ class OrderHandler extends database
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function getOrderSeller($user_id)
+    {
+        $query = "SELECT 
+            o.*,  
+            u.*
+        FROM user u
+        JOIN orders o ON o.seller_id = u.user_id
+        WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();

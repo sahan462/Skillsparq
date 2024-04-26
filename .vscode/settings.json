@@ -1,4 +1,7 @@
 {
-    "liveServer.settings.port": 5501,
-    "liveServer.settings.multiRootWorkspaceName": "skillsparq"
+  "liveServer.settings.port": 5501,
+  "liveServer.settings.multiRootWorkspaceName": "skillsparq",
+  "files.watcherExclude": {
+    "**/target": true
+  }
 }
