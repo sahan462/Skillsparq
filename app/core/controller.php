@@ -112,7 +112,7 @@ class Controller
             $mail->Host = 'smtp.gmail.com'; // Your SMTP server
             $mail->SMTPAuth = true;
             $mail->Username = 'skillsparq@gmail.com'; // SMTP username
-            $mail->Password = 'dyaboyjlwfykpnip'; // SMTP password
+            $mail->Password = 'dfzq tusa uojr fxfg'; // SMTP password
             $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, 'ssl' also accepted
             $mail->Port = 465; // TCP port to connect to
             $mail->SMTPOptions = array(
@@ -138,7 +138,7 @@ class Controller
             echo
             "
             <script>
-                <alert>E mail Sent Successfully</alert>
+                <alert>OTP is Sent Successfully</alert>
             </script>
             ";
 

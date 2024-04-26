@@ -184,7 +184,6 @@
                     </form>
 
                 </div>
-
             </div>
 
 
@@ -371,7 +370,7 @@
                                 }
 
                                 $currency = "USD";
-                                $merchant_secret = "MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ==";
+                                $merchant_secret = "MjQ5MjY4ODcxMDE4NjI5NDMyNzQxNjkwNDQ3NjI3NDIxNjQ4Mjk3NA==";
 
                                 $hash = strtoupper(
                                     md5(
@@ -388,9 +387,9 @@
                             <!-- Payment https://sandbox.payhere.lk/pay/authorize -->
                             <form method="post" action="order/verifyPayment" id="paymentForm">   
                                 <input type="hidden" name="merchant_id" value="1224879">    
-                                <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
-                                <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">
-                                <input type="hidden" name="notify_url" value="skillsparq/public/order/verifyPayment">  
+                                <input type="hidden" name="return_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/public/manageOrders">
+                                <input type="hidden" name="cancel_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/app/controllers/order/verifyPayment">
+                                <input type="hidden" name="notify_url" value="https://69cd-203-189-188-226.ngrok-free.app/skillsparq/app/controllers/order/verifyPayment">  
                                 <input type="hidden" name="order_id" value="<?php echo $order_id?>">
                                 <input type="hidden" name="order_type" value="<?php echo $order['order_type']?>">
                                 <input type="hidden" name="buyer_id" value="<?php echo $order['buyer_id']?>">
@@ -406,6 +405,7 @@
                                 <input type="hidden" name="address" value="">
                                 <input type="hidden" name="city" value="">
                                 <input type="hidden" name="hash" value="<?php echo $hash ?>">  
+                                <input type="hidden" value="Authorize">   
                             </form>
 
 
@@ -436,7 +436,7 @@
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>       
                             
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&senderId=<?php echo $senderId?>" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
                             </div>
                             
                         <?php elseif ($_SESSION['role'] == 'csa') :?>
@@ -453,29 +453,20 @@
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
                             </div>
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
-                            </div>                            
-                            
-                            <!-- <label class="type-2">Your Thoughts about Buyer</label>
-
-                            <div class="subsection">
-                                <div class="row">
-                                    <textarea></textarea>
-                                    <div class="row">
-                                        <div id="rateYo"></div>
-                                        <div class="rateValue"></div>
-                                    </div>
-                                </div>
-                            </div> -->
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                            </div>                           
 
                         <?php elseif ($_SESSION['role'] == 'csa') :?>
 
+                            <div class="row">
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
+                            </div>
 
                         <?php endif; ?>
 
@@ -587,6 +578,11 @@
 
                         <?php elseif ($_SESSION['role'] == 'Seller') : ?>
 
+                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                            <dotlottie-player src="https://lottie.host/351b9c50-9b5b-40f3-b3a9-b7b18515bbdd/kDdcbxih46.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
+
                         <?php endif; ?>
 
 
@@ -610,16 +606,16 @@
 
                     <p>Are you sure want to withdraw your request?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('withdraw request', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('withdraw request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('withdraw request', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php }else if($state == 'Accepted/Pending Payments') { ?>
 
                     <p>Are you sure want to cancel your order?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('cancel order', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('cancel order', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('cancel order', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php } ?>
@@ -630,8 +626,8 @@
 
                     <p>Are you sure want to reject this request?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('reject request', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('reject request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('reject request', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php } ?>
@@ -653,8 +649,8 @@
 
                     <p>Are you sure want to continue with this order?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
                         <button onclick="handleStateChange('accept request', 'no', '', '', '')">No</button>
+                        <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
                     </div>
 
                 <?php } ?> 

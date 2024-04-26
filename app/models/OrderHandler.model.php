@@ -2,7 +2,6 @@
 class OrderHandler extends database
 {
 
-
     //create new order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
@@ -159,7 +158,8 @@ class OrderHandler extends database
     {
         if ($userRole == 'Buyer') {
 
-            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
+
         } else {
 
             $query = "SELECT * 
@@ -182,14 +182,9 @@ class OrderHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $userId);
 
         if (mysqli_stmt_execute($stmt)) {
-            // return $stmt->get_result();
             $result = $stmt->get_result();
             // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $result;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -202,9 +197,11 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
@@ -416,10 +413,6 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-    }
-    //deliver and order
-    public function makeDelivery($orderType, $orderId, $milestoneId)
-    {
     }
 
     //upload a delivery

@@ -337,6 +337,45 @@ class Order extends Controller
         }
     }
 
+    // send feedbacks
+    public function sendFeedbacks()
+    {
+        try{
+
+            if(isset($_POST['sendFeedback'])){
+
+                $senderId = $_POST['senderId'];
+                $receiverId = $_POST['receiverId'];
+                $feedback = $_POST['feedback'];
+                $rating = $_POST['userRating'];
+                $currentDateTime = date('Y-m-d H:i:s');
+
+                if(trim($feedback) != "" || $rating > 0){
+                    $isSent = $this->ProfileHandlerModel->sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime);
+                }
+
+                if($isSent){
+                    echo "
+                    <script>
+                        window.alert('feedback successfully !');
+                        window.location.href = '" . BASEURL . "manageOrders#Completed';
+                    </script>
+                    ";
+                }else{
+                    throw new Exception("Error updating order state");
+                }
+
+            }else{
+                $this->redirect("_505");
+            }
+
+        }catch(Exception $e){
+
+            echo 'An error occurred during sending feedback: ' . $e->getMessage();
+
+        }
+    }
+
     //Payment Handling
     public function verifyPayment()
     {

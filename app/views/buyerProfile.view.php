@@ -384,28 +384,29 @@ $data["feedbacks"] = array();
                 <?php } ?>
 
                 <div class="profile-picture">
+
                     <img src="../public/assests/images/profilePictures/<?php echo $profile["profile_pic"] ?>" alt="pro-pic">
                     <div class="full-name">
                         <?php echo $profile["first_name"] . " " . $profile["last_name"]; ?>
                     </div>
+
                     <div class="user-name">
                         <?php echo '@' . $profile['user_name'] ?>
                     </div>
+
                     <div class="star-rating">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span>(0)</span>
                     </div>
+
                 </div>
+
                 <div class="preview-profile">
                     <button>Preview Profile</button>
                 </div>
+
                 <div class="edit-profile">
                     <button onclick="openPackageModal(this)">Edit Profile</button>
                 </div>
+
                 <div class="user-info">
                     <div class="info">
                         <span>
@@ -463,17 +464,34 @@ $data["feedbacks"] = array();
             </div>
 
             <div class="reviews">
+
                 <div class="header">
                     <span>Feedbacks and ratings</span>
                 </div>
-                <div class="review-content">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>No feedbacks available</span>
-                </div>
-            </div>
 
+                <div class="review-content">
+
+                    <?php if (mysqli_num_rows($feedbacks) > 0){ ?>
+
+
+                            <?php while ($row = $feedbacks->fetch_assoc()) { ?>
+
+                                <?php include "components/feedback.component.php"?>
+
+                            <?php } ?>
+
+                    <?php }else { ?>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>No feedbacks available</span>
+
+                    <?php } ?>
+
+                </div>
+                
+            </div>
         </div>
     </div>
 </div>

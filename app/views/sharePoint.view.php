@@ -8,7 +8,6 @@
 
 <?php 
     $deliveries = $data['deliveries'];
-    print_r($data);
 ?>
 
 <!-- Main Container -->
@@ -173,15 +172,10 @@
 
                     <input type="hidden" name="completeOrder" value="uploadDelivery">
                     <input type="hidden" name="orderId" value="<?php echo $data['orderId']?>">
-                    <?php if($data['orderState'] == "Completed") : ?>
-                        <input type="hidden" name="sellerId" value="<?php echo $data['sellerId']?>">
-                        <input type="hidden" name="buyerId" value="<?php echo $data['buyerId']?>">
-                    <?php else : ?>
-                        <input type="hidden" name="receiverId" value="<?php echo $data['receiverId']?>">
-                    <?php endif; ?>
                     <input type="hidden" name="senderId" value="<?php echo $_SESSION['userId']?>">
-                    <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
+                    <input type="hidden" name="receiverId" value="<?php echo $data['receiverId']?>">
 
+                    <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
                     <div class="submitSec">
                         <button type="submit" name="finalsave" id="btnx" class="buttonType-1">Complete The Job</button>
                     </div>
@@ -237,8 +231,9 @@
                     <span class="darkTitle">Rate </span>
                     The Buyer
                 </p>
+
                 <!-- buyer rating  -->
-                <form action="<?php echo BASEURL.'order/sendFeedback';?>" method="post" enctype="multipart/form-data" id="deliveryUploadForm" autocomplete="off">
+                <form action="<?php echo BASEURL.'order/sendFeedbacks';?>" method="post" enctype="multipart/form-data" id="deliveryUploadForm" autocomplete="off">
 
                     <div class="row">
                         <div class="type-1">Your Thoughts</div>
@@ -254,21 +249,17 @@
                         <div class="innerRow" style="display:flex;align-items:center">
                             <div id="rateYo_2" class="rateYo"></div>
                             <div class="rateValue"></div>
-                            <input type="hidden" id="ratingInput" class="ratingInput" name="buyerRating" value="">
+                            <input type="hidden" id="ratingInput" class="ratingInput" name="userRating" value="">
                         </div>
                     </div>
 
-                    <input type="hidden" name="completeOrder" value="uploadDelivery">
+                    <input type="hidden" name="sendFeedback" value="sendFeedback">
                     <input type="hidden" name="orderId" value="<?php echo $data['orderId']?>">
-                    <?php if($data['orderState'] == "Completed") : ?>
-                        <input type="hidden" name="sellerId" value="<?php echo $data['sellerId']?>">
-                    <?php else : ?>
-                        <input type="hidden" name="buyerId" value="<?php echo $data['buyerId']?>">
-                    <?php endif; ?>
                     <input type="hidden" name="senderId" value="<?php echo $_SESSION['userId']?>">
+                    <input type="hidden" name="receiverId" value="<?php echo $data['receiverId']?>">
 
                     <div class="submitSec">
-                        <button type="submit" name="finalsave" id="btnx" class="buttonType-1">Send Feedback</button>
+                        <button type="submit" id="btnx" class="buttonType-1">Send Feedback</button>
                     </div>
 
                 </form>

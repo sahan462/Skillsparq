@@ -1,7 +1,6 @@
 <?php
 class InquiryHandler extends database
 {
-
     // create new inquiry
     public function createInquiry($requestSubject, $requestDescription, $file, $currentDateTime, $clientId, $orderId, $inquiryType)
     {
@@ -442,7 +441,6 @@ class InquiryHandler extends database
         }
     }
 
-
     public function deleteFromRequests($inquiryId)
     {
         $query = "DELETE FROM help_requests WHERE request_id = ?";
@@ -456,6 +454,8 @@ class InquiryHandler extends database
         }
         mysqli_stmt_close($stmt);
     }
+
+
     public function deleteFromInquiries($inquiryId)
     {
         $query = "DELETE FROM inquiries WHERE inquiry_id = ?";
