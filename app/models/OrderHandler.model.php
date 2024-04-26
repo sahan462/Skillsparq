@@ -108,15 +108,71 @@ class OrderHandler extends database
         return $orderId;
     }
 
+    public function getJobOrders($userId, $userRole)
+    {
+        if ($userRole == 'Buyer') {
+
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE user_id = ? 
+            ORDER BY order_id DESC
+            ";
+
+        } else {
+
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE seller_id = ? 
+            ORDER BY order_id DESC
+            ";
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // return $stmt->get_result();
+            $result = $stmt->get_result();
+            // Fetch associative array
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get orders
     public function getOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
 
             $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
+
         } else {
 
-            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE seller_id = ? 
+            ORDER BY order_id DESC
+            ";
+            // $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

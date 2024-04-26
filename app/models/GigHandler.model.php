@@ -336,6 +336,32 @@ class GigHandler extends database
         }
   
     }
+
+    //get package details
+    public function getPackagesForOthers($gigId)
+    {
+        $query = "SELECT * FROM packages WHERE gig_id = ?";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $result = $stmt->get_result();
+            $packages = [];
+            while ($row = $result->fetch_assoc()) {
+                $packages[] = $row;
+            }
+            return $packages;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+  
+    }
         
     //get Gig Id based on seller id
     public function getGigId($sellerId)

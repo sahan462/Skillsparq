@@ -15,7 +15,14 @@ class ManageOrders extends Controller
         $data['title'] = "SkillSparq";
         $data['myOrders'] = $this->getOrders($_SESSION['userId'], $_SESSION['role']);
 
-        show($data['myOrders']);
+        $data['myJobOrders']  = $this->OrderHandlerModel->getJobOrders($_SESSION['userId'], $_SESSION['role']);
+        // $data['myOrders']['JOB'] =  $data['myJobOrders'];
+        // $data['myOrders']['PACKAGE'] =  $data['myJobOrders'] = "";
+        // $data['myOrders']['MILESTONE'] =  $data['myJobOrders'] = "";
+        // $data['myPackageOrders']  = $this->OrderHandlerModel->getPackageOrders($_SESSION['userId'], $_SESSION['role']);
+        // $data['myMilestoneOrders']  = $this->OrderHandlerModel->getMilestoneOrders($_SESSION['userId'], $_SESSION['role']);
+        // show($data['myJobOrders']);
+        // show($data['myOrders']);
         // show($_SESSION);
         $this->view('manageOrders', $data); 
     }
