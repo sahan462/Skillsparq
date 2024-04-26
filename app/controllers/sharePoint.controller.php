@@ -21,16 +21,16 @@ class SharePoint extends Controller
             $data['receiverId'] = $_GET['receiverId'];
         }
 
+        if(isset($_GET['senderId'])){
+            $data['senderId'] = $_GET['senderId'];
+        }
+
         if(isset($_GET['sellerId'])){
             $data['sellerId'] = $_GET['sellerId'];
         }
 
         if(isset($_GET['buyerId'])){
             $data['buyerId'] = $_GET['buyerId'];
-        }
-
-        if(isset($_GET['receiverId'])){
-            $data['receiverId'] = $_GET['receiverId'];
         }
 
         if(isset($_GET['orderState'])){
@@ -55,6 +55,8 @@ class SharePoint extends Controller
         }else{
             $this->redirect("_505");
         }
+
+        print_r($data);
 
         $this->view('sharePoint', $data);
 

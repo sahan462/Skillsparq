@@ -184,7 +184,6 @@
                     </form>
 
                 </div>
-
             </div>
 
 
@@ -436,7 +435,7 @@
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>       
                             
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&senderId=<?php echo $senderId?>" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
                             </div>
                             
                         <?php elseif ($_SESSION['role'] == 'csa') :?>
@@ -453,29 +452,20 @@
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
                             </div>
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['user_id']?>&orderState=Completed" class="buttonType-1">View Share Point</a>
-                            </div>                            
-                            
-                            <!-- <label class="type-2">Your Thoughts about Buyer</label>
-
-                            <div class="subsection">
-                                <div class="row">
-                                    <textarea></textarea>
-                                    <div class="row">
-                                        <div id="rateYo"></div>
-                                        <div class="rateValue"></div>
-                                    </div>
-                                </div>
-                            </div> -->
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                            </div>                           
 
                         <?php elseif ($_SESSION['role'] == 'csa') :?>
 
+                            <div class="row">
+                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
+                            </div>
 
                         <?php endif; ?>
 
@@ -587,6 +577,11 @@
 
                         <?php elseif ($_SESSION['role'] == 'Seller') : ?>
 
+                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                            <dotlottie-player src="https://lottie.host/351b9c50-9b5b-40f3-b3a9-b7b18515bbdd/kDdcbxih46.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
+
                         <?php endif; ?>
 
 
@@ -610,16 +605,16 @@
 
                     <p>Are you sure want to withdraw your request?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('withdraw request', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('withdraw request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('withdraw request', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php }else if($state == 'Accepted/Pending Payments') { ?>
 
                     <p>Are you sure want to cancel your order?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('cancel order', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('cancel order', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('cancel order', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php } ?>
@@ -630,8 +625,8 @@
 
                     <p>Are you sure want to reject this request?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('reject request', 'no', '', '', '')">No</button>
                         <button onclick="handleStateChange('reject request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
+                        <button onclick="handleStateChange('reject request', 'no', '', '', '')">No</button>
                     </div>
 
                 <?php } ?>
@@ -653,8 +648,8 @@
 
                     <p>Are you sure want to continue with this order?</p>
                     <div class="buttons">
-                        <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
                         <button onclick="handleStateChange('accept request', 'no', '', '', '')">No</button>
+                        <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>')">Yes</button>
                     </div>
 
                 <?php } ?> 
