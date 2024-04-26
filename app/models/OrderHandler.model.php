@@ -2,7 +2,7 @@
 class OrderHandler extends database
 {
 
-    //create new order
+    //create new package order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
         $query = "INSERT INTO Orders 
@@ -68,7 +68,7 @@ class OrderHandler extends database
         return $orderId;
     }
 
-    //create milestone order
+    //create new milestone order
 
     public function createMilestoneOrder()
     {
@@ -162,15 +162,7 @@ class OrderHandler extends database
 
         } else {
 
-            $query = "SELECT * 
-            FROM orders 
-            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
-            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
-            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
-            WHERE seller_id = ? 
-            ORDER BY order_id DESC
-            ";
-            // $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
+            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

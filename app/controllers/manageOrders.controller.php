@@ -5,11 +5,13 @@ class ManageOrders extends Controller
 {
     private $OrderHandlerModel;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->OrderHandlerModel = $this->model('orderHandler');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $data['var'] = "Manage Orders Page";
         $data['title'] = "SkillSparq";
@@ -21,7 +23,8 @@ class ManageOrders extends Controller
     }
 
     //read orders
-    public function getOrders($userId, $userRole){
+    public function getOrders($userId, $userRole)
+    {
 
         $myOrders = $this->OrderHandlerModel->getOrders($userId, $userRole);
 

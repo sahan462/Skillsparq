@@ -468,11 +468,11 @@ input[type = "text"],
 
 .AlertButton{
     text-align: center;
-    padding: 20px;
-    background-color: #1dbf73;
+    background-color: #C72300;
     color: white;
-    margin-left: 48px;
-    margin-right: 48px;
+    margin-left: 32px;
+    margin-right: 32px;
+    padding: 4px;
     box-shadow: 10px 10px 5px rgb(127, 117, 112);
     border-radius: 16px;
     /* height: 36px; */
@@ -624,7 +624,7 @@ input[type = "file"]
     
 }
 
-label{
+.sellerProfileContainer label{
     display: inline-block;
     text-transform: uppercase;
     color:#fff;

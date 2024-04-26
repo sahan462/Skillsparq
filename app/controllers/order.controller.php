@@ -15,25 +15,33 @@ class Order extends Controller
 
     public function index()
     {
+        if((!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) || (!isset($_SESSION["email"]) && !isset($_SESSION["password"]))){
 
-        $data['var'] = "Order Page";
-        $data['title'] = "SkillSparq";
+            header("location: home");
 
-        $orderId = $_GET['orderId'];
-        $orderType = $_GET['orderType'];
-        $buyerId = $_GET['buyerId'];
-        $sellerid = $_GET['sellerId'];
-        $userRole = $_SESSION['role'];
+        }else{
 
-        // get order, buyer and seller information
-        $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-        $order = $data['order'];
-        $chatId = $order['chat_id'];
+            $data['var'] = "Order Page";
+            $data['title'] = "SkillSparq";
 
-        //retrieve the chat from the database
-        $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-        // show($data);
-        $this->view('order', $data);
+            $orderId = $_GET['orderId'];
+            $orderType = $_GET['orderType'];
+            $buyerId = $_GET['buyerId'];
+            $sellerid = $_GET['sellerId'];
+            $userRole = $_SESSION['role'];
+
+            // get order, buyer and seller information
+            $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
+            $order = $data['order'];
+            $chatId = $order['chat_id'];
+
+            //retrieve the chat from the database
+            $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
+            // print_r($data);
+            // print_r($chatId);
+            $this->view('order', $data);
+    
+        }
         
     }
 
@@ -84,10 +92,9 @@ class Order extends Controller
                     //notify the seller using an email
                     $sellerEmail = $this->getSession('email');
                     
-
                     $newOrderRequestEmail = `
                     
-                                <!DOCTYPE html>
+                    <!DOCTYPE html>
                     <html lang="en">
                     <head>
                     <meta charset="UTF-8">

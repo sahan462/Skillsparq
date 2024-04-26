@@ -155,8 +155,8 @@ class Controller
     {
 
         // require_once('../../vendor/autoload.php');
-        require_once('/skillsparq/vendor/nofity/autoload.php');
-
+        require_once('../vendor/nofity/autoload.php');
+       
         $api_instance = new NotifyLk\Api\SmsApi();
 
         $user_id = "27002";

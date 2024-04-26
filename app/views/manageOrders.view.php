@@ -7,7 +7,7 @@
     }
 
     $myOrders = $data['myOrders'];
-
+    print_r($myOrders);
 ?>
 
 <!-- Main Container -->
