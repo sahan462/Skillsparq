@@ -27,13 +27,15 @@ function displayFileName(index)
 
 //-------------------------------------------Star Rating----------------------------------------
 $(function () {
-  $("#rateYo").rateYo({
-    maxValue: 5,
-    numStars: 5,
-  }).on("rateyo.change", function (e, data) {
-    var rating = data.rating;
-    $(this).next('.rateValue').text("Rating: " + rating);
-    $('#ratingInput').val(rating);
+  $(".rateYo").each(function () {
+      $(this).rateYo({
+          maxValue: 5,
+          numStars: 5,
+      }).on("rateyo.change", function (e, data) {
+          var rating = data.rating;
+          $(this).siblings('.rateValue').text("Rating: " + rating);
+          $(this).siblings('.ratingInput').val(rating);
+      });
   });
 });
 

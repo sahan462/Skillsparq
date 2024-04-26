@@ -8,7 +8,7 @@
 
 <?php 
     $deliveries = $data['deliveries'];
-    print_r($deliveries);
+    print_r($data);
 ?>
 
 <!-- Main Container -->
@@ -132,7 +132,8 @@
         </div>
 
         <!-- right container -->
-        <div class="rightContainer">
+
+        <div class="rightContainer" <?php if (($data['orderState'] == "Completed") && ($_SESSION['role'] == 'Buyer')) echo 'style="pointer-events: none; opacity: 0.5;"'; ?>>
                         
             <!-- for buyer -->
             <?php if($_SESSION['role'] == 'Buyer'){ ?>
@@ -162,14 +163,23 @@
                             <div class="type-2">Considering overall expression about the seller</div>
 
                             <div class="innerRow" style="display:flex;align-items:center">
-                                <div id="rateYo"></div>
+                                <div id="rateYo_1" class="rateYo"></div>
                                 <div class="rateValue"></div>
-                                <input type="hidden" id="ratingInput" name="rating" value="">
+                                <input type="hidden" id="ratingInput" class="ratingInput" name="rating" value="">
                             </div>
                         </div>
 
                     </div>
+
                     <input type="hidden" name="completeOrder" value="uploadDelivery">
+                    <input type="hidden" name="orderId" value="<?php echo $data['orderId']?>">
+                    <?php if($data['orderState'] == "Completed") : ?>
+                        <input type="hidden" name="sellerId" value="<?php echo $data['sellerId']?>">
+                        <input type="hidden" name="buyerId" value="<?php echo $data['buyerId']?>">
+                    <?php else : ?>
+                        <input type="hidden" name="receiverId" value="<?php echo $data['receiverId']?>">
+                    <?php endif; ?>
+                    <input type="hidden" name="senderId" value="<?php echo $_SESSION['userId']?>">
                     <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
 
                     <div class="submitSec">
@@ -179,7 +189,7 @@
                 </form>
 
             <!-- for seller -->
-            <?php } else if($_SESSION['role'] == 'Seller'){ ?>
+            <?php } else if(($data['orderState'] != "Completed") && ($_SESSION['role'] == 'Seller')){ ?>
 
                 <!-- sub topic -->
                 <p class="title">
@@ -207,24 +217,6 @@
                     <label class="type-2">Please add a suitable description for your work</label>
                     <textarea  name="deliveryDescription" rows="4" cols="50" style="margin-bottom:32px !important;" autocomplete="off"></textarea>
 
-                    <!-- Rate buyer -->
-                    <!-- <input type="checkbox" name="final" id="final" onclick="showrate()"> Consider this as a final product delivery.
-                
-                    <div id="rateSec" style="display:none">
-
-                        rate buyer -->
-                        <!-- <label class="type-2">Your Thoughts about Buyer</label>
-                        <div class="subsection">
-                            <div class="row">
-                                <textarea></textarea>
-                                <div class="row">
-                                    <div id="rateYo"></div>
-                                    <div class="rateValue"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> -->
                     <input type="hidden" name="orderId" value="<?php echo $data['orderId'] ?>">
                     <input type="hidden" name="orderType" value="<?php echo $data['orderType']?>">
                     <?php if($data['orderType'] == 'milestone') { ?>
@@ -237,10 +229,54 @@
                     </div>
 
                 </form>
+            
+            <?php } else if(($data['orderState'] == "Completed") && ($_SESSION['role'] == 'Seller')){ ?>
+                
+                <!-- sub topic -->
+                <p class="title">
+                    <span class="darkTitle">Rate </span>
+                    The Buyer
+                </p>
+                <!-- buyer rating  -->
+                <form action="<?php echo BASEURL.'order/sendFeedback';?>" method="post" enctype="multipart/form-data" id="deliveryUploadForm" autocomplete="off">
+
+                    <div class="row">
+                        <div class="type-1">Your Thoughts</div>
+                        <div class="type-2">Give your feedback about this buyer</div>
+
+                        <textarea class="textbox" rows="4" cols="50" style="width:100%;margin-bottom: 32px !important;" name="feedback" value=""></textarea>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 32px !important;">
+                        <div class="type-1">Overall Experience</div>
+                        <div class="type-2">Considering overall expression about the buyer</div>
+
+                        <div class="innerRow" style="display:flex;align-items:center">
+                            <div id="rateYo_2" class="rateYo"></div>
+                            <div class="rateValue"></div>
+                            <input type="hidden" id="ratingInput" class="ratingInput" name="buyerRating" value="">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="completeOrder" value="uploadDelivery">
+                    <input type="hidden" name="orderId" value="<?php echo $data['orderId']?>">
+                    <?php if($data['orderState'] == "Completed") : ?>
+                        <input type="hidden" name="sellerId" value="<?php echo $data['sellerId']?>">
+                    <?php else : ?>
+                        <input type="hidden" name="buyerId" value="<?php echo $data['buyerId']?>">
+                    <?php endif; ?>
+                    <input type="hidden" name="senderId" value="<?php echo $_SESSION['userId']?>">
+
+                    <div class="submitSec">
+                        <button type="submit" name="finalsave" id="btnx" class="buttonType-1">Send Feedback</button>
+                    </div>
+
+                </form>
 
             <?php } ?>
 
         </div>
+
     </div>
 
 </div>

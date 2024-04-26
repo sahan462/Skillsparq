@@ -183,6 +183,42 @@ class ProfileHandler extends database
         }
     }
 
+    // create new feedback
+    public function sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime)
+    {
+        $query = "INSERT INTO feedbacks 
+        (
+            sender_user_id, 
+            receiver_user_id, 
+            feedback_text,  
+            rating,
+            feedback_date
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "iisds", $senderId,  $receiverId, $feedback, $rating, $currentDateTime);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $feedbackId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        return $feedbackId;
+    }
+
+
+    // retrieve all feedbacks
     public function getAllFeedbacks()
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
@@ -205,6 +241,8 @@ class ProfileHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    // delete a feedback
     public function deleteFeedback($feedback)
     {
         $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM feedbacks

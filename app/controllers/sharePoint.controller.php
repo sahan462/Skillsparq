@@ -16,6 +16,29 @@ class SharePoint extends Controller
 
         $orderId = $_GET['orderId'];
         $orderType = $_GET['orderType'];
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['sellerId'])){
+            $data['sellerId'] = $_GET['sellerId'];
+        }
+
+        if(isset($_GET['buyerId'])){
+            $data['buyerId'] = $_GET['buyerId'];
+        }
+
+        if(isset($_GET['receiverId'])){
+            $data['receiverId'] = $_GET['receiverId'];
+        }
+
+        if(isset($_GET['orderState'])){
+            $data['orderState'] = $_GET['orderState'];
+        }else{
+            $data['orderState'] = null;
+        }
+
         if(isset($_GET['milestoneId'])){
             $milestoneId = $_GET['milestoneId'];
         }else{
