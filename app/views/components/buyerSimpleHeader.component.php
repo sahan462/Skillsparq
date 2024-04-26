@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./assests/css/displayJob.styles.css">
     <link rel="stylesheet" href="./assests/css/userHelp.styles.css">
     <link rel="stylesheet" href="./assests/css/sharePoint.styles.css">
+    <link rel="stylesheet" href="./assests/css/feedbackCard.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />

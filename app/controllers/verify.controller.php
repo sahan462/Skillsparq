@@ -30,7 +30,6 @@ class Verify extends Controller
 
     public function index()
     {
-
         $data = $this->initializeData();
 
         // Get Session DATA //
@@ -141,6 +140,11 @@ class Verify extends Controller
                 $this->view('verify', $data);
             }
             else{
+                echo "
+                <script>
+                    alert('Email is not Sent');
+                </script>
+            ";
                 $this->unsetSession('otpcode');
                 $this->view("505");
             }

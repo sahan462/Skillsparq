@@ -81,6 +81,14 @@ class SellerProfile extends Controller
             }
             $data['emailStatus'] = $emailNotSet;
 
+            // get feedbacks
+            $feedbacks = $this->ProfileHandlerModel->getFeedbacks($sellerId);
+            if($feedbacks){
+                $data['feedbacks'] = $feedbacks;
+            }else{
+                $this->redirect('_505');
+            }
+
             if(!empty($_SESSION) && $emailNotSet){
                 echo "
                 <script>
