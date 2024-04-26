@@ -385,7 +385,7 @@
                             ?>
 
                             <!-- Payment https://sandbox.payhere.lk/pay/authorize -->
-                            <form method="post" action="order/verifyPayment" id="paymentForm">   
+                            <form method="post" action="https://sandbox.payhere.lk/pay/authorize" id="paymentForm">   
                                 <input type="hidden" name="merchant_id" value="1224879">    
                                 <input type="hidden" name="return_url" value="skillsparq/public/order&orderId=11">
                                 <input type="hidden" name="cancel_url" value="skillsparq/public/order&orderId=11">

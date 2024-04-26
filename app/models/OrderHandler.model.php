@@ -113,8 +113,8 @@ class OrderHandler extends database
     {
         if ($userRole == 'Buyer') {
 
-            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
-            
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
+
         } else {
 
             $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
@@ -129,14 +129,9 @@ class OrderHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $userId);
 
         if (mysqli_stmt_execute($stmt)) {
-            // return $stmt->get_result();
             $result = $stmt->get_result();
             // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $result;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -367,10 +362,6 @@ class OrderHandler extends database
 
         return $previousMonthsData;
 
-    }
-    //deliver and order
-    public function makeDelivery($orderType, $orderId, $milestoneId)
-    {
     }
 
     //upload a delivery

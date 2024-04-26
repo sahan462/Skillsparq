@@ -72,7 +72,7 @@
                             <input type="text" value="$" name="amount_1" placeholder="Up to" style="margin-bottom:0" />
                         </div>
                         <div class="min-bid">
-                            <span class="type-1">Min. bid amount</span>
+                            <span class="type-1">Min. Bid Gap</span>
                             <input type="text" value="$" name="amount_2" placeholder="Up to" style="margin-bottom:0" />
                         </div>
                     </div>
