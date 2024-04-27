@@ -224,6 +224,7 @@ class ProfileHandler extends database
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
+
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }

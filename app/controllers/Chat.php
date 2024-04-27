@@ -47,7 +47,15 @@ class Chat implements MessageComponentInterface {
 
             // Check if attachment exists
             if (isset($data['attachment'])) {
+
                 $attachment = $data['attachment'];
+
+                preg_match('/^data:(.*);base64,/', $data['attachment'], $matches);
+                $fileType = $matches[1];
+
+                $data['attachmentType'] = $fileType;
+                echo $fileType;
+
             }else{
                 $attachment = null;
             }

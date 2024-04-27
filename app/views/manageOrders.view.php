@@ -6,7 +6,8 @@
         include "components/sellerHeader.component.php";
     }
 
-    // $myOrders = $data['myOrders'];
+    $myOrders = $data['myOrders'];
+    print_r($myOrders);
 
 ?>
 

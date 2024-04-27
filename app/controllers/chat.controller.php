@@ -51,9 +51,11 @@ class Chat extends Controller
 
         try{    
             // Extract the message fields from the associative array
+            echo '$_POST';
             $message = $_POST['newMessage'];
-            if(isset($_POST['attachement'])){
-                $attachement = $_POST['attachement'];
+            if(isset($_POST['attachment'])){
+                $attachement = $_POST['attachment'];
+                $attachementType = $_POST['attachmentType'];
             }else{
                 $attachement = "";
             }
@@ -62,7 +64,7 @@ class Chat extends Controller
             $senderId = $_POST['senderId'];
             $receiverId = $_POST['receiverId'];
   
-            $isSent = $this->ChatHandlerModel->sendNewTextMessage($message, $attachement, $date, $chatId, $senderId, $receiverId);
+            $isSent = $this->ChatHandlerModel->sendNewTextMessage($message, $attachement, $attachementType, $date, $chatId, $senderId, $receiverId);
             if($isSent){
                 return true;
             }

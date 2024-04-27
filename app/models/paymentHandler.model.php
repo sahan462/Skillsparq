@@ -62,10 +62,10 @@ class PaymentHandler extends database
         $query = "
         SELECT
             (SELECT COUNT(*) FROM payments) AS payments,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'completed' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS completed,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'onhold' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS onhold,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'refunded' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS refunded,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'holdForRefund' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS holdForRefund;
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'completed' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS completed,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'onhold' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS onhold,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'refunded' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS refunded,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'holdForRefund' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS holdForRefund;
           
         ";
 

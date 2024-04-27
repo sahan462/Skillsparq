@@ -66,7 +66,7 @@ class GigHandler extends database
                 throw new Exception("Failed to create prepared statement2.");
             }
             
-            mysqli_stmt_bind_param($stmt2, "ississdi",$packagePrice_2, $packageName_2, $noOfRevisions_2,$noOfDeliveryDays_2, $timePeriod_2, $packageDescription_2, $currentDateTime, $gigId);
+            mysqli_stmt_bind_param($stmt2, "siisisdi", $packageName_2, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $currentDateTime, $gigId);
     
             if (mysqli_stmt_execute($stmt2)) {
                 $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
@@ -87,7 +87,7 @@ class GigHandler extends database
                 throw new Exception("Failed to create prepared statement3.");
             }
             
-            mysqli_stmt_bind_param($stmt3, "ississdi",$packagePrice_3, $packageName_3, $noOfRevisions_3,$noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $gigId);
+            mysqli_stmt_bind_param($stmt3, "siisisdi", $packageName_3, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $gigId);
     
             if (mysqli_stmt_execute($stmt3)) {
                 $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
@@ -246,11 +246,8 @@ class GigHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $result;
+
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
