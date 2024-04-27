@@ -52,32 +52,52 @@
                                 <div class="col-lg-4">
                                     <div class="card shadow-sm">
                                         <div class="card-header bg-transparent text-center">
-                                            <img class="profile_img" src="./assests/images/profilePictures/<?php echo $_SESSION['profilePicture'];
-                                                                                                            ?>" alt=" student dp">
-                                            <h3><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h3>
+                                            <!-- <img class="profile_img" src="./assests/images/profilePictures/<?php echo $_SESSION['profilePicture'];
+                                                                                                                ?>" alt=" student dp">
+                                            <h3><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h3> -->
                                         </div>
                                         <div class="card-body">
-                                            <p class="mb-0"><strong class="pr-1" style="color:green">User ID:</strong><?php echo $_SESSION['userId'] ?>
-                                            </p>
-                                            <p class="mb-0"><strong class="pr-1" style="color:green">UserName:</strong><?php echo $_SESSION['userName'] ?>
-                                            </p>
-                                            <p class=" mb-0"><strong class="pr-1" style="color:green">Email:</strong><?php echo $_SESSION['email'] ?>
-                                            </p>
-                                            <p class=" mb-0"><strong class="pr-1" style="color:green">role:</strong><?php echo $_SESSION['role'] ?>
-                                            </p>
+                                            <?php foreach ($userProfile as $row) { ?>
+                                                <p class="mb-0"><strong class="pr-1" style="color:green">User ID:</strong><?php echo $row['user_id'] ?>
+                                                </p>
+                                                <p class="mb-0"><strong class="pr-1" style="color:green">UserName:</strong><?php echo $row['user_name'] ?>
+                                                </p>
+                                                <p class=" mb-0"><strong class="pr-1" style="color:green">Email:</strong><?php echo $row['user_email'] ?>
+                                                </p>
+                                                <p class=" mb-0"><strong class="pr-1" style="color:green">role:</strong><?php echo $row['role'] ?>
+                                                </p>
+                                            <?php } ?>
                                         </div>
 
                                     </div>
+
+
+
+
+
                                     <div class="card-body">
-                                        <table>
+                                        <table class="content-table">
+                                            <span class="text" style="font-weight: bold; margin-left:40%; font-size :18px;  color:black">Orders</span>
+
                                             <thead>
                                                 <tr>
-                                                    <td>OrderID</td>
-                                                    <td>OrderState</td>
-                                                    <td>View</td>
+                                                    <th style="max-width: 80px;">OrderID</th>
+                                                    <th style="max-width: 80px;">OrderState</th>
+                                                    <th> View </th>
+
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                <?php foreach ($orderSeller as $order) { ?>
+                                                    <tr>
+                                                        <td><?php echo ($order['order_id']); ?></td>
+                                                        <td><?php echo ($order['order_state']) . "              "; ?></td>
+                                                        <td><a href="viewOrder.php?orderId=<?php echo htmlspecialchars($order['order_id']); ?>"><i class="fa fa-eye"></i></a></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
+
                                     </div>
 
                                 </div>
@@ -91,23 +111,23 @@
                                                 <tr>
                                                     <th width="30%">FirstName</th>
                                                     <td width="2%">:</td>
-                                                    <td> <?php foreach ($userProfile as $profile) {
-                                                                echo $profile['first_name'];
-                                                            } ?></td>
+                                                    <td> <?php
+                                                            echo $row['first_name'];
+                                                            ?></td>
                                                 </tr>
 
                                                 <tr>
                                                     <th width="30%">LastName</th>
                                                     <td width="2%">:</td>
                                                     <td> <?php
-                                                            echo $profile['last_name'];
+                                                            echo $row['last_name'];
                                                             ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th width="30%">Last Seen</th>
                                                     <td width="2%">:</td>
                                                     <td> <?php
-                                                            echo $profile['last_seen'];
+                                                            echo $row['last_seen'];
                                                             ?></td>
                                                 </tr>
 
@@ -123,9 +143,70 @@
                                         <div class="card-body pt-0">
 
 
-                                            <?php echo htmlspecialchars($profile['about']); ?>
+                                            <?php echo htmlspecialchars($row['about']); ?>
 
                                         </div>
+
+                                    </div>
+                                    <div class="card shadow-sm">
+                                        <table class="content-table">
+                                            <span class="text" style="font-weight: bold; margin-left:40%; font-size :18px;  color:black ; margin-top:20px;">Rating And reviews</span>
+                                            <thead>
+                                                <tr>
+                                                    <th>feedback_id</th>
+                                                    <th>SenderID </th>
+                                                    <th>ReceiverId </th>
+                                                    <th style="max-width: 350px;"> Text </th>
+                                                    <th>rating</th>
+                                                    <th>feedback_date</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // Display only the rows for the current page
+                                                foreach ($feedbacks as $feedback) {
+                                                    if ($feedback['receiver_user_id'] == $row['user_id']) {
+
+                                                ?>
+                                                        <tr>
+                                                            <td><?php echo $feedback['feedback_id']; ?></td>
+                                                            <td><?php echo $feedback['sender_user_id']; ?></td>
+                                                            <td><?php echo $feedback['receiver_user_id']; ?></td>
+                                                            <td><?php echo $feedback['feedback_text']; ?></td>
+                                                            <td>
+                                                                <div class="star-rating">
+                                                                    <?php
+                                                                    $rating = $feedback['rating'];
+                                                                    for ($i = 1; $i <= 5; $i++) {
+                                                                        if ($i <= $rating) {
+                                                                            echo '<span class="star" style="color:gold; font-size:16px;">&#9733;</span>'; // Filled star
+                                                                        } else {
+                                                                            echo '<span class="star" style="color:gold; font-size:16px;">&#9734;</span>'; // Empty star
+                                                                        }
+                                                                    }
+                                                                    echo '(' . '<span style="font-size:12px;">' . $feedback['rating'] . '</span>' . ')';
+
+                                                                    ?>
+                                                                </div>
+                                                            </td>
+
+                                                            <td><?php echo $feedback['feedback_date']; ?></td>
+
+
+
+
+
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+
+
+
+                                        </table>
 
                                     </div>
 

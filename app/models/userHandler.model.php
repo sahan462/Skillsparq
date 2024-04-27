@@ -222,13 +222,13 @@ class UserHandler extends database
     public function userProfile($user_id)
     {
         $query = "SELECT 
-      
+       
         p.*,  
         u.*
         
     FROM user u
     JOIN profile p ON p.user_id = u.user_id
-    
+   
    
     WHERE u.user_id = ?";
 
