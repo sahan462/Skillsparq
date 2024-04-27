@@ -33,6 +33,7 @@ class Order extends Controller
 
             // get order, buyer and seller information
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
+            print_r($data);
             $order = $data['order'];
             $chatId = $order['chat_id'];
 
@@ -40,6 +41,7 @@ class Order extends Controller
             $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
             // show($data);
             // print_r($chatId);
+            // print_r($data);
             $this->view('order', $data);
     
         }
@@ -178,9 +180,6 @@ class Order extends Controller
                 ";
             }
 
-
-
-
         }catch(Exception $e){
 
             echo 'An error occurred during creation of package order: ' . $e->getMessage();
@@ -241,9 +240,19 @@ class Order extends Controller
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
     {
-        $isCreated = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
-        if(is_numeric($isCreated)){
-            return $isCreated;
+        $orderCreatedAt = Date('Y-m-d H:i:s');
+        // create order
+        $orderId = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+        
+        //get chat
+        if($orderId){
+            $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
+        }else{
+            $this->view("505");
+        }
+
+        if($chatId){
+            return $orderId;
         }else{
             echo "
                 <script>
