@@ -38,7 +38,7 @@ class Order extends Controller
 
             //retrieve the chat from the database
             $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-            // print_r($data);
+            // show($data);
             // print_r($chatId);
             $this->view('order', $data);
     
