@@ -23,32 +23,194 @@
     <div class="manageOrdersContent">
 
         <div class="leftContainer">
+
             <!-- Tab links -->
-            <div class="tab">
-                    <?php
-                        if($_SESSION['role'] === "Buyer"){
-                    ?>
-                <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Pending</button>
-                    <?php
-                        }else if($_SESSION['role'] === "Seller"){
-                    ?>
-                <button class="tablinks" onclick="openCity(event, 'Requests')" id = "defaultOpen">Requests</button>
-                    <?php 
-                        }
-                    ?>
-                <button class="tablinks" onclick="openCity(event, 'Accepted')">Accepted</button>
-                <button class="tablinks" onclick="openCity(event, 'Running')">Running</button>
-                <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
-                <button class="tablinks" onclick="openCity(event, 'Late')">Late</button>
-                <button class="tablinks" onclick="openCity(event, 'Cancelled')">Cancelled</button>
+            <div class="tab" style="margin-bottom: 16px">
+                <button class="tablinks" onclick="openOrderType(event, 'package')" id="defaultOpen_1" style="width:200px;">Package Orders</button>
+                <button class="tablinks" onclick="openOrderType(event, 'job')" style="width:200px;">Job Orders</button>
+                <button class="tablinks" onclick="openOrderType(event, 'milestone')" style="width:200px;">Milestone Orders</button>
             </div>
 
             <!-- Tab content -->
-
             <!-- order requests -->
+            <div id="package" class="ordercontent">
+
+                <!-- table topic -->
+                <span class="type-1">Package Orders</span>
+
+                <!-- Tabs -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Package_Requested')" id="defaultOpen_Package">Requested</button>
+                    <button class="tablinks" onclick="openCity(event, 'Package_Accepted')">Accepted</button>
+                    <button class="tablinks" onclick="openCity(event, 'Package_Running')">Running</button>
+                    <button class="tablinks" onclick="openCity(event, 'Package_Completed')">Completed</button>
+                    <button class="tablinks" onclick="openCity(event, 'Package_Late')">Late</button>
+                    <button class="tablinks" onclick="openCity(event, 'Package_Cancelled')">Cancelled</button>
+                </div>
+
+                <div id="Package_Requested" class="tabcontent">
+                    requested
+                    <div class="outerTable">
+                        <table>
+
+                            <div class="thead">
+                                <tr>
+                                    <th style="width: 6%;">Order Id</th>
+
+                                    <?php if($_SESSION["role"] == 'Seller') { ?>
+                                        <th style="width: 26%;">Buyer</th>
+                                    <?php } else { ?>
+                                        <th style="width: 26%;">Seller</th>
+                                    <?php }?>
+                                    
+                                    <th style="width: 28%;">Gig / Job</th>
+                                    <th style="width: 10%;">Due On</th>
+                                    <th style="width: 10%;">Total Amount</th>
+                                    <th style="width: 10%;">Order Type</th>
+                                </tr>
+                            </div>
+
+                            <div class="tbody">
+                                <?php 
+
+                                    foreach($data['myOrders'] as $row){
+                                        if($row['order_state'] === 'Requested'){
+                                    ?>
+                                            <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+
+                                                <td>
+                                                    <?php echo $row['order_id'] ?>
+                                                </td>
+
+                                                <td class="buyer">
+                                                    <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
+                                                    <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
+                                                </td>
+
+                                                <td>
+                                                    I will create wordpress websites
+                                                </td>
+
+                                                <td>
+                                                    <?php echo $row['deadline']?>
+                                                </td>
+
+                                                <td>
+                                                    $150
+                                                </td>
+
+                                                <td>
+                                                    <?php echo $row['order_type']?>
+                                                </td>
+
+                                            </tr>
+
+                                        <?php }
+                                    } ?>
+                            </div>
+                        </table>
+                    </div>
+                </div>  
+
+                <div id="Package_Accepted">
+                    accepted
+                    <div class="outerTable">
+                        <table>
+                            <div class="thead">
+                                <tr style="position: sticky">
+                                    <th style="width: 6%;">Order Id</th>
+
+                                    <?php if($_SESSION["role"] == 'Seller') { ?>
+                                        <th style="width: 26%;">Buyer</th>
+                                    <?php } else { ?>
+                                        <th style="width: 26%;">Seller</th>
+                                    <?php }?>      
+
+                                    <th style="width: 28%;">Gig</th>
+                                    <th style="width: 10%;">Due On</th>
+                                    <th style="width: 10%;">Total Amount</th>
+                                    <th style="width: 10%;">Order Type</th>
+                                </tr>
+                            </div>
+                            <div class="tbody">
+                                <?php 
+                                    foreach($data['myOrders'] as $row){
+
+                                        if($row['order_state'] == 'Accepted/Pending Payments'){
+
+                                ?>
+                                        <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+                                            <td><?php echo $row['order_id'] ?></td>
+                                            <td class="buyer">
+                                                <span>Kumar Sanagakkara</span>
+                                            </td>
+                                            <td>I will architect your hotel</td>
+                                            <td>5 Sep</td>
+                                            <td>$5000</td>
+                                            <td>Package Order</td>
+                                        </tr>
+                                <?php 
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        </table>
+                    </div>
+                </div>  
+
+                <div id="Package_Running"></div>  
+                <div id="Package_Completed"></div>  
+                <div id="Package_Late"></div>  
+                <div id="Package_Cancelled"></div>  
+
+            </div>
+
+            <div id="job" class="ordercontent">
+                job order
+                <!-- Tabs -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Job_Requested')" id="defaultOpen_Job">Requested</button>
+                    <button class="tablinks" onclick="openCity(event, 'Job_Accepted')">Accepted</button>
+                    <button class="tablinks" onclick="openCity(event, 'Job_Running')">Running</button>
+                    <button class="tablinks" onclick="openCity(event, 'Job_Completed')">Completed</button>
+                    <button class="tablinks" onclick="openCity(event, 'Job_Late')">Late</button>
+                    <button class="tablinks" onclick="openCity(event, 'Job_Cancelled')">Cancelled</button>
+                </div>
+
+                <div id="Job_Requested"></div>  
+                <div id="Job_Accepted"></div>  
+                <div id="Job_Running"></div>  
+                <div id="Job_Completed"></div>  
+                <div id="Job_Late"></div>  
+                <div id="Job_Cancelled"></div>  
+
+            </div>
+
+            <div id="milestone" class="ordercontent">
+                milestone order
+                <!-- Tabs -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Requested')" id="defaultOpen_Milestone">Requested</button>
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Accepted')">Accepted</button>
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Running')">Running</button>
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Completed')">Completed</button>
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Late')">Late</button>
+                    <button class="tablinks" onclick="openCity(event, 'Milestone_Cancelled')">Cancelled</button>
+                    
+                    <div id="Milestone_Requested"></div>  
+                    <div id="Milestone_Accepted"></div>  
+                    <div id="Milestone_Running"></div>  
+                    <div id="Milestone_Completed"></div>  
+                    <div id="Milestone_Late"></div>  
+                    <div id="Milestone_Cancelled"></div>  
+                
+                </div>
+            </div>
+<!-- 
             <div id="Requests" class="tabcontent">
                 <div class="outerTable">
                     <table>
+
                         <div class="thead">
                             <tr>
                                 <th style="width: 6%;">Order Id</th>
@@ -65,6 +227,7 @@
                                 <th style="width: 10%;">Order Type</th>
                             </tr>
                         </div>
+
                         <div class="tbody">
                             <?php 
                                 foreach($data['myOrders'] as $row){
@@ -72,45 +235,39 @@
                                     if($row['order_state'] === 'Requested'){
 
                             ?>
-                                    <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+                                        <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
 
-                                        <td><?php echo $row['order_id'] ?></td>
-                                        <td class="buyer">
-                                            <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
-                                            <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
-                                        </td>
-                                        <td>I will create wordpress websites</td>
-                                        <?php 
-                                            if($row['order_type'] === "package"){
-                                        ?>
-                                        <td> - </td>
-                                        <?php 
-                                            }else if($row['order_type'] === "job"){
-                                        ?>
-                                        <td>
-                                            <?php echo $row['deadline']?>
-                                        </td>
-                                        <?php 
-                                            }
-                                        ?>
-                                        <td>
-                                            <?php if($row['order_type'] == "package"){
-                                                // echo $row['package_price'];
-                                                echo "$150";
-                                            }
-                                            ?></td>
-                                        <td><?php echo $row['order_type']?></td>
+                                            <td><?php echo $row['order_id'] ?></td>
 
-                                    </tr>
-                            <?php }
+                                            <td class="buyer">
+                                                <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
+                                                <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
+                                            </td>
+
+                                            <td>I will create wordpress websites</td>
+
+                                            <td>
+                                                <?php echo $row['deadline']?>
+                                            </td>
+
+                                            <td>
+                                                $150
+                                            </td>
+
+                                            <td>
+                                                <?php echo $row['order_type']?>
+                                            </td>
+
+                                        </tr>
+                                <?php }
                                 }
                             ?>
                         </div>
                     </table>
                 </div>
-            </div>
+            </div> -->
 
-            <!-- accepted orders -->
+            <!-- accepted orders
             <div id="Accepted" class="tabcontent">
                 <div class="outerTable">
                     <table>
@@ -154,7 +311,7 @@
                         </div>
                     </table>
                 </div>
-            </div>
+            </div> -->
 
             <!-- running orders -->
             <div id="Running" class="tabcontent">

@@ -33,7 +33,6 @@ class OrderHandler extends database
         }
 
         //insert data to package_orders table   
-
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
         (
             package_order_id,
@@ -51,7 +50,6 @@ class OrderHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-
         mysqli_stmt_bind_param($stmt, "issii", $orderId, $requestDescription, $attachement, $gigId, $packageId);
         if (mysqli_stmt_execute($stmt)) {
             $stmt->close();
@@ -59,17 +57,11 @@ class OrderHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
 
-
-        // } else{
-
-        //     throw new Exception("Invalid Order Type");        
-        // }
-
         return $orderId;
     }
 
-    //create new milestone order
 
+    //create new milestone order
     public function createMilestoneOrder()
     {
     }
@@ -96,7 +88,7 @@ class OrderHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "ssdii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
+        mysqli_stmt_bind_param($stmt, "sssii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
             $orderId = mysqli_insert_id($GLOBALS['db']);
@@ -107,6 +99,7 @@ class OrderHandler extends database
         return $orderId;
     }
 
+    // retrieve job orders
     public function getJobOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
@@ -153,7 +146,7 @@ class OrderHandler extends database
         }
     }
 
-
+    // retrieve package orders
     public function getPackageOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
@@ -207,7 +200,7 @@ class OrderHandler extends database
         }
     }
 
-
+    // retrieve milestone orders
     public function getMilestoneOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
@@ -292,12 +285,15 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'job') {
 
-            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
+            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
+            
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
