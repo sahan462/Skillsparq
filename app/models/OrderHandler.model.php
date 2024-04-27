@@ -159,7 +159,6 @@ class OrderHandler extends database
         if ($userRole == 'Buyer') {
 
             $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
-
         } else {
 
             $query = "SELECT * 
@@ -197,11 +196,9 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
@@ -575,6 +572,26 @@ class OrderHandler extends database
         }
 
         mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getOrdersSorted()
+    {
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();

@@ -14,26 +14,22 @@ class displayGig extends Controller
     public function index()
     {
 
-        try{
+        try {
 
-            if($_SESSION['role'] === "Seller"){
+            if ($_SESSION['role'] === "Seller") {
                 // display view would be loaded with the Seller header to the view page.
-                if(!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])){
-    
+                if (!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) {
+
                     $this->header("location: loginSeller");
-    
                 }
-
             }
-    
-            if($_SESSION['role'] === "Buyer"){
-                // display view would be loaded with the Buyer header to the view page.  
-                if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
-    
-                    $this->header("location: loginUser");
-    
-                }
 
+            if ($_SESSION['role'] === "Buyer") {
+                // display view would be loaded with the Buyer header to the view page.  
+                if (!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
+
+                    $this->header("location: loginUser");
+                }
             }
 
             $data['var'] = "Display Gig Page";
@@ -47,31 +43,25 @@ class displayGig extends Controller
 
             $profileData = $this->ProfileHandlerModel->getUserProfile($userId);
             $profileData = mysqli_fetch_assoc($profileData);
-    
+
             if ($gig) {
 
                 $data['gig'] = $gig["gigDetails"];
                 $data['packageDetails'] = $gig['packageDetails'];
                 $data['profileDetails'] = $profileData;
                 $data['sliderImgs'] = $sliderImgs;
-
             } else {
 
                 echo "<script>
                         alert('Gig is not Accessible!');
                         </script>";
-            
             }
-                       
+
             // show($data);
             $this->view('displayGig', $data);
-            
-            
-        }catch(Exception $e){
+        } catch (Exception $e) {
 
             $this->redirect('_505');
-
         }
-        
     }
 }

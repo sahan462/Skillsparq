@@ -23,9 +23,9 @@
                     <i class="uil uil-thumbs-up"></i>
                     <span class="link-name">Ratings & Reviews</span>
                 </a></li>
-            <li><a href="#">
+            <li><a href="viewOrders">
                     <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
+                    <span class="link-name">Manage Orders</span>
                 </a></li>
             <li><a href="#">
                     <i class="uil uil-share"></i>

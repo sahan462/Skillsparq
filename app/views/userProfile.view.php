@@ -31,7 +31,85 @@
             overflow-y: auto;
             /* Enable vertical scrolling */
             padding-right: 5px;
-            /* Optional: for better spacing */
+            /*
+             Optional: for better spacing */
+        }
+
+        .recentGigs .recentGigsContent {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .recentGigs .gigCard img {
+            max-width: 100%;
+            /* Ensures the image is no wider than its container */
+            height: auto;
+            /* Maintains the aspect ratio */
+            border-radius: 10px;
+            /* Optional: adds rounded corners to your images */
+        }
+
+        .gigCard {
+            flex: 1 1 300px;
+            /* Flex item can grow and shrink from a base of 300px */
+            margin: 10px;
+            /* Optional: adds some space around each card */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Optional: adds shadow for better visibility */
+            overflow: hidden;
+            /* Ensures no content spills out */
+        }
+
+        .solved {
+            background-color: red;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .unsolved {
+            background-color: red;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+
+
+        .onhold {
+            background-color: red;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .completed {
+            background-color: green;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .refunded {
+            background-color: orange;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+
+        }
+
+        .holdForRefund {
+            background-color: orangered;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
         }
     </style>
 </head>
@@ -208,6 +286,149 @@
 
                                         </table>
 
+                                    </div>
+                                    <div class="card shadow-sm">
+                                        <table class="content-table">
+                                            <span class="text" style="font-weight: bold; margin-left:45%; font-size :18px;  color:black ; margin-top:20px;">Gigs</span>
+                                            <thead>
+                                                <tr>
+                                                    <th>feedback_id</th>
+                                                    <th>SenderID </th>
+                                                    <th>ReceiverId </th>
+                                                    <th style="max-width: 350px;"> Text </th>
+                                                    <th>View</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // Display only the rows for the current page
+                                                foreach ($recentGigs as $gig) {
+                                                    if ($gig['seller_id'] == $row['user_id']) {
+
+                                                ?>
+                                                        <tr>
+                                                            <td><?php echo $gig['gig_id']; ?></td>
+                                                            <td><?php echo $gig['title']; ?></td>
+                                                            <td><?php echo $gig['category']; ?></td>
+                                                            <td><?php echo $gig['ongoing_order_count']; ?></td>
+                                                            <td> <a href="displayGig?gigId=<?php echo urlencode($gig['gig_id']); ?>&userId=<?php echo urlencode($row['user_id']); ?>">
+
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+
+                                                            </td>
+
+
+
+
+
+
+
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+
+
+
+                                        </table>
+                                    </div>
+                                    <div class="card shadow-sm">
+                                        <span class="text" style="font-weight: bold; margin-left:33%; font-size :18px;  color:black ;  margin-top:20px;">Complaints About Seller</span>
+                                        <table class="content-table">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>inquiry_ID</th>
+                                                    <th>subject </th>
+                                                    <th>inquiry_status </th>
+                                                    <th> created At </th>
+                                                    <th>View</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // Display only the rows for the current page
+                                                foreach ($recentComplaints as $complaint) {
+
+
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $complaint['inquiry_id']; ?></td>
+                                                        <td><?php echo $complaint['subject']; ?></td>
+                                                        <td>
+                                                            <div class="<?php echo $complaint['inquiry_status']; ?>"><?php echo $complaint['inquiry_status']; ?></div>
+                                                        </td>
+                                                        <td><?php echo $complaint['created_at']; ?></td>
+                                                        <td><a href='viewComplaints?inquiry_id=<?php echo $complaint["inquiry_id"]; ?>'><i class="fa fa-eye"></i></a></td>
+
+
+
+
+
+
+
+                                                    </tr>
+                                                <?php
+
+                                                }
+                                                ?>
+                                            </tbody>
+
+
+
+                                        </table>
+                                    </div>
+                                    <div class="card shadow-sm">
+                                        <span class="text" style="font-weight: bold; margin-left:40%; font-size :18px;  color:black ;  margin-top:20px;">Payments</span>
+                                        <table class="content-table">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Payment ID</th>
+                                                    <th>Payer ID </th>
+                                                    <th>amount </th>
+                                                    <th style="width: 200px;"> payment Status </th>
+                                                    <th style="width: 160px;"> Created At </th>
+                                                    <th>View</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // Display only the rows for the current page
+                                                foreach ($paymentSeller as $payment) {
+
+
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $payment['payment_id']; ?></td>
+                                                        <td><?php echo $payment['payer_id']; ?></td>
+                                                        <td><?php echo $payment['amount']; ?></td>
+                                                        <td>
+                                                            <div class="<?php echo $payment['payment_status']; ?>"><?php echo $payment['payment_status']; ?></div>
+                                                        </td>
+                                                        <td><?php echo $payment['payment_date']; ?></td>
+                                                        <td><a href='viewComplaints?inquiry_id=<?php echo $complaint["inquiry_id"]; ?>'><i class="fa fa-eye"></i></a></td>
+
+
+                                                    </tr>
+                                                <?php
+
+                                                }
+                                                ?>
+                                            </tbody>
+
+
+
+                                        </table>
                                     </div>
 
                                 </div>

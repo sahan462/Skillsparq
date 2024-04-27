@@ -47,15 +47,16 @@
         <table class="content-table">
             <thead>
                 <tr>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_id&dir=<?php echo $data['sortDirection']; ?>">feedback_id <i class="fa fa-sort"></i> </a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=sender_user_id&dir=<?php echo $data['sortDirection']; ?>">SenderID <i class="fa fa-sort"></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=receiver_user_id&dir=<?php echo $data['sortDirection']; ?>">ReceiverId <i class="fa fa-sort"></a></th>
-                    <th style="max-width: 350px;"><a href="?page=<?php echo $currentPage; ?>&sort=feedback_text&dir=<?php echo $data['sortDirection']; ?>">feedback_text <?php echo $data['sortBy'] === 'feedback_text' ? '<i class="fa fa-sort-' . ($data['sortDirection'] === 'asc' ? 'up' : 'down') . '"></i>' : ''; ?></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=rating&dir=<?php echo $data['sortDirection']; ?>">rating<i class="fa fa-sort"></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_date&dir=<?php echo $data['sortDirection']; ?>">feedback_date <i class="fa fa-sort"> </a></th>
-                    <th>Delete</th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=order_id&dir=<?php echo $data['sortDirection']; ?>">order_id <i class="fa fa-sort"></i></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=order_state&dir=<?php echo $data['sortDirection']; ?>">order State<i class="fa fa-sort"></i></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=order_type&dir=<?php echo $data['sortDirection']; ?>">order Type <i class="fa fa-sort"></i></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=order_created_date&dir=<?php echo $data['sortDirection']; ?>">created At <i class="fa fa-sort"></i></a></th>
+
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=buyer_id&dir=<?php echo $data['sortDirection']; ?>">buyer ID<i class="fa fa-sort"></i></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=seller_id&dir=<?php echo $data['sortDirection']; ?>">Seller ID <i class="fa fa-sort"></i></a></th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php
                 // Display only the rows for the current page
@@ -63,34 +64,14 @@
                     $row = $recentComplaintsArray[$i];
                 ?>
                     <tr>
-                        <td><?php echo $row['feedback_id']; ?></td>
-                        <td><?php echo $row['sender_user_id']; ?></td>
-                        <td><?php echo $row['receiver_user_id']; ?></td>
-                        <td><?php echo $row['feedback_text']; ?></td>
-                        <td>
-                            <div class="rating">
-                                <?php for ($j = 1; $j <= 5; $j++) : ?>
-                                    <?php if ($j <= $row['rating']) : ?>
-                                        <i class="fa fa-star" style="color: gold;"></i> <!-- Colored star for rating part -->
-                                    <?php else : ?>
-                                        <i class="fa fa-star" style="color: lightgray;"></i> <!-- Gray star for non-rating part -->
-                                    <?php endif; ?>
-                                <?php endfor;
-                                echo '(' . '<span style="font-size:12px;">' . $row['rating'] . '</span>' . ')'; ?>
-                            </div>
-                        </td>
+                        <td><?php echo $row['order_id']; ?></td>
+                        <td><?php echo $row['order_state']; ?></td>
+                        <td><?php echo $row['order_type']; ?></td>
+                        <td><?php echo $row['order_created_date']; ?></td>
+                        <td><?php echo $row['buyer_id']; ?></td>
+                        <td><?php echo $row['seller_id']; ?></td>
 
-                        <td><?php echo $row['feedback_date']; ?></td>
-                        <td>
 
-                            <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
-                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                    <i class="fa fa-trash" style="color: red;"></i>
-                                </button>
-                                <input type="hidden" name="feedback_id" value="<?php echo $row['feedback_id']; ?>">
-                            </form>
-
-                        </td>
                     </tr>
                 <?php
                 }
