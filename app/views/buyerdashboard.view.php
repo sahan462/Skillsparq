@@ -14,8 +14,9 @@
         <div class="personalizedHeader">
             Hey there, <?php echo $_SESSION['firstName']?>
             <div class = "searchBar">
-                <form action="">
-                    <input type="text" placeholder="Search.." name="search">
+                <!-- Search Bar to Search for the buyer -->
+                <form action="search" method="GET">
+                    <input type="text" placeholder="Search.." name="searchBuyerDash">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -93,6 +94,7 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./assests/js/buyerDashboard.script.js"></script>
 <script src="./assests/js/notifications.script.js"></script>
 

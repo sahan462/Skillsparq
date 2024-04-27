@@ -4,6 +4,7 @@ class Order extends Controller
 {
     private $OrderHandlerModel;
     private $ChatHandlerModel;
+    private $ProfileHandlerModel;
 
     public function __construct()
     {

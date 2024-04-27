@@ -8,6 +8,7 @@
 
     $myOrders = $data['myOrders'];
     print_r($myOrders);
+
 ?>
 
 <!-- Main Container -->
@@ -66,7 +67,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] === 'Requested'){
 
@@ -92,7 +93,11 @@
                                         <?php 
                                             }
                                         ?>
-                                        <td><?echo $row['amount']?></td>
+                                        <td>
+                                            <?php if($row['order_type'] == "package"){
+                                                echo $row['package_price'];
+                                            }
+                                            ?></td>
                                         <td><?php echo $row['order_type']?></td>
 
                                     </tr>
@@ -126,7 +131,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] == 'Accepted/Pending Payments'){
 
@@ -173,7 +178,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] == 'Running'){
 
@@ -221,7 +226,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] == 'Completed'){
 
@@ -270,7 +275,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] == 'Late'){
 
@@ -319,7 +324,7 @@
                         </div>
                         <div class="tbody">
                             <?php 
-                                foreach($myOrders as $row){
+                                foreach($data['myOrders'] as $row){
 
                                     if($row['order_state'] == 'Cancelled'){
                             ?>

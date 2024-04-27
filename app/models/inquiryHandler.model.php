@@ -170,13 +170,38 @@ class InquiryHandler extends database
         }
     }
 
+    // public function viewComplaints($inquiry_id)
+    // {
+    //     // Using backticks for SQL reserved keywords and ensuring the join conditions are correctly specified.
+    //     $query = "SELECT i.*, o.*, c.*,p.*
+    //               FROM inquiries i  
+    //               JOIN complaints c ON c.complaint_id = i.inquiry_id 
+    //               JOIN `orders` o ON o.order_id = c.order_id  
+    //               JOIN payments p ON p.order_id = o.order_id  
+    //               WHERE i.inquiry_id = ?";
+
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, 'i', $inquiry_id);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
+
 
     public function viewComplaints($inquiry_id)
     {
         $query = "SELECT 
         i.*, 
         c.*, 
-        o.*, 
+        o.*,
         p.*,
         u1.user_id as seller_id, 
         u1.user_email as seller_email,
@@ -211,9 +236,10 @@ class InquiryHandler extends database
     JOIN orders o ON o.order_id = c.order_id
     JOIN user u1 ON o.seller_id = u1.user_id
     JOIN user u2 ON o.buyer_id = u2.user_id
+    JOIN payments p on p.order_id = o.order_id
     JOIN profile p1 on u1.user_id = p1.user_id
     JOIN profile p2 on u2.user_id = p2.user_id
-    JOIN payments p on p.order_id = o.order_id
+   
     WHERE i.inquiry_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -306,7 +332,7 @@ class InquiryHandler extends database
             $blacklist_until_days = $_POST['blacklistUntil'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_list = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET Black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
 
             if (!$stmt) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);

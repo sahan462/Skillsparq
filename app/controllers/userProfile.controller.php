@@ -4,12 +4,14 @@ class userProfile extends Controller
 {
     private $inquiryHandlerModel;
     private $userHandlerModel;
+    private $profileHandlerModel;
     private $orderHandlerModel;
     public function __construct()
     {
         $this->inquiryHandlerModel = $this->model('inquiryHandler');
         $this->userHandlerModel = $this->model('userHandler');
         $this->orderHandlerModel = $this->model('orderHandler');
+        $this->profileHandlerModel = $this->model('profileHandler');
     }
 
     public function index()
@@ -28,6 +30,16 @@ class userProfile extends Controller
         $data['userProfile'] = $userProfile;
         $orderSeller = $this->orderHandlerModel->getOrderSeller($user_id);
         $data['orderSeller'] = $orderSeller;
+
+
+
+        $feedbacks = $this->profileHandlerModel->getUserFeedback();
+        $data['feedbacks'] = $feedbacks;
+
+
+
+
+
 
 
         $this->view('userProfile', $data);

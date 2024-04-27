@@ -34,11 +34,21 @@ class SellerDashboard extends Controller
             // get The jobs for seller dashboard. Those are hardcoded in sellerdashboard view.php.
             $data['AllJobs'] = $this->JobHandlerModel->getJobsForSellerDashBoard();
 
+            if(isset($_GET['SellerDashSelectJobType'])){
+                $jobType = $_GET['SellerDashSelectJobType'];
+                // get the jobs for seller dashboard by filtering the job type
+                $data['filter'] = $this->JobHandlerModel->getFilteredJobs($jobType);
+                // $data['AllJobs'] = array_merge($data['AllJobs'], $data['filter']);
+            }else{
+                $data['filter'] = '';
+            }
+
             // set the remaining session variables for sellerdashboard.
             $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
             $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
             $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
             
+            // show($data);
             $this->view('SellerDashboard', $data);
         }
     }

@@ -32,6 +32,15 @@ class Job extends Controller
 
     public function searchJob(){
         // create the method to search job functionality
+        if(isset($_GET['search']) && isset($_GET['submit'])){
+            $searchName = $_GET['search'];
+            $searchResult = $this->JobHandlerModel->searchForJobs($searchName);
+            if($searchResult){
+                
+            }
+        }else{
+
+        }
     }
 
     public function publishJob()
