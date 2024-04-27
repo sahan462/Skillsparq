@@ -486,7 +486,7 @@ nav.close ~ .dashboard .top{
 }
 
 .content-table thead tr {
-    background-color: #009879;
+    background-color: #1dbf73;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -500,7 +500,7 @@ nav.close ~ .dashboard .top{
 .content-table th{
     font-weight:bold ;
     color: white;
-    background-color:#009879 ;
+    background-color:#1dbf73 ;
     margin-top: 10px;
 
 }
@@ -513,12 +513,12 @@ nav.close ~ .dashboard .top{
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #1dbf73;
 }
 
 .content-table tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #1dbf73;
 }
 .heading{
     margin-top: 20px;
@@ -527,7 +527,7 @@ nav.close ~ .dashboard .top{
     font-style: inherit;
     text-align: center;
     font-size: 30px;
-    color: #009879;
+    color: #1dbf73;
 
 }
 
@@ -859,3 +859,20 @@ box-shadow: var(--shadow); */
 .content-table{
     width: 100%;
 }
+
+.content-table thead th{
+    font-weight: 500; 
+    background-color: #1dbf73;
+    letter-spacing: 0.7px;
+    word-spacing: 1px;
+}
+
+.overview{
+    width: 100%;
+}
+
+.dash-content{
+    width: 100%;
+}
+
+
