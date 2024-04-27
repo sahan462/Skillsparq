@@ -111,7 +111,7 @@ class UserHandler extends database
     {
         $retrieveQuery = "SELECT user_email FROM user WHERE user_id = ?";
 
-        $stmt = mysqli_prepare($GLOBALS['db'],$retrieveQuery);
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
 
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
@@ -214,6 +214,34 @@ class UserHandler extends database
             $result = $stmt->get_result();
             $data = $result->fetch_assoc(); // Fetch the first (and only) row as an associative array
             return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function userProfile($user_id)
+    {
+        $query = "SELECT 
+       
+        p.*,  
+        u.*
+        
+    FROM user u
+    JOIN profile p ON p.user_id = u.user_id
+   
+   
+    WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }

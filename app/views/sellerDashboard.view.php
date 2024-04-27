@@ -119,25 +119,76 @@ $jobs = $data['AllJobs'];
             <dotlottie-player src="https://lottie.host/f7447497-2858-429b-b8c5-111d24de9b54/FQJOFIwVkX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
         <div class="job-feed">
+
             <div class="searchBar">
-                <form method="get" action="Job/searchJob">
-                    <input type="text" placeholder="Search for Job" name="search">
-                    <button name="submit" type="submit">
+
+                <form method="GET" action="search">
+                    <input type="text" placeholder="Search for Job" name="searchSellerDash">
+                    <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
+
             </div>
+
             <div class="jobs">
                 <div class="job-header">
-                    <h3>Most Recent Jobs You Might Like</h3>
+                <h3>Most Recent Jobs You Might Like</h3>
+                    <div class="SellerDashFilterContainer">
+                        <form action="" method="GET">
+                            <div class="SellerDashFilterSelect"> 
+                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType">
+                                    <span>Publish Mode</span>
+                                    <option value="" disabled="" selected="">Select Mode</option>
+                                    <option value="Auction Mode"
+                                        <?php isset($_GET['SellerDashSelectJobType']) == true ? ($_GET['SellerDashSelectJobType'] == 'Auction Mode' ? 'selected':''):''?>
+                                    >Auction Mode
+                                    </option>
+                                    <option value="Standard Mode"
+                                        <?php isset($_GET['SellerDashSelectJobType']) == true ? ($_GET['SellerDashSelectJobType'] == 'Standard Mode' ? 'selected':''):''?>
+                                    >Standard Mode
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="TYPE-1">
+                                <button type="submit">Filter</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <?php
+                    // if(isset($_GET['SellerDashSelectJobType']) && $_GET['SellerDashSelectJobType'] != ''){
+
+                        // $jobType = $_GET['SellerDashSelectJobType'];
+                        // $jobs = mysqli_query($_GLOBALS['db'],"SELECT * FROM JOBS WHERE PUBLISH_MODE ='$jobType' ORDER BY CREATED_AT DESC");
+
+                    // }
+                ?>
                 <div class="jobContent">
                     <?php
-                    if (!empty($jobs)) {
-                        foreach ($jobs as $job) {
-                            include "components/jobCard.component.php";
+                    if(!empty($data['filter'])){
+                        $jobs = $data['filter'];
+                        if ($jobs->num_rows > 0) {
+                            while ($job = $jobs->fetch_assoc()) {
+                                include "components/jobCard.component.php";
+                            } 
+                        }
+                    }else{
+                        if ($jobs->num_rows > 0) {
+                            while ($job = $jobs->fetch_assoc()) {
+                                include "components/jobCard.component.php";
+                            } 
                         }
                     }
+                    ?>
+
+                        <?php 
+
+                    // if (!empty($jobs)) {
+                    //     foreach ($jobs as $job) {
+                    //         include "components/jobCard.component.php";
+                    //     }
+                    // }
                     ?>
                 </div>
             </div>
@@ -146,6 +197,7 @@ $jobs = $data['AllJobs'];
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/skillsparq/public/assests/js/sellerDashboard.js"></script>
 
 <?php include "components/footer.component.php"; ?>

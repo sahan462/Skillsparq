@@ -56,6 +56,16 @@ class BuyerProfile extends Controller
             }
             
             $data['jobs'] = $jobs;
+
+            // get feedbacks
+
+            $feedbacks = $this->ProfileHandlerModel->getFeedbacks($userId);
+            if($feedbacks){
+                $data['feedbacks'] = $feedbacks;
+            }else{
+                $this->redirect('_505');
+            }
+
             // show($data);
             $this->view('buyerProfile', $data);
             

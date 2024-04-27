@@ -62,10 +62,10 @@ class PaymentHandler extends database
         $query = "
         SELECT
             (SELECT COUNT(*) FROM payments) AS payments,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'completed' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS completed,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'onhold' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS onhold,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'refunded' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS refunded,
-            (SELECT COUNT(*) FROM payments WHERE payment_status = 'holdForRefund' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS holdForRefund;
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'completed' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS completed,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'onhold' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS onhold,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'refunded' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS refunded,
+            (SELECT COUNT(*) FROM payments WHERE payment_state = 'holdForRefund' AND $currentMonth = MONTH(payments.payment_date) AND $currentYear = YEAR(payments.payment_date)) AS holdForRefund;
           
         ";
 
@@ -260,6 +260,34 @@ class PaymentHandler extends database
         if (!$stmt) {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function paymentsSeller($user_id)
+    {
+        $query = "SELECT 
+       
+        p.*
+     
+        
+    FROM payments p
+    JOIN user u ON p.payee_id = u.user_id
+   
+   
+    WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();

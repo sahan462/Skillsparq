@@ -1,7 +1,6 @@
 <?php
 class InquiryHandler extends database
 {
-
     // create new inquiry
     public function createInquiry($requestSubject, $requestDescription, $file, $currentDateTime, $clientId, $orderId, $inquiryType)
     {
@@ -147,6 +146,7 @@ class InquiryHandler extends database
         }
     }
 
+
     // read help requestS
     public function getHelpRequests()
     {
@@ -171,13 +171,38 @@ class InquiryHandler extends database
         }
     }
 
+    // public function viewComplaints($inquiry_id)
+    // {
+    //     // Using backticks for SQL reserved keywords and ensuring the join conditions are correctly specified.
+    //     $query = "SELECT i.*, o.*, c.*,p.*
+    //               FROM inquiries i  
+    //               JOIN complaints c ON c.complaint_id = i.inquiry_id 
+    //               JOIN `orders` o ON o.order_id = c.order_id  
+    //               JOIN payments p ON p.order_id = o.order_id  
+    //               WHERE i.inquiry_id = ?";
+
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, 'i', $inquiry_id);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
+
 
     public function viewComplaints($inquiry_id)
     {
         $query = "SELECT 
         i.*, 
         c.*, 
-        o.*, 
+        o.*,
         p.*,
         u1.user_id as seller_id, 
         u1.user_email as seller_email,
@@ -185,6 +210,22 @@ class InquiryHandler extends database
         u1.agreement as seller_agreement,
         u1.black_List as seller_blackList,
         u1.black_Listed_Until as seller_blackListUntil,
+        p1.user_name as seller_userName,
+        p1.profile_pic as seller_profilePic,
+        p1.first_name as seller_firstName,
+        p1.last_name  as seller_lastnName,
+        p1.country as seller_country,
+        p1.joined_date as seller_joinedDate,
+        p1.last_seen as seller_lastSeen,
+        p1.about as seller_about,
+        p2.user_name as buyer_userName,
+        p2.profile_pic as buyer_profilePic,
+        p2.first_name as buyer_firstName,
+        p2.last_name  as buyer_lastnName,
+        p2.country as buyer_country,
+        p2.joined_date as buyer_joinedDate,
+        p2.last_seen as buyer_lastSeen,
+        p2.about as buyer_about,
         u2.user_id as buyer_id,
         u2.user_email as buyer_email,
         u2.role as buyer_role,
@@ -197,6 +238,9 @@ class InquiryHandler extends database
     JOIN user u1 ON o.seller_id = u1.user_id
     JOIN user u2 ON o.buyer_id = u2.user_id
     JOIN payments p on p.order_id = o.order_id
+    JOIN profile p1 on u1.user_id = p1.user_id
+    JOIN profile p2 on u2.user_id = p2.user_id
+   
     WHERE i.inquiry_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -281,6 +325,34 @@ class InquiryHandler extends database
         mysqli_stmt_close($stmt);
     }
 
+    public function getComplaintsSeller($user_id)
+    {
+        $query = "SELECT 
+       
+        i.*
+       
+    FROM user u
+    join orders o ON o.seller_id = u.user_id
+    JOIN complaints c ON c.order_id = o.order_id
+    JOIN inquiries i on c.complaint_id = i.inquiry_id
+      
+    WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     // black list buyers
     public function blackListBuyer()
     {
@@ -289,7 +361,7 @@ class InquiryHandler extends database
             $blacklist_until_days = $_POST['blacklistUntil'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_list = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET Black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
 
             if (!$stmt) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);
@@ -424,7 +496,6 @@ class InquiryHandler extends database
         }
     }
 
-
     public function deleteFromRequests($inquiryId)
     {
         $query = "DELETE FROM help_requests WHERE request_id = ?";
@@ -438,6 +509,8 @@ class InquiryHandler extends database
         }
         mysqli_stmt_close($stmt);
     }
+
+
     public function deleteFromInquiries($inquiryId)
     {
         $query = "DELETE FROM inquiries WHERE inquiry_id = ?";

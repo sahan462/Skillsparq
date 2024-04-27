@@ -2,8 +2,7 @@
 class OrderHandler extends database
 {
 
-
-    //create new order
+    //create new package order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
         $query = "INSERT INTO Orders 
@@ -69,14 +68,14 @@ class OrderHandler extends database
         return $orderId;
     }
 
-    //create milestone order
+    //create new milestone order
 
     public function createMilestoneOrder()
     {
     }
 
     // create Job Order 
-    public function createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrderRecord($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
     {
         $insertQuery = "INSERT INTO orders 
         (
@@ -120,7 +119,6 @@ class OrderHandler extends database
             WHERE user_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             $query = "SELECT * 
@@ -155,24 +153,36 @@ class OrderHandler extends database
         }
     }
 
-    //get orders
-    public function getOrders($userId, $userRole)
+
+    public function getPackageOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
 
-            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc ";
+            // create the logic with buyer id 
+            // Buyer wants to see the details of the orders which he placed through a package order from all the sellers.
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN package_orders ON orders.order_id = package_orders.package_order_id 
+            INNER JOIN packages ON package_orders.package_id = packages.package_id 
+            INNER JOIN GIGS ON packages.gig_id = gigs.gig_id
+            INNER JOIN PROFILE ON gigs.seller_id = profile.user_id
+            WHERE orders.buyer_id = ? 
+            ORDER BY order_id DESC
+            ";
 
         } else {
 
+            // create the logic with seller id
+            // seller wants to see the details of the order and the buyer details which a buyer placed through a package order from his gig pacakges.
             $query = "SELECT * 
             FROM orders 
-            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
-            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
-            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
-            WHERE seller_id = ? 
+            INNER JOIN package_orders ON orders.order_id = package_orders.package_order_id 
+            INNER JOIN packages ON package_orders.package_id = packages.package_id 
+            INNER JOIN GIGS ON packages.gig_id = gigs.gig_id
+            INNER JOIN PROFILE ON orders.buyer_id = profile.user_id
+            WHERE orders.seller_id = ? 
             ORDER BY order_id DESC
             ";
-            // $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -184,14 +194,92 @@ class OrderHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $userId);
 
         if (mysqli_stmt_execute($stmt)) {
-            // return $stmt->get_result();
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // Fetch associative array
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+
+    public function getMilestoneOrders($userId, $userRole)
+    {
+        if ($userRole == 'Buyer') {
+
+            // create the logic
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE user_id = ? 
+            ORDER BY order_id DESC
+            ";
+
+        } else {
+
+            // create the logic
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE seller_id = ? 
+            ORDER BY order_id DESC
+            ";
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // Fetch associative array
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get orders
+    public function getOrders($userId, $userRole)
+    {
+        if ($userRole == 'Buyer') {
+
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
+        } else {
+
+            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
             // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $result;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -210,7 +298,6 @@ class OrderHandler extends database
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
-
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -292,6 +379,11 @@ class OrderHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+    }
+
+    public function sendNotification()
+    {
+
     }
 
     //create new payment
@@ -419,14 +511,8 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
-// <<<<<<< HEAD
     }
-// =======
 
-//     }
-    //deliver and order
-    public function makeDelivery($orderType, $orderId, $milestoneId)
-    {
     }
 
     //upload a delivery
@@ -449,7 +535,7 @@ class OrderHandler extends database
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
+
         mysqli_stmt_bind_param($stmt, "sssi", $deliveryDescription,  $attachmentName, $currentDateTime, $orderId);
 
         if (mysqli_stmt_execute($stmt)) {
@@ -460,7 +546,7 @@ class OrderHandler extends database
         }
 
         // regular order deliveries table
-        if ($orderType == 'package' || $orderType == 'job'):
+        if ($orderType == 'package' || $orderType == 'job') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -470,14 +556,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "i", $deliveryId );
+
+            mysqli_stmt_bind_param($stmt, "i", $deliveryId);
 
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
@@ -486,7 +572,7 @@ class OrderHandler extends database
             }
 
         // milestone order deliveries table
-        elseif ($orderType == 'milestone'):
+        elseif ($orderType == 'milestone') :
 
             $query = "INSERT INTO regular_order_deliveries 
             (
@@ -496,14 +582,14 @@ class OrderHandler extends database
             (
                 ?
             )";
-    
+
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
-            
-            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId );
+
+            mysqli_stmt_bind_param($stmt, "ii", $deliveryId, $milestoneId);
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();
             } else {
@@ -573,5 +659,49 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-// >>>>>>> e2a1b8f934757fd976b117246dc690118b98b2a0
+
+  
+  public function getOrderSeller($user_id)
+    {
+        $query = "SELECT 
+            o.*,  
+            u.*
+        FROM user u
+        JOIN orders o ON o.seller_id = u.user_id
+        WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function getOrdersSorted()
+    {
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
+
+        // Execute the query and fetch the results
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
