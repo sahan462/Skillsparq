@@ -7,7 +7,7 @@
     }
 
     $myOrders = $data['myOrders'];
-    print_r($myOrders);
+    print_r($myOrders->fetch_assoc());
 
 ?>
 
@@ -95,7 +95,8 @@
                                         ?>
                                         <td>
                                             <?php if($row['order_type'] == "package"){
-                                                echo $row['package_price'];
+                                                // echo $row['package_price'];
+                                                echo "$150";
                                             }
                                             ?></td>
                                         <td><?php echo $row['order_type']?></td>

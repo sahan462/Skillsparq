@@ -146,13 +146,26 @@
 
                         <?php while ($row = $chat->fetch_assoc()) {
                          
-                            if($row['file'] == null && $row['message'] != null):
+                            if($row['file'] == null && $row['message'] != null): ?> 
 
-                                if($row['sender_id'] == $_SESSION['userId']): ?>
+                                <?php if(($row['sender_id'] == $_SESSION['userId'] && $_SESSION['role'] != 'csa')  || ($row['sender_id'] == $buyer['user_id'] && $_SESSION['role'] == 'csa')): ?>
 
                                     <div class="receiver-container">
                                         <div class="messageContainer darker">
                                             <div class="receiverContent">
+                                                <p class="receiver" >
+                                                    <?php echo $row['message'] ?>
+                                                    <span class="time-left"><?php echo $row['date'] ?></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <div class="sender-container">
+                                        <div class="messageContainer">
+                                            <div class="senderContent">
                                                 <p class="receiver" >
                                                     <?php echo $row['message'] ?>
                                                     <span class="time-left"><?php echo $row['date']?></span>
@@ -160,133 +173,38 @@
                                             </div>
                                         </div>
                                     </div>
-                                
-                                <?php else: ?>
 
-                                    <div class="sender-container">
-                                        <div class="messageContainer">
-                                            <div class="senderContent">
-                                                <p class="P" >
-                                                    <?php echo $row['message'] ?>
-                                                    <span class="time-right"><?php echo $row['date']?></span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
                                 <?php endif; 
 
 
-                            elseif($row['file'] != null && $row['message'] == null):
-
-                                if($row['sender_id'] == $_SESSION['userId']):
-
-                                    if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
-
-                                        <div class="receiver-container">
-                                            <div class="messageContainer darker">
-                                                <div class="receiverContent">
-                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                    <p class="receiver" >
-                                                        <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
-                                                        <span class="time-left"><?php echo $row['date']?></span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                
-                                    <?php else: ?>
-
-                                        <div class="receiver-container">
-                                            <div class="messageContainer darker">
-                                                <div class="receiverContent">
-                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                    <p class="receiver" >
-                                                        <a href="${data.attachment}" download>Download Attachment</a>
-                                                        <span class="time-left"><?php echo $row['date']?></span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <?php endif; ?>
-
-                                <?php else: 
-
-                                    if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
-
-                                            <div class="sender-container">
-                                                <div class="messageContainer">
-                                                    <div class="senderContent">
-                                                        <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                        <p class="receiver" >
-                                                            <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
-                                                            <span class="time-left"><?php echo $row['date']?></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        <?php else: ?>
-
-                                            <div class="sender-container">
-                                                <div class="messageContainer">
-                                                    <div class="senderContent">
-                                                        <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                        <p class="receiver" >
-                                                            <a href="${data.attachment}" download>Download Attachment</a>
-                                                            <span class="time-left"><?php echo $row['date']?></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        <?php endif; ?>
-
-                                    <?php endif;
-                            
                             elseif($row['file'] != null && $row['message'] != null):
 
-                                if($row['sender_id'] == $_SESSION['userId']): 
+                                if(($row['sender_id'] == $_SESSION['userId'] && $_SESSION['role'] != 'csa')  || ($row['sender_id'] == $buyer['user_id'] && $_SESSION['role'] == 'csa')): ?>
 
-                                    if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
-
-                                        <div class="sender-container">
-                                            <div class="messageContainer">
-                                                <div class="senderContent">
-                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                    <p class="receiver" >
-                                                        <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
-                                                        <span class="time-left"><?php echo $row['date']?></span>
-                                                    </p>
-                                                </div>
+                                    <div class="receiver-container">
+                                        <div class="messageContainer darker">
+                                            <div class="receiverContent">
+                                                <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
+                                                <span class="time-left"><?php echo $row['date']?></span>
                                             </div>
                                         </div>
-
-                                    <?php else: ?>
-
-                                        <div class="sender-container">
-                                            <div class="messageContainer">
-                                                <div class="senderContent">
-                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
-                                                    <p class="receiver" >
-                                                        <a href="${data.attachment}" download>Download Attachment</a>
-                                                        <span class="time-left"><?php echo $row['date']?></span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <?php endif; ?>
+                                    </div>
 
                                 <?php else: ?>
-
                                     
-                                
-                                <?php endif;?>
+                                    <div class="sender-container">
+                                        <div class="messageContainer">
+                                            <div class="senderContent">
+                                                <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
+                                                <span class="time-left"><?php echo $row['date']?></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <?php endif;
+                                <?php endif;
+                            
+
+                            endif;
 
                         } ?>
 
