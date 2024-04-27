@@ -681,12 +681,12 @@ class OrderHandler extends database
         }
     }
 
-    public function getOrdersSorted()
+    public function getOrdersSorted($sortBy, $sortDirection)
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
         // Execute the query and fetch the results
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy $sortDirection"; // Removed the comma before FROM
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
