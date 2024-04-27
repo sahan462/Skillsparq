@@ -183,28 +183,112 @@
 
                                     if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
 
-                                        
+                                        <div class="receiver-container">
+                                            <div class="messageContainer darker">
+                                                <div class="receiverContent">
+                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                    <p class="receiver" >
+                                                        <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
+                                                        <span class="time-left"><?php echo $row['date']?></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                 
                                     <?php else: ?>
+
+                                        <div class="receiver-container">
+                                            <div class="messageContainer darker">
+                                                <div class="receiverContent">
+                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                    <p class="receiver" >
+                                                        <a href="${data.attachment}" download>Download Attachment</a>
+                                                        <span class="time-left"><?php echo $row['date']?></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php endif; ?>
+
+                                <?php else: 
+
+                                    if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
+
+                                            <div class="sender-container">
+                                                <div class="messageContainer">
+                                                    <div class="senderContent">
+                                                        <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                        <p class="receiver" >
+                                                            <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
+                                                            <span class="time-left"><?php echo $row['date']?></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        <?php else: ?>
+
+                                            <div class="sender-container">
+                                                <div class="messageContainer">
+                                                    <div class="senderContent">
+                                                        <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                        <p class="receiver" >
+                                                            <a href="${data.attachment}" download>Download Attachment</a>
+                                                            <span class="time-left"><?php echo $row['date']?></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php endif; ?>
+
+                                    <?php endif;
+                            
+                            elseif($row['file'] != null && $row['message'] != null):
+
+                                if($row['sender_id'] == $_SESSION['userId']): 
+
+                                    if (strtolower($row['file_type']) == 'image/jpeg' || strtolower($row['file_type']) == 'image/jpg' || strtolower($row['file_type']) == 'image/png') : ?>
+
+                                        <div class="sender-container">
+                                            <div class="messageContainer">
+                                                <div class="senderContent">
+                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                    <p class="receiver" >
+                                                        <img src="<?php $row['file']?>" alt="Attachment" class="attachment-image">
+                                                        <span class="time-left"><?php echo $row['date']?></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php else: ?>
+
+                                        <div class="sender-container">
+                                            <div class="messageContainer">
+                                                <div class="senderContent">
+                                                    <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture?>" alt="Attachment" class="attachment-image">
+                                                    <p class="receiver" >
+                                                        <a href="${data.attachment}" download>Download Attachment</a>
+                                                        <span class="time-left"><?php echo $row['date']?></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     <?php endif; ?>
 
                                 <?php else: ?>
+
+                                    
                                 
-                                <?php endif;
-                            
-                            elseif($row['file'] != null && $row['message'] != null):
+                                <?php endif;?>
 
-                                if($row['sender_id'] == $_SESSION['userId']):
-                                
-                                else:
-                                
-                                endif;
+                            <?php endif;
 
-                            endif; ?>
-
-
-                        <?php } ?>
+                        } ?>
 
 
                     <?php else : ?>
