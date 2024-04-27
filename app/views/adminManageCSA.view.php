@@ -19,13 +19,11 @@
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-                <i class="uil uil-tachometer-fast-alt"></i>
-
-                <span class="text">Add new representative</span>
+                <!-- <i class="uil uil-tachometer-fast-alt"></i> -->
+                <h1 class="heading-one">Add new representative</h1>
             </div>
 
             <div>
-
                 <label for="firstName" class="label">First Name</label><br>
                 <input type="text" name="firstName" id="firstName" autocomplete="off" required><br>
                 <label for="lastname" class="label">Last Name</label><br>
@@ -40,8 +38,6 @@
             </div>
             <div>
                 <button id="enter" onclick="enter()">enter</button>
-
-
             </div>
             <div>
                 <table class="content-table">
