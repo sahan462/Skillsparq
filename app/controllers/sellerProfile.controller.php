@@ -50,11 +50,12 @@ class SellerProfile extends Controller
 
             // not the recent gigs have to get the specific gigs which would be created by the seller.          
             
-            if ($GigsOfSeller) {
+            if(!empty($GigsOfSeller)) {
                 $data['gigs'] = $GigsOfSeller;
-            } else {
-                echo "<script>
-                    alert('getGig function is not Accessible!')
+            }else {
+                echo 
+                "<script>
+                    alert('You haven't create Any Gigs yet!')
                 </script>";
             }
 

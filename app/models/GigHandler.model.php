@@ -179,12 +179,13 @@ class GigHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -202,12 +203,13 @@ class GigHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -266,12 +268,13 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -308,7 +311,7 @@ class GigHandler extends database
         }
     }
 
-    //display a specific gig
+    //display a specific gig this is for the updateGig.controller.php file
     public function displayGigForUpdate($gigId)
     {
         $query = "SELECT * FROM gigs WHERE gig_id = ?";
@@ -322,11 +325,11 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $gigId);
 
         if (mysqli_stmt_execute($stmt)) {
-            $gigDetails = $stmt->get_result()->fetch_assoc();
+            $gigDetails = $stmt->get_result();
             $stmt->close();
 
             $packageDetails = $this->getPackages($gigId);
-            $packageDetails = mysqli_fetch_assoc($packageDetails);
+            // $packageDetails = mysqli_fetch_assoc($packageDetails);
 
             $gig = [
                 "gigDetails" => $gigDetails,
