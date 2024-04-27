@@ -1,5 +1,12 @@
 <?php include "components/sellerHeader.component.php";?>
 
+<?php //show($data); 
+    // while($row = $data['packageDetails']->mysqli_fetch_assoc()){
+
+    // }
+    
+?>
+
 <!-- Main Container -->
 <div class="updateGigContainer">
 

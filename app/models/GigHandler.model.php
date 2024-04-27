@@ -311,6 +311,36 @@ class GigHandler extends database
         }
     }
 
+    //display a specific gig
+    public function displayGigForUpdate($gigId)
+    {
+        $query = "SELECT * FROM gigs WHERE gig_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $gigDetails = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            $packageDetails = $this->getPackages($gigId);
+            $packageDetails = mysqli_fetch_assoc($packageDetails);
+
+            $gig = [
+                "gigDetails" => $gigDetails,
+                "packageDetails" => $packageDetails
+            ];
+            return $gig;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //get package details
     public function getPackages($gigId)
     {
@@ -630,4 +660,26 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+
+    // get job result for any search string.
+    public function getGigsSearch($textToSearch)
+    {
+        $retrieveQuery = "SELECT * FROM GIGS WHERE TITLE LIKE CONCAT('%',?,'%') OR DESCRIPTION LIKE CONCAT('%',?,'%') OR CATEGORY LIKE CONCAT('%',?,'%') OR CREATED_AT LIKE CONCAT('%',?,'%')";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt,"ssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
 }

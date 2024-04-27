@@ -303,7 +303,7 @@ class Gig extends Controller
                 $randomNumber = random_int(10000, 99999);
                 $newSliderImageFirstName[$i] = pathinfo($newSliderImageName[$i], PATHINFO_FILENAME);
                 $extension = pathinfo($newSliderImageName[$i], PATHINFO_EXTENSION);
-                $uniqueImageName[] = uniqid($newSliderImageFirstName[$i], true) . '_' . time() . '_' .$randomNumber.".".$extension;
+                $uniqueImageName[$i] = uniqid($newSliderImageFirstName[$i], true) . '_' . time() . '_' .$randomNumber.".".$extension;
 
                 $arrayImagesString[] = $uniqueImageName[$i];
 

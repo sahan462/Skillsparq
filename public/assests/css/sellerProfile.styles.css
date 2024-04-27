@@ -10,6 +10,8 @@ body{
     height: 100%;
     width: 100%;
     padding: 16px 32px;
+    /* padding-bottom: 32px; */
+    margin-bottom: 32px;
 }
 
 /*
@@ -69,7 +71,7 @@ body{
 .modalSkill input,
 .modalEducation input
 {
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     border-radius: 8px;
     /* padding: 8px;
     height:25%;
@@ -158,7 +160,7 @@ body{
     background: #fff;
     padding: 20px;
     border-radius:8px;
-    width: 500px;
+    width: fit-content;
     height: fit-content;
 }
 
@@ -172,6 +174,7 @@ body{
 .modalEmail input[type = "text"]
 {
     width: 400px;
+    /* height: 30px; */
 }
 
 /*
@@ -385,7 +388,7 @@ body{
 input[type = "text"],
 .sellerProfileContainer textarea
 {
-    height: 40px;
+    /* height: 40px; */
     font-size: 16px;
     border-radius: 4px!important;
     width: 100%;
@@ -403,12 +406,37 @@ input[type = "text"],
 
 .seller-modal-name{
     padding: 12px;
+    display: flex;
+    justify-content: center;
 }
 
 .seller-name{
     font-size:32px;
     text-align: center;
     padding-bottom: 24px;
+}
+
+.modalEmail .TYPE-1,
+.sellerProfileContainer .TYPE-1{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.TYPE-2{
+
+}
+
+.sellerProfileContainer
+.seller-email{
+    /* margin-top: 8px; */
+    /* font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif; */
 }
 
 .seller-question{
@@ -421,7 +449,7 @@ input[type = "text"],
 }
 
 #emailForm{
-    margin: 20px;
+    /* margin: 20px; */
 }
 
 /*User Info*/
@@ -468,18 +496,18 @@ input[type = "text"],
 
 .AlertButton{
     text-align: center;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #1dbf73;
     color: white;
     margin-left: 48px;
     margin-right: 48px;
-    box-shadow: 10px 10px 5px rgb(127, 117, 112);
+    /* box-shadow: 10px 10px 5px rgb(127, 117, 112); */
     border-radius: 16px;
     /* height: 36px; */
 }
   
 .closeAlertBtn {
-margin-left: 15px;
+/* margin-left: 15px; */
 color: white;
 font-weight: bold;
 float: right;
@@ -617,15 +645,16 @@ a{
     width: 100px;
 }
 
-.addToPortfolioImgs
+/* .addToPortfolioImgs
 input[type = "file"]
 {
     display: none;
     
-}
+} */
 
+.sellerProfileContainer
 label{
-    display: inline-block;
+    /* display: inline-block;
     text-transform: uppercase;
     color:#fff;
     background: #1dbf73;
@@ -637,7 +666,7 @@ label{
     user-select: none;
     cursor: pointer;
     box-shadow: 5px 15px 25px rgb(3, 5,0,1);
-    display: flex;
+    display: flex; */
 }
 
 label i{
@@ -648,11 +677,11 @@ label:active{
     transform: scale(0.9s);
 }
 
-.addToPortfolioImgsSubmit
+/* .addToPortfolioImgsSubmit
 input[type = "submit"]
 {
     display: none;
-}
+} */
 
 @media only screen and (max-width: 600px) {
     .sellerProfileContainer{

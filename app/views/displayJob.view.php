@@ -6,7 +6,7 @@
     }
     
     // $job = $data['job'];
-    print_r($data);
+    // print_r($data);
     $buyerId = $data['buyerDetails']['user_id'];
     if($_SESSION['role'] !== "Buyer"){
         $sellerId = $data['sellerDetails']['user_id'];
@@ -98,7 +98,7 @@
                         <div class="auctionDetialsButton">
                             <?php 
                                 
-                                if( ($data['job']['start_time'] >= date("Y-m-d H:i:s", time())) 
+                                if(($data['job']['start_time'] >= date("Y-m-d H:i:s", time())) 
                                 // && ($data['job']['end_time'] = date("Y-m-d H:i:s", time()))
                                 ){
                             ?>

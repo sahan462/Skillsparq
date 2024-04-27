@@ -81,4 +81,66 @@ carousel.addEventListener("mousedown", dragStart);
 carousel.addEventListener('mousemove', dragging);
 document.addEventListener("mouseup", dragStop);
 
-  
+//////////////////////////////////////////// ajax syntax for inputs /////////////////////////////////////////
+
+// $(document).ready(function(){
+//     $('#searchIn').keyup(function(){
+//         var input = $(this).val();
+//         //alert(input);
+
+//         if(input != ''){
+//             $.ajax({
+
+//                 url:"",
+//                 method:"GET",
+//                 data:{input:input},
+
+//                 success:function(data){
+//                     $("#searchResult").html(data);
+//                 }
+//             });
+//         }else{
+//             $("searchResult").css("display","none")
+//         }
+//     })
+// })
+
+
+// $(document).ready(function(){
+//     $('#searchButton').click(function(){
+//         // var input = $(this).val();
+//         //alert(input);
+//         var searchQuery = $('#searchInId').val()
+//         var urlInputName = $('#searchIn').attr('name');
+
+//         var Url = 'search' + '/' + 'services' + '?' + encodeURIComponent(urlInputName) + '=' + encodeURIComponent(searchQuery)
+
+//         // if(input != ''){
+//             $.ajax({
+                
+//                 url:Url, // data will come from this page if the input is not empty using ajax.
+//                 method:"GET",
+//                 data:{
+//                     query :searchQuery,
+//                     inputName:urlInputName
+//                 },
+//                 headers: {
+//                     'Content-Type': 'application/x-www-form-urlencoded',
+//                 },
+//                 body: Url,
+
+//                 success:function(data){
+//                     // $("#searchResult").html(data);
+//                     console.log(response);
+//                     // window.location.href = "http://example.com/another-page";
+//                 },
+//                 error: function(xhr, status, error) {
+//                     // Handle errors
+//                     console.error(error);
+//                 }
+//             });
+//         // }else{
+//         //     $("searchResult").css("display","none")
+//         // }
+//     })
+// })
