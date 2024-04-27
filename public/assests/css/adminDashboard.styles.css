@@ -858,9 +858,14 @@ box-shadow: var(--shadow); */
 
 .content-table{
     width: 100%;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    box-shadow: 0px 0px 7px 0px rgba(232,232,232,1);
+    
 }
 
 .content-table thead th{
+    font-size: 15px;
     font-weight: 500; 
     background-color: #1dbf73;
     letter-spacing: 0.7px;
