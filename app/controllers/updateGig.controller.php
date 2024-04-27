@@ -29,7 +29,7 @@ class updateGig extends Controller
 
                 // $ALLDETAILS = $this->GigHandlerModel->getGigWithGIG_PACKAGE_SLIDERIMAGE_TABLES($userId);
 
-                $gig = $this->GigHandlerModel->displayGig($gigId);
+                $gig = $this->GigHandlerModel->displayGigForUpdate($gigId);
                 $slideImages = $this->GigHandlerModel->retrieveSliderImages($gigId);
                 
                 if ($gig !== null) {

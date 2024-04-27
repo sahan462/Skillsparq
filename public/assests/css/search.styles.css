@@ -1,0 +1,148 @@
+body{
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000 !important;
+}
+
+.SkillsparqSearchMainContainer{
+    padding: 16px 0px 0px 0px;
+}
+
+/*header*/
+.SkillsparqSearchMainContainer .SearchpPersonalizedHeader{
+    min-height: 100px!important;
+    margin-top: 24px!important;
+    margin-bottom: 48px!important;
+    font-size: 32px!important;
+    font-weight: 700!important;
+    color: #222325!important;
+    line-height: 140%!important;
+    /* padding: 0 32px; */
+    height: 100%!important;
+    width: 100%!important;
+    padding: 16px 32px!important;
+    
+}
+
+/* For labels */
+.SkillsparqSearchMainContainer
+.TYPE-1{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+/*dashboard-content*/
+.SkillsparqSearchDashboardContainer{
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 16px;
+}
+
+/*job-feed*/
+.SkillsparqSearchDashboardContainer .SkillSparqSearchFeed{
+    width: 75%;
+    padding: 0px 32px;
+}
+
+.SkillSparqSearchFeed{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.SkillsparqSearchDashboardContainer .profile{
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #dadbdd;
+    padding: 32px 32px 16px 32px;
+    font-size: 14px;
+    line-height: 130%;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/*Active Status*/
+.SkillsparqSearchDashboardContainer .profile .online{
+    color: #31d65a;
+    border-bottom: 4px solid #31d65a;
+    margin-bottom: 8px;
+}
+
+.SkillsparqSearchDashboardContainer .profile .onlineindc{
+    height: 8px;
+    width: 8px;
+    background-color: #31d65a;
+    border-radius: 100%;
+}
+
+/*Profile Pic upload*/
+.SkillsparqSearchDashboardContainer .profile .profile-picture{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+.SkillsparqSearchDashboardContainer .profile .profile-picture img{
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.SkillsparqSearchDashboardContainer .profile .profile-picture .full-name{
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #222325;
+    cursor: default;
+    background: none;
+    border: 0;
+}
+.SkillsparqSearchDashboardContainer .profile .profile-picture .user-name{
+    margin-bottom: 16px;
+}
+
+.SkillsparqSearchDashboardContainer .profile .user-info{
+    padding-top: 16px;
+    border-top: 2px solid #dadbdd;
+    border-bottom: 2px solid #dadbdd;
+}
+.SkillsparqSearchDashboardContainer .profile .user-info svg{
+    width: 16px;
+    height: 16px;
+    color: #333;
+    margin-right: 8px;
+}
+.SkillsparqSearchDashboardContainer .profile .user-info .info{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.SkillsparqSearchDashboardContainer .profile .user-info span{
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .SkillsparqSearchDashboardContainer{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 32px;
+    } 
+
+    .SkillsparqSearchDashboardContainer .seller-details {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    .SkillsparqSearchDashboardContainer .job-feed{
+        width: 100%;
+        padding: 0px 16px;
+    }
+}

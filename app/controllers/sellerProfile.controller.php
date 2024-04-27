@@ -252,6 +252,72 @@ class SellerProfile extends Controller
         }
     }
 
+    public function addPortfolioImg()
+    {
+        if(isset($_POST['submit']) && isset($_POST['userId'])){
+            $userId = $_POST['userId'];
+            $upload_dir = "../public/assests/images/sellerPortfolioImgs/";
+            $maxsize = 2 * 1024 * 1024;
+
+            $file_tmpname = $_FILES['files']['tmp_name'];
+            $file_name = basename($_FILES['files']['name']);
+            $file_size = $_FILES['files']['size'];
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+            $uniqueImgName = time().'_'.random_int(0,999999) . "_" . $file_name ;
+            // append the created unique name with the relevant file extension.
+            $uniqueImgNameWithExt = $uniqueImgName;
+            // append the file with extension to the given path to reside the file in the folder structure.
+
+            $targetedFilePath = $upload_dir.$uniqueImgNameWithExt;
+
+            if($file_ext == 'jpg' || $file_ext == 'png' || $file_ext == 'jpeg' || $file_ext == 'gif'){
+                if($file_size > $maxsize){
+                    echo "
+                    <script>
+                        window.alert('Maximum File Size is {$file_size} !');
+                        window.location.href = '" . BASEURL . "sellerProfile';
+                    </script>
+                    ";
+                }else{
+                    $isInserted = $this->SellerHandlerModel->insertSinglePortfolioImg($userId,$uniqueImgNameWithExt);
+                    if($isInserted){
+                        if(move_uploaded_file($file_tmpname, $targetedFilePath)){
+                            echo "
+                            <script>
+                                window.alert('Successfully Added to portfolio !');
+                                window.location.href = '" . BASEURL . "sellerProfile';
+                            </script>
+                            ";
+                        }else{
+                            echo "
+                            <script>
+                                window.alert('Error Occured while moving the file !');
+                                window.location.href = '" . BASEURL . "sellerProfile';
+                            </script>
+                            ";
+                        }
+                    }else{
+                        echo "
+                        <script>
+                            window.alert('Image Couldn't saved !');
+                            window.location.href = '" . BASEURL . "sellerProfile';
+                        </script>
+                        ";
+                    }
+                }
+            }else{
+                echo "
+                <script>
+                    window.alert('Wrong File Format !');
+                    window.location.href = '" . BASEURL . "sellerProfile';
+                </script>
+                ";
+            }
+        }
+            
+    }
+
     public function addPortfolioImgsToProfile()
     {
         // Check if form was submitted

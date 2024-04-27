@@ -15,6 +15,62 @@
 
 
     <title>Admin Dashboard Panel</title>
+    <style>
+        .container-details {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-bottom: 2%;
+            max-width: 1000px;
+            /* Adjust the width as needed */
+            margin: 0 auto;
+            /* Center the container */
+            gap: 20px;
+        }
+
+        .seller-details,
+        .buyer-details {
+            flex: 1;
+            /* Each section takes equal width */
+            background: #ffffff;
+            /* White background */
+            padding: 15px;
+            border-radius: 8px;
+            /* Rounded corners */
+            border: 2px solid #dcdcdc;
+            /* Light grey border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+            /* 
+            /* This makes each take roughly half the container width, you can adjust as needed */
+        }
+
+        details {
+            width: 100%;
+            /* Details take the full width of the section */
+            display: none;
+            /* Hidden by default */
+            margin-top: 10px;
+            /* Space between the button and the details */
+            padding: 10px;
+            border-top: 2px solid #dcdcdc;/
+        }
+
+        .seller-details button,
+        .buyer-details button {
+            display: block;
+            /* Make the button a block element to fill the width of its container */
+            width: 100%;
+            /* Optional: if you want the button to be as wide as the container */
+            margin-top: 5px;
+            /* Add some space between the button and the title */
+            /* Add other styles for the button here */
+        }
+    </style>
 </head>
 
 <body>
@@ -146,18 +202,7 @@
             </div>
 
 
-            <form>
 
-                <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter the reason to ask for refund" style="display: none;"></textarea>
-                <br>
-
-            </form>
-            <div style="margin-top: 15px;">
-                <button id="displayRefund" onclick="displayRefund()">Ask for Refund</button>
-            </div>
-            <div style="margin-top: 15px;">
-                <button id="refund" onclick="refund()" style="display:none">Ask for Refund</button>
-            </div>
 
 
 
@@ -170,208 +215,200 @@
 
     <div class="grid">
         <div>
-            <div style=" display: flex; justify-content:space-between; margin-bottom: 2%; width:250px">
-                <span>
-                    Seller details:
-                </span>
-                <button onclick="toggleDisplay('viewSeller')">View</button>
-            </div>
-            <div id="viewSeller" style="display: none;">
+            <div class="container-details">
+                <div class="seller-details">
+                    <div style=" display: flex; justify-content:space-between; margin-bottom: 2%; width:250px">
+                        <span>
+                            Seller details:
+                        </span>
+                        <button onclick="viewSeller()">View</button>
+                    </div>
+                    <div id="viewSeller" class="details" style="display: none;">
 
-                <ul>
-                    <li>User_ID <span><?php echo $row['seller_id']; ?></span></li>
-                    <li>Seller_email: <span><?php echo $row['seller_email']; ?></span></li>
-                    <li>Role: <span><?php echo $row['seller_role']; ?></span></li>
-                    <li>Agreement: <span><?php echo $row['seller_agreement']; ?></span></li>
-                    <li> </li>
+                        <ul>
+                            <li>User_ID <span><?php echo $row['seller_id']; ?><a href="userProfile?user_id=<?php echo $row["seller_id"]; ?>"><i class="fa fa-eye"></i></a></span></li>
+                            <li>Seller_email: <span><?php echo $row['seller_email']; ?></span></li>
+                            <li>Role: <span><?php echo $row['seller_role']; ?></span></li>
+                            <li>Agreement: <span><?php echo $row['seller_agreement']; ?></span></li>
+                            <li> </li>
 
-                </ul>
+                        </ul>
 
-            </div>
+                    </div>
+                </div>
+                <div class="buyer-details">
+                    <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%;">
+                        <span>
+                            Buyer details:
+                        </span>
+                        <button onclick="viewBuyer()" style="margin-left:63px ;">View</button>
+                        <p id="isBuyerBlocked"></p>
+                    </div>
 
-            <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%;">
-                <span>
-                    Buyer details:
-                </span>
-                <button onclick="toggleDisplay('viewBuyer')" style="margin-left:63px ;">View</button>
-                <p id="isBuyerBlocked"></p>
-            </div>
+                    <div id="viewBuyer" class="details" style="display: none;">
 
-            <div id="viewBuyer" style="display: none;">
+                        <ul>
+                            <li>Buyer ID <span><?php echo $row['buyer_id']; ?></span></li>
+                            <li>Buyer email: <span><?php echo $row['buyer_email']; ?></span></li>
+                            <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
 
-                <ul>
-                    <li>Buyer ID <span><?php echo $row['buyer_id']; ?></span></li>
-                    <li>Buyer email: <span><?php echo $row['buyer_email']; ?></span></li>
-                    <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
+                        </ul>
 
-                </ul>
-                <td><a href='userProfile?inquiry_id=<?php echo $row["inquiry_id"]; ?>&user_id=<?php echo $row["buyer_id"]; ?>'>
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </td>
-            </div>
-
-            <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%; ;">
-                <span>
-                    Order details:
-                </span>
-                <button onclick="toggleDisplay('viewOrders')" style="margin-left:11px ;">View</button>
+                    </div>
+                </div>
 
             </div>
 
-            <div id="viewOrders" style="display: none;">
+            <div class="container-details">
+                <div class="seller-details">
+                    <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%; ;">
+                        <span>
+                            Order details:
+                        </span>
+                        <button onclick="viewOrders()" style="margin-left:11px ;">View</button>
+                    </div>
 
-                <ul>
-                    <li>Order_ID <span><?php echo $row['order_id']; ?></span></li>
-                    <li>Order Status: <span><?php echo $row['order_state']; ?></span></li>
-                    <li>Order Type: <span><?php echo $row['order_type']; ?></span></li>
-                    <li>Order Created at: <span><?php echo $row['order_created_date']; ?></span></li>
-                </ul>
+                    <div id="viewOrders" style="display: none;">
+
+                        <ul>
+                            <li>Order_ID <span><?php echo $row['order_id']; ?></span></li>
+                            <li>Order Status: <span><?php echo $row['order_state']; ?></span></li>
+                            <li>Order Type: <span><?php echo $row['order_type']; ?></span></li>
+                            <li>Order Created at: <span><?php echo $row['order_created_date']; ?></span></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="buyer-details">
+                    <div style="display: flex; justify-content:space-between; width:250px ;">
+                        <span>
+                            Payment details:
+                        </span>
+                        <button onclick="viewPayments()" style="margin-left:11px ;">View</button>
+
+                    </div>
+
+
+                    <div id="viewPayments" style="display: none;">
+
+                        <ul>
+                            <li>Payment ID : <span><?php echo $row['payment_id']; ?></span></li>
+                            <li>amount: <span><?php echo $row['amount']; ?></span></li>
+                            <li>payment_date: <span><?php echo $row['payment_date']; ?></span></li>
+                            <li>payment_description: <span><?php echo $row['payment_description']; ?></span></li>
+                            <li>payment_status: <span><?php echo $row['payment_status']; ?></span></li>
+                        </ul>
+
+                    </div>
+                </div>
 
             </div>
+            <div class="block" style="margin-left:25%; margin-top:100px">
 
-            <div style="display: flex; justify-content:space-between; width:250px ;">
-                <span>
-                    Payment details:
-                </span>
-                <button onclick="toggleDisplay('viewPayments')" style="margin-left:11px ;">View</button>
+                <form>
 
+                    <textarea id="responseCSA" name="responseCSA" rows="4" cols="50" placeholder="Enter the reason to ask for refund" style="display: block;"></textarea>
+                    <br>
+
+                </form>
+
+                <div style="margin-top: 15px; width:400px; margin-left:0%">
+                    <button id="refund" onclick="refundCSA()" style="display:block">Ask for Refund</button>
+                </div>
             </div>
+            <form id="blacklistForm" method="post" style="display: none;">
+                <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
+                <input type="hidden" id="user_email_to_blacklist" name="user_email_to_blacklist" value="">
+                <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
+                <input type="hidden" id="reason" name="reason" value="">
+            </form>
 
 
-            <div id="viewPayments" style="display: none;">
+            <form id="refundForm" method="post" style="display: none;">
+                <input type="hidden" id="payment_id" name="payment_id" value="">
+                <input type="hidden" id="sendResponse" name="sendResponse" value="">
+                <input type="hidden" id="buyerID" name="buyerID" value="">
+            </form>
 
-                <ul>
-                    <li>Payment ID : <span><?php echo $row['payment_id']; ?></span></li>
-                    <li>amount: <span><?php echo $row['amount']; ?></span></li>
-                    <li>payment_date: <span><?php echo $row['payment_date']; ?></span></li>
-                    <li>payment_description: <span><?php echo $row['payment_description']; ?></span></li>
-                    <li>payment_status: <span><?php echo $row['payment_status']; ?></span></li>
-                </ul>
-
-            </div>
         </div>
-        <form id="blacklistForm" method="post" style="display: none;">
-            <input type="hidden" id="user_id_to_blacklist" name="user_id_to_blacklist" value="">
-            <input type="hidden" id="user_email_to_blacklist" name="user_email_to_blacklist" value="">
-            <input type="hidden" id="blacklistUntil" name="blacklistUntil" value="">
-            <input type="hidden" id="reason" name="reason" value="">
-            <input type="hidden" id="role" name="role" value="">
+        </section>
 
-        </form>
+        <script>
+            function updateUserBlacklistBuyer() {
+                var selectedDays = document.getElementById('blacklistDuration').value;
+                var reason = document.getElementById('blackListReason').value;
+                var confirmation = confirm("Are you sure you want to blacklist Buyer ID for " + selectedDays + " days?");
 
-
-        <form id="refundForm" method="post" style="display: none;">
-            <input type="hidden" id="payment_id" name="payment_id" value="">
-            <input type="hidden" id="sendResponse" name="sendResponse" value="">
-            <input type="hidden" id="buyerID" name="buyerID" value="">
-        </form>
-
-    </div>
-    </section>
-
-    <script>
-        // Helper functions to toggle display of elements
-        function toggleDisplay(elementId) {
-            const element = document.getElementById(elementId);
-            element.style.display = (element.style.display === 'none') ? 'block' : 'none';
-        }
-
-        // Blacklist and Refund Functionality
-        function confirmAction(message, callback) {
-            if (confirm(message)) {
-                callback();
-            } else {
-                alert("Operation canceled.");
+                if (confirmation) {
+                    document.getElementById('user_id_to_blacklist').value = '<?php echo $row['buyer_id']; ?>';
+                    document.getElementById('user_email_to_blacklist').value = '<?php echo $row['buyer_email']; ?>';
+                    document.getElementById('blacklistUntil').value = selectedDays;
+                    document.getElementById('reason').value = reason;
+                    document.getElementById('blacklistForm').submit();
+                } else {
+                    alert("Operation canceled.");
+                }
             }
-        }
-
-        function blacklistUser(userId, userEmail, role, days, reason) {
-            document.getElementById('user_id_to_blacklist').value = userId;
-            document.getElementById('user_email_to_blacklist').value = userEmail;
-            document.getElementById('blacklistUntil').value = days;
-            document.getElementById('reason').value = reason;
-            document.getElementById('role').value = role;
-            document.getElementById('blacklistForm').submit();
-        }
-
-        function submitRefund(paymentId, response, buyerID) {
-            document.getElementById("payment_id").value = paymentId;
-            document.getElementById("sendResponse").value = response;
-            document.getElementById("buyerID").value = buyerID;
-            document.getElementById("refundForm").submit();
-        }
-
-        // Event Handlers
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("chatBtnSeller").onclick = function() {
-                toggleDisplay("chatBoxSeller");
-                document.getElementById("chatBoxBuyer").style.display = "none";
-            };
-
-            document.getElementById("chatBtnBuyer").onclick = function() {
-                toggleDisplay("chatBoxBuyer");
-                document.getElementById("chatBoxSeller").style.display = "none";
-            };
-
-            document.getElementById("closeChatBtnSeller").onclick = function() {
-                document.getElementById("chatBoxSeller").style.display = "none";
-            };
-
-            document.getElementById("closeChatBtnBuyer").onclick = function() {
-                document.getElementById("chatBoxBuyer").style.display = "none";
-            };
-
-            document.getElementById("updateUserBlacklistBuyer").onclick = function() {
-                const days = document.getElementById('blacklistDuration').value;
-                const reason = document.getElementById('blackListReason').value;
-                confirmAction(`Are you sure you want to blacklist Buyer ID for ${days} days?`, function() {
-                    blacklistUser('<?php echo $row['buyer_id']; ?>', '<?php echo $row['buyer_email']; ?>', 'Buyer', days, reason);
-                });
-            };
-
-            document.getElementById("updateUserBlacklistSeller").onclick = function() {
-                const days = document.getElementById('blacklistDuration').value;
-                const reason = document.getElementById('blackListReason').value;
-                confirmAction(`Are you sure you want to blacklist Seller ID for ${days} days?`, function() {
-                    blacklistUser('<?php echo $row['seller_id']; ?>', '<?php echo $row['seller_email']; ?>', 'Seller', days, reason);
-                });
-            };
 
 
-            document.getElementById("refund").onclick = function() {
-                const response = document.getElementById("response").value;
-                const paymentId = '<?php echo $row['payment_id']; ?>';
-                const buyerID = '<?php echo $row['buyer_id']; ?>';
-                confirmAction('Are you sure that you want to send a refund request to the admin?', function() {
-                    submitRefund(paymentId, response, buyerID);
-                });
-            };
+            function updateUserBlacklistSeller() {
+
+                var selectedDays = document.getElementById('blacklistDuration').value;
+                var reason = document.getElementById('blackListReason').value;
+                var confirmation = confirm("Are you sure you want to blacklist Seller ID: <?php echo $row['seller_id']; ?> for " + selectedDays + " days?");
+
+                if (confirmation) {
+                    document.getElementById('user_id_to_blacklist').value = '<?php echo $row['seller_id']; ?>';
+                    document.getElementById('user_email_to_blacklist').value = '<?php echo $row['seller_email']; ?>';
+                    document.getElementById('blacklistUntil').value = selectedDays;
+                    document.getElementById('reason').value = reason;
+
+                } else {
+                    alert("Operation canceled.");
+                }
+
+            }
 
 
 
-            // View toggles
-            document.getElementById("viewSeller").onclick = function() {
-                toggleDisplay('viewSeller');
-            };
+            function refundCSA() {
+                var responseCSA = document.getElementById("blacklistDuration").value;
+                var confirmation = confirm('Are you sure that you want to send a refund request to the admin?');
+                var buyerID = <?php echo $row['buyer_id'] ?> // Ensure this doesn't break JavaScript if null
+                var paymentId = <?php echo $row['payment_id'] ?> // Ensure this doesn't break JavaScript if null
 
-            document.getElementById("viewBuyer").onclick = function() {
-                toggleDisplay('viewBuyer');
-            };
+                if (confirmation) {
+                    document.getElementById("payment_id").value = paymentId;
+                    document.getElementById("sendResponse").value = responseCSA; // Make sure to use responseCSA
+                    document.getElementById("buyerID").value = buyerID;
+                    document.getElementById("refundForm").submit();
+                }
+            }
 
-            document.getElementById("viewOrders").onclick = function() {
-                toggleDisplay('viewOrders');
-            };
 
-            document.getElementById("viewPayments").onclick = function() {
-                toggleDisplay('viewPayments');
-            };
 
-            document.getElementById("displayRefund").onclick = function() {
-                document.getElementById('response').style.display = 'block';
-                document.getElementById('refund').style.display = 'block';
-                document.getElementById('displayRefund').style.display = 'none';
-                document.getElementById('hideRefund').style.display = 'block';
-            };
-        });
-    </script>
+            function viewSeller() {
+                var selectedDays = document.getElementById('viewSeller');
+                selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+            }
+
+            function viewBuyer() {
+                var selectedDays = document.getElementById('viewBuyer');
+                selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+            }
+
+            function viewOrders() {
+                var selectedDays = document.getElementById('viewOrders');
+                selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+            }
+
+
+            function viewPayments() {
+                var selectedDays = document.getElementById('viewPayments');
+                selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+            }
+        </script>

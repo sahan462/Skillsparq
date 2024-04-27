@@ -24,14 +24,19 @@ class viewComplaints extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['user_id_to_blacklist'])) {
+                $user_id = $_POST['user_id_to_blacklist'];
+                $user_email = $_POST['user_email_to_blacklist'];
+                $days = $_POST['blacklistUntil'];
                 $reason = $_POST['reason'];
-                $id = $_POST['user_id_to_blacklist'];
-                $email = $_POST['user_email_to_blacklist'];
-                $until = $_POST['blacklistUntil'];
+
+                // Process the blacklist update in database
+                // Send email notification
+
+
 
                 $today = new DateTime();
 
-                $today->modify("+$until days");
+                $today->modify("+$days days");
 
                 $endDate = $today->format('Y-m-d');
                 $body = "<!DOCTYPE html>
@@ -96,7 +101,7 @@ class viewComplaints extends Controller
                     <div class='container'>
                         <div class='header'>Account Suspension Notice</div>
                         <div class='content'>
-                            <p>Hello  ID: $id,</p>
+                            <p>Hello  ID: $user_id,</p>
                             <p>We regret to inform you that your account has been suspended from SKILLSPARQ due to $reason. This suspension will last until $endDate. During this period, you will not be able to access your account or use any services provided by SKILLSPARQ.</p>
                             <p>Please note that any ongoing or pending projects may be affected by this suspension. It is important to resolve the issues as outlined to prevent future suspensions.</p>
                             <p>If you believe this to be a mistake or wish to discuss this further, please contact our support team directly.</p>
@@ -108,14 +113,14 @@ class viewComplaints extends Controller
                 </body>
                 </html>
                 ";
-                $this->sendVerificationMail($email, $id, "Sorry You have been banned from skillsparq website", $body, "");
+                $this->sendVerificationMail($user_email, $user_id, "Sorry You have been banned from skillsparq website", $body, "");
                 $this->inquiryHandlerModel->blackListBuyer();
-            }
-            if (isset($_POST['payment_id'])) {
+            } elseif (isset($_POST['payment_id'])) {
                 $payment_id = $_POST['payment_id'];
                 $this->inquiryHandlerModel->refund();
             }
         }
+
         $this->view('viewComplaints', $data);
     }
 }
