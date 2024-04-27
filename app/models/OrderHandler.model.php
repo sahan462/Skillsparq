@@ -513,6 +513,8 @@ class OrderHandler extends database
         return $previousMonthsData;
     }
 
+    }
+
     //upload a delivery
     public function uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime)
     {
@@ -657,7 +659,9 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    public function getOrderSeller($user_id)
+
+  
+  public function getOrderSeller($user_id)
     {
         $query = "SELECT 
             o.*,  

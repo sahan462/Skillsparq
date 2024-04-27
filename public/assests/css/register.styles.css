@@ -43,7 +43,7 @@ body {
   background-color: rgb(255, 255, 255);
   font-weight: 500;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
-  
+  cursor: pointer;
 }
 .header {
   font-size: xx-large;

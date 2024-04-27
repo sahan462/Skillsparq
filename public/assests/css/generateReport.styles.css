@@ -1,0 +1,154 @@
+*{
+    font-family: lexend deca;
+    /* padding-left: 3px;
+    padding-right: 3px; */
+}
+
+.sub-main-container, .container-four{
+    padding-top: 25px;
+    border: 1px solid #c3c3c3;
+    border-radius: 7px;
+}
+
+.container-two{
+    text-align: center;
+    background-color: #1dbf73;
+    border-radius: 7px;
+    padding-top: 4px;
+    padding-bottom: 7px;
+    margin-bottom: 25px;
+}
+
+.heading-one{
+    text-transform: uppercase;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    word-spacing: 3px;
+    letter-spacing: 1px;
+    margin-top: 1.5px;
+}
+
+.container-three{
+    margin-bottom: 20px;
+}
+
+.sub-c1{
+    margin-bottom: 5px;
+}
+
+.sp-h1, .sp-h2, .sp-h3{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.sp-h1, .sp-h3{
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.sp-h1, .sp-h2{
+    padding-bottom: 10px;
+}
+
+#monthlyUsers{
+    font-family: poppins;
+}
+
+.container-four{
+    margin-top:25px;
+}
+
+.sub-container-four{
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.heading-two{
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.content-table {
+    /* display: inline-block; */
+    margin: 0 auto;
+    border-collapse: collapse; 
+    width: 75%; 
+    border: 1px solid #c3c3c3; 
+    border-radius: 5px; 
+    overflow: hidden; 
+}
+
+.content-table th, .content-table td {
+    padding: 8px; 
+    text-align: left; 
+}
+
+.content-table thead {
+    background-color: #f4f4f4; 
+    font-weight: 500; 
+}
+
+.content-table tbody {
+    font-weight: 400; 
+}
+
+.container-five, .container-six, .container-seven{
+    margin-top: 25px;
+    border: 1px solid #c3c3c3;
+    border-radius: 7px;
+}
+
+.sub-container-five, .sub-container-six, .sub-container-seven{
+    margin-top: 10px;
+}
+
+.heading-three, .heading-four, .heading-five{
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.button-section{
+    display: inline-block; 
+    width: 100%;           
+    margin: 0 auto;        
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.button{
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: white;
+    font-weight: 500;
+    color: #1dbf73;
+    border: 2px solid #1dbf73;
+    border-radius: 5px;
+    letter-spacing: 0.7px;
+}
+
+.button:hover{
+    background-color: #1dbf73;
+    color: white;
+    border: 2px solid #1dbf73;
+    cursor: pointer;
+}
