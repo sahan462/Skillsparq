@@ -191,7 +191,8 @@ class Order extends Controller
     
 
     //create milestone order
-    public function createMilestoneOrder(){
+    public function createMilestoneOrder()
+    {
 
         $milestones = $_POST['milestone'];
         $subjects = $milestones['subject'];

@@ -169,7 +169,7 @@ conn.onmessage = function(e) {
 
     scrollToBottom();
     document.getElementById('chatContainer').innerHTML += messageComponent;
-
+    document.getElementById('newMessage').value = "";
 };
 
 
