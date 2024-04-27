@@ -6,12 +6,16 @@ class userProfile extends Controller
     private $userHandlerModel;
     private $profileHandlerModel;
     private $orderHandlerModel;
+    private $GigHandlerModel;
+    private $paymentHandlerModel;
     public function __construct()
     {
         $this->inquiryHandlerModel = $this->model('inquiryHandler');
         $this->userHandlerModel = $this->model('userHandler');
         $this->orderHandlerModel = $this->model('orderHandler');
         $this->profileHandlerModel = $this->model('profileHandler');
+        $this->GigHandlerModel = $this->model('GigHandler');
+        $this->paymentHandlerModel = $this->model('paymentHandler');
     }
 
     public function index()
@@ -30,6 +34,12 @@ class userProfile extends Controller
         $data['userProfile'] = $userProfile;
         $orderSeller = $this->orderHandlerModel->getOrderSeller($user_id);
         $data['orderSeller'] = $orderSeller;
+        $recentGigs = $this->GigHandlerModel->getRecentGigs();
+        $data['recentGigs'] = $recentGigs;
+        $recentComplaints = $this->inquiryHandlerModel->getComplaintsSeller($user_id);
+        $data['recentComplaints'] = $recentComplaints;
+        $paymentSeller = $this->paymentHandlerModel->paymentsSeller($user_id);
+        $data['paymentSeller'] = $paymentSeller;
 
 
 

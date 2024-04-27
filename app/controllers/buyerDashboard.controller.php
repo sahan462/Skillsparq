@@ -28,7 +28,9 @@ class BuyerDashboard extends Controller
                 $data['recentGigs'] = $recentGigs;
                 
             } else {
-                echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+                echo "<script>
+                alert('getAllJobs function is not Accessible!')
+                </script>";
             }
             
             // $data['recentGigs'] = $recentGigs;

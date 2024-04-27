@@ -14,7 +14,7 @@ class displayGig extends Controller
     public function index()
     {
 
-        try{
+        try {
 
             // display view would be loaded with the Buyer header to the view page.  
             if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
@@ -59,8 +59,6 @@ class displayGig extends Controller
         }catch(Exception $e){
     
             $this->redirect('_505');
-
         }
-        
     }
 }

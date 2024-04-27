@@ -170,9 +170,15 @@
             <form id="lnForm" method="POST" action="sellerProfile/addProfileLanguages">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Languages here.    
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Languages Preferred here :</label>
+                        <!-- <select name="" id="">
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="English">English</option>
+                            <option value="Tamil">Tamil</option>
+                        </select> -->
                         <input type="text" name="Languages" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['languages'])){
@@ -200,9 +206,10 @@
             <form id="sklForm" method="POST" action="sellerProfile/addProfileSkills">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Skills here.
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Skills here :</label>
                         <input type="text" name="Skills" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['skills'])){
@@ -230,9 +237,10 @@
             <form id="educForm" method="POST" action="sellerProfile/addProfileEducation">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Education here.
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Education here :</label>
                         <input type="text" name="Educations" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['education'])){
