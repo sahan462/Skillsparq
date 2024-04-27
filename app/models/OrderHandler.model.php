@@ -2,7 +2,7 @@
 class OrderHandler extends database
 {
 
-    //create new order
+    //create new package order
     public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId)
     {
         $query = "INSERT INTO Orders 
@@ -33,7 +33,6 @@ class OrderHandler extends database
         }
 
         //insert data to package_orders table   
-
         $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO package_orders 
         (
             package_order_id,
@@ -51,7 +50,6 @@ class OrderHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-
         mysqli_stmt_bind_param($stmt, "issii", $orderId, $requestDescription, $attachement, $gigId, $packageId);
         if (mysqli_stmt_execute($stmt)) {
             $stmt->close();
@@ -59,17 +57,11 @@ class OrderHandler extends database
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
 
-
-        // } else{
-
-        //     throw new Exception("Invalid Order Type");        
-        // }
-
         return $orderId;
     }
 
-    //create milestone order
 
+    //create new milestone order
     public function createMilestoneOrder()
     {
     }
@@ -96,7 +88,7 @@ class OrderHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "ssdii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
+        mysqli_stmt_bind_param($stmt, "sssii", $orderState,  $orderType, $orderCreatedAt, $buyerId, $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
             $orderId = mysqli_insert_id($GLOBALS['db']);
@@ -107,6 +99,7 @@ class OrderHandler extends database
         return $orderId;
     }
 
+    // retrieve job orders
     public function getJobOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
@@ -153,14 +146,78 @@ class OrderHandler extends database
         }
     }
 
-    //get orders
-    public function getOrders($userId, $userRole)
+    // retrieve package orders
+    public function getPackageOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
 
-            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
+            // create the logic with buyer id 
+            // Buyer wants to see the details of the orders which he placed through a package order from all the sellers.
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN package_orders ON orders.order_id = package_orders.package_order_id 
+            INNER JOIN packages ON package_orders.package_id = packages.package_id 
+            INNER JOIN GIGS ON packages.gig_id = gigs.gig_id
+            INNER JOIN PROFILE ON gigs.seller_id = profile.user_id
+            WHERE orders.buyer_id = ? 
+            ORDER BY order_id DESC
+            ";
+
         } else {
 
+            // create the logic with seller id
+            // seller wants to see the details of the order and the buyer details which a buyer placed through a package order from his gig pacakges.
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN package_orders ON orders.order_id = package_orders.package_order_id 
+            INNER JOIN packages ON package_orders.package_id = packages.package_id 
+            INNER JOIN GIGS ON packages.gig_id = gigs.gig_id
+            INNER JOIN PROFILE ON orders.buyer_id = profile.user_id
+            WHERE orders.seller_id = ? 
+            ORDER BY order_id DESC
+            ";
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // Fetch associative array
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // retrieve milestone orders
+    public function getMilestoneOrders($userId, $userRole)
+    {
+        if ($userRole == 'Buyer') {
+
+            // create the logic
+            $query = "SELECT * 
+            FROM orders 
+            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
+            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
+            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
+            WHERE user_id = ? 
+            ORDER BY order_id DESC
+            ";
+
+        } else {
+
+            // create the logic
             $query = "SELECT * 
             FROM orders 
             INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
@@ -169,7 +226,39 @@ class OrderHandler extends database
             WHERE seller_id = ? 
             ORDER BY order_id DESC
             ";
-            // $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
+        }
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // Fetch associative array
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //get orders
+    public function getOrders($userId, $userRole)
+    {
+        if ($userRole == 'Buyer') {
+
+            $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
+        } else {
+
+            $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -196,12 +285,15 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+
         } else if ($orderType == 'job') {
 
-            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID INNER JOIN JOBS ON JOB_ORDERS.JOB_ID = JOBS.JOB_ID LEFT JOIN CHATS ON ORDERS.ORDER_ID = CHATS.ORDER_ID WHERE ORDERS.ORDER_ID = ?";
+            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
+            
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -283,6 +375,11 @@ class OrderHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
+    }
+
+    public function sendNotification()
+    {
+
     }
 
     //create new payment
@@ -410,6 +507,8 @@ class OrderHandler extends database
         }
 
         return $previousMonthsData;
+    }
+
     }
 
     //upload a delivery
@@ -556,7 +655,9 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
-    public function getOrderSeller($user_id)
+
+  
+  public function getOrderSeller($user_id)
     {
         $query = "SELECT 
             o.*,  

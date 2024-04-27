@@ -149,9 +149,7 @@
             <form id="emailForm" method="POST" action="sellerProfile/addEmail">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
-                            Add Your Email here.
-                        </div>
+                        <label class="TYPE-1">Add Your Email here : </label>
                         <input type="text" name="Email" id="Email" value="<?php echo $data['mail']['user_email']?>">
                     </div>
                 </div>
@@ -172,9 +170,15 @@
             <form id="lnForm" method="POST" action="sellerProfile/addProfileLanguages">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Languages here.    
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Languages Preferred here :</label>
+                        <!-- <select name="" id="">
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="English">English</option>
+                            <option value="Tamil">Tamil</option>
+                        </select> -->
                         <input type="text" name="Languages" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['languages'])){
@@ -202,9 +206,10 @@
             <form id="sklForm" method="POST" action="sellerProfile/addProfileSkills">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Skills here.
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Skills here :</label>
                         <input type="text" name="Skills" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['skills'])){
@@ -232,9 +237,10 @@
             <form id="educForm" method="POST" action="sellerProfile/addProfileEducation">
                 <div class="row">
                     <div class="seller-modal-name">
-                        <div class="seller-question">
+                        <!-- <div class="seller-question">
                             Add Your Education here.
-                        </div>
+                        </div> -->
+                        <label for="" class="TYPE-1">Add Your Education here :</label>
                         <input type="text" name="Educations" value="
                         <?php 
                             if(isset($data['sellerProfileDets']['education'])){
@@ -520,13 +526,14 @@
                 </div>
             </div>
             <div class="reviews">
+
                 <div class="sellerUser-content">
                     <div class="sellerheader">
-                    <form action="sellerProfile/addPortfolioImgsToProfile" method="POST"
+                    <form action="sellerProfile/addPortfolioImg" method="POST"
                                 enctype="multipart/form-data">
                             <p>Select files to upload: 
                                 <div class="addToPortfolioImgs">
-                                    <input type="file" name="files[]" multiple id="multipleImagesUpload" required accept="image/*">
+                                    <input type="file" name="files" id="multipleImagesUpload" required accept="image/*" onchange="displayFileName(0)" class="multipleImagesUpload">
                                     <label for="multipleImagesUpload" id="labelImageAdd">
                                         <i class="material-icons">
 
@@ -538,7 +545,7 @@
                                     <label for="Submit">Submit</label>
                                 </div>
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-                                <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
+                                <!-- <input type="hidden" name="userName" value="<?php //echo $_SESSION['userName']?>"> -->
                         </form>
                     </div>
                     <div class="review-content">
@@ -551,6 +558,32 @@
                     <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
                 </div>
             </div>
+            <div class="reviews">
+                <div class="sellerheader">
+                    <span>Feedbacks and ratings</span>
+                </div>
+                <div class="review-content">
+                    <?php if (mysqli_num_rows($feedbacks) > 0){ ?>
+
+
+                        <?php while ($row = $feedbacks->fetch_assoc()) { ?>
+
+                            <?php include "components/feedback.component.php"?>
+
+                        <?php } ?>
+
+                    <?php }else { ?>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>No feedbacks available</span>
+
+                    <?php } ?>
+
+                </div>
+            </div>
+            
         </div>  
     </div>
 </div>

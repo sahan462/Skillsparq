@@ -230,7 +230,8 @@ function addCollapsible()
     inputContainer.style.height = '100%';
   }
 
-  var collapsibleTemplate = `
+  var collapsibleTemplate = document.createElement('div');
+  collapsibleTemplate.innerHTML = `
   <div id="collapsibleTemplate_${count}">
   <button type="button" class="collapsible" id="collapsible" onclick="expand(this)">Milestone ${count}</button>
 
@@ -301,7 +302,7 @@ function addCollapsible()
   
   `;
 
-  inputContainer.innerHTML += collapsibleTemplate;
+  inputContainer.appendChild(collapsibleTemplate);
 }
 
 //remove milestones

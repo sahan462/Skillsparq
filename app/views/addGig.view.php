@@ -213,7 +213,7 @@
 
                     <div class="images">
 
-                        </table>
+                        <!-- </table> -->
 
                         <div class="slideimg1" style="display:flex; gap: 32px; align-items:center;">
                             <label for="coverImage">Cover Image:</label>

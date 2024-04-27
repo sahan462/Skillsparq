@@ -3,6 +3,7 @@
     padding: 16px 32px;
     border-radius: 10px;
     margin-bottom:16px;
+    min-height: calc(100vh - 150px);
 }
 
 .jobPropHeader{
@@ -23,7 +24,12 @@
 }
 
 .jobPropMainContainer .propSubLeftCont{
+    max-height: calc(100vh - 150px);
+    height: 100%;
     width:35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .jobPropMainContainer .propSubLeftCont .animationImg{

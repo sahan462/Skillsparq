@@ -4,6 +4,7 @@ class Order extends Controller
 {
     private $OrderHandlerModel;
     private $ChatHandlerModel;
+    private $ProfileHandlerModel;
 
     public function __construct()
     {
@@ -15,25 +16,35 @@ class Order extends Controller
 
     public function index()
     {
+        if((!isset($_SESSION["phoneNumber"]) && !isset($_SESSION["password"])) || (!isset($_SESSION["email"]) && !isset($_SESSION["password"]))){
 
-        $data['var'] = "Order Page";
-        $data['title'] = "SkillSparq";
+            header("location: home");
 
-        $orderId = $_GET['orderId'];
-        $orderType = $_GET['orderType'];
-        $buyerId = $_GET['buyerId'];
-        $sellerid = $_GET['sellerId'];
-        $userRole = $_SESSION['role'];
+        }else{
 
-        // get order, buyer and seller information
-        $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-        $order = $data['order'];
-        $chatId = $order['chat_id'];
+            $data['var'] = "Order Page";
+            $data['title'] = "SkillSparq";
 
-        //retrieve the chat from the database
-        $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-        // show($data);
-        $this->view('order', $data);
+            $orderId = $_GET['orderId'];
+            $orderType = $_GET['orderType'];
+            $buyerId = $_GET['buyerId'];
+            $sellerid = $_GET['sellerId'];
+            $userRole = $_SESSION['role'];
+
+            // get order, buyer and seller information
+            $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
+            print_r($data);
+            $order = $data['order'];
+            $chatId = $order['chat_id'];
+
+            //retrieve the chat from the database
+            $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
+            // show($data);
+            // print_r($chatId);
+            // print_r($data);
+            $this->view('order', $data);
+    
+        }
         
     }
 
@@ -84,10 +95,9 @@ class Order extends Controller
                     //notify the seller using an email
                     $sellerEmail = $this->getSession('email');
                     
-
                     $newOrderRequestEmail = `
                     
-                                <!DOCTYPE html>
+                    <!DOCTYPE html>
                     <html lang="en">
                     <head>
                     <meta charset="UTF-8">
@@ -170,9 +180,6 @@ class Order extends Controller
                 ";
             }
 
-
-
-
         }catch(Exception $e){
 
             echo 'An error occurred during creation of package order: ' . $e->getMessage();
@@ -183,7 +190,8 @@ class Order extends Controller
     
 
     //create milestone order
-    public function createMilestoneOrder(){
+    public function createMilestoneOrder()
+    {
 
         $milestones = $_POST['milestone'];
         $subjects = $milestones['subject'];
@@ -232,9 +240,19 @@ class Order extends Controller
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
     {
-        $isCreated = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
-        if(is_numeric($isCreated)){
-            return $isCreated;
+        $orderCreatedAt = Date('Y-m-d H:i:s');
+        // create order
+        $orderId = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+        
+        //get chat
+        if($orderId){
+            $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
+        }else{
+            $this->view("505");
+        }
+
+        if($chatId){
+            return $orderId;
         }else{
             echo "
                 <script>

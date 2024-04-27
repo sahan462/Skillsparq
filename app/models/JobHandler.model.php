@@ -72,7 +72,7 @@ class JobHandler extends database
     }
 
     public function getJobsForSellerDashBoard(){
-        $query = "SELECT * FROM Jobs";
+        $query = "SELECT * FROM Jobs ORDER BY created_at desc";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -81,14 +81,43 @@ class JobHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
+    public function getFilteredJobs($jobType){
+        $query = "SELECT * FROM JOBS WHERE PUBLISH_MODE ='$jobType' ORDER BY CREATED_AT DESC";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // get job result for any search string.
+    public function getJobsSearch($textToSearch)
+    {
+        $retrieveQuery = "SELECT * FROM JOBS WHERE TITLE LIKE CONCAT('%',?,'%') OR DESCRIPTION LIKE CONCAT('%',?,'%') OR CATEGORY LIKE CONCAT('%',?,'%') OR DEADLINE LIKE CONCAT('%',?,'%') OR PUBLISH_MODE LIKE CONCAT('%',?,'%') OR AMOUNT LIKE CONCAT('%',?,'%') OR CREATED_AT LIKE CONCAT('%',?,'%')";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt,"sssssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch, $textToSearch);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -351,7 +380,8 @@ class JobHandler extends database
         return $orderId;
     }
 
-    // public function getJobName($jobId)
+    // 
+    // public function searchForJobs($searchName)
     // {
     //     $query = "SELECT title FROM Jobs WHERE job_id = ? ";
         

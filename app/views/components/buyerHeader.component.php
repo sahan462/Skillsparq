@@ -34,9 +34,16 @@
             <div class="logo">
                 <a href="home">SKILLSPARQ</a>
             </div>
-            <div class="searchBar">
+            <!-- <div class="searchBar">
                 <form action="">
                     <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div> -->
+            <div class = "searchBar">
+                <!-- Search Bar to Search for the buyer -->
+                <form action="search" method="GET">
+                    <input type="text" placeholder="Search.." name="searchBuyerDash">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -86,16 +93,46 @@
         <div class = "headerCategories">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#" class="wordLink">Graphics & Design</a></li>
-                    <li><a href="#" class="wordLink">Programming & Tech</a></li>
-                    <li><a href="#" class="wordLink">Digital Marketing</a></li>
-                    <li><a href="#" class="wordLink">Video & Animation</a></li>
-                    <li><a href="#" class="wordLink">Writing & Translation</a></li>
-                    <li><a href="#" class="wordLink">Music & Audio</a></li>
-                    <li><a href="#" class="wordLink">Business</a></li>
-                    <li><a href="#" class="wordLink">Data</a></li>
-                    <li><a href="#" class="wordLink">Photography</a></li>
-                    <li><a href="#" class="wordLink">AI Services</a></li>
+                    <li>
+                        <a href="" class="wordLink" onclick="searchFilter()">Graphics & Design</a>
+                        <input type="hidden" name="Graphics & Design">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Programming & Tech</a>
+                        <input type="hidden" name="Programming & Tech">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Digital Marketing</a>
+                        <input type="hidden" name="Digital Marketing">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Video & Animation</a>
+                        <input type="hidden" name="Video & Animation">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Writing & Translation</a>
+                        <input type="hidden" name="Writing & Translation">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Music & Audio</a>
+                        <input type="hidden" name="Music & Audio">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Business</a>
+                        <input type="hidden" name="Business">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Data</a>
+                        <input type="hidden" name="Data">
+                    </li>
+                    <li>
+                        <a href="" class="wordLink">Photography</a>
+                        <input type="hidden" name="Photography">
+                    </li>
+                    <li>
+                        <a href="   " class="wordLink">AI Services</a>
+                        <input type="hidden" name="AI Services">
+                    </li>
                 </ul>
             </nav>
         </div>
