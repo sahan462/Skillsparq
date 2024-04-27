@@ -162,7 +162,6 @@ class OrderHandler extends database
             WHERE orders.buyer_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             // create the logic with seller id
@@ -214,7 +213,6 @@ class OrderHandler extends database
             WHERE user_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             // create the logic
@@ -285,15 +283,12 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
-            
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -379,7 +374,6 @@ class OrderHandler extends database
 
     public function sendNotification()
     {
-
     }
 
     //create new payment
@@ -394,7 +388,7 @@ class OrderHandler extends database
             amount,
             payment_date,
             payment_description,
-            payment_state,
+            payment_status,
             order_id
         ) 
         VALUES 
@@ -509,7 +503,7 @@ class OrderHandler extends database
         return $previousMonthsData;
     }
 
-    }
+
 
     //upload a delivery
     public function uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime)
@@ -656,8 +650,8 @@ class OrderHandler extends database
         }
     }
 
-  
-  public function getOrderSeller($user_id)
+
+    public function getOrderSeller($user_id)
     {
         $query = "SELECT 
             o.*,  
@@ -698,6 +692,81 @@ class OrderHandler extends database
             return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function viewOrder($order_id)
+    {
+        $query = "SELECT 
+        o.*,
+        p.*
+        
+    FROM orders o
+    JOIN payments p ON o.order_id = p.order_id
+   
+    
+   
+    WHERE o.order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function viewOrderPackage($order_id)
+    {
+        // Prepare the query using placeholders for parameters
+        $query = "SELECT p.*,g.* FROM package_orders p Join gigs g on g.gig_id = p.gig_id WHERE p.package_order_id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL prepare error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        // Bind the parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        // Execute the statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Get the result set from the prepared statement
+            return mysqli_stmt_get_result($stmt);
+        } else {
+            die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function viewJob($order_id)
+    {
+        // Prepare the query using placeholders for parameters
+        $query = "SELECT p.* FROM package_orders p WHERE p.package_order_id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL prepare error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        // Bind the parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        // Execute the statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Get the result set from the prepared statement
+            return mysqli_stmt_get_result($stmt);
+        } else {
+            die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 }
