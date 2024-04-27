@@ -239,7 +239,7 @@ class ProfileHandler extends database
 
 
     // retrieve all feedbacks
-    public function getAllFeedbacks()
+    public function getAllFeedbacks($sortBy, $sortDirection)
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
 
@@ -247,7 +247,7 @@ class ProfileHandler extends database
         $query = "SELECT * 
               FROM feedbacks
             
-              ORDER BY $sortBy DESC ";
+              ORDER BY $sortBy $sortDirection ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
