@@ -28,10 +28,12 @@ class BuyerDashboard extends Controller
                 $data['recentGigs'] = $recentGigs;
                 
             } else {
-                echo "<script>alert('getAllJobs function is not Accessible!')</script>";
+                echo "<script>
+                alert('getAllJobs function is not Accessible!')
+                </script>";
             }
             
-            $data['recentGigs'] = $recentGigs;
+            // $data['recentGigs'] = $recentGigs;
             
             // Get the Seller Gig along with the Relevant Seller Detais.
             $recentAllGigsWithDets = $this->GigHandlerModel->getRecentGigWithRelevantSellerDets();

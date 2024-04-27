@@ -49,12 +49,13 @@ class ChatHandler extends database
         }
 
         //send new message
-        public function sendNewTextMessage($message, $file, $date, $chatId, $senderId, $receiverId)
+        public function sendNewTextMessage($message, $file, $fileType, $date, $chatId, $senderId, $receiverId)
         {
             $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO messages 
             (
                 message,
                 file, 
+                file_type,
                 date, 
                 chat_id,
                 sender_id,   
@@ -62,14 +63,14 @@ class ChatHandler extends database
             ) 
             VALUES 
             (
-                ?, ?, ?, ?, ?, ?
+                ?, ?, ?, ?, ?, ?, ?
             )");
         
             if ($stmt === false) {
                 throw new Exception("Failed to create prepared statement.");
             }
     
-            mysqli_stmt_bind_param($stmt, "sssiii", $message, $file, $date, $chatId, $senderId, $receiverId);
+            mysqli_stmt_bind_param($stmt, "ssssiii", $message, $file, $fileType, $date, $chatId, $senderId, $receiverId);
     
             if (mysqli_stmt_execute($stmt)) {
                 $stmt->close();

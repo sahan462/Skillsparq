@@ -66,7 +66,7 @@ class GigHandler extends database
                 throw new Exception("Failed to create prepared statement2.");
             }
             
-            mysqli_stmt_bind_param($stmt2, "ississdi",$packagePrice_2, $packageName_2, $noOfRevisions_2,$noOfDeliveryDays_2, $timePeriod_2, $packageDescription_2, $currentDateTime, $gigId);
+            mysqli_stmt_bind_param($stmt2, "siisisdi", $packageName_2, $packagePrice_2, $noOfDeliveryDays_2, $timePeriod_2, $noOfRevisions_2, $packageDescription_2, $currentDateTime, $gigId);
     
             if (mysqli_stmt_execute($stmt2)) {
                 $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
@@ -87,7 +87,7 @@ class GigHandler extends database
                 throw new Exception("Failed to create prepared statement3.");
             }
             
-            mysqli_stmt_bind_param($stmt3, "ississdi",$packagePrice_3, $packageName_3, $noOfRevisions_3,$noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $currentDateTime, $gigId);
+            mysqli_stmt_bind_param($stmt3, "siisisdi", $packageName_3, $packagePrice_3, $noOfDeliveryDays_3, $timePeriod_3, $noOfRevisions_3, $packageDescription_3, $currentDateTime, $gigId);
     
             if (mysqli_stmt_execute($stmt3)) {
                 $insertedIds[] = mysqli_insert_id($GLOBALS['db']);
@@ -179,12 +179,13 @@ class GigHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -202,12 +203,13 @@ class GigHandler extends database
         }
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -246,11 +248,8 @@ class GigHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $result;
+
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -269,12 +268,13 @@ class GigHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $sellerId);
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $stmt->get_result();
+            // $result = $stmt->get_result();
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
@@ -300,6 +300,36 @@ class GigHandler extends database
             $stmt->close();
 
             $packageDetails = $this->getPackages($gigId);
+
+            $gig = [
+                "gigDetails" => $gigDetails,
+                "packageDetails" => $packageDetails
+            ];
+            return $gig;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    //display a specific gig this is for the updateGig.controller.php file
+    public function displayGigForUpdate($gigId)
+    {
+        $query = "SELECT * FROM gigs WHERE gig_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $gigDetails = $stmt->get_result();
+            $stmt->close();
+
+            $packageDetails = $this->getPackages($gigId);
+            // $packageDetails = mysqli_fetch_assoc($packageDetails);
 
             $gig = [
                 "gigDetails" => $gigDetails,
@@ -630,4 +660,26 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+
+    // get job result for any search string.
+    public function getGigsSearch($textToSearch)
+    {
+        $retrieveQuery = "SELECT * FROM GIGS WHERE TITLE LIKE CONCAT('%',?,'%') OR DESCRIPTION LIKE CONCAT('%',?,'%') OR CATEGORY LIKE CONCAT('%',?,'%') OR CREATED_AT LIKE CONCAT('%',?,'%')";
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt,"ssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
 }

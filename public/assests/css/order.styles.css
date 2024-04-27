@@ -387,14 +387,14 @@ a {
 .orderDetailsBottomContainer .orderDetailsBottomLeftContainer{
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 60%;
 }
 .orderDetailsBottomContainer .orderDetailsBottomRightContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 50%;
+    width: 40%;
 }
 .buttonType-3{
     cursor: pointer;

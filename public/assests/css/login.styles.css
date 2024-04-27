@@ -8,14 +8,16 @@ body {
 }
 .container {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 8px;
   border-color: #f7f7f7;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: auto;
   min-width: 350px;
+  height: 400px;
   width: 100%;
-  padding: 28px 16px 28px 16px;
+  padding: 16px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 input[type="text"],
@@ -66,7 +68,7 @@ input[type="date"]:focus {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
 }
 .registerbtn:hover {
-  color: #31d65a;
+  color: #333;
   width: 100%;
   background-color: rgb(255, 255, 255);
   font-weight: 500;

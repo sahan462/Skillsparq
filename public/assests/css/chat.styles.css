@@ -219,8 +219,6 @@ P{
     border-radius: 8px;
 }
 
-
-
 /*Left Container*/
 .receiverInfo{
     box-sizing: border-box;
@@ -268,3 +266,5 @@ P{
     justify-content: center;
     align-items: end;
 }
+
+/* chat card component */

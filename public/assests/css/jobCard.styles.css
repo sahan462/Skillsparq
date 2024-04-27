@@ -26,12 +26,12 @@
     border-bottom: 2px solid #dadbdd;
     color:#007bff !important;
 }
-.job-card .description{
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    text-align: justify;  
-    overflow: hidden;
+.job-card .description p{
+    display: -webkit-box!important;
+    -webkit-line-clamp: 3!important;
+    -webkit-box-orient: vertical!important;
+    text-align: justify!important;  
+    overflow: hidden!important;
 }
 .job-data{
     padding-top: 8px;

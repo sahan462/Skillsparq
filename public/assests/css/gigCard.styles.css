@@ -1,6 +1,6 @@
 .gigCard{
     width: calc(100% / 5 - 16px);
-    height: 328px;
+    height: 380px;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;
@@ -10,7 +10,7 @@
 
 .sellerProfileContainer .sub-container .sellerUser-contribution .Gig-content .gigCard{
     width: calc(100% / 3 - 16px);
-    height: 100%;
+    height: 380px;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;
@@ -41,19 +41,29 @@
 }
 
 .gigCard 
-.coverImg img{
+.coverImg 
+img{
     width: 100%;
     height: 160px;
     border-radius: 8px 8px 0 0;
     margin-bottom: 4px;
 }
+
+/* .buyerDashboardContent
+.gigCard
+.coverImg
+img{
+
+} */
+
 .gigCard
 .coverImg
 {
     display: flex; 
-         align-items: end;
+    align-items: end;
     /* justify-content: center */
 }
+
 .gigCard .rating{
     display: flex;
 }
@@ -64,7 +74,7 @@
     display: flex;
 }
 .gigCard .gigTitle{
-    /* height: 50px; */
+    height: 50px;
     /* margin: 1px 0; */
     overflow: hidden;
     display: -webkit-box;
@@ -94,10 +104,16 @@
     justify-content: center;
     align-items: center;
 }
+
 .gigCard .links a{
     text-decoration: none;
     color: #fff;
 }
+.gigCard .links a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
 .gigCard button{
     text-decoration: none;
     width: 100% !important;
@@ -115,6 +131,11 @@
 .gigCard .buttonType-1{
     border-radius: 0 0 8px 8px !important;
 }
+
+/* .gigCard .buttonType-1:hover{
+    color: black;
+} */
+
 .gigCard .buttonType-2{
     border-radius: 0 0 8px 0 !important;
 }

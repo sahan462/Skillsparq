@@ -145,7 +145,7 @@ input.invalid {
 }
   
 /*tab 1*/
-.rightContainer input[type="text"], .rightContainer textarea {
+.updateGigContainer .rightContainer input[type="text"], .updateGigContainer .rightContainer textarea {
   margin: 0;
   padding: 0;
   height: 40px;
