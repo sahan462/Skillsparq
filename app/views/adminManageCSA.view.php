@@ -19,53 +19,57 @@
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-                <i class="uil uil-tachometer-fast-alt"></i>
-
-                <span class="text">Add new representative</span>
+                <!-- <i class="uil uil-tachometer-fast-alt"></i> -->
+                <h1 class="heading-one">Add new representative</h1>
             </div>
 
-            <div>
+            <div class="main-section">
+                <div class="form">
+                    <label for="firstName" class="label">First Name</label><br>
+                    <input type="text" name="firstName" id="firstName" autocomplete="off" required><br>
+                    <label for="lastname" class="label">Last Name</label><br>
+                    <input type="text" name="lastName" id="lastName" autocomplete="off"><br>
+                    <label for="lastname" class="label">User Name</label><br>
+                    <input type="text" name="userName" id="userName" autocomplete="off" required><br>
+                    <label for="user_email">User Email</label><br>
+                    <input type="text" id="user_email" name="user_email"><br>
+                    <label for="user_password">Password</label><br>
+                    <input type="text" id="user_password" name="user_password"><br>
+                
+                    <div class="ibutton">
+                        <button id="enter" onclick="enter()">Submit</button>
+                    </div>
+                </div>
 
-                <label for="firstName" class="label">First Name</label><br>
-                <input type="text" name="firstName" id="firstName" autocomplete="off" required><br>
-                <label for="lastname" class="label">Last Name</label><br>
-                <input type="text" name="lastName" id="lastName" autocomplete="off"><br>
-                <label for="lastname" class="label">User Name</label><br>
-                <input type="text" name="userName" id="userName" autocomplete="off" required><br>
-                <label for="user_email">user_email</label><br>
-                <input type="text" id="user_email" name="user_email"><br>
-                <label for="user_password">Password:</label><br>
-                <input type="text" id="user_password" name="user_password"><br>
+                <div class="right-section">
+                    <table class="content-table">
+                        <thead>
+                            <th>User ID</th>
+                            <th>User Email</th>
+                            <th>Role</th>
+                            <th>View</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($users as $row) {
+                                if ($row['role'] === 'csa') {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $row['user_id']; ?></td>
+                                        <td><?php echo $row['user_email']; ?></td>
+                                        <td><?php echo $row['role']; ?></td>
+                                        <td><a href="#">View</a></td>
+                                    </tr>
+                            <?php }
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
+
 
             </div>
-            <div>
-                <button id="enter" onclick="enter()">enter</button>
-
-
-            </div>
-            <div>
-                <table class="content-table">
-                    <thead>
-                        <th>user_id</th>
-                        <th>user_email</th>
-                        <th>role</th>
-                        <th>View</th>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($users as $row) {
-                            if ($row['role'] === 'csa') {
-                        ?>
-                                <tr>
-                                    <td><?php echo $row['user_id']; ?></td>
-                                    <td><?php echo $row['user_email']; ?></td>
-                                    <td><?php echo $row['role']; ?></td>
-                                    <td><a href="#">View</a></td>
-                                </tr>
-                        <?php }
-                        } ?>
-                    </tbody>
-                </table>
-            </div>
+            
+            
+            
 
 
             <form id="sendForm" method="post" style="display: none;">
