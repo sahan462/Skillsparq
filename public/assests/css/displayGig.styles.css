@@ -103,7 +103,7 @@ body{
     display: none;
     position: absolute;
     background: #fff;
-    padding: 20px;
+    padding: 8px;
     border-radius: 8px;
     width: auto;
     height: 100%;
@@ -142,7 +142,6 @@ body{
     justify-content: space-between;
 }
 .displayGigContainer .milestoneModal,.displayGigContainer .modal input, .displayGigContainer textarea{
-    margin-bottom: 16px;
     border-radius: 8px;
 }
 .displayGigContainer .milestoneModal .type-1, .modal .type-1{
@@ -201,7 +200,7 @@ body{
     border-radius: 8px;
 }
 #milestoneRequestForm{
-    height: 90%;
+    height: 92%;
 }
 #milestoneRequestForm #inputContainer{
     border-top: 1px solid #62646a;    
