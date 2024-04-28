@@ -495,30 +495,27 @@ input[type = "text"],
 
 
 .AlertButton{
+    margin-top: 24px;
     text-align: center;
-    background-color: #C72300;
-    color: white;
+    border: 1px solid #C72300;
+    color: #333;
     margin-left: 32px;
     margin-right: 32px;
-    padding: 4px;
-    box-shadow: 10px 10px 5px rgb(127, 117, 112);
+    padding: 8px;
+    box-shadow: 0 0 2px 0 #C72300;
     border-radius: 16px;
     /* height: 36px; */
 }
   
 .closeAlertBtn {
-/* margin-left: 15px; */
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-  
-.closeAlertBtn:hover {
-color: black;
+    margin-left: 15px;
+    color: #333;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .profile .topic{
@@ -584,19 +581,9 @@ a{
     text-decoration: none;
 }
 .sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button{
-    color: #0e0e0f;
-    border: 2px solid #fff;
-    padding: 8px;
-    background: none;
-    border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
     cursor: pointer;
-}
-.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .sellerheader button:hover{
-    color: #fff;
-    border: 2px solid #fff;
-    background: #1dbf73;
 }
 
 /* Seller User-content-content */
@@ -617,7 +604,7 @@ a{
     border: 1px solid #dadbdd;
     padding: 32px 16px;
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 40px;
 }
 
 /*reviews-header*/

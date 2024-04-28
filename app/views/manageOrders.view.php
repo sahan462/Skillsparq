@@ -54,18 +54,16 @@
         <div class="leftContainer">
 
             <!-- Tab links -->
-            <div class="tab" style="margin-bottom: 16px">
-                <button class="tablinks" onclick="openOrderType(event, 'package')" id="defaultOpen_1" style="width:200px;">Package Orders</button>
-                <button class="tablinks" onclick="openOrderType(event, 'job')" style="width:200px;">Job Orders</button>
-                <button class="tablinks" onclick="openOrderType(event, 'milestone')" style="width:200px;">Milestone Orders</button>
+            <div style="margin-bottom: 16px">
+                <select id="orderTypeSelect" onchange="openOrderType(event)">
+                    <option value="package" selected>Package Orders</option>
+                    <option value="job">Job Orders</option>
+                    <option value="milestone">Milestone Orders</option>
+                </select>
             </div>
 
-            <!-- Tab content -->
-                <!-- package orders -->
+            <!-- package orders -->
             <div id="package" class="ordercontent">
-
-                <!-- table topic -->
-                <span class="type-1">Package Orders</span>
 
                 <!-- Tabs -->
                 <div class="tab">
@@ -79,7 +77,7 @@
 
                 <!-- package order states -->
                 <div id="Package_Requested" class="tabcontent">
-                    requested
+
                     <div class="outerTable">
                         <table>
 
@@ -143,7 +141,7 @@
                 </div>  
 
                 <div id="Package_Accepted" class="tabcontent">
-                    accepted
+
                     <div class="outerTable">
                         <table>
                             <div class="thead">
@@ -393,7 +391,7 @@
             </div>
 
             <!-- job orders -->
-            <div id="job" class="ordercontent">
+            <div id="job" class="ordercontent" style="display: none;">
                 job order
                 <!-- Tabs -->
                 <div class="tab">
@@ -415,7 +413,7 @@
             </div>
 
             <!-- milestone orders -->
-            <div id="milestone" class="ordercontent">
+            <div id="milestone" class="ordercontent" style="display: none;">
                 milestone order
                 <!-- Tabs -->
                 <div class="tab">

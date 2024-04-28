@@ -50,6 +50,7 @@
                     <ul class="nav-links">
                         <li class="wordLink"><a href="sellerDashboard">Home</a></li>
                         <li class="wordLink"><a href="manageOrders">Orders</a></li>
+                        <li class="wordLink"><a href="sentJobProposals">Proposals</a></li>
                         <li class="wordLink"><a href="earnings">Earnings</a></li>
                         <li class="wordLink"><a href="helpCenter">Help Center</a></li>
                     </ul>

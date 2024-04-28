@@ -29,10 +29,10 @@ class SellerProfile extends Controller
 
             $sellerId = $_SESSION["userId"];
 
-            if(isset($_GET['view']) == 'public'){
-                $data['view'] = 'public';
+            if(isset($_GET['mode']) == 'public'){
+                $data['mode'] = 'public';
             }else{
-                $data['view'] = 'private';
+                $data['mode'] = 'private';
             }
 
             $data["profileDetails"] = $this->getProfileDetails($sellerId);
