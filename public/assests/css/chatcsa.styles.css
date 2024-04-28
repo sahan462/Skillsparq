@@ -8,6 +8,7 @@ body{
     background-color: #f7f7f7;
 }
 .wrapper{
+    position: relative;
     display: flex;
     justify-content: space-between;
     gap: 16px;
@@ -111,7 +112,7 @@ body{
 .chat .innerContainer{
     height: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow-y: scroll;
     padding: 16px 16px 32px 16px;
     -ms-overflow-style: none;  
@@ -120,7 +121,7 @@ body{
 .innerContainer::-webkit-scrollbar { 
     display: none;  
 }
-.messageContainer {
+.messageContainer-sender {
     width: fit-content;
     max-width: 70%;
     float: left;
@@ -131,6 +132,22 @@ body{
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
+   
+}
+.messageContainer-receiver {
+    width: fit-content;
+    margin-left: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+   
 }
 .darker {
     float: right;
@@ -143,7 +160,8 @@ P{
 }
 .innerContainer .senderContent{
     display: flex;
-    align-items: center;
+    align-items: left;
+   
 }
 .innerContainer .senderContent img{
     margin-right: 16px;
@@ -174,7 +192,7 @@ P{
 }
 .time-left {
     display: flex;
-    justify-content: end;
+    margin-left: 68%;
     color: #999;
 }
 

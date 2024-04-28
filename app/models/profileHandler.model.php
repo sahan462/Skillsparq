@@ -317,7 +317,8 @@ class ProfileHandler extends database
     JOIN messages m ON m.chat_id = c.chat_id
    
    
-    WHERE c.order_id = ?";
+    WHERE c.order_id = ?
+    ORDER BY m.date DESC";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

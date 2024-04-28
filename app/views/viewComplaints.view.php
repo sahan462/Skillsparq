@@ -68,7 +68,22 @@
             /* Optional: if you want the button to be as wide as the container */
             margin-top: 5px;
             /* Add some space between the button and the title */
-            /* Add other styles for the button here */
+            /* Add o
+            
+            ther styles for the button here */
+        }
+
+        .chatBtnSeller {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            /* Removes underline from links */
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
     </style>
 </head>
@@ -119,11 +134,10 @@
             <div>
 
 
-                <button id="chatBtnSeller">
-                    <a href='viewChats?order_id=<?php echo $row["order_id"]; ?>&buyer_id=<?php echo $row["buyer_id"]; ?>&seller_id=<?php echo $row["seller_id"]; ?>'>
-                        <i class="fa fa-eye"></i> Chat Seller
-                    </a>
-                </button>
+                <a href="viewChats?order_id=<?php echo $row['order_id']; ?>&buyer_id=<?php echo $row['buyer_id']; ?>&seller_id=<?php echo $row['seller_id']; ?>" class="chatBtnSeller">
+                    <i class="fa fa-comments"></i> View chat History
+                </a>
+
 
                 <div id="chatBoxSeller" class="chat-box">
                     <div class="chat-header">
@@ -154,26 +168,13 @@
 
 
 
-                <button id="chatBtnBuyer">Chat Buyer</button>
+                <button id="chatBtnBuyer" onclick="chatBuyer()">Chat Buyer</button>
                 <div id="chatBoxBuyer" class="chat-box">
                     <div class="chat-header">
                         <h2>Chat Buyer</h2>
                         <button id="closeChatBtnBuyer" style="width: 25px;"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="chat-messages">
-                        <?php
-                        $count = 1;
-                        while ($count < 10) {
-                            if ($count % 2 == 0) {
-                                echo "<li style='color:green; text-align:right; margin-right:10px'>" . 'Hello Manil. How are you. Im fine' .  "</li>";
-                            } else {
-                                echo "<li style='color:red; text-align:left; margin-left:10px'>" .  'Hello Manil. I think Im fine. Nice to meet you'  . "</li>";
-                            }
-                            $count++;
-                        }
-                        ?>
-
-
                     </div>
                     <div class="chat-input">
                         <input type="text" placeholder="Type your message here...">
@@ -424,5 +425,12 @@
                 var selectedDays = document.getElementById('viewPayments');
                 selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
 
+            }
+
+            function chatBuyer() {
+                var chatBoxes = document.getElementsByClassName("chat-box");
+                for (var i = 0; i < chatBoxes.length; i++) {
+                    chatBoxes[i].style.display = 'block'; // Set display style to
+                }
             }
         </script>
