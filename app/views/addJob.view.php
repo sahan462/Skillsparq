@@ -16,7 +16,7 @@
 
                 <span class="type-1">What are you looking to get done?</span>
                 <span class="type-2">This will help get your brief to the right talent. Specifics help here.</span>
-                <textarea name="description" placeholder="I need.." rows="8" required></textarea>
+                <textarea name="description" placeholder="I need.." rows="8" max="200" required></textarea>
 
                 <div class="custom-file-upload">
                     <input type="file" name="fileToUpload" class="fileToUpload" >

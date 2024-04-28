@@ -139,7 +139,7 @@ $jobs = $data['AllJobs'];
                     <div class="SellerDashFilterContainer">
                         <form action="" method="GET">
                             <div class="SellerDashFilterSelect"> 
-                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType" onchange="selectAfterEffect()">
+                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType">
                                     <span>Publish Mode</span>
                                     <option value="" disabled="" selected="">Select Mode</option>
                                     <option value="Auction Mode"

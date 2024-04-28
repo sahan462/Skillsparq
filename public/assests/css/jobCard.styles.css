@@ -1,17 +1,23 @@
 .job-card{
-    width: 100%;
+    width: 100%!important;
     min-height: 150px;
     height: auto;
-    border: 2px solid #dadbdd;
+    border: 1px solid #dadbdd!important;
     color: #0e0e0f;
-    border-radius: 5px;
+    border-radius: 5px!important;
     position: relative;
-    cursor: pointer;
+    /* cursor: pointer; */
     padding: 16px;
     background-color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.2)!important;
 }
+
+.job-card:hover{
+    transition:box-shadow 0.3s ease!important;
+    box-shadow: 10px 10px 20px 0 rgb(36, 36, 36, 0.6)!important;
+    /* cursor: pointer!important; */
+}
+
 .job-card a{
     color: #0e0e0f;
     font-size: 16px;

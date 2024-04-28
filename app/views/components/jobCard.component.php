@@ -9,9 +9,13 @@
                 <?php
                     if($_SESSION['role'] === "Buyer"){
                 ?>
-                        <!-- edit and delete will be accessible -->
+                    <!-- edit and delete will be accessible -->
+                    <div class="edit">
                         <a href="updateJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">edit</a>
-                        <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
+                    </div>
+                    <div class="delete">
+                    <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
+                    </div>
                 <?php
                     }else{
                         // view only

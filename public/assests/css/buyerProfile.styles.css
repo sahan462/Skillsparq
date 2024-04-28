@@ -356,7 +356,7 @@ input[type = "text"], select{
 }
 .buyerProfileContainer .sub-container .user-contribution .user-content .header button{
     color: #0e0e0f;
-    border: 2px solid #fff;
+    border: 1px solid #c5c6c9;
     padding: 8px;
     background: none;
     border-radius: 5px;
@@ -367,6 +367,26 @@ input[type = "text"], select{
     color: #fff;
     border: 2px solid #fff;
     background: #31d65a;
+}
+
+.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card{
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .job-data-basic{
+    gap: 8px;
+    width: 100%;
+}
+
+.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .job-data-auction{
+    gap: 8px;
+}
+
+.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .links{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 8px;
 }
 
 /*user-content-content*/
@@ -443,6 +463,15 @@ input[type = "text"], select{
         align-items: center;
     }
 }
+
+@media only screen and (max-width: 1000px){
+    .buyerProfileContainer .sub-container .content .job-card .job-data-basic svg,
+    .buyerProfileContainer .sub-container .content .job-card .job-data-auction svg{
+        height: 16px;
+        width: 16px;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .buyerProfileContainer{
         height: 100%;

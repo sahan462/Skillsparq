@@ -98,13 +98,6 @@ body{
    
 }
 
-.dashboard-container .job-feed .jobContent .job-card{
-    min-height: 150px;
-    height: auto;
-    border-radius: 5px!important;
-    border: 2px solid #dadbdd;  
-}
-
 .dashboard-container .job-feed .jobs .jobContent
 {
     display: flex;
@@ -119,19 +112,6 @@ body{
     align-items:normal;
 }
 
-.dashboard-container .job-feed .jobs .jobContent .job-card{
-    transition: box-shadow 0.3s ease;
-    width: 100%!important;
-}
-.dashboard-container .job-feed .jobs .jobContent .job-card:hover{
-    cursor: pointer;
-    box-shadow: 10px 10px 20px rgb(36, 36, 36, 0.6);
-}
-
-.dashboard-container{
-
-} 
-
 .jobs{
     width: 100%;
     height: auto;
@@ -143,16 +123,6 @@ body{
     border-bottom-left-radius:0px ;
     border-bottom-right-radius:0px ;
     border-bottom: none;
-}
-.job-card{
-    width: auto !important;
-    border-radius: 0 !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-bottom: 2px solid #dadbdd !important;
-    margin-top: 5px!important;
-    margin-bottom: 5px !important; 
 }
 
 .jobs .job-header{
@@ -185,11 +155,7 @@ body{
     border-radius: 4px;
     height: 30px;
     border: 1px solid #c5c6c9;  
-}
-
-/* .sellerDashboard-content .dashboard-container .job-feed .jobs .job-header .SellerDashFilterContainer form .SellerDashFilterSelect select::selection{
-    border: 1px solid #c5c6c9;
-} */
+}  
 
 .sellerDashboard-content .dashboard-container .job-feed .jobs .job-header .SellerDashFilterContainer form .TYPE-1 button{
     height: 30px;   
@@ -197,6 +163,7 @@ body{
     border-radius: 4px;
     font-size: 16px;
     transition: ease-in-out 0.3s;
+    background: none;
     border: 1px solid #c5c6c9;
     font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
@@ -208,16 +175,6 @@ body{
 
 .sellerDashboard-content .dashboard-container .job-feed .jobs .job-header .job-header-content{
     width: 60%;
-}
-
-.sellerDashboard-content
-.TYPE-1{
-    /* margin-top: 8px;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 16px;
-    color: #404145;
-    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif; */
 }
 
 .jobs .content{
