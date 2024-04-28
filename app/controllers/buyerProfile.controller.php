@@ -25,6 +25,12 @@ class BuyerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
             $userId = $_SESSION["userId"];
+
+            if(isset($_GET['mode']) == 'public'){
+                $data['mode'] = 'public';
+            }else{
+                $data['mode'] = 'private';
+            }
             
             //get profile information
             $userProfile = $this->ProfileHandlerModel->getUserProfile($userId);

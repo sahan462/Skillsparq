@@ -96,6 +96,7 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
+
         return $orderId;
     }
 
@@ -292,7 +293,7 @@ class OrderHandler extends database
 
         } else if ($orderType == 'job') {
 
-            $query = "SELECT * FROM ORDERS INNER JOIN JOB_ORDERS ON ORDERS.ORDER_ID = JOB_ORDERS.JOB_ORDER_ID inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
+            $query = "SELECT * FROM orders inner join job_orders ON orders.order_id = job_orders.job_order_id inner join jobs on jobs.job_id = job_orders.job_id inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
             
         } else {
 
@@ -509,7 +510,6 @@ class OrderHandler extends database
         return $previousMonthsData;
     }
 
-    }
 
     //upload a delivery
     public function uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $attachmentName, $currentDateTime)
@@ -681,6 +681,7 @@ class OrderHandler extends database
         }
     }
 
+    
     public function getOrdersSorted()
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column

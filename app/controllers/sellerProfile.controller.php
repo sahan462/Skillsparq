@@ -29,6 +29,12 @@ class SellerProfile extends Controller
 
             $sellerId = $_SESSION["userId"];
 
+            if(isset($_GET['view']) == 'public'){
+                $data['view'] = 'public';
+            }else{
+                $data['view'] = 'private';
+            }
+
             $data["profileDetails"] = $this->getProfileDetails($sellerId);
 
             $sellerProfileDets = $this->SellerHandlerModel->getSellerProfileDets($sellerId);

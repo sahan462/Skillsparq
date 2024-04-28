@@ -17,7 +17,9 @@
     $senderId = '';
     $receiverId = '';
     $chatId = $order['chat_id'];
-    print_r($chatId);
+    $order_json = json_encode($order);
+    $seller_json = json_encode($seller);
+    $buyer_json = json_encode($buyer);
     // print_r($chat);
     // echo "<br>";
     // print_r($buyer);
@@ -191,7 +193,7 @@
                                     </div>
 
                                 <?php else: ?>
-                                    
+
                                     <div class="sender-container">
                                         <div class="messageContainer">
                                             <div class="senderContent">
@@ -268,12 +270,16 @@
                 <?php if($_SESSION['role'] == 'Buyer') :?>
 
                     <ul>
-                        <li>
+                        <li style="margin-bottom:32px">
                             <!-- buyer requirements -->
                             <h3>Your Requirement</h3>
-                            <p><?php echo $order['order_description'] ?></p>
+                            <?php if ($order['order_type'] == 'package') :?>
+                                <p><?php echo $order['order_description'] ?></p>
+                            <?php elseif ($order['order_type'] == 'job'): ?>
+                                <p><?php echo $order['description'] ?></p>
+                            <?php endif;?>
                         </li>
-                        <li>
+                        <li style="margin-bottom:32px">
                             <!-- attachements -->
                             <h3>Attachements</h3>
                             <div class="attachement">
@@ -282,17 +288,9 @@
                             </div>
                         </li>
                         <li>
-                            <!-- seller details -->
-                            <h3>Seller Details</h3>
-                            <div class="buyerDetails">
-                                <div class="buyer">
-                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $seller["profile_pic"]?>" loading="lazy">
-                                    <div class="name&rating">
-                                        <span><?php echo $seller['first_name']." ".$seller['last_name'];?></span>
-                                    </div>
-                                </div>
-                            </div>
+
                         </li>
+                        
                     </ul>
 
                 <!-- seller -->
@@ -436,11 +434,13 @@
                                 $merchant_id = 1224879;
                                 $order_id = $order["order_id"];
 
-                                if ($order['order_type'] == 'package') { 
+                                if ($order['order_type'] == 'package') :
                                     $amount = $order['package_price'];
-                                }else if($order['order_type'] == 'milestone'){
-
-                                }
+                                elseif($order['order_type'] == 'milestone'):
+                                    $amount = $milestone['milestone_price'];
+                                elseif($order['order_type'] == 'job'):
+                                    $amount = intval(str_replace('$', '', $order['amount']));
+                                endif;
 
                                 $currency = "USD";
                                 $merchant_secret = "MjQ5MjY4ODcxMDE4NjI5NDMyNzQxNjkwNDQ3NjI3NDIxNjQ4Mjk3NA==";
@@ -559,7 +559,12 @@
 
                         <span class="type-1">Order Id</span>
                         <span class="type-1">Order Type</span>
-                        <span class="type-1">Gig Id</span>
+
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1">Gig Id</span>
+                        <?php elseif ($order['order_type'] == 'job'): ?>
+                            <span class="type-1">Job Id</span>
+                        <?php endif; ?>
 
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
@@ -580,7 +585,10 @@
 
                         <?php endif; ?> 
 
-                        <span class="type-1">Revision Count Left</span>
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1">Revision Count Left</span>
+                        <?php endif; ?>
+
                         <span class="type-1">Submission Deadline</span>
                         <span class="type-1">Total Payment</span>
 
@@ -590,7 +598,12 @@
 
                         <span class="type-1"><?php echo $order['order_id'] ?></span>
                         <span class="type-1"><?php echo $order['order_type'] ?></span>
-                        <span class="type-1"><?php echo $order['gig_id'] ?></span>
+                        
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1"><?php echo $order['gig_id'] ?></span>
+                        <?php elseif ($order['order_type'] == 'job'): ?>
+                            <span class="type-1"><?php echo $order['job_id'] ?></span>
+                        <?php endif; ?>
 
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
 
@@ -611,9 +624,21 @@
 
                         <?php endif; ?> 
 
-                        <span class="type-1"><?php echo $order['no_of_revisions'] ?></span>
-                        <span class="type-1"><?php echo calculateDeadline($order['order_created_date'], $order['no_of_delivery_days'], $order['time_period']) ?></span>
-                        <span class="type-1"><?php echo $order['package_price']?>USD</span>
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1"><?php echo $order['no_of_revisions'] ?></span>
+                        <?php endif; ?>
+
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1"><?php echo calculateDeadline($order['order_created_date'], $order['no_of_delivery_days'], $order['time_period']) ?></span>
+                        <?php elseif ($order['order_type'] == 'job'): ?>
+                            <span class="type-1"><?php echo $order['deadline']?></span>
+                        <?php endif; ?>
+
+                        <?php if ($order['order_type'] == 'package'): ?>
+                            <span class="type-1"><?php echo $order['package_price']?>USD</span>
+                        <?php elseif ($order['order_type'] == 'job'): ?>
+                            <span class="type-1"><?php echo $order['amount']?></span>
+                        <?php endif; ?>
 
                     </div>
 
@@ -634,7 +659,7 @@
 
                         <!-- <button class="buttonType-3" style="margin-bottom:8px;width:75%;">Request Revision</button> -->
                         <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="openComplaintModal(this)">Raise a Complaint</button>
-                        <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+                        <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF(<?php echo htmlspecialchars(json_encode($order_json)); ?>, <?php echo htmlspecialchars(json_encode($seller_json)); ?>, <?php echo htmlspecialchars(json_encode($buyer_json)); ?>)">Download Invoice</button>
 
                         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
                         <dotlottie-player src="https://lottie.host/6eb8f278-00ec-4955-a597-3401b5e01df9/LuQeqHZb2l.json" background="transparent" speed="1" style="width: 250px; height: 230px;" loop autoplay></dotlottie-player>
@@ -651,7 +676,7 @@
 
                         <?php elseif ($_SESSION['role'] == 'Seller') : ?>
 
-                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF()">Download Invoice</button>
+                            <button class="buttonType-3" style="margin-bottom:8px;width:75%;" onclick="createPDF('<?php echo $order_json?>', '<?php echo $seller_json?>', '<?php echo $buyer_json?>')">Download Invoice</button>
 
                             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
                             <dotlottie-player src="https://lottie.host/351b9c50-9b5b-40f3-b3a9-b7b18515bbdd/kDdcbxih46.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
@@ -803,6 +828,7 @@
 
 </div>
 
+
 <script>
     const senderProfilePicture = "<?php echo $senderProfilePicture; ?>";
     const receiverProfilePicture = "<?php echo $receiverProfilePicture; ?>";
@@ -810,129 +836,10 @@
     const receiverId = "<?php echo $receiverId; ?>";
 </script>
 
-<script>
-    // Assign jsPDF to window.jsPDF
-    window.jsPDF = window.jspdf.jsPDF;
-
-    // Function to create PDF
-    function createPDF() {
-        // Create a new jsPDF instance
-        var doc = new window.jsPDF(); 
-        
-        // Set fonts and font sizes
-        doc.setFont("helvetica");
-        doc.setFontSize(12);
-
-        // Title "Skillsparq Group"
-        doc.setFont("bold");
-        doc.setFontSize(24);
-        doc.text('Skillsparq Group', 105, 20, {align: 'center'});
-        doc.line(14, 23, 200, 23);
-
-        // Title "Invoice"
-        doc.setFont("bold");
-        doc.setFontSize(24);
-        doc.text('Invoice', 14, 30, {align: 'left'});
-        doc.line(14, 33, 200, 33);
-
-        // Order and gig details
-        doc.setFontSize(14);
-        doc.setFont("bold");
-        doc.text('Order Details', 14, 40);
-        doc.line(14, 43, 200, 43);
-
-        doc.setFontSize(12);
-        doc.setFont("normal");
-        doc.text('Order ID:', 14, 50);
-        doc.text('State:', 14, 60);
-        doc.text('Type:', 14, 70);
-        doc.text('Created Date:', 14, 80);
-        doc.text('Gig ID:', 14, 90);
-        doc.text('Gig Title:', 14, 100);
-        doc.text('Deadline:', 14, 110);
-
-        doc.text('<?php echo $order['order_id'] ?>', 70, 50);
-        doc.text('<?php echo $order['order_state'] ?>', 70, 60);
-        doc.text('<?php echo $order['order_type'] ?>', 70, 70);
-        doc.text('<?php echo $order['order_created_date'] ?>', 70, 80);
-        doc.text('<?php echo $order['gig_id'] ?>', 70, 90);
-        doc.text('<?php echo $order['title'] ?>', 70, 100);
-        doc.text('<?php echo $deadlineFormatted ?>', 70, 110);
-
-        // Buyer details
-        doc.setFontSize(14);
-        doc.setFont("bold");
-        doc.text('Buyer Details', 14, 120);
-        doc.line(14, 123, 200, 123);
-
-        doc.setFontSize(12);
-        doc.setFont("normal");
-        doc.text('Name:', 14, 130);
-        doc.text('Buyer ID:', 14, 140);
-        doc.text('UserName:', 14, 150);
-        doc.text('Country', 14, 160);
-
-        doc.text('<?php echo ($buyer['first_name'] .  " " . $buyer['last_name']) ?>', 70, 130);
-        doc.text('<?php echo $buyer['user_id'] ?>', 70, 140);
-        doc.text('<?php echo $buyer['user_name'] ?>', 70, 150);
-        doc.text('<?php echo $buyer['country'] ?>', 70, 160);
-        doc.line(14, 113, 200, 113);
-
-        // Seller details
-        doc.setFontSize(14);
-        doc.setFont("bold");
-        doc.text('Seller Details', 110, 120);
-
-        doc.setFontSize(12);
-        doc.setFont("normal");
-        doc.text('Name:', 110, 130);
-        doc.text('Seller ID:', 110, 140);
-        doc.text('UserName:', 110, 150);
-        doc.text('Country:', 110, 160);
-
-        doc.text('<?php echo ($seller['first_name'] .  " " . $seller['last_name']) ?>', 150, 130);
-        doc.text('<?php echo $seller['user_id'] ?>', 150, 140);
-        doc.text('<?php echo $seller['user_name'] ?>', 150, 150);
-        doc.text('Sri Lanka', 150, 160);
-
-        // Table header
-        doc.setDrawColor(0);
-        doc.setFillColor(240, 240, 240);
-        doc.rect(10, 170, 190, 10, 'F');
-        doc.setTextColor(0);
-        doc.setFont("bold");
-        doc.text('Description', 15, 175);
-        doc.text('Quantity', 80, 175);
-        doc.text('Unit Price', 110, 175);
-        doc.text('Amount', 160, 175);
-
-        // Table content
-        doc.setFont("normal");
-        doc.setFontSize(12);
-        doc.text('Product Name', 15, 185);
-        doc.text('1', 80, 185);
-        doc.text('$100.00', 110, 185);
-        doc.text('$100.00', 160, 185);
-
-        // Total
-        doc.setFont("bold");
-        doc.text('Total:', 110, 195);
-        doc.text('$100.00', 160, 195);
-
-        // Footer
-        doc.setDrawColor(0);
-        doc.rect(10, 265, 190, 20);
-        doc.text('Thank you for your business!', 14, 272);
-
-        // Save the PDF
-        doc.save('invoice.pdf');
-    }
-
-</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./assests/js/chat.script.js"></script>
 <script src="./assests/js/order.script.js"></script>
+<script src="./assests/js/invoice.script.js"></script>
 
 <?php include "components/footer.component.php"; ?>

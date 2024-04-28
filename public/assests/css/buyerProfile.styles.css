@@ -347,19 +347,15 @@ input[type = "text"], select{
     text-decoration: none;
 }
 .buyerProfileContainer .sub-container .user-contribution .user-content .header button{
-    color: #0e0e0f;
-    border: 2px solid #fff;
     padding: 8px;
-    background: none;
-    border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
 }
-.buyerProfileContainer .sub-container .user-contribution .user-content .header button:hover{
+/* .buyerProfileContainer .sub-container .user-contribution .user-content .header button:hover{
     color: #fff;
     border: 2px solid #fff;
     background: #31d65a;
-}
+} */
 
 /*user-content-content*/
 .buyerProfileContainer .sub-container .user-contribution .content{

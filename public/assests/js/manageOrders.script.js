@@ -11,6 +11,8 @@
       }
       document.getElementById(orderType).style.display = "block";
       evt.currentTarget.className += " active";
+      
+      document.getElementById("defaultOpen_" + orderType.charAt(0).toUpperCase() + orderType.slice(1)).click();
   }
 
   // Function to open different order states within each order type
@@ -24,8 +26,8 @@
       for (i = 0; i < tablinks.length; i++) {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
-      evt.currentTarget.className += " active";
       document.getElementById(orderState).style.display = "block";
+      evt.currentTarget.className += " active";
   }
 
   // Open the default tab for each order type
