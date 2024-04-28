@@ -361,7 +361,7 @@ class InquiryHandler extends database
             $blacklist_until_days = $_POST['blacklistUntil'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE user SET Black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
 
             if (!$stmt) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);
@@ -390,7 +390,7 @@ class InquiryHandler extends database
             $buyerID = $_POST['buyerID'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt1 = $GLOBALS['db']->prepare("UPDATE payments SET payment_status = 'holdForRefund' WHERE payment_id = ?");
+            $stmt1 = $GLOBALS['db']->prepare("UPDATE payments SET payment_state = 'holdForRefund' WHERE payment_id = ?");
             $stmt2 = $GLOBALS['db']->prepare("INSERT INTO refunds (refund_issuer_id, refund_receiver_id, refund_date, refund_cause, responseCSA, payment_id, refund_state) VALUES (?, 3, NOW(), 'na', ?, ?, 'onHold')");
 
             if (!$stmt1 || !$stmt2) {
@@ -547,6 +547,64 @@ class InquiryHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function updateInquiry()
+    {
+        // Check if the method is POST
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $complaint_id = $_POST['complaint_id'];
+            $buyer_reason = $_POST['resolveBuyer'];
+
+            // Prepare the SQL statement without including the variable directly
+            $stmt = $GLOBALS['db']->prepare("UPDATE inquiries SET response = ?, inquiry_status = 'solved' WHERE inquiry_id = ?");
+
+            // Check if the statement preparation was successful
+            if (!$stmt) {
+                die('MySQL prepare error: ' . $GLOBALS['db']->error);
+            }
+
+            // Bind the parameters to the statement
+            // 's' for string type for buyer_reason, 'i' for integer type for complaint_id
+            $stmt->bind_param("si", $buyer_reason, $complaint_id);
+
+            // Execute the statement and check for errors
+            if ($stmt->execute()) {
+                echo "Inquiry updated successfully.";
+            } else {
+                echo "Error updating inquiry: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        }
+    }
+
+    public function getDeliverables($inquiry_id)
+    {
+        // Revised query with clearer aliasing and potentially avoiding field name conflicts
+        $query = "SELECT d.*
+                  FROM inquiries AS i
+                  JOIN complaints AS c ON i.inquiry_id = c.complaint_id
+                  JOIN deliveries AS d ON d.order_id = c.order_id
+                  WHERE i.inquiry_id = ? ";
+
+        // Prepare the query
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        // Bind the inquiry ID to the query
+        mysqli_stmt_bind_param($stmt, 'i', $inquiry_id);
+
+        // Execute the query and retrieve the results
+        if (mysqli_stmt_execute($stmt)) {
+            $result = mysqli_stmt_get_result($stmt);
+            return $result; // Return the result set to be processed
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }

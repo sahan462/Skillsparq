@@ -20,6 +20,9 @@ class viewComplaints extends Controller
         $data['inquiryId'] = $inquiry_id;
         $viewComplaint = $this->inquiryHandlerModel->viewComplaints($inquiry_id);
         $data['viewComplaint'] = $viewComplaint;
+        $deliveries = $this->inquiryHandlerModel->getDeliverables($inquiry_id);
+        $data['deliveries'] = $deliveries;
+
 
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -113,11 +116,19 @@ class viewComplaints extends Controller
                 </body>
                 </html>
                 ";
-                $this->sendVerificationMail($user_email, $user_id, "Sorry You have been banned from skillsparq website", $body, "");
+                $this->sendVerificationMail('maniltenuka@gmail.com', $user_id, "Sorry You have been banned from skillsparq website", $body, "");
                 $this->inquiryHandlerModel->blackListBuyer();
             } elseif (isset($_POST['payment_id'])) {
                 $payment_id = $_POST['payment_id'];
                 $this->inquiryHandlerModel->refund();
+            } elseif (isset($_POST['seller_id_email'])) {
+                $seller_id = $_POST['seller_id_email'];
+                $buyer_id = $_POST['buyer_id_email'];
+                $buyer_reason = $_POST['resolveBuyer'];
+                $viewComplaint = $_POST['complaint_id'];
+                $subject = "Solution regarding the complaint_id: $viewComplaint";
+                $this->sendVerificationMail('maniltenuka@gmail.com', 1, $subject, $buyer_reason, "");
+                $this->inquiryHandlerModel->updateInquiry();
             }
         }
 
