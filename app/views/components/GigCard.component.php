@@ -65,23 +65,14 @@
             <div class="gigTitle">
                 <?php echo $row['title'] ?>
             </div>
+
             <!-- Description -->
             <div class="description">
                 <!-- <p>
                     <?php //echo $row['description']?>
                 </p> -->
             </div>
-            <div class="rating">
-                <?php // have to create a rating mechanism.?>
-                <div class="star-rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div>
-                <div class="numeric-rating">(4.3)</div>
-            </div>
+
             <!-- starting price -->
             <div class="price">
                 <b><span>From 5$<span></b>
@@ -109,5 +100,6 @@
                     }
                 ?>
             </div>
+            
         </div>
     </div>

@@ -27,7 +27,7 @@ class JobHandler extends database
             throw new Exception("Failed to create prepared statement.");
         }
         
-        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $description, $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, trim($description), $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
         
         if (mysqli_stmt_execute($stmt)) {
             $jobId = mysqli_insert_id($GLOBALS['db']);
@@ -419,6 +419,23 @@ class JobHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
+
+        // Update ongoing_order_count in job table
+        $updateQuery = "UPDATE jobs SET ongoing_order_count = ongoing_order_count + 1 WHERE job_id = ?";
+        $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $stmt->close();
+        }else{
+            throw new Exception("Error updating ongoing_order_count: " . mysqli_error($GLOBALS['db']));
+        }
+
         return $orderId;
     }
 

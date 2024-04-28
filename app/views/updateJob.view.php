@@ -1,3 +1,7 @@
+<?php
+    include "components/buyerSimpleHeader.component.php";
+?>
+
 <?php 
     $basicDetails = $data["Basic-Details"];
     $auctionDetails = $data["Auction-Details"];
@@ -105,10 +109,10 @@
                         <?php } ?>
                     </div>
                     <input type="hidden" name="jobId" value="<?php echo $jobId?>" />
-                    <button type="submit" class="next" name="update"><span>Update</span></button>
+                    <button type="submit" class="buttonType-1 next" name="update"><span>Update</span></button>
 
                 </form>
             </div>
-            <script src="/skillsparq/public/assests/js/addJob.script.js"></script>
-    </body>
-</html>
+        </div>
+<script src="/skillsparq/public/assests/js/addJob.script.js"></script>
+<?php include "components/footer.component.php"; ?>

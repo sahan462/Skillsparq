@@ -39,7 +39,7 @@
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Ratings and reviews</span>
+                <span class="text">Manage Orders</span>
             </div>
         </div>
 
@@ -54,6 +54,7 @@
 
                     <th><a href="?page=<?php echo $currentPage; ?>&sort=buyer_id&dir=<?php echo $data['sortDirection']; ?>">buyer ID<i class="fa fa-sort"></i></a></th>
                     <th><a href="?page=<?php echo $currentPage; ?>&sort=seller_id&dir=<?php echo $data['sortDirection']; ?>">Seller ID <i class="fa fa-sort"></i></a></th>
+                    <th>view</i></th>
                 </tr>
             </thead>
 
@@ -70,6 +71,9 @@
                         <td><?php echo $row['order_created_date']; ?></td>
                         <td><?php echo $row['buyer_id']; ?></td>
                         <td><?php echo $row['seller_id']; ?></td>
+                        <td><a href='viewOrderDetails?order_id=<?php echo $row["order_id"]; ?>'>
+                                <i class="fas fa-eye"></i> </a>
+                        </td>
 
 
                     </tr>

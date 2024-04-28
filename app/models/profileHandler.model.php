@@ -240,7 +240,7 @@ class ProfileHandler extends database
 
 
     // retrieve all feedbacks
-    public function getAllFeedbacks()
+    public function getAllFeedbacks($sortBy, $sortDirection)
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'feedback_id'; // Default sorting column
 
@@ -248,7 +248,7 @@ class ProfileHandler extends database
         $query = "SELECT * 
               FROM feedbacks
             
-              ORDER BY $sortBy DESC ";
+              ORDER BY $sortBy $sortDirection ";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -302,6 +302,36 @@ class ProfileHandler extends database
             return true;
         } else {
             throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+    //viewChat for csa
+    public function viewChat($order_id)
+    {
+        $query = "SELECT 
+       
+        m.*,
+        c.*
+     
+        
+    FROM chats c
+    JOIN messages m ON m.chat_id = c.chat_id
+   
+   
+    WHERE c.order_id = ?
+    ORDER BY m.date DESC";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 }

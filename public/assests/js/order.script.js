@@ -28,34 +28,88 @@ function openTab(evt, tabName)
 
 // ---------------------------------------Timer--------------------------------------------------------
 // Set the date we're counting down to
-var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
+// var countDownDate = new Date("Oct 12, 2024 15:37:25").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() 
-{
+// // Update the count down every 1 second
+// var x = setInterval(function() 
+// {
 
-  // Get today's date and time
-  var now = new Date().getTime();
+//   // Get today's date and time
+//   var now = new Date().getTime();
     
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+//   // Find the distance between now and the count down date
+//   var distance = countDownDate - now;
     
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//   // Time calculations for days, hours, minutes and seconds
+//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+//   // Output the result in an element with id="demo"
+//   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+//   + minutes + "m " + seconds + "s ";
     
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+//   // If the count down is over, write some text 
+//   if (distance < 0) {
+//     clearInterval(x);
+//     document.getElementById("demo").innerHTML = "EXPIRED";
+//   }
+// }, 1000);
+
+var countDownDate = new Date("APR 28, 2024 05:50:00").getTime();
+var x; // Declare x outside the setInterval function to make it accessible globally
+
+// Function to start the countdown timer
+function startTimer() {
+  x = setInterval(function() {
+    // Get today's date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+      // Send request to backend when timer expires
+      updateOrderStatus();
+    }
+  }, 1000);
+}
+
+// Function to send request to backend to update order status
+function updateOrderStatus() {
+  // Send an AJAX request to the backend to update order status
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "update_order_status.php", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+        clearInterval(x); // Clear the interval if request is successful
+      } else {
+        console.error("Failed to update order status");
+      }
+    }
+  };
+  xhr.send();
+}
+
+// Start the countdown timer
+startTimer();
 
 
 // ---------------------------------------modals--------------------------------------------------------
@@ -76,9 +130,8 @@ function confirmStateChange(action)
 
 }
 
-function handleStateChange(event, action, orderId, orderType, buyerId, sellerId) 
+function handleStateChange(event, action, orderId, orderType, buyerId, sellerId, currentState) 
 {
-    
   if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
     
     document.getElementById('cancelConfirmation').style.display = 'none';
@@ -86,7 +139,7 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId)
 
     if(action === 'yes'){
 
-        cancelOrder(orderId, orderType, buyerId, sellerId);
+        cancelOrder(orderId, orderType, buyerId, sellerId, currentState);
 
     }
 
@@ -97,7 +150,7 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId)
 
     if(action === 'yes'){
 
-      acceptOrderRequest(orderId, orderType, buyerId, sellerId);
+      acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState);
 
     }
 
@@ -114,9 +167,9 @@ function submitpaymentForm(){
 
 
 // ---------------------------------------Cancel an order--------------------------------------------------------
-async function cancelOrder(orderId, orderType, buyerId, sellerId) 
+async function cancelOrder(orderId, orderType, buyerId, sellerId, currentState) 
 {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState) ;
 
   try {
       const response = await fetch('order/cancelOrder', {
@@ -139,9 +192,9 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId)
 }
 
 // ---------------------------------------Accept an order request--------------------------------------------------------
-async function acceptOrderRequest(orderId, orderType, buyerId, sellerId)
+async function acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState)
 {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState)  ;
 
   try {
       const response = await fetch('order/acceptOrderRequest', {

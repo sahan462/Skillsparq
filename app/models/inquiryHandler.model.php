@@ -524,4 +524,31 @@ class InquiryHandler extends database
         }
         mysqli_stmt_close($stmt);
     }
+    public function viewComplaintForOrder($order_id)
+    {
+        $query = "SELECT 
+        c.*,
+        i.*
+        
+    FROM complaints c
+    JOIN inquiries i ON i.inquiry_id = c.complaint_id
+   
+    
+   
+    WHERE c.order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

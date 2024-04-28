@@ -68,7 +68,22 @@
             /* Optional: if you want the button to be as wide as the container */
             margin-top: 5px;
             /* Add some space between the button and the title */
-            /* Add other styles for the button here */
+            /* Add o
+            
+            ther styles for the button here */
+        }
+
+        .chatBtnSeller {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            /* Removes underline from links */
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
     </style>
 </head>
@@ -98,7 +113,16 @@
                 <li>Inquiry_ID <span><?php echo $row['inquiry_id']; ?></span></li>
                 <li>Subject: <span><?php echo $row['subject']; ?></span></li>
                 <li>Description: <span><?php echo $row['description']; ?></span></li>
-                <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
+                <li>Attachments:
+                    <span>
+                        <?php echo htmlspecialchars($row['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
+                        <a href="./assets/zipFiles/orderFiles/Order_23/deliveries/<?php echo urlencode($row['attachements']); ?>" download>
+                            <i class="fa fa-download"></i>
+
+                        </a>
+                    </span>
+                </li>
+
                 <li>Response: <span><?php echo $row['response']; ?></span></li>
                 <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
                 <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
@@ -106,11 +130,15 @@
         <?php
         }
         ?>
-        <div class="block">
+        <div class=" block">
             <div>
 
 
-                <button id="chatBtnSeller">Chat Seller</button>
+                <a href="viewChats?order_id=<?php echo $row['order_id']; ?>&buyer_id=<?php echo $row['buyer_id']; ?>&seller_id=<?php echo $row['seller_id']; ?>" class="chatBtnSeller">
+                    <i class="fa fa-comments"></i> View chat History
+                </a>
+
+
                 <div id="chatBoxSeller" class="chat-box">
                     <div class="chat-header">
                         <h2>Chat Seller</h2>
@@ -140,26 +168,13 @@
 
 
 
-                <button id="chatBtnBuyer">Chat Buyer</button>
+                <button id="chatBtnBuyer" onclick="chatBuyer()">Chat Buyer</button>
                 <div id="chatBoxBuyer" class="chat-box">
                     <div class="chat-header">
                         <h2>Chat Buyer</h2>
                         <button id="closeChatBtnBuyer" style="width: 25px;"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="chat-messages">
-                        <?php
-                        $count = 1;
-                        while ($count < 10) {
-                            if ($count % 2 == 0) {
-                                echo "<li style='color:green; text-align:right; margin-right:10px'>" . 'Hello Manil. How are you. Im fine' .  "</li>";
-                            } else {
-                                echo "<li style='color:red; text-align:left; margin-left:10px'>" .  'Hello Manil. I think Im fine. Nice to meet you'  . "</li>";
-                            }
-                            $count++;
-                        }
-                        ?>
-
-
                     </div>
                     <div class="chat-input">
                         <input type="text" placeholder="Type your message here...">
@@ -410,5 +425,12 @@
                 var selectedDays = document.getElementById('viewPayments');
                 selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
 
+            }
+
+            function chatBuyer() {
+                var chatBoxes = document.getElementsByClassName("chat-box");
+                for (var i = 0; i < chatBoxes.length; i++) {
+                    chatBoxes[i].style.display = 'block'; // Set display style to
+                }
             }
         </script>

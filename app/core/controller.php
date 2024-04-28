@@ -144,7 +144,6 @@ class Controller
 
             // Email sent successfully
             return true;
-            
         } catch (Exception $e) {
             // Email could not be sent
             return false;
@@ -156,7 +155,7 @@ class Controller
 
         // require_once('../../vendor/autoload.php');
         require_once('../vendor/nofity/autoload.php');
-       
+
         $api_instance = new NotifyLk\Api\SmsApi();
 
         $user_id = "27002";

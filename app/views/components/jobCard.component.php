@@ -1,4 +1,4 @@
-    <div class="job-card" job-url="displayJob&jobId=<?php echo $job['job_id']?>&amp;buyerId=<?php echo $job['buyer_id']?>">
+    <div class="job-card" job-url="displayJob&jobId=<?php echo $job['job_id']?>&amp;buyerId=<?php echo $job['buyer_id']?>" <?php if ($_SESSION['role'] === 'Buyer') { echo ($data['mode'] !== 'private') ? 'style="pointer-events: none;"' : ''; } ?>>
     
         <div class="title">
 
@@ -8,15 +8,12 @@
 
                 <?php
                     if($_SESSION['role'] === "Buyer"){
-                ?>
-                    <!-- edit and delete will be accessible -->
-                    <div class="edit">
-                        <a href="updateJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">edit</a>
-                    </div>
-                    <div class="delete">
-                    <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
-                    </div>
-                <?php
+                        
+                        if(($data['mode'] == 'private') && ($job['ongoing_order_count']) == 0){ ?>
+                            <!-- edit and delete will be accessible -->
+                            <a href="updateJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">edit</a>
+                            <a href="job/deleteJob&amp;userId=<?php echo $job['buyer_id']?>&amp;jobId=<?php echo $job['job_id']?>&amp;publishMode=<?php echo $job['publish_mode']?>">delete</a>
+                <?php } 
                     }else{
                         // view only
                     }
@@ -157,17 +154,4 @@
 
         </div>
         
-        <?php if($_SESSION['role'] === "Buyer"){?>
-
-            <!-- <div class="viewJob-Proposals">
-
-                <button>
-                    <a href="viewJobProposals&amp;userId=<?php //echo $job['buyer_id']?>&amp;jobId=<?php //echo $job['job_id']?>&amp;publishMode=<?php //echo $job['auction_mode']?>">
-                        Proposals
-                    </a>
-                </button>
-            </div> -->
-
-        <?php }?>
-
     </div>

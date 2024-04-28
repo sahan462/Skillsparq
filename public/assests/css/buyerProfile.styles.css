@@ -355,39 +355,15 @@ input[type = "text"], select{
     text-decoration: none;
 }
 .buyerProfileContainer .sub-container .user-contribution .user-content .header button{
-    color: #0e0e0f;
-    border: 1px solid #c5c6c9;
     padding: 8px;
-    background: none;
-    border-radius: 5px;
     font-size: 14px;
     transition: ease-in-out 0.3s;
 }
-.buyerProfileContainer .sub-container .user-contribution .user-content .header button:hover{
+/* .buyerProfileContainer .sub-container .user-contribution .user-content .header button:hover{
     color: #fff;
     border: 2px solid #fff;
     background: #31d65a;
-}
-
-.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card{
-    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .job-data-basic{
-    gap: 8px;
-    width: 100%;
-}
-
-.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .job-data-auction{
-    gap: 8px;
-}
-
-.buyerProfileContainer .sub-container .user-contribution  .user-content .content .job-card .links{
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    gap: 8px;
-}
+} */
 
 /*user-content-content*/
 .buyerProfileContainer .sub-container .user-contribution .content{

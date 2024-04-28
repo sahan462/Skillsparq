@@ -33,6 +33,7 @@ body{
     /* display: flex; */
     /* justify-content: space-between; */
     margin-top: 32px;
+    margin-bottom: 32px;
     height: calc(100vh - 180px);
 }  
 .manageOrdersContent .rightContainer{
@@ -53,6 +54,16 @@ body{
     overflow: hidden;
     border: none !important;
     background-color: #f1f1f1;
+}
+.manageOrdersContainer input[type = "text"], .manageOrdersContainer select {
+    height: 40px;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 200px !important;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid #c5c6c9;
 }
   
   /* Style the buttons that are used to open the tab content */
@@ -110,6 +121,7 @@ table, th, td{
     border-bottom: 1px solid #c5c6c9 !important;
 }
 tbody tr{
+
     cursor: pointer;
 }
 tbody tr:hover{

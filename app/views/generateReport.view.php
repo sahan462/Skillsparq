@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!----===== Iconscout CSS ===== -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
+    <link rel="stylesheet" href="../public/assests/css/generateReport.styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://parall.ax/parallax/js/jspdf.js"></script>
@@ -20,7 +22,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Lexend Deca', sans-serif;
         }
 
         /* Page layout */
@@ -28,7 +30,7 @@
             width: 800px;
             /* Adjust as needed */
             margin: 20px auto;
-            padding: 20px;
+            padding:20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -54,103 +56,130 @@
             font-size: 10px;
             color: #888;
         }
+
     </style>
 
     <title>Admin Dashboard Panel</title>
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <div id="makepdf">
-
-            <span style="font-size: 30px; font-weight:bold;">User Report </span><br>
-            <span>Total Users: </span>
-            <span><?php echo $userType['users']; ?></span><br>
-            <span>New Users this Month:</span>
-
-            <span id="newUsers"></span>
-
-
-
-            <div class="subChart">
-                <canvas id="monthlyUsers"></canvas>
-            </div><br>
-            <span style="margin-left:50%; margin-bottom:30px"> Users by role:</span>
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>New Users</th>
-                        <th>Total Users</th>
-                    </tr>
-                </thead>
-                <tbody style="text-align: center;">
-                    <tr>
-                        <td>Seller:</td>
-                        <td><?php echo $userType['sellerc']; ?></td> <!-- Placeholder value for new users this month -->
-                        <td> <?php echo $userType['seller']; ?></td> <!-- Total number of seller users -->
-                    </tr>
-                    <tr>
-                        <td>Buyer:</td>
-                        <td><?php echo $userType['buyerc']; ?></td> <!-- Placeholder value for new users this month -->
-                        <td> <?php echo $userType['buyer']; ?></td> <!-- Total number of seller users -->
-                    </tr>
-                    <tr>
-                        <td>Admin:</td>
-                        <td><?php echo $userType['adminc']; ?></td> <!-- Placeholder value for new users this month -->
-                        <td> <?php echo $userType['admin']; ?></td> <!-- Total number of seller users -->
-                    </tr>
-                    <tr>
-                        <td>CSA:</td>
-                        <td><?php echo $userType['csac']; ?></td> <!-- Placeholder value for new users this month -->
-                        <td> <?php echo $userType['csa']; ?></td> <!-- Total number of seller users -->
-                    </tr>
-                    <!-- Add more rows for other user types if needed -->
-                </tbody>
-            </table>
-
-            <div class=" subChart">
-                <canvas id="userTypeCurrent"></canvas>
+            <div class="container-two">
+                <span class="heading-one">User Report </span>
             </div>
-            <div class=" subChart">
-                <canvas id="userType"></canvas>
-            </div>
-
-
-            <span style="font-size: 30px; font-weight:bold;">Orders </span><br>
-            <div class="boxes">
-                <div class=" subChart">
-                    <canvas id="totalOrders"></canvas>
+            <div class="sub-main-container">
+                <div class="container-three">
+                    <div class="sub-c1">
+                        <span class="sp-h1">Total Users: </span>
+                        <span class="sp-h2"><?php echo $userType['users']; ?></span>
+                    </div>
+                    <div class="sub-c2">
+                        <span class="sp-h3">New Users this Month:</span>
+                        <span id="newUsers"></span>
+                    </div>   
                 </div>
+
                 <div class="subChart">
-                    <canvas id="orderState"></canvas>
+                    <canvas id="monthlyUsers"></canvas>
+                </div><br>
+            </div>
+            
+            <div class="container-four">
+                <div class="sub-container-four">
+                    <span class="heading-two"> Users by role:</span>
+                </div>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>New Users</th>
+                            <th>Total Users</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr>
+                            <td>Seller:</td>
+                            <td><?php echo $userType['sellerc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['seller']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>Buyer:</td>
+                            <td><?php echo $userType['buyerc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['buyer']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>Admin:</td>
+                            <td><?php echo $userType['adminc']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['admin']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <tr>
+                            <td>CSA:</td>
+                            <td><?php echo $userType['csac']; ?></td> <!-- Placeholder value for new users this month -->
+                            <td> <?php echo $userType['csa']; ?></td> <!-- Total number of seller users -->
+                        </tr>
+                        <!-- Add more rows for other user types if needed -->
+                    </tbody>
+                </table>
+
+                <div class=" subChart">
+                    <canvas id="userTypeCurrent"></canvas>
                 </div>
                 <div class=" subChart">
-                    <canvas id="orderStatePrev"></canvas>
+                    <canvas id="userType"></canvas>
+                </div>
+            </div>
+            
+            
+            <div class="container-five">
+                <div class="sub-container-five">
+                    <span class="heading-three">Orders </span>
+                </div>
+                
+                <div class="boxes">
+                    <div class=" subChart">
+                        <canvas id="totalOrders"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="orderState"></canvas>
+                    </div>
+                    <div class=" subChart">
+                        <canvas id="orderStatePrev"></canvas>
+                    </div>
                 </div>
             </div>
 
-            <span style="font-size: 30px; font-weight:bold;">Payments </span><br>
-            <div class="boxes">
-                <div class=" subChart">
-                    <canvas id="paymentStatusCurrent"></canvas>
+            <div class="container-six">
+                <div class="sub-container-six">
+                    <span class="heading-four">Payments </span>
                 </div>
-                <div class="subChart">
-                    <canvas id="totalPayments"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="Sales"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="noOfRefunds"></canvas>
-                </div>
-                <div class="subChart">
-                    <canvas id="totalRefunds"></canvas>
+                <div class="boxes">
+                    <div class=" subChart">
+                        <canvas id="paymentStatusCurrent"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="totalPayments"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="Sales"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="noOfRefunds"></canvas>
+                    </div>
+                    <div class="subChart">
+                        <canvas id="totalRefunds"></canvas>
+                    </div>
                 </div>
             </div>
+            
 
-            <span style="font-size: 30px; font-weight:bold;">GIGS </span><br>
-            <div class="boxes">
+            <div class="container-seven">
+                <div class="sub-container-seven">
+                    <span class="heading-five">Gigs </span>
+                </div>
+
+                <div class="boxes">
                 <div class="subChart">
                     <canvas id="noOfGigs"></canvas>
                 </div>
@@ -162,18 +191,16 @@
                 </div>
             </div>
 
+            </div>
+            
         </div>
-
-
-
-
     </div>
-    <button onclick="generatePDF()">Download</button>
-
-
-
-
-    </div>
+    
+<div class="button-section">
+    <button class="button" onclick="generatePDF()">Download</button>
+</div>
+    
+    <!-- </div> -->
 
 </body>
 
@@ -210,25 +237,45 @@
     var barColors = ["red", "green", "blue", "orange", "brown"];
 
     new Chart("monthlyUsers", {
-        type: "line",
-        data: {
-            labels: rearrangedMonths,
-            datasets: [{
-                fill: false,
-                borderColor: 'green',
-                data: monthlyUsers
-            }]
+    type: "line",
+    data: {
+        labels: rearrangedMonths,
+        datasets: [{
+            fill: false,
+            borderColor: '#1dbf73',
+            data: monthlyUsers
+        }]
+    },
+    options: {
+        legend: {
+            display: false
         },
-        options: {
-            legend: {
-                display: false
+        title: {
+            display: true,
+            text: "New Users Joined",
+            font: {
+                family: 'Lexend Deca, sans-serif' 
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    font: {
+                        family: 'Lexend Deca, sans-serif' 
+                    }
+                }
             },
-            title: {
-                display: true,
-                text: "New Users Joined"
+            y: {
+                ticks: {
+                    font: {
+                        family: 'Lexend Deca, sans-serif' 
+                    }
+                }
             }
         }
-    });
+    }
+});
+
     <?php
 
     $orderNumbers = [
