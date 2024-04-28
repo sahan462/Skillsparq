@@ -300,13 +300,7 @@
                                         </tr>
                                 <?php 
                                         }
-                                    }
-                                ?>
-                            </div>
-                        </table>
-                    </div>
-
-                </div>  
+                </div>
 
                 <div id="Package_Late" class="tabcontent">
 
@@ -448,6 +442,7 @@
                 </div>  
 
             </div>
+
 
             <!-- job orders -->
             <div id="job" class="ordercontent" style="display: none;">
