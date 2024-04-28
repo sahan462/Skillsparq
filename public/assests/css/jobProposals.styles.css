@@ -1,5 +1,5 @@
 .jobPropMainContainer{
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 16px 32px;
     border-radius: 10px;
     margin-bottom:16px;
@@ -8,6 +8,7 @@
 .jobPropHeader{
     min-height: 24px;
     margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 32px;
     font-weight: 700;
     color: #222325 !important;
@@ -18,141 +19,230 @@
 .jobPropSubContainer{
     margin-top: 8px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:space-around;
+    gap: 64px;
+    margin-left: 32px;
+    margin-right: 32px;
+    padding: 0px 16px;
+    margin-bottom: 24px;
+    /* height: 100%; */
 }
 
 .jobPropMainContainer .propSubLeftCont{
     width:35%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
-.jobPropMainContainer .propSubLeftCont .animationImg{
-    height: 85%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.jobPropMainContainer .propSubLeftCont svg{
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width:600px) {
+    .jobPropMainContainer .propSubLeftCont svg{
+        width: 600px;
+        height: 600px;
+    }
 }
 
 .jobPropMainContainer .propSubRightCont{
     width: 65%;
+    height: 100%;
+    margin-bottom: 24px;
 }
 
-.jobPropMainContainer .jobPropCardContainer{
+.jobPropMainContainer .propSubLeftCont .animationImg{
+    /* height: 85%; */
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.jobPropMainContainer .jobPropCardDetails{
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer{
     justify-content: center;
-    margin-right: 112px;
+    align-items: center;
 }
 
-.jobPropMainContainer .jobPropCardContent{
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border: 2px solid #c5c6c9;
+    padding:16px;
+    margin-bottom: 24px;
+    border-radius: 8px;
 }
 
-.jobPropMainContainer .propCont p{
-    margin-left: 24px;
-    width: 90%;
-    border-radius: 5px;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-.jobPropMainContainer .paraDescription{
-    width: 100%;
-    overflow-wrap: break-word;
-}
-
-.contentPropCard{
-    margin-left: 24px;
-    width: 90%;
-}
-
-.jobPropMainContainer .bidamnt{
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerTitle h3{
     color: #222325;
+    font-size: 24px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
-.jobPropMainContainer .propCont{
-    background-color: #e4ede6;
-    padding: 8px 16px 0 16px;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerFilter{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    gap: 16px;
 }
 
-.jobPropMainContainer .buttonContainer{
-    margin-top: 8px;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerFilter form .PropCardSelection  select{
+    font: 400 16px / 24px Macan, Helvetica Neue, Arial, sans-serif;
+    border: #c5c6c9 1px solid;
+    width: 170px;    
+    height: 30px;
+    border-radius: 8px;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerFilter form{
     display: flex;
-    justify-content:space-around;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 
-.jobPropMainContainer .buttonContainer button{
-    background-color: #777;
-    border: none;
-    border-radius: 5px;
-    height: 50px;
-    /* width: 60px; */
-    margin: 8px;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerFilter form .PropCardSelectBtn button{
+    margin-bottom: 0px!important;
+    border: #c5c6c9 1px solid;
+    width: 100px;
+    border-radius: 8px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerHeader .jobPropCardContainerFilter .PropCardSelectBtn button:hover{
+    background: #31d65a;
+    color: #fff;
     cursor: pointer;
 }
 
-.jobPropMainContainer .buttonContainer .profile{
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
+    border: #c5c6c9 1px solid;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px 0.01px rgb(0, 0, 0.3);
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard:hover{
+    box-shadow: 8px 8px 8px rgb(0, 0, 0.3);
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalCardHead{
+    display: flex;
+    gap: 32px;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalCardHead .jobProposalSellerPic{
+    /* display: flex;
+    align-items: center; */
+    /* justify-content: center; */
+}
+
+/* .jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalCardHead .jobProposalCardTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} */
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalCardHead .jobProposalCardTitle h3{
+    font-size: 16px;
+    color:#007bff;
+    margin-bottom: 40px;
+    margin-top: 32px;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalCardHead .jobProposalSellerPic img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-bottom: 16px;
+}
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalDesc{
+    margin-bottom: 16px;
+}
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalFile button{
+    width:120px;
+    display: block;
+} 
+
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalFile a{
+    text-decoration: none;
+    color: black;
+}
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalFile a:hover{
     color: #fff;
 }
 
-.jobPropMainContainer .buttonContainer .reject:hover{
-    background-color: #ff0000;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard .jobProposalButtons{
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+    gap: 16px;
 }
 
-.jobPropMainContainer .buttonContainer .accept:hover{
-    background-color: #31d65a;
-    color: white;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard button{
+    width: 80px;
+    height: 40px;  
+    border-radius: 8px; 
+    border: #c5c6c9 1px solid;
+    font-size: 16px;
 }
 
-.jobPropMainContainer a{
-    text-decoration: none!important;
-    color: #fff;
-}
-
-.jobPropMainContainer .propCollapsBtnDiv{
-    /* width: 100%; */
-}
-
-.jobPropMainContainer .collapsable {
-    background-color: #777;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard button:hover{
+    background: #31d65a;
     color: white;
     cursor: pointer;
-    padding: 18px;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    width: 100%!important;
-    margin: 8px 0!important;
-    border-radius:8px!important;
 }
 
-.jobPropMainContainer .active, .collapsable:hover {
-    cursor:auto;   
+@media only screen and (max-width:1200px) {
+    .jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard button{
+        margin-bottom: 0px!important;
+    }
+    
 }
 
-.jobPropMainContainer .collapsable:after {
-    font-size: 13px;
-    color: white;
-    float: right;
-    margin-left: 5px;
-    cursor: auto;
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
+
+}
+.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
+
 }
 
-@media (max-width: 900px) {
-    .jobPropSubContainer{
+@media (max-width:900px) {
+    .jobPropMainContainer .jobPropSubContainer{
         display: block;
     }
-    .jobPropCardDetails{
-        margin-right: 0;
-    }
-    .propSubRightCont,.propSubLeftCont{
+
+    .jobPropMainContainer .jobPropSubContainer .propSubRightCont{
         width: 100%;
     }
+
+    .jobPropMainContainer .jobPropSubContainer .propSubLeftCont{
+        width: 100%;
+    }
+}
+
+@media (max-width:600px) {
+    
 }

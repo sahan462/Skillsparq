@@ -141,7 +141,7 @@ $jobs = $data['AllJobs'];
                             <div class="SellerDashFilterSelect"> 
                                 <select name="SellerDashSelectJobType" id="SellerDashSelectJobType">
                                     <span>Publish Mode</span>
-                                    <option value="" disabled="" selected="">Select Mode</option>
+                                    <option value="" disabled selected="">Select Mode</option>
                                     <option value="Auction Mode"
                                         <?php isset($_GET['SellerDashSelectJobType']) == true ? ($_GET['SellerDashSelectJobType'] == 'Auction Mode' ? 'selected':''):''?>
                                     >Auction Mode
