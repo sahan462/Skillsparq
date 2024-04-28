@@ -130,9 +130,8 @@ function confirmStateChange(action)
 
 }
 
-function handleStateChange(event, action, orderId, orderType, buyerId, sellerId) 
+function handleStateChange(event, action, orderId, orderType, buyerId, sellerId, currentState) 
 {
-    
   if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
     
     document.getElementById('cancelConfirmation').style.display = 'none';
@@ -140,7 +139,7 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId)
 
     if(action === 'yes'){
 
-        cancelOrder(orderId, orderType, buyerId, sellerId);
+        cancelOrder(orderId, orderType, buyerId, sellerId, currentState);
 
     }
 
@@ -151,7 +150,7 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId)
 
     if(action === 'yes'){
 
-      acceptOrderRequest(orderId, orderType, buyerId, sellerId);
+      acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState);
 
     }
 
@@ -168,9 +167,9 @@ function submitpaymentForm(){
 
 
 // ---------------------------------------Cancel an order--------------------------------------------------------
-async function cancelOrder(orderId, orderType, buyerId, sellerId) 
+async function cancelOrder(orderId, orderType, buyerId, sellerId, currentState) 
 {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState) ;
 
   try {
       const response = await fetch('order/cancelOrder', {
@@ -193,9 +192,9 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId)
 }
 
 // ---------------------------------------Accept an order request--------------------------------------------------------
-async function acceptOrderRequest(orderId, orderType, buyerId, sellerId)
+async function acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState)
 {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) ;
+  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState)  ;
 
   try {
       const response = await fetch('order/acceptOrderRequest', {
