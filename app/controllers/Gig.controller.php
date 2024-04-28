@@ -385,6 +385,9 @@ class Gig extends Controller
     {
         // function to delete a specific gig.
         $gigId = $_GET['gigId'];
+        $packageCount = $this->GigHandlerModel->availablePackageCount();
+        //
+
         $check = [];
         for($i = 0;$i<3;$i++){
             $check[] = $this->GigHandlerModel->deletePackages($gigId);

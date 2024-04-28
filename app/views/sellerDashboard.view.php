@@ -133,11 +133,13 @@ $jobs = $data['AllJobs'];
 
             <div class="jobs">
                 <div class="job-header">
-                <h3>Most Recent Jobs You Might Like</h3>
+                    <div class="job-header-content">
+                        <h3>Most Recent Jobs You Might Like</h3>
+                    </div>
                     <div class="SellerDashFilterContainer">
                         <form action="" method="GET">
                             <div class="SellerDashFilterSelect"> 
-                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType">
+                                <select name="SellerDashSelectJobType" id="SellerDashSelectJobType" onchange="selectAfterEffect()">
                                     <span>Publish Mode</span>
                                     <option value="" disabled="" selected="">Select Mode</option>
                                     <option value="Auction Mode"

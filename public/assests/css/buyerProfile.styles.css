@@ -323,6 +323,14 @@ input[type = "text"], select{
     width: 70%;
 }
 
+.buyerProfileContainer .user-contribution .description p{
+    display: -webkit-box!important;
+    -webkit-line-clamp: 3!important;
+    -webkit-box-orient: vertical!important;
+    text-align: justify!important;  
+    overflow: hidden!important
+}
+
 /*user-content-header*/
 .buyerProfileContainer .sub-container .user-contribution .user-content .header{
     display: flex;
