@@ -119,7 +119,12 @@
             <div>
 
 
-                <button id="chatBtnSeller">Chat Seller</button>
+                <button id="chatBtnSeller">
+                    <a href='viewChats?order_id=<?php echo $row["order_id"]; ?>&buyer_id=<?php echo $row["buyer_id"]; ?>&seller_id=<?php echo $row["seller_id"]; ?>'>
+                        <i class="fa fa-eye"></i> Chat Seller
+                    </a>
+                </button>
+
                 <div id="chatBoxSeller" class="chat-box">
                     <div class="chat-header">
                         <h2>Chat Seller</h2>
