@@ -48,7 +48,8 @@ body{
 
 /* Style the tab */
 .sentJobPropContainer .tab {
-    height:50px;
+    border-radius: 8px 8px 0 0;
+    height:32px;
     width: 100%;
     overflow: hidden;
     border: none !important;
@@ -62,7 +63,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 33.3%;
-    height: 50px;
+    height: 32px;
     font-size: 16px;
     background-color: inherit;
     float: left;
@@ -78,19 +79,6 @@ body{
     background-color: #404145;
     color: #ffffff;
 }
-
-/* #pending:hover{
-    background-color: #ddeb18;
-    color: #222325;
-} */
-/* 
-#defaultOpen:hover{
-    background-color: #22cf27;
-}
-
-#cancelled:hover{
-    background-color: #e41f11;
-} */
 
 /* Create an active/current tablink class */
 .sentJobPropContainer .tab button.active {
@@ -120,7 +108,7 @@ body{
     text-align:center;
     justify-content: center;
     line-height: 72px;
-    font-size:4vw;
+    font-size: 28px;
 }
 
 .lottieAnim{
@@ -171,9 +159,6 @@ Tbody td{
 .Buyer{
     display: flex;
     align-items:center;
-    justify-content:space-between;
-    padding-left: 64px;
-    padding-right: 64px;
 }
 
 .BuyerImg{
@@ -192,9 +177,10 @@ Tbody td{
 } */
 
 .buyerImgsentJobProps{
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .tablinks{

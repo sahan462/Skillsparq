@@ -38,7 +38,7 @@ class UpdateJob extends Controller
 
                 }else if($publishMode == 'Standard Mode'){
 
-                    $data['Basic-Details'] = mysqli_fetch_assoc($this->JobHandlerModel->getJob($jobId));
+                    $data['Basic-Details'] = $this->JobHandlerModel->getJob($jobId);
 
                 }else{
                     echo 

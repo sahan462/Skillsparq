@@ -1,6 +1,5 @@
 .gigCard{
     width: calc(100% / 5 - 16px);
-    height: 380px;
     border: 2px solid #dadbdd;
     border-radius: 10px;
     cursor: pointer;

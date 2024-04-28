@@ -42,7 +42,7 @@ class SharePoint extends Controller
             if(isset($_GET['orderState'])){
                 $data['orderState'] = $_GET['orderState'];
             }else{
-                $data['orderState'] = null;
+                $data['orderState'] = $this->OrderHandlerModel->getOrderState($orderId)['order_state'];
             }
 
             if(isset($_GET['milestoneId'])){
@@ -61,7 +61,7 @@ class SharePoint extends Controller
             }else{
                 $this->redirect("_505");
             }
-
+            print_r($data);
             $this->view('sharePoint', $data);
         
         }

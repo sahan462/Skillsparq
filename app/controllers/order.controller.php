@@ -13,6 +13,35 @@ class Order extends Controller
         $this->ProfileHandlerModel = $this->model('profileHandler');
     }
 
+    public function calculateDeadline($createdDate, $number, $unit) {
+        // Get the current date
+        $createdDate = new DateTime($createdDate);
+    
+        // Initialize the deadline
+        $deadline = clone $createdDate;
+    
+        // Add the appropriate time interval based on the unit
+        switch ($unit) {
+            case 'Days':
+                $deadline->modify("+$number days");
+                break;
+            case 'Weeks':
+                $deadline->modify("+$number weeks");
+                break;
+            case 'Months':
+                $deadline->modify("+$number months");
+                break;
+            case 'Years':
+                $deadline->modify("+$number years");
+                break;
+            default:
+                // Handle invalid unit (optional)
+                break;
+        }
+    
+        return $deadline->format('Y-m-d');
+    }
+
 
     public function index()
     {
@@ -33,7 +62,9 @@ class Order extends Controller
 
             // get order, buyer and seller information
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
-            print_r($data);
+            
+            // print_r($data);
+
             $order = $data['order'];
             $chatId = $order['chat_id'];
 
@@ -65,8 +96,16 @@ class Order extends Controller
             $attachment = $_FILES['attachments'];
             $attachmentName = basename($attachment["name"]);
 
+            //generate deadline 
+            $numberAndUnit = $this->OrderHandlerModel->getPackageDetails($packageId);
+            if($numberAndUnit){
+                $deadline = $this->calculateDeadline($currentDateTime, $numberAndUnit['no_of_delivery_days'], $numberAndUnit['time_period']);
+            }else{
+                $deadline = "";
+            }
+            print_r($deadline);
             // Create order
-            $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId);
+            $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId, $deadline);
 
             //get chat
             if($orderId){
@@ -162,15 +201,19 @@ class Order extends Controller
                 //send notification to seller
                 // $this->sendVerificationMail();
     
-    
-    
-                echo "
-                <script>
-                    alert('Order created successfully');
-                    window.location.href = '" . BASEURL . 'manageOrders' . "';
-                </script>
-                ";
-    
+
+                // update order history
+                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'order request is sent');
+                if($isHistoryUpdated){
+                    echo "
+                    <script>
+                        alert('Order created successfully');
+                        window.location.href = '" . BASEURL . 'manageOrders' . "';
+                    </script>
+                    ";
+                }else{
+                    throw new Exception("Update order history failed");
+                }
     
             } else {
                 echo "
@@ -238,11 +281,12 @@ class Order extends Controller
     }
 
     // method to create a job order for successfully accepted job proposal
-    public function createJobOrder($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId)
+    public function createJobOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId)
     {
-        $orderCreatedAt = Date('Y-m-d H:i:s');
+
+        $currentDateTime = Date('Y-m-d H:i:s');
         // create order
-        $orderId = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$orderCreatedAt,$buyerId,$sellerId);
+        $orderId = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$currentDateTime,$buyerId,$sellerId);
         
         //get chat
         if($orderId){
@@ -252,7 +296,22 @@ class Order extends Controller
         }
 
         if($chatId){
+
+            // update order history
+            $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'order request is sent');
+            if($isHistoryUpdated){
+                echo "
+                <script>
+                    alert('Order created successfully');
+                    window.location.href = '" . BASEURL . 'manageOrders' . "';
+                </script>
+                ";
+            }else{
+                throw new Exception("Update order history failed");
+            }
+
             return $orderId;
+
         }else{
             echo "
                 <script>
@@ -267,20 +326,40 @@ class Order extends Controller
     //Cancelling an Order
     public function cancelOrder()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        try {
 
-            $orderId = $_POST['orderId'];
-            $state = "Cancelled";
-            
-            $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                $orderId = $_POST['orderId'];
+                $currentOrderState = $_POST['currentState'];
+                $currentDateTime = Date('Y-m-d H:i:s');
+                $state = "Cancelled";
+                
+                $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+        
+                if($isUpdatedOrderState){
     
-            if($isUpdatedOrderState){
-                return $isUpdatedOrderState;
+                    // update order history
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentOrderState . " to Cancelled");
+                    if($isHistoryUpdated){
+                        return $isUpdatedOrderState;
+                    }else{
+                        throw new Exception("Update order history failed");
+                    }
+    
+                }else{
+                    throw new Exception('Error updating order state');
+                }
+    
+            } else {
+                $this->redirect("_505");
+                // echo "Invalid request method";
             }
 
-        } else {
-            $this->redirect("_505");
-            // echo "Invalid request method";
+        }catch(Exception $e){
+
+            echo "Error canceling order" , $e->getMessage();
+
         }
 
     }
@@ -293,11 +372,20 @@ class Order extends Controller
             if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 $orderId = $_POST['orderId'];
+                $currentOrderState = $_POST['currentState'];
+                $currentDateTime = Date('Y-m-d H:i:s');
                 $state = "Accepted/Pending Payments";
                 
                 $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
         
                 if($isUpdatedOrderState){
+                    // update order history
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentOrderState . " to Accepted/Pending Payments");
+                    if($isHistoryUpdated){
+                        return $isUpdatedOrderState;
+                    }else{
+                        throw new Exception("Update order history failed");
+                    }
                     return $isUpdatedOrderState;
                 }
     
@@ -308,6 +396,67 @@ class Order extends Controller
         }catch(Exception $e){
 
             echo 'An error occurred during completion: ' . $e->getMessage();
+
+        }
+    }
+
+    //Payment Handling
+    public function verifyPayment()
+    {
+        try{
+            // print_r($_POST);
+            // //look for authorize api, capture api and refund api
+            // $merchantId = $_POST['merchant_id'];
+            $orderId = $_POST['order_id'];
+            // $payhereAmount = $_POST['payhere_amount'];
+            // $payhereCurrency = $_POST['payhere_currency'];
+            // $statusCode = $_POST['status_code'];
+            // $md5sig = $_POST['md5sig'];
+            $currentDateTime = date('Y-m-d H:i:s');
+
+    
+            // $merchant_secret = 'MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ=='; // Replace with your Merchant Secret
+    
+            // $local_md5sig = strtoupper(
+            //     md5(
+            //         $merchantId . 
+            //         $orderId . 
+            //         $payhereAmount . 
+            //         $payhereCurrency . 
+            //         $statusCode . 
+            //         strtoupper(md5($merchant_secret)) 
+            //     ) 
+            // );
+                
+            // if (($local_md5sig === $md5sig) AND ($statusCode == 2) ){
+            //         //TODO: Update your database as payment success
+            // }
+    
+            $state = "Running";
+            $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+    
+            if($isUpdatedOrderState){
+                // update order history
+                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from Accepted/Pending Payments to Running");
+                if($isHistoryUpdated){
+                    echo "
+                    <script>
+                        alert('Payment done successfully');
+                        window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=" . $_POST['order_type'] . "&buyerId=".$_POST['buyer_id'] . "&sellerId=". $_POST['seller_id'] ."';
+                    </script>
+                    ";
+                    return $isUpdatedOrderState;
+                }else{
+                    throw new Exception("Update order history failed");
+                }
+
+            }else{
+                $this->redirect("_505");
+            }
+
+        }catch(Exception $e){
+
+            echo 'An error occurred: ' . $e->getMessage();
 
         }
     }
@@ -324,6 +473,7 @@ class Order extends Controller
                 $orderId = $_POST['orderId'];
                 $feedback = $_POST['feedback'];
                 $rating = $_POST['rating'];
+                $currentState = $_POST['currentState'];
                 $currentDateTime = date('Y-m-d H:i:s');
 
                 if(trim($feedback) != "" || $rating > 0){
@@ -334,12 +484,18 @@ class Order extends Controller
                 $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
 
                 if($isUpdated){
+                    // update order history
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentState. " to Completed");
+                    if($isHistoryUpdated){
                     echo "
                     <script>
                         window.alert('order completed successfully !');
                         window.location.href = '" . BASEURL . "manageOrders#Completed';
                     </script>
                     ";
+                    }else{
+                        throw new Exception("Update order history failed");
+                    }
                 }else{
                     throw new Exception("Error updating order state");
                 }
@@ -390,57 +546,6 @@ class Order extends Controller
         }catch(Exception $e){
 
             echo 'An error occurred during sending feedback: ' . $e->getMessage();
-
-        }
-    }
-
-    //Payment Handling
-    public function verifyPayment()
-    {
-        try{
-            print_r($_POST);
-            //look for authorize api, capture api and refund api
-            $merchantId = $_POST['merchant_id'];
-            $orderId = $_POST['order_id'];
-            $payhereAmount = $_POST['payhere_amount'];
-            $payhereCurrency = $_POST['payhere_currency'];
-            $statusCode = $_POST['status_code'];
-            $md5sig = $_POST['md5sig'];
-    
-            $merchant_secret = 'MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ=='; // Replace with your Merchant Secret
-    
-            $local_md5sig = strtoupper(
-                md5(
-                    $merchantId . 
-                    $orderId . 
-                    $payhereAmount . 
-                    $payhereCurrency . 
-                    $statusCode . 
-                    strtoupper(md5($merchant_secret)) 
-                ) 
-            );
-                
-            if (($local_md5sig === $md5sig) AND ($statusCode == 2) ){
-                    //TODO: Update your database as payment success
-            }
-    
-            $state = "Running";
-            $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
-    
-            if($isUpdatedOrderState){
-                echo "
-                <script>
-                    alert('Payment done successfully');
-                    window.location.href = '" . BASEURL . "order&orderId=" . $_POST['order_id'] . "&orderType=" . $_POST['order_type'] . "&buyerId=".$_POST['buyer_id'] . "&sellerId=". $_POST['seller_id'] ."';
-                </script>
-            ";
-            }else{
-                $this->redirect("_505");
-            }
-
-        }catch(Exception $e){
-
-            echo 'An error occurred: ' . $e->getMessage();
 
         }
     }

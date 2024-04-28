@@ -13,7 +13,7 @@
 
     <!-- Topic -->
     <div class="sentJobPropHeader">
-        Seller - Sent Job Proposals
+        My Proposals
     </div>
     <!-- Content -->
     <div class="sentJobPropContent">
@@ -73,7 +73,7 @@
                                     <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
-                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo date('Y-m-d', strtotime($row['deadline'])); ?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
                             </tr>
@@ -128,7 +128,7 @@
                                     <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
-                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo date('Y-m-d', strtotime($row['deadline'])); ?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
                             </tr>
@@ -185,7 +185,7 @@
                                     <div class="BuyerText"><?php echo $row['first_name']."  ".$row['last_name'];?></div>
                                 </td>
                                 <td><?php echo $row['title'];?></td>
-                                <td><?php echo $row['deadline'];?></td>
+                                <td><?php echo date('Y-m-d', strtotime($row['deadline'])); ?></td>
                                 <td><?php echo $row['amount'];?></td>
                                 <td>Job Order</td>
                                 <td><button onclick="window.location=('sentJobProposals/deleteSingleRejProp&propId=<?php echo $row['proposal_id']?>')">Delete</button></td>

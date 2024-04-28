@@ -5,7 +5,7 @@ $jobs = $data['jobs'];
 $profile = $data['userProfile'];
 $data["feedbacks"] = array();
 // show($data);
-
+// print_r($data);
 ?>
 
 <!-- Main Container -->
@@ -360,9 +360,15 @@ $data["feedbacks"] = array();
 
 
     <!-- Topic -->
-    <div class="buyerProfileHeader">
-        My Profile
-    </div>
+    <?php if ($data['mode'] == 'private') : ?>
+        <div class="buyerProfileHeader">
+            My Profile
+        </div>
+    <?php else : ?>
+        <div class="buyerProfileHeader">
+            <?php echo $profile['first_name']?>'s Profile
+        </div>
+    <?php endif; ?>
 
     <div class="sub-container">
         <div class="profile-container">
@@ -399,13 +405,17 @@ $data["feedbacks"] = array();
 
                 </div>
 
-                <div class="preview-profile">
-                    <button>Preview Profile</button>
-                </div>
+                <?php if ($data['mode'] == 'private') : ?>
 
-                <div class="edit-profile">
-                    <button onclick="openPackageModal(this)">Edit Profile</button>
-                </div>
+                    <div class="preview-profile">
+                        <a href="buyerProfile&mode=public"><button class="buttonType-1">Preview Profile</button></a>
+                    </div>
+
+                    <div class="edit-profile">
+                        <button onclick="openPackageModal(this)">Edit Profile</button>
+                    </div>
+
+                <?php endif; ?>
 
                 <div class="user-info">
                     <div class="info">
@@ -450,17 +460,35 @@ $data["feedbacks"] = array();
             <div class="user-content">
                 <div class="header">
                     <span>Active Jobs(<?php echo sizeof($jobs) ?>)</span>
-                    <a href="addJob"><button>Create New Job</button></a>
+                    
+                    <?php if ($data['mode'] == 'private') : ?>
+                        <a href="addJob"><button class="buttonType-1">Create New Job</button></a>
+                    <?php endif; ?>
+
                 </div>
-                <div class="content">
-                    <?php
-                    if (!empty($jobs)) {
-                        foreach ($jobs as $job) {
-                            include "components/jobCard.component.php";
-                    ?>
-                    <?php }
-                    } ?>
-                </div>
+
+                <?php if ($data['mode'] == 'private') : ?>
+                    <div class="content">
+                        <?php
+                        if (!empty($jobs)) {
+                            foreach ($jobs as $job) {
+                                include "components/jobCard.component.php";
+                        ?>
+                        <?php }
+                        } ?>
+                    </div>
+                <?php else :?>
+                    <div class="content">
+                        <?php
+                        if (!empty($jobs)) {
+                            foreach ($jobs as $job) {
+                                include "components/jobCard.component.php";
+                        ?>
+                        <?php }
+                        } ?>
+                    </div>
+                <?php endif ?>
+
             </div>
 
             <div class="reviews">
