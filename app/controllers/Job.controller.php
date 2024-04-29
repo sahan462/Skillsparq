@@ -106,6 +106,7 @@ class Job extends Controller
             }
         }
     }
+    
     public function updateJob(){
 
         if(isset($_GET["update"])){

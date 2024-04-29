@@ -329,7 +329,7 @@
                     <?php
                         if(!empty($data['buyerDetails']['profile_pic'])){
                     ?>
-                    <img src="../public/assests/images/profilePictures/<?php echo $data['buyerDetails']['profile_pic']?>" alt="">
+                    <a href="buyerProfile&mode=public&userId=<?php echo $buyerId?>"><img src="../public/assests/images/profilePictures/<?php echo $data['buyerDetails']['profile_pic']?>" alt=""></a>
                     <?php
                         }else{
                     ?>

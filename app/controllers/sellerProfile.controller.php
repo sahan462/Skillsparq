@@ -27,7 +27,13 @@ class SellerProfile extends Controller
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
 
-            $sellerId = $_SESSION["userId"];
+            // $sellerId = $_SESSION["userId"];
+
+            if(isset($_GET['userId'])){
+                $sellerId= $_GET['userId'];
+            }else{
+                $sellerId = $_SESSION["userId"];
+            }
 
             if(isset($_GET['mode']) == 'public'){
                 $data['mode'] = 'public';
@@ -52,6 +58,13 @@ class SellerProfile extends Controller
             $gigCountOfSeller = $this->GigHandlerModel->getGigCount($sellerId);
             if(isset($gigCountOfSeller)){
                 $data['gigCount'] = $gigCountOfSeller;
+            }
+
+            $isGetImgs = $this->SellerHandlerModel->getPortFolioImgs($sellerId);
+            if(!empty($isGetImgs)){
+                $data['portfolioImgs'] = $isGetImgs;
+            }else{
+                $data['portfolioImgs'];
             }
 
             // not the recent gigs have to get the specific gigs which would be created by the seller.          
@@ -109,6 +122,19 @@ class SellerProfile extends Controller
             $this->view('sellerProfile', $data);
         } 
     }
+
+    // public function getPortFolioImgs()
+    // {
+    //     $sellerId = $_SESSION['userId'];
+        
+    // }
+
+    // function to display public view of the seller
+    // public function publicView()
+    // {
+    //     $mode = $_GET['mode'];
+    //     $sellerId = $_GET['mode'];
+    // }
 
     //get profile Details of the Seller/From Profile Table
     public function getProfileDetails($userId)
@@ -325,6 +351,32 @@ class SellerProfile extends Controller
             
     }
 
+    public function deletePortfolioImgs($userId,$imgId)
+    {
+        $_POST['userId'];
+        $_POST['portfolioImgId'];
+
+        if(isset($_POST['userId']) && isset($_POST['portfolioImgId'])){
+            $isDeleted = $this->SellerHandlerModel->deletePortfolioImgs($userId,$imgId);
+            if($isDeleted){
+                echo "
+                <script>
+                    window.alert('Successfully Deleted the Image');
+                    window.location('sellerprofile');
+                </script>
+                ";
+            }
+        }else{
+            echo "
+            <script>
+                window.alert('Error Occured While Deleting');
+                window.location('sellerprofile');
+            </script>
+            ";
+        }
+        
+    }
+
     public function addPortfolioImgsToProfile()
     {
         // Check if form was submitted
@@ -489,31 +541,7 @@ class SellerProfile extends Controller
 
     }
 
-    public function deletePortfolioImgs($userId,$imgId)
-    {
-        $_POST['userId'];
-        $_POST['portfolioImgId'];
-
-        if(isset($_POST['userId']) && isset($_POST['portfolioImgId'])){
-            $isDeleted = $this->SellerHandlerModel->deletePortfolioImgs($userId,$imgId);
-            if($isDeleted){
-                echo "
-                <script>
-                    window.alert('Successfully Deleted the Image');
-                    window.location('sellerprofile');
-                </script>
-                ";
-            }
-        }else{
-            echo "
-            <script>
-                window.alert('Error Occured While Deleting');
-                window.location('sellerprofile');
-            </script>
-            ";
-        }
-        
-    }
+    
 
     // has to adjust for client.
     public function  updateSellerProfile()

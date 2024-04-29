@@ -3,7 +3,6 @@
     padding: 16px 32px;
     border-radius: 10px;
     margin-bottom:16px;
-    min-height: calc(100vh - 150px);
 }
 
 .jobPropHeader{
@@ -30,12 +29,28 @@
 }
 
 .jobPropMainContainer .propSubLeftCont{
-    max-height: calc(100vh - 150px);
-    height: 100%;
     width:35%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
+}
+
+.jobPropMainContainer .propSubLeftCont svg{
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width:600px) {
+    .jobPropMainContainer .propSubLeftCont svg{
+        width: 600px;
+        height: 600px;
+    }
+}
+
+.jobPropMainContainer .propSubRightCont{
+    width: 65%;
+    height: 100%;
+    margin-bottom: 24px;
 }
 
 .jobPropMainContainer .propSubLeftCont .animationImg{
@@ -113,8 +128,8 @@
 }
 
 .jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     gap: 16px;
 }
 
@@ -122,6 +137,7 @@
     border: #c5c6c9 1px solid;
     padding: 16px;
     border-radius: 8px;
+    margin-bottom: 16px;
     box-shadow: 1px 1px 1px 0.01px rgb(0, 0, 0.3);
 }
 
@@ -207,12 +223,12 @@
     
 }
 
-.jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
+/* .jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
 
 }
 .jobPropMainContainer .jobPropSubContainer .propSubRightCont .jobPropCardContainer .jobPropCardContainerContent .jobProposalCard{
 
-}
+} */
 
 @media (max-width:900px) {
     .jobPropMainContainer .jobPropSubContainer{

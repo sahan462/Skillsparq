@@ -261,7 +261,7 @@
     </div>    
 
     <!-- ######################################################################### -->
-
+    <?php if ($data['mode'] == 'private') : ?>                      
     <?php
         if(is_null($data['mail']['user_email'])){
     ?>
@@ -272,10 +272,17 @@
     <?php
         }
     ?>
+    <?php endif; ?>
     <!-- Topic -->
+    <?php if ($data['mode'] == 'private') : ?>
     <div class="sellerProfileHeader">
         My Profile
     </div>
+    <?php else:?>
+    <div class="sellerProfileHeader">
+    <?php echo $data['profileDetails']['first_name']?>'s Profile
+    </div>
+    <?php endif;?>
 
     <div class="sub-container">
         <div class="profile-container">
@@ -315,12 +322,17 @@
                         <span>(0)</span>
                     </div>
                 </div>
+                <?php if ($data['mode'] == 'private') : ?>
                 <div class="editSellerProfile">
                     <button onclick="openProfileUpdateModal(this)">Edit Profile</button>
+                </div>
+                <div class="editSellerProfile">
+                    <a href="sellerProfile&mode=public"><button >Preview Profile</button></a>
                 </div>
                 <div class="delete-profile">
                     <button onclick="openProfileDeleteModal(this)">Delete Profile</button>
                 </div>
+                <?php endif;?>
                 <div class="user-info">
                     <div class="info">
                         <span>
@@ -350,12 +362,19 @@
                                 <svg height="200px" width="200px" version="1.1" id="_x36_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256.0002" y1="347.8895" x2="256.0002" y2="-8.003553e-011"> <stop offset="0" style="stop-color:#DA9621"></stop> <stop offset="0.7685" style="stop-color:#EAA12F"></stop> </linearGradient> <path style="fill:url(#SVGID_1_);" d="M511.972,170.467v11.507c-0.6,0.427-1.372,0.937-2.143,1.448l-19.117,13.041 c-1.285,0.853-2.828,1.875-4.371,2.984c-7.973,5.283-18.345,12.358-25.203,16.876L293.376,329.769l-5.315,3.58l-15.602,10.569 c-1.972,1.278-4.286,2.301-6.858,2.983c-1.029,0.34-2.229,0.511-3.343,0.681c-0.172,0.085-0.343,0.085-0.428,0.085 c-1.972,0.256-3.943,0.256-5.83,0.171c-1.886,0.085-3.857,0.085-5.829-0.171c-1.285-0.171-2.572-0.427-3.772-0.767 c-2.572-0.681-4.886-1.705-6.858-2.983l-7.029-4.774l-8.572-5.795L50.862,216.324c-1.886-1.279-4.029-2.728-6.429-4.262 c-6-4.006-13.03-8.779-18.774-12.614c-1.543-1.109-3.086-2.131-4.372-2.984L2.171,183.423c-0.771-0.511-1.543-1.022-2.143-1.448 v-11.507c0-1.96,0.257-3.494,0.686-4.943c0-0.084,0.086-0.084,0.086-0.084c0.429-0.341,0.857-0.597,1.371-0.939l6.172-4.262 l12.944-8.779c8.143-5.454,21.431-14.489,29.574-19.859L239.541,4.007c4.544-2.898,10.544-4.262,16.459-3.921 c0.6,0,1.114-0.085,1.715-0.085h0.086c5.315,0,10.63,1.365,14.659,4.007l188.679,127.594c6.772,4.432,17.059,11.421,25.031,16.792 c1.629,1.107,3.172,2.131,4.543,3.067l12.944,8.779l6.172,4.262c0.514,0.341,0.943,0.597,1.371,0.939 C511.715,166.888,511.972,168.507,511.972,170.467z"></path> <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="256.0005" y1="398.9169" x2="256.0005" y2="51.0644"> <stop offset="0" style="stop-color:#DA9621"></stop> <stop offset="0.7685" style="stop-color:#EAA12F"></stop> </linearGradient> <path style="fill:url(#SVGID_2_);" d="M512,221.49v11.441c-0.625,0.443-1.429,0.976-2.141,1.508l-19.179,13.037 c-8.116,5.41-21.407,14.455-29.524,19.866L272.502,394.875c-2.051,1.33-4.371,2.305-6.868,3.015 c-3.032,0.887-6.422,1.153-9.633,0.975c-3.211,0.178-6.601-0.089-9.633-0.975c-2.498-0.71-4.817-1.685-6.868-3.015L50.845,267.341 c-8.117-5.411-21.408-14.456-29.524-19.866L2.142,234.439c-0.712-0.533-1.516-1.065-2.141-1.508V221.49 c0-1.951,0.268-3.548,0.714-4.966c0-0.089,0.089-0.089,0.089-0.089c0.446-0.355,0.892-0.622,1.337-0.977l6.245-4.257l12.934-8.78 c8.116-5.41,21.407-14.455,29.524-19.866L239.499,55.023c4.549-2.927,10.614-4.258,16.501-3.903 c5.887-0.355,12.042,0.975,16.501,3.903l188.655,127.532c8.117,5.411,21.408,14.456,29.524,19.866l12.934,8.78l6.245,4.257 c0.445,0.355,0.891,0.621,1.337,0.977C511.732,217.853,512,219.539,512,221.49z"></path> <path style="fill:#CC8529;" d="M262.258,314.513v35.968h-1.029l-11.487,0.767H0.028V173.792c0-1.96,0.257-3.58,0.686-4.944 c0-0.085,0.086-0.085,0.086-0.085c0.943-2.983,2.829-4.688,5.315-5.114l10.716,6.307l5.057,2.983l23.06,13.553l1.2,0.681 l14.659,8.609l166.819,98.359l0.343,0.171l33.089,19.433L262.258,314.513z"></path> <g> <path style="fill:#F6B75A;" d="M266.715,336.247c0,0.085-1.714,1.279-4.457,3.239c-1.715,1.108-3.858,2.558-6.258,4.262 c-1.2,0.767-2.486,1.619-3.857,2.557l-1.972,1.363l-3.772,2.557l-1.629,1.023l-26.66,17.984c-2.829,1.875-5.658,3.835-8.229,5.626 c-4.886,3.324-8.916,6.051-10.287,6.903c-1.972,1.449-10.201,6.99-18.345,12.529l-44.577,30.088l-0.172,0.171l-0.085,0.085 L27.031,498.447c-1.886,1.279-3.943,2.642-5.915,4.006c-1.115,0.767-2.229,1.449-3.343,2.216H8.515 c-4.972,0-7.801-1.108-8.401-2.983c0-0.085,0-0.085,0-0.085c0-0.341-0.086-0.597,0-1.023c-0.086-0.512-0.086-1.023-0.086-1.62 V173.792c0-1.96,0.257-3.58,0.686-4.944c0-0.085,0.086-0.085,0.086-0.085c0.943-2.983,2.829-4.688,5.315-5.114 c0.771-0.256,1.457-0.256,2.229-0.171c1.886,0.085,4.029,0.938,6.344,2.472l30.346,20.456l1.114,0.767l13.116,8.864 c0.257,0.171,0.514,0.341,0.771,0.512c8.058,5.455,20.745,14.064,28.632,19.348l153.446,103.729 c0.172,0.085,0.343,0.171,0.429,0.256c0.257,0.171,0.514,0.341,0.771,0.512c2.057,1.363,4.029,2.728,5.829,3.92 c3.001,1.96,5.401,3.665,6.858,4.688c0.857,0.512,1.458,0.852,1.543,0.937c0.343,0.255,2.486,1.705,4.715,3.324 c0.086,0,0.086,0.085,0.171,0.085C264.744,334.968,266.715,336.161,266.715,336.247z"></path> <g> <path style="fill:#F0A642;" d="M511.865,171.974c0.074,1,0.134,2.92,0.134,4.267v320.232c0,1.347,0,2.708,0,3.025 c0,0.317-0.089,1.248-0.089,1.419c0,0.171,0,0.311,0,0.666c0,0,0,0.02,0,0.044c0,0.024-0.783,0.723-1.74,1.551 c-0.957,0.829-7.747,1.507-9.094,1.507h-4.378c-1.347,0-3.365-0.612-4.486-1.359l-5.204-3.489 c-1.12-0.748-2.95-1.976-4.066-2.731L332.776,395.641c-1.116-0.754-2.942-1.988-4.058-2.742l-14.324-9.753 c-1.112-0.76-2.935-1.999-4.05-2.754l-14.412-9.754c-1.113-0.758-2.938-1.994-4.055-2.747l-24.216-16.33 c-1.117-0.753-2.944-1.984-4.062-2.736l-1.734-1.167c-1.117-0.752-2.95-1.976-4.072-2.72c0,0-0.635-0.421-1.795-1.219 c-6.155-4.257-10.704-7.362-10.704-7.451c0-0.089,1.963-1.329,4.282-2.926c2.318-1.597,2.885-1.986,2.885-1.986 c1.111-0.762,2.161-1.484,2.332-1.607c0.172-0.122,2.109-1.383,3.214-2.152c0,0,5.125-3.567,10.657-7.204 c0.268-0.178,0.268-0.178,0.268-0.178c0.294-0.195,0.595-0.394,0.668-0.443c0.073-0.049,0.954-0.617,1.74-1.153 c0.785-0.536,2.341-1.592,3.457-2.346l146.508-98.984c1.116-0.754,2.941-1.989,4.056-2.745l25.377-17.123 c1.117-0.753,2.944-1.985,4.06-2.739l40.451-27.324c1.116-0.754,3-1.892,4.187-2.529c0,0,1.065-0.637,2.169-0.881 c1.104-0.244,3.079-0.189,4.389,0.123l3.792,2.662C510.562,167.836,511.791,170.974,511.865,171.974z"></path> </g> </g> <path style="fill:#CC8529;" d="M511.999,458.657v40.265c0,0.62,0,1.153-0.089,1.685c0.089,0.355,0,0.621,0,0.976c0,0,0,0,0,0.089 c-0.625,1.862-3.48,3.014-8.385,3.014H46.383l90.001-80.084l0.089-0.089l112.657-100.216l10.972-9.668l2.942-2.661l9.723,5.677 L511.999,458.657z"></path> <path style="fill:#F6AF47;" d="M511.999,497.414v1.508c0,0.62,0,1.153-0.089,1.685c0.089,0.355,0,0.621,0,0.976c0,0,0,0,0,0.089 c-0.625,1.862-3.48,3.014-8.385,3.014H8.474c-4.905,0-7.76-1.152-8.385-3.014c0-0.089,0-0.089,0-0.089c0-0.355-0.089-0.621,0-0.976 C0,500.075,0,499.542,0,498.922v-1.508c0.803-1.064,1.963-2.128,3.479-3.193L241.549,320.57c0.089,0,0.089-0.088,0.179-0.176 c0.268-0.178,0.536-0.355,0.803-0.532c4.905-3.46,9.901-5.855,13.469-6.74c1.249,0.354,2.586,0.797,4.104,1.507 c2.854,1.153,6.154,3.016,9.365,5.233c0.356,0.265,0.624,0.443,0.981,0.708l238.069,173.651 C510.035,495.374,511.195,496.438,511.999,497.414z"></path> </g> </g></svg>
                                 Email
                             </span>
+                            <?php if ($data['mode'] == 'private') : ?>
                             <div class="updtIcon" onclick="openEmailUpdate(this)">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                            </div>
+                            <?php endif; ?>
                         </div>  
+                        <?php if ($data['mode'] == 'private') : ?>
                         <div class="email">
                             <span><b><?php echo $data['mail']['user_email'];?></b></span>
                         </div>
+                        <?php else : ?>
+                            <span><b>-</b></span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -373,7 +392,11 @@
                                 echo $data['profileDetails']['about'];    
                             }else{
                         ?>
+                        <?php if ($data['mode'] == 'private') : ?>
                             <div>Please click <b>Edit Profile</b> to edit the about!</div>
+                        <?php else: ?>
+                            <div><b>-</b></div>
+                        <?php endif; ?>
                         <?php
                             }
                         ?>
@@ -387,9 +410,11 @@
                             <svg fill="#231515" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#231515"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M28.969 20.771v1.38c0 2.339-1.859 4.234-4.13 4.234h-1.208l-5.438 5.615v-5.615h-11.031c-2.271 0-4.13-1.896-4.13-4.24v-1.375zM3.031 13.953h25.766v5.302h-25.766zM3.031 7.094h25.766v5.307h-25.766zM24.766 0c2.245 0 4.031 1.896 4.031 4.24v1.375h-25.766v-1.375c0-2.344 1.865-4.24 4.135-4.24z"></path></g></svg>
                             <span>Languages</span>
                         </div>
+                        <?php if ($data['mode'] == 'private') : ?>
                         <div class="updtIcon" onclick="openLanguage(this)">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         </div>
+                        <?php endif; ?>
                     </div>
                     <div class="description-content">
                         <?php 
@@ -404,7 +429,15 @@
                         <?php  
                                 // }
                             }else{
-                                echo "Add languages that you're proficient with!";
+                        ?>
+                        <?php if ($data['mode'] == 'private') : ?>
+                            <div>
+                            Add languages that you're proficient with!
+                            </div>
+                        <?php else: ?>
+                            <div><b>-</b></div>
+                        <?php endif; ?>
+                        <?php
                             }
                         ?>
                     </div>
@@ -420,9 +453,11 @@
                             
                         </div>
                         <div>
+                        <?php if ($data['mode'] == 'private') : ?>
                             <div class="updtIcon" onclick="openSkill(this)">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                             </div>
+                        <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -431,7 +466,13 @@
                             if(!empty($data['sellerProfileDets']['skills'])){
                                 echo $data['sellerProfileDets']['skills'];    
                             }else{
-                                echo "Add skills that you're familiar with!";
+                        ?>
+                        <?php if ($data['mode'] == 'private') : ?>
+                            <div><b>Add skills that you're familiar with</b></div>
+                        <?php else: ?>
+                            <div><b>-</b></div>
+                        <?php endif; ?>
+                        <?php
                             }
                         ?>
                 </div>
@@ -445,9 +486,11 @@
                             <span>Education</span>
                         </div>
                         <div>
+                        <?php if ($data['mode'] == 'private') : ?>
                             <div class="updtIcon" onclick="openEducation(this)">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                             </div>
+                        <?php endif; ?>
                         </div>
                     </div>
                     <div class="description-content">
@@ -455,7 +498,13 @@
                             if(isset($data['sellerProfileDets']['education'])){
                                 echo $data['sellerProfileDets']['education'];    
                             }else{
-                                echo "Add your education";
+                        ?>
+                        <?php if ($data['mode'] == 'private') : ?>
+                            <div><b>Add your education</b></div>
+                        <?php else : ?>
+                            <div><b>-</b></div>
+                        <?php endif; ?>
+                        <?php
                             }
                         ?>
                     </div>
@@ -464,6 +513,7 @@
         </div>
         <div class="sellerUser-contribution">
             <div class="sellerUser-content" style="margin-bottom:40px;">
+            <?php if ($data['mode'] == 'private') : ?>
                 <div class="sellerheader">
                     <span>My Gigs(
                         <?php 
@@ -477,6 +527,7 @@
                     </span>
                     <a href="addGig"><button class="buttonType-1">Create A New Gig</button></a>
                 </div>
+            <?php endif ;?>
                 <div class="Gig-content">
                     <?php
                         if(!empty($data['ALLABOUTGIG'])){ 
@@ -487,6 +538,85 @@
                     ?>
                 </div>
             </div>
+            <div class="reviews">
+
+                <div class="sellerUser-content">
+                    <div class="sellerheader" style="padding-left:32px!important">
+                        <form action="sellerProfile/addPortfolioImg" method="POST" enctype="multipart/form-data">
+                            <?php if ($data['mode'] == 'private') : ?>
+                            <div class="divClassElement">
+                                <div class="addToPortfolioImgs">
+                                    <input type="file" name="files" id="multipleImagesUpload" required accept="image/*"  class="multipleImagesUpload" >
+                                    <span>
+                                        <label for="multipleImagesUpload" id="labelImageAdd" >
+                                            <i class="material-icons" >Add to portfolio</i>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="addToPortfolioImgsSubmit">
+                                    <input type="submit" name="submit" id="Submit" required style="border:#000 1px solid;width:100px;border-radius:8px;height:40px;cursor:pointer">
+                                    <!-- <label for="Submit">Submit</label> -->
+                                </div>
+                                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                            </div>
+                            <?php else: ?>
+                            <div class="divClassElement" style="text-align:center;">
+                                Seller Portfolio
+                            </div>
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                    <div class="review-content">
+                        <div class="row" style="display:flex;flex-wrap:wrap;padding:0 4px">
+                                <?php
+                                if(isset($data['portfolioImgs'])){
+                                    foreach($data['portfolioImgs'] as $Imgs){
+                                ?>
+                            <div class="column" style="flex:50%;padding:0 4px">
+                                <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <!-- <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px"> -->
+                            </div>
+                            <?php
+                                    }
+                                }else{
+                            ?>
+                            <div class="column" style="flex:50%;padding:0 4px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                            </div>
+                            <?php
+
+                                }
+                            ?>
+                            <!-- <div class="column">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                            </div>
+                            <div class="column">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                            </div>
+                            <div class="column" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg" 3  style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/dummyprofile.jpg"style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                            </div> -->
+                            <!-- <button onclick="one()">1</button>
+                            <button onclick="two()">2</button>
+                            <button onclick="four()">4</button> -->
+                        </div>
+                        <!-- lkjflaskdf
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/>
+                        </svg> -->
+                        <!-- <span>Setup Your Portfolio Right Now !</span> -->
+                    </div>
+                    <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
+                </div>
+            </div> 
             <div class="reviews">
                 <div class="sellerheader">
                     <span>Feedbacks and ratings</span>
@@ -512,78 +642,8 @@
 
                 </div>
             </div>
-            <div class="reviews">
 
-                <div class="sellerUser-content">
-                    <div class="sellerheader">
-                    <form action="sellerProfile/addPortfolioImg" method="POST"
-                                enctype="multipart/form-data">
-                                <div class="divClassElement">
 
-                                    <div class="addToPortfolioImgs">
-                                        <input type="file" name="files" id="multipleImagesUpload" required accept="image/*"  class="multipleImagesUpload" >
-                                        <span><label for="multipleImagesUpload" id="labelImageAdd" >
-                                            <i class="material-icons" >Add to portfolio</i>
-                                        </label></span>
-                                    </div>
-                                    <div class="addToPortfolioImgsSubmit">
-                                        <input type="submit" name="submit" id="Submit" required style="border:#000 1px solid;width:100px;border-radius:8px;height:40px;cursor:pointer">
-                                        <!-- <label for="Submit">Submit</label> -->
-                                    </div>
-                                    <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-                                
-                                </div>
-                            
-                        </form>
-                    </div>
-                    <div class="review-content">
-                        <div class="row" style="display:flex;flex-wrap:wrap;padding:0 4px">
-                            <div class="column" style="flex:50%;padding:0 4px">
-                                <img src="wedding.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                            </div>
-                            <div class="column">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg"style="margin-top:8px;vertical-align:middle">
-                            </div>
-                            <div class="column">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
-                            </div>
-                            <div class="column" style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
-                                <img src="../public/assests/images/dummyprofile.jpg" 3  style="margin-top:8px;vertical-align:middle;">
-                                <img src="../public/assests/images/dummyprofile.jpg"style="margin-top:8px;vertical-align:middle">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;"                                                         >
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
-                            </div>
-                            <button onclick="one()">1</button>
-                            <button onclick="two()">2</button>
-                            <button onclick="four()">4</button>
-                        </div>
-                        <!-- lkjflaskdf
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/>
-                        </svg> -->
-                        <!-- <span>Setup Your Portfolio Right Now !</span> -->
-                    </div>
-                    <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
-                </div>
-            </div> 
         </div>  
     </div>
 </div>
