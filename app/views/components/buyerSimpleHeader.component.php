@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
     <link rel="stylesheet" href="./assests/css/addJob.styles.css">
+    <link rel="stylesheet" href="./assests/css/search.styles.css">
     <link rel="stylesheet" href="./assests/css/jobProposals.styles.css">
     <link rel="stylesheet" href="./assests/css/displayJob.styles.css">
     <link rel="stylesheet" href="./assests/css/userHelp.styles.css">

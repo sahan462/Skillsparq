@@ -1,9 +1,9 @@
 <?php
-    if($_SESSION['role'] == 'Buyer'){
-        include "components/buyerSimpleHeader.component.php";
-    }else if($_SESSION['role'] == 'Seller'){
-        include "components/sellerHeader.component.php";
-    }
+if ($_SESSION['role'] == 'Buyer') {
+  include "components/buyerSimpleHeader.component.php";
+} else if ($_SESSION['role'] == 'Seller') {
+  include "components/sellerHeader.component.php";
+}
 ?>
 
 <?php 
@@ -48,9 +48,9 @@
           <button type="button" onclick="confirmAction('send')">Send Request</button>
         </div>
 
-        <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-        <input type="hidden" name="userName" value="<?php echo $_SESSION['userName']?>">
-        <input type="hidden" name="role" value="<?php echo $_SESSION['role']?>">
+        <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'] ?>">
+        <input type="hidden" name="userName" value="<?php echo $_SESSION['userName'] ?>">
+        <input type="hidden" name="role" value="<?php echo $_SESSION['role'] ?>">
         <input type="hidden" name="inquiryType" value="help request">
         <input type="hidden" name="inquirySubmit" value="submit">
 
@@ -87,18 +87,34 @@
   <div class="container">
     <div class="leftContainer">
 
-      <p class="title">Popular  <span class="dark-title">Topics</span>
-      <br>
-      <br>
+      <p class="title">Popular <span class="dark-title">Topics</span>
+        <br>
+        <br>
       <div class="btn-group">
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">How Exl Exchange</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Creating an Advertisemnt</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">How to Start Selling</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Accounts and profile  settings</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Withdrawing Funds</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Account and profile settings</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Account security</div></a>
-          <a href="<?php echo BASEURL.'/helpCenter/advertisement' ?>"><div class="btn4">Successfully Selling </div></a>
+        <a href='buyerDashboardCSA?id=1'>
+          <div class="btn4">How Skillsparq work</div>
+        </a>
+        <a href='buyerDashboardCSA?id=2'>
+          <div class="btn4">Gigs</div>
+        </a>
+        <a href='buyerDashboardCSA?id=3'>
+          <div class="btn4">How to Start Selling</div>
+        </a>
+        <a href='buyerDashboardCSA?id=4'>
+          <div class="btn4">Accounts and profile settings</div>
+        </a>
+        <a href='buyerDashboardCSA?id=5'>
+          <div class="btn4">Payments</div>
+        </a>
+        <a href='buyerDashboardCSA?id=6'>
+          <div class="btn4">How to place an order</div>
+        </a>
+        <a href='buyerDashboardCSA?id=7'>
+          <div class="btn4">Account security</div>
+        </a>
+        <a href='buyerDashboardCSA?id=8'>
+          <div class="btn4">Successfully Selling </div>
+        </a>
       </div>
 
       <br><br>
@@ -134,7 +150,7 @@
     </div>
 
     <div class="rightContainer">
-      <img alt="Community Support" width="532px" src="https://theme.zdassets.com/theme_assets/38806/bc9ae1fd5c38fdc7fda900212ba10319504284ec.svg" >
+      <img alt="Community Support" width="532px" src="https://theme.zdassets.com/theme_assets/38806/bc9ae1fd5c38fdc7fda900212ba10319504284ec.svg">
     </div>
   </div>
 </div>
@@ -157,4 +173,4 @@ for (i = 0; i < coll.length; i++) {
 </script>
 
 <script src="/skillsparq/public/assests/js/helpCenter.script.js"></script>
-<?php include "components/footer.component.php";?>
+<?php include "components/footer.component.php"; ?>

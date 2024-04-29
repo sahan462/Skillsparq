@@ -39,7 +39,7 @@
             <div class = "searchBar">
                 <!-- Search Bar to Search for the buyer -->
                 <form action="search" method="GET">
-                    <input type="text" placeholder="Search.." name="searchBuyerDash">
+                    <input type="text" placeholder="Search.." name="searchBuyerDash" required>
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>

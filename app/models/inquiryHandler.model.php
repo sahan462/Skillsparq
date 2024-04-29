@@ -384,7 +384,7 @@ class InquiryHandler extends database
             $blacklist_until_days = $_POST['blacklistUntil'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_List = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
 
             if (!$stmt) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);

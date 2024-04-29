@@ -245,7 +245,7 @@ class JobHandler extends database
             
             $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id  WHERE j.STATUS ='$proposalType' AND j.JOB_ID = '$jobId';";
         }else{
-            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = '$jobId';";
+            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = '$jobId' AND (j.Status = 'Accepted' OR j.Status = 'pending');";
         }
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

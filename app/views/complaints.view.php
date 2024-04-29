@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
     <title>Admin Dashboard Panel</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,7 +75,7 @@
                             <div class="<?php echo $row['inquiry_status']; ?>"><?php echo $row['inquiry_status']; ?></div>
                         </td>
                         <td><?php echo $row['created_at']; ?></td>
-                        <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><i class="fa fa-eye"></i></a></td>
+                        <td><a href='viewComplaints?inquiry_id=<?php echo $row["inquiry_id"]; ?>'><i class="fa fa-eye" style="color:green"></i></a></td>
                     </tr>
                 <?php
                 }

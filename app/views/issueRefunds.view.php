@@ -20,16 +20,17 @@
 
             <div>
 
-                <p class="heading">Complaints</p>
+                <p class="heading">Refunds</p>
 
                 <table class="content-table">
                     <thead>
-                        <th>payment_id
+                        <th>Refund ID
                         <th>
                         <th>responseCSA
                         <th>
-                        <th>view
+                        <th>refund State
                         <th>
+                        <th>view
                     </thead>
                     <tbody>
 
@@ -40,15 +41,13 @@
                                 <td></td>
                                 <td><?php echo $row['responseCSA'] ?></td>
                                 <td></td>
+                                <td><?php echo $row['refund_state'] ?></td>
+                                <td></td>
                                 <td><a href='viewRefunds?payment_id=<?php echo $row["payment_id"]; ?>'>
                                         <button>View</button>
                             </tr>
-                            </a></td> <?php } ?>
-
-
-
-
-                    </tbody>
+                            </a></td>
+                            <<?php } ?> </tbody>
                 </table>
             </div>
 
