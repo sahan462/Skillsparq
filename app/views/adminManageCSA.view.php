@@ -81,7 +81,6 @@
                 <input type="hidden" id="lname" name="lname" value="">
                 <input type="hidden" id="username" name="username" value="">
 
-
             </form>
 
 </body>
@@ -95,8 +94,6 @@
         var firstName = document.getElementById('firstName').value;
         var lastName = document.getElementById('lastName').value;
         var userName = document.getElementById('userName').value;
-
-
 
 
         var confirmAction = confirm("Are you sure you want to blackList Buyer ID  for " + " days");
@@ -114,8 +111,7 @@
             document.getElementById('sendForm').elements['fname'].value = firstName;
             document.getElementById('sendForm').elements['lname'].value = lastName;
             document.getElementById('sendForm').elements['username'].value = userName;
-
-
+            
 
             // Submit the form
             document.getElementById('sendForm').submit();
