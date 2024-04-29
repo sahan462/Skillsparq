@@ -16,7 +16,30 @@
     <title>Admin Dashboard Panel</title>
 
     <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
 
+        div.solved,
+        div.unsolved {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        div.solved {
+            background-color: #28a745;
+            /* A nicer shade of green */
+        }
+
+        div.unsolved {
+            background-color: #dc3545;
+            /* A richer shade of red */
+        }
     </style>
 </head>
 
@@ -80,7 +103,7 @@
                             </td>
                             <td><?php echo $row['created_at']; ?></td>
                             <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                    <i class="fas fa-eye"></i> </a>
+                                    <i class="fas fa-eye" style="color: green;"></i> </a>
                             </td>
                             <td>
 

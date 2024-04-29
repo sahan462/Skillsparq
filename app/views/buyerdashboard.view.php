@@ -12,7 +12,7 @@
             Hey there, <?php echo $_SESSION['firstName']?>
             <div class = "searchBar">
                 <!-- Search Bar to Search for the buyer -->
-                <form action="search" method="GET">
+                <form action="buyerDashSearch" method="GET">
                     <input type="text" placeholder="Search.." name="searchBuyerDash">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>

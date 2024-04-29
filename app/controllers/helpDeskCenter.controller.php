@@ -43,7 +43,8 @@ class HelpDeskCenter extends Controller
             $previousMonth = ($currentMonth == 1) ? 12 : $currentMonth - 1;
             $currentYear = date('Y');
             $previousYear = $currentYear - 1;
-
+            $solvedinquiriesC = 0;
+            $unsolvedinquiriesC = 0;
             foreach ($recentInquiries as $row) {
                 $date = new DateTime($row['created_at']);
                 $inquiryMonth = $date->format('m');
@@ -54,9 +55,16 @@ class HelpDeskCenter extends Controller
                 }
                 if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
                     $countCurrentMonth++;
+                    if ($row['inquiry_status'] == "solved") {
+                        $solvedinquiriesC++;
+                    } else {
+                        $unsolvedinquiriesC++;
+                    }
                 }
             }
             $monthDataRequests = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            $solvedrequestsC = 0;
+            $unsolvedrequestsC = 0;
             foreach ($recentRequests as $row) {
                 $date = new DateTime($row['created_at']);
                 $inquiryMonth = $date->format('m');
@@ -67,10 +75,18 @@ class HelpDeskCenter extends Controller
                 }
                 if ($inquiryMonth == $currentMonth && $inquiryYear == $currentYear) {
                     $countCurrentMonth1++;
+                    if ($row['inquiry_status'] == "solved") {
+                        $solvedrequestsC++;
+                    } else {
+                        $unsolvedrequestsC++;
+                    }
                 }
             }
 
             $monthDataComplaints = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            $solvedcomplaintsC = 0;
+            $unsolvedcomplaintsC = 0;
+
             foreach ($recentComplaints as $row) {
                 $date = new DateTime($row['created_at']);
                 $inquiryMonth = $date->format('m');
@@ -80,6 +96,11 @@ class HelpDeskCenter extends Controller
                 }
                 if (($inquiryYear == $previousYear && $inquiryMonth > $currentMonth) || $inquiryYear == $currentYear && $inquiryMonth <= $currentMonth) {
                     $monthDataComplaints[$inquiryMonth - 1]++;
+                    if ($row['inquiry_status'] == "solved") {
+                        $solvedcomplaintsC++;
+                    } else {
+                        $unsolvedcomplaintsC++;
+                    }
                 }
             }
 
@@ -111,13 +132,13 @@ class HelpDeskCenter extends Controller
                     $unsolved2++;
                 }
             }
-            $inquiriesCompleted = ($unsolved2 + $solved2 == 0) ? 0 : ($solved2 / ($unsolved2 + $solved2)) * 100;
+            $inquiriesCompleted = ($unsolvedinquiriesC + $solvedinquiriesC == 0) ? 0 : ($solvedinquiriesC / ($unsolvedinquiriesC + $solvedinquiriesC)) * 100;
             $data['inquiriesCompleted'] = $inquiriesCompleted;
 
-            $complaintsCompleted = ($unsolved1 + $solved1 == 0) ? 0 : ($solved1 / ($unsolved1 + $solved1)) * 100;
+            $complaintsCompleted = ($solvedcomplaintsC + $unsolvedcomplaintsC == 0) ? 0 : ($solvedcomplaintsC / ($unsolvedcomplaintsC + $solvedcomplaintsC)) * 100;
             $data['complaintsCompleted'] = $complaintsCompleted;
 
-            $requestsCompleted = ($unsolved + $solved == 0) ? 0 : ($solved / ($unsolved + $solved)) * 100;
+            $requestsCompleted = ($unsolvedrequestsC + $solvedrequestsC == 0) ? 0 : ($solvedrequestsC / ($unsolvedrequestsC + $solvedrequestsC)) * 100;
             $data['requestsCompleted'] = $requestsCompleted;
 
 
@@ -150,6 +171,8 @@ class HelpDeskCenter extends Controller
             $data['unsolved'] = $unsolved;
             $data['solved1'] = $solved1;
             $data['unsolved1'] = $unsolved1;
+            $data['unsolvedinquiriesC;'] = $unsolvedinquiriesC;
+            $data['solvedinquiriesC'] = $solvedinquiriesC;
 
 
 

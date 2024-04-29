@@ -175,6 +175,10 @@
                     <input type="hidden" name="senderId" value="<?php echo $_SESSION['userId']?>">
                     <input type="hidden" name="receiverId" value="<?php echo $data['receiverId']?>">
                     <input type="hidden" name="currentState" value="<?php echo $data['orderState']?>">
+                    <input type="hidden" name="orderType" value="<?php echo $data['orderType']?>">
+                    <?php if($data['orderType'] == 'milestone') { ?>
+                        <input type="hidden" name="milestoneId" value="<?php echo $data['milestoneId']?>">
+                    <?php } ?>
 
                     <input type="checkbox" name="final" id="check" onclick="activeSubmit()"> I recive my product and I want to complete this job and enableing seller to get his money.
                     <div class="submitSec">

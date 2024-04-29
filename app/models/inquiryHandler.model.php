@@ -71,6 +71,27 @@ class InquiryHandler extends database
         return true;
     }
 
+
+    // read inquiries
+    public function getInquiries($userId)
+    {
+        $query = "SELECT * from inquiries where inquiry_originator_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //read recently added gigs
     public function readRecentUsersTable()
     {
@@ -258,6 +279,7 @@ class InquiryHandler extends database
         }
     }
 
+    // view help requests
     public function viewHelpRequests($inquiry_id)
     {
         $query = "SELECT 
@@ -286,6 +308,7 @@ class InquiryHandler extends database
         }
     }
 
+    // view sender details
     public function viewSenderDetails(int $num)
 
     {
@@ -361,7 +384,7 @@ class InquiryHandler extends database
             $blacklist_until_days = $_POST['blacklistUntil'];
 
             // Use a prepared statement to prevent SQL injection
-            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_List = 4, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
+            $stmt = $GLOBALS['db']->prepare("UPDATE user SET black_List = 1, Black_Listed_Until = CURDATE() + INTERVAL ? DAY WHERE user_id = ?");
 
             if (!$stmt) {
                 die('MySQL Error: ' . $GLOBALS['db']->error);
@@ -435,24 +458,6 @@ class InquiryHandler extends database
         }
 
         mysqli_stmt_close($stmt);
-    }
-
-    // read inquiries
-    public function getInquiries()
-    {
-        $query = "SELECT * from inquiries ";
-
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
-
-        if (!$stmt) {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
-
-        if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
-        } else {
-            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
-        }
     }
 
     public function getUnsolvedRequests()
