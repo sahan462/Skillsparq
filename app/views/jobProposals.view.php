@@ -1,7 +1,18 @@
 <?php
     include "components/buyerSimpleHeader.component.php";
-    $propCardDets = $data['proposal&SellerDets'];
-    $jobDetails = $data['jobDets'];
+    if(isset($data['proposal$SellerDets'])){
+        $propCardDets = $data['proposal&SellerDets'];
+    }else{
+        $propCardDets = '';
+    }
+
+    if(isset($data['jobDets'])){
+        $jobDetails = $data['jobDets'];
+    }else{
+        
+    }
+    
+    
 ?>
 
 <div class="jobPropMainContainer">
@@ -17,9 +28,10 @@
         <div class="propSubRightCont">
             <div class="jobPropCardContainer">
                 <?php
-                foreach($propCardDets as $proposals){
-                    if(!empty($proposals)){
-                        if($proposals['Status'] === "pending" || $proposals['Status'] === "Accepted"){
+                if(isset($propCardDets)){
+                    foreach($propCardDets as $proposals){
+                        if(!empty($proposals)){
+                            if($proposals['Status'] === "pending" || $proposals['Status'] === "Accepted"){
                 ?>
                 <div class="jobPropCardDetails">
                     <div class="propCollapsBtnDiv">
@@ -88,16 +100,20 @@
                     </div>
                 </div>
                 <?php
+                            }
                         }
-                    } else {
-                        // No proposals
-                        ?>
-                        <div class="jobPropCardDetails">
-                            <h1>Oops There are no such proposals yet</h1>
-                        </div>
-                        <?php
                     }
+                    
+                }else{
+                        // No proposals
+                    ?>
+
+                    <div class="jobPropCardDetails">
+                        <h1>Oops There are no such proposals yet</h1>
+                    </div>
+                    <?php
                 }
+                
                 ?>
             </div>
         </div>

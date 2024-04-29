@@ -42,9 +42,9 @@ class DisplayJob extends Controller
 
                 $auction = $this->jobHandlerModel->getAuction($job['job_id'], $buyerId);
 
-                if ($auction) {
+                if (!empty($auction)) {
                     $auction =  mysqli_fetch_assoc($auction);
-                    $mergedJob = array_merge($job,$auction);
+                    $mergedJob = array_merge($job,$auction); // if one of the fields are null it will give error.
                     $data['job'] = $mergedJob;
                 }
             } else {

@@ -49,6 +49,7 @@ body {
     justify-content: center;
     margin-bottom: 16px;
     border: 2px solid #dadbdd;
+    background: #fff;
 }
 
 .displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsCategory{
@@ -343,6 +344,7 @@ body {
     margin-bottom: 0px;
     margin-top: 0px;
     border-radius: 0px;
+    height: fit-content;
 }
 
 .displayJobMajorDetailsCategory,.displayJobSendProposal{
@@ -352,7 +354,7 @@ body {
     margin-bottom: 24px;
     padding: 16px;
     border-radius: 8px;
-    background-color: #fff;
+    /* background-color: #fff; */
     height: auto;
 }
 

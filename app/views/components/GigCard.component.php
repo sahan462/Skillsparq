@@ -1,8 +1,8 @@
-    <div class="gigCard" gig-url="displayGig&amp;gigId=<?php echo $row['gig_id']?>&amp;userId=<?php echo $row['seller_id']?>">
+    <div class="gigCard" gig-url="displayGig&amp;gigId=<?php echo $row['gig_id']?>&amp;userId=<?php echo $row['seller_id']?>"<?php if ($_SESSION['role'] === 'Seller') { echo ($data['mode'] !== 'private') ? 'style="pointer-events: none;"' : ''; } ?>>
 
         <?php
             if($_SESSION['role'] == "Seller"){
-                if(($row['ongoing_order_count']) === 0){
+                if((($row['ongoing_order_count']) == 0) && ($data['mode'] == 'private')){
             
         ?>
         <div class="deleteContainer">

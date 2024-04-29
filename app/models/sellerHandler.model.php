@@ -191,7 +191,7 @@ class SellerHandler extends database
         }
     }
 
-    public function getPortfolioImgs($userId,$imgId)
+    public function getPortfolioImgs($userId)
     {
         $getQuery = "SELECT Image FROM portfolio_images WHERE User_Id = ?";
         $stmt = mysqli_prepare($GLOBALS['db'],$getQuery);
@@ -203,8 +203,8 @@ class SellerHandler extends database
         mysqli_stmt_bind_param($stmt, "i",$userId);
     
         if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
             mysqli_stmt_close($stmt);
-            return true;
         } else {
             throw new Exception("Error updating data: " . mysqli_error($GLOBALS['db']));
         }
