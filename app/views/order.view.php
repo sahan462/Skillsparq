@@ -65,7 +65,7 @@
         echo "</script>";
     }
     
-    
+   
 ?>
 
 <!-- Main Container -->
@@ -131,7 +131,7 @@
 
                             <h1>
                                 <?php if($_SESSION['userId'] == $buyer['user_id']) : ?>
-                                    <a href=""><?php echo $receiverName?></a>
+                                    <a href="sellerProfile&mode=public&userId=<?php echo $seller['user_id']?>"><?php echo $receiverName?></a>
                                 <?php elseif($_SESSION['userId'] == $seller['user_id']) : ?>
                                     <a href="buyerProfile&mode=public&userId=<?php echo $buyer['user_id']?>"><?php echo $receiverName?></a>
                                 <?php endif; ?>
@@ -171,9 +171,10 @@
                                     <div class="receiver-container">
                                         <div class="messageContainer darker">
                                             <div class="receiverContent">
-                                                <p class="receiver" >
+                                                <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture ?>" alt="pro pic" class="attachment-image">
+                                                <p class="receiver" style="color:black">
                                                     <?php echo $row['message'] ?>
-                                                    <span class="time-left"><?php echo $row['date'] ?></span>
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -186,7 +187,7 @@
                                             <div class="senderContent">
                                                 <p class="receiver" >
                                                     <?php echo $row['message'] ?>
-                                                    <span class="time-left"><?php echo $row['date']?></span>
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -194,6 +195,42 @@
 
                                 <?php endif; 
 
+                            elseif($row['file'] != null && $row['message'] == null):
+
+                                if(($row['sender_id'] == $_SESSION['userId'] && $_SESSION['role'] != 'csa')  || ($row['sender_id'] == $buyer['user_id'] && $_SESSION['role'] == 'csa')): ?>
+
+                                    <div class="receiver-container">
+                                        <div class="messageContainer darker">
+                                            <div class="receiverContent">
+                                                <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture ?>" alt="pro pic" class="attachment-image">
+                                                <p>
+                                                    <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                        <img src="./assests/images/download.png ?>">
+                                                        Download Attachment
+                                                    </a>
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <div class="sender-container">
+                                        <div class="messageContainer">
+                                            <div class="senderContent">
+                                                <p>
+                                                <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                    <img src="./assests/images/download.png ?>">
+                                                    Download Attachment
+                                                </a>                                                
+                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php endif;
 
                             elseif($row['file'] != null && $row['message'] != null):
 
@@ -202,8 +239,14 @@
                                     <div class="receiver-container">
                                         <div class="messageContainer darker">
                                             <div class="receiverContent">
-                                                <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
-                                                <span class="time-left"><?php echo $row['date']?></span>
+                                                <p>
+                                                <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                    <img src="./assests/images/download.png ?>">
+                                                    Download Attachment
+                                                </a>    
+                                                <?php echo $row['message'] ?>                                                     
+                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +257,7 @@
                                         <div class="messageContainer">
                                             <div class="senderContent">
                                                 <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
-                                                <span class="time-left"><?php echo $row['date']?></span>
+                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -471,11 +514,17 @@
                     <!-- Completed State -->
                     <?php elseif($order['order_state'] == 'Completed') : $state = 'Completed' ?>
 
-                        <?php if ($_SESSION['role'] == 'Buyer') :?>
+                        <?php if ($_SESSION['role'] == 'Buyer') :
 
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
-                            </div>
+                            if($order['order_type'] != 'milestone'): ?>
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                </div>
+                            <?php elseif($order['order_type'] == 'milestone') :?>
+                                <div class="row">
+                                    <a href="#orderMilestones" class="buttonType-1">Go to Milestone Tab</a>
+                                </div>
+                            <?php endif ?>
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
@@ -483,11 +532,22 @@
                                 <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
                             </div>                           
 
-                        <?php elseif ($_SESSION['role'] == 'csa') :?>
+                        <?php endif; ?>
 
+                    <!-- Completed State -->
+                    <?php elseif($order['order_state'] == 'Cancelled') : $state = 'Cancelled' ?>
+
+                        <?php if ($_SESSION['role'] == 'Buyer') : ?>
+
+                                <div class="row">
+                                    <button class="buttonType-2">Cancelled</button>
+                                </div>
+
+                        <?php elseif ($_SESSION['role'] == 'Seller') :?>   
+                            
                             <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
-                            </div>
+                                <button class="buttonType-2">Cancelled</button>
+                            </div>                           
 
                         <?php endif; ?>
 
@@ -786,6 +846,15 @@
     const receiverProfilePicture = "<?php echo $receiverProfilePicture; ?>";
     const senderId = "<?php echo $senderId; ?>";
     const receiverId = "<?php echo $receiverId; ?>";
+    const orderType = "<?php echo $order['order_type']; ?>";
+    const orderId = "<?php echo $order['order_id']; ?>";
+    <?php if (($order['order_type'] == 'milestone') && $order['order_state'] != 'Completed') : ?>
+        const milestoneId = <?php echo $currentMilestone['milestone_id']; ?>
+    <?php endif; ?>
+    <?php if ($order['order_state'] == 'Cancelled') : ?>
+        var now = new Date();
+        var deadline = now.getTime();
+    <?php endif; ?>
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

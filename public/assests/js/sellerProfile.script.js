@@ -395,3 +395,14 @@ function displayFileName(index)
     fileNameSpan.textContent = "";
   }
 }
+
+// star rating components
+$(document).ready(function() {
+  $('.stars').each(function() {
+      var rating = $(this).data('rating');
+      $(this).rateYo({
+          rating: rating,
+          readOnly: true
+      });
+  });
+});

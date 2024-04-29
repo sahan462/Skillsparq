@@ -208,6 +208,39 @@ class GigHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+        // read the recent gigs with the seller Details
+        public function getRecentGigWithRelevantSellerDetsForSearch($textToSearch)
+        {
+            $query = "SELECT g.title,g.description,g.category,g.cover_image,g.ongoing_order_count,g.created_at,p.profile_pic,p.first_name,p.last_name,p.country,p.joined_date,p.last_seen,p.about FROM GIGS g INNER JOIN PROFILE p ON p.USER_ID = g.SELLER_ID WHERE 
+            g.title LIKE CONCAT('%',?,'%') OR 
+            g.description LIKE CONCAT('%',?,'%') OR 
+            g.category LIKE CONCAT('%',?,'%') OR 
+            g.cover_image LIKE CONCAT('%',?,'%') OR 
+            g.ongoing_order_count LIKE CONCAT('%',?,'%') OR 
+            g.created_at LIKE CONCAT('%',?,'%') OR 
+            p.profile_pic LIKE CONCAT('%',?,'%') OR 
+            p.first_name LIKE CONCAT('%',?,'%') OR
+            p.last_name LIKE CONCAT('%',?,'%') OR
+            p.country LIKE CONCAT('%',?,'%') OR
+            p.joined_date LIKE CONCAT('%',?,'%') OR
+            p.last_seen LIKE CONCAT('%',?,'%') OR
+            p.about LIKE CONCAT('%',?,'%')"
+            ;
+
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+
+            mysqli_stmt_bind_param($stmt,"sssssssssssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch);
+
+            if (mysqli_stmt_execute($stmt)) {
+                return $stmt->get_result();
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
 
         // read the recent gigs with the seller Details
         public function getNewBieGigs()

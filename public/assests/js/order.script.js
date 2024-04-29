@@ -58,7 +58,8 @@ function openTab(evt, tabName)
 // }, 1000);
 
 var x; // Declare x outside the setInterval function to make it accessible globally
-
+// var now = new Date();
+// var deadline = new Date(now.getTime() + 3 * 1000); 
 // Function to start the countdown timer
 function startTimer() {
   x = setInterval(function() {
@@ -90,22 +91,33 @@ function startTimer() {
 
 
 // Function to send request to backend to update order status
-function updateOrderStatus() {
-  // Send an AJAX request to the backend to update order status
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "update_order_status.php", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        console.log(xhr.responseText);
-        clearInterval(x); // Clear the interval if request is successful
-      } else {
-        console.error("Failed to update order status");
+async function updateOrderStatus() {
+
+  if(orderType !== 'milestone'){
+    var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType);
+  }else{
+    var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&milestoneId=' + encodeURIComponent(milestoneId);
+  }
+
+  try {
+      const response = await fetch('order/checkOrderState', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
+      });
+      
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
       }
-    }
-  };
-  xhr.send();
+
+      alert("Order Accepted successfully");
+      // window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+
 }
 
 // Start the countdown timer

@@ -879,7 +879,7 @@ class OrderHandler extends database
         p.*
         
     FROM orders o
-    JOIN payments p ON o.order_id = p.order_id
+    left JOIN payments p ON o.order_id = p.order_id
    
     
    
@@ -903,7 +903,7 @@ class OrderHandler extends database
     public function viewOrderPackage($order_id)
     {
         // Prepare the query using placeholders for parameters
-        $query = "SELECT p.*,g.* FROM package_orders p Join gigs g on g.gig_id = p.gig_id WHERE p.package_order_id = ?";
+        $query = "SELECT p.*,g.* FROM package_orders p left Join gigs g on g.gig_id = p.gig_id WHERE p.package_order_id = ?";
 
         // Prepare the statement
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

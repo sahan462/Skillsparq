@@ -140,13 +140,10 @@ class BuyerProfile extends Controller
         {
             $_SESSION['firstName'] = $firstName;
             $_SESSION['lastName'] = $lastName;
-
-            echo "
-            <script>
-                alert('Profile Updated Successfully');
-                window.location.href = '" . BASEURL . "buyerProfile';
-            </script>
-        ";
+            
+            $data['redirectURL'] = BASEURL . 'buyerProfile';
+            $data['message'] = "Profile Updated Successfully";
+            $this->view('successful', $data);
 
         }else{
 

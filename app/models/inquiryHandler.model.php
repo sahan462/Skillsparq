@@ -71,6 +71,26 @@ class InquiryHandler extends database
         return true;
     }
 
+
+    // read inquiries
+    public function getInquiries()
+    {
+
+        $query = "SELECT * from inquiries";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     //read recently added gigs
     public function readRecentUsersTable()
     {
@@ -233,13 +253,13 @@ class InquiryHandler extends database
         u2.black_List as buyer_blackList,
         u2.black_Listed_Until as buyer_blackListUntil
     FROM inquiries i
-    JOIN complaints c ON c.complaint_id = i.inquiry_id
-    JOIN orders o ON o.order_id = c.order_id
-    JOIN user u1 ON o.seller_id = u1.user_id
-    JOIN user u2 ON o.buyer_id = u2.user_id
-    JOIN payments p on p.order_id = o.order_id
-    JOIN profile p1 on u1.user_id = p1.user_id
-    JOIN profile p2 on u2.user_id = p2.user_id
+    LEFT JOIN complaints c ON c.complaint_id = i.inquiry_id
+    LEFT JOIN orders o ON o.order_id = c.order_id
+    LEFT JOIN user u1 ON o.seller_id = u1.user_id
+    LEFT JOIN user u2 ON o.buyer_id = u2.user_id
+    LEFT JOIN payments p on p.order_id = o.order_id
+    LEFT JOIN profile p1 on u1.user_id = p1.user_id
+    LEFT JOIN profile p2 on u2.user_id = p2.user_id
    
     WHERE i.inquiry_id = ?";
 
@@ -258,6 +278,7 @@ class InquiryHandler extends database
         }
     }
 
+    // view help requests
     public function viewHelpRequests($inquiry_id)
     {
         $query = "SELECT 
@@ -286,6 +307,7 @@ class InquiryHandler extends database
         }
     }
 
+    // view sender details
     public function viewSenderDetails(int $num)
 
     {
@@ -449,11 +471,10 @@ class InquiryHandler extends database
         mysqli_stmt_close($stmt);
     }
 
-
     // read inquiries
-    public function getInquiries()
+    public function getInquiries1($userId)
     {
-        $query = "SELECT * from inquiries ";
+        $query = "SELECT * from inquiries where inquiry_originator_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -461,12 +482,15 @@ class InquiryHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
 
     public function getUnsolvedRequests()
     {
@@ -620,6 +644,60 @@ class InquiryHandler extends database
             return $result; // Return the result set to be processed
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function dltInquiry($inquiry_id)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM inquiries
+            WHERE inquiry_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $inquiry_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function dltComplaint($inquiry_id)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM complaints
+            WHERE complaint_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $inquiry_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function dltRequest($inquiry_id)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM help_requests
+            WHERE request_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $inquiry_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

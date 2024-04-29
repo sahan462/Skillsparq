@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="./assests/css/helpCenter.styles.css">
     <link rel="stylesheet" href="./assests/css/help.styles.css">
     <link rel="stylesheet" href="./assests/css/chat.styles.css">
+    <link rel="stylesheet" href="./assests/css/search.styles.css">
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
     <link rel="stylesheet" href="./assests/css/userHelp.styles.css">
     <link rel="stylesheet" href="./assests/css/sharePoint.styles.css">

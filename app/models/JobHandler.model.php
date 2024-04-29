@@ -5,7 +5,7 @@ class JobHandler extends database
     //add new job
     public function addNewJob($title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Jobs 
+        $query = "INSERT INTO Jobs 
         (
             title, 
             description, 
@@ -21,13 +21,16 @@ class JobHandler extends database
         VALUES 
         (
             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-        )");
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
-        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, trim($description), $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
+        $description = trim($description);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $description, $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
         
         if (mysqli_stmt_execute($stmt)) {
             $jobId = mysqli_insert_id($GLOBALS['db']);
@@ -242,7 +245,7 @@ class JobHandler extends database
             
             $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id  WHERE j.STATUS ='$proposalType' AND j.JOB_ID = '$jobId';";
         }else{
-            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = '$jobId';";
+            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = '$jobId' AND (j.Status = 'Accepted' OR j.Status = 'pending');";
         }
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
