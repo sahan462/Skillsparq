@@ -307,7 +307,7 @@ class SellerProfile extends Controller
                     }else{
                         echo "
                         <script>
-                            window.alert('Image Couldn't saved !');
+                            window.alert('Image Could not saved !');
                             window.location.href = '" . BASEURL . "sellerProfile';
                         </script>
                         ";

@@ -613,6 +613,7 @@ a{
     color: #0e0e0f;
     background-color: #fff;
     margin-bottom: 16px;
+    padding-left: 64px;
     font-size: 19px;
     font-weight: 600;
     padding-bottom: 32px;
@@ -716,4 +717,79 @@ input[type = "submit"]
     .sellerProfileContainer .sub-container .sellerUser-contribution{
         width: 100%;
     }
+}
+
+.sellerProfileContainer .sub-container .sellerUser-content .Gig-content .gigCard{
+    
+}
+
+.sellerProfileContainer .sub-container .sellerUser-content .Gig-content .gigCard .deleteContainer .dltIcon
+a button svg{
+    opacity: 0.5;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard{
+    height: 360px!important;
+    width: calc(100%/3 - 32px);
+}
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard .coverImg img{
+    border-radius: 0px;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard .gig-details .links button:hover{
+    color: #0e0e0f!important;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard .gig-details .links{
+    display: block;
+    width: 100%!important;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerUser-content .sellerheader .sellerHeaderExit{
+    width: 100%;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerUser-content .sellerheader .sellerHeaderExit form{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap:32px;
+}
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerUser-content .sellerheader  form .divClassElement{
+    width: 100%!important;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    gap:512px;
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .reviews .sellerUser-content .sellerheader .sellerHeaderExit form .Buttons .addToPortfolioImgs{
+    
+}
+
+.sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard .gig-details .links{
+}
+
+@media screen and (max-width:900px) {
+    .sellerProfileContainer .sub-container .sellerUser-contribution .sellerUser-content .Gig-content .gigCard{
+        height: 400px!important;
+        width: calc(100%/3 - 32px);
+    }
+}
+
+.multipleImagesUpload{
+    display: none;
+}
+
+#pckgInnerAttachment{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+
 }
