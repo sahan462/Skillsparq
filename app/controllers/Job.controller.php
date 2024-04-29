@@ -93,13 +93,9 @@ class Job extends Controller
             if($job){
 
             if ($job) {
-
-                echo "
-                <script>
-                    alert('Job is Published Successfully');
-                    window.location.href = '" . BASEURL . "buyerProfile';
-                </script>
-            ";
+                $data['redirectURL'] = BASEURL . 'buyerProfile';
+                $data['message'] = "Job is Published Successfully";
+                $this->view('successful', $data);
             }else{
                 echo "<script>alert('Error');</script>";
                 }

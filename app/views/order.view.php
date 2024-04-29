@@ -195,6 +195,37 @@
 
                                 <?php endif; 
 
+                            elseif($row['file'] != null && $row['message'] == null):
+
+                                if(($row['sender_id'] == $_SESSION['userId'] && $_SESSION['role'] != 'csa')  || ($row['sender_id'] == $buyer['user_id'] && $_SESSION['role'] == 'csa')): ?>
+
+                                    <div class="receiver-container">
+                                        <div class="messageContainer darker">
+                                            <div class="receiverContent">
+                                                <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture ?>" alt="pro pic" class="attachment-image">
+                                                <p>
+                                                    <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                        <img src="./assests/images/download.png ?>">
+                                                        Download Attachment
+                                                    </a>
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <div class="sender-container">
+                                        <div class="messageContainer">
+                                            <div class="senderContent">
+                                                <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
+                                                <span class="time-left"><?php echo $row['date']?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php endif;
 
                             elseif($row['file'] != null && $row['message'] != null):
 
