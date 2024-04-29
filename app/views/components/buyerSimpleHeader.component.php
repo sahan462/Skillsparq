@@ -38,6 +38,7 @@
             <div class="navbar" style="width:auto;">
                 <nav>
                     <ul class="nav-links">
+
                         <div class="svgLinks">
                             <li class="notificationIcon">
                                 <a>
@@ -53,6 +54,7 @@
                                 </a>
                             </li>
                         </div>
+
                         <div class="wordLinks">
                             <li><a href="buyerDashboard" class="wordLink">Home</a></li>
                             <li><a href="manageOrders" class="wordLink">Orders</a></li>
@@ -70,9 +72,10 @@
                                 <div class="loginSign"></div>
                             </a>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
-            
+
         </div>
     </header>

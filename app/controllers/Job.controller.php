@@ -124,12 +124,9 @@ class Job extends Controller
 
                 $job = $this->JobHandlerModel->updateJob($jobId, $title, $description, $file,  $category, $amount, $deadline, $publishMode, $flexible_amount, $currentDateTime, $buyerId);
                 if($job){
-                    echo "
-                    <script>
-                        alert('Standard Job is Updated Successfully');
-                        window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                ";
+                    $data['redirectURL'] = BASEURL . 'buyerProfile';
+                    $data['message'] = "Standard Job is Updated Successfully";
+                    $this->view('successful', $data);
                 }
 
             }else if($publishMode == 'Auction Mode'){
@@ -147,12 +144,9 @@ class Job extends Controller
                 $auction = $this->JobHandlerModel->updateAuction($jobId, $buyerId, $starting_time, $end_time, $starting_bid, $min_bid_amount, $jobId, $buyerId);
 
                 if($job and $auction){
-                    echo "
-                    <script>
-                        alert('Auction Job is Updated Successfully');
-                        window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                ";
+                    $data['redirectURL'] = BASEURL . 'buyerProfile';
+                    $data['message'] = "Auction Job is Updated Successfully";
+                    $this->view('successful', $data);
                 }
 
             }else{
@@ -173,12 +167,15 @@ class Job extends Controller
             
             if($this->JobHandlerModel->deleteAuction($jobId, $userId)){
                 if($this->JobHandlerModel->deleteJob($jobId)){
-                    echo 
-                    "
-                    <script>alert('Job deleted Successfully')
-                    window.location.href = '" . BASEURL . "buyerProfile';
-                    </script>
-                    ";
+                    $data['redirectURL'] = BASEURL . 'buyerProfile';
+                    $data['message'] = "Job deleted Successfully";
+                    $this->view('successful', $data);
+                    // echo 
+                    // "
+                    // <script>alert('Job deleted Successfully')
+                    // window.location.href = '" . BASEURL . "buyerProfile';
+                    // </script>
+                    // ";
                 }else{
                     echo 
                     "

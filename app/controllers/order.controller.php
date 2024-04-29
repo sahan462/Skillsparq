@@ -335,7 +335,7 @@ class Order extends Controller
 
         }
         
-}
+    }
 
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId)
@@ -664,6 +664,37 @@ class Order extends Controller
 
         }
     }
+
+    // check order state when the timer get expired
+    public function checkOrderState()
+    {
+        try{            
+            
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                $orderId = $_POST['orderId'];
+                $orderType = $_POST['orderType'];
+                
+                if($orderType == 'milestone'){
+                    $milestoneId = $_POST['milestoneId'];
+                }
+
+                $currentState = $this->OrderHandlerModel->getOrderState($orderId)['order_state'];
+                if($currentState == 'Requested' || $currentState == 'Accepted/Pending Payments'){
+                    $state = "Cancelled";
+                    $this->OrderHandlerModel->updateOrderState($orderId, $state);
+                }
+
+            }else{
+                $this->redirect("_505");
+            }
+
+
+        }catch(Exception $e){
+            echo 'An error occurred during checking order state: '.$e->getMessage();
+        }
+    }
+
 
 }
 ?>

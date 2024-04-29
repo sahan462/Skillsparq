@@ -83,7 +83,7 @@
                             </div> 
                             <div class="jobProposalButtons">
                                 <div class="jobProposalAcc">
-                                <a href=""><button>Accept</button></a>
+                                <a href=""><button class="buttonType-1">Accept</button></a>
                                 </div>
                                 <div class="jobProposalRej">
                                     <a href=""><button>Reject</button></a>

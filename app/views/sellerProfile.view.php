@@ -2,12 +2,9 @@
 
 <?php
     $Country = "Sri Lanka";
-    $lastSeen = $_SESSION['status'];
-    // show($data);
-    // print_r($_SESSION);
-    // show($Gigs);
-
-
+    if($data['mode'] != 'public'){
+        $lastSeen = $_SESSION['status'];
+    }
 ?>
 
 <!-- Main Container for Seller -->
@@ -288,7 +285,7 @@
         <div class="profile-container">
             <div class="profile">
 
-                <?php if($data['profileDetails']['last_seen'] === 'online' || $_SESSION['status'] === "online") {?>
+                <?php if($data['profileDetails']['last_seen'] === 'online') {?>
 
                 <div class="online">
                     <span style="display:flex; align-items:center; gap: 4px; justify-content: flex-end;"><div class="onlineDot"></div>Online</span>
@@ -513,7 +510,6 @@
         </div>
         <div class="sellerUser-contribution">
             <div class="sellerUser-content" style="margin-bottom:40px;">
-            <?php if ($data['mode'] == 'private') : ?>
                 <div class="sellerheader">
                     <span>My Gigs(
                         <?php 
@@ -525,9 +521,10 @@
                         ?>
                     )
                     </span>
-                    <a href="addGig"><button class="buttonType-1">Create A New Gig</button></a>
+                    <?php if ($data['mode'] == 'private') : ?>
+                        <a href="addGig"><button class="buttonType-1">Create A New Gig</button></a>
+                    <?php endif ;?>
                 </div>
-            <?php endif ;?>
                 <div class="Gig-content">
                     <?php
                         if(!empty($data['ALLABOUTGIG'])){ 
@@ -677,6 +674,9 @@ function four() {
   }
 }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script>
 
 
