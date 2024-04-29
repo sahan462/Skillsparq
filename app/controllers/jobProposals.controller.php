@@ -37,7 +37,7 @@ class JobProposals extends Controller
             $uniqueAttachmentFileName = uniqid($attachmentFile, true) . '_' . time() . '_' .$randomNumber.".".$extension;
 
             $targetFilePath = $targetDir . $uniqueAttachmentFileName; 
-            // $isMoved = move_uploaded_file($_FILES["attachment"]["tmp_name"], $targetFilePath); // uncomment this line in order to save the file in the server.
+            $isMoved = move_uploaded_file($_FILES["attachment"]["tmp_name"], $targetFilePath); // uncomment this line in order to save the file in the server.
             
             if($jobMode === "Auction"){
                 $bidAmnt = $_POST['biddingAmnt'];

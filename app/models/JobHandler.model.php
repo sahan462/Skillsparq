@@ -127,7 +127,7 @@ class JobHandler extends database
     //get available jobs
     public function getAllJobs($userId)
     {
-        $query = "SELECT * FROM Jobs WHERE buyer_id = ? ";
+        $query = "SELECT * FROM Jobs WHERE buyer_id = ? ORDER BY created_at DESC";
         
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
