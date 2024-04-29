@@ -56,7 +56,7 @@
                 <div class="header">
                     <span>Find the best freelance service, right away</span>
                     <div class = "searchBar">
-                        <form action="search">
+                        <form action="search/homeSearch">
                             <input type="text" placeholder="Search for any service" name="searchIn" id="searchIn">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
