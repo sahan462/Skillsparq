@@ -11,7 +11,7 @@ class BuyerHelp extends Controller
         $data['var'] = "Buyer Help Page";
         $data['title'] = "SkillSparq";
 
-        if(isset($_SESSION['userId'])){
+        if(isset($_SESSION['userId']) && ($_SESSION['role'] == 'Buyer')){
             $inquiries = $this->InquiryHandlerModel->getInquiries($_SESSION['userId']);
             $data['inquiries'] = $inquiries;
             print_r($inquiries);
