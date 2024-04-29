@@ -64,20 +64,27 @@ class Order extends Controller
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
             
             if($orderType == 'milestone'){
-                $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
-                $data['currentMilestone'] = $currentMilestone->fetch_assoc();
+
+                $incompleteMilestoneCount = $this->OrderHandlerModel->getIncompleteMilestoneCount($orderId);
+                if($incompleteMilestoneCount['incomplete_milestone_count'] == 0){
+                    $currentMilestone = [
+                        'amount_of_delivery_time' => 0,
+                        'time_category' => 'Days'
+                    ];
+                    $data['$currentMilestone'] = $currentMilestone;
+                }else{
+                    $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
+                    $data['currentMilestone'] = $currentMilestone->fetch_assoc();
+                }
+
             }
-            // print_r($data['currentMilestone']);
-            // print_r($data);
 
             $order = $data['order'];
             $chatId = $order['chat_id'];
 
             //retrieve the chat from the database
             $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-            // show($data);
-            // print_r($chatId);
-            // print_r($data);
+
             $this->view('order', $data);
     
         }
@@ -328,7 +335,7 @@ class Order extends Controller
 
         }
         
-}
+    }
 
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId)
@@ -440,7 +447,7 @@ class Order extends Controller
                     // update order history
                     $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Change from " . $currentOrderState . " to Accepted/Pending Payments");
                     if($isHistoryUpdated){
-                        return $isUpdatedOrderState;
+                        return $isHistoryUpdated;
                     }else{
                         throw new Exception("Update order history failed");
                     }
@@ -541,6 +548,7 @@ class Order extends Controller
                 $orderId = $_POST['orderId'];
                 $feedback = $_POST['feedback'];
                 $rating = $_POST['rating'];
+                $orderType = $_POST['orderType'];
                 $currentState = $_POST['currentState'];
                 $currentDateTime = date('Y-m-d H:i:s');
 
@@ -548,24 +556,66 @@ class Order extends Controller
                     $this->ProfileHandlerModel->sendFeedback($senderId, $receiverId, $feedback, $rating, $currentDateTime);
                 }
 
-                $state = "Completed";
-                $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+                if($orderType == 'milestone'){
 
-                if($isUpdated){
-                    // update order history
-                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentState. " to Completed");
-                    if($isHistoryUpdated){
-                    echo "
-                    <script>
-                        window.alert('order completed successfully !');
-                        window.location.href = '" . BASEURL . "manageOrders#Completed';
-                    </script>
-                    ";
-                    }else{
-                        throw new Exception("Update order history failed");
+                    $milestoneId = $_POST['milestoneId'];
+                    $state = "Completed";
+
+                    //update milestone state
+                    $milestoneUpdate = $this->OrderHandlerModel->updateMileStoneState($milestoneId, $state);
+                    if(!$milestoneUpdate){
+                        throw new Exception('milestone state update failure');
                     }
+
+                    $incompleteMilestoneCount = $this->OrderHandlerModel->getIncompleteMilestoneCount($orderId);
+
+                    if($incompleteMilestoneCount['incomplete_milestone_count'] != 0){
+                        $this->OrderHandlerModel->updateOrderState($orderId, "Requested");
+                        $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentState. " to Requested");
+                        $this->OrderHandlerModel->updateMilestoneStartingDate($orderId,$currentDateTime);
+                        echo "
+                        <script>
+                            window.location.href = '" . BASEURL . "manageOrders';
+                        </script>
+                        ";
+                    }else{
+                        $state = "Completed";
+                        $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+    
+                        if($isUpdated){
+                            // update order history
+                            $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentState. " to Completed");
+                            if($isHistoryUpdated){
+                                $data['redirectURL'] = BASEURL.'manageOrders';
+                                $data['message'] = "Order Completed Successfully";
+                                $this->view('successful', $data);
+                            }else{
+                                throw new Exception("Update order history failed");
+                            }
+                        }else{
+                            throw new Exception("Error updating order state");
+                        }
+                    }
+
                 }else{
-                    throw new Exception("Error updating order state");
+
+                    $state = "Completed";
+                    $isUpdated = $this->OrderHandlerModel->updateOrderState($orderId, $state);
+
+                    if($isUpdated){
+                        // update order history
+                        $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentState. " to Completed");
+                        if($isHistoryUpdated){
+                            $data['redirectURL'] = BASEURL.'manageOrders';
+                            $data['message'] = "Order Completed Successfully";
+                            $this->view('successful', $data);
+                        }else{
+                            throw new Exception("Update order history failed");
+                        }
+                    }else{
+                        throw new Exception("Error updating order state");
+                    }
+
                 }
 
             }else{
@@ -597,12 +647,9 @@ class Order extends Controller
                 }
 
                 if($isSent){
-                    echo "
-                    <script>
-                        window.alert('feedback successfully !');
-                        window.location.href = '" . BASEURL . "manageOrders#Completed';
-                    </script>
-                    ";
+                    $data['redirectURL'] = BASEURL.'manageOrders';
+                    $data['message'] = "Your Feedback is sent Successfully";
+                    $this->view('successful', $data);
                 }else{
                     throw new Exception("Error updating order state");
                 }
@@ -617,6 +664,37 @@ class Order extends Controller
 
         }
     }
+
+    // check order state when the timer get expired
+    public function checkOrderState()
+    {
+        try{            
+            
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                $orderId = $_POST['orderId'];
+                $orderType = $_POST['orderType'];
+                
+                if($orderType == 'milestone'){
+                    $milestoneId = $_POST['milestoneId'];
+                }
+
+                $currentState = $this->OrderHandlerModel->getOrderState($orderId)['order_state'];
+                if($currentState == 'Requested' || $currentState == 'Accepted/Pending Payments'){
+                    $state = "Cancelled";
+                    $this->OrderHandlerModel->updateOrderState($orderId, $state);
+                }
+
+            }else{
+                $this->redirect("_505");
+            }
+
+
+        }catch(Exception $e){
+            echo 'An error occurred during checking order state: '.$e->getMessage();
+        }
+    }
+
 
 }
 ?>

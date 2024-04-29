@@ -84,9 +84,6 @@
                             <div class="jobProposalButtons">
                                 <?php if ($data['countAccepted']['count'] == 0) : ?>
                                 <div class="jobProposalAcc">
-                                    <a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>&amp;jobId=<?php echo $proposal['job_id']?>&amp;sellerId=<?php echo $proposal['seller_id']?>&amp;buyerId=<?php echo $proposal['buyer_id']?>">
-                                        <button>Accept</button>
-                                    </a>
                                 </div>
                                 <div class="jobProposalRej">
                                     <a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>">

@@ -6,6 +6,10 @@ if ($_SESSION['role'] == 'Buyer') {
 }
 ?>
 
+<?php 
+  $inquiries = $data['inquiries'];
+?>
+
 <div class="buyerHelpContainer">
 
   <!-- Send Request Modal -->
@@ -130,9 +134,17 @@ if ($_SESSION['role'] == 'Buyer') {
       <br>
       <br>
 
-      <p class="title">
-        Past <span class="dark-title">Customer Support Requests</span>
+      <p class="title" style="margin-top:32px;">
+        Past <span class="dark-title">Customer Support Requests & Complaints</span>
       </p>
+
+      <div class="inquiries" style="margin-top:32px;">
+
+        <?php foreach ($inquiries as $row){
+            include "components/inquiryCard.component.php";
+        }?>
+
+      </div>
 
 
     </div>
@@ -142,6 +154,23 @@ if ($_SESSION['role'] == 'Buyer') {
     </div>
   </div>
 </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 
 <script src="/skillsparq/public/assests/js/helpCenter.script.js"></script>
 <?php include "components/footer.component.php"; ?>

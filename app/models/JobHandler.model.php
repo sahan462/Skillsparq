@@ -5,7 +5,7 @@ class JobHandler extends database
     //add new job
     public function addNewJob($title,$description,$file,$category,$amount,$deadline, $publishMode, $flexible_amount, $currentDateTime,$clientId)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO Jobs 
+        $query = "INSERT INTO Jobs 
         (
             title, 
             description, 
@@ -21,13 +21,16 @@ class JobHandler extends database
         VALUES 
         (
             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-        )");
+        )";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
     
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-        
-        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, trim($description), $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
+        $description = trim($description);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $description, $file, $category, $deadline, $publishMode, $amount, $flexible_amount, $currentDateTime, $clientId);
         
         if (mysqli_stmt_execute($stmt)) {
             $jobId = mysqli_insert_id($GLOBALS['db']);
