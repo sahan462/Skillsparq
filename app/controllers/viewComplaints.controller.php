@@ -116,7 +116,7 @@ class viewComplaints extends Controller
                 </body>
                 </html>
                 ";
-                $this->sendVerificationMail('maniltenuka@gmail.com', $user_id, "Sorry You have been banned from skillsparq website", $body, "");
+                $this->sendVerificationMail($user_email, $user_id, "Sorry You have been banned from skillsparq website", $body, "");
                 $this->inquiryHandlerModel->blackListBuyer();
             } elseif (isset($_POST['payment_id'])) {
                 $payment_id = $_POST['payment_id'];
@@ -127,7 +127,8 @@ class viewComplaints extends Controller
                 $buyer_reason = $_POST['resolveBuyer'];
                 $viewComplaint = $_POST['complaint_id'];
                 $subject = "Solution regarding the complaint_id: $viewComplaint";
-                $this->sendVerificationMail('maniltenuka@gmail.com', 1, $subject, $buyer_reason, "");
+                $this->sendVerificationMail($seller_id, 1, $subject, $buyer_reason, "");
+                $this->sendVerificationMail($buyer_id, 1, $subject, $buyer_reason, "");
                 $this->inquiryHandlerModel->updateInquiry();
             }
         }

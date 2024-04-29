@@ -390,6 +390,7 @@
                 <input type="hidden" id="payment_id" name="payment_id" value="">
                 <input type="hidden" id="sendResponse" name="sendResponse" value="">
                 <input type="hidden" id="buyerID" name="buyerID" value="">
+
             </form>
 
             <form id="resolveComplaint" method="post" style="display: none;">
@@ -441,7 +442,7 @@
 
 
             function refundCSA() {
-                var responseCSA = document.getElementById("blacklistDuration").value;
+                var responseCSA = document.getElementById("responseCSA").value;
                 var confirmation = confirm('Are you sure that you want to send a refund request to the admin?');
                 var buyerID = <?php echo $row['buyer_id'] ?> // Ensure this doesn't break JavaScript if null
                 var paymentId = <?php echo $row['payment_id'] ?> // Ensure this doesn't break JavaScript if null
@@ -505,8 +506,8 @@
 
                 if (confirmation) {
 
-                    document.getElementById('seller_id_email').value = '<?php echo $row['seller_id']; ?>';
-                    document.getElementById('buyer_id_email').value = '<?php echo $row['buyer_id']; ?>';
+                    document.getElementById('seller_id_email').value = '<?php echo $row['seller_email']; ?>';
+                    document.getElementById('buyer_id_email').value = '<?php echo $row['buyer_email']; ?>';
                     document.getElementById('resolveBuyer').value = reasonBuyer;
                     document.getElementById('complaint_id').value = '<?php echo $row['inquiry_id']; ?>';
 
