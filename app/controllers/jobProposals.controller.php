@@ -56,9 +56,27 @@ class JobProposals extends Controller
         }else if($_SESSION['role'] === "Buyer"){
             $data['jobId'] = $_SESSION['jobId'];
             $data['buyerId'] = $_SESSION['userId'];
-            // $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+
             $data['jobDets'] = $this->JobHandlerModel->getJob($data['jobId']);
-            $data['proposal&SellerDets'] = $this->JobHandlerModel->getSellerDetailsOfJobProposals($data['jobId']);
+
+            if(isset($_GET['proposalType'])){
+                $proposalType = $_GET['proposalType'];
+                // get the jobProposals for view by filtering the proposal type
+                $data['filteredProps'] = $this->JobHandlerModel->JobProps($proposalType,$data['jobId']);
+            }else{
+                $proposalType = '';
+                $data['filteredProps'] = $this->JobHandlerModel->JobProps($proposalType,$data['jobId']);
+            }
+
+            // $data['proposalDets'] = $this->JobHandlerModel->getJobProposals($data["jobId"],$data['buyerId']);
+
+            // if($this->JobHandlerModel->getSellerDetailsOfJobProposals($data['jobId'])){
+            //     $data['proposal&SellerDets'] = $this->JobHandlerModel->getSellerDetailsOfJobProposals($data['jobId']);
+            // }else{
+            //     $data['proposal&SellerDets'] = '';
+            // }
+            
+
             $data['countAccepted'] = $this->JobHandlerModel->getCountAcceptedProps($data['jobId']);
             // show($data);
             $this->view('jobProposals',$data);

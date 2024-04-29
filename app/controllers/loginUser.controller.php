@@ -41,22 +41,25 @@ class LoginUser extends Controller
 
                 $row = $this->loginHandler->userCheck($email, $password);
 
-                if ($row['black_List'] == 1) {
-                    echo "<div style='font-family: Arial, sans-serif; color: red; font-size: 16px; margin: 20px; padding: 10px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px;'>
-                    " . htmlspecialchars($row['role']) . " ID: " . htmlspecialchars($row['user_id']) . " is blacklisted until " . htmlspecialchars($row['Black_Listed_Until']) . "
-                </div>";
-                } elseif ($row) {
+
+                if ($row) {
 
                     $_SESSION["userId"] = $row['user_id'];
                     $_SESSION["email"] = $row['user_email'];
                     $_SESSION['password'] = $row['user_password'];
                     $_SESSION['role'] = $role = $row['role'];
+                    $_SESSION['black_List'] = $row['black_List'];
 
 
                     $lastSeenUpdate = $this->profileHandler->lastSeenUpdate("online", $row['user_id']);
 
+                    $row = $this->loginHandler->userCheck($email, $password);
 
-                    if ($lastSeenUpdate) {
+                    if ($row['black_List'] == 1) {
+                        echo "<div style='font-family: Arial, sans-serif; color: red; font-size: 16px; margin: 20px; padding: 10px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px;'>
+                    " . htmlspecialchars($row['role']) . " ID: " . htmlspecialchars($row['user_id']) . " is blacklisted until " . htmlspecialchars($row['Black_Listed_Until']) . "
+                </div>";
+                    } elseif ($lastSeenUpdate) {
 
                         $profile = mysqli_fetch_assoc($this->profileHandler->getUserProfile($row['user_id']));
                         $_SESSION['firstName'] = $profile['first_name'];
