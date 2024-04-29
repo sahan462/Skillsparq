@@ -1,0 +1,4 @@
+updateGig =  alert - " Error updating the data " - Gig controller
+
+delete Gig = Fatal error: Uncaught Error: Call to undefined method GigHandler::availablePackageCount() in C:\xampp\htdocs\skillsparq\app\controllers\Gig.controller.php:388 Stack trace: #0 C:\xampp\htdocs\skillsparq\app\core\app.php(35): Gig->deleteGig() #1 C:\xampp\htdocs\skillsparq\public\index.php(6): App->__construct() #2 {main} thrown in C:\xampp\htdocs\skillsparq\app\controllers\Gig.controller.php on line 388
+

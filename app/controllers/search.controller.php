@@ -15,8 +15,7 @@ class Search extends Controller
         $this->ProfileHandlerModel = $this->model('ProfileHandler');
     }
 
-    public function index()
-    {
+    public function index(){
 
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
@@ -25,51 +24,67 @@ class Search extends Controller
         }else{
 
             $data['var'] = "Search";
-            $data['title'] = "SkillSparq";
+            $data['title'] = "SkillSparq";           
 
-            if(!isset($_GET[''])){
-                echo "
-                    <script>
-                        window.alert('Search not Found !!')
-                    </script>
-                ";
+
+            if($_SESSION['role'] === "Seller" || $_SESSION['role'] === "Buyer"|| $_SESSION['role'] === "CSA"|| $_SESSION['role'] === "csa"){
+                if(isset($_GET['searchIn']) && $_GET['searchIn'] != ''){
+                    $textToSearch = $_GET['searchIn'];
+                }
             }
             
-            if(isset($_GET['searchIn']) && $_GET['searchIn'] != ''){
-                $textToSearch = $_GET['searchIn'];
 
-            }
+            if($_SESSION['role'] === "Seller"){
 
-            if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
-                $textToSearch = $_GET['searchBuyerDash'];
-                $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
-                if(isset($getResult)){
-                    $data['SEARCH'] = $getResult;
-                    // show($data);
-                    $this->view('search',$data);
+                // search functionality for Seller Dashboard
+                if(empty($_GET['searchSellerDash'])){
+                    echo "
+                        <script>
+                            window.alert('Enter a valid Search keyword !!')
+                            window.location.href = '" . BASEURL . "sellerDashboard';
+                        </script>
+                    ";
+                }else if(!empty($_GET['searchSellerDash']) && $_GET['searchSellerDash'] != ''){
+                    $textToSearch = $_GET['searchSellerDash'];
+                    $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
+                    if(!empty($getResult)){
+                        $data['SEARCH'] = mysqli_fetch_assoc($getResult);
+                        show($data);
+                        $this->view('search',$data);
+                    }else{
+                        echo "
+                        <script>
+                            window.alert('Search not Found !!')
+                            window.location.href = '" . BASEURL . "sellerDashboard';
+                        </script>
+                    ";
+                    }
+                }
+
+            }else if($_SESSION['role'] === "Buyer"){
+                // search functionality for Buyer Dashboard Header input field (It's in the buyerHeader component.)
+                if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
+                    $textToSearch = $_GET['searchBuyerDash'];
+                    // $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
+                    $getResult = $this->GigHandlerModel->getRecentGigWithRelevantSellerDetsForSearch($textToSearch);
+                    if(!empty($getResult)){
+                        $data['SEARCH'] = $getResult;
+                        // show($data);
+                        $this->view('search',$data);
+                    }else{
+                        echo "
+                        <script>
+                            window.alert('Search not Found !!')
+                            window.location.href = '" . BASEURL . "buyerDashboard';
+                        </script>
+                    ";
+                    }
                 }
             }
 
-            if(!empty($_GET['searchSellerDash']) && $_GET['searchSellerDash'] != ''){
-                $textToSearch = $_GET['searchSellerDash'];
-                $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
-                if(isset($getResult)){
-                    $data['SEARCH'] = $getResult;
-                    // show($data);
-                    $this->view('search',$data);
-                }
-            }
-
-            
-            
-            $this->view('search', $data);
+            // $this->view('search', $data);
 
         }
     }
 
-
-    public function sellerDashBoardFilter()
-    {
-        
-    }
 }

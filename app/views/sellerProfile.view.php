@@ -573,18 +573,16 @@
                                     foreach($data['portfolioImgs'] as $Imgs){
                                 ?>
                             <div class="column" style="flex:50%;padding:0 4px">
-                                <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
-                                <!-- <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
-                                <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px"> -->
+                                <!-- <img src="../public/assests/images/sellerPortfolioImgs/<?php echo $Imgs['Image']?>" style="margin-top:8px;vertical-align:middle;width:250px;height:250px"> -->
                             </div>
                             <?php
                                     }
                                 }else{
                             ?>
                             <div class="column" style="flex:50%;padding:0 4px">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
-                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/slide3.webp" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/slider image 1.jpeg" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
+                                <img src="../public/assests/images/file.png" style="margin-top:8px;vertical-align:middle;width:250px;height:250px">
                             </div>
                             <?php
 
