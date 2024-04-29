@@ -13,6 +13,12 @@ body {
     margin-bottom:16px;
 }
 
+.displayJobContainer svg{
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
 .displayJobHeader{
     min-height: 24px;
     margin-top: 24px;
@@ -23,82 +29,84 @@ body {
     padding: 0 32px;
 }
 
+/* there are media queries directly manipulate this.*/
 .displayJobContent{
     padding: 0px 16px;
     display: flex;
+    gap: 24px;
     justify-content:normal;
     margin-top: 16px;
-    height: calc(100vh - 180px);
+    margin-bottom: 16px;
+    margin-right: 32px;
+    margin-left: 32px;
+    height: 100%!important;
 }
 
 .displayJobMajorDetails{
-    width: 75%;
-    padding: 8px 0px 8px 8px;
+    width: 70%;
+    padding: 8px 0px 0px 0px;
     margin-left: 8px;
     justify-content: center;
+    margin-bottom: 16px;
+    border: 2px solid #dadbdd;
 }
 
-.displayJobContainer svg{
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-}
-
-.verify{
-    color: #1dbf73;
-    stroke-width: 4;
-}
-
-.displayJobMajorDetailsCategory,.displayJobSendProposal{
-    width: 100%;
-    font-size: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    padding: 16px;
-    border-radius: 8px;
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsCategory{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 2px;
+    margin: 32px 0 32px  0;
+    color: #222325;
     background-color: #fff;
-    height: auto;
+    border: 1px solid #fff;
+    border-radius: 8px;
 }
-.displayJobCreatedTimeDetails{
-    font-size:16px;
-    margin-left:0px;
+
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsDescription,
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobCreatedTimeDetails,
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsDeadline,
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsNegotiability,
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsFile
+{
+    padding-left: 16px;
+    padding-right: 16px;
 }
-.displayJobCreatedTimeDetails,.displayJobMajorDetailsDescription,.displayJobMajorDetailsNegotiability,.displayJobMajorDetailsDeadline,.displayJobMajorDetailsFile{
+
+.displayJobMajorDetailsDescription,
+.displayJobCreatedTimeDetails,
+.displayJobMajorDetailsDeadline,
+.displayJobMajorDetailsNegotiability,
+.displayJobMajorDetailsFile
+{
     padding-top: 8px;
     padding-bottom: 8px;
     border-bottom-style:solid;
     border-bottom-width: 1.5px;
-    border-bottom-color: #1dbf73 ;
+    /* border-bottom-color: #dadbdd; */
+    border-bottom: #dadbdd 3px solid;
 }
+
+.displayJobContainer .displayJobContent .displayJobMajorDetails .displayJobMajorDetailsDescription{
+    display: block;
+}
+
+.displayJobCreatedTimeDetails{
+    font-size:16px;
+    margin-left:0px;
+}
+
 .displayJobMajorDetailsFile{
     padding-top: 8px;
     padding-bottom: 8px;
 }
-.displayJobSendProposalHeader{
-    padding: 16px 0px 16px 0px;
+
+.displayJobMajorDetails .displayJobBidAuction{
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
-.displayJobSendProposalContent{
-    font-size: 16px;
-    text-align: center;
-}
-.displayJobSendProposalButton{
-    padding: 8px 0px 8px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    /* height: 100vh; */
-}
-.sendProposalButton{
-    background-color:#31d65a;
-    border: none;
-    height: 40px;
-    width: 80px;
-    border-radius: 8px;
-}
-.proposalButtonLink{
-    text-decoration: none;
-    color: #fff;
-}
+
 .displayJobBidAuction{
     width: 100%;
     margin-top: 24px;
@@ -108,118 +116,57 @@ body {
     background-color: #fff;
     height: auto;
 }
+
 .auctionDetailHeader{
     font-size: 24px;
 }
+
 .auctionDetails{
     display: flex;
     align-items: center;
     justify-content:space-around;
     gap: 20%;
 }
+
 .auctionDetailContent{
     padding: 16px;
 }
-.auctionDetialsButton{
+
+.auctionStartTime,
+.auctionEndTime,
+.auctionStartingBid,
+.auctionCurrentMinBid,
+.auctionCurrentMaxBid{
+    padding-bottom: 8px;
+    margin-left: 8px;
+}
+
+.auctionStartingBid{
+    display: flex;
+}
+
+.auctionDetailsButton{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 30%;
 }
-.auctionStartTime,.auctionEndTime,.auctionStartingBid,.auctionCurrentMinBid,.auctionCurrentMaxBid{
-    padding-bottom: 8px;
-    margin-left: 8px;
-}
-.auctionEndTime{
-}
-.auctionStartingBid{
-    display: flex;
-}
-.jobViewBuyerDetailsSideBar {
-    width: 25%;
-    padding: 8px;
-    padding-left: 16px;
-    border-left: #1dbf73 solid 1.5px;
-}
-.jobViewBuyerDetialsAbout{
-    text-align: center;
-    margin-top:24px;
-    font-size: 24px;
-}
-.jobViewBuyerDetailsHeader{
-    padding: 16px 0px 16px 0px;
-}
-.jobViewBuyerDetialsVerification{
-    display: block;
-}
-.VerificationIcon,.paymentVerify,.phoneNumberVerify{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.jobViewBuyerRatings,.paymentVerify,.phoneNumberVerify{
-    padding: 8px 0px 8px 0px;
-}
-.verifyContent{
-    color: #5e6d55;
-    font-size:16px;
-}
-.jobViewBuyerDetialsRatings{
-    font-size: 16px;
-}
-.jobViewBuyerDetialsUnOrList{
-    padding-left: 0px;
+
+.sendProposalButton{
+    background-color:#31d65a;
+    border: none;
+    height: 40px;
+    width: 130px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.jobViewBuyerDetailsListItems{
-    padding: 8px 0px 8px 0px;
-    list-style-type: none;
-    text-align: center;
-    font-size: 16px;
+.proposalButtonLink{
+    text-decoration: none;
+    color: #fff;
 }
 
-@media only screen and (max-width: 900px) {
-    .displayJobContent{
-        display: flex;
-        flex-direction: column;
-        gap:16px;
-
-    }
-    .displayJobMajorDetails{
-        width: 100%;
-        padding: 10px;
-        padding-right: 20px;
-        justify-content: center;
-        order:1;
-    }
-    .jobViewBuyerDetailsSideBar {
-        width: 100%;
-        padding: 10px;
-        border-left: none;
-        order:2;
-    }
-    .jobViewBuyerDetialsAbout{
-        width: 100%;
-        border-left: #dadbdd solid 0px;
-        padding-left: 8px;
-    }
-    .displayJobCreatedTimeDetails{
-        margin-top: 8px;
-        gap: 10px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .displayJobMajorDetails{
-        order: 1;
-    }
-
-    .jobViewBuyerDetailsSideBar{
-        order: 2;
-    }
-}
-
-/* Modal Styles */
+/* Main Modal Style for Standard And Auction Mode Job */
 .overlayDisplayJob{
     z-index: 1;
     display: none;
@@ -233,6 +180,16 @@ body {
     align-items: center;
 
 }
+
+.confirmation{
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
 #overlayDisplayJobAuc{
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -245,15 +202,7 @@ body {
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-  }
-  
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
+
 #modalIdDisplayJobAuc {
     display: none;
     position: absolute;
@@ -272,53 +221,60 @@ body {
     width: auto;
     height: auto;
 }
-.confirmation{
-    display: none;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px;
-    text-align: center;
-}
-.modalDisplayJob .confirmation button {
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
+
+.modalDisplayJobTopic{
+    font-size: 24px;
+    text-align: left;
 }
 
-/* modalDisplayJob content */
-.modalDisplayJob{
-    /* display: none;
-    position: absolute;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto;
-    height: auto; */
-}
-.modalDisplayJob form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.modalDisplayJob input,.modalDisplayJob textarea{
-    margin-bottom: 16px;
-    border-radius: 8px;
-    padding: 8px;
-    height:25%;
-    cursor: auto;
-}
-.modalDisplayJob .type-1{
-    font-weight: 600;
-    font-size: 16px;
-    color: #404145;
-    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
 .modalDisplayJob .row{
     display: flex;
     flex-direction: column !important;
     text-align: left;;
 }
+
+.displayJobContent .displayJobMajorDetails .overlayDisplayJob .modalDisplayJob form .row .full-name{
+    margin-top: 8px;
+}
+
+.displayJobContainer .displayJobContent .displayJobMajorDetails .overlayDisplayJob .modalDisplayJob form .row .bidAmount input{
+    border-radius: 4px;
+    border: black 1px solid;
+}
+
+.displayJobContent .displayJobMajorDetails .overlayDisplayJob .modalDisplayJob form .descriptionJobProposal textarea{
+    width: 100%;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.displayJobContent .displayJobMajorDetails .overlayDisplayJob .modalDisplayJob form .descriptionJobProposal .topic{
+    margin-left:0px;
+}
+
+.modalDisplayJob .descriptionJobProposal .topic{
+    text-align-last: left;
+    margin: 8px;
+}
+
+
+.displayJobContainer .displayJobContent .displayJobMajorDetails .overlayDisplayJob .modalDisplayJob form .attachmentJobProposal .innerRow{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.modalDisplayJob .bidAmount{
+    display: flex;
+    gap: 24px;
+}
+.modalDisplayJob .bidAmount .text{
+    margin-top: 4px;
+    text-align: center;
+}
+.modalDisplayJob .bidAmount input{
+    align-items: center !important;
+    margin-bottom: 0px;
+}
+
 .modalDisplayJob .buttons, .confirmation .buttons{
     display: flex;
     justify-content: space-between;
@@ -344,23 +300,268 @@ body {
     background-color: rgb(241, 241, 241);
     font-weight: 600;
 }
-.modalDisplayJobTopic{
+
+/* modalDisplayJob content */
+.modalDisplayJob{
+    /* display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto; */
+}
+
+.modalDisplayJob .confirmation button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.modalDisplayJob form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.modalDisplayJob input,
+.modalDisplayJob textarea{
+    margin-bottom: 16px;
+    border-radius: 8px;
+    padding: 8px;
+    height:25%;
+    cursor: auto;
+}
+
+.modalDisplayJob .type-1{
+    font-weight: 600;
+    font-size: 16px;
+    color: #404145;
+    font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.displayJobMajorDetails .displayJobSendProposal{
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 0px;
+}
+
+.displayJobMajorDetailsCategory,.displayJobSendProposal{
+    width: 100%;
     font-size: 24px;
-    text-align: left;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: auto;
 }
-.modalDisplayJob .descriptionJobProposal .topic{
-    text-align-last: left;
-    margin: 8px;
+
+.displayJobSendProposalHeader{
+    padding: 16px 0px 16px 0px;
 }
-.modalDisplayJob .bidAmount{
+.displayJobSendProposalContent{
+    font-size: 16px;
+}
+.displayJobSendProposalButton{
+    padding: 8px 0px 8px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* height: 100vh; */
+}
+
+.jobViewBuyerDetailsSideBar {
+    width: 30%;
+    height:fit-content ;
+    padding: 8px;
+    padding-bottom: 0px;
+    border-left: #1dbf73 solid 1.5px;
+    margin-bottom: 16px;
+    border: #dadbdd 2px solid;
+    display: block;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.displayJobContent .jobViewBuyerDetailsSideBar .jobViewBuyerImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.displayJobContent .jobViewBuyerDetailsSideBar .jobViewBuyerImage img{
+    height: 160px;
+    width:160px;
+    margin-top: 24px;
+    border-radius: 100%;
+}
+
+.jobViewBuyerDetailsAbout{
+    text-align: center;
+    margin-top:24px;
+    font-size: 24px;
+}
+
+.jobViewBuyerDetailsHeader{
+    padding: 16px 0px 16px 0px;
+}
+
+.jobViewBuyerDetialsVerification{
+    display: block;
+}
+
+.VerificationIcon,.paymentVerify,.phoneNumberVerify{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.modalDisplayJob .bidAmount .text{
-    text-align: center;
+
+.verify{
+    color: #1dbf73;
+    stroke-width: 4;
 }
-.modalDisplayJob .bidAmount input{
-    align-items: center !important;
-    margin-bottom: 0px;
+
+.verifyContent{
+    color: #5e6d55;
+    font-size:16px;
+}
+
+.jobViewBuyerDetialsRatings{
+    font-size: 16px;
+}
+
+.jobViewBuyerRatings,.paymentVerify,.phoneNumberVerify{
+    padding: 8px 0px 8px 0px;
+}
+
+.jobViewBuyerDetialsUnOrList{
+    padding-left: 0px;
+}
+
+.jobViewBuyerDetailsListItems{
+    padding: 8px 0px 8px 0px;
+    list-style-type: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* file attachement stylings */
+.jobProposalInput{
+    display: none;
+}
+
+#pckgInnerAttachment{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+
+}
+
+@media only screen and (max-width: 400px) {
+    .displayJobContent .jobViewBuyerDetailsSideBar .jobViewBuyerImage img{
+        width:100px;
+        height: 100px;
+    }
+    .displayJobContent .jobViewBuyerDetailsSideBar .jobViewBuyerDetailsAbout{
+        padding-left: 0px!important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .displayJobMajorDetails{
+        width: 100%;
+        margin-left: 0px;
+    }
+    .displayJobContent{
+        display: block;
+    }
+    .jobViewBuyerDetailsSideBar{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .displayJobMajorDetails{
+        width: 100%!important;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .displayJobContent{
+        display: flex;
+        flex-direction: column;
+        gap:16px;
+
+    }
+    .displayJobMajorDetails{
+        width: 100%!important;
+        padding: 0px;
+        /* padding-right: 20px; */
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+        justify-content: center;
+        order:1;
+    }
+    .jobViewBuyerDetailsSideBar {
+        width: 100%;
+        padding: 10px;
+        order:2;
+    }
+    .jobViewBuyerDetailsAbout{
+        width: 100%;
+        border-left: #dadbdd solid 0px;
+        padding-left: 8px;
+    }
+    .displayJobCreatedTimeDetails{
+        margin-top: 8px;
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .displayJobMajorDetails{
+        order: 1;
+    }
+
+    .jobViewBuyerDetailsSideBar{
+        order: 2;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .displayJobContent .displayJobMajorDetails .displayJobBidAuction .auctionDetails{
+        display: block;
+    }
+}
+
+
+@media only screen and (max-width: 300px) {
+    .sendProposalButton{
+        width: 80px!important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .displayJobMajorDetails .sendProposalButton{
+        margin-bottom: 0px!important;
+    }
+}
+
+
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
 }

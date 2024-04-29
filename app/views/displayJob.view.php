@@ -17,6 +17,10 @@
         $givenStartingBid = substr($job['starting_bid'],1);
         // echo $givenStartingBid;
     }
+
+    // print_r($jobId);
+    // print_r($sellerId);
+    // print_r($buyerId);
 ?>
 
     <div class="displayJobContainer">
@@ -24,7 +28,18 @@
             <?php echo $job['title']?>
         </div>
         <div class="displayJobContent">
+                <?php
+                    if($_SESSION['role'] == "Buyer"){
+                ?>
+            <div class="displayJobMajorDetails" style="width:70%; /*margin-left:200px;margin-right: 200px;*/
+            ">
+                <?php
+                    }else{
+                ?>
             <div class="displayJobMajorDetails">
+                <?php
+                    }
+                ?>
                 <div class="displayJobMajorDetailsCategory">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
@@ -95,7 +110,7 @@
                                 Current Maximum Bid : <?php echo $job['current_highest_bid']?>
                             </div>
                         </div>
-                        <div class="auctionDetialsButton">
+                        <div class="auctionDetailsButton">
                             <?php 
                                 
                                 if(($data['job']['start_time'] >= date("Y-m-d H:i:s", time())) 
@@ -114,8 +129,8 @@
                             <?php
                                 }else{
                             ?>
-                            <button class = "sendProposalButton" style="cursor: pointer;">
-                                <a class="proposalButtonLink" onclick="openJobProposalModalAuc(this)">Send & Bid</a>
+                            <button class = "sendProposalButton" style="cursor: pointer;" onclick="openJobProposalModalAuc(this)">
+                                <a class="proposalButtonLink" >Send & Bid</a>
                             </button>
                             <?php
                                 }
@@ -125,7 +140,7 @@
                     </div>
                 </div>
 
-                    <!-- Modal 1 -->
+                    <!-- Main Modal for Auction Mode Job  -->
                     <div class="overlayDisplayJob" id="overlayDisplayJobAuc">
                         <div class="modalDisplayJob" id="modalIdDisplayJobAuc">
                             <div>
@@ -146,13 +161,29 @@
                                     </div>
 
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
-                                        <input name="attachment" type="file" id="inputFile" required>
+
+                                        <label for="attachment" class="type-1">Attachments:</label>
+                                        <label for="attachment" class="type-2">Kindly upload any attachments as a compressed ZIP file, if applicable.</label>
+
+                                        <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+
+                                            <label for="packageAttachementAuc" id="pckgInnerAttachment" style="margin-right: 4px;">Attachements</label>
+                                            <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+                                            <span class="fileNameJob" id="fileName"></span>
+
+                                        </div>
+
+                                        <input name="attachment" type="file" id="packageAttachementAuc" class="jobProposalInput" required onchange="displayFileName(0)">
+
                                     </div>
+
                                     <div class="bidAmount">
                                         <div class="text">
                                             Your Bidding Amount : 
                                         </div>
+
                                         <input type="number" id="bidValue" name="biddingAmnt" required>
+
                                         <input type="hidden" value="<?php echo $givenStartingBid?>" name="givenBid" id="startBidAmnt">
                                         <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
                                         <input type="hidden" value="<?php echo $buyerId?>" name="buyerId">
@@ -168,7 +199,7 @@
                         </div>
                     </div>
 
-                    <!-- Modal 2 -->
+                    <!-- Modal Cancellation of Auction Mode Job -->
                     <div class="overlayDisplayJob" id="cancelConfirmOverlayAuc">
                         <div class="confirmation" id="cancelConfirmAuc">
                             <p>Are you sure want to cancel?</p>
@@ -179,7 +210,7 @@
                         </div>
                     </div>
 
-                    <!-- Modal 3 -->
+                    <!-- Modal Confirmation of Auction Mode Job -->
                     <div class="overlayDisplayJob" id="sendConfirmaOverlayAuc">
                         <div class="confirmation" id="sendConfirmAuc">
                             <p>Are you sure want to continue?</p>
@@ -233,7 +264,22 @@
                                         <textarea name="descriptionJobProposal" id="descriptionJobProposalStd" cols="30" rows="10" required></textarea>
                                     </div>
                                     <div class="attachmentJobProposal" id="attachmentJobProposal">
-                                            <input name="attachment" type="file" id="inputFileStd" required>
+
+                                            <label for="attachment" class="type-1">Attachments:</label>
+                                            <label for="attachment" class="type-2">
+                                                Kindly upload any attachments as a compressed ZIP file, if applicable.
+                                            </label>
+                                            
+                                            <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+                                                <label for="packageAttachementStd" id="pckgInnerAttachment" style="margin-right: 4px;">Attachements</label>
+                                            
+                                                <div id="warningMessage" class="warningMessage" style="color: red; display: none;">
+                                                    Invalid file type. Only ZIP files are allowed.
+                                                </div>
+                                                <span class="fileNameJob" id="fileName"></span>
+                                            </div>
+
+                                            <input name="attachment" type="file" id="packageAttachementStd" required onchange="displayFileName(0)" class="jobProposalInput">
                                     </div>
                                     <div class="bidAmount">
                                         <input type="hidden" value="<?php echo $sellerId?>" name="sellerId">
@@ -274,20 +320,30 @@
 
             <?php }?>
             </div>
+            <?php
+                if($_SESSION['role'] == "Seller"){
+            ?>
+
             <div class="jobViewBuyerDetailsSideBar">
-                <div class="jobViewBuyerDetialsAbout">
+                <div class="jobViewBuyerImage">
+                    <?php
+                        if(!empty($data['buyerDetails']['profile_pic'])){
+                    ?>
+                    <img src="../public/assests/images/profilePictures/<?php echo $data['buyerDetails']['profile_pic']?>" alt="">
+                    <?php
+                        }else{
+                    ?>
+                    <img src="../public/assests/images/dummyprofile.jpg" alt="">
+                    <?php
+                        }
+                    ?>
+                    
+                </div>
+                <div class="jobViewBuyerDetailsAbout">
                     <div class="jobViewBuyerDetailsHeader">
                         About The Client
                     </div>
                 <div class="jobViewBuyerDetialsVerification">
-                    <div class="paymentVerify">
-                        <div class="VerificationIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/></svg>
-                        </div>
-                        <strong class="verifyContent">
-                            payment method verified
-                        </strong>
-                    </div>
                     <div class="phoneNumberVerify">
                         <div class="VerificationIcon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" class="verify"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M42.013 12.257a21.53 21.53 0 1 1-1.676-2.234"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M34.699 19.775a11.513 11.513 0 1 1-1.473-2.641"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M40.336 10.024L24 26.36l-4.72-4.72"/>
@@ -313,7 +369,8 @@
                 </div>
                 <div>
                     <ul class="jobViewBuyerDetialsUnOrList">
-                        <li class="jobViewBuyerDetailsListItems">Country
+                        <li class="jobViewBuyerDetailsListItems">
+                            Country
                             <div>
                                 <?php
                                     if(isset($data['buyerDetails']['country'])){
@@ -330,15 +387,24 @@
                         <li class="jobViewBuyerDetailsListItems">
                             Total Spendings : 
                         </li>
-                        <li class="jobViewBuyerDetailsListItems">
+                        <!-- <li class="jobViewBuyerDetailsListItems">
                             Average Hours Per Rate Paid : 
-                        </li>
+                        </li> -->
                         <li class="jobViewBuyerDetailsListItems">
                             Member Since : <?php echo $data['buyerDetails']['joined_date']?>
                         </li>
                     </ul>
                 </div>
             </div>
+
+            <?php
+                }else{
+            ?>
+            <!-- Buyer's Details aren't visible for the same buyer -->
+            <?php
+                }
+            ?>
+            
         </div>
     </div>
 </div>

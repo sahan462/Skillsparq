@@ -71,6 +71,7 @@ class JobHandler extends database
         }
     }
 
+    // Getting the details of the jobs for the seller dashboard.
     public function getJobsForSellerDashBoard(){
         $query = "SELECT * FROM Jobs ORDER BY created_at desc";
         
@@ -212,7 +213,7 @@ class JobHandler extends database
 
     public function getSellerDetailsOfJobProposals($jobId)
     {
-        $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = ? ORDER BY bid_amount ASC";
+        $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = ? ASC;";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
         
@@ -223,17 +224,58 @@ class JobHandler extends database
         mysqli_stmt_bind_param($stmt, "i", $jobId);
 
         if (mysqli_stmt_execute($stmt)) {
-            $result = $stmt->get_result();
+            return $stmt->get_result();
             // Fetch associative array
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-            return $data;
+            // $data = [];
+            // while ($row = $result->fetch_assoc()) {
+            //     $data[] = $row;
+            // }
+            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+    public function JobProps($proposalType,$jobId){
+
+        if(!empty($proposalType)){
+            
+            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id  WHERE j.STATUS ='$proposalType' AND j.JOB_ID = '$jobId';";
+        }else{
+            $query = "SELECT * FROM job_proposals j JOIN profile p ON j.seller_id = p.user_id WHERE j.job_id = '$jobId';";
+        }
+        
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // public function getPendingAndAcceptedFilteredProps($jobId)
+    // {
+    //     $retrieveQuery = "SELECT * FROM JOB_PROPOSALS WHERE (Status = 'Accepted' OR STATUS = 'pending') AND (job_id = ?);";
+
+    //     $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+    //     if (!$stmt) {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+
+    //     mysqli_stmt_bind_param($stmt, "i",$jobId);
+
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         return $stmt->get_result();
+    //     } else {
+    //         die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+    //     }
+    // }
 
     public function getCountAcceptedProps($jobId)
     {

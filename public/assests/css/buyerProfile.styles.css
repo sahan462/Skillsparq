@@ -323,6 +323,14 @@ input[type = "text"], select{
     width: 70%;
 }
 
+.buyerProfileContainer .user-contribution .description p{
+    display: -webkit-box!important;
+    -webkit-line-clamp: 3!important;
+    -webkit-box-orient: vertical!important;
+    text-align: justify!important;  
+    overflow: hidden!important
+}
+
 /*user-content-header*/
 .buyerProfileContainer .sub-container .user-contribution .user-content .header{
     display: flex;
@@ -431,6 +439,15 @@ input[type = "text"], select{
         align-items: center;
     }
 }
+
+@media only screen and (max-width: 1000px){
+    .buyerProfileContainer .sub-container .content .job-card .job-data-basic svg,
+    .buyerProfileContainer .sub-container .content .job-card .job-data-auction svg{
+        height: 16px;
+        width: 16px;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .buyerProfileContainer{
         height: 100%;

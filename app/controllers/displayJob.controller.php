@@ -16,9 +16,12 @@ class DisplayJob extends Controller
     public function index(){
 
         $data['title'] = "SkillSparq";
+
+        // buyer id and job id will be passed from the URL to this controller.
         $buyerId = $_GET['buyerId'];
         $jobId = $_GET['jobId'];
 
+        // 
         $buyerDetails = $this->displayProfileDetails($buyerId);
         $data['buyerDetails'] = $buyerDetails;
 
