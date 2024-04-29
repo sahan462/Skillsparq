@@ -47,6 +47,7 @@ class SharePoint extends Controller
 
             if(isset($_GET['milestoneId'])){
                 $milestoneId = $_GET['milestoneId'];
+                $data['milestoneId'] = $milestoneId;
             }else{
                 $milestoneId = null;
             }
@@ -61,7 +62,7 @@ class SharePoint extends Controller
             }else{
                 $this->redirect("_505");
             }
-            print_r($data);
+            // print_r($data);
             $this->view('sharePoint', $data);
         
         }
@@ -78,7 +79,7 @@ class SharePoint extends Controller
                 $orderType = $_POST['orderType'];
                 $orderId = $_POST['orderId'];
                 if(isset($_POST['milestoneId'])){
-                    $milestoneId = $_POST['$milestoneId'];
+                    $milestoneId = $_POST['milestoneId'];
                 }else{
                     $milestoneId = null;
                 }
@@ -118,12 +119,15 @@ class SharePoint extends Controller
                     $isInserted = $this->OrderHandlerModel->uploadDelivery($orderType, $orderId, $milestoneId, $deliveryDescription, $uniqueAttachmentName, $currentDateTime);
                     if($isInserted){
                         if($orderType == 'milestone'){
-                            echo "
-                            <script>
-                                alert('deliver sent successfully');
-                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
-                            </script>
-                        ";
+                            $data['redirectURL'] = BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId;
+                            $data['message'] = "Deliver Sent Successfully";
+                            $this->view('successful', $data);
+                        //     echo "
+                        //     <script>
+                        //         alert('deliver sent successfully');
+                        //         window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
+                        //     </script>
+                        // ";
                         }else{
                             echo "
                             <script>

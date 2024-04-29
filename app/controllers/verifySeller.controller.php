@@ -53,7 +53,7 @@ class VerifySeller extends Controller
 
                 echo "
                     <script>
-                        alert('Message is Sent');
+                        alert('OTP is Sent');
                     </script>
                 ";
                 $this->view('verifySeller', $data);

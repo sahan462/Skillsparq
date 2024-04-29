@@ -63,6 +63,11 @@ class Order extends Controller
             // get order, buyer and seller information
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
             
+            if($orderType == 'milestone'){
+                $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
+                $data['currentMilestone'] = $currentMilestone->fetch_assoc();
+            }
+            // print_r($data['currentMilestone']);
             // print_r($data);
             $order = $data['order'];
             $chatId = $order['chat_id'];
@@ -77,7 +82,6 @@ class Order extends Controller
         }
         
     }
-
 
     //create a package order
     public function createPackageOrder() 
@@ -113,7 +117,7 @@ class Order extends Controller
                 $this->view("505");
             }
 
-            //create directory for the new attachment
+            //create directory for the new order
             $orderFileName = "Order" . "_" . $orderId;
             $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
             mkdir($targetDir, 0777, true);
@@ -128,10 +132,10 @@ class Order extends Controller
 
             //handle success of failure
             if($upload || $chatId){
-                if(isset($_SESSION['email'])){
+                if(isset($_SESSION['sellerEmail'])){
     
                     //notify the seller using an email
-                    $sellerEmail = $this->getSession('email');
+                    $sellerEmail = $this->getSession('sellerEmail');
                     
                     $newOrderRequestEmail = `
                     
@@ -176,7 +180,7 @@ class Order extends Controller
                     <body>
                     <div class="container">
                         <h1>New Order Request</h1>
-                        <p>Hello [Seller Name],</p>
+                        <p>Hello </p>
                         <p>You have received a new order request from a buyer. Please review the details and take necessary action.</p>
                         <p><strong>Order Details:</strong></p>
                         <ul>
@@ -189,7 +193,7 @@ class Order extends Controller
                         <p>If you have any questions or need assistance, feel free to contact our support team.</p>
                         <a href="[Your Website URL]" class="button">Login to Your Account</a>
                         <p>Thank you,</p>
-                        <p>[Your Company Name]</p>
+                        <p>SKILLSPARQ</p>
                     </div>
                     </body>
                     </html>
@@ -198,18 +202,15 @@ class Order extends Controller
                 }
     
                 //send notification to seller
-                // $this->sendVerificationMail();
-    
+                // $this->sendVerificationMail($sellerEmail, );
+                
 
                 // update order history
-                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'order request is sent');
+                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'Order Request is Sent');
                 if($isHistoryUpdated){
-                    echo "
-                    <script>
-                        alert('Order created successfully');
-                        window.location.href = '" . BASEURL . 'manageOrders' . "';
-                    </script>
-                    ";
+                    $data['redirectURL'] = BASEURL.'manageOrders';
+                    $data['message'] = "Order Created Successfully";
+                    $this->view('successful', $data);
                 }else{
                     throw new Exception("Update order history failed");
                 }
@@ -235,49 +236,98 @@ class Order extends Controller
     public function createMilestoneOrder()
     {
 
-        $milestones = $_POST['milestone'];
-        $subjects = $milestones['subject'];
-        $revisions = $milestones['revisions'];
-        $deliveryQuantities = $milestones['deliveryQuantity'];
-        $deliveryTimePeriodTypes = $milestones['deliveryTimePeriodType'];
-        $prices = $milestones['price'];
-        $attadchements = $milestones['attachment'];
-        $descriptions = $milestones['description'];
+        try{
 
-        print_r($milestones);
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        print_r($_FILES);
+            // Check if the "milestone" array is set in the POST data
+            if (isset($_POST['milestone'])) {
 
-        for ($i = 0; $i < count($subjects); $i++) {
+                $orderState = 'Requested';
+                $orderType = 'milestone';
+                $sellerId = $_POST['sellerId'];
+                $buyerId = $_POST['buyerId'];
+                $gigId = $_POST['gigId'];
+                $currentDateTime = date('Y-m-d H:i:s');
+                // print_r($_POST);
+                $orderId = $this->OrderHandlerModel->createMilestoneOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $gigId);
 
-            echo "Milestone: $i <br>";
+                if($orderId){
 
-            $subject = $subjects[$i];
-            $revision = $revisions[$i];
-            $deliveryQuantity = $deliveryQuantities[$i];
-            $deliveryTimePeriodType = $deliveryTimePeriodTypes[$i];
-            $price = $prices[$i];
-            $attchement = $attadchements[$i];
-            $description = $descriptions[$i];
+                    //get chat
+                    if($orderId){
+                        $chatId = $this->ChatHandlerModel->createNewChat('order', $orderId);
+                    }else{
+                        $this->view("505");
+                    }
 
-            print_r($subject);
-            echo "<br>";
-            print_r($revision);
-            echo "<br>";
-            print_r($deliveryQuantity);
-            echo "<br>";
-            print_r($deliveryTimePeriodType);
-            echo "<br>";
-            print_r($price);
-            echo "<br>";
-            print_r($description);
-            echo "<br>";
+                    $orderFileName = "Order" . "_" . $orderId;
+                    $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/";
+                    mkdir($targetDir, 0777, true);
+                    
+                    // update order history
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'Order Request is Sent');
+                    if(!$isHistoryUpdated){
+                        throw new Exception("Update order history failed");
+                    }
+
+                }else{
+                    throw new Exception("Error creating milestone order");
+                }
+
+                $targetDir = "../public/assests/zipFiles/orderFiles/$orderFileName/milestoneAttachments/";
+                mkdir($targetDir, 0777, true);
+
+                // Loop through each milestone
+                foreach ($_POST['milestone']['subject'] as $index => $milestone) {
+
+                    // Get milestone details
+                    $subject = $_POST['milestone']['subject'][$index];
+                    $revisions = $_POST['milestone']['revisions'][$index];
+                    $deliveryQuantity = $_POST['milestone']['deliveryQuantity'][$index];
+                    $deliveryTimePeriodType = $_POST['milestone']['deliveryTimePeriodType'][$index];
+                    $price = $_POST['milestone']['price'][$index];
+                    $description = $_POST['milestone']['description'][$index];
+
+
+                    // Check if there's an attachment for this milestone
+                    if ($_FILES['milestone']['error']['attachment'][$index] == UPLOAD_ERR_OK) {
+                        $tmpName = $_FILES['milestone']['tmp_name']['attachment'][$index];
+                        $fileName = $_FILES['milestone']['name']['attachment'][$index];
+                        $uploadPath = $targetDir . $fileName;
+                        move_uploaded_file($tmpName, $uploadPath);
+
+                        $attachmentName = $fileName;
+
+                    } else {
+                        $attachmentName = "";
+                    }
+
+                    $milestone = $this->OrderHandlerModel->addNewMilestone($subject, $revisions, $deliveryQuantity, $deliveryTimePeriodType, $price, $description, $attachmentName, $orderId);
+                    if(!$milestone){
+                        throw new Exception("add new milestone failed");
+                    }
+
+                }
+
+                    $data['redirectURL'] = BASEURL.'manageOrders';
+                    $data['message'] = "Order Created Successfully";
+                    $this->view('successful', $data);
+
+                return true;
+
+            } else {
+                // Handle the case where no milestone data is found in the POST data
+
+                throw new Exception('no milestone data found');
+
+            }
+
+        }catch(Exception $e){
+
+            echo 'An error occurred during creation of milestone order: ' . $e->getMessage();
 
         }
         
-    }
+}
 
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId)
@@ -296,14 +346,11 @@ class Order extends Controller
         if($chatId){
 
             // update order history
-            $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'order request is sent');
+            $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, 'Order Request is Sent');
             if($isHistoryUpdated){
-                echo "
-                <script>
-                    alert('Order created successfully');
-                    window.location.href = '" . BASEURL . 'manageOrders' . "';
-                </script>
-                ";
+                $data['redirectURL'] = BASEURL.'manageOrders';
+                $data['message'] = "Order Created Successfully";
+                $this->view('successful', $data);
             }else{
                 throw new Exception("Update order history failed");
             }
@@ -338,7 +385,7 @@ class Order extends Controller
                 if($isUpdatedOrderState){
     
                     // update order history
-                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentOrderState . " to Cancelled");
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentOrderState . " to Cancelled");
                     if($isHistoryUpdated){
                         return $isUpdatedOrderState;
                     }else{
@@ -372,13 +419,24 @@ class Order extends Controller
                 $orderId = $_POST['orderId'];
                 $currentOrderState = $_POST['currentState'];
                 $currentDateTime = Date('Y-m-d H:i:s');
+                $orderType = $_POST['orderType'];
+                if($orderType == 'milestone'){
+                    $milestoneId = $_POST['milestoneId'];
+                }
                 $state = "Accepted/Pending Payments";
                 
                 $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
         
                 if($isUpdatedOrderState){
+
+                    //update milestone state
+                    $milestoneUpdate = $this->OrderHandlerModel->updateMileStoneState($milestoneId, $state);
+                    if(!$milestoneUpdate){
+                        throw new Exception('milestone state update failure');
+                    }
+
                     // update order history
-                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentOrderState . " to Accepted/Pending Payments");
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Change from " . $currentOrderState . " to Accepted/Pending Payments");
                     if($isHistoryUpdated){
                         return $isUpdatedOrderState;
                     }else{
@@ -411,7 +469,10 @@ class Order extends Controller
             // $statusCode = $_POST['status_code'];
             // $md5sig = $_POST['md5sig'];
             $currentDateTime = date('Y-m-d H:i:s');
-
+            $orderType = $_POST['order_type'];
+            if($orderType == 'milestone'){
+                $milestoneId = $_POST['address'];
+            }
     
             // $merchant_secret = 'MzE1ODIzOTcyNDE3ODQ1NjA3MDkxNTI2MTU2OTMyMjE4MDMzMjI4MQ=='; // Replace with your Merchant Secret
     
@@ -434,8 +495,15 @@ class Order extends Controller
             $isUpdatedOrderState = $this->OrderHandlerModel->updateOrderState($orderId, $state);
     
             if($isUpdatedOrderState){
+
+                //update milestone state
+                $milestoneUpdate = $this->OrderHandlerModel->updateMileStoneState($milestoneId, $state);
+                if(!$milestoneUpdate){
+                    throw new Exception('milestone state update failure');
+                }
+
                 // update order history
-                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from Accepted/Pending Payments to Running");
+                $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from Accepted/Pending Payments to Running");
                 if($isHistoryUpdated){
                     echo "
                     <script>
@@ -483,7 +551,7 @@ class Order extends Controller
 
                 if($isUpdated){
                     // update order history
-                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "order state change from " . $currentState. " to Completed");
+                    $isHistoryUpdated = $this->OrderHandlerModel->updateOrderHistory($orderId, $currentDateTime, "Order State Changed from " . $currentState. " to Completed");
                     if($isHistoryUpdated){
                     echo "
                     <script>

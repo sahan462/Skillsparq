@@ -92,6 +92,10 @@ print_r($packages);
                 <div id="inputContainer">
                     <div id="animation" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;"></div>
                 </div>
+                
+                <input type="hidden" name="sellerId" value="<?php echo $gig['seller_id']?>">
+                <input type="hidden" name="buyerId" value="<?php echo $_SESSION['userId']?>">
+                <input type="hidden" name="gigId" value="<?php echo $gig['gig_id']?>">
 
                 <div class="buttons">
                     <button type="button" onclick="confirmAction('cancel')">Cancel Request</button>
@@ -237,7 +241,9 @@ print_r($packages);
                                             <?php echo $row['package_name']; ?>
                                         </button>
                                     <?php } else { ?>
-                                        <button class="tablinks" onclick="openCity(event, '<?php echo $row['package_id']; ?>')"></button>
+                                        <button class="tablinks" onclick="openCity(event, '<?php echo $row['package_id']; ?>')">
+                                            <?php echo $row['package_name']; ?>
+                                        </button>
                                     <?php } ?>
 
                                 <?php } ?>
