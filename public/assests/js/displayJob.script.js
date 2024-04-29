@@ -151,30 +151,3 @@ function displayFileName(index)
     fileNameSpan.textContent = "";
   }
 }
-
-
-function displayFileName(index) 
-{
-  var fileNameSpan = document.getElementsByClassName("fileNameJob")[index];
-  var input = document.getElementsByClassName("jobProposalInput")[index];
-  var files = input.files;
-
-  if (files.length > 0) {
-    var file = input.files[0];
-
-    if (file) {
-      var allowedExtensions = ["zip"];
-      var fileExtension = file.name.split(".").pop().toLowerCase();
-
-      if (allowedExtensions.indexOf(fileExtension) !== -1) {
-        fileNameSpan.textContent = files[0].name;
-        document.getElementsByClassName("warningMessage")[index].style.display = "none";
-      } else {
-        document.getElementsByClassName("warningMessage")[index].style.display = "block";
-        input.value = "";
-      }
-    }
-  } else {
-    fileNameSpan.textContent = "";
-  }
-}
