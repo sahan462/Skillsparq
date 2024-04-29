@@ -52,6 +52,7 @@ class OrderHandler extends database
         }
 
         mysqli_stmt_bind_param($stmt, "issiis", $orderId, $requestDescription, $attachement, $gigId, $packageId, $deadline);
+
         if (mysqli_stmt_execute($stmt)) {
             $stmt->close();
         } else {
@@ -274,7 +275,6 @@ class OrderHandler extends database
             WHERE orders.buyer_id = ? and orders.order_type = 'milestone'
             ORDER BY order_id DESC
             ";
-
         } else {
 
             $query = "SELECT * 
@@ -350,7 +350,6 @@ class OrderHandler extends database
             WHERE user_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             $query = "SELECT * 
@@ -530,7 +529,6 @@ class OrderHandler extends database
 
     public function sendNotification()
     {
-
     }
 
     //create new payment
@@ -545,7 +543,7 @@ class OrderHandler extends database
             amount,
             payment_date,
             payment_description,
-            payment_state,
+            payment_status,
             order_id
         ) 
         VALUES 
@@ -806,8 +804,8 @@ class OrderHandler extends database
         }
     }
 
-  
-  public function getOrderSeller($user_id)
+
+    public function getOrderSeller($user_id)
     {
         $query = "SELECT 
             o.*,  
@@ -837,7 +835,7 @@ class OrderHandler extends database
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
         // Execute the query and fetch the results
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy $sortDirection"; // Removed the comma before FROM
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -883,4 +881,78 @@ class OrderHandler extends database
     }
 
 
+    public function viewOrder($order_id)
+    {
+        $query = "SELECT 
+        o.*,
+        p.*
+        
+    FROM orders o
+    JOIN payments p ON o.order_id = p.order_id
+   
+    
+   
+    WHERE o.order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    public function viewOrderPackage($order_id)
+    {
+        // Prepare the query using placeholders for parameters
+        $query = "SELECT p.*,g.* FROM package_orders p Join gigs g on g.gig_id = p.gig_id WHERE p.package_order_id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL prepare error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        // Bind the parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        // Execute the statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Get the result set from the prepared statement
+            return mysqli_stmt_get_result($stmt);
+        } else {
+            die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function viewJob($order_id)
+    {
+        // Prepare the query using placeholders for parameters
+        $query = "SELECT p.* FROM package_orders p WHERE p.package_order_id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL prepare error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        // Bind the parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+
+        // Execute the statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Get the result set from the prepared statement
+            return mysqli_stmt_get_result($stmt);
+        } else {
+            die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }

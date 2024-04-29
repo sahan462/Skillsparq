@@ -98,7 +98,16 @@
                 <li>Inquiry_ID <span><?php echo $row['inquiry_id']; ?></span></li>
                 <li>Subject: <span><?php echo $row['subject']; ?></span></li>
                 <li>Description: <span><?php echo $row['description']; ?></span></li>
-                <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
+                <li>Attachments:
+                    <span>
+                        <?php echo htmlspecialchars($row['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
+                        <a href="./assets/zipFiles/orderFiles/Order_23/deliveries/<?php echo urlencode($row['attachements']); ?>" download>
+                            <i class="fa fa-download"></i>
+
+                        </a>
+                    </span>
+                </li>
+
                 <li>Response: <span><?php echo $row['response']; ?></span></li>
                 <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
                 <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
@@ -106,7 +115,7 @@
         <?php
         }
         ?>
-        <div class="block">
+        <div class=" block">
             <div>
 
 

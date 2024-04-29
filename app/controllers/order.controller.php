@@ -69,6 +69,7 @@ class Order extends Controller
             }
             // print_r($data['currentMilestone']);
             // print_r($data);
+
             $order = $data['order'];
             $chatId = $order['chat_id'];
 
@@ -332,6 +333,7 @@ class Order extends Controller
     // method to create a job order for successfully accepted job proposal
     public function createJobOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId)
     {
+
         $currentDateTime = Date('Y-m-d H:i:s');
         // create order
         $orderId = $this->OrderHandlerModel->createJobOrderRecord($orderState,$orderType,$currentDateTime,$buyerId,$sellerId);
