@@ -24,7 +24,12 @@ class BuyerProfile extends Controller
             $data['var'] = "Buyer Profile Page";
             $data['title'] = "SkillSparq";
             $data["activeStatus"] =  "display: block;";
-            $userId = $_SESSION["userId"];
+
+            if(isset($_GET['userId'])){
+                $userId = $_GET['userId'];
+            }else{
+                $userId = $_SESSION["userId"];
+            }
 
             if(isset($_GET['mode']) == 'public'){
                 $data['mode'] = 'public';

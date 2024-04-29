@@ -49,6 +49,10 @@ class LoginSeller extends Controller
                     $_SESSION['lastName'] = $row['last_name'];
                     $_SESSION['userName'] = $row['user_name'];
                     $_SESSION['status'] = "online";
+                    if ($row['email'] !== null) {
+                        $_SESSION['sellerEmail'] = $row['email'];
+                    }
+                    
 
                     $profile = mysqli_fetch_assoc($this->profileHandler->getProfPic($row['user_id']));
                     $_SESSION['profilePicture'] = $profile['profile_pic'];

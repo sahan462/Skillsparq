@@ -158,8 +158,8 @@ class Controller
 
         $api_instance = new NotifyLk\Api\SmsApi();
 
-        $user_id = "27002";
-        $api_key = "buY7KcksNwDdJzEJvCZL";
+        $user_id = "27052";
+        $api_key = "anNIZIPPnBOXXouhZw7f";
         $message = $body;
         $to = $receiverPhoneNumber;
         $sender_id = "NotifyDEMO";

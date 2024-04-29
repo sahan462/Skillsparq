@@ -20,40 +20,21 @@ class BuyerDashboard extends Controller
             $data['var'] = "Home Page";
             $data['title'] = "SkillSparq";
 
-            //get recently added Gigs
-            $recentGigs = $this->GigHandlerModel->getRecentGigs();
-
-            if ($recentGigs) {
-
-                $data['recentGigs'] = $recentGigs;
-                
-            } else {
-                echo "<script>
-                alert('getAllJobs function is not Accessible!')
-                </script>";
-            }
-            
-            // $data['recentGigs'] = $recentGigs;
-            
-            // Get the Seller Gig along with the Relevant Seller Detais.
             $recentAllGigsWithDets = $this->GigHandlerModel->getRecentGigWithRelevantSellerDets();
     
             if ($recentAllGigsWithDets) {
-
-                $data['ALLABOUTRECENTGIGS'] = $recentAllGigsWithDets;
-                
+                $data['recentGigs'] = $recentAllGigsWithDets;
             } else {
                 echo "<script>alert('getAllJobs function is not Accessible!')</script>";
             }
-            
-            //get top rated Gigs
-            
-
-
-            //get newbie gigs
-            
-
-
+                        
+            $newBieGigs = $this->GigHandlerModel->getNewBieGigs();
+            if ($recentAllGigsWithDets) {
+                $data['newBieGigs'] = $newBieGigs;
+            } else {
+                echo "<script>alert('getNewBieGigs function is not Accessible!')</script>";
+            }
+                        
             $this->view('buyerdashboard', $data);
 
         }
