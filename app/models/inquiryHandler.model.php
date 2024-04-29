@@ -422,20 +422,33 @@ class InquiryHandler extends database
     // update refunds
     public function updateRefund($payment_id, $response)
     {
+        // First, update the refunds table
         $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE refunds SET refund_cause= ?, refund_state = 'refunded' WHERE payment_id = ?");
-
         if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement: " . mysqli_error($GLOBALS['db']));
+            throw new Exception("Failed to create prepared statement for refunds: " . mysqli_error($GLOBALS['db']));
         }
 
         mysqli_stmt_bind_param($stmt, "si", $response, $payment_id);
-
         if (!mysqli_stmt_execute($stmt)) {
-            throw new Exception("Error updating data: " . mysqli_stmt_error($stmt));
+            mysqli_stmt_close($stmt);  // Ensure the statement is closed before throwing the exception
+            throw new Exception("Error updating refunds data: " . mysqli_stmt_error($stmt));
+        }
+        mysqli_stmt_close($stmt);
+
+        // Next, update the payment table
+        $stmt = mysqli_prepare($GLOBALS['db'], "UPDATE payments SET payment_state = 'refunded' WHERE payment_id = ?");
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement for payment: " . mysqli_error($GLOBALS['db']));
         }
 
+        mysqli_stmt_bind_param($stmt, "i", $payment_id);
+        if (!mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);  // Ensure the statement is closed before throwing the exception
+            throw new Exception("Error updating payment data: " . mysqli_stmt_error($stmt));
+        }
         mysqli_stmt_close($stmt);
     }
+
 
     // read inquiries
     public function getInquiries()

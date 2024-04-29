@@ -14,11 +14,12 @@
                     <span class="link-name">Dashboard</span>
                 </a></li>
             <li><a href="generateReport">
-                    <i class="uil uil-files-landscapes"></i>
+                    <i class="uil uil-chart"></i>
                     <span class="link-name">Generate Report</span>
                 </a></li>
             <li><a href="IssueRefunds">
-                    <i class="uil uil-chart"></i>
+                    <i class="uil uil-files-landscapes"></i>
+
                     <span class="link-name">Issue Refunds</span>
                 </a></li>
             <li><a href="adminManageCSA">
@@ -27,7 +28,7 @@
                 </a></li>
             <li><a href="adminviewDetails">
                     <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
+                    <span class="link-name">View Details</span>
                 </a></li>
             <li><a href="#">
                     <i class="uil uil-share"></i>

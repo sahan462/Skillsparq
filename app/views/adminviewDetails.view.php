@@ -18,7 +18,7 @@
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-
+                View Details
             </div>
 
             <button onclick="user()">user</button>

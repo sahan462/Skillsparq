@@ -3,7 +3,7 @@ class OrderHandler extends database
 {
 
     //create new package order
-    public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId ,$deadline)
+    public function createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachement, $gigId, $packageId, $deadline)
     {
         $query = "INSERT INTO Orders 
         (
@@ -82,7 +82,6 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
-
     }
 
     // retrieve package orders
@@ -101,7 +100,6 @@ class OrderHandler extends database
             WHERE orders.buyer_id = ? 
             ORDER BY order_id DESC
             ";
-
         } else {
 
             // create the logic with seller id
@@ -191,13 +189,14 @@ class OrderHandler extends database
     }
 
     // getCurrentMilestone
-    public function getCurrentMilestone($orderId){
+    public function getCurrentMilestone($orderId)
+    {
         // Prepare the SQL query
         $query = "SELECT * FROM milestones WHERE milestone_order_id = ? AND milestone_state != 'Completed' ORDER BY milestone_id LIMIT 1";
-    
+
         // Prepare the statement
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
         // Bind parameters
         mysqli_stmt_bind_param($stmt, "i", $orderId);
 
@@ -207,7 +206,6 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
-    
     }
 
     // update milestone state
@@ -236,18 +234,18 @@ class OrderHandler extends database
 
         $query = "INSERT INTO milestones (subject, no_of_revisions, amount_of_delivery_time, time_category, milestone_price, attachements, milestone_description, milestone_order_id) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        
+
         // Prepare the statement
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
         // Check for errors in preparing the statement
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
-    
+
         // Bind parameters to the statement
         mysqli_stmt_bind_param($stmt, "siissssi", $subject, $revisions, $deliveryQuantity, $deliveryTimePeriodType, $price, $attachmentName, $description, $orderId);
-    
+
         // Execute the statement
         if (mysqli_stmt_execute($stmt)) {
             // Close the statement
@@ -258,10 +256,9 @@ class OrderHandler extends database
         }
 
         return true;
-
     }
-    
-   
+
+
     // retrieve milestone orders
     public function getMilestoneOrders($userId, $userRole)
     {
@@ -285,7 +282,6 @@ class OrderHandler extends database
             WHERE orders.seller_id = ? and orders.order_type = 'milestone'
             ORDER BY order_id DESC
             ";
-
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -385,7 +381,6 @@ class OrderHandler extends database
         if ($userRole == 'Buyer') {
 
             $query = "SELECT * FROM orders inner join profile on orders.seller_id = profile.user_id WHERE buyer_id = ? order by order_id desc";
-
         } else {
 
             $query = "SELECT * FROM orders inner join profile on orders.buyer_id = profile.user_id WHERE seller_id = ? order by order_id desc";
@@ -415,15 +410,12 @@ class OrderHandler extends database
         if ($orderType == 'package') {
 
             $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id inner join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'milestone') {
 
             $query = "SELECT * FROM orders inner join milestone_orders on orders.order_id = milestone_orders.milestone_order_id inner join gigs on milestone_orders.gig_id = gigs.gig_id inner join chats on orders.order_id = chats.order_id where orders.order_id = ?";
-
         } else if ($orderType == 'job') {
 
             $query = "SELECT * FROM orders inner join job_orders ON orders.order_id = job_orders.job_order_id inner join jobs on jobs.job_id = job_orders.job_id inner join chats on chats.order_id = orders.order_id WHERE ORDERS.ORDER_ID = ?";
-            
         } else {
 
             throw new Exception("Invalid Order Type: " . $orderType);
@@ -851,7 +843,7 @@ class OrderHandler extends database
     }
 
     // update order history
-    public function updateOrderHistory($orderId, $date, $description) 
+    public function updateOrderHistory($orderId, $date, $description)
     {
 
         $query = "INSERT INTO order_history  
@@ -877,7 +869,6 @@ class OrderHandler extends database
         }
 
         return true;
-
     }
 
 
