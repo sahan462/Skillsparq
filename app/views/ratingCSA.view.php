@@ -22,7 +22,13 @@
 </head>
 
 <body>
-    <?php include "components/helpCenter.component.php"; ?>
+
+    <?php
+    if ($_SESSION['role'] == 'csa') {
+        include "components/helpCenter.component.php";
+    } else {
+        include "components/adminDashboard.component.php";
+    } ?>
     <?php
     $rowsPerPage = 5; // Number of rows per page
     $totalRows = mysqli_num_rows($feedbacks); // Total number of rows
