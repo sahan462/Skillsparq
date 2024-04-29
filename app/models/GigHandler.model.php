@@ -555,26 +555,31 @@ class GigHandler extends database
         }
     }
 
-    public function deletePackages($gigId)
-    {
-        $query = "DELETE FROM packages WHERE gig_id = ?;";
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    // ---------------------------------- Functions for Delete a Gig -----------------------------------
 
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
+
+    // Getting the available count of packages.
+    public function getAvailablePackageCount($gigId)
+    {
+        $retrieveQuery = "SELECT COUNT(*) AS count FROM packages  WHERE gig_id=?;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
-        mysqli_stmt_bind_param($stmt, "i", $gigId);
+        mysqli_stmt_bind_param($stmt, "i",$gigId);
 
         if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_close($stmt);
-            return true;
+            return $stmt->get_result()->fetch_assoc();
         } else {
-            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 
-    public function deletePackageOrders($gigId)
+    //  deleting packages one by one in a loop in controller (Gig)
+    public function deletePackages($gigId)
     {
         $query = "DELETE FROM packages WHERE gig_id = ?;";
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -612,6 +617,29 @@ class GigHandler extends database
             return false;
         }
     }
+
+    // -----------------------------------------------
+
+    public function deletePackageOrders($gigId)
+    {
+        $query = "DELETE FROM packages WHERE gig_id = ?;";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    
 
     public function noOfGigs()
     {

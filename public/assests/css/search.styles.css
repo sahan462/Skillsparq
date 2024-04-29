@@ -39,6 +39,8 @@ body{
 
 /*dashboard-content*/
 .SkillsparqSearchDashboardContainer{
+    padding: 0 24px 0 24px;
+    gap: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +53,7 @@ body{
     width: 65%;
     padding: 0px 32px;
     display: flex;
-    flex-wrap: wrap!important;
+    /* flex-wrap: wrap!important; */
     /* justify-content:space-between; */
     align-items: center;
     margin-left: 20px;
