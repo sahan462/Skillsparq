@@ -82,12 +82,42 @@
                                 <a href="../public/assests/images/jobProposalAttachments/<?php echo $proposal['attachments']?>"><button>Attachment</button></a>
                             </div> 
                             <div class="jobProposalButtons">
+                                <?php if ($data['countAccepted'] == 0) : ?>
                                 <div class="jobProposalAcc">
-                                <a href=""><button>Accept</button></a>
+                                    <a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>&amp;jobId=<?php echo $proposal['job_id']?>&amp;sellerId=<?php echo $proposal['seller_id']?>&amp;buyerId=<?php echo $proposal['buyer_id']?>">
+                                        <button>Accept</button>
+                                    </a>
                                 </div>
                                 <div class="jobProposalRej">
-                                    <a href=""><button>Reject</button></a>
+                                    <a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>">
+                                        <button>Reject</button>
+                                    </a>
                                 </div>
+                                <?php elseif($data['countAccepted']> 0): ?>
+                                    <?php if ($proposal['Status'] == "Accepted") : ?>
+                                <div class="jobProposalAcc">
+                                    <a href="">
+                                        <button>Accept</button>
+                                    </a>
+                                </div>
+                                <div class="jobProposalRej">
+                                    <a href="">
+                                        <button>Reject</button>
+                                    </a>
+                                </div>
+                                    <?php elseif ($proposal['Status'] == "pending") : ?>
+                                <div class="jobProposalAcc">
+                                    <a href="">
+                                        <button>Accept</button>
+                                    </a>
+                                </div>
+                                <div class="jobProposalRej">
+                                    <a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>">
+                                        <button>Reject</button>
+                                    </a>
+                                </div>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                             <?php

@@ -15,7 +15,8 @@ class Search extends Controller
         $this->ProfileHandlerModel = $this->model('ProfileHandler');
     }
 
-    public function index(){
+    public function index()
+    {
 
         if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
 
@@ -38,16 +39,6 @@ class Search extends Controller
                 $textToSearch = $_GET['searchIn'];
 
             }
-
-            // search Jobs
-            // if(isset($_GET[''])){
-
-            // }
-
-            // // search Gigs
-            // if(isset($_GET[''])){
-
-            // }
 
             if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
                 $textToSearch = $_GET['searchBuyerDash'];
@@ -75,8 +66,10 @@ class Search extends Controller
 
         }
     }
+
+
+    public function sellerDashBoardFilter()
+    {
+        
+    }
 }
-
-
-
-?>
