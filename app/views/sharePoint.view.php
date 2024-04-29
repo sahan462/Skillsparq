@@ -215,7 +215,7 @@
                     <input type="hidden" name="orderId" value="<?php echo $data['orderId'] ?>">
                     <input type="hidden" name="orderType" value="<?php echo $data['orderType']?>">
                     <?php if($data['orderType'] == 'milestone') { ?>
-                        <input type="hidden" name="orderType" value="<?php echo $data['milestoneId']?>">
+                        <input type="hidden" name="milestoneId" value="<?php echo $data['milestoneId']?>">
                     <?php } ?>
                     <input type="hidden" name="uploadDelivery" value="uploadDelivery">
                     <!-- submit form -->

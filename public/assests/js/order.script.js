@@ -57,7 +57,6 @@ function openTab(evt, tabName)
 //   }
 // }, 1000);
 
-var countDownDate = new Date("APR 28, 2024 05:50:00").getTime();
 var x; // Declare x outside the setInterval function to make it accessible globally
 
 // Function to start the countdown timer
@@ -67,7 +66,7 @@ function startTimer() {
     var now = new Date().getTime();
     
     // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+    var distance = deadline - now;
     
     // Time calculations for days, hours, minutes and seconds
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -88,6 +87,7 @@ function startTimer() {
     }
   }, 1000);
 }
+
 
 // Function to send request to backend to update order status
 function updateOrderStatus() {
@@ -130,7 +130,7 @@ function confirmStateChange(action)
 
 }
 
-function handleStateChange(event, action, orderId, orderType, buyerId, sellerId, currentState) 
+function handleStateChange(event, action, orderId, orderType, buyerId, sellerId, currentState, milestoneId = null) 
 {
   if(event === 'withdraw request' || event === 'reject request' || event === 'cancel order') {
     
@@ -150,7 +150,11 @@ function handleStateChange(event, action, orderId, orderType, buyerId, sellerId,
 
     if(action === 'yes'){
 
-      acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState);
+      if(orderType !== 'milestone'){
+        acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState);
+      }else{
+        acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState, milestoneId);
+      }
 
     }
 
@@ -192,9 +196,14 @@ async function cancelOrder(orderId, orderType, buyerId, sellerId, currentState)
 }
 
 // ---------------------------------------Accept an order request--------------------------------------------------------
-async function acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState)
+async function acceptOrderRequest(orderId, orderType, buyerId, sellerId, currentState, milestoneId = null)
 {
-  var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState)  ;
+
+  if(orderType !== 'milestone'){
+    var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState);
+  }else{
+    var requestBody = 'orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&currentState=' + encodeURIComponent(currentState) + '&milestoneId=' + encodeURIComponent(milestoneId);
+  }
 
   try {
       const response = await fetch('order/acceptOrderRequest', {

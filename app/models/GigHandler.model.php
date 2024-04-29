@@ -204,16 +204,29 @@ class GigHandler extends database
 
         if (mysqli_stmt_execute($stmt)) {
             return $stmt->get_result();
-            // $result = $stmt->get_result();
-            // $data = [];
-            // while ($row = $result->fetch_assoc()) {
-            //     $data[] = $row;
-            // }
-            // return $data;
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+
+        // read the recent gigs with the seller Details
+        public function getNewBieGigs()
+        {
+            $query = "SELECT * FROM GIGS INNER JOIN PROFILE ON PROFILE.USER_ID = GIGS.SELLER_ID ORDER BY joined_date DESC";
+    
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+            if (!$stmt) {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+    
+            if (mysqli_stmt_execute($stmt)) {
+                return $stmt->get_result();
+            } else {
+                die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+            }
+        }
+    
 
     public function getGigCount($sellerId)
     {

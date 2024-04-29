@@ -64,6 +64,11 @@
     background-color: #fff;
     border-radius: 8px;
 }
+.buyerDashboardContent .newBieGigsContent{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
 .buyerDashboardContent .row{
     display: flex;
     justify-content: space-between;

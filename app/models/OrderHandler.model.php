@@ -133,35 +133,159 @@ class OrderHandler extends database
     }
 
     //create new milestone order
-    public function createMilestoneOrder()
+    public function createMilestoneOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $gigId)
     {
+        $query = "INSERT INTO Orders 
+        (
+            order_state, 
+            order_type, 
+            order_created_date, 
+            buyer_id,
+            seller_id
+        ) 
+        VALUES 
+        (
+            ?, ?, ?, ?, ?
+        )";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "sssii", $orderState,  $orderType, $currentDateTime, $buyerId, $sellerId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $orderId = mysqli_insert_id($GLOBALS['db']);
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+
+        $query = "INSERT INTO milestone_orders 
+        (
+            milestone_order_id, 
+            gig_id
+        ) 
+        VALUES 
+        (
+            ?, ?
+        )";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $orderId,  $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+
+        return $orderId;
     }
+
+    // getCurrentMilestone
+    public function getCurrentMilestone($orderId){
+        // Prepare the SQL query
+        $query = "SELECT * FROM milestones WHERE milestone_order_id = ? AND milestone_state != 'Completed' ORDER BY milestone_id LIMIT 1";
+    
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+    
+    }
+
+    // update milestone state
+    public function updateMileStoneState($milestoneId, $state)
+    {
+        $query = "Update milestones set milestone_state = ? where milestone_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $state, $milestoneId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    // add new milestones
+    public function addNewMilestone($subject, $revisions, $deliveryQuantity, $deliveryTimePeriodType, $price, $description, $attachmentName, $orderId)
+    {
+
+        $query = "INSERT INTO milestones (subject, no_of_revisions, amount_of_delivery_time, time_category, milestone_price, attachements, milestone_description, milestone_order_id) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+        // Check for errors in preparing the statement
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+    
+        // Bind parameters to the statement
+        mysqli_stmt_bind_param($stmt, "siissssi", $subject, $revisions, $deliveryQuantity, $deliveryTimePeriodType, $price, $attachmentName, $description, $orderId);
+    
+        // Execute the statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Close the statement
+            $stmt->close();
+        } else {
+            // If execution fails, throw an exception
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+        return true;
+
+    }
+    
    
     // retrieve milestone orders
     public function getMilestoneOrders($userId, $userRole)
     {
         if ($userRole == 'Buyer') {
 
-            // create the logic
             $query = "SELECT * 
-            FROM orders 
-            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
-            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
-            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
-            WHERE user_id = ? 
+            FROM orders             
+            INNER JOIN profile ON profile.user_id = orders.seller_id  
+            INNER JOIN milestone_orders ON orders.order_id = milestone_orders.milestone_order_id 
+            INNER JOIN gigs ON gigs.gig_id = milestone_orders.gig_id 
+            WHERE orders.buyer_id = ? and orders.order_type = 'milestone'
             ORDER BY order_id DESC
             ";
         } else {
 
-            // create the logic
             $query = "SELECT * 
-            FROM orders 
-            INNER JOIN job_orders ON orders.order_id = job_orders.job_order_id 
-            INNER JOIN jobs ON job_orders.job_id = jobs.job_id 
-            INNER JOIN profile ON profile.user_id = jobs.buyer_id 
-            WHERE seller_id = ? 
+            FROM orders             
+            INNER JOIN profile ON profile.user_id = orders.buyer_id  
+            INNER JOIN milestone_orders ON orders.order_id = milestone_orders.milestone_order_id 
+            INNER JOIN gigs ON gigs.gig_id = milestone_orders.gig_id 
+            WHERE orders.seller_id = ? and orders.order_type = 'milestone'
             ORDER BY order_id DESC
             ";
+
         }
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -290,11 +414,11 @@ class OrderHandler extends database
         //retrive order details
         if ($orderType == 'package') {
 
-            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id inner join chats on orders.order_id = chats.order_id where orders.order_id = ?";
 
         } else if ($orderType == 'milestone') {
 
-            $query = "SELECT * FROM orders inner join package_orders on orders.order_id = package_orders.package_order_id inner join gigs on package_orders.gig_id = gigs.gig_id inner join packages on packages.package_id = package_orders.package_id left join chats on orders.order_id = chats.order_id where orders.order_id = ?";
+            $query = "SELECT * FROM orders inner join milestone_orders on orders.order_id = milestone_orders.milestone_order_id inner join gigs on milestone_orders.gig_id = gigs.gig_id inner join chats on orders.order_id = chats.order_id where orders.order_id = ?";
 
         } else if ($orderType == 'job') {
 
@@ -594,13 +718,13 @@ class OrderHandler extends database
         // milestone order deliveries table
         elseif ($orderType == 'milestone') :
 
-            $query = "INSERT INTO regular_order_deliveries 
+            $query = "INSERT INTO milestone_order_deliveries 
             (
                 delivery_id, milestone_id
             ) 
             VALUES 
             (
-                ?
+                ?, ?
             )";
 
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -639,7 +763,7 @@ class OrderHandler extends database
 
         elseif ($orderType == 'milestone') :
 
-            $query = "SELECT * FROM deliveries inner join milestone_order_deliveries on deliveries.delivery_id = milestone_order_deliveries.delivery_id where orders.order_id = ? and milestone_order_deliveries.milestone_id = ?";
+            $query = "SELECT * FROM deliveries inner join milestone_order_deliveries on deliveries.delivery_id = milestone_order_deliveries.delivery_id where deliveries.order_id = ? and milestone_order_deliveries.milestone_id = ?";
 
             $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

@@ -124,7 +124,7 @@ function handleConfirmation(action)
       form2.submit();
   
     }else{
-      alert(orderType);
+   
       var form1 = document.getElementById("milestoneRequestForm");
       form1.submit();
       
@@ -233,74 +233,72 @@ function addCollapsible()
   var collapsibleTemplate = document.createElement('div');
   collapsibleTemplate.innerHTML = `
   <div id="collapsibleTemplate_${count}">
-  <button type="button" class="collapsible" id="collapsible" onclick="expand(this)">Milestone ${count}</button>
+    <button type="button" class="collapsible" id="collapsible" onclick="expand(this)">Milestone ${count}</button>
 
-  <div class="collapsibleContent">
-
+    <div class="collapsibleContent">
       <div class="row">
-          <div class="col">
-              <div class="type-1">Subject</div>
-              <input type="text" name="milestone[subject][]">
-          </div>
+        <div class="col">
+          <div class="type-1">Subject</div>
+          <input type="text" name="milestone[subject][]" required>
+        </div>
       </div>
 
-      <div class="row"  style="gap:16px;">
-          <div class="col">
-              <div class="type-1">Revisions</div>
-              <select name="milestone[revisions][]" required="" style="width: 100%;">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="Unlimited">Unlimited</option>
-              </select>
+      <div class="row" style="gap:16px;">
+        <div class="col">
+          <div class="type-1">Revisions</div>
+          <select name="milestone[revisions][]" required style="width: 100%;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="Unlimited">Unlimited</option>
+          </select>
+        </div>
+        <div class="col">
+          <div class="type-1">Delivery</div>
+          <div class="row">
+            <input type="number" name="milestone[deliveryQuantity][]" min="1" style="width: 50%;" required>
+            <select name="milestone[deliveryTimePeriodType][]" class="categories" style="width: 50%;" required>
+              <option value="Days">Day(s)</option>
+              <option value="Weeks">Week(s)</option>
+              <option value="Months">Month(s)</option>
+              <option value="Years">Year(s)</option>
+            </select>
           </div>
-          <div class="col">
-              <div class="type-1">Delivery</div>
-              <div class="row">
-                  <input type="number" name="milestone[deliveryQuantity][]" min="1"  style="width: 50%;">
-                  <select name="milestone[deliveryTimePeriodType][]" class="categories"  style="width: 50%;">
-                      <option value="Day(s)">Day(s)</option>
-                      <option value="Week(s)">Week(s)</option>
-                      <option value="Month(s)">Month(s)</option>
-                      <option value="Year(s)">Year(s)</option>
-                  </select>
-              </div>
-          </div>
-          <div class="col">
-              <div class="type-1">Price(USD)</div>
-              <input type="text" name="milestone[price][]"  style="width: 100%;">
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col">
-              <label for="attachments" class="type-1" >Attachments:</label>
-              <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
-                  <label for="milestoneAttachment_${count}" class = "milestoneAttachmentLabel" id="attachment"  style="margin-right: 4px;background-color: white;">Attachements</label>
-                  <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
-                  <span class="fileName" id="fileName"></span>
-              </div>
-              <input type="file" class="fileInput" id="milestoneAttachment_${count}" name="milestone[attachment][]" multiple onchange="displayFileName(${count})">
-          </div>
+        </div>
+        <div class="col">
+          <div class="type-1">Price(USD)</div>
+          <input type="text" name="milestone[price][]" style="width: 100%;" required>
+        </div>
       </div>
 
       <div class="row">
-          <div class="col">
-              <div class="type-1">Milestone Description</div>
-              <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required=""></textarea>
+        <div class="col">
+          <label for="attachments" class="type-1">Attachments:</label>
+          <div class="innerRow" style="display: flex; flex-direction: row; align-items: center;">
+            <label for="milestoneAttachment_${count}" class="milestoneAttachmentLabel" id="attachment" style="margin-right: 4px;background-color: white;">Attachments</label>
+            <div id="warningMessage" class="warningMessage" style="color: red; display: none;">Invalid file type. Only ZIP files are allowed.</div>
+            <span class="fileName" id="fileName"></span>
           </div>
+          <input type="file" class="fileInput" id="milestoneAttachment_${count}" name="milestone[attachment][]" multiple onchange="displayFileName(${count})" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="type-1">Milestone Description</div>
+          <textarea name="milestone[description][]" placeholder="I need.." rows="4" cols="18" spellcheck="false" oninput="this.className = ''" required></textarea>
+        </div>
       </div>
 
       <button type="button" class="removeButton" onclick="removeCollapsible(this)">Remove Milestone</button>
-
+    </div>
   </div>
-</div>
-  
-  `;
+`;
+
 
   inputContainer.appendChild(collapsibleTemplate);
 }

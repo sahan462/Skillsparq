@@ -11,7 +11,7 @@
     $packageOrders = $data['packageOrders'];
     $jobOrders = $data['jobOrders'];
     $milestoneOrders = $data['milestoneOrders'];
-    print_r($jobOrders->fetch_assoc());
+    print_r($milestoneOrders->fetch_assoc());
 ?>
 
 <!-- Main Container -->
@@ -884,7 +884,7 @@
 
             <!-- milestone orders -->
             <div id="milestone" class="ordercontent" style="display: none;">
-                milestone order
+
                 <!-- Tabs -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'Milestone_Requested')" id="defaultOpen_Milestone">Requested</button>
@@ -893,15 +893,212 @@
                     <button class="tablinks" onclick="openCity(event, 'Milestone_Completed')">Completed</button>
                     <button class="tablinks" onclick="openCity(event, 'Milestone_Late')">Late</button>
                     <button class="tablinks" onclick="openCity(event, 'Milestone_Cancelled')">Cancelled</button>
-                    
-                    <div id="Milestone_Requested"></div>  
-                    <div id="Milestone_Accepted"></div>  
-                    <div id="Milestone_Running"></div>  
-                    <div id="Milestone_Completed"></div>  
-                    <div id="Milestone_Late"></div>  
-                    <div id="Milestone_Cancelled"></div>  
-                
                 </div>
+
+                <div id="Milestone_Requested" class="tabcontent">
+
+                    <div class="outerTable">
+                        <table>
+
+                            <div class="thead">
+                                <tr>
+                                    <th style="width: 6%;">Order Id</th>
+
+                                    <?php if($_SESSION["role"] == 'Seller') { ?>
+                                        <th style="width: 26%;">Buyer</th>
+                                    <?php } else { ?>
+                                        <th style="width: 26%;">Seller</th>
+                                    <?php }?>
+                                    
+                                    <th style="width: 28%;">Gig</th>
+                                    <th style="width: 10%;">Due On</th>
+                                    <th style="width: 10%;">Total Amount</th>
+                                    <th style="width: 10%;">Order Type</th>
+                                </tr>
+                            </div>
+
+                            <div class="tbody">
+                                <?php 
+                                    foreach($milestoneOrders as $row){
+                                        if($row['order_state'] === 'Requested'){
+                                    ?>
+                                            <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+
+                                                <td>
+                                                    <?php echo $row['order_id'] ?>
+                                                </td>
+
+                                                <td class="buyer">
+                                                    <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
+                                                    <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
+                                                </td>
+
+                                                <td >
+                                                    <?php echo $row['title']?>
+                                                </td>
+
+                                                <td>
+                                                    -
+                                                </td>
+
+                                                <td>
+                                                   -
+                                                </td>
+
+                                                <td>
+                                                    Milestone Order
+                                                </td>
+
+                                            </tr>
+
+                                        <?php }
+                                    } ?>
+                            </div>
+                        </table>
+                    </div>
+
+                </div>  
+
+                <div id="Milestone_Accepted" class="tabcontent">
+
+                    <div class="outerTable">
+                        <table>
+
+                            <div class="thead">
+                                <tr>
+                                    <th style="width: 6%;">Order Id</th>
+
+                                    <?php if($_SESSION["role"] == 'Seller') { ?>
+                                        <th style="width: 26%;">Buyer</th>
+                                    <?php } else { ?>
+                                        <th style="width: 26%;">Seller</th>
+                                    <?php }?>
+                                    
+                                    <th style="width: 28%;">Gig</th>
+                                    <th style="width: 10%;">Due On</th>
+                                    <th style="width: 10%;">Total Amount</th>
+                                    <th style="width: 10%;">Order Type</th>
+                                </tr>
+                            </div>
+
+                            <div class="tbody">
+                                <?php 
+                                    foreach($milestoneOrders as $row){
+                                        if($row['order_state'] === 'Accepted/Pending Payments'){
+                                    ?>
+                                            <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+
+                                                <td>
+                                                    <?php echo $row['order_id'] ?>
+                                                </td>
+
+                                                <td class="buyer">
+                                                    <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
+                                                    <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
+                                                </td>
+
+                                                <td >
+                                                    <?php echo $row['title']?>
+                                                </td>
+
+                                                <td>
+                                                    -
+                                                </td>
+
+                                                <td>
+                                                   -
+                                                </td>
+
+                                                <td>
+                                                    Milestone Order
+                                                </td>
+
+                                            </tr>
+
+                                        <?php }
+                                    } ?>
+                            </div>
+                        </table>
+                    </div>
+
+                </div>  
+
+                <div id="Milestone_Running" class="tabcontent">
+
+                    <div class="outerTable">
+                        <table>
+
+                            <div class="thead">
+                                <tr>
+                                    <th style="width: 6%;">Order Id</th>
+
+                                    <?php if($_SESSION["role"] == 'Seller') { ?>
+                                        <th style="width: 26%;">Buyer</th>
+                                    <?php } else { ?>
+                                        <th style="width: 26%;">Seller</th>
+                                    <?php }?>
+                                    
+                                    <th style="width: 28%;">Gig</th>
+                                    <th style="width: 10%;">Due On</th>
+                                    <th style="width: 10%;">Total Amount</th>
+                                    <th style="width: 10%;">Order Type</th>
+                                </tr>
+                            </div>
+
+                            <div class="tbody">
+                                <?php 
+                                    foreach($milestoneOrders as $row){
+                                        if($row['order_state'] === 'Running'){
+                                    ?>
+                                            <tr onclick="window.location='order&orderId=<?php echo $row['order_id'] ?>&orderType=<?php echo $row['order_type']?>&buyerId=<?php echo $row['buyer_id']?>&sellerId=<?php echo  $row['seller_id']?>'">
+
+                                                <td>
+                                                    <?php echo $row['order_id'] ?>
+                                                </td>
+
+                                                <td class="buyer">
+                                                    <img src="../public/assests/images/profilePictures/<?php echo $row['profile_pic'];?>" alt="Avatar">
+                                                    <span><?php echo ($row['first_name'] ." ". $row['last_name']) ?></span>
+                                                </td>
+
+                                                <td >
+                                                    <?php echo $row['title']?>
+                                                </td>
+
+                                                <td>
+                                                    -
+                                                </td>
+
+                                                <td>
+                                                   -
+                                                </td>
+
+                                                <td>
+                                                    Milestone Order
+                                                </td>
+
+                                            </tr>
+
+                                        <?php }
+                                    } ?>
+                            </div>
+                        </table>
+                    </div>
+
+                </div>  
+
+                <div id="Milestone_Completed" class="tabcontent">
+
+                </div>  
+
+                <div id="Milestone_Late" class="tabcontent">
+
+                </div>  
+
+                <div id="Milestone_Cancelled" class="tabcontent">
+
+                </div>  
+                
             </div>
 
         </div>

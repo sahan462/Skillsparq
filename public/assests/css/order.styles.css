@@ -443,3 +443,64 @@ a {
         flex-direction: column;
     }
 }
+
+.orderContainer .container {
+    width: 100%;
+    padding: 16px;
+    background-color: #fff;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.orderContainer .section {
+    margin-bottom: 30px;
+}
+.orderContainer .section h2 {
+    margin: 0 0 15px;
+    font-size: 24px;
+    color: #333;
+}
+.orderContainer .section p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+.orderContainer .attachment {
+    margin-top: 20px;
+}
+.orderContainer .attachment a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.orderContainer .attachment a:hover {
+    background-color: #0056b3;
+}
+.orderContainer .order-history {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+.orderContainer .order-history-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.orderContainer .order-history-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+.orderContainer .order-history-item span {
+    font-size: 14px;
+    color: #666;
+}

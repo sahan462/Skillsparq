@@ -20,12 +20,11 @@
     $order_json = json_encode($order);
     $seller_json = json_encode($seller);
     $buyer_json = json_encode($buyer);
-    // print_r($chat);
-    // echo "<br>";
-    // print_r($buyer);
-    // echo "<br>";
-    // print_r($seller);
 
+    if(isset($data['currentMilestone'])){
+        $currentMilestone = $data['currentMilestone'];
+    }
+    // print_r($currentMilestone);
 
     function calculateDeadline($createdDate, $number, $unit) {
         // Get the current date
@@ -55,6 +54,17 @@
     
         return $deadline->format('Y-m-d');
     }
+
+    if($order['order_type'] != 'milestone') {
+        echo "<script>";
+        echo "var deadline = new Date('" . $order['deadline'] . "').getTime();"; 
+        echo "</script>";
+    }else{
+        echo "<script>";
+        echo "var deadline = new Date('" . calculateDeadline($order['order_created_date'], $currentMilestone['amount_of_delivery_time'], $currentMilestone['time_category']) . "').getTime();"; 
+        echo "</script>";
+    }
+    
     
 ?>
 
@@ -65,7 +75,9 @@
     <div class="orderContainerHeader">
         <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'activity')">Activity</button>
         <button class="tablinks" onclick="openTab(event, 'details')">Order Details</button>
-        <button class="tablinks" onclick="openTab(event, 'orderHistory')">Order History</button>
+        <?php if($order['order_type'] == 'milestone') : ?>
+            <button class="tablinks" onclick="openTab(event, 'orderMilestones')">Milestones</button>
+        <?php endif; ?>
     </div>
 
     <!-- Tab Content -->
@@ -118,7 +130,11 @@
                             <?php } ?>
 
                             <h1>
-                                <a href=""><?php echo $receiverName?></a>
+                                <?php if($_SESSION['userId'] == $buyer['user_id']) : ?>
+                                    <a href=""><?php echo $receiverName?></a>
+                                <?php elseif($_SESSION['userId'] == $seller['user_id']) : ?>
+                                    <a href="buyerProfile&mode=public&userId=<?php echo $buyer['user_id']?>"><?php echo $receiverName?></a>
+                                <?php endif; ?>
                             </h1>
 
                         </div>
@@ -266,115 +282,41 @@
             <!-- order details tab -->
             <div id="details" class="tabContent" style="display:none;">
 
-                <!-- buyer -->
-                <?php if($_SESSION['role'] == 'Buyer') :?>
-
-                    <ul>
-                        <li style="margin-bottom:32px">
-                            <!-- buyer requirements -->
-                            <h3>Your Requirement</h3>
-                            <?php if ($order['order_type'] == 'package') :?>
-                                <p><?php echo $order['order_description'] ?></p>
-                            <?php elseif ($order['order_type'] == 'job'): ?>
-                                <p><?php echo $order['description'] ?></p>
-                            <?php endif;?>
-                        </li>
-                        <li style="margin-bottom:32px">
-                            <!-- attachements -->
-                            <h3>Attachements</h3>
-                            <div class="attachement">
-                                <span><?php echo $order['order_attachement'] ?></span>
-                                <span><button>Click here to Download!</button></span>
+                <div class="container">
+                    <div class="section">
+                        <h3>Initial Requirement</h3>
+                        <p>Sed et sapien nec mauris convallis pharetra.</p>
+                    </div>
+                    <div class="section">
+                        <h3>Attachment</h3>
+                        <div class="attachment">
+                            <a href="#">Download Attachment</a>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h3>Order History</h3>
+                        <div class="order-history">
+                            <div class="order-history-item">
+                                <p>Action: Order created</p>
+                                <span>Date: 2024-04-28 10:00:00</span>
                             </div>
-                        </li>
-                        <li>
-
-                        </li>
-
-                    </ul>
-
-                <!-- seller -->
-                <?php elseif($_SESSION['role'] == 'Seller') :?>
-
-                    <ul>
-                        <li>
-                            <!-- buyer requirements -->
-                            <h3>Buyer Requirement</h3>
-                            <p><?php echo $order['order_description'] ?></p>
-                        </li>
-                        <li>
-                            <!-- attachements -->
-                            <h3>Attachements</h3>
-                            <div class="attachement">
-                                <span><?php echo $order['order_attachement'] ?></span>
-                                <span><button>Click here to Download!</button></span>
+                            <div class="order-history-item">
+                                <p>Action: Order updated</p>
+                                <span>Date: 2024-04-29 08:30:00</span>
                             </div>
-                        </li>
-                        <li>
-                            <!-- buyer details -->
-                            <h3>Buyer Details</h3>
-                            <div class="buyerDetails">
-                                <div class="buyer">
-                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $buyer["profile_pic"]?>" loading="lazy">
-                                    <div class="name&rating">
-                                        <span><?php echo $buyer['first_name']." ".$buyer['last_name'];?></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-
-                <!-- customer support asssistant -->
-                <?php elseif($_SESSION['role'] == 'csa') :?>
-
-                    <ul>
-                        <li>
-                            <!-- buyer requirements -->
-                            <h3>Buyer Requirement</h3>
-                            <p><?php echo $order['order_description'] ?></p>
-                        </li>
-                        <li>
-                            <!-- attachements -->
-                            <h3>Attachements</h3>
-                            <div class="attachement">
-                                <span><?php echo $order['order_attachement'] ?></span>
-                                <span><button>Click here to Download!</button></span>
-                            </div>
-                        </li>
-                        <li>
-                            <!-- buyer details -->
-                            <h3>Buyer Details</h3>
-                            <div class="buyerDetails">
-                                <div class="buyer">
-                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $buyer["profile_pic"]?>" loading="lazy">
-                                    <div class="name&rating">
-                                        <span><?php echo $buyer['first_name']." ".$buyer['last_name'];?></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <!-- seller details -->
-                            <h3>Seller Details</h3>
-                            <div class="buyerDetails">
-                                <div class="buyer">
-                                    <img class="gig-profile-image" src="../public/assests/images/<?php echo $seller["profile_pic"]?>" loading="lazy">
-                                    <div class="name&rating">
-                                        <span><?php echo $seller['first_name']." ".$seller['last_name'];?></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                
-                <?php endif; ?>
+                            <!-- Add more order history items dynamically -->
+                        </div>
+                    </div>
+                </div>
+            
             </div>
 
-            <!-- order history tab -->
-            <div id="orderHistory">
+            <!-- milestones tab -->
+            <?php if($order['order_type'] == 'milestone') : ?>
+                <div id="orderMilestones">
 
-            </div>            
+                </div>            
+            <?php endif; ?>
 
         </div>
 
@@ -417,10 +359,6 @@
                                 <button class="buttonType-2" onclick="confirmStateChange('cancel')">Reject</button>
                             </div>
 
-                        <?php elseif ($_SESSION['role'] == 'csa') :?>
-
-                            <!-- not anything to do -->
-
                         <?php endif; ?>
 
                     <!-- Accepted/ Pending Payments State -->
@@ -437,7 +375,7 @@
                                 if ($order['order_type'] == 'package') :
                                     $amount = $order['package_price'];
                                 elseif($order['order_type'] == 'milestone'):
-                                    $amount = $milestone['milestone_price'];
+                                    $amount = $currentMilestone['milestone_price'];
                                 elseif($order['order_type'] == 'job'):
                                     $amount = intval(str_replace('$', '', $order['amount']));
                                 endif;
@@ -475,7 +413,7 @@
                                 <input type="hidden" name="country" value="<?php echo $buyer['country'] ?>">
                                 <input type="hidden" name="email" value="">
                                 <input type="hidden" name="phone" value="">
-                                <input type="hidden" name="address" value="">
+                                <input type="hidden" name="address" value="<?php echo $currentMilestone['milestone_id']?>">
                                 <input type="hidden" name="city" value="">
                                 <input type="hidden" name="hash" value="<?php echo $hash ?>">  
                                 <input type="hidden" value="Authorize">   
@@ -491,32 +429,42 @@
 
                             <button class="buttonType-2">Waiting for Payments</button>
 
-                        <?php elseif ($_SESSION['role'] == 'csa') :?>
-
-                            <!-- not anything to do -->
-
                         <?php endif; ?>
 
                     <!-- Running State  -->
                     <?php elseif($order['order_state'] == 'Running') : $state = 'Running'?>
 
-                        <?php if ($_SESSION['role'] == 'Buyer') :?>
+                        <?php if ($_SESSION['role'] == 'Buyer') :
 
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
-                            </div>
+                            if($order['order_type'] != 'milestone') : ?>
 
-                        <?php elseif ($_SESSION['role'] == 'Seller') :?>       
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
+                                </div>
+
+                            <?php else: ?>
+
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&milestoneId=<?php echo $currentMilestone['milestone_id']?>" class="buttonType-1">View Share Point</a>
+                                </div>
+
+                            <?php endif; ?>
+
+                        <?php elseif ($_SESSION['role'] == 'Seller') :  
                             
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
-                            </div>
-                            
-                        <?php elseif ($_SESSION['role'] == 'csa') :?>
+                            if($order['order_type'] != 'milestone') : ?>
 
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
-                            </div>
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>" class="buttonType-1">View Share Point</a>
+                                </div>
+
+                            <?php else: ?>
+
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&milestoneId=<?php echo $currentMilestone['milestone_id']?>" class="buttonType-1">View Share Point</a>
+                                </div>
+
+                            <?php endif; ?>
 
                         <?php endif; ?>
 
@@ -748,7 +696,11 @@
                     <p>Are you sure want to continue with this order?</p>
                     <div class="buttons">
                         <button onclick="handleStateChange('accept request', 'no', '', '', '')">No</button>
-                        <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>', '<?php echo $state ?>')">Yes</button>
+                        <?php if($order['order_type'] != 'milestone'): ?>
+                            <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>', '<?php echo $state ?>')">Yes</button>
+                        <?php elseif($order['order_type'] == 'milestone'): ?>
+                            <button onclick="handleStateChange('accept request', 'yes', <?php echo $order['order_id']?>, '<?php echo $order['order_type']?>', '<?php echo $order['buyer_id']?>', '<?php echo $order['seller_id']?>', '<?php echo $state ?>', '<?php echo $currentMilestone['milestone_id'] ?>')">Yes</button>
+                        <?php endif; ?>
                     </div>
 
                 <?php } ?> 
