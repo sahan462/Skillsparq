@@ -171,9 +171,10 @@
                                     <div class="receiver-container">
                                         <div class="messageContainer darker">
                                             <div class="receiverContent">
-                                                <p class="receiver" >
+                                                <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture ?>" alt="pro pic" class="attachment-image">
+                                                <p class="receiver" style="color:black">
                                                     <?php echo $row['message'] ?>
-                                                    <span class="time-left"><?php echo $row['date'] ?></span>
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -479,7 +480,7 @@
                                 </div>
                             <?php elseif($order['order_type'] == 'milestone') :?>
                                 <div class="row">
-                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                    <a href="#orderMilestones" class="buttonType-1">Go to Milestone Tab</a>
                                 </div>
                             <?php endif ?>
 

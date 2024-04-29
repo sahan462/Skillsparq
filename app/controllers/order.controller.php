@@ -64,8 +64,19 @@ class Order extends Controller
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
             
             if($orderType == 'milestone'){
-                $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
-                $data['currentMilestone'] = $currentMilestone->fetch_assoc();
+
+                $incompleteMilestoneCount = $this->OrderHandlerModel->getIncompleteMilestoneCount($orderId);
+                if($incompleteMilestoneCount['incomplete_milestone_count'] == 0){
+                    $currentMilestone = [
+                        'amount_of_delivery_time' => 0,
+                        'time_category' => 'Days'
+                    ];
+                    $data['$currentMilestone'] = $currentMilestone;
+                }else{
+                    $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
+                    $data['currentMilestone'] = $currentMilestone->fetch_assoc();
+                }
+
             }
 
             $order = $data['order'];
