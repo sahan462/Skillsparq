@@ -1,4 +1,7 @@
-    <div class="gigCard" gig-url="displayGig&amp;gigId=<?php echo $row['gig_id']?>&amp;userId=<?php echo $row['seller_id']?>"<?php if ($_SESSION['role'] === 'Seller') { echo ($data['mode'] !== 'private') ? 'style="pointer-events: none;"' : ''; } ?>>
+    <div class="gigCard" gig-url="displayGig&amp;gigId=<?php echo $row['gig_id']?>&amp;userId=<?php echo $row['seller_id']?>" >
+    <?php if ($_SESSION['role'] === 'Seller') { echo ($data['mode'] !== 'private') ? 'style="pointer-events: none;"' : ''; }?>
+    
+    <!--  else if($_SESSION['role'] === "Buyer"){echo ($data['mode'] === "public") ? 'style="pointer-events:;"':'';}  -->
 
         <?php
             if($_SESSION['role'] == "Seller"){
@@ -80,7 +83,7 @@
 
             <div class="links">
                 <?php
-                    if($_SESSION['role'] === "Seller"){
+                    if(($_SESSION['role'] === "Seller") && ($data['mode'] == 'private')){
                 ?>
                         
                         <a href="updateGig&amp;userId=<?php echo $row['seller_id']?>&amp;gigId=<?php echo $row['gig_id']?>"><button class="buttonType-1">Update</button></a>
