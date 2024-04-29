@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assests/css/viewComplaints.styles.css" />
+    <link rel="stylesheet" href="../public/assests/css/viewComplaintDetails.styles.css" />
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
@@ -85,6 +85,34 @@
             font-weight: bold;
             transition: background-color 0.3s;
         }
+
+        .resolveBtn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #ff4500;
+            /* A bold color to denote action, such as resolving issues */
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            /* Removes underline from links */
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .resolveBtn:hover,
+        .resolveBtn:focus {
+            background-color: #c03600;
+            /* Darken color on hover for better user interaction */
+            color: white;
+            text-decoration: none;
+            /* Ensures the underline does not reappear on hover */
+        }
+
+        .resolveBtn i {
+            margin-right: 5px;
+            /* Adds spacing between the icon and text */
+        }
     </style>
 </head>
 
@@ -116,7 +144,7 @@
                 <li>Attachments:
                     <span>
                         <?php echo htmlspecialchars($row['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
-                        <a href="./assets/zipFiles/orderFiles/Order_23/deliveries/<?php echo urlencode($row['attachements']); ?>" download>
+                        <a href="./assets/zipFiles/complaints/<?php echo urlencode($row['attachements']); ?>" download>
                             <i class="fa fa-download"></i>
 
                         </a>
@@ -130,68 +158,49 @@
         <?php
         }
         ?>
-        <div class=" block">
-            <div>
 
+        <div class="container-details" style="margin-bottom:10px;">
+            <div class="seller-container">
 
                 <a href="viewChats?order_id=<?php echo $row['order_id']; ?>&buyer_id=<?php echo $row['buyer_id']; ?>&seller_id=<?php echo $row['seller_id']; ?>" class="chatBtnSeller">
                     <i class="fa fa-comments"></i> View chat History
                 </a>
-
-
-                <div id="chatBoxSeller" class="chat-box">
-                    <div class="chat-header">
-                        <h2>Chat Seller</h2>
-                        <button id="closeChatBtnSeller" style="width: 25px;"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="chat-messages">
-
-                        <ul>
-                            <li>Inquiry_ID <span><?php echo $row['inquiry_id']; ?></span></li>
-                            <li>Subject: <span><?php echo $row['subject']; ?></span></li>
-                            <li>Description: <span><?php echo $row['description']; ?></span></li>
-                            <li>Attachments: <span><?php echo $row['attachements']; ?></span></li>
-                            <li>Response: <span><?php echo $row['response']; ?></span></li>
-                            <li>Inquiry_status: <span><?php echo $row['inquiry_status']; ?></span></li>
-                            <li>Created_at: <span><?php echo $row['created_at']; ?></span></li>
-                        </ul>
-
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" placeholder="Type your message here...">
-                        <button id="sendBtn">Send</button>
-                    </div>
-                </div>
-
-
-
-
-
-
-                <button id="chatBtnBuyer" onclick="chatBuyer()">Chat Buyer</button>
-                <div id="chatBoxBuyer" class="chat-box">
-                    <div class="chat-header">
-                        <h2>Chat Buyer</h2>
-                        <button id="closeChatBtnBuyer" style="width: 25px;"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="chat-messages">
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" placeholder="Type your message here...">
-                        <button id="sendBtn">Send</button>
-                    </div>
-                </div>
-
-
-
-
             </div>
 
+        </div>
+
+        <div class="container-details">
+            <div class="seller-container">
+                <button onclick="resolveComplaintfunc()" class="chatBtnSeller" style="width: 190px; background-color:green; height: 38px;">
+                    <i class="fa fa-gavel"></i> Resolve Complaints
+                </button>
+                <form>
+            </div>
+        </div>
+        <div class="container-details">
+            <div class="seller-container">
+                <form>
+                    <textarea id="reasonBuyer" name="reasonBuyer" rows="4" cols="50" placeholder="Enter the reason to Buyer" style="margin-top: 5px; "></textarea>
+                    <br>
+
+                </form>
+            </div>
+        </div>
 
 
 
 
-            <div>
+
+
+
+
+
+
+
+
+
+        <div class="container-details" style="margin-top:20px;">
+            <div class="seller-details">
                 <label for="blacklistDuration">BlackList User For:</label>
 
                 <select id="blacklistDuration" name="blacklistDuration">
@@ -208,22 +217,14 @@
                     <br>
 
                 </form>
+                <div class="seller-details" style=" margin-top: 15px;">
+                    <button id="updateUserBlacklistBuyer" onclick="updateUserBlacklistBuyer()" style="width: 190px; height:32px; background-color:green">Black List Buyer</button>
+                    <button id="updateUserBlacklistSeller" onclick="updateUserBlacklistSeller()" style="width: 190px; height:32px; background-color:green">Black List Seller</button>
+
+                </div>
             </div>
-
-            <div style=" margin-top: 15px;">
-                <button id="updateUserBlacklistBuyer" onclick="updateUserBlacklistBuyer()">Black List Buyer</button>
-                <button id="updateUserBlacklistSeller" onclick="updateUserBlacklistSeller()">Black List Seller</button>
-
-            </div>
-
-
-
-
-
-
-
-
         </div>
+
 
 
     </div>
@@ -251,13 +252,18 @@
 
                     </div>
                 </div>
-                <div class="buyer-details">
+
+
+            </div>
+
+            <div>
+                <div class="seller-details">
                     <div style="display: flex; justify-content:space-between; width:250px ;margin-bottom: 2%;">
                         <span>
                             Buyer details:
                         </span>
-                        <button onclick="viewBuyer()" style="margin-left:63px ;">View</button>
-                        <p id="isBuyerBlocked"></p>
+                        <button onclick="viewBuyer()">View</button>
+
                     </div>
 
                     <div id="viewBuyer" class="details" style="display: none;">
@@ -271,7 +277,6 @@
 
                     </div>
                 </div>
-
             </div>
 
             <div class="container-details">
@@ -280,7 +285,7 @@
                         <span>
                             Order details:
                         </span>
-                        <button onclick="viewOrders()" style="margin-left:11px ;">View</button>
+                        <button onclick="viewOrders()">View</button>
                     </div>
 
                     <div id="viewOrders" style="display: none;">
@@ -294,12 +299,19 @@
 
                     </div>
                 </div>
+
+
+
+
+            </div>
+
+            <div class="container-details">
                 <div class="buyer-details">
                     <div style="display: flex; justify-content:space-between; width:250px ;">
                         <span>
                             Payment details:
                         </span>
-                        <button onclick="viewPayments()" style="margin-left:11px ;">View</button>
+                        <button onclick="viewPayments()">View</button>
 
                     </div>
 
@@ -316,19 +328,54 @@
 
                     </div>
                 </div>
-
             </div>
-            <div class="block" style="margin-left:25%; margin-top:100px">
+            <div class="container-details">
+                <div class="buyer-details">
+                    <div style="display: flex; justify-content:space-between; width:250px ;">
+                        <span>
+                            Delivery details:
+                        </span>
+                        <button onclick="viewDeliveries()">View</button>
 
-                <form>
+                    </div>
 
-                    <textarea id="responseCSA" name="responseCSA" rows="4" cols="50" placeholder="Enter the reason to ask for refund" style="display: block;"></textarea>
-                    <br>
 
-                </form>
+                    <div id="viewDeliveries" style="display: none;">
+                        <?php foreach ($deliveries as $deliver) { ?>
+                            <div style="border-style:double">
+                                <ul>
+                                    <li>Delivery ID : <span><?php echo $deliver['delivery_id']; ?></span></li>
+                                    <li>Delivery Description: <span><?php echo $deliver['delivery_description']; ?></span></li>
+                                    <li>Attachments:
+                                        <span>
+                                            <?php echo htmlspecialchars($deliver['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
+                                            <a href="./assets/zipFiles/complaints/<?php echo urlencode($deliver['attachements']); ?>" download>
+                                                <i class="fa fa-download"></i>
 
-                <div style="margin-top: 15px; width:400px; margin-left:0%">
-                    <button id="refund" onclick="refundCSA()" style="display:block">Ask for Refund</button>
+                                            </a>
+                                        </span>
+                                    </li>
+                                    <li>date: <span><?php echo $deliver['date']; ?></span></li>
+
+                                </ul>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <div class="container-details">
+                <div class="seller-details" style=" margin-top:30px ">
+
+                    <form>
+
+                        <textarea id="responseCSA" name="responseCSA" rows="4" cols="50" placeholder="Enter the reason to ask for refund" style="display: block;"></textarea>
+                        <br>
+
+                    </form>
+
+                    <div style="margin-top: 15px; width:400px; margin-left:0%">
+                        <button id="refund" onclick="refundCSA()" style="width: 190px; margin-left:27%; height:32px; background-color:green">Ask for Refund</button>
+                    </div>
                 </div>
             </div>
             <form id="blacklistForm" method="post" style="display: none;">
@@ -343,6 +390,14 @@
                 <input type="hidden" id="payment_id" name="payment_id" value="">
                 <input type="hidden" id="sendResponse" name="sendResponse" value="">
                 <input type="hidden" id="buyerID" name="buyerID" value="">
+            </form>
+
+            <form id="resolveComplaint" method="post" style="display: none;">
+                <input type="hidden" id="seller_id_email" name="seller_id_email" value="">
+                <input type="hidden" id="buyer_id_email" name="buyer_id_email" value="">
+                <input type="hidden" id="resolveBuyer" name="resolveBuyer" value="">
+                <input type="hidden" id="complaint_id" name="complaint_id" value="">
+
             </form>
 
         </div>
@@ -367,17 +422,16 @@
 
 
             function updateUserBlacklistSeller() {
-
                 var selectedDays = document.getElementById('blacklistDuration').value;
                 var reason = document.getElementById('blackListReason').value;
-                var confirmation = confirm("Are you sure you want to blacklist Seller ID: <?php echo $row['seller_id']; ?> for " + selectedDays + " days?");
+                var confirmation = confirm("Are you sure you want to blacklist seller ID: <?php echo $row['seller_id']; ?> for " + selectedDays + " days?");
 
                 if (confirmation) {
                     document.getElementById('user_id_to_blacklist').value = '<?php echo $row['seller_id']; ?>';
                     document.getElementById('user_email_to_blacklist').value = '<?php echo $row['seller_email']; ?>';
                     document.getElementById('blacklistUntil').value = selectedDays;
                     document.getElementById('reason').value = reason;
-
+                    document.getElementById('blacklistForm').submit();
                 } else {
                     alert("Operation canceled.");
                 }
@@ -427,10 +481,40 @@
 
             }
 
+            function viewDeliveries() {
+                var selectedDays = document.getElementById('viewDeliveries');
+                selectedDays.style.display = (selectedDays.style.display === 'none') ? 'block' : 'none';
+
+            }
+
             function chatBuyer() {
                 var chatBoxes = document.getElementsByClassName("chat-box");
                 for (var i = 0; i < chatBoxes.length; i++) {
                     chatBoxes[i].style.display = 'block'; // Set display style to
+                }
+            }
+
+            function resolveComplaintfunc() {
+
+                var reasonBuyer = document.getElementById('reasonBuyer').value;
+                if (reasonBuyer === "") {
+                    alert("please enter a valid reason ")
+                    return false
+                }
+                var confirmation = confirm("Do you want to send mails and solve the complaint");
+
+                if (confirmation) {
+
+                    document.getElementById('seller_id_email').value = '<?php echo $row['seller_id']; ?>';
+                    document.getElementById('buyer_id_email').value = '<?php echo $row['buyer_id']; ?>';
+                    document.getElementById('resolveBuyer').value = reasonBuyer;
+                    document.getElementById('complaint_id').value = '<?php echo $row['inquiry_id']; ?>';
+
+                    document.getElementById('resolveComplaint').submit();
+
+
+                } else {
+                    alert("Operation canceled.");
                 }
             }
         </script>
