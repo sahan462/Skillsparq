@@ -198,7 +198,7 @@
             options: {
                 title: {
                     display: true,
-                    text: "Help Requests"
+                    text: "Total Help Requests "
                 }
             }
         });
@@ -236,7 +236,7 @@
             options: {
                 title: {
                     display: true,
-                    text: "Complaints"
+                    text: "Total Complaints"
                 }
             }
         });
