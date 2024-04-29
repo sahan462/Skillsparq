@@ -471,23 +471,23 @@
                     <!-- Completed State -->
                     <?php elseif($order['order_state'] == 'Completed') : $state = 'Completed' ?>
 
-                        <?php if ($_SESSION['role'] == 'Buyer') :?>
+                        <?php if ($_SESSION['role'] == 'Buyer') :
 
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
-                            </div>
+                            if($order['order_type'] != 'milestone'): ?>
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                </div>
+                            <?php elseif($order['order_type'] == 'milestone') :?>
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                </div>
+                            <?php endif ?>
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
                             <div class="row">
                                 <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
                             </div>                           
-
-                        <?php elseif ($_SESSION['role'] == 'csa') :?>
-
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&sellerId=<?php echo $seller['user_id']?>&buyerId=<?php echo $buyer['buyer_id']?>" class="buttonType-1">View Share Point</a>
-                            </div>
 
                         <?php endif; ?>
 

@@ -122,19 +122,10 @@ class SharePoint extends Controller
                             $data['redirectURL'] = BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId;
                             $data['message'] = "Deliver Sent Successfully";
                             $this->view('successful', $data);
-                        //     echo "
-                        //     <script>
-                        //         alert('deliver sent successfully');
-                        //         window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType . "&milestoneId=".$milestoneId ."';
-                        //     </script>
-                        // ";
                         }else{
-                            echo "
-                            <script>
-                                alert('deliver sent  successfully');
-                                window.location.href = '" . BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ."';
-                            </script>
-                        ";
+                            $data['redirectURL'] = BASEURL . "sharePoint&orderId=" . $orderId . "&orderType=" . $orderType ;
+                            $data['message'] = "Deliver Sent Successfully";
+                            $this->view('successful', $data);
                         }
 
                     }
