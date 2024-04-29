@@ -392,6 +392,7 @@ body {
 }
 
 .displayJobContent .jobViewBuyerDetailsSideBar .jobViewBuyerImage img{
+    object-fit: cover;
     height: 160px;
     width:160px;
     margin-top: 24px;

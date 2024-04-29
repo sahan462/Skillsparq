@@ -45,9 +45,9 @@ class RegisterSeller extends Controller
             $password = $_POST['password'];
             $password_confirmation = $_POST['passwordRepeat'];
 
-            if(isset($_POST['agreement'])){
+            if (isset($_POST['agreement'])) {
                 $agreement = 1;
-            }else{
+            } else {
                 $errors["agreement"] = "Please check the box to agree to our Terms & Privacy Policy.";
             }
 
@@ -55,6 +55,23 @@ class RegisterSeller extends Controller
             if ($password != $password_confirmation) {
                 $errors["password"] = "Password confirmation does not match the original password. Please make sure both passwords are the same.";
             }
+            if (strlen($password) < 8) {
+                $errors['password'] = "Password must be at least 8 characters long.";
+            }
+
+            if (!preg_match('/[a-z]/', $password)) { // Check for lowercase
+                $errors['password'] = isset($errors['password'])
+                    ? $errors['password'] . " Must contain at least one lowercase letter."
+                    : "Must contain at least one lowercase letter.";
+            }
+
+            // Check if the password and confirmation password match
+            if ($password !== $password_confirmation) {
+                $errors["password"] = isset($errors['password'])
+                    ? $errors['password'] . " Confirmation does not match the original password."
+                    : "Password confirmation does not match the original password.";
+            }
+
             if ($this->profileHandlerModel->userNameCheck($userName)) {
                 $errors["userName"] = "Username already exists";
             }
@@ -81,7 +98,7 @@ class RegisterSeller extends Controller
             $this->setSession('agreement', $agreement);
             $this->setSession('user_password', password_hash($password . "skillsparq", PASSWORD_DEFAULT));
             $this->setSession('role', "Seller");
-            
+
             // Redirect to 'verifySeller' page
             $this->redirect('verifySeller');
         } else {
@@ -91,4 +108,3 @@ class RegisterSeller extends Controller
         }
     }
 }
-?>

@@ -613,7 +613,6 @@ a{
     color: #0e0e0f;
     background-color: #fff;
     margin-bottom: 16px;
-    padding-left: 64px;
     font-size: 19px;
     font-weight: 600;
     padding-bottom: 32px;
@@ -627,11 +626,11 @@ a{
     flex-direction: column;
     align-items: center;
 }
-.review-content svg{
+/* .review-content svg{
     color: #dadbdd;
     height: 100px;
     width: 100px;
-}
+} */
 
 /* .addToPortfolioImgs
 input[type = "file"]

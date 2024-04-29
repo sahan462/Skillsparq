@@ -18,6 +18,7 @@
     width: 30%;
     display: flex;
     justify-content: center;
+    height: 600px;
 }
 .buyerHelpContainer .leftContainer, .sellerHelpContainer .leftContainer{
     width: 70%;

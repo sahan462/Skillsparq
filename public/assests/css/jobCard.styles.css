@@ -6,7 +6,7 @@
     color: #0e0e0f;
     border-radius: 5px!important;
     position: relative;
-    /* cursor: pointer; */
+    cursor: pointer;
     padding: 16px;
     background-color: #fff;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.2)!important;
@@ -15,7 +15,7 @@
 .job-card:hover{
     transition:box-shadow 0.3s ease!important;
     box-shadow: 10px 10px 20px 0 rgb(36, 36, 36, 0.6)!important;
-    /* cursor: pointer!important; */
+    cursor: pointer!important;
 }
 
 .job-card a{
