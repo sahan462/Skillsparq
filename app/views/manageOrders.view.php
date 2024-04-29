@@ -11,7 +11,7 @@
     $packageOrders = $data['packageOrders'];
     $jobOrders = $data['jobOrders'];
     $milestoneOrders = $data['milestoneOrders'];
-    print_r($jobOrders->fetch_assoc());
+    print_r(($jobOrders));
 ?>
 
 <!-- Main Container -->
@@ -93,7 +93,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <?php echo $row['deadline']?>
+                                                    <?php //echo $row['deadline']?>
                                                 </td>
 
                                                 <td>
@@ -300,6 +300,8 @@
                                         </tr>
                                 <?php 
                                         }
+                                    }
+                                ?>
                 </div>
 
                 <div id="Package_Late" class="tabcontent">

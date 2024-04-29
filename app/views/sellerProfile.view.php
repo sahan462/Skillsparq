@@ -518,29 +518,68 @@
                     <div class="sellerheader">
                     <form action="sellerProfile/addPortfolioImg" method="POST"
                                 enctype="multipart/form-data">
-                            <p>Select files to upload: 
-                                <div class="addToPortfolioImgs">
-                                    <input type="file" name="files" id="multipleImagesUpload" required accept="image/*" onchange="displayFileName(0)" class="multipleImagesUpload">
-                                    <label for="multipleImagesUpload" id="labelImageAdd">
-                                        <i class="material-icons">
+                                <div class="divClassElement">
 
-                                        </i>Add to portfolio
-                                    </label>
+                                    <div class="addToPortfolioImgs">
+                                        <input type="file" name="files" id="multipleImagesUpload" required accept="image/*"  class="multipleImagesUpload" >
+                                        <span><label for="multipleImagesUpload" id="labelImageAdd" >
+                                            <i class="material-icons" >Add to portfolio</i>
+                                        </label></span>
+                                    </div>
+                                    <div class="addToPortfolioImgsSubmit">
+                                        <input type="submit" name="submit" id="Submit" required style="border:#000 1px solid;width:100px;border-radius:8px;height:40px;cursor:pointer">
+                                        <!-- <label for="Submit">Submit</label> -->
+                                    </div>
+                                    <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+                                
                                 </div>
-                                <div class="addToPortfolioImgsSubmit">
-                                    <input type="submit" name="submit" id="Submit" required>
-                                    <label for="Submit">Submit</label>
-                                </div>
-                                <input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-                                <!-- <input type="hidden" name="userName" value="<?php //echo $_SESSION['userName']?>"> -->
+                            
                         </form>
                     </div>
                     <div class="review-content">
-                        
-                        lkjflaskdf
+                        <div class="row" style="display:flex;flex-wrap:wrap;padding:0 4px">
+                            <div class="column" style="flex:50%;padding:0 4px">
+                                <img src="wedding.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                            </div>
+                            <div class="column">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg"style="margin-top:8px;vertical-align:middle">
+                            </div>
+                            <div class="column">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle">
+                            </div>
+                            <div class="column" style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
+                                <img src="../public/assests/images/dummyprofile.jpg" 3  style="margin-top:8px;vertical-align:middle;">
+                                <img src="../public/assests/images/dummyprofile.jpg"style="margin-top:8px;vertical-align:middle">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;"                                                         >
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
+                                <img src="../public/assests/images/dummyprofile.jpg" style="margin-top:8px;vertical-align:middle;">
+                            </div>
+                            <button onclick="one()">1</button>
+                            <button onclick="two()">2</button>
+                            <button onclick="four()">4</button>
+                        </div>
+                        <!-- lkjflaskdf
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9 1.09V6H7V1.09C4.16 1.57 2 4.03 2 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-8.81c1.79-1.04 3-2.97 3-5.19c0-2.97-2.16-5.43-5-5.91m1 9.37l-1 .58V20H7v-8.96l-1-.58C4.77 9.74 4 8.42 4 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65c0 1.42-.77 2.74-2 3.46m10.94 7.48a3.253 3.253 0 0 0 0-.89l.97-.73a.22.22 0 0 0 .06-.29l-.92-1.56c-.05-.1-.18-.14-.29-.1l-1.15.45c-.24-.17-.49-.32-.78-.44l-.17-1.19a.235.235 0 0 0-.23-.19h-1.85c-.12 0-.22.08-.24.19l-.17 1.19c-.29.12-.54.27-.78.44l-1.15-.45c-.1-.04-.24 0-.28.1l-.93 1.56c-.06.1-.03.22.06.29l.97.73c-.01.15-.03.3-.03.45s.02.29.03.44l-.97.74a.22.22 0 0 0-.06.29l.93 1.56c.04.1.18.13.28.1l1.15-.46c.24.18.49.33.78.45l.17 1.19c.02.11.12.19.24.19h1.85c.11 0 .21-.08.23-.19l.17-1.19c.29-.12.54-.27.78-.45l1.15.46c.11.03.24 0 .29-.1l.92-1.56a.22.22 0 0 0-.06-.29zM17.5 19c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/>
-                        </svg>
-                        <span>Setup Your Portfolio Right Now !</span>
+                        </svg> -->
+                        <!-- <span>Setup Your Portfolio Right Now !</span> -->
                     </div>
                     <!-- <img src="../public/assests/images/dummyprofile.jpg" alt=""> -->
                 </div>
@@ -550,6 +589,34 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a "loop" variable
+var i;
+
+// Full-width images
+function one() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.flex = "100%";
+  }
+}
+
+// Two images side by side
+function two() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.flex = "50%";
+  }
+}
+
+// Four images side by side
+function four() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.flex = "25%";
+  }
+}
+</script>
 <script src="/skillsparq/public/assests/js/sellerProfile.script.js"></script>
 
 

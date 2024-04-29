@@ -380,7 +380,7 @@ function displayFileName(index)
     var file = input.files[0];
 
     if (file) {
-      var allowedExtensions = ["zip"];
+      var allowedExtensions = ["jpg","png","jpeg"];
       var fileExtension = file.name.split(".").pop().toLowerCase();
 
       if (allowedExtensions.indexOf(fileExtension) !== -1) {
