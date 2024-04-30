@@ -81,7 +81,6 @@
                 <input type="hidden" id="lname" name="lname" value="">
                 <input type="hidden" id="username" name="username" value="">
 
-
             </form>
 
 </body>
@@ -97,9 +96,8 @@
         var userName = document.getElementById('userName').value;
 
 
+        var confirmAction = confirm("Are you sure you want to blackList Buyer ID  for " + " days");
 
-
-        var confirmAction = confirm("Are you sure you want to create a new CSA");
 
         if (confirmAction) {
 
@@ -114,8 +112,7 @@
             document.getElementById('sendForm').elements['fname'].value = firstName;
             document.getElementById('sendForm').elements['lname'].value = lastName;
             document.getElementById('sendForm').elements['username'].value = userName;
-
-
+            
 
             // Submit the form
             document.getElementById('sendForm').submit();
