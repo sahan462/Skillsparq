@@ -406,8 +406,8 @@ input[type = "text"], select{
 }
 .review-content svg{
     color: #dadbdd;
-    height: 100px;
-    width: 100px;
+    /* height: 100px;
+    width: 100px; */
 }
 
 

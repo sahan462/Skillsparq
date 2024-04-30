@@ -7,8 +7,9 @@ if ($_SESSION['role'] == 'Buyer') {
 ?>
 
 <?php 
-  $inquiries = $data['inquiries'];
-?>
+  if($_SESSION['role'] == 'Buyer') : 
+    $inquiries = $data['inquiries'];
+  endif;?>
 
 <div class="buyerHelpContainer">
 
@@ -139,10 +140,13 @@ if ($_SESSION['role'] == 'Buyer') {
       </p>
 
       <div class="inquiries" style="margin-top:32px;">
+        <?php if($_SESSION['role'] == 'Buyer') : ?>
 
-        <?php foreach ($inquiries as $row){
-            include "components/inquiryCard.component.php";
-        }?>
+          <?php foreach ($inquiries as $row){
+              include "components/inquiryCard.component.php";
+          }?>
+
+        <?php endif?>
 
       </div>
 
