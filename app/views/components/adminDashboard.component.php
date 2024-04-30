@@ -31,27 +31,18 @@
                     <span class="link-name">View Details</span>
                 </a></li>
             <li><a href="ratingCSA">
-                    <i class="uil uil-share"></i>
+                    <i class="uil uil-star"></i>
                     <span class="link-name">Rating and CSA</span>
                 </a></li>
         </ul>
 
         <ul class="logout-mode">
-            <li><a href="#">
+            <li><a href="loginUser/logout">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
 
-            <li class="mode">
-                <a href="#">
-                    <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
 
-                <div class="mode-toggle">
-                    <span class="switch"></span>
-                </div>
-            </li>
         </ul>
     </div>
 </nav>

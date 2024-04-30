@@ -930,6 +930,29 @@ class OrderHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+    public function getOrderBuyer($user_id)
+    {
+        $query = "SELECT 
+            o.*,  
+            u.*
+        FROM user u
+        left JOIN orders o ON o.buyer_id = u.user_id
+        WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
 
     public function getOrdersSorted()
@@ -937,7 +960,11 @@ class OrderHandler extends database
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
         // Execute the query and fetch the results
+<<<<<<< HEAD
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy "; // Removed the comma before FROM
+=======
         $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
+>>>>>>> b832a05f184b8b0d77a9059d6576864a0a27fc96
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

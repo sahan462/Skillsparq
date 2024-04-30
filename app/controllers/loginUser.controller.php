@@ -54,12 +54,7 @@ class LoginUser extends Controller
                     $lastSeenUpdate = $this->profileHandler->lastSeenUpdate("online", $row['user_id']);
 
                     $row = $this->loginHandler->userCheck($email, $password);
-
-                    if ($row['black_List'] == 1) {
-                        echo "<div style='font-family: Arial, sans-serif; color: red; font-size: 16px; margin: 20px; padding: 10px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px;'>
-                    " . htmlspecialchars($row['role']) . " ID: " . htmlspecialchars($row['user_id']) . " is blacklisted until " . htmlspecialchars($row['Black_Listed_Until']) . "
-                </div>";
-                    } elseif ($lastSeenUpdate) {
+                    if ($lastSeenUpdate) {
 
                         $profile = mysqli_fetch_assoc($this->profileHandler->getUserProfile($row['user_id']));
                         $_SESSION['firstName'] = $profile['first_name'];
@@ -68,7 +63,12 @@ class LoginUser extends Controller
                         $_SESSION['profilePicture'] = $profile['profile_pic'];
                         $data['profile'] = $profile;
 
-                        if ($role == 'Buyer') {
+                        if ($row['black_List'] == 1 && $row['role'] == 'Buyer') {
+                            echo "<div style='font-family: Arial, sans-serif; color: red; font-size: 16px; margin: 20px; padding: 10px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px;'>
+                    " . htmlspecialchars($row['role']) . " ID: " . htmlspecialchars($row['user_id']) . " is blacklisted until " . htmlspecialchars($row['Black_Listed_Until']) . "
+                </div>";
+                            header("location: /skillsparq/public/buyerHelp");
+                        } else if ($role == 'Buyer') {
                             header("location: /skillsparq/public/buyerDashboard");
                         } else if ($role == "Admin") {
                             header("location: /skillsparq/public/adminDashboard");

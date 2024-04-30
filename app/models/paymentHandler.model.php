@@ -295,4 +295,31 @@ class PaymentHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+    public function paymentsBuyer($user_id)
+    {
+        $query = "SELECT 
+       
+        p.*
+     
+        
+    FROM payments p
+    JOIN user u ON p.payer_id = u.user_id
+   
+   
+    WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 }
