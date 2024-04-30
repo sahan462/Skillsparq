@@ -74,6 +74,8 @@ class LoginUser extends Controller
                             header("location: /skillsparq/public/adminDashboard");
                         } else if ($role == "csa") {
                             header("location: /skillsparq/public/helpDeskCenter");
+                        } else if ($role == "admin") {
+                            header("location: /skillsparq/public/AdminDashboard");
                         } else {
                             echo "<script>alert('Invalid')</script>";
                         }

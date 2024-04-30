@@ -5,12 +5,14 @@ class Order extends Controller
     private $OrderHandlerModel;
     private $ChatHandlerModel;
     private $ProfileHandlerModel;
+    private $GigHandlerModel;
 
     public function __construct()
     {
         $this->OrderHandlerModel = $this->model('orderHandler');
         $this->ChatHandlerModel = $this->model('chatHandler');
         $this->ProfileHandlerModel = $this->model('profileHandler');
+        $this->GigHandlerModel = $this->model('GigHandler');
     }
 
     public function calculateDeadline($createdDate, $number, $unit) {
@@ -133,6 +135,10 @@ class Order extends Controller
             print_r($deadline);
             // Create order
             $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId, $deadline);
+
+            if(isset($orderId)){
+                $isUpdated = $this->GigHandlerModel->updateOngoingOrderCount($gigId);
+            }
 
             //get chat
             if($orderId){
@@ -273,6 +279,10 @@ class Order extends Controller
                 $currentDateTime = date('Y-m-d H:i:s');
                 // print_r($_POST);
                 $orderId = $this->OrderHandlerModel->createMilestoneOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $gigId);
+
+                if(isset($orderId)){
+                    $isUpdated = $this->GigHandlerModel->updateOngoingOrderCount($gigId);
+                }
 
                 if($orderId){
 

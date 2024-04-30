@@ -14,11 +14,12 @@
                     <span class="link-name">Dashboard</span>
                 </a></li>
             <li><a href="generateReport">
-                    <i class="uil uil-files-landscapes"></i>
+                    <i class="uil uil-chart"></i>
                     <span class="link-name">Generate Report</span>
                 </a></li>
             <li><a href="IssueRefunds">
-                    <i class="uil uil-chart"></i>
+                    <i class="uil uil-files-landscapes"></i>
+
                     <span class="link-name">Issue Refunds</span>
                 </a></li>
             <li><a href="adminManageCSA">
@@ -27,11 +28,11 @@
                 </a></li>
             <li><a href="adminviewDetails">
                     <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
+                    <span class="link-name">View Details</span>
                 </a></li>
-            <li><a href="#">
+            <li><a href="ratingCSA">
                     <i class="uil uil-share"></i>
-                    <span class="link-name">Share</span>
+                    <span class="link-name">Rating and CSA</span>
                 </a></li>
         </ul>
 
@@ -66,11 +67,12 @@
         <div class="profile-dropdown">
             <div onclick="toggle()" class="profile-dropdown-btn">
                 <div class="profile-img">
-
+                    <img style="height: 50px; width: 45px; border-radius: 50%;" class="profile_img" src="./assests/images/profilePictures/<?php echo $_SESSION['profilePicture'];
+                                                                                                                                            ?>" alt=" student dp">
                     <i class="fa-solid fa-circle"></i>
                 </div>
 
-                <span>
+                <span><?php echo $_SESSION['firstName'] ?>
                     <i class="fa-solid fa-angle-down"></i>
                 </span>
             </div>
@@ -114,7 +116,7 @@
                 <hr />
 
                 <li class="profile-dropdown-list-item">
-                    <a href="#">
+                    <a href="loginUser/logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         Log out
                     </a>

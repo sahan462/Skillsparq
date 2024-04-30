@@ -13,10 +13,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
     <title>Admin Dashboard Panel</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <?php include "components/helpCenter.component.php"; ?>
+
+    <?php
+    if ($_SESSION['role'] == 'csa') {
+        include "components/helpCenter.component.php";
+    } else {
+        include "components/adminDashboard.component.php";
+    } ?>
     <?php
     $rowsPerPage = 5; // Number of rows per page
     $totalRows = mysqli_num_rows($feedbacks); // Total number of rows

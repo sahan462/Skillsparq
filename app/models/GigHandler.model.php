@@ -211,19 +211,23 @@ class GigHandler extends database
         // read the recent gigs with the seller Details
         public function getRecentGigWithRelevantSellerDetsForSearch($textToSearch)
         {
-            $query = "SELECT g.title,g.description,g.category,g.cover_image,g.ongoing_order_count,g.created_at,p.profile_pic,p.first_name,p.last_name,p.country,p.joined_date,p.last_seen,p.about FROM GIGS g INNER JOIN PROFILE p ON p.USER_ID = g.SELLER_ID WHERE 
+            $query = "SELECT g.title,g.gig_id,g.description,g.category,g.cover_image,g.ongoing_order_count,g.created_at,g.seller_id,p.profile_pic,p.first_name,p.last_name,p.country,p.joined_date,p.last_seen,p.about,u.user_email FROM GIGS g INNER JOIN PROFILE p ON p.USER_ID = g.SELLER_ID INNER JOIN USER u ON u.user_id = p.USER_ID WHERE 
             g.title LIKE CONCAT('%',?,'%') OR 
             g.description LIKE CONCAT('%',?,'%') OR 
             g.category LIKE CONCAT('%',?,'%') OR 
             g.cover_image LIKE CONCAT('%',?,'%') OR 
             g.ongoing_order_count LIKE CONCAT('%',?,'%') OR 
             g.created_at LIKE CONCAT('%',?,'%') OR 
+            g.seller_id LIKE CONCAT('%',?,'%') OR 
+            g.gig_id LIKE CONCAT('%',?,'%') OR 
             p.profile_pic LIKE CONCAT('%',?,'%') OR 
             p.first_name LIKE CONCAT('%',?,'%') OR
             p.last_name LIKE CONCAT('%',?,'%') OR
             p.country LIKE CONCAT('%',?,'%') OR
             p.joined_date LIKE CONCAT('%',?,'%') OR
             p.last_seen LIKE CONCAT('%',?,'%') OR
+            p.last_seen LIKE CONCAT('%',?,'%') OR
+            u.user_id LIKE CONCAT('%',?,'%') OR
             p.about LIKE CONCAT('%',?,'%')"
             ;
 
@@ -233,7 +237,7 @@ class GigHandler extends database
                 die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
             }
 
-            mysqli_stmt_bind_param($stmt,"sssssssssssss", $textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch);
+            mysqli_stmt_bind_param($stmt,"sssssssssssssssss", $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch, $textToSearch, $textToSearch, $textToSearch,$textToSearch,$textToSearch,$textToSearch);
 
             if (mysqli_stmt_execute($stmt)) {
                 return $stmt->get_result();
@@ -456,6 +460,26 @@ class GigHandler extends database
         }
     }
 
+    // update ongoing order count when creating an order (either package order or Milestone Order)
+    public function updateOngoingOrderCount($gigId)
+    {
+        $updateQuery = "UPDATE Gigs SET ongoing_order_count = ongoing_order_count + 1 WHERE gig_id = ?;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $updateQuery);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error occurs when updating the data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
     // get ongoing order count
     public function getOngoingOrderCount($sellerId)
     {
@@ -555,26 +579,31 @@ class GigHandler extends database
         }
     }
 
-    public function deletePackages($gigId)
-    {
-        $query = "DELETE FROM packages WHERE gig_id = ?;";
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    // ---------------------------------- Functions for Delete a Gig -----------------------------------
 
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
+
+    // Getting the available count of packages.
+    public function getAvailablePackageCount($gigId)
+    {
+        $retrieveQuery = "SELECT COUNT(*) AS count FROM packages  WHERE gig_id=?;";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $retrieveQuery);
+        
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
 
-        mysqli_stmt_bind_param($stmt, "i", $gigId);
+        mysqli_stmt_bind_param($stmt, "i",$gigId);
 
         if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_close($stmt);
-            return true;
+            return $stmt->get_result()->fetch_assoc();
         } else {
-            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
 
-    public function deletePackageOrders($gigId)
+    //  deleting packages one by one in a loop in controller (Gig)
+    public function deletePackages($gigId)
     {
         $query = "DELETE FROM packages WHERE gig_id = ?;";
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
@@ -612,6 +641,29 @@ class GigHandler extends database
             return false;
         }
     }
+
+    // -----------------------------------------------
+
+    public function deletePackageOrders($gigId)
+    {
+        $query = "DELETE FROM packages WHERE gig_id = ?;";
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $gigId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
+
+    
 
     public function noOfGigs()
     {

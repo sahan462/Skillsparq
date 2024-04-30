@@ -20,6 +20,28 @@ class BuyerDashboard extends Controller
             $data['var'] = "Home Page";
             $data['title'] = "SkillSparq";
 
+            if($_SESSION['role'] === "Buyer"){
+                // search functionality for Buyer Dashboard Header input field (It's in the buyerHeader component.)
+                if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
+                    $textToSearch = $_GET['searchBuyerDash'];
+                    // $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
+                    $getResult = $this->GigHandlerModel->getRecentGigWithRelevantSellerDetsForSearch($textToSearch);
+                    if(!empty($getResult)){
+                        $data['SEARCH'] = $getResult;
+                        // print_r(mysqli_fetch_assoc($data['SEARCH']));
+                        // show(mysqli_fetch_assoc($data['SEARCH']));
+                        $this->view('buyerdashboard',$data);
+                    }else{
+                        echo "
+                        <script>
+                            window.alert('Search not Found !!')
+                            window.location.href = '" . BASEURL . "buyerDashboard';
+                        </script>
+                    ";
+                    }
+                }
+            }
+
             $recentAllGigsWithDets = $this->GigHandlerModel->getRecentGigWithRelevantSellerDets();
     
             if ($recentAllGigsWithDets) {
