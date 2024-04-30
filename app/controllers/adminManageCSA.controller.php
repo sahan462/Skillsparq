@@ -32,6 +32,7 @@ class adminManageCSA extends Controller
             $userName = $_POST['username'];
             $firstName = $_POST['fname'];
             $lastName = $_POST['lname'];
+            $nic3 = $_POST['nic1'];
             $Body = "
             <!DOCTYPE html>
             <html>
@@ -109,7 +110,7 @@ class adminManageCSA extends Controller
 
 
 
-            $user_id = $this->userHandlerModel->addNewUser($user_email, password_hash($user_password . "skillsparq", PASSWORD_DEFAULT), $role, $agreement);
+            $user_id = $this->userHandlerModel->addNewUser($user_email, password_hash($user_password . "skillsparq", PASSWORD_DEFAULT), $role, $agreement, $nic3, $firstName);
 
             $this->profileHandlerModel->addNewProfile($userName, $firstName, $lastName, $user_id);
             $this->sendVerificationMail($user_email, $firstName . " " . $lastName, "Welcome $firstName $lastName", $Body, 'he he');
