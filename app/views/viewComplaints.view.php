@@ -144,7 +144,7 @@
                 <li>Attachments:
                     <span>
                         <?php echo htmlspecialchars($row['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
-                        <a href="./assets/zipFiles/complaints/<?php echo urlencode($row['attachements']); ?>" download>
+                        <a href="./assets/zipFiles/complaints/daily-ui-013-direct-messaging (2).zip" download>
                             <i class="fa fa-download"></i>
 
                         </a>
@@ -323,7 +323,7 @@
                             <li>amount: <span><?php echo $row['amount']; ?></span></li>
                             <li>payment_date: <span><?php echo $row['payment_date']; ?></span></li>
                             <li>payment_description: <span><?php echo $row['payment_description']; ?></span></li>
-                            <li>payment_status: <span><?php echo $row['payment_status']; ?></span></li>
+                            <li>payment_status: <span><?php echo $row['payment_state']; ?></span></li>
                         </ul>
 
                     </div>
@@ -349,8 +349,8 @@
                                     <li>Attachments:
                                         <span>
                                             <?php echo htmlspecialchars($deliver['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
-                                            <a href="./assets/zipFiles/complaints/<?php echo urlencode($deliver['attachements']); ?>" download>
-                                                <i class="fa fa-download"></i>
+                                            <a href=".public/assets/zipFiles/complaints/slflag.png" download="slflag.png">Download File</a>
+                                            <i class="fa fa-download"></i>
 
                                             </a>
                                         </span>

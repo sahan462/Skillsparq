@@ -35,7 +35,7 @@
                     <input type="text" id="user_email" name="user_email"><br>
                     <label for="user_password">Password</label><br>
                     <input type="text" id="user_password" name="user_password"><br>
-                
+
                     <div class="ibutton">
                         <button id="enter" onclick="enter()">Submit</button>
                     </div>
@@ -67,9 +67,9 @@
 
 
             </div>
-            
-            
-            
+
+
+
 
 
             <form id="sendForm" method="post" style="display: none;">
@@ -97,6 +97,7 @@
 
 
         var confirmAction = confirm("Are you sure you want to blackList Buyer ID  for " + " days");
+
 
         if (confirmAction) {
 

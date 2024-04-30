@@ -45,7 +45,7 @@ class Gig extends Controller
                 $timePeriod_3 = $_POST['timePeriod_3'];
                 $packageDescription_3 = trim($_POST['packageDescription_3']);
 
-                $currentDateTime = date('Y-m-d H:i:s');
+                $currentDateTime = (string)date('Y-m-d H:i:s');
                 $sellerId = $this->getSession('userId');
 
                 // directory where gig cover image resides.
@@ -209,7 +209,7 @@ class Gig extends Controller
                 $pckgDescription3 = $_POST['packageDescription_3'];
                 $packageId3 = $_POST['packageId3'];
     
-                $currentDateTime = date('Y-m-d H:i:s');
+                $currentDateTime = (string)date('Y-m-d H:i:s');
     
                 // have to consider about $onGoingOrderCount,$createdAt,$state later on for this.
                 
@@ -381,14 +381,26 @@ class Gig extends Controller
         
     }
 
+    // function to delete a specific gig.
     public function deleteGig()
     {
-        // function to delete a specific gig.
         $gigId = $_GET['gigId'];
-        $packageCount = $this->GigHandlerModel->availablePackageCount();
-        //
+        $userId = $_GET['userId'];
+
+        // check how much available packages are there in a gig.
+        $packageCount = $this->GigHandlerModel->getAvailablePackageCount($gigId);
+        // print_r($packageCount);
 
         $check = [];
+
+        // if(!empty($packageCount)){
+        //     // while($packageCount){
+        //     //     $check[] = $this->GigHandlerModel->deletePackages($gigId);
+        //     //     $packageCount--;
+        //     // }
+        // }
+        
+
         for($i = 0;$i<3;$i++){
             $check[] = $this->GigHandlerModel->deletePackages($gigId);
         }
