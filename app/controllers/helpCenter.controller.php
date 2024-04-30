@@ -12,7 +12,7 @@ class HelpCenter extends Controller
     {
         $data['var'] = "Help Center";
         $data['title'] = "SkillSparq";
-        if (isset($_SESSION['userId']) && ($_SESSION['role'] == 'Seller')) {
+        if (isset($_SESSION['userId'])) {
             $inquiries = $this->inquiryHandlerModel->getInquiries1($_SESSION['userId']);
             $data['inquiries'] = $inquiries;
         }
@@ -60,12 +60,12 @@ class HelpCenter extends Controller
                 }
 
                 $inquiry = $this->inquiryHandlerModel->createInquiry($requestSubject, $requestDescription, $uniqueInquiryAttachementName, $currentDateTime, $userId, $orderId, $inquiryType);
-    
-                if($inquiry){
+
+                if ($inquiry) {
                     $data['redirectURL'] = BASEURL . 'helpCenter';
                     $data['message'] = "Help Request is Sent Successfully";
                     $this->view('successful', $data);
-                }else{
+                } else {
                     throw new Exception("Error creating inquiry");
                 }
             } catch (Exception $e) {
