@@ -34,53 +34,54 @@ class Search extends Controller
             }
             
 
-            if($_SESSION['role'] === "Seller"){
+            // if($_SESSION['role'] === "Seller"){
 
-                // search functionality for Seller Dashboard
-                if(empty($_GET['searchSellerDash'])){
-                    echo "
-                        <script>
-                            window.alert('Enter a valid Search keyword !!')
-                            window.location.href = '" . BASEURL . "sellerDashboard';
-                        </script>
-                    ";
-                }else if(!empty($_GET['searchSellerDash']) && $_GET['searchSellerDash'] != ''){
-                    $textToSearch = $_GET['searchSellerDash'];
-                    $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
-                    if(!empty($getResult)){
-                        $data['SEARCH'] = mysqli_fetch_assoc($getResult);
-                        show($data);
-                        $this->view('search',$data);
-                    }else{
-                        echo "
-                        <script>
-                            window.alert('Search not Found !!')
-                            window.location.href = '" . BASEURL . "sellerDashboard';
-                        </script>
-                    ";
-                    }
-                }
+            //     // search functionality for Seller Dashboard
+            //     if(empty($_GET['searchSellerDash'])){
+            //         echo "
+            //             <script>
+            //                 window.alert('Enter a valid Search keyword !!')
+            //                 window.location.href = '" . BASEURL . "sellerDashboard';
+            //             </script>
+            //         ";
+            //     }else if(!empty($_GET['searchSellerDash']) && $_GET['searchSellerDash'] != ''){
+            //         $textToSearch = $_GET['searchSellerDash'];
+            //         $getResult = $this->JobHandlerModel->getJobsSearch($textToSearch);
+            //         if(!empty($getResult)){
+            //             $data['SEARCH'] = mysqli_fetch_assoc($getResult);
+            //             show($data);
+            //             $this->view('search',$data);
+            //         }else{
+            //             echo "
+            //             <script>
+            //                 window.alert('Search not Found !!')
+            //                 window.location.href = '" . BASEURL . "sellerDashboard';
+            //             </script>
+            //         ";
+            //         }
+            //     }
 
-            }else if($_SESSION['role'] === "Buyer"){
-                // search functionality for Buyer Dashboard Header input field (It's in the buyerHeader component.)
-                if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
-                    $textToSearch = $_GET['searchBuyerDash'];
-                    // $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
-                    $getResult = $this->GigHandlerModel->getRecentGigWithRelevantSellerDetsForSearch($textToSearch);
-                    if(!empty($getResult)){
-                        $data['SEARCH'] = $getResult;
-                        // show($data);
-                        $this->view('search',$data);
-                    }else{
-                        echo "
-                        <script>
-                            window.alert('Search not Found !!')
-                            window.location.href = '" . BASEURL . "buyerDashboard';
-                        </script>
-                    ";
-                    }
-                }
-            }
+            // }else if($_SESSION['role'] === "Buyer"){
+            //     // search functionality for Buyer Dashboard Header input field (It's in the buyerHeader component.)
+            //     if(!empty($_GET['searchBuyerDash']) && $_GET['searchBuyerDash'] != ''){
+            //         $textToSearch = $_GET['searchBuyerDash'];
+            //         // $getResult = $this->GigHandlerModel->getGigsSearch($textToSearch);
+            //         $getResult = $this->GigHandlerModel->getRecentGigWithRelevantSellerDetsForSearch($textToSearch);
+            //         if(!empty($getResult)){
+            //             $data['SEARCH'] = $getResult;
+            //             // print_r(mysqli_fetch_assoc($data['SEARCH']));
+            //             // show($data);
+            //             $this->view('search',$data);
+            //         }else{
+            //             echo "
+            //             <script>
+            //                 window.alert('Search not Found !!')
+            //                 window.location.href = '" . BASEURL . "buyerDashboard';
+            //             </script>
+            //         ";
+            //         }
+            //     }
+            // }
 
             // $this->view('search', $data);
 

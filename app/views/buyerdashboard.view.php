@@ -1,10 +1,5 @@
 <?php include "components/buyerHeader.component.php"; ?>
 
-<?php
-    $recentGigs = $data['recentGigs'];
-    $newBieGigs = $data['newBieGigs'];
-?>
-
 <div class="buyerDashboardContent">
 
     <!--Header -->
@@ -24,29 +19,66 @@
 
         <!--Container 1  -->
         <div class="recentGigs" id="content">
+            <?php
+                if(isset($data['SEARCH'])){
+            ?>
+            <a href="">
+                <div class="row">
+                    <h2>Search Result</h2>
+                </div>
+            </a>
+            <?php
+                }else if(isset($data['recentGigs'])){
+
+            ?>
             <a href="">
                 <div class="row">
                     <h2>Recent Gigs</h2>
                 </div>
             </a>
+            <?php
+
+                }
+            ?>
+            
             <div class="recentGigsContent">
+
                 <?php
-                    foreach($recentGigs as $row){
+                    if(isset($data['SEARCH'])){
+                        $searchRes = $data['SEARCH'];
+                        foreach($searchRes as $row){
+                        ?>
+                            <?php include "components/GigCard.component.php"?>
+                    <?php
+                        }
+                    }else if(isset($data['recentGigs'])){
                 ?>
-                        <?php include "components/GigCard.component.php"?>
-                <?php
+
+                    <?php
+                        $recentGigs = $data['recentGigs'];
+                        foreach($recentGigs as $row){
+                    ?>
+                            <?php include "components/GigCard.component.php"?>
+                    <?php
+                        }
                     }
-                ?>
+                    ?>
             </div>
         </div>
 
         <!-- Container 3 -->
+                <?php
+                    if(isset($data['newBieGigs'])){
+                ?>
         <div class="newBieGigs" id="content">
             <a href="">
+                
                 <div class="row">
+                
                     <div class="leftSide">
                         <h2>NewBie Gigs</h2>
                     </div>
+                
                     <div class="rightSide">
                         <svg id="left" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
@@ -56,17 +88,24 @@
                         </svg>
                     </div>
                 </div>
+                
             </a>
             <div class="newBieGigsContent">
-                <?php
-                    foreach($newBieGigs as $row){
-                ?>
-                        <?php include "components/gigCard.component.php"?>
-                <?php
-                    }
-                ?>
+                    <?php
+                        if(isset($data['newBieGigs'])){
+                            $newBieGigs = $data['newBieGigs'];
+                                foreach($newBieGigs as $row){
+                    ?>
+                            <?php include "components/gigCard.component.php"?>
+                        <?php
+                                }
+                        }
+                        ?>
             </div>
         </div>
+        <?php
+                    }
+        ?>
     </div>
 
 </div>
