@@ -112,7 +112,7 @@ async function updateOrderStatus() {
           throw new Error('Network response was not ok');
       }
 
-      alert(orderId);
+      // alert(orderId);
       // window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
