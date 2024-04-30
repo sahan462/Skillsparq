@@ -300,13 +300,14 @@ class OrderHandler extends database
     }
 
     // get incomplete milestone count
-    public function getIncompleteMilestoneCount($orderId){
+    public function getIncompleteMilestoneCount($orderId)
+    {
 
         $query = "SELECT count(*) as incomplete_milestone_count FROM milestones WHERE milestone_order_id = ? and milestone_state != 'Completed'";
-    
+
         // Prepare the statement
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
+
         // Bind parameters
         mysqli_stmt_bind_param($stmt, "i", $orderId);
 
@@ -316,11 +317,11 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
-
     }
 
     // update milestone starting date
-    public function updateMilestoneStartingDate($orderId, $currentDateTime){
+    public function updateMilestoneStartingDate($orderId, $currentDateTime)
+    {
 
         $query = "Update orders set order_created_date = ? where order_id = ?";
 
@@ -337,11 +338,11 @@ class OrderHandler extends database
         } else {
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
-
     }
 
-       // get order history
-       public function getOrderHistory($orderId){
+    // get order history
+    public function getOrderHistory($orderId)
+    {
 
         $query = "SELECT * FROM order_history where order_id = ?";
 
@@ -359,31 +360,29 @@ class OrderHandler extends database
         } else {
             throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
         }
-
     }
 
-        // get all milestones
-        public function getAllMilestones($orderId)
-        {
-    
-            $query = "SELECT * FROM milestones where milestone_order_id = ?";
-    
-            $stmt = mysqli_prepare($GLOBALS['db'], $query);
-    
-            if ($stmt === false) {
-                throw new Exception("Failed to create prepared statement.");
-            }
-    
-            mysqli_stmt_bind_param($stmt, "i", $orderId);
-    
-            if (mysqli_stmt_execute($stmt)) {
-                return $stmt->get_result();
-                $stmt->close();
-            } else {
-                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
-            }
-    
+    // get all milestones
+    public function getAllMilestones($orderId)
+    {
+
+        $query = "SELECT * FROM milestones where milestone_order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
         }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+    }
 
     // get initial information
     public function getInitialInfo($orderId)
@@ -959,12 +958,10 @@ class OrderHandler extends database
     {
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
-        // Execute the query and fetch the results
-<<<<<<< HEAD
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy "; // Removed the comma before FROM
-=======
+        // Execute the query and fetch the results// Removed the comma before FROM
+
         $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
->>>>>>> b832a05f184b8b0d77a9059d6576864a0a27fc96
+
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
