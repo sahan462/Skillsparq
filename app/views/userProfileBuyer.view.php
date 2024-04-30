@@ -228,7 +228,7 @@
                                     </div>
                                     <div class="card shadow-sm">
                                         <table class="content-table">
-                                            <span class="text" style="font-weight: bold; margin-left:40%; font-size :18px;  color:black ; margin-top:20px;">Rating And reviews</span>
+                                            <span class="text" style="font-weight: bold; margin-left:40%; font-size :18px;  color:black ; margin-top:20px;">Rating And reviews given</span>
                                             <thead>
                                                 <tr>
                                                     <th>feedback_id</th>
@@ -244,7 +244,7 @@
                                                 <?php
                                                 // Display only the rows for the current page
                                                 foreach ($feedbacks as $feedback) {
-                                                    if ($feedback['receiver_user_id'] == $row['user_id']) {
+                                                    if ($feedback['sender_user_id'] == $row['user_id']) {
 
                                                 ?>
                                                         <tr>
@@ -338,7 +338,7 @@
                                         </table>
                                     </div>
                                     <div class="card shadow-sm">
-                                        <span class="text" style="font-weight: bold; margin-left:33%; font-size :18px;  color:black ;  margin-top:20px;">Complaints About Seller</span>
+                                        <span class="text" style="font-weight: bold; margin-left:33%; font-size :18px;  color:black ;  margin-top:20px;">Complaints Assosiated with Buyer</span>
                                         <table class="content-table">
 
                                             <thead>

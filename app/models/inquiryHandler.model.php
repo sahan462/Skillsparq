@@ -374,6 +374,33 @@ class InquiryHandler extends database
             die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
         }
     }
+    public function getComplaintsBuyer($user_id)
+    {
+        $query = "SELECT 
+       
+        i.*
+       
+    FROM user u
+    join orders o ON o.buyer_id = u.user_id
+    JOIN complaints c ON c.order_id = o.order_id
+    JOIN inquiries i on c.complaint_id = i.inquiry_id
+      
+    WHERE u.user_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
 
     // black list buyers
     public function blackListBuyer()

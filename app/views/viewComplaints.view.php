@@ -144,8 +144,8 @@
                 <li>Attachments:
                     <span>
                         <?php echo htmlspecialchars($row['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
-                        <a href="./assets/zipFiles/complaints/daily-ui-013-direct-messaging (2).zip" download>
-                            <i class="fa fa-download"></i>
+                        <a href="../public/assests/zipFiles/complaints/<?php echo $row['attachements'] ?>" download="">Download File</a>
+                        <i class="fa fa-download"></i>
 
                         </a>
                     </span>
@@ -269,7 +269,7 @@
                     <div id="viewBuyer" class="details" style="display: none;">
 
                         <ul>
-                            <li>Buyer ID <span><?php echo $row['buyer_id']; ?></span></li>
+                            <li>Buyer ID <span><?php echo $row['buyer_id']; ?><a href="userProfileBuyer?user_id=<?php echo $row["buyer_id"]; ?>"><i class="fa fa-eye"></i></a></span></li>
                             <li>Buyer email: <span><?php echo $row['buyer_email']; ?></span></li>
                             <li>Buyer agreement: <span><?php echo $row['buyer_agreement']; ?></span></li>
 
@@ -349,7 +349,7 @@
                                     <li>Attachments:
                                         <span>
                                             <?php echo htmlspecialchars($deliver['attachements']); ?> <!-- Assuming the correct key is 'attachments' -->
-                                            <a href=".public/assets/zipFiles/complaints/slflag.png" download="slflag.png">Download File</a>
+                                            <a href="../public/assests/zipFiles/complaints/<?php echo $row['attachements'] ?>" download="">Download File</a>
                                             <i class="fa fa-download"></i>
 
                                             </a>
