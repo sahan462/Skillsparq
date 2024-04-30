@@ -47,7 +47,7 @@
                         <td><?php echo $row['user_email']; ?></td>
                         <td><?php echo $row['role']; ?></td>
 
-                        <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                        <td><a href='userProfile?user_id=<?php echo $row["user_id"]; ?>'>
                                 <button>View</button>
                             </a></td>
                     </tr>
@@ -69,7 +69,7 @@
                     <th>Payee ID</th>
                     <th>Amount</th>
                     <th>Payment Date</th>
-                    <th>View</th>
+
 
 
                 </tr>
@@ -85,9 +85,7 @@
                         <td><?php echo $row['amount']; ?></td>
                         <td><?php echo $row['payment_date']; ?></td>
 
-                        <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                <button>View</button>
-                            </a></td>
+
                     </tr>
                 <?php
                 }
@@ -102,12 +100,11 @@
         <table class="content-table" id="gigs">
             <thead>
                 <tr>
-                    <th>Payment ID</th>
-                    <th>Payer ID</th>
-                    <th>Payee ID</th>
-                    <th>Amount</th>
-                    <th>Payment Date</th>
-                    <th>View</th>
+                    <th>gig ID</th>
+                    <th>title</th>
+                    <th>description</th>
+                    <th>category</th>
+                    <th>Created_at Date</th>
 
 
                 </tr>
@@ -123,9 +120,7 @@
                         <td><?php echo $row['category']; ?></td>
                         <td><?php echo $row['created_at']; ?></td>
 
-                        <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
-                                <button>View</button>
-                            </a></td>
+
                     </tr>
                 <?php
                 }
@@ -154,7 +149,7 @@
                         <td><?php echo $row['order_type']; ?></td>
                         <td><?php echo $row['order_created_date']; ?></td>
 
-                        <td><a href='viewHelpRequestDetails?inquiry_id=<?php echo $row["inquiry_id"]; ?>'>
+                        <td><a href='viewOrders?order_id=<?php echo $row["order_id"]; ?>'>
                                 <button>View</button>
                             </a></td>
                     </tr>
