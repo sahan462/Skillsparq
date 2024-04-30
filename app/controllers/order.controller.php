@@ -71,7 +71,7 @@ class Order extends Controller
 
             if($orderType == 'package'){
                 // get initial information
-                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId, $orderType);
+                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId);
                 $data['initialInfo'] = $initialInfo;
             }
 

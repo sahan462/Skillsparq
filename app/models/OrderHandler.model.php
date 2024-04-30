@@ -389,7 +389,7 @@ class OrderHandler extends database
     public function getInitialInfo($orderId)
     {
 
-        $query = "SELECT * FROM package_orders WHERE order_id = ?";
+        $query = "SELECT * FROM package_orders WHERE package_order_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
