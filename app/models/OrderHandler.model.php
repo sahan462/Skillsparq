@@ -299,6 +299,118 @@ class OrderHandler extends database
         }
     }
 
+
+    // get incomplete milestone count
+    public function getIncompleteMilestoneCount($orderId){
+
+        $query = "SELECT count(*) as incomplete_milestone_count FROM milestones WHERE milestone_order_id = ? and milestone_state != 'Completed'";
+    
+        // Prepare the statement
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // update milestone starting date
+    public function updateMilestoneStartingDate($orderId, $currentDateTime){
+
+        $query = "Update orders set order_created_date = ? where order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $currentDateTime, $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // get all milestones
+    public function getAllMilestones($orderId)
+    {
+
+        $query = "SELECT * FROM milestones where milestone_order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // get order history
+    public function getOrderHistory($orderId){
+
+        $query = "SELECT * FROM order_history where order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // get initial information
+    public function getInitialInfo($orderId)
+    {
+
+        $query = "SELECT * FROM package_orders WHERE order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $info = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        return $info;
+    }
+
+
     // create Job Order 
     public function createJobOrderRecord($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
     {

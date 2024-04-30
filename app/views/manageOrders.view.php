@@ -11,7 +11,6 @@
     $packageOrders = $data['packageOrders'];
     $jobOrders = $data['jobOrders'];
     $milestoneOrders = $data['milestoneOrders'];
-    print_r($milestoneOrders->fetch_assoc());
 ?>
 
 <!-- Main Container -->

@@ -44,6 +44,7 @@ class Chat implements MessageComponentInterface {
             $senderId = $data['senderId'];
             $receiverId = $data['receiverId'];
 
+            $data['time'] = $date;
 
             // Check if attachment exists
             if (isset($data['attachment'])) {
