@@ -87,7 +87,7 @@
                     <a href="#">
                         <i class="fa-regular fa-envelope"></i>
 
-                        <?php echo $_SESSION['profilePicture'] ?>
+                        Inbox
                     </a>
                 </li>
 

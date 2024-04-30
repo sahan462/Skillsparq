@@ -174,8 +174,8 @@
       $orderprev['completed_count']
     ];
 
-    $orderJSON = json_encode($orderNumbers); ?>
-    var orderArrayprev = <?php echo $orderJSON ?>
+    $orderJSON = json_encode($orderNumbers); ?>;
+    var orderArrayprev = <?php echo $orderJSON ?>;
 
 
     new Chart("orderStatePrev", {
