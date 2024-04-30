@@ -287,7 +287,9 @@ nav.close ~ .dashboard .top{
 }
 .dashboard .dash-content{
     padding-top: 50px;
+    width: 100%;
 }
+
 .dash-content .title{
     display: flex;
     align-items: center;
@@ -758,8 +760,14 @@ box-shadow: var(--shadow); */
 
 .subChart{
     margin-top: 50px;
-    width: 45%;
-    border: #000;
+    margin-bottom: 25px;
+    margin-right: 20px;
+    padding: 30px;
+    /* display: inline-block;  */
+    width: 46%;           
+    margin: 0 auto;        
+    text-align: center;
+    border: 2px solid #e9e9e9;
     border-radius: 10px;
 }
 
@@ -858,9 +866,14 @@ box-shadow: var(--shadow); */
 
 .content-table{
     width: 100%;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    box-shadow: 0px 0px 7px 0px rgba(232,232,232,1);
+    
 }
 
 .content-table thead th{
+    font-size: 15px;
     font-weight: 500; 
     background-color: #1dbf73;
     letter-spacing: 0.7px;
@@ -875,4 +888,22 @@ box-shadow: var(--shadow); */
     width: 100%;
 }
 
+.chartboxesone, .chartboxestwo, .chartboxesthree, .chartboxesfour{
+    margin-top: 34px;
+    width: 100%;
+    padding:25px;
+    padding-top: 30px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(232,232,232,1);
+    box-shadow: 0px 0px 7px 0px rgba(232,232,232,1);
+    border-radius: 10px;
+}
+
+.chartboxesone, .chartboxestwo, .chartboxesthree{
+    display: flex;
+}
+
+#monthlyUsers{
+    width: 100%;
+}
 

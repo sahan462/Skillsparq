@@ -63,6 +63,17 @@ conn.onopen = function(e) {
 // onmessage method
 conn.onmessage = function(e) {
 
+    // Get the current date and time
+    var currentDate = new Date();
+
+    // Format the date and time
+    var formattedDate = currentDate.getFullYear() + '-' +
+    ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
+    ('0' + currentDate.getDate()).slice(-2) + ' ' +
+    ('0' + currentDate.getHours()).slice(-2) + ':' +
+    ('0' + currentDate.getMinutes()).slice(-2) + ':' +
+    ('0' + currentDate.getSeconds()).slice(-2);
+
     if (chatAnimation) {
         chatAnimation.style.display = 'none';
     }
@@ -78,90 +89,116 @@ conn.onmessage = function(e) {
 
         // check for correct user
         if (from == "Me") {
-            console.log("Its me");
 
-            if (data.attachment) {
-                if (isBase64Image(data.attachment)) {
-                    messageComponent = `
-                        <div class="receiver-container">
-                            <div class="messageContainer darker">
-                                <div class="receiverContent">
-                                    <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Attachment" class="attachment-image">
-                                    <p class="receiver" >
-                                        ${data.newMessage}
-                                        <img src="${data.attachment}" alt="Attachment" class="attachment-image">
-                                        <span class="time-left">11:01</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>`;
-                } else {
-                    messageComponent = `
-                        <div class="receiver-container">
-                            <div class="messageContainer darker">
-                                <div class="receiverContent">
-                                    ${data.newMessage} (Attachment: <a href="${data.attachment}" download>Download Attachment</a>)
-                                    <span class="time-left">11:01</span>
-                                </div>
-                            </div>
-                        </div>`;
-                }
-            } else {
+            // console.log("Its me");
+            if (data.attachment != null && data.newMessage != null) {
+
                 messageComponent = `
                     <div class="receiver-container">
                         <div class="messageContainer darker">
                             <div class="receiverContent">
-                                <p class="receiver" >
-                                    ${data.newMessage}
-                                    <span class="time-left">11:01</span>
+                                <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="pro pic" class="attachment-image">
+                                <p>
+                                    <a href="${data.attachment}" style="display:flex;justify-content:center;align-items:center;" download>
+                                    <img src="./assests/images/download.png ?>">
+                                    Download Attachment
+                                    </a> 
+                                    ${data.newMessage}   
+                                    <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
                                 </p>
                             </div>
                         </div>
                     </div>`;
+
+            } else if (data.attachment == null && data.newMessage != null) { 
+
+                messageComponent = `
+                    <div class="receiver-container">
+                        <div class="messageContainer darker">
+                            <div class="receiverContent">
+                                <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="pro pic" class="attachment-image">
+                                <p class="receiver" >
+                                    ${data.newMessage}
+                                    <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>`;
+
+            }else if(data.attachment != null && data.newMessage == null){
+
+                messageComponent = `
+                <div class="receiver-container">
+                    <div class="messageContainer darker">
+                        <div class="receiverContent">
+                            <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="pro pic" class="attachment-image">
+                            <p>
+                                <a href="${data.attachment}" style="display:flex;justify-content:center;align-items:center;" download>
+                                <img src="./assests/images/download.png ?>">
+                                Download Attachment
+                                </a>    
+                                <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+
             }
 
         } else {
+            //for another user 
+            if (data.attachment != null && data.newMessage != null) {
 
-            console.log("another user");
-            if (data.attachment) {
-                if (isBase64Image(data.attachment)) {
                     messageComponent = `
                         <div class="sender-container">
                             <div class="messageContainer">
                                 <div class="senderContent">
-                                <img src="./assests/images/profilePictures/${senderProfilePicture}" alt="Attachment" class="attachment-image">
-                                <p class="receiver" >
-                                    ${data.newMessage}
-                                    <img src="${data.attachment}" alt="Attachment" class="attachment-image">
-                                    <span class="time-right">11:00</span>
-                                </p>
-                                </div>
-                            </div>
-                        </div>`;
-                } else {
-                    messageComponent = `
-                        <div class="sender-container">
-                            <div class="messageContainer">
-                                <div class="senderContent">
-                                    ${data.newMessage} (Attachment: <a href="${data.attachment}" download>Download Attachment</a>)
-                                    <span class="time-right">11:00</span>
-                                </p>
+                                    <img src="./assests/images/profilePictures/${receiverProfilePicture}" alt="pro pic" class="attachment-image">
+                                    <p>
+                                        <a href="${data.attachment}" style="display:flex;justify-content:center;align-items:center;" download>
+                                        <img src="./assests/images/download.png ?>">
+                                        Download Attachment
+                                        </a> 
+                                        ${data.newMessage}   
+                                        <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
+                                    </p>
                             </div>
                         </div>
                     </div>`;
-                }
-            } else {
+
+            } else if (data.attachment == null && data.newMessage != null) { 
+
                 messageComponent = `
                     <div class="sender-container">
                         <div class="messageContainer">
                             <div class="senderContent">
-                                <p class="P" >
+                                <img src="./assests/images/profilePictures/${receiverProfilePicture}" alt="pro pic" class="attachment-image">
+                                <p class="receiver" >
                                     ${data.newMessage}
-                                    <span class="time-right">11:00</span>
+                                    <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
                                 </p>
                             </div>
                         </div>
                     </div>`;
+
+            }else if(data.attachment != null && data.newMessage == null){
+
+                messageComponent = `
+                <div class="sender-container">
+                    <div class="messageContainer">
+                        <div class="senderContent">
+                            <img src="./assests/images/profilePictures/${receiverProfilePicture}" alt="pro pic" class="attachment-image">
+                            <p>
+                                <a href="${data.attachment}" style="display:flex;justify-content:center;align-items:center;" download>
+                                <img src="./assests/images/download.png ?>">
+                                Download Attachment
+                                </a>    
+                                <span class="time-left" style="color:black;font-size:12px;"><i>${formattedDate}</i></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+
             }
 
         }
@@ -170,14 +207,9 @@ conn.onmessage = function(e) {
     scrollToBottom();
     document.getElementById('chatContainer').innerHTML += messageComponent;
     document.getElementById('newMessage').value = "";
+    document.getElementById('messageAttachement').value = "";
+
 };
-
-
-// check whether the attachement is an image or not
-function isBase64Image(base64) {
-  return /^data:image\/(png|jpg|jpeg|gif);base64,/.test(base64);
-}
-
 
 
 // onclose method

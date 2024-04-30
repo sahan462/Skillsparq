@@ -20,11 +20,16 @@
     $order_json = json_encode($order);
     $seller_json = json_encode($seller);
     $buyer_json = json_encode($buyer);
+    $orderHistory = $data['orderHistory'];
 
     if(isset($data['currentMilestone'])){
         $currentMilestone = $data['currentMilestone'];
     }
-    // print_r($currentMilestone);
+
+    if(isset($data['allMilestones'])){
+        $allMilestones = $data['allMilestones'];
+    }
+    // print_r($order);
 
     function calculateDeadline($createdDate, $number, $unit) {
         // Get the current date
@@ -55,6 +60,10 @@
         return $deadline->format('Y-m-d');
     }
 
+    if(isset($data['initialInfo'])){
+        $initialInfo = $data['initialInfo'];
+    }
+
     if($order['order_type'] != 'milestone') {
         echo "<script>";
         echo "var deadline = new Date('" . $order['deadline'] . "').getTime();"; 
@@ -64,8 +73,8 @@
         echo "var deadline = new Date('" . calculateDeadline($order['order_created_date'], $currentMilestone['amount_of_delivery_time'], $currentMilestone['time_category']) . "').getTime();"; 
         echo "</script>";
     }
-    
-   
+    // print_r($order);
+    // print_r($data['orderHistory']);
 ?>
 
 <!-- Main Container -->
@@ -185,6 +194,7 @@
                                     <div class="sender-container">
                                         <div class="messageContainer">
                                             <div class="senderContent">
+                                                <img src="./assests/images/profilePictures/<?php echo $receiverProfilePicture ?>" alt="pro pic" class="attachment-image">
                                                 <p class="receiver" >
                                                     <?php echo $row['message'] ?>
                                                     <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
@@ -219,12 +229,13 @@
                                     <div class="sender-container">
                                         <div class="messageContainer">
                                             <div class="senderContent">
+                                                <img src="./assests/images/profilePictures/<?php echo $receiverProfilePicture ?>" alt="pro pic" class="attachment-image">
                                                 <p>
-                                                <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
-                                                    <img src="./assests/images/download.png ?>">
-                                                    Download Attachment
-                                                </a>                                                
-                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                    <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                        <img src="./assests/images/download.png ?>">
+                                                        Download Attachment
+                                                    </a>                                                
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -239,13 +250,14 @@
                                     <div class="receiver-container">
                                         <div class="messageContainer darker">
                                             <div class="receiverContent">
+                                                <img src="./assests/images/profilePictures/<?php echo $senderProfilePicture ?>" alt="pro pic" class="attachment-image">
                                                 <p>
-                                                <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
-                                                    <img src="./assests/images/download.png ?>">
-                                                    Download Attachment
-                                                </a>    
-                                                <?php echo $row['message'] ?>                                                     
-                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                    <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                        <img src="./assests/images/download.png ?>">
+                                                        Download Attachment
+                                                    </a>    
+                                                    <?php echo $row['message'] ?>                                                     
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -256,8 +268,15 @@
                                     <div class="sender-container">
                                         <div class="messageContainer">
                                             <div class="senderContent">
-                                                <?php echo $row['message']?> (Attachment: <a href="<?php echo $row['file']?>" download>Download Attachment</a>)
-                                                <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                <img src="./assests/images/profilePictures/<?php echo $receiverProfilePicture ?>" alt="pro pic" class="attachment-image">
+                                                <p>
+                                                    <a href="<?php echo $row['file']?>" style="display:flex;justify-content:center;align-items:center;" download>
+                                                        <img src="./assests/images/download.png ?>">
+                                                        Download Attachment
+                                                    </a>    
+                                                    <?php echo $row['message'] ?>                                                     
+                                                    <span class="time-left" style="color:black;font-size:12px;"><i><?php echo $row['date'] ?></i></span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -326,38 +345,44 @@
             <div id="details" class="tabContent" style="display:none;">
 
                 <div class="container">
-                    <div class="section">
-                        <h3>Initial Requirement</h3>
-                        <p>Sed et sapien nec mauris convallis pharetra.</p>
-                    </div>
-                    <div class="section">
-                        <h3>Attachment</h3>
-                        <div class="attachment">
-                            <a href="#">Download Attachment</a>
+
+                    <div class="section" style="margin-bottom:12px;">
+                        <h3 style="margin-bottom:12px;">Order History</h3>
+                        <div class="order-history" <?php if ($order['order_type'] != 'packge') echo 'style="max-height: 600px;"'; ?>>
+                            <?php foreach ($orderHistory as $row) { ?>
+                            <div class="order-history-item">
+                                <p>Action: <?php echo $row['description'] ?></p>
+                                <span>Date: <?php echo $row['date'] ?></span>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
-                    <div class="section">
-                        <h3>Order History</h3>
-                        <div class="order-history">
-                            <div class="order-history-item">
-                                <p>Action: Order created</p>
-                                <span>Date: 2024-04-28 10:00:00</span>
-                            </div>
-                            <div class="order-history-item">
-                                <p>Action: Order updated</p>
-                                <span>Date: 2024-04-29 08:30:00</span>
-                            </div>
-                            <!-- Add more order history items dynamically -->
+
+                    <?php if ($order['order_type'] == 'package') { ?>
+                        <div class="section" style="margin-bottom:12px;">
+                            <h3 style="margin-bottom:12px;">Initial Requirement</h3>
+                            <p><?php echo $initialInfo['description'] ?></p>
                         </div>
-                    </div>
+
+                        <div class="section" style="margin-bottom:12px;">
+                            <h3 style="margin-bottom:12px;">Attachment</h3>
+                            <div id="attachment" style="display: flex; flex-direction: row; justify-content: center; align-items: center; cursor: pointer; height: 40px; width: 150px; border: 1px solid #000000; border-radius: 4px;">
+                                <a href="/assests/zipFiles/orderFiles/<?php echo 'Order_' . $order['order_id']; ?>/<?php echo $initialInfo['order_attachment']?>" style="text-decoration: none; color: inherit;">Download Attachment</a>
+                            </div>
+                        </div>
+                    <?php } ?>
+
                 </div>
-            
             </div>
 
             <!-- milestones tab -->
             <?php if($order['order_type'] == 'milestone') : ?>
-                <div id="orderMilestones">
-
+                <div id="orderMilestones" class="tabContent" style="display:none;">
+                    <div class="milestones">
+                        <?php foreach ($allMilestones as $row){
+                            include "components/milestoneCard.component.php";
+                        }?>
+                    </div>
                 </div>            
             <?php endif; ?>
 
@@ -381,11 +406,19 @@
                 <!-- State transition -->
                 <div class="orderState">
 
-                    <!-- Current state -->
-                    <div class="orderStateHeader">
-                        <span>Current Status of Order :</span>
-                        <span><?php echo $order['order_state'] ?></span>
-                    </div>
+                    <?php if($order['order_type'] != 'milestone') :?>
+                        <!-- Current state -->
+                        <div class="orderStateHeader">
+                            <span>Current Status of Order :</span>
+                            <span><?php echo $order['order_state'] ?></span>
+                        </div>
+                    <?php else : ?>
+                        <!-- Current state -->
+                        <div class="orderStateHeader">
+                            <span>Current Status of Milestone :</span>
+                            <span><?php echo $order['order_state'] ?></span>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Requested State -->
                     <?php if  ($order['order_state'] == 'Requested') : $state = 'Requested';?>
@@ -528,9 +561,15 @@
 
                         <?php elseif ($_SESSION['role'] == 'Seller') :?>   
                             
-                            <div class="row">
-                                <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
-                            </div>                           
+                            <?php if($order['order_type'] != 'milestone'): ?>
+                                <div class="row">
+                                    <a href="sharePoint&orderId=<?php echo $order['order_id'] ?>&orderType=<?php echo $order['order_type']?>&receiverId=<?php echo $receiverId?>&orderState=Completed" class="buttonType-1">View Share Point</a>
+                                </div>   
+                            <?php elseif($order['order_type'] == 'milestone') :?>
+                                <div class="row">
+                                    <a href="#orderMilestones" class="buttonType-1">Go to Milestone Tab</a>
+                                </div>
+                            <?php endif ?>                        
 
                         <?php endif; ?>
 
@@ -572,6 +611,8 @@
                             <span class="type-1">Gig Id</span>
                         <?php elseif ($order['order_type'] == 'job'): ?>
                             <span class="type-1">Job Id</span>
+                        <?php elseif ($order['order_type'] == 'milestone'): ?>
+                            <span class="type-1">Milestone Id</span>
                         <?php endif; ?>
 
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
@@ -611,6 +652,8 @@
                             <span class="type-1"><?php echo $order['gig_id'] ?></span>
                         <?php elseif ($order['order_type'] == 'job'): ?>
                             <span class="type-1"><?php echo $order['job_id'] ?></span>
+                        <?php elseif ($order['order_type'] == 'milestone'): ?>
+                            <span class="type-1"><?php echo $currentMilestone['milestone_id'] ?></span>
                         <?php endif; ?>
 
                         <?php if ($_SESSION['role'] == 'Buyer') :?>
@@ -640,12 +683,16 @@
                             <span class="type-1"><?php echo calculateDeadline($order['order_created_date'], $order['no_of_delivery_days'], $order['time_period']) ?></span>
                         <?php elseif ($order['order_type'] == 'job'): ?>
                             <span class="type-1"><?php echo $order['deadline']?></span>
+                        <?php elseif ($order['order_type'] == 'milestone'): ?>
+                            <span class="type-1"><?php echo $currentMilestone['deadline']?></span>
                         <?php endif; ?>
 
                         <?php if ($order['order_type'] == 'package'): ?>
                             <span class="type-1"><?php echo $order['package_price']?>USD</span>
                         <?php elseif ($order['order_type'] == 'job'): ?>
                             <span class="type-1"><?php echo $order['amount']?></span>
+                        <?php elseif ($order['order_type'] == 'milestone'): ?>
+                            <span class="type-1"><?php echo $currentMilestone['milestone_price']?></span>
                         <?php endif; ?>
 
                     </div>
@@ -848,13 +895,15 @@
     const receiverId = "<?php echo $receiverId; ?>";
     const orderType = "<?php echo $order['order_type']; ?>";
     const orderId = "<?php echo $order['order_id']; ?>";
-    <?php if (($order['order_type'] == 'milestone') && $order['order_state'] != 'Completed') : ?>
+    <?php if ($order['order_type'] == 'milestone') : ?>
         const milestoneId = <?php echo $currentMilestone['milestone_id']; ?>
     <?php endif; ?>
-    <?php if ($order['order_state'] == 'Cancelled') : ?>
-        var now = new Date();
-        var deadline = now.getTime();
+    document.addEventListener('DOMContentLoaded', function() {
+    // Your JavaScript code here
+    <?php if ($order['order_state'] == 'Cancelled' || $order['order_state'] == 'Completed') : ?>
+        document.getElementById("demo").innerHTML = "EXPIRED";
     <?php endif; ?>
+    });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

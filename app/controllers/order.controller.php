@@ -5,12 +5,14 @@ class Order extends Controller
     private $OrderHandlerModel;
     private $ChatHandlerModel;
     private $ProfileHandlerModel;
+    private $GigHandlerModel;
 
     public function __construct()
     {
         $this->OrderHandlerModel = $this->model('orderHandler');
         $this->ChatHandlerModel = $this->model('chatHandler');
         $this->ProfileHandlerModel = $this->model('profileHandler');
+        $this->GigHandlerModel = $this->model('GigHandler');
     }
 
     public function calculateDeadline($createdDate, $number, $unit) {
@@ -63,15 +65,31 @@ class Order extends Controller
             // get order, buyer and seller information
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
             
+            //get order history
+            $orderHistory = $this->OrderHandlerModel->getOrderHistory($orderId);
+            $data['orderHistory'] = $orderHistory;
+
+            if($orderType == 'package'){
+                // get initial information
+                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId, $orderType);
+                $data['initialInfo'] = $initialInfo;
+            }
+
             if($orderType == 'milestone'){
+
+                $allMilestones = $this->OrderHandlerModel->getAllMilestones($orderId);
+                $data['allMilestones'] = $allMilestones;
 
                 $incompleteMilestoneCount = $this->OrderHandlerModel->getIncompleteMilestoneCount($orderId);
                 if($incompleteMilestoneCount['incomplete_milestone_count'] == 0){
                     $currentMilestone = [
                         'amount_of_delivery_time' => 0,
-                        'time_category' => 'Days'
+                        'time_category' => 'Days',
+                        'milestone_price' => '-',
+                        'deadline' => '-',
+                        'milestone_id' => '-',
                     ];
-                    $data['$currentMilestone'] = $currentMilestone;
+                    $data['currentMilestone'] = $currentMilestone;
                 }else{
                     $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
                     $data['currentMilestone'] = $currentMilestone->fetch_assoc();
@@ -117,6 +135,10 @@ class Order extends Controller
             print_r($deadline);
             // Create order
             $orderId = $this->OrderHandlerModel->createPackageOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $requestDescription, $attachmentName, $gigId, $packageId, $deadline);
+
+            if(isset($orderId)){
+                $isUpdated = $this->GigHandlerModel->updateOngoingOrderCount($gigId);
+            }
 
             //get chat
             if($orderId){
@@ -257,6 +279,10 @@ class Order extends Controller
                 $currentDateTime = date('Y-m-d H:i:s');
                 // print_r($_POST);
                 $orderId = $this->OrderHandlerModel->createMilestoneOrder($orderState, $orderType, $currentDateTime, $buyerId, $sellerId, $gigId);
+
+                if(isset($orderId)){
+                    $isUpdated = $this->GigHandlerModel->updateOngoingOrderCount($gigId);
+                }
 
                 if($orderId){
 
@@ -674,7 +700,7 @@ class Order extends Controller
 
                 $orderId = $_POST['orderId'];
                 $orderType = $_POST['orderType'];
-                
+
                 if($orderType == 'milestone'){
                     $milestoneId = $_POST['milestoneId'];
                 }

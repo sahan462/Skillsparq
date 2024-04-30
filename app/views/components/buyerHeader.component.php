@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./assests/css/displayGig.styles.css">
     <link rel="stylesheet" href="./assests/css/userHelp.styles.css">
     <link rel="stylesheet" href="./assests/css/feedbackCard.styles.css">
+    <link rel="stylesheet" href="./assests/css/milestoneCard.styles.css">
     <link rel="stylesheet" href="./assests/css/footer.styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
 
             <div class = "searchBar">
                 <!-- Search Bar to Search for the buyer -->
-                <form action="search" method="GET">
+                <form action="" method="GET">
                     <input type="text" placeholder="Search.." name="searchBuyerDash" required>
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>

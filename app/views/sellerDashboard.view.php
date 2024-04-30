@@ -2,7 +2,8 @@
 
     header("location: /skillsparq/public/manageOrders");
 } ?>
-<?php include "components/buyerHeader.component.php"; ?>
+
+<?php include "components/sellerHeader.component.php"; ?>
 <?php
 
 $firstName = $data['sellerProfileDetails']['first_name'];

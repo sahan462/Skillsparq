@@ -112,7 +112,7 @@ async function updateOrderStatus() {
           throw new Error('Network response was not ok');
       }
 
-      alert("Order Accepted successfully");
+      // alert(orderId);
       // window.location.href = 'order&orderId=' + encodeURIComponent(orderId) + '&orderType=' + encodeURIComponent(orderType) + '&buyerId=' + encodeURIComponent(buyerId) + '&sellerId=' + encodeURIComponent(sellerId);
   } catch (error) {
       console.error('Error:', error);
@@ -120,8 +120,11 @@ async function updateOrderStatus() {
 
 }
 
-// Start the countdown timer
-startTimer();
+// Wait for the DOM content to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Start the countdown timer
+  startTimer();
+});
 
 
 // ---------------------------------------modals--------------------------------------------------------
@@ -368,3 +371,19 @@ function displayFileName(input)
   }
 }
   
+
+// --------------------------------milestones-------------------------------
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active_1");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
