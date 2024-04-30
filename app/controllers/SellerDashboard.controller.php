@@ -7,7 +7,7 @@ class SellerDashboard extends Controller
     private $UserHandlerModel;
 
     public function __construct()
-    {   
+    {
         // creating instances for the models.
         $this->JobHandlerModel = $this->model('JobHandler');
         $this->ProfileHandlerModel = $this->model('ProfileHandler');
@@ -30,16 +30,16 @@ class SellerDashboard extends Controller
 
             // Getting the seller's User details from the UserHandlerModel.
             $data['sellerUserDetails'] = $this->getSellerUserDetails($userId);
-            
+
             // get The jobs for seller dashboard. Those are hardcoded in sellerdashboard view.php.
             $data['AllJobs'] = $this->JobHandlerModel->getJobsForSellerDashBoard();
 
-            if(isset($_GET['SellerDashSelectJobType'])){
+            if (isset($_GET['SellerDashSelectJobType'])) {
                 $jobType = $_GET['SellerDashSelectJobType'];
                 // get the jobs for seller dashboard by filtering the job type
                 $data['filter'] = $this->JobHandlerModel->getFilteredJobs($jobType);
                 // $data['AllJobs'] = array_merge($data['AllJobs'], $data['filter']);
-            }else{
+            } else {
                 $data['filter'] = '';
             }
 
@@ -47,7 +47,7 @@ class SellerDashboard extends Controller
             $_SESSION['firstName'] = $data['sellerProfileDetails']['first_name'];
             $_SESSION['lastName'] = $data['sellerProfileDetails']['last_name'];
             $_SESSION['userName'] = $data['sellerProfileDetails']['user_name'];
-            
+
             // show($data);
             $this->view('SellerDashboard', $data);
         }
