@@ -478,10 +478,13 @@ nav.close ~ .dashboard .top{
 
 
 .content-table {
+    /* width: 100%; */
     border-collapse: collapse;
-    margin-left: 15%;
+    /* margin-left: 150px; */
     font-size: 0.9em;
-  
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -489,8 +492,12 @@ nav.close ~ .dashboard .top{
     justify-content: space-around;
 }
 
+.content-table thead{
+    width: 100%;
+}
+
 .content-table thead tr {
-    background-color: #009879;
+    background-color: #1dbf73;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -504,7 +511,7 @@ nav.close ~ .dashboard .top{
 .content-table th{
     font-weight:bold ;
     color: white;
-    background-color:#009879 ;
+    background-color:#1dbf73 ;
     margin-top: 10px;
 
 }
@@ -517,12 +524,12 @@ nav.close ~ .dashboard .top{
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #1dbf73;
 }
 
 .content-table tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #1dbf73;
 }
 .heading{
     margin-top: 20px;
@@ -531,7 +538,7 @@ nav.close ~ .dashboard .top{
     font-style: inherit;
     text-align: center;
     font-size: 30px;
-    color: #009879;
+    color: #1dbf73;
 
 }
 
@@ -785,4 +792,17 @@ div.solved {
 div.unsolved {
     background-color: #dc3545;
     /* A richer shade of red */
+}
+
+.title{
+    background-color: #1dbf73;
+    padding: 5px;
+    /* padding-left: 5px; */
+    border-radius: 5px;
+}
+
+.heading-one{
+    color: white;
+    font-weight: 500;
+    margin-left: 5px;
 }
