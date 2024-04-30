@@ -20,76 +20,66 @@
 <body>
   <?php include "components/adminDashboard.component.php"; ?>
 
-
-  <div class="dash-content">
+<div class="dash-content">
     <div class="overview">
-      <div class="title">
-        <i class="uil uil-tachometer-fast-alt"></i>
-        <span class="text">Dashboard</span>
-      </div>
-
-
-
-      <div id="invoice1">
-
-        <div class="boxes">
-          <div class="box box1">
-            <i class="uil uil-thumbs-up"></i>
-            <span class="text">Total Users</span>
-            <span class="number"><?php echo $userType['users']; ?></span>
-          </div>
-          <div class="box box2">
-            <i class="uil uil-comments"></i>
-            <span class="text">Total Orders</span>
-            <span class="number"><?php echo $order['orders'] ?></span>
-          </div>
-          <div class="box box3">
-            <i class="uil uil-share"></i>
-            <span class="text">Total Share</span>
-
-            <span class="number"><?php $order['orders']  ?></span>
-          </div>
-        </div>
-        <div class="boxes">
-          <div class="subChart">
-            <canvas id="monthlyUsers"></canvas>
-          </div>
-          <div class=" subChart">
-            <canvas id="totalOrders"></canvas>
-          </div>
-          <div class="subChart">
-            <canvas id="orderState"></canvas>
-          </div>
-          <div class=" subChart">
-            <canvas id="orderStatePrev"></canvas>
-          </div>
-          <div class=" subChart">
-            <canvas id="userType"></canvas>
-          </div>
-          <div class=" subChart">
-            <canvas id="paymentStatusCurrent"></canvas>
-          </div>
-          <div class="subChart">
-            <canvas id="totalPayments"></canvas>
-          </div>
-
+        <div class="title">
+            <!-- <i class="uil uil-tachometer-fast-alt"></i> -->
+            <span class="text">Dashboard</span>
         </div>
 
+        <div id="invoice1">
+            <div class="boxes">
+                <div class="box box1">
+                    <i class="uil uil-thumbs-up"></i>
+                    <span class="text">Total Users</span>
+                    <span class="number"><?php echo $userType['users']; ?></span>
+                </div>
+                <div class="box box2">
+                    <i class="uil uil-comments"></i>
+                    <span class="text">Total Orders</span>
+                    <span class="number"><?php echo $order['orders'] ?></span>
+                </div>
+                <div class="box box3">
+                    <i class="uil uil-share"></i>
+                    <span class="text">Total Share</span>
+                    <span class="number">5</span>
+                </div>
+            </div>
+        </div>
 
-
-
-      </div>
-
-
-
-
-
+        <div class="chartboxesone">
+            <div class="subChart">
+                <canvas id="monthlyUsers"></canvas>
+            </div>
+            <div class=" subChart">
+                <canvas id="totalOrders"></canvas>
+            </div>
+        </div>
+        <div class="chartboxestwo">
+            <div class="subChart">
+                <canvas id="orderState"></canvas>
+            </div>
+            <div class=" subChart">
+                <canvas id="orderStatePrev"></canvas>
+            </div>
+        </div>
+        <div class="chartboxesthree">
+            <div class=" subChart">
+                <canvas id="userType"></canvas>
+            </div>
+            <div class=" subChart">
+                <canvas id="paymentStatusCurrent"></canvas>
+            </div>
+        </div>
+        <div class="chartboxesfour">
+          <div class="subChart">
+                <canvas id="totalPayments"></canvas>
+          </div>
+        </div>
+            
     </div>
-  </div>
+</div>
 
-
-  </div>
-  </section>
 
   <script>
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -106,28 +96,46 @@
       echo "monthlyUsers.push('$month');"; // Use push to add each month to the JavaScript array
     } ?>
 
-    var barColors = ["red", "green", "blue", "orange", "brown"];
+var barColors = ["red", "green", "blue", "orange", "brown"];
 
-    new Chart("monthlyUsers", {
-      type: "line",
-      data: {
-        labels: rearrangedMonths,
-        datasets: [{
-          fill: false,
-          borderColor: 'green',
-          data: monthlyUsers
-        }]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: "New Users Joined"
+// var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+new Chart("monthlyUsers", {
+  type: "line",
+  data: {
+    labels: months,
+    datasets: [{
+      fill: false,
+      borderColor: 'green',
+      data: monthlyUsers
+    }]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text: "New Users Joined",
+      fontFamily: 'Poppins',
+      fontSize: 18
+    },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
         }
-      }
-    });
+      }],
+      yAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+        }
+      }]
+    }
+  }
+});
+
+
     <?php
 
     $orderNumbers = [
@@ -145,23 +153,30 @@
 
 
     new Chart("orderState", {
-      type: "pie",
-      data: {
-        labels: ['accepted', 'running', 'requested', 'cancelled', 'late', 'completed'],
-        datasets: [{
-          backgroundColor: barColors,
-          data: orderArray
-        }]
-      },
-      options: {
-        title: {
-          display: true,
-          text: "orderState This Month (<?php echo date('m') . " 20" . date('y') ?>)"
-        }
-      }
-
-
-    });
+  type: "pie",
+  data: {
+    labels: ['accepted', 'running', 'requested', 'cancelled', 'late', 'completed'],
+    datasets: [{
+      backgroundColor: barColors,
+      data: orderArray
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Order State This Month (<?php echo date('m') . " 20" . date('y') ?>)",
+      fontFamily: 'Poppins', // Change font family to Poppins for title
+      fontSize: 18 // Optional: Set font size for title
+    },
+    // scales: {
+    //   xAxes: [{
+    //     ticks: {
+    //       fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+    //     }
+    //   }]
+    // }
+  }
+});
 
 
     <?php
@@ -174,8 +189,8 @@
       $orderprev['completed_count']
     ];
 
-    $orderJSON = json_encode($orderNumbers); ?>
-    var orderArrayprev = <?php echo $orderJSON ?>
+    $orderJSON = json_encode($orderNumbers); ?>;
+    var orderArrayprev = <?php echo $orderJSON ?>;
 
 
     new Chart("orderStatePrev", {
@@ -187,13 +202,28 @@
           data: orderArrayprev
         }]
       },
-      options: {
-        title: {
-          display: true,
-          text: "orderState Previous Month (0<?php echo (date('m') == 1) ? 12 : date('m') - 1; ?>  <?php echo (date('m') == 1) ? date('Y') - 1 : date('Y'); ?>)"
+      // options: {
+      //   title: {
+      //     display: true,
+      //     text: "Order State Previous Month (0<?php echo (date('m') == 1) ? 12 : date('m') - 1; ?>  <?php echo (date('m') == 1) ? date('Y') - 1 : date('Y'); ?>)"
 
-        }
-      }
+      //   }
+      // }
+      options: {
+    title: {
+      display: true,
+      text: "Order State Previous Month (0<?php echo (date('m') == 1) ? 12 : date('m') - 1; ?>  <?php echo (date('m') == 1) ? date('Y') - 1 : date('Y'); ?>)",
+      fontFamily: 'Poppins', // Change font family to Poppins for title
+      fontSize: 18 // Optional: Set font size for title
+    },
+    // scales: {
+    //   xAxes: [{
+    //     ticks: {
+    //       fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+    //     }
+    //   }]
+    // }
+  }
     });
 
     <?php
@@ -207,24 +237,39 @@
 
     var userType = <?php echo $orderJson ?>;
     new Chart("userType", {
-      type: "bar",
-      data: {
-        labels: ['seller', 'buyer', 'csa', 'admin'],
-        datasets: [{
-          backgroundColor: barColors,
-          data: userType
-        }]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: "User Types"
+  type: "bar",
+  data: {
+    labels: ['Seller', 'Buyer', 'CSA', 'Admin'],
+    datasets: [{
+      backgroundColor: barColors,
+      data: userType
+    }]
+  },
+  options: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: true,
+      text: "User Types",
+      fontFamily: 'Poppins', // Change font family to Poppins for title
+      fontSize: 18 // Optional: Set font size for title
+    },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
         }
-      }
-    });
+      }],
+      yAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+        }
+      }]
+    }
+  }
+});
+
 
     var totalOrders = [];
 
@@ -248,8 +293,22 @@
         },
         title: {
           display: true,
-          text: "total Orders"
+          text: "Total Orders",
+          fontFamily: 'Poppins', // Change font family to Poppins for title
+          fontSize: 18
+        },
+        scales: {
+      xAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
         }
+      }],
+      yAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+        }
+      }]
+    }
       }
     });
     var totalPayments = []
@@ -273,8 +332,22 @@
         },
         title: {
           display: true,
-          text: "total Orders"
+          text: "Total Orders",
+          fontFamily: 'Poppins',
+          fontSize: 18
+        },
+        scales: {
+      xAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
         }
+      }],
+      yAxes: [{
+        ticks: {
+          fontFamily: 'Poppins' // Change font family to Poppins for x-axis labels
+        }
+      }]
+    }
       }
     });
 
@@ -304,7 +377,7 @@
       options: {
         title: {
           display: true,
-          text: "payment Status Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
+          text: "Payment Status Current Month (<?php echo (date('m')) ?>  <?php echo (date('Y')); ?>)"
         }
       }
     });
@@ -374,17 +447,6 @@
       }
     });
   </script>
-
-
-</body>
-
-</html>
-
-
-</body>
-
-</html>
-
 
 
 </body>

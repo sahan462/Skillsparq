@@ -53,6 +53,7 @@
             </div>
 
             <div class="grid">
+                <p style="font-weight: bold ; font-size:large">Inquiry Details</P>
                 <?php
                 foreach ($viewrefund as $row) {
                 ?>
@@ -69,12 +70,33 @@
                 }
                 ?>
             </div>
+
+            <div class="grid">
+                <p style="font-weight: bold ; font-size:large">Payment Details</P>
+                <?php
+                foreach ($viewrefund as $row) {
+                ?>
+                    <ul>
+                        <li>Payment_ID <span><?php echo $row['payment_id']; ?></span></li>
+                        <li>Payer_id: <span><?php echo $row['payer_id']; ?></span></li>
+                        <li>Payee_id: <span><?php echo $row['payee_id']; ?></span></li>
+                        <li>Amount: <span><?php echo $row['amount']; ?></span></li>
+                        <li>Payment_date: <span><?php echo $row['payment_date']; ?></span></li>
+                        <li>payment_description: <span><?php echo $row['payment_description']; ?></span></li>
+                        <li>Payment_state: <span><?php echo $row['payment_state']; ?></span></li>
+                        <li>order_id: <span><?php echo $row['order_id']; ?></span></li>
+
+                    </ul>
+                <?php
+                }
+                ?>
+            </div>
         </div>
 
         <form method="post">>
-            <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your response here"></textarea>
+            <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your Reason here"></textarea>
             <br>
-            <input class="submit" type="submit" value="Reply">
+            <input class="submit" type="submit" value="Refund">
         </form>
     </div>
     </div>

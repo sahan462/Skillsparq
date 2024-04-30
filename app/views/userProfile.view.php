@@ -413,7 +413,7 @@
                                                         <td><?php echo $payment['payer_id']; ?></td>
                                                         <td><?php echo $payment['amount']; ?></td>
                                                         <td>
-                                                            <div class="<?php echo $payment['payment_status']; ?>"><?php echo $payment['payment_status']; ?></div>
+                                                            <div class="<?php echo $payment['payment_state']; ?>"><?php echo $payment['payment_state']; ?></div>
                                                         </td>
                                                         <td><?php echo $payment['payment_date']; ?></td>
                                                         <td><a href='viewComplaints?inquiry_id=<?php echo $complaint["inquiry_id"]; ?>'><i class="fa fa-eye"></i></a></td>

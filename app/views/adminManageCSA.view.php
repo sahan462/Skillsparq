@@ -35,7 +35,7 @@
                     <input type="text" id="user_email" name="user_email"><br>
                     <label for="user_password">Password</label><br>
                     <input type="text" id="user_password" name="user_password"><br>
-                
+
                     <div class="ibutton">
                         <button id="enter" onclick="enter()">Submit</button>
                     </div>
@@ -67,9 +67,9 @@
 
 
             </div>
-            
-            
-            
+
+
+
 
 
             <form id="sendForm" method="post" style="display: none;">
@@ -80,7 +80,6 @@
                 <input type="hidden" id="fname" name="fname" value="">
                 <input type="hidden" id="lname" name="lname" value="">
                 <input type="hidden" id="username" name="username" value="">
-
 
             </form>
 
@@ -97,9 +96,8 @@
         var userName = document.getElementById('userName').value;
 
 
-
-
         var confirmAction = confirm("Are you sure you want to blackList Buyer ID  for " + " days");
+
 
         if (confirmAction) {
 
@@ -114,8 +112,7 @@
             document.getElementById('sendForm').elements['fname'].value = firstName;
             document.getElementById('sendForm').elements['lname'].value = lastName;
             document.getElementById('sendForm').elements['username'].value = userName;
-
-
+            
 
             // Submit the form
             document.getElementById('sendForm').submit();
