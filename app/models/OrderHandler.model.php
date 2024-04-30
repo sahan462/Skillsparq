@@ -299,7 +299,6 @@ class OrderHandler extends database
         }
     }
 
-
     // get incomplete milestone count
     public function getIncompleteMilestoneCount($orderId){
 
@@ -341,31 +340,8 @@ class OrderHandler extends database
 
     }
 
-    // get all milestones
-    public function getAllMilestones($orderId)
-    {
-
-        $query = "SELECT * FROM milestones where milestone_order_id = ?";
-
-        $stmt = mysqli_prepare($GLOBALS['db'], $query);
-
-        if ($stmt === false) {
-            throw new Exception("Failed to create prepared statement.");
-        }
-
-        mysqli_stmt_bind_param($stmt, "i", $orderId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            return $stmt->get_result();
-            $stmt->close();
-        } else {
-            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
-        }
-
-    }
-
-    // get order history
-    public function getOrderHistory($orderId){
+       // get order history
+       public function getOrderHistory($orderId){
 
         $query = "SELECT * FROM order_history where order_id = ?";
 
@@ -385,6 +361,29 @@ class OrderHandler extends database
         }
 
     }
+
+        // get all milestones
+        public function getAllMilestones($orderId)
+        {
+    
+            $query = "SELECT * FROM milestones where milestone_order_id = ?";
+    
+            $stmt = mysqli_prepare($GLOBALS['db'], $query);
+    
+            if ($stmt === false) {
+                throw new Exception("Failed to create prepared statement.");
+            }
+    
+            mysqli_stmt_bind_param($stmt, "i", $orderId);
+    
+            if (mysqli_stmt_execute($stmt)) {
+                return $stmt->get_result();
+                $stmt->close();
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+            }
+    
+        }
 
     // get initial information
     public function getInitialInfo($orderId)
@@ -409,7 +408,6 @@ class OrderHandler extends database
 
         return $info;
     }
-
 
     // create Job Order 
     public function createJobOrderRecord($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
@@ -939,7 +937,7 @@ class OrderHandler extends database
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
         // Execute the query and fetch the results
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy $sortDirection"; // Removed the comma before FROM
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 

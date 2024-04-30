@@ -66,7 +66,6 @@ class HelpCenter extends Controller
                     $data['message'] = "Help Request is Sent Successfully";
                     $this->view('successful', $data);
                 }else{
-
                     throw new Exception("Error creating inquiry");
                 }
             } catch (Exception $e) {
