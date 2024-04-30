@@ -810,7 +810,7 @@ box-shadow: var(--shadow); */
     letter-spacing: 0.7px;
 }
 
-#firstName, #lastName, #userName, #user_email, #user_password{
+#firstName, #lastName, #userName, #user_email, #user_password, #nic{
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -824,7 +824,8 @@ box-shadow: var(--shadow); */
 #lastName:focus,
 #userName:focus,
 #user_email:focus,
-#user_password:focus {
+#user_password:focus, 
+#nic:focus{
     border: 1px solid #aef9d6; 
     background-color: #f3fdf8; 
     outline: none; 
