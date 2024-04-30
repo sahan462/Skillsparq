@@ -47,11 +47,9 @@ class HelpCenter extends Controller
                 $inquiry = $this->inquiryHandlerModel->createInquiry($requestSubject, $requestDescription, $uniqueInquiryAttachementName, $currentDateTime, $userId, $orderId, $inquiryType);
     
                 if($inquiry){
-                    echo "
-                    <script>
-                        alert('Help Request is Sent Successfully');
-                        window.location.href = '" . BASEURL . 'helpCenter' . "';
-                    </script>";
+                    $data['redirectURL'] = BASEURL . 'helpCenter';
+                    $data['message'] = "Help Request is Sent Successfully";
+                    $this->view('successful', $data);
                 }else{
                     throw new Exception("Error creating inquiry");
                 }

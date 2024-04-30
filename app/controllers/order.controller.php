@@ -63,15 +63,31 @@ class Order extends Controller
             // get order, buyer and seller information
             $data = $this->OrderHandlerModel->getOrderDetails($orderId, $orderType, $buyerId, $sellerid, $userRole);
             
+            //get order history
+            $orderHistory = $this->OrderHandlerModel->getOrderHistory($orderId);
+            $data['orderHistory'] = $orderHistory;
+
+            if($orderType == 'package'){
+                // get initial information
+                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId, $orderType);
+                $data['initialInfo'] = $initialInfo;
+            }
+
             if($orderType == 'milestone'){
+
+                $allMilestones = $this->OrderHandlerModel->getAllMilestones($orderId);
+                $data['allMilestones'] = $allMilestones;
 
                 $incompleteMilestoneCount = $this->OrderHandlerModel->getIncompleteMilestoneCount($orderId);
                 if($incompleteMilestoneCount['incomplete_milestone_count'] == 0){
                     $currentMilestone = [
                         'amount_of_delivery_time' => 0,
-                        'time_category' => 'Days'
+                        'time_category' => 'Days',
+                        'milestone_price' => '-',
+                        'deadline' => '-',
+                        'milestone_id' => '-',
                     ];
-                    $data['$currentMilestone'] = $currentMilestone;
+                    $data['currentMilestone'] = $currentMilestone;
                 }else{
                     $currentMilestone = $this->OrderHandlerModel->getCurrentMilestone($orderId);
                     $data['currentMilestone'] = $currentMilestone->fetch_assoc();
@@ -674,7 +690,7 @@ class Order extends Controller
 
                 $orderId = $_POST['orderId'];
                 $orderType = $_POST['orderType'];
-                
+
                 if($orderType == 'milestone'){
                     $milestoneId = $_POST['milestoneId'];
                 }

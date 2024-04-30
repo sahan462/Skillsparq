@@ -343,6 +343,75 @@ class OrderHandler extends database
 
     }
 
+    // get all milestones
+    public function getAllMilestones($orderId)
+    {
+
+        $query = "SELECT * FROM milestones where milestone_order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // get order history
+    public function getOrderHistory($orderId){
+
+        $query = "SELECT * FROM order_history where order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+            $stmt->close();
+        } else {
+            throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
+        }
+
+    }
+
+    // get initial information
+    public function getInitialInfo($orderId)
+    {
+
+        $query = "SELECT * FROM package_orders WHERE order_id = ?";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $orderId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $info = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+        } else {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        return $info;
+    }
+
     // create Job Order 
     public function createJobOrderRecord($orderState, $orderType, $orderCreatedAt, $buyerId, $sellerId)
     {
