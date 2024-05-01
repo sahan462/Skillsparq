@@ -389,7 +389,7 @@ class OrderHandler extends database
     public function getInitialInfo($orderId)
     {
 
-        $query = "SELECT * FROM package_orders WHERE order_id = ?";
+        $query = "SELECT * FROM package_orders WHERE package_order_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -960,11 +960,9 @@ class OrderHandler extends database
         $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'order_id'; // Default sorting column
 
         // Execute the query and fetch the results
-<<<<<<< HEAD
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy "; // Removed the comma before FROM
-=======
-        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
->>>>>>> b832a05f184b8b0d77a9059d6576864a0a27fc96
+
+   
+        $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // 
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -1081,6 +1079,24 @@ class OrderHandler extends database
             return mysqli_stmt_get_result($stmt);
         } else {
             die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function deleteOrderFinal($order_id)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM orders
+            WHERE order_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

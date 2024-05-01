@@ -387,3 +387,25 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
+
+// --------------------------------Payment Form Submission---------------------------------
+// $(document).ready(function() {
+//   $('paymentForm').submit(function(event) {
+//       // Prevent the default form submission
+//       event.preventDefault();
+
+//       // Perform additional backend function call using AJAX
+//       $.ajax({
+//           url: 'order/verifyPayment',
+//           method: 'POST',
+//           data: $(this).serialize(),
+//           success: function(response) {
+//               // Handle the response if needed
+//           }
+//       });
+
+//       // Continue with the original form submission
+//       this.submit();
+//   });
+// });
+

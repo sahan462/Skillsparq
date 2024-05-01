@@ -71,7 +71,7 @@ class Order extends Controller
 
             if($orderType == 'package'){
                 // get initial information
-                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId, $orderType);
+                $initialInfo = $this->OrderHandlerModel->getInitialInfo($orderId);
                 $data['initialInfo'] = $initialInfo;
             }
 
@@ -102,7 +102,7 @@ class Order extends Controller
 
             //retrieve the chat from the database
             $data['chat'] = $this->ChatHandlerModel->readAllMessages($chatId);
-
+             
             $this->view('order', $data);
     
         }
@@ -260,7 +260,28 @@ class Order extends Controller
         }
 
     }
-    
+     
+    public function deleteOrder(){
+
+        try{
+
+            if (isset($_GET['order_id'])){
+
+                $orderId = $_GET['orderId'];
+                $isDeleted = $this -> OrderHandlerModel ->  deleteOrderFinal($orderId);
+                if($isDeleted){
+                    $data['redirectURL'] = BASEURL.'manageOrders';
+                    $data['message'] = "Order Deleted Successfully";
+                    $this->view('successful', $data);
+                }else{
+                    throw new Exception('Error deleting order');
+                }
+            }
+
+        }catch(Exception $e){
+            echo 'An error occurred during deletion of order: ' . $e->getMessage();
+        }
+    }
 
     //create milestone order
     public function createMilestoneOrder()
@@ -723,4 +744,5 @@ class Order extends Controller
 
 
 }
+
 ?>

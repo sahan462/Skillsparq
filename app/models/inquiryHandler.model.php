@@ -61,7 +61,23 @@ class InquiryHandler extends database
             mysqli_stmt_bind_param($stmt, "ii", $inquiryId, $orderId);
 
             if (mysqli_stmt_execute($stmt)) {
+
                 $stmt->close();
+
+                // Update ongoing_order_count in the order table
+                $updateStmt = mysqli_prepare($GLOBALS['db'], "UPDATE orders SET ongoing_complaint_count = ongoing_complaint_count + 1 WHERE order_id = ?");
+                if ($updateStmt === false) {
+                    throw new Exception("Failed to create update prepared statement.");
+                }
+
+                mysqli_stmt_bind_param($updateStmt, "i", $orderId);
+
+                if (mysqli_stmt_execute($updateStmt)) {
+                    $updateStmt->close();
+                } else {
+                    throw new Exception("Error updating order table: " . mysqli_error($GLOBALS['db']));
+                }
+
             } else {
                 throw new Exception("Error inserting data: " . mysqli_error($GLOBALS['db']));
             }

@@ -95,18 +95,14 @@
 
                 </a>
                 <div class="newBieGigsContent">
-                    <<<<<<< HEAD <?php
-                                    foreach ($newBieGigs as $row) {
-                                    ?> <?php include "components/gigCard.component.php" ?> <?php
-                                                                    }
-                                                                        ?>=======<?php
-                            if (isset($data['newBieGigs'])) {
-                                $newBieGigs = $data['newBieGigs'];
-                                foreach ($newBieGigs as $row) {
-                            ?> <?php include "components/gigCard.component.php" ?> <?php
-                                                                        }
-                                                                    }
-                                                                            ?>>>>>>>> b832a05f184b8b0d77a9059d6576864a0a27fc96
+                                    <?php
+                    if (isset($data['newBieGigs'])) {
+                        $newBieGigs = $data['newBieGigs'];
+                        foreach ($newBieGigs as $row) {
+                            include "components/gigCard.component.php";
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         <?php

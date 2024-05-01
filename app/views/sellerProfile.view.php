@@ -5,6 +5,7 @@
     if($data['mode'] != 'public'){
         $lastSeen = $_SESSION['status'];
     }
+    $i = 0;
 ?>
 
 <!-- Main Container for Seller -->
@@ -326,9 +327,9 @@
                 <div class="editSellerProfile">
                     <a href="sellerProfile&mode=public"><button >Preview Profile</button></a>
                 </div>
-                <div class="delete-profile">
+                <!-- <div class="delete-profile">
                     <button onclick="openProfileDeleteModal(this)">Delete Profile</button>
-                </div>
+                </div> -->
                 <?php endif;?>
                 <div class="user-info">
                     <div class="info">

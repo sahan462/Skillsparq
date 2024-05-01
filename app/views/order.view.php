@@ -30,7 +30,7 @@
         $allMilestones = $data['allMilestones'];
     }
     // print_r($order);
-
+    // print_r($initialInfo);
     function calculateDeadline($createdDate, $number, $unit) {
         // Get the current date
         $createdDate = new DateTime($createdDate);
@@ -361,13 +361,13 @@
                     <?php if ($order['order_type'] == 'package') { ?>
                         <div class="section" style="margin-bottom:12px;">
                             <h3 style="margin-bottom:12px;">Initial Requirement</h3>
-                            <p><?php echo $initialInfo['description'] ?></p>
+                            <p><?php echo $initialInfo['order_description'] ?></p>
                         </div>
 
                         <div class="section" style="margin-bottom:12px;">
                             <h3 style="margin-bottom:12px;">Attachment</h3>
-                            <div id="attachment" style="display: flex; flex-direction: row; justify-content: center; align-items: center; cursor: pointer; height: 40px; width: 150px; border: 1px solid #000000; border-radius: 4px;">
-                                <a href="/assests/zipFiles/orderFiles/<?php echo 'Order_' . $order['order_id']; ?>/<?php echo $initialInfo['order_attachment']?>" style="text-decoration: none; color: inherit;">Download Attachment</a>
+                            <div id="attachment" style="display: flex; flex-direction: row; justify-content: center; align-items: center; cursor: pointer; height: 40px; width: 200px; border: 1px solid #000000; border-radius: 4px;">
+                                <a href="/assests/zipFiles/orderFiles/<?php echo 'Order_' . $order['order_id']; ?>/<?php echo $initialInfo['order_attachement']?>" style="text-decoration: none; color: inherit;" download>Download Attachment</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -684,7 +684,7 @@
                         <?php elseif ($order['order_type'] == 'job'): ?>
                             <span class="type-1"><?php echo $order['deadline']?></span>
                         <?php elseif ($order['order_type'] == 'milestone'): ?>
-                            <span class="type-1"><?php echo $currentMilestone['deadline']?></span>
+                            <span class="type-1"><?php echo calculateDeadline($order['order_created_date'], $currentMilestone['amount_of_delivery_time'], $currentMilestone['time_category']) ?></span>
                         <?php endif; ?>
 
                         <?php if ($order['order_type'] == 'package'): ?>
