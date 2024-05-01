@@ -1,3 +1,13 @@
+# SKILLsparQ
+
+![SKILLsparQ Logo](/path/to/logo.png)
+
+## Introduction
+
+SKILLsparQ is a freelancing platform designed to connect freelancers with clients in the Sri Lankan community. It provides a platform for individuals to offer their skills and services and for businesses to find talented professionals for their projects.
+
+
+
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
