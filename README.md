@@ -1,6 +1,6 @@
 # SKILLsparQ
 
-![SKILLsparQ Logo](/skillsparq-1(1).jpg)
+![SKILLsparQ Logo](/https://github.com/sahan462/skillsparq/blob/7f1ffda41e8a0da761ca66fc416bedb92f681ff7/skillsparq-1%20(1).jpg)
 
 ## Introduction
 
