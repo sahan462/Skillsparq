@@ -89,7 +89,7 @@
                         <input type="hidden" name="Graphics & Design">
                     </li>
                     <li>
-                        <a href="" class="wordLink">Programming & Tech</a>
+                        <a href="category&type=Programming and Tech" class="wordLink">Programming &amp; Tech</a>
                         <input type="hidden" name="Programming & Tech">
                     </li>
                     <li>

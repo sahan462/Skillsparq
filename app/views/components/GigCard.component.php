@@ -76,13 +76,18 @@
                 </p> -->
             </div>
 
-            <!-- starting price -->
-            <div class="price">
-                <?php 
-                $i = $i + 25;?>
-                <b><span>From <?php echo $i?>$<span></b>
-                <?php $i = $i - 10?>
-            </div>
+            <?php if(isset($data['categoryGigs'])) { ?>
+                <!-- starting price -->
+                <div class="price">
+                    From $<?php echo $row['package_price'] ?>
+                </div>
+            <?php } else { ?>
+                <!-- starting price -->
+                <div class="price">
+                    From $20
+                </div>
+            <?php } ?>
+
 
             <div class="links">
                 <?php

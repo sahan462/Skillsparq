@@ -60,7 +60,6 @@
 
                     <?php
                     $recentGigs = $data['recentGigs'];
-                    $i = 25;
                     foreach ($recentGigs as $row) {
                     ?>
                         <?php include "components/GigCard.component.php" ?>

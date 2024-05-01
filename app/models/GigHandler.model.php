@@ -32,6 +32,31 @@ class GigHandler extends database
         }
     }
 
+    // public function getCategoryGigs
+    public function getCategoryGigs($category){
+
+        $query = "SELECT gigs.title,gigs.cover_image,profile.first_name,profile.profile_pic,profile.last_name,gigs.seller_id,profile.user_id,gigs.gig_id,min(packages.package_price) as package_price FROM gigs inner join profile on profile.user_id = gigs.seller_id inner join packages on gigs.gig_id = packages.gig_id where category = ? group by packages.gig_id";
+
+        $stmt = mysqli_prepare($GLOBALS['db'], $query);
+
+        if (!$stmt) {
+            die('MySQL Error: ' . mysqli_error($GLOBALS['db']));
+        }
+
+        if($category == 'Programming and Tech'){
+            $type = "Programming & Tech";
+        }
+
+        mysqli_stmt_bind_param($stmt, "s", $type);
+            
+        if (mysqli_stmt_execute($stmt)) {
+            return $stmt->get_result();
+        } else {
+            throw new Exception("Error inserting data to package 3: " . mysqli_error($GLOBALS['db']));
+        }
+        
+    }
+
     //create new packages
     public function addNewPackages($packagePrice_1, $packageName_1, $noOfRevisions_1, $noOfDeliveryDays_1, $timePeriod_1, $packageDescription_1, $packagePrice_2, $packageName_2, $noOfRevisions_2, $noOfDeliveryDays_2, $timePeriod_2,  $packageDescription_2, $packagePrice_3, $packageName_3, $noOfRevisions_3, $noOfDeliveryDays_3, $timePeriod_3, $packageDescription_3, $gigId)
     {    
