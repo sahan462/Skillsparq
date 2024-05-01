@@ -25,7 +25,7 @@
                 <span id="passwordError" class="error" ><?php echo $errors["password"];?></span>
             </div>
             <a href="" style="text-decoration:none"><div  class="normal-blue-font">Are you a seller? <a href="loginUser">Click here!</a></div></a>
-            <a href="" style="text-decoration:none"><div  class="normal-blue-font">Forgotten Your <a href="#">Username/Password?</a></div></a>
+            <!-- <a href="" style="text-decoration:none"><div  class="normal-blue-font">Forgotten Your <a href="#">Username/Password?</a></div></a> -->
             <div style="margin-top:20px"> <input type="submit" class="registerbtn" value="Login" name="login"></div>
         </div>
     </form>

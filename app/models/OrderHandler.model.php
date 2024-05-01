@@ -388,7 +388,7 @@ class OrderHandler extends database
     public function getInitialInfo($orderId)
     {
 
-        $query = "SELECT * FROM package_orders WHERE order_id = ?";
+        $query = "SELECT * FROM package_orders WHERE package_order_id = ?";
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
@@ -961,8 +961,6 @@ class OrderHandler extends database
         // Execute the query and fetch the results// Removed the comma before FROM
 
         $query = "SELECT o.* FROM orders o ORDER BY $sortBy DESC"; // Removed the comma before FROM
-
-
         $stmt = mysqli_prepare($GLOBALS['db'], $query);
 
         if (!$stmt) {
@@ -1078,6 +1076,24 @@ class OrderHandler extends database
             return mysqli_stmt_get_result($stmt);
         } else {
             die('MySQL execute error: ' . mysqli_error($GLOBALS['db']));
+        }
+    }
+    public function deleteOrderFinal($order_id)
+    {
+        $stmt = mysqli_prepare($GLOBALS['db'], "DELETE FROM orders
+            WHERE order_id = ?");
+
+        if ($stmt === false) {
+            throw new Exception("Failed to create prepared statement.");
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $order_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            throw new Exception("Error deleting data: " . mysqli_error($GLOBALS['db']));
         }
     }
 }

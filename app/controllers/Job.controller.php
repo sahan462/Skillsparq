@@ -50,7 +50,11 @@ class Job extends Controller
 
             $title = $_GET['title'];
             $description = $_GET['description'];
-            $file = $_GET['fileToUpload'];
+            if(isset($_GET['fileToUpload'])){
+                $file = $_GET['fileToUpload'];
+            }else{
+                $file = "";
+            }
             $category = $_GET['category'];
             $deadline = $_GET['deadline_1'];
             $publishMode = $_GET['publishMode'];

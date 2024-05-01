@@ -28,9 +28,9 @@ $errors = $data["errors"];
             <a href="" style="text-decoration:none">
                 <div class="normal-blue-font">Are you a seller? <a href="loginSeller">Click here!</a></div>
             </a>
-            <a href="" style="text-decoration:none;">
+            <!-- <a href="" style="text-decoration:none;">
                 <div class="normal-blue-font">Forgotten Your <a href="#">Username/Password?</a></div>
-            </a>
+            </a> -->
             <div style="margin-top:16px"> <input type="submit" class="registerbtn" value="Login" name="login"></div>
         </div>
     </form>

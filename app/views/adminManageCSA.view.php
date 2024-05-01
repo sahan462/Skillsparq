@@ -34,7 +34,9 @@
                     <label for="user_email">User Email</label><br>
                     <input type="text" id="user_email" name="user_email"><br>
                     <label for="user_password">Password</label><br>
-                    <input type="text" id="user_password" name="user_password"><br>
+                    <input type="password" id="user_password" name="user_password"><br>
+                    <label for="nic">NIC</label><br>
+                    <input type="text" id="nic" name="nic"><br> 
 
                     <div class="ibutton">
                         <button id="enter" onclick="enter()">Submit</button>
@@ -44,20 +46,22 @@
                 <div class="right-section">
                     <table class="content-table">
                         <thead>
-                            <th>User ID</th>
+                            <!-- <th>User ID</th> -->
+                            <th>First Name</th>
                             <th>User Email</th>
                             <th>Role</th>
-                            <th>View</th>
+                            <th>NIC</th>
                         </thead>
                         <tbody>
                             <?php foreach ($users as $row) {
                                 if ($row['role'] === 'csa') {
                             ?>
                                     <tr>
-                                        <td><?php echo $row['user_id']; ?></td>
+                                        <!-- <td></td> -->
+                                        <td><?php echo $row['fname2']; ?></td>
                                         <td><?php echo $row['user_email']; ?></td>
                                         <td><?php echo $row['role']; ?></td>
-                                        <td><a href="#">View</a></td>
+                                        <td><?php echo $row['nic2']; ?></td> 
                                     </tr>
                             <?php }
                             } ?>
@@ -80,6 +84,7 @@
                 <input type="hidden" id="fname" name="fname" value="">
                 <input type="hidden" id="lname" name="lname" value="">
                 <input type="hidden" id="username" name="username" value="">
+                <input type="hidden" id="nic1" name="nic1" value=""> 
 
             </form>
 
@@ -94,6 +99,7 @@
         var firstName = document.getElementById('firstName').value;
         var lastName = document.getElementById('lastName').value;
         var userName = document.getElementById('userName').value;
+        var NIC = document.getElementById('nic').value;
 
 
         var confirmAction = confirm("Are you sure you want to blackList Buyer ID  for " + " days");
@@ -112,6 +118,12 @@
             document.getElementById('sendForm').elements['fname'].value = firstName;
             document.getElementById('sendForm').elements['lname'].value = lastName;
             document.getElementById('sendForm').elements['username'].value = userName;
+            if (NIC.length = 10 && NIC.charAt(9) === "V") {
+                document.getElementById('sendForm').elements['nic1'].value = NIC;
+            } else {
+                console.log("Error");
+            }
+
             
 
             // Submit the form

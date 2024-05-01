@@ -43,6 +43,7 @@
                     <?php
                                 if ($proposals->num_rows > 0) {
                                     while($proposal = mysqli_fetch_assoc($proposals)) {
+                                        // show(mysqli_fetch_assoc($proposals));
                             ?>
 
                         <div class="jobProposalCard">
@@ -81,9 +82,12 @@
                                 <label for="">Attachements</label>
                                 <a href="../public/assests/images/jobProposalAttachments/<?php echo $proposal['attachments']?>"><button>Attachment</button></a>
                             </div> 
+
+                            
                             <div class="jobProposalButtons">
                                 <?php if ($data['countAccepted']['count'] == 0) : ?>
                                 <div class="jobProposalAcc">
+                                    <a href="jobproposals/acceptJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>&amp;jobId=<?php echo $proposal['job_id']?>&amp;sellerId=<?php echo $proposal['seller_id']?>&amp;buyerId=<?php echo $proposal['buyer_id']?>"></a>
                                 </div>
                                 <div class="jobProposalRej">
                                     <a href="jobproposals/rejectJobProposal&amp;proposalId=<?php echo $proposal['proposal_id'];?>&amp;Status=<?php echo $proposal['Status']?>">

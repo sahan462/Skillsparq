@@ -60,7 +60,7 @@ function createPDF(orderJSON, sellerJSON, buyerJSON) {
     }
 
     if(order.order_type == 'package'){
-        doc.text(order.deadlineFormatted.toString(), 70, 110);
+        doc.text(order.deadline.toString(), 70, 110);
     }else if(order.order_type == 'job'){
         doc.text(order.deadline.toString(), 70, 110);
     }
