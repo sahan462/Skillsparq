@@ -3,15 +3,15 @@ class UserHandler extends database
 {
 
     // create new user
-    public function addNewUser($user_email, $user_password, $role, $agreement)
+    public function addNewUser($user_email, $user_password, $role, $agreement, $nic3, $firstName)
     {
-        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO User (user_email, user_password,  role, agreement) VALUES (?, ?, ?, ?)");
+        $stmt = mysqli_prepare($GLOBALS['db'], "INSERT INTO User (user_email, user_password,  role, agreement, nic2, fname2) VALUES (?, ?, ?, ?, ?, ?)");
 
         if ($stmt === false) {
             throw new Exception("Failed to create prepared statement.");
         }
 
-        mysqli_stmt_bind_param($stmt, "sssi", $user_email, $user_password, $role, $agreement);
+        mysqli_stmt_bind_param($stmt, "sssiss", $user_email, $user_password, $role, $agreement, $nic3, $firstName);
 
         if (mysqli_stmt_execute($stmt)) {
             $user_id = mysqli_insert_id($GLOBALS['db']);
@@ -151,7 +151,7 @@ class UserHandler extends database
     }
     public function getUsers()
     {
-        $query = "SELECT user_id, user_email, role  FROM user ORDER BY user_id DESC";
+        $query = "SELECT * FROM user ORDER BY user_id DESC";
 
 
         $stmt = mysqli_prepare($GLOBALS['db'], $query);

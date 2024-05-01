@@ -50,8 +50,8 @@
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-                <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Ratings and reviews</span>
+                <!-- <i class="uil uil-tachometer-fast-alt"></i> -->
+                <h1 class="heading-one">Ratings & Reviews</h1>
             </div>
         </div>
 
@@ -59,12 +59,12 @@
         <table class="content-table">
             <thead>
                 <tr>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_id&dir=<?php echo $data['sortDirection']; ?>">feedback_id <i class="fa fa-sort"></i> </a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=sender_user_id&dir=<?php echo $data['sortDirection']; ?>">SenderID <i class="fa fa-sort"></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=receiver_user_id&dir=<?php echo $data['sortDirection']; ?>">ReceiverId <i class="fa fa-sort"></a></th>
-                    <th style="max-width: 350px;"><a href="?page=<?php echo $currentPage; ?>&sort=feedback_text&dir=<?php echo $data['sortDirection']; ?>">feedback_text <?php echo $data['sortBy'] === 'feedback_text' ? '<i class="fa fa-sort-' . ($data['sortDirection'] === 'asc' ? 'up' : 'down') . '"></i>' : ''; ?></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=rating&dir=<?php echo $data['sortDirection']; ?>">rating<i class="fa fa-sort"></a></th>
-                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_date&dir=<?php echo $data['sortDirection']; ?>">feedback_date <i class="fa fa-sort"> </a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_id&dir=<?php echo $data['sortDirection']; ?>">Feedback ID <i class="fa fa-sort"></i> </a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=sender_user_id&dir=<?php echo $data['sortDirection']; ?>">Sender ID <i class="fa fa-sort"></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=receiver_user_id&dir=<?php echo $data['sortDirection']; ?>">Receiver ID <i class="fa fa-sort"></a></th>
+                    <th style="max-width: 350px;"><a href="?page=<?php echo $currentPage; ?>&sort=feedback_text&dir=<?php echo $data['sortDirection']; ?>">Feedback Text <?php echo $data['sortBy'] === 'feedback_text' ? '<i class="fa fa-sort-' . ($data['sortDirection'] === 'asc' ? 'up' : 'down') . '"></i>' : ''; ?></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=rating&dir=<?php echo $data['sortDirection']; ?>">Rating<i class="fa fa-sort"></a></th>
+                    <th><a href="?page=<?php echo $currentPage; ?>&sort=feedback_date&dir=<?php echo $data['sortDirection']; ?>">Feedback Date <i class="fa fa-sort"> </a></th>
                     <th>Delete</th>
                 </tr>
             </thead>
