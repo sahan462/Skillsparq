@@ -1,6 +1,6 @@
 # SKILLsparQ
 
-![SKILLsparQ Logo](/path/to/logo.png)
+![SKILLsparQ Logo](/skillsparq-1 (1).jpg)
 
 ## Introduction
 
